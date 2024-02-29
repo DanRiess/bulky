@@ -1,0 +1,167 @@
+/* 
+Gradient border with animation definition. Purposely doesn't show the border or run the animation at this stage to give more control.
+
+Transition: fades in the border from top left to bottom right
+Animation: rotates the border so it appears as if the colors were moving
+
+Important: the element needs to have a data attribute for css class specificity due to how Vue CSS scoping works.
+
+Usage example to activate the animation on hover:
+
+<div class="myclass gradient-border" data-b-override></div>
+<style>
+// optional variables to control the transition and animation. all of these have fallback values.
+.myclass {
+	--border-width: 1px;
+	--border-radius: var(--border-radius-medium, 0.5rem);
+	--transition-time: 0.15s
+	--animation-time: 2s
+	--color-stop-1: var(--dr-gradient-from-bright, #00c0f9);
+	--color-stop-2: var(--dr-gradient-to-bright, #dc00fe);
+}
+
+.myclass:hover::before {
+	--show-border: 1;
+}
+</style>
+*/
+@property --gradient-angle {
+	syntax: '<angle>';
+	inherits: false;
+	initial-value: 0turn;
+}
+
+body .gradient-border[data-b-override] {
+	/* mandatory. has to be 'initial' to hide or '1' to show the border and animation */
+	--show-border: initial;
+
+	position: relative;
+	border: none;
+	border-radius: var(--border-radius, var(--border-radius-small, 0.25rem));
+}
+
+body .gradient-border[data-b-override]::before {
+	--radial-gradient-end-size: calc(1% + var(--show-border, 0) * 99%);
+	--opacity: calc(var(--show-border) * 1);
+	--animation-play-state: var(--show-border);
+
+	content: '';
+	position: absolute;
+	inset: 0;
+	border: var(--border-width, 1px) solid transparent;
+	border-radius: var(--border-radius, var(--border-radius-small, 0.25rem));
+	background: conic-gradient(from var(--gradient-angle),
+			var(--color-stop-1, var(--dr-gradient-from-bright, #00c0f9)),
+			var(--color-stop-2, var(--dr-gradient-to-bright, #dc00fe)),
+			var(--color-stop-1, var(--dr-gradient-from-bright, #00c0f9))) border-box;
+	mask: radial-gradient(#000 100%, #0000 101%) border-box 0% 0% / var(--radial-gradient-end-size) var(--radial-gradient-end-size) no-repeat,
+		linear-gradient(#000 0 0) content-box;
+	mask-composite: subtract;
+	pointer-events: none;
+	opacity: var(--opacity, 0.5);
+	transition: var(--transition-duration, .1s) ease-in;
+	animation: border-gradient-rotation var(--animation-duration, 2s) linear infinite;
+
+	/* css trick: 'initial' is a guaranteed invalid value for variables.
+	it will use the fallback value 'paused' in this case.
+	1 on the other hand is an invalid value just for this property.
+	css will ignore the declaration and use its default, which is 'running' */
+	animation-play-state: var(--show-border, paused);
+}
+
+@keyframes border-gradient-rotation {
+	to {
+		--gradient-angle: 1turn;
+	}
+}
+
+
+/* 
+Specular glance animation definition. Purposely doesn't add the animation at this stage to give more control.
+Important: the element needs to have a data attribute for css class specificity due to how Vue CSS scoping works
+Usage example to activate the animation on hover:
+
+<div class="myclass specular-glance-animation" data-b-override></div>
+<style>
+.myclass:hover::after {
+	--show-specular-effect: initial;
+}
+</style>
+*/
+body .specular-glance-animation[data-b-override] {
+	/* has to be either 'initial' to activate the animation or any other value to ignore it. used '1' for consistency. */
+	--show-specular-effect: 1;
+	position: relative;
+	overflow: hidden;
+}
+
+body .specular-glance-animation[data-b-override]::after {
+	content: '';
+	position: absolute;
+	top: -20px;
+	left: -50px;
+	opacity: 0.1;
+	rotate: 35deg;
+	background-color: #fff;
+	transition: 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+	width: 10px;
+	height: 200%;
+	box-shadow: 0 0 10px 10px #fff;
+
+	/* css trick: 'initial' is a guaranteed invalid value for variables.
+		it will use the fallback value, which in this case adds the animation.
+		1 on the other hand is an invalid value just for this property.
+		css will ignore the declaration completely, which in this case removes the animation. */
+	animation: var(--show-specular-effect, specular-glance-effect 1.5s linear infinite);
+}
+
+body .specular-glance-animation.active[data-b-override]::after {
+	left: 150%;
+}
+
+@keyframes specular-glance-effect {
+	20%,
+	100% {
+		left: 150%;
+	}
+}
+
+/* 
+Card gradient definition
+*/
+@property --gradient-percentage-x {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 0%;
+}
+@property --gradient-percentage-y {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 0%;
+}
+
+body .radial-gradient[data-b-override] {
+	background-image: 
+		radial-gradient(circle at var(--gradient-percentage-x) var(--gradient-percentage-y), transparent, rgb(255 255 255 / 0.1)),
+		linear-gradient(45deg, var(--color-stop-1, var(--dr-gradient-from-dark, #241442)), var(--color-stop-2, var(--dr-gradient-to-dark, #051e32)));
+	animation: radial-gradient-rotation 5s linear infinite;
+}
+
+@keyframes radial-gradient-rotation {
+	0%, 100% {
+		--gradient-percentage-x: 20%;
+		--gradient-percentage-y: 50%;
+	}
+	25% {
+		--gradient-percentage-x: 50%;
+		--gradient-percentage-y: 20%;
+	}
+	50% {
+		--gradient-percentage-x: 80%;
+		--gradient-percentage-y: 50%;
+	}
+	75% {
+		--gradient-percentage-x: 50%;
+		--gradient-percentage-y: 80%;
+	}
+}

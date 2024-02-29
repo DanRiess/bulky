@@ -1,0 +1,56 @@
+:root {
+
+	/* Brand Colors */
+	/* --neon-purple: #1b02a3;
+	--brandeis-blue: #0061f9; */
+	--dark-blue: #051e32;
+	--capri: #00c0f9;
+	--dark-purple: #241442;
+	--phlox: #dc00fe;
+	/* --electric-purple: #b32bd6; */
+	/* --electric-purple: #bc00fe; */
+	/* --han-purple: #5319fb;
+	--dark-purple: #090446; */
+
+	/* Brand Colors Remapped To Names */
+	--color-blue-dark: var(--dark-blue);
+	--color-blue-bright: var(--capri);
+
+	--color-purple-dark: var(--dark-purple);
+	--color-purple-bright: var(--phlox);
+
+
+	/* Utility Colors */
+	--color-light-200: #f0f0f0;
+	--color-light-300: #ccc;
+	--color-dark-100: #5b5b5c;
+	--color-dark-300: #353535;
+	--color-dark-500: #11171d;
+	--color-dark-600: #08041b;
+	--color-dark-900: #000000;
+
+	/* modify colors like this */
+	--color-mix: color-mix(in srgb, var(--color-dark-300) 20%, transparent);
+	--relative-color: rgb(from var(--color-dark-300) r g b / 20%);
+
+	/* Border Radius */
+	--border-radius-smallest: 0.125rem;
+	--border-radius-small: 0.25rem;
+	--border-radius-medium: 0.5rem;
+	--border-radius-large: 0.75rem;
+	--border-radius-huge: 1rem;
+
+	/* More specific remaps */
+	--dr-gradient-from-bright: var(--color-blue-bright);
+	--dr-gradient-to-bright: var(--color-purple-bright);
+	--dr-gradient-from-dark: var(--color-blue-dark);
+	--dr-gradient-to-dark: var(--color-purple-dark);
+
+	--dr-background-color-app: var(--color-dark-600);
+	--dr-background-color-button-dark: linear-gradient(0deg, var(--color-dark-900), var(--color-dark-900));
+	--dr-background-color-button-light: linear-gradient(-45deg, var(--dr-gradient-from-dark), var(--dr-gradient-to-dark));
+
+	--dr-color-app: var(--color-light-300);
+
+	--dr-gradient-highlight-overlay: linear-gradient(-45deg, rgb(255 255 255 / 0.1), transparent, rgb(255 255 255 / 0.15));
+}

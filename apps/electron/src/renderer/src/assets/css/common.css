@@ -1,0 +1,55 @@
+/* Flow */
+.flow {
+	--flow-space: 1em;
+}
+
+.flow>*+* {
+	margin-top: var(--flow-space);
+}
+
+/* Disable User Select */
+.no-select {
+	user-select: none;
+	cursor: default;
+}
+
+/* headings */
+h1 {
+	font-size: 1.4em;
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 1.1em;
+	font-weight: 500;
+}
+
+h3 {
+	font-size: 1em;
+	font-weight: 500;
+}
+
+/* wrappers */
+.wrapper {
+	--content-max-width: 1160px;
+	--gutter: 2rem;
+
+	width: min(var(--content-max-width), 100% - var(--gutter) * 2);
+	margin-inline: auto;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+	height: 0.5rem;
+	width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 1000vw;
+	background-color: var(--color-neutral);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 1000vw;
+	background-color: var(--color-lighter);
+}

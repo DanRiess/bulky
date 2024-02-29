@@ -1,0 +1,37 @@
+<template>
+	<div class="m-input-with-label">
+		<LabelAtom :id="uuid">
+			<slot />
+		</LabelAtom>
+		<InputSelectAtom v-model="model" :options="options" :id="uuid" />
+	</div>
+</template>
+
+<script setup lang="ts" generic="T extends string">
+import InputSelectAtom from '../atoms/InputSelectAtom.vue'
+import LabelAtom from '../atoms/LabelAtom.vue'
+import { BULKY_UUID } from '@web/utility/uuid'
+
+const model = defineModel<T>({ required: true })
+const uuid = BULKY_UUID.generateTypedUuid()
+
+withDefaults(
+	defineProps<{
+		labelPosition?: 'left' | 'right'
+		options: T[]
+	}>(),
+	{
+		labelPosition: 'left',
+	}
+)
+</script>
+
+<style scoped>
+.m-input-with-label {
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-template-areas: 'left right';
+	grid-column: span 2;
+	align-items: center;
+}
+</style>
