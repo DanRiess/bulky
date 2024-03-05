@@ -2,7 +2,8 @@
  * This component provides static functions to generate / validate typed sextant modifiers.
  */
 
-import { SEXTANT_MODIFIER, SextantModifier } from '@web/types/poe.types'
+import { SEXTANT_MODIFIER } from '@web/categories/compass/compass.const'
+import { SextantModifier } from '@web/categories/compass/compass.types'
 
 function generateSextantModifierFromDto(modifier: string): SextantModifier {
 	// DELIRIUM

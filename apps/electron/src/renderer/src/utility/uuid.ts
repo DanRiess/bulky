@@ -3,8 +3,8 @@
  */
 
 import { CompassFilter, CompassListing } from '@web/categories/compass/compass.types'
-import { useCompassStore } from '@web/categories/compass/compassStore'
-import { useCompassFilterStore } from '@web/categories/compass/compassFilterStore'
+import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
+import { useCompassFilterStore } from '@web/categories/compass/compassFilter.store'
 import { InvalidUuidError } from '@web/errors/invalidUuid'
 import { OptionalRecord, Uuid } from '@web/types/utitlity.types'
 import { v4 as uuidv4, validate } from 'uuid'
@@ -34,8 +34,8 @@ function generateTypedUuid<T extends OptionalRecord = undefined>(maybeUuid?: str
 
 /** Validate if a given string is a compass listing uuid. */
 function isCompassListingUuid(uuid: string): uuid is Uuid<CompassListing> {
-	const compassStore = useCompassStore()
-	return !!compassStore.listings[uuid]
+	const compassListingStore = useCompassListingStore()
+	return !!compassListingStore.listings[uuid]
 }
 
 /** Validate if a given string is a compass filter uuid */

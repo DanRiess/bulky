@@ -4,7 +4,7 @@
  * The goal is to be able to change a dto later without affecting the entire app.
  */
 
-import { getKeys } from '@web/types/utitlity.types'
+import { OptionalRecord, getKeys } from '@web/types/utitlity.types'
 
 /**
  * Consumes a listing payload and conforms its keys to Bulky standards.
@@ -33,7 +33,7 @@ export function removeUnsupportedProperty<P extends object>(payload: P): Omit<P,
  * Consumes a payload object and validate if all of its values conform to Bulky standards.
  * If not, deletes the respective key.
  */
-export function validatePayloadValues<P extends object, F extends Function>(payload: P, assertor: F): P {
+export function validatePayloadValues<T extends Record<string, unknown>>(payload: Record<string, any>, assertor: Function): T {
 	const entries = Object.entries(payload)
 	for (const [key, value] of entries) {
 		// value is not an array. use standard assertion workflow
@@ -60,5 +60,7 @@ export function validatePayloadValues<P extends object, F extends Function>(payl
 			if (value.length === 0) delete payload[key]
 		}
 	}
-	return payload
+
+	// have to typecast here, because we transform the input payload
+	return payload as T
 }

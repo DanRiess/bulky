@@ -1,8 +1,8 @@
 import { transformToDisplayValue } from '@web/utility/transformers'
-import { useCompassFilterStore } from './compassFilterStore'
-import { useCompassStore } from './compassStore'
+import { useCompassFilterStore } from './compassFilter.store'
+import { useCompassListingStore } from './compassListing.store'
 import { FilteredPayloadDisplayItem, FilteredListingDisplayValues } from '@web/types/bulky.types'
-import { SextantModifier } from '@web/types/poe.types'
+import { SextantModifier } from './compass.types'
 
 /**
  * Not really a composable, as it doesn't return reactive state.
@@ -12,17 +12,17 @@ import { SextantModifier } from '@web/types/poe.types'
  *
  * @example
  * const displayProps = computed(() => {
- * 		if (someCondition) return useCompassDisplayProps()
+ * 		if (someCondition) return useCompassListingProps()
  * })
  */
-export function useCompassDisplayProps(): FilteredListingDisplayValues[] {
-	const compassStore = useCompassStore()
+export function useCompassListingProps(): FilteredListingDisplayValues[] {
+	const compassListingStore = useCompassListingStore()
 	const compassFilterStore = useCompassFilterStore()
 
 	const filter = compassFilterStore.currentFilter
 	if (!filter) return []
 
-	return [...compassStore.listings]
+	return [...compassListingStore.listings]
 		.map(([_, listing]) => {
 			const ign = listing.ign
 			const chaosPerDiv = listing.chaosPerDiv

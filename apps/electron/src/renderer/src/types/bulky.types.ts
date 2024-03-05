@@ -1,6 +1,21 @@
-import { Compass, CompassFilter, CompassFilterField, CompassListing } from '@web/categories/compass/compass.types'
-import { League, SextantModifier, SextantType } from './poe.types'
+import {
+	Compass,
+	CompassFilter,
+	CompassFilterField,
+	CompassListing,
+	SextantModifier,
+	SextantType,
+} from '@web/categories/compass/compass.types'
+import { League } from './poe.types'
 import { ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utitlity.types'
+import {
+	Essence,
+	EssenceFilter,
+	EssenceFilterField,
+	EssenceListing,
+	EssenceTier,
+	EssenceType,
+} from '@web/categories/essence/essence.types'
 
 // APP STATE TYPES
 
@@ -18,12 +33,13 @@ export type Category = ObjectValues<typeof CATEGORY>
 export type MainView = 'BUY' | 'SELL' | 'CONFIG'
 
 // GENERIC FILTER ARGUMENTS, extend these with other categories later
-export type FilterField = CompassFilterField
-export type FilterMainOption = SextantModifier
-export type FilterSecondaryOption = SextantType
-export type Filter = CompassFilter
+export type FilterField = CompassFilterField | EssenceFilterField
+export type FilterMainOption = SextantModifier | EssenceType
+export type FilterSecondaryOption = SextantType | EssenceTier
+export type Filter = CompassFilter | EssenceFilter
 
 // FILTER TYPES
+
 export type GenericFilterField<T extends FilterField, M extends FilterMainOption, S extends FilterSecondaryOption> = {
 	uuid: Uuid<T>
 	mainOption: M
@@ -43,11 +59,12 @@ export type GenericFilter<T extends Filter, FilterField> = {
 export type AnyFilter = GenericFilter<Filter, GenericFilterField<FilterField, FilterMainOption, FilterSecondaryOption>>
 
 // GENERIC LISTING ARGUMENTS, extend these with other categories later
-export type ListingType = CompassListing
-export type PayloadType = SextantModifier
-export type PayloadItemType = Compass
+export type ListingType = CompassListing | EssenceListing
+export type PayloadType = SextantModifier | EssenceType
+export type PayloadItemType = Compass | Essence
 
 // GENERIC LISTING TYPES
+
 export type GenericListingPayloadItem<T extends object = {}> = {
 	amount: number
 	price: number

@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { useCompassDisplayProps } from '@web/categories/compass/compassDisplayProps'
-import { useCompassFilterProps } from '@web/categories/compass/compassFilterProps'
+import { useCompassListingProps } from '@web/categories/compass/compassListing.props'
+import { useCompassFilterProps } from '@web/categories/compass/compassFilter.props'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { computed } from 'vue'
 import FilterOrganism from '../organisms/FilterOrganism.vue'
@@ -34,7 +34,7 @@ const appStateStore = useAppStateStore()
 
 const listings = computed(() => {
 	if (appStateStore.selectedCategory === 'COMPASS') {
-		return useCompassDisplayProps()
+		return useCompassListingProps()
 	}
 	return []
 })
@@ -69,3 +69,4 @@ const fadeHooks = useGenericTransitionHooks({
 	grid-template-rows: auto minmax(0, 1fr);
 }
 </style>
+@web/categories/compass/compassFilter.props@web/categories/compass/compassListing.props

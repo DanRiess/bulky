@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { computed, markRaw } from 'vue'
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { useCompassStore } from '@web/categories/compass/compassStore'
+import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
 import ButtonAtom from '@web/components/atoms/ButtonAtom.vue'
 import SvgIconAtom from '@web/components/atoms/SvgIconAtom.vue'
 import BuyTemplate from '@web/components/templates/BuyTemplate.vue'
@@ -131,11 +131,11 @@ setTimeout(() => {
 			],
 		},
 	}
-	compassStore.addOrModifyListing(dto2)
+	compassListingStore.addOrModifyListing(dto2)
 }, 3000)
 
-const compassStore = useCompassStore()
-compassStore.addOrModifyListing(dto)
+const compassListingStore = useCompassListingStore()
+compassListingStore.addOrModifyListing(dto)
 
 const component = computed(() => {
 	if (appStateStore.selectedView === 'BUY') return markRaw(BuyTemplate)
@@ -189,3 +189,4 @@ const transitionHooks = useGenericTransitionHooks({
 	grid-template-rows: auto minmax(0, 1fr);
 } */
 </style>
+@web/categories/compass/compassListing.store

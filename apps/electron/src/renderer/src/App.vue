@@ -61,5 +61,6 @@ body {
 	justify-content: center;
 	height: 100vh;
 	overflow: hidden;
+	opacity: 0.9;
 }
 </style>

@@ -1,7 +1,7 @@
-import { useCompassFilterStore } from './compassFilterStore'
+import { useCompassFilterStore } from './compassFilter.store'
 import { Uuid, getKeys } from '@web/types/utitlity.types'
-import { SEXTANT_MODIFIER, SEXTANT_TYPE } from '@web/types/poe.types'
 import { AnyFilter } from '@web/types/bulky.types'
+import { SEXTANT_MODIFIER, SEXTANT_TYPE } from './compass.const'
 
 /**
  * Not really a composable, as it doesn't return reactive state.

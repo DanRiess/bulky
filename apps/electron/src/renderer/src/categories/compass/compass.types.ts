@@ -1,8 +1,15 @@
 /** define types for compass listings here */
 
 import { GenericFilter, GenericFilterField, GenericListing, GenericListingPayloadItem } from '@web/types/bulky.types'
-import { SextantModifier, SextantType } from '@web/types/poe.types'
-import { Uuid } from '@web/types/utitlity.types'
+import { ObjectValues, Uuid } from '@web/types/utitlity.types'
+import { SEXTANT_MODIFIER, SEXTANT_TYPE } from './compass.const'
+
+// MAIN AND SECONDARY OPTION TYPES
+/** main option type */
+export type SextantModifier = ObjectValues<typeof SEXTANT_MODIFIER>
+
+/** secondary option type */
+export type SextantType = ObjectValues<typeof SEXTANT_TYPE>
 
 // LISTING TYPES
 /** the data transfer object for the compass */

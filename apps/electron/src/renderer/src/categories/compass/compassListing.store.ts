@@ -10,7 +10,7 @@ import { BULKY_LEAGUES } from '@web/utility/league'
 import { conformPayloadKeys, validatePayloadValues } from '@web/utility/conformers'
 import { BULKY_SEXTANTS } from '@web/utility/sextant'
 
-export const useCompassStore = defineStore('compassStore', () => {
+export const useCompassListingStore = defineStore('compassListingStore', () => {
 	const listings = ref<CompassListings>(new Map())
 
 	/**
@@ -26,7 +26,7 @@ export const useCompassStore = defineStore('compassStore', () => {
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const payload = validatePayloadValues(
+		const payload = validatePayloadValues<CompassListing['payload']>(
 			conformPayloadKeys(dto.payload, BULKY_SEXTANTS.generateSextantModifierFromDto),
 			isCompass
 		)
