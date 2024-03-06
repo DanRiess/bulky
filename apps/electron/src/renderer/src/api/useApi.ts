@@ -1,7 +1,7 @@
 import { Ref, computed, ref } from 'vue'
 import { ApiStatus, BulkyRequest, NormalizedApiStatus, ProgressStatus } from './api.types'
 import { API_STATUS } from './api.const'
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosError, AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
 
 /**
@@ -45,15 +45,9 @@ function conformError(err: string | Error) {
 }
 
 /** pass this function to each request to update the progress tracker */
-export function onProgressEvent(progressEvent: ProgressEvent, progressStatus: Ref<ProgressStatus>) {
-	if (progressEvent.lengthComputable) {
+export function onProgressEvent(progressEvent: AxiosProgressEvent, progressStatus: Ref<ProgressStatus>) {
+	if (progressEvent.total) {
 		progressStatus.value.total = progressEvent.total
-	} else if (progressEvent.target instanceof XMLHttpRequest) {
-		progressStatus.value.total = parseInt(
-			progressEvent.target.getResponseHeader('content-length') ||
-				progressEvent.target.getResponseHeader('x-decompressed-content-length') ||
-				'0'
-		)
 	}
 
 	progressStatus.value.current = progressEvent.loaded
@@ -79,14 +73,11 @@ export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any
 	 */
 	const exec = async (...args: Parameters<TFn>) => {
 		try {
-			// transform the config
-			// const [config, ...rest]: [config?: AxiosRequestConfig, ...rest: any[]] = args
-			console.log(args)
-			args.forEach(arg => {
-				if (typeof arg === 'object') {
-					console.log(arg)
-				}
-			})
+			// transform the config. this only works if config is the first argument
+			const [config, ..._]: [config?: AxiosRequestConfig, ...rest: any[]] = args
+			if (config && typeof config === 'object') {
+				config.onDownloadProgress = e => onProgressEvent(e, progressStatus)
+			}
 
 			//clear current error value
 			error.value = undefined
@@ -122,6 +113,7 @@ export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any
 		data,
 		status,
 		error,
+		progressStatus,
 		exec,
 		...createNormalisedApiStatuses(status),
 	}

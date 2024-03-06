@@ -17,10 +17,13 @@ const api = (axios: AxiosInstance) => {
 	// Wrapper functions around axios
 	return {
 		get: <TRes extends unknown>(url: string, config?: AxiosRequestConfig) => axios.get<TRes>(url, config),
-		post: (url: string, data: Record<string, any>, config?: AxiosRequestConfig) => axios.post(url, data, config),
-		patch: (url: string, data: Record<string, any>, config?: AxiosRequestConfig) => axios.patch(url, data, config),
-		put: (url: string, data: Record<string, any>, config?: AxiosRequestConfig) => axios.put(url, data, config),
-		delete: (url: string, config?: AxiosRequestConfig) => axios.delete(url, config),
+		post: <TRes extends unknown, TData extends Record<string, any>>(url: string, data: TData, config?: AxiosRequestConfig) =>
+			axios.post<TRes>(url, data, config),
+		patch: <TRes extends unknown, TData extends Record<string, any>>(url: string, data: TData, config?: AxiosRequestConfig) =>
+			axios.patch<TRes>(url, data, config),
+		put: <TRes extends unknown, TData extends Record<string, any>>(url: string, data: TData, config?: AxiosRequestConfig) =>
+			axios.put<TRes>(url, data, config),
+		delete: <TRes extends unknown>(url: string, config?: AxiosRequestConfig) => axios.delete<TRes>(url, config),
 	}
 }
 

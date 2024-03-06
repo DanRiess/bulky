@@ -22,11 +22,13 @@ const active = ref(true)
 const attachmentPanelActive = ref(false)
 const router = useRouter()
 
-const testJsonReq: GenericRequestFunction<{ test: 123 }, typeof bulkyApi.getJson> = bulkyApi.getJson
+const testJsonReq: GenericRequestFunction<{ test: 123 }> = bulkyApi.getJson
 
 console.log('testing request')
 const req = useApi('somename', testJsonReq)
-req.exec('/', {})
+req.exec({
+	url: '/',
+})
 
 // EVENTS
 // window.api.onToggleOverlayComponent(value => {
