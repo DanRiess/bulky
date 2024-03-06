@@ -1,7 +1,7 @@
 import { Ref, computed, ref } from 'vue'
 import { ApiStatus, BulkyRequest, NormalizedApiStatus, ProgressStatus } from './api.types'
 import { API_STATUS } from './api.const'
-import { AxiosError, AxiosProgressEvent, AxiosResponse } from 'axios'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
 
 /**
@@ -45,7 +45,7 @@ function conformError(err: string | Error) {
 }
 
 /** pass this function to each request to update the progress tracker */
-function onProgressEvent(progressEvent: ProgressEvent, progressStatus: Ref<ProgressStatus>) {
+export function onProgressEvent(progressEvent: ProgressEvent, progressStatus: Ref<ProgressStatus>) {
 	if (progressEvent.lengthComputable) {
 		progressStatus.value.total = progressEvent.total
 	} else if (progressEvent.target instanceof XMLHttpRequest) {
@@ -59,7 +59,7 @@ function onProgressEvent(progressEvent: ProgressEvent, progressStatus: Ref<Progr
 	progressStatus.value.current = progressEvent.loaded
 }
 
-export function useApi<TFn extends (...args: any) => Promise<AxiosResponse<any, any>>>(
+export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any, any>>>(
 	apiName: string,
 	fn: TFn
 ): BulkyRequest<TFn> {
@@ -77,8 +77,17 @@ export function useApi<TFn extends (...args: any) => Promise<AxiosResponse<any, 
 	/**
 	 * initialise the api request
 	 */
-	const exec = async (...args: any) => {
+	const exec = async (...args: Parameters<TFn>) => {
 		try {
+			// transform the config
+			// const [config, ...rest]: [config?: AxiosRequestConfig, ...rest: any[]] = args
+			console.log(args)
+			args.forEach(arg => {
+				if (typeof arg === 'object') {
+					console.log(arg)
+				}
+			})
+
 			//clear current error value
 			error.value = undefined
 

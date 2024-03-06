@@ -1,6 +1,6 @@
-import { ObjectValues, Uuid } from '@web/types/utitlity.types'
+import { ObjectValues, RequireSome, Uuid } from '@web/types/utitlity.types'
 import { API_STATUS } from './api.const'
-import { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ComputedRef, Ref } from 'vue'
 
 export type ApiStatus = ObjectValues<typeof API_STATUS>
@@ -23,3 +23,5 @@ export type ProgressStatus = {
 	current: number
 	total: number
 }
+
+export type GetRequestConfig<D = any> = RequireSome<AxiosRequestConfig<D>, 'url'>

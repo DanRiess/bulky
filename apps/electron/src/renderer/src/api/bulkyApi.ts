@@ -1,23 +1,20 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import api from './api.wrapper'
 import { useApi } from './useApi'
+import { GetRequestConfig } from './api.types'
 
-type GenericRequestFunction<TRes extends unknown, TFn extends (...args: any) => any> = (
-	...args: Parameters<TFn>
+export type GenericRequestFunction<TRes extends unknown, TFn extends (config: GetRequestConfig) => any> = (
+	config: GetRequestConfig
 ) => Promise<AxiosResponse<TRes>>
 
 export const bulkyApi = {
-	getJson: <TRes extends unknown>(path: string, config: AxiosRequestConfig) => {
-		return api.get<TRes>('/')
+	getJson: <TRes extends unknown>(config: GetRequestConfig) => {
+		return api.get<TRes>(config.url)
 	},
 }
 
 const testJsonReq: GenericRequestFunction<{ test: 123 }, typeof bulkyApi.getJson> = bulkyApi.getJson
 
+console.log('testing request')
 const req = useApi('somename', testJsonReq)
-req.exec()
-req.data.value
-
-testJsonReq()
-
-bulkyApi.getJson
+req.exec({})

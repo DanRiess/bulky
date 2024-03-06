@@ -9,10 +9,6 @@ const axiosParams = {
 	// baseURL: process.env.VUE_APP_API_BASE_URL
 }
 
-export interface RequestBody {
-	[key: string]: any
-}
-
 // Create axios instance with default params
 const axiosInstance = axios.create(axiosParams)
 
@@ -21,24 +17,10 @@ const api = (axios: AxiosInstance) => {
 	// Wrapper functions around axios
 	return {
 		get: <TRes extends unknown>(url: string, config?: AxiosRequestConfig) => axios.get<TRes>(url, config),
-		post: (url: string, body: RequestBody | FormData, config?: AxiosRequestConfig) => axios.post(url, body, config),
-		patch: (url: string, body: RequestBody, config?: AxiosRequestConfig) => axios.patch(url, body, config),
-		put: (url: string, body: RequestBody, config?: AxiosRequestConfig) => axios.put(url, body, config),
+		post: (url: string, data: Record<string, any>, config?: AxiosRequestConfig) => axios.post(url, data, config),
+		patch: (url: string, data: Record<string, any>, config?: AxiosRequestConfig) => axios.patch(url, data, config),
+		put: (url: string, data: Record<string, any>, config?: AxiosRequestConfig) => axios.put(url, data, config),
 		delete: (url: string, config?: AxiosRequestConfig) => axios.delete(url, config),
-		deleteLseElement: (url: string, body: RequestBody, config?: AxiosRequestConfig) =>
-			axios({
-				method: 'DELETE',
-				url,
-				data: body,
-				...config,
-			}),
-		propfind: (url: string, data: string, config?: AxiosRequestConfig) =>
-			axios({
-				method: 'PROPFIND',
-				url,
-				data,
-				...config,
-			}),
 	}
 }
 

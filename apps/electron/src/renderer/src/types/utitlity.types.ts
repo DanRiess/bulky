@@ -23,4 +23,7 @@ export const getKeys = Object.keys as <T extends object>(obj: T) => Array<keyof 
 
 export type MaybeRef<T> = T | Ref<T>
 
+/** make some properties of an object required */
+export type RequireSome<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+
 export type ButtonBackgroundColorScheme = 'dark' | 'light'
