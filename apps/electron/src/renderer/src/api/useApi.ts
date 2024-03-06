@@ -62,10 +62,9 @@ function onProgressEvent(progressEvent: ProgressEvent, progressStatus: Ref<Progr
 export function useApi<TFn extends (...args: any) => Promise<AxiosResponse<any, any>>>(
 	apiName: string,
 	fn: TFn
-): BulkyRequest<Awaited<ReturnType<typeof fn>>> {
+): BulkyRequest<TFn> {
 	// reactive values to store data and api status
-	// REWORK TO GET res.data, not res
-	const data: Ref<Awaited<ReturnType<typeof fn>> | undefined> = ref(undefined)
+	const data: BulkyRequest<TFn>['data'] = ref(undefined)
 	const status = ref<ApiStatus>('IDLE')
 	const error = ref<AxiosError | undefined>(undefined)
 	const progressStatus = ref<ProgressStatus>({
@@ -78,7 +77,7 @@ export function useApi<TFn extends (...args: any) => Promise<AxiosResponse<any, 
 	/**
 	 * initialise the api request
 	 */
-	const exec = async (...args: Parameters<typeof fn>) => {
+	const exec = async (...args: any) => {
 		try {
 			//clear current error value
 			error.value = undefined

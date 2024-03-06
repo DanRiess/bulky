@@ -1,18 +1,18 @@
 import { ObjectValues, Uuid } from '@web/types/utitlity.types'
 import { API_STATUS } from './api.const'
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 import { ComputedRef, Ref } from 'vue'
 
 export type ApiStatus = ObjectValues<typeof API_STATUS>
 export type NormalizedApiStatus = Record<`status${Capitalize<Lowercase<ApiStatus>>}`, ComputedRef<boolean>>
 
-export type BulkyRequest<TRes = unknown> = {
+export type BulkyRequest<TFn extends (...args: any) => Promise<AxiosResponse<unknown, any>> = () => Promise<AxiosResponse>> = {
 	name: string
 	uuid: Uuid<BulkyRequest>
 	status: Ref<ApiStatus>
-	data: Ref<TRes | undefined>
+	data: Ref<Awaited<ReturnType<TFn>>['data'] | undefined>
 	error: Ref<AxiosError | undefined>
-	exec: (...args: any) => Promise<void>
+	exec: (...args: Parameters<TFn>) => Promise<void>
 	statusIdle: NormalizedApiStatus['statusIdle']
 	statusPending: NormalizedApiStatus['statusPending']
 	statusSuccess: NormalizedApiStatus['statusSuccess']
