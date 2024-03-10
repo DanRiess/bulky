@@ -1,66 +1,31 @@
-/**
- * Conform any received object into a form that this app can deal with by providing the respective conform functions.
- * Use these functions to transform objects from backend requests (DTOs).
- * The goal is to be able to change a dto later without affecting the entire app.
- */
-
-import { OptionalRecord, getKeys } from '@web/types/utitlity.types'
+import { GenericListingItem, Item, ItemType } from '@web/types/bulky.types'
+import { GenericListingItemDto } from '@web/types/dto.types'
+import { PartialRecord } from '@web/types/utitlity.types'
 
 /**
- * Consumes a listing payload and conforms its keys to Bulky standards.
- * E. g. for compasses: deliMirror becomes MIRROR_OF_DELIRIUM
+ * Transform items of one listing to Bulky standard object type.
+ *
+ * Performance: ~0.02 ms per listing with 20 items
  */
-export function conformPayloadKeys<P extends object, F extends Function>(payload: P, conformFunction: F) {
-	const keys = getKeys(payload)
-	for (const key of keys) {
-		const conformedKey = conformFunction(key)
-		const descriptor = Object.getOwnPropertyDescriptor(payload, key)
-		if (descriptor === undefined) continue
+export function conformListingItems<T extends Item>(
+	items: GenericListingItemDto[],
+	conformItemKey: (arg: string) => ItemType,
+	conformItemValue: (arg: GenericListingItemDto) => T | null
+) {
+	const conformedItems = items.reduce((prev, curr) => {
+		const key = conformItemKey(curr.name)
+		if (key === 'UNSUPPORTED') return prev
 
-		Object.defineProperty(payload, conformedKey, descriptor)
-		delete payload[key]
-	}
-	return payload
-}
-
-/** Removes the unsupported property from a payload */
-export function removeUnsupportedProperty<P extends object>(payload: P): Omit<P, 'UNSUPPORTED'> {
-	delete payload['UNSUPPORTED']
-	return payload
-}
-
-/**
- * Consumes a payload object and validate if all of its values conform to Bulky standards.
- * If not, deletes the respective key.
- */
-export function validatePayloadValues<T extends Record<string, unknown>>(payload: Record<string, any>, assertor: Function): T {
-	const entries = Object.entries(payload)
-	for (const [key, value] of entries) {
-		// value is not an array. use standard assertion workflow
-		if (!Array.isArray(value)) {
-			!assertor(value) && delete payload[key]
+		if (!prev[key]) {
+			prev[key] = []
 		}
-		// value is an array. check every single item and only remove the illegal ones
-		else {
-			// grab indices that fail the assertions
-			const indicesToDelete = value
-				.map((v, idx) => {
-					if (!assertor(v)) return idx
-					return undefined
-				})
-				.filter(v => v !== undefined) as number[]
 
-			// reverse the indices
-			indicesToDelete.reverse()
+		const value = conformItemValue(curr)
+		if (!value) return prev
 
-			// remove the failed entries one by one
-			indicesToDelete.forEach(i => value.splice(i, 1))
+		prev[key]?.push(value)
+		return prev
+	}, {} as PartialRecord<ItemType, GenericListingItem<T>[]>)
 
-			// if the array is empty, remove the entire key
-			if (value.length === 0) delete payload[key]
-		}
-	}
-
-	// have to typecast here, because we transform the input payload
-	return payload as T
+	return conformedItems
 }

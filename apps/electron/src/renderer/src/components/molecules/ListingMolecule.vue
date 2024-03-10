@@ -2,9 +2,9 @@
 	<div class="m-listing-item radial-gradient" data-b-override>
 		<div class="flow">
 			<ListingMetadataMolecule
-				:ign="filteredListing.ign"
-				:chaos-per-div="filteredListing.chaosPerDiv"
-				:multiplier="filteredListing.multiplier" />
+				:ign="computedListing.ign"
+				:chaos-per-div="computedListing.chaosPerDiv"
+				:multiplier="computedListing.multiplier" />
 			<ButtonAtom background-color="dark" @click="sendMessage">
 				<template v-if="messageSent">
 					<div class="message-sent">
@@ -16,32 +16,30 @@
 			</ButtonAtom>
 		</div>
 
-		<div>
-			<ListingPayloadMolecule
-				:full-buyout-watcher="filteredListing.fullBuyoutWatcher"
-				:filtered-payload-display-item="filteredListing.filteredPayload"
-				:total-price="filteredListing.totalPrice" />
-		</div>
+		<ListingItemsMolecule
+			:full-buyout-watcher="computedListing.fullBuyoutWatcher"
+			:computed-item-display-values="computedListing.computedItems"
+			:total-price="computedListing.totalPrice" />
 	</div>
 </template>
 
 <script setup lang="ts">
 import ListingMetadataMolecule from './ListingMetadataMolecule.vue'
-import ListingPayloadMolecule from './ListingPayloadMolecule.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
-import { FilteredListingDisplayValues } from '@web/types/bulky.types'
+import { ComputedListingDisplayValues } from '@web/types/bulky.types'
 import { craftWhisperMessage } from '@web/utility/whisper'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { ref } from 'vue'
+import ListingItemsMolecule from './ListingItemsMolecule.vue'
 
 const messageSent = ref(false)
 
 const props = defineProps<{
-	filteredListing: FilteredListingDisplayValues
+	computedListing: ComputedListingDisplayValues
 }>()
 
 async function sendMessage() {
-	const message = craftWhisperMessage(props.filteredListing)
+	const message = craftWhisperMessage(props.computedListing)
 	const response = await window.api.typeInChat(message)
 	if (response) {
 		messageSent.value = true
@@ -55,8 +53,8 @@ async function sendMessage() {
 <style scoped>
 .m-listing-item {
 	display: grid;
-	grid-template-columns: auto minmax(0, 1fr);
-	gap: 2rem;
+	grid-template-columns: 15ch 1fr;
+	gap: 1.5rem;
 	padding: 0.5rem;
 	border-radius: var(--border-radius-medium);
 	/* transition: margin-top 1s cubic-bezier(0, 0, 0.85, 1); */

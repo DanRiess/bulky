@@ -1,9 +1,9 @@
 <template>
-	<div class="m-label-with-checkbox">
+	<div class="m-label-with-checkbox" :class="{ disabled }">
 		<LabelAtom :id="uuid">
 			<slot />
 		</LabelAtom>
-		<InputCheckboxAtom v-model="model" :id="uuid" />
+		<InputCheckboxAtom v-model="model" :id="uuid" :disabled="disabled" />
 	</div>
 </template>
 
@@ -18,9 +18,11 @@ const uuid = BULKY_UUID.generateTypedUuid()
 withDefaults(
 	defineProps<{
 		labelPosition?: 'left' | 'right'
+		disabled?: boolean
 	}>(),
 	{
 		labelPosition: 'left',
+		disabled: false,
 	}
 )
 </script>

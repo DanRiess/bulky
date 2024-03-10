@@ -1,7 +1,7 @@
 [
 	{
 		"uuid": "8f40b64e-bf10-4054-a004-7ae3486fe621",
-		"ign": "SomeName",
+		"ign": "SomeveryveryveryverylongtestName",
 		"league": "Affliction",
 		"chaosPerDiv": 140,
 		"category": "Compass",
@@ -9,7 +9,7 @@
 		"minimumBuyout": 1400,
 		"items": [
 			{
-				"name": "yellowPlants",
+				"name": "abyss",
 				"uses": 4,
 				"quantity": 219,
 				"price": 130
@@ -27,7 +27,7 @@
 				"price": 260
 			},
 			{
-				"name": "grove",
+				"name": "remnant",
 				"uses": 4,
 				"quantity": 2,
 				"price": 50
@@ -48,7 +48,7 @@
 		"multiplier": 0.9,
 		"items": [
 			{
-				"name": "bluePlants",
+				"name": "abyss",
 				"uses": 4,
 				"quantity": 18,
 				"price": 65

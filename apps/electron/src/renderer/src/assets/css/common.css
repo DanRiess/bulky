@@ -53,3 +53,13 @@ h3 {
 	border-radius: 1000vw;
 	background-color: var(--color-lighter);
 }
+
+/* Utility */
+.hidden {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.disabled {
+	opacity: 0.6;
+}

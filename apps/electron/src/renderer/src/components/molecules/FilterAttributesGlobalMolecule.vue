@@ -1,6 +1,11 @@
 <template>
 	<div class="m-global-filter">
-		<LabelWithCheckboxMolecule v-model="filter.fullBuyout">Buyout full listing</LabelWithCheckboxMolecule>
+		<LabelWithCheckboxMolecule v-model="filter.fullBuyout" :disabled="filter.alwaysMaxQuantity"
+			>Buyout full listing</LabelWithCheckboxMolecule
+		>
+		<LabelWithCheckboxMolecule v-model="filter.alwaysMaxQuantity" :disabled="filter.fullBuyout"
+			>Always Max Quantity</LabelWithCheckboxMolecule
+		>
 		<LabelWithRangeMolecule v-model="filter.multiplier" :max="2" :step="0.05">Max. Multiplier</LabelWithRangeMolecule>
 	</div>
 </template>

@@ -5,7 +5,6 @@
 import { CompassFilter, CompassListing } from '@web/categories/compass/compass.types'
 import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
 import { useCompassFilterStore } from '@web/categories/compass/compassFilter.store'
-import { InvalidUuidError } from '@web/errors/invalidUuid'
 import { OptionalRecord, Uuid } from '@web/types/utitlity.types'
 import { v4 as uuidv4, validate } from 'uuid'
 
@@ -18,7 +17,7 @@ function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
 function validateUuid(maybeUuid: string) {
 	const uuidTest = maybeUuid.replace('{', '').replace('}', '')
 	if (!validate(uuidTest)) {
-		throw new InvalidUuidError()
+		return uuidv4()
 	}
 	return maybeUuid
 }

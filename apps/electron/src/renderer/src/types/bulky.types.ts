@@ -44,7 +44,7 @@ export type GenericFilterField<T extends FilterField, M extends FilterMainOption
 	uuid: Uuid<T>
 	mainOption: M
 	secondaryOption: S
-	amount: number
+	quantity: number
 	maxBuyout: number
 }
 
@@ -53,6 +53,7 @@ export type GenericFilter<T extends Filter, FilterField> = {
 	name: string
 	multiplier: number
 	fullBuyout: boolean
+	alwaysMaxQuantity: boolean
 	fields: FilterField[]
 }
 
@@ -60,17 +61,17 @@ export type AnyFilter = GenericFilter<Filter, GenericFilterField<FilterField, Fi
 
 // GENERIC LISTING ARGUMENTS, extend these with other categories later
 export type ListingType = CompassListing | EssenceListing
-export type PayloadType = SextantModifier | EssenceType
-export type PayloadItemType = Compass | Essence
+export type ItemType = SextantModifier | EssenceType
+export type Item = Compass | Essence
 
 // GENERIC LISTING TYPES
 
-export type GenericListingPayloadItem<T extends object = {}> = {
-	amount: number
+export type GenericListingItem<T extends object = {}> = {
+	quantity: number
 	price: number
 } & T
 
-export type GenericListing<ListingType extends OptionalRecord, PayloadType extends string, PayloadItemType extends object> = {
+export type GenericListing<ListingType extends OptionalRecord, ItemType extends string, Item extends object> = {
 	uuid: Uuid<ListingType>
 	ign: string
 	league: League
@@ -78,34 +79,34 @@ export type GenericListing<ListingType extends OptionalRecord, PayloadType exten
 	multiplier: number
 	minimumBuyout: number
 	messageSent: boolean
-	payload: PartialRecord<PayloadType, GenericListingPayloadItem<PayloadItemType>[]>
+	items: PartialRecord<ItemType, GenericListingItem<Item>[]>
 }
 
-export type AnyListing = GenericListing<ListingType, PayloadType, GenericListingPayloadItem<PayloadItemType>>
+export type AnyListing = GenericListing<ListingType, ItemType, GenericListingItem<Item>>
 
 // DISPLAY TYPES
 
 export type TotalPrice = { chaos: number; divine: number }
 
-export type FilteredPayloadDisplayItem = {
+export type ComputedItemDisplayValues = {
 	name: string
 	secondaryOption: string
-	amount: number
+	quantity: number
 	price: number
 	stock: number
 }
 
-export type FilteredListingDisplayValues = {
+export type ComputedListingDisplayValues = {
 	uuid: Uuid<AnyListing>
 	ign: string
 	chaosPerDiv: number
-	filteredPayload: FilteredPayloadDisplayItem[]
+	computedItems: ComputedItemDisplayValues[]
 	totalPrice: TotalPrice
 	messageSent: boolean
 	multiplier: number
 	/**
 	 * Proxy to filter.fullBuyout.
-	 * Watch this to expand / collapse the listings payload when full buyout input gets toggled.
+	 * Watch this to expand / collapse the listing's items when full buyout input gets toggled.
 	 */
 	fullBuyoutWatcher: boolean
 }

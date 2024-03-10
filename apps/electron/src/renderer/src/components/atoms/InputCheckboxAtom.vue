@@ -1,6 +1,6 @@
 <template>
 	<div class="a-checkbox">
-		<input type="checkbox" class="a-checkbox-input" :id="id" v-model="model" />
+		<input type="checkbox" class="a-checkbox-input" :id="id" v-model="model" :disabled="disabled" />
 		<div class="checkmark" v-if="model">
 			<SvgIconAtom name="done" :use-gradient="true" :active="true" />
 		</div>
@@ -15,6 +15,7 @@ const model = defineModel<boolean>({ required: true })
 
 defineProps<{
 	id?: Uuid
+	disabled?: boolean
 }>()
 </script>
 

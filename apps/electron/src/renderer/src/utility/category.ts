@@ -9,6 +9,8 @@ function generateCategoryFromDto(category: string): Category {
 		return CATEGORY.COMPASS
 	} else if (category.match(/scarab/i)) {
 		return CATEGORY.SCARAB
+	} else if (category.match(/essence/i)) {
+		return CATEGORY.ESSENCE
 	} else {
 		return CATEGORY.UNSUPPORTED
 	}

@@ -6,7 +6,7 @@
 			</h1>
 		</header>
 		<FilterAttributesGlobalMolecule :filter="filter" />
-		<FilterAttributesSpecialMolecule
+		<FilterAttributesLocalMolecule
 			:filter="filter"
 			:main-options="mainOptions"
 			:secondary-options="secondaryOptions"
@@ -18,8 +18,8 @@
 <script setup lang="ts">
 import { AnyFilter, FilterMainOption, FilterSecondaryOption } from '@web/types/bulky.types'
 import { Uuid } from '@web/types/utitlity.types'
-import FilterAttributesSpecialMolecule from '../molecules/FilterAttributesSpecialMolecule.vue'
 import FilterAttributesGlobalMolecule from '../molecules/FilterAttributesGlobalMolecule.vue'
+import FilterAttributesLocalMolecule from '../molecules/FilterAttributesLocalMolecule.vue'
 
 // PROPS
 defineProps<{

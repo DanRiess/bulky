@@ -1,6 +1,6 @@
 /** define types for compass listings here */
 
-import { GenericFilter, GenericFilterField, GenericListing, GenericListingPayloadItem } from '@web/types/bulky.types'
+import { GenericFilter, GenericFilterField, GenericListing, GenericListingItem } from '@web/types/bulky.types'
 import { ObjectValues, Uuid } from '@web/types/utitlity.types'
 import { SEXTANT_MODIFIER, SEXTANT_TYPE } from './compass.const'
 
@@ -12,20 +12,9 @@ export type SextantModifier = ObjectValues<typeof SEXTANT_MODIFIER>
 export type SextantType = ObjectValues<typeof SEXTANT_TYPE>
 
 // LISTING TYPES
-/** the data transfer object for the compass */
-export type CompassListingDto = {
-	category: string
-	uuid: string
-	ign: string
-	league: string
-	chaosPerDiv: number
-	multiplier: number
-	minimumBuyout?: number
-	payload: Record<string, any[]>
-}
 
 /** extend the generic to include compass specific data */
-export type Compass = GenericListingPayloadItem & { uses: 4 | 16 }
+export type Compass = GenericListingItem & { type: SextantType }
 
 /** narrow the generic listing to the compass type */
 export interface CompassListing extends GenericListing<CompassListing, SextantModifier, Compass> {}

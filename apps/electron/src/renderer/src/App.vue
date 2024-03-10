@@ -10,8 +10,6 @@ import { onClickOutside } from '@vueuse/core'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
-import { GenericRequestFunction, bulkyApi } from './api/bulkyApi'
-import { useApi } from './api/useApi'
 
 // STORES
 const configStore = useConfigStore()
@@ -21,14 +19,6 @@ const target = ref<HTMLElement | null>(null)
 const active = ref(true)
 const attachmentPanelActive = ref(false)
 const router = useRouter()
-
-const testJsonReq: GenericRequestFunction<{ test: 123 }> = bulkyApi.getJson
-
-console.log('testing request')
-const req = useApi('somename', testJsonReq)
-req.exec({
-	url: '/',
-})
 
 // EVENTS
 // window.api.onToggleOverlayComponent(value => {
@@ -71,6 +61,6 @@ body {
 	justify-content: center;
 	height: 100vh;
 	overflow: hidden;
-	opacity: 0.9;
+	/* opacity: 0.9; */
 }
 </style>

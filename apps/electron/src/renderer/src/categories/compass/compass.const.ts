@@ -129,3 +129,8 @@ export const SEXTANT_TYPE = {
 	AWAKENED: 'AWAKENED',
 	ELEVATED: 'ELEVATED',
 } as const
+
+export const SEXTANT_USES_TO_TYPE = {
+	4: 'AWAKENED',
+	16: 'ELEVATED',
+} as const

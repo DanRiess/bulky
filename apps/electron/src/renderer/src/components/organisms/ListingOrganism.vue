@@ -2,10 +2,10 @@
 	<ul class="o-listing flow">
 		<TransitionAtom group v-on="hooks">
 			<FallbackListingItemMolecule v-if="listings.length === 0" />
-			<ListingItemMolecule
+			<ListingMolecule
 				v-for="(listing, idx) in listings"
 				:key="listing.uuid"
-				:filtered-listing="listing"
+				:computed-listing="listing"
 				:data-index="idx" />
 		</TransitionAtom>
 	</ul>
@@ -14,13 +14,13 @@
 <script setup lang="ts">
 import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
-import { FilteredListingDisplayValues } from '@web/types/bulky.types'
-import ListingItemMolecule from '../molecules/ListingItemMolecule.vue'
+import { ComputedListingDisplayValues } from '@web/types/bulky.types'
 import FallbackListingItemMolecule from '../molecules/fallbacks/FallbackListingItemMolecule.vue'
+import ListingMolecule from '../molecules/ListingMolecule.vue'
 
 //PROPS
 defineProps<{
-	listings: FilteredListingDisplayValues[]
+	listings: ComputedListingDisplayValues[]
 }>()
 
 // HOOKS

@@ -22,19 +22,27 @@
 import { useCompassListingProps } from '@web/categories/compass/compassListing.props'
 import { useCompassFilterProps } from '@web/categories/compass/compassFilter.props'
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import FilterOrganism from '../organisms/FilterOrganism.vue'
 import ListingOrganism from '../organisms/ListingOrganism.vue'
 import CategoryMolecule from '../molecules/CategoryMolecule.vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+import { useEssenceFilterProps } from '@web/categories/essence/essenceFilter.props'
+import { useEssenceListingStore } from '@web/categories/essence/essenceListing.store'
+import { useEssenceListingProps } from '@web/categories/essence/essenceListing.props'
+import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
 
 // STORES
 const appStateStore = useAppStateStore()
+const essenceListingStore = useEssenceListingStore()
+const compassListingStore = useCompassListingStore()
 
 const listings = computed(() => {
 	if (appStateStore.selectedCategory === 'COMPASS') {
 		return useCompassListingProps()
+	} else if (appStateStore.selectedCategory === 'ESSENCE') {
+		return useEssenceListingProps()
 	}
 	return []
 })
@@ -42,9 +50,23 @@ const listings = computed(() => {
 const filterProps = computed(() => {
 	if (appStateStore.selectedCategory === 'COMPASS') {
 		return useCompassFilterProps()
+	} else if (appStateStore.selectedCategory === 'ESSENCE') {
+		return useEssenceFilterProps()
 	}
 	return undefined
 })
+
+// WATCHERS
+watch(
+	() => appStateStore.selectedCategory,
+	cat => {
+		if (cat === 'ESSENCE') {
+			essenceListingStore.getTestData()
+		} else if (cat === 'COMPASS') {
+			compassListingStore.getTestData()
+		}
+	}
+)
 
 // HOOKS
 const fadeHooks = useGenericTransitionHooks({

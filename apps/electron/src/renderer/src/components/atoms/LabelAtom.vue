@@ -1,5 +1,5 @@
 <template>
-	<label :for="id">
+	<label :for="id" class="no-select">
 		<slot />
 	</label>
 </template>

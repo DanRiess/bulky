@@ -3,20 +3,20 @@
 import { Uuid } from '@web/types/utitlity.types'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { CompassFilter, CompassFilterField, CompassFilters } from './compass.types'
 import { BULKY_UUID } from '@web/utility/uuid'
+import { EssenceFilter, EssenceFilterField, EssenceFilters } from './essence.types'
 
-export const useCompassFilterStore = defineStore('compassFilterStore', () => {
-	const filters = ref<CompassFilters>(new Map())
-	const currentFilterId = ref<Uuid<CompassFilter>>()
+export const useEssenceFilterStore = defineStore('essenceFilterStore', () => {
+	const filters = ref<EssenceFilters>(new Map())
+	const currentFilterId = ref<Uuid<EssenceFilter>>()
 	const currentFilter = computed(() => {
 		return currentFilterId.value ? filters.value.get(currentFilterId.value) : undefined
 	})
 
 	/** create a new filter */
 	function createNewFilter() {
-		console.log('new filter')
-		const uuid = BULKY_UUID.generateTypedUuid<CompassFilter>()
+		console.log('new essence filter')
+		const uuid = BULKY_UUID.generateTypedUuid<EssenceFilter>()
 		const name = `Default_${filters.value.size}`
 		const fullBuyout = false
 		const alwaysMaxQuantity = false
@@ -30,7 +30,7 @@ export const useCompassFilterStore = defineStore('compassFilterStore', () => {
 	}
 
 	/** add a filter field */
-	function addFilterField(uuid: Uuid<CompassFilter>) {
+	function addFilterField(uuid: Uuid<EssenceFilter>) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
 
@@ -38,7 +38,7 @@ export const useCompassFilterStore = defineStore('compassFilterStore', () => {
 	}
 
 	/** remove a filter field */
-	function removeFilterField(uuid: Uuid<CompassFilter>, idx: number) {
+	function removeFilterField(uuid: Uuid<EssenceFilter>, idx: number) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
 
@@ -47,10 +47,10 @@ export const useCompassFilterStore = defineStore('compassFilterStore', () => {
 
 	/** Private function. Generate a default filter field */
 	function generateDefaultFilterField() {
-		const field: CompassFilterField = {
-			uuid: BULKY_UUID.generateTypedUuid<CompassFilterField>(),
-			mainOption: 'ABYSS',
-			secondaryOption: 'AWAKENED',
+		const field: EssenceFilterField = {
+			uuid: BULKY_UUID.generateTypedUuid<EssenceFilterField>(),
+			mainOption: 'ANGER',
+			secondaryOption: 'DEAFENING',
 			quantity: 1,
 			maxBuyout: 0,
 		}
@@ -67,5 +67,5 @@ export const useCompassFilterStore = defineStore('compassFilterStore', () => {
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useCompassFilterStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useEssenceFilterStore, import.meta.hot))
 }

@@ -1,9 +1,9 @@
-import { FilteredListingDisplayValues } from '@web/types/bulky.types'
+import { ComputedListingDisplayValues } from '@web/types/bulky.types'
 
-export function craftWhisperMessage(listing: FilteredListingDisplayValues) {
-	const comuputedItemText = listing.filteredPayload
+export function craftWhisperMessage(listing: ComputedListingDisplayValues) {
+	const comuputedItemText = listing.computedItems
 		.map(i => {
-			return `${i.amount}x ${i.name} (${i.price}c each)`
+			return `${i.quantity}x ${i.name} (${i.price}c each)`
 		})
 		.join(', ')
 

@@ -1,0 +1,134 @@
+{
+	"id": "8f40b64e-bf10-4054-a004-7ae3486fe623",
+	"username": "skyflash88",
+	"ign": "skyflash_XI",
+	"category": "Essences",
+	"value": 5636,
+	"priceMultiplier": 0.9,
+	"chaosPerDiv": 145,
+	"createdAt": "$D2024-02-28T14:27:30.000Z",
+	"imageUrl": null,
+	"league": "Affliction",
+	"items": [
+		{
+			"name": "Deafening Essence of Anger",
+			"tier": 7,
+			"quantity": 63,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Anguish",
+			"tier": 7,
+			"quantity": 35,
+			"price": 3
+		},
+		{
+			"name": "Deafening Essence of Contempt",
+			"tier": 7,
+			"quantity": 41,
+			"price": 10
+		},
+		{
+			"name": "Deafening Essence of Doubt",
+			"tier": 7,
+			"quantity": 32,
+			"price": 3
+		},
+		{
+			"name": "Deafening Essence of Dread",
+			"tier": 7,
+			"quantity": 24,
+			"price": 3
+		},
+		{
+			"name": "Deafening Essence of Envy",
+			"tier": 7,
+			"quantity": 26,
+			"price": 9
+		},
+		{
+			"name": "Deafening Essence of Fear",
+			"tier": 7,
+			"quantity": 59,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Greed",
+			"tier": 7,
+			"quantity": 51,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Hatred",
+			"tier": 7,
+			"quantity": 61,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Loathing",
+			"tier": 7,
+			"quantity": 29,
+			"price": 17
+		},
+		{
+			"name": "Deafening Essence of Misery",
+			"tier": 7,
+			"quantity": 37,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Rage",
+			"tier": 7,
+			"quantity": 55,
+			"price": 8
+		},
+		{
+			"name": "Deafening Essence of Scorn",
+			"tier": 7,
+			"quantity": 24,
+			"price": 14
+		},
+		{
+			"name": "Deafening Essence of Sorrow",
+			"tier": 7,
+			"quantity": 69,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Spite",
+			"tier": 7,
+			"quantity": 36,
+			"price": 9
+		},
+		{
+			"name": "Deafening Essence of Suffering",
+			"tier": 7,
+			"quantity": 37,
+			"price": 3
+		},
+		{
+			"name": "Deafening Essence of Torment",
+			"tier": 7,
+			"quantity": 53,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Woe",
+			"tier": 7,
+			"quantity": 58,
+			"price": 5
+		},
+		{
+			"name": "Deafening Essence of Wrath",
+			"tier": 7,
+			"quantity": 65,
+			"price": 6
+		},
+		{
+			"name": "Deafening Essence of Zeal",
+			"tier": 7,
+			"quantity": 44,
+			"price": 8
+		}
+	]
+}

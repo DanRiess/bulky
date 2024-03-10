@@ -1,7 +1,7 @@
-import { useCompassFilterStore } from './compassFilter.store'
 import { Uuid, getKeys } from '@web/types/utitlity.types'
-import { SEXTANT_MODIFIER, SEXTANT_TYPE } from './compass.const'
-import { CompassFilter } from './compass.types'
+import { useEssenceFilterStore } from './essenceFilter.store'
+import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
+import { EssenceFilter } from './essence.types'
 
 /**
  * Not really a composable, as it doesn't return reactive state.
@@ -14,26 +14,26 @@ import { CompassFilter } from './compass.types'
  * 		if (someCondition) return useCompassFilterProps()
  * })
  */
-export function useCompassFilterProps() {
-	const compassFilterStore = useCompassFilterStore()
+export function useEssenceFilterProps() {
+	const essenceFilterStore = useEssenceFilterStore()
 
-	const filter = compassFilterStore.currentFilter
+	const filter = essenceFilterStore.currentFilter
 
 	if (!filter) {
-		compassFilterStore.createNewFilter()
+		essenceFilterStore.createNewFilter()
 	}
 
 	if (!filter) return
 
-	const mainOptions = getKeys(SEXTANT_MODIFIER)
-	const secondaryOptions = getKeys(SEXTANT_TYPE)
+	const mainOptions = getKeys(ESSENCE_TYPE)
+	const secondaryOptions = getKeys(ESSENCE_TIER)
 
-	function addFilterField(uuid: Uuid<CompassFilter>) {
-		compassFilterStore.addFilterField(uuid)
+	function addFilterField(uuid: Uuid<EssenceFilter>) {
+		essenceFilterStore.addFilterField(uuid)
 	}
 
-	function removeFilterField(uuid: Uuid<CompassFilter>, idx: number) {
-		compassFilterStore.removeFilterField(uuid, idx)
+	function removeFilterField(uuid: Uuid<EssenceFilter>, idx: number) {
+		essenceFilterStore.removeFilterField(uuid, idx)
 	}
 
 	return {

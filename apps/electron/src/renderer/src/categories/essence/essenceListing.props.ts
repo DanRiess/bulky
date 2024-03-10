@@ -1,8 +1,8 @@
 import { transformToDisplayValue } from '@web/utility/transformers'
-import { useCompassFilterStore } from './compassFilter.store'
-import { useCompassListingStore } from './compassListing.store'
 import { ComputedItemDisplayValues, ComputedListingDisplayValues } from '@web/types/bulky.types'
-import { SextantModifier } from './compass.types'
+import { useEssenceListingStore } from './essenceListing.store'
+import { useEssenceFilterStore } from './essenceFilter.store'
+import { EssenceType } from './essence.types'
 
 /**
  * Not really a composable, as it doesn't return reactive state.
@@ -15,9 +15,9 @@ import { SextantModifier } from './compass.types'
  * 		if (someCondition) return useCompassListingProps()
  * })
  */
-export function useCompassListingProps(): ComputedListingDisplayValues[] {
-	const compassListingStore = useCompassListingStore()
-	const compassFilterStore = useCompassFilterStore()
+export function useEssenceListingProps(): ComputedListingDisplayValues[] {
+	const compassListingStore = useEssenceListingStore()
+	const compassFilterStore = useEssenceFilterStore()
 
 	const filter = compassFilterStore.currentFilter
 	if (!filter) return []
@@ -42,17 +42,17 @@ export function useCompassListingProps(): ComputedListingDisplayValues[] {
 
 			// filter the listing by using the provided compass filter.
 			// this will return an array of matched fields.
-			// it needs to be type casted, as otherwise it will always be (CPDI | undefined)[], even after the check below
+			// it needs to be type casted, as otherwise it will always be (CIDV | undefined)[], even after the check below
 			const computedItems: ComputedItemDisplayValues[] = []
 
 			if (filter.fullBuyout) {
-				let prop: SextantModifier
+				let prop: EssenceType
 				for (prop in listing.items) {
 					// return a filtereddisplayitem of every single listing
 					listing.items[prop]?.forEach(listing => {
 						computedItems.push({
 							name: transformToDisplayValue(prop),
-							secondaryOption: transformToDisplayValue(listing.type),
+							secondaryOption: transformToDisplayValue(listing.tier),
 							quantity: listing.quantity,
 							price: listing.price,
 							stock: listing.quantity,
@@ -64,7 +64,7 @@ export function useCompassListingProps(): ComputedListingDisplayValues[] {
 					const items = listing.items[filterField.mainOption]
 					if (!items) return
 
-					const item = items.find(i => i.type === filterField.secondaryOption)
+					const item = items.find(i => i.tier === filterField.secondaryOption)
 					if (!item) return
 
 					const price = item.price
@@ -78,7 +78,7 @@ export function useCompassListingProps(): ComputedListingDisplayValues[] {
 
 					computedItems.push({
 						name: transformToDisplayValue(filterField.mainOption),
-						secondaryOption: filterField.secondaryOption.toLowerCase(),
+						secondaryOption: transformToDisplayValue(filterField.secondaryOption),
 						quantity,
 						price,
 						stock,

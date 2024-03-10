@@ -3,7 +3,8 @@
  */
 
 import { SEXTANT_MODIFIER } from '@web/categories/compass/compass.const'
-import { SextantModifier } from '@web/categories/compass/compass.types'
+import { Compass, SextantModifier, SextantType } from '@web/categories/compass/compass.types'
+import { GenericListingItemDto } from '@web/types/dto.types'
 
 function generateSextantModifierFromDto(modifier: string): SextantModifier {
 	// DELIRIUM
@@ -38,7 +39,7 @@ function generateSextantModifierFromDto(modifier: string): SextantModifier {
 	else if (modifier.match(/purple/i)) return SEXTANT_MODIFIER.PURPLE_PLANTS
 	else if (modifier.match(/yellow/i)) return SEXTANT_MODIFIER.YELLOW_PLANTS
 	// ESSENCE
-	else if (modifier.match(/remnantOfCorruption/i)) return SEXTANT_MODIFIER.REMNANT_OF_CORRUPTION
+	else if (modifier.match(/remnant/i)) return SEXTANT_MODIFIER.REMNANT_OF_CORRUPTION
 	// ULTIMATUM
 	else if (modifier.match(/ultimatum/i)) return SEXTANT_MODIFIER.ULTIMATUM
 	// HARBINGER
@@ -106,6 +107,19 @@ function generateSextantModifierFromDto(modifier: string): SextantModifier {
 	else return SEXTANT_MODIFIER.UNSUPPORTED
 }
 
+function conformCompassFromDto(itemDto: GenericListingItemDto): Compass | null {
+	if (!itemDto.uses || !(itemDto.uses === 4 || itemDto.uses === 16)) return null
+
+	const type: SextantType = itemDto.uses === 4 ? 'AWAKENED' : 'ELEVATED'
+
+	return {
+		type,
+		quantity: itemDto.quantity,
+		price: itemDto.price,
+	}
+}
+
 export const BULKY_SEXTANTS = {
 	generateSextantModifierFromDto,
+	conformCompassFromDto,
 }

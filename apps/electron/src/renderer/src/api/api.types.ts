@@ -36,7 +36,7 @@ export type BulkyRequestConfig = GetRequestConfig | PostRequestConfig
  * Utility base to typecast expected response and request values. To generate typesafe requests, use it like this:
  *
  * @example
- * type PostFn<ExpectedResponse> = GenericRequestFunction<ExpectedResponse, PostRequestConfig<SomePayload>>
+ * type PostFn<ExpectedResponse> = GenericRequestFunction<ExpectedResponse, PostRequestConfig<SomeItems>>
  * const testPost: PostFn<number> = api.testFn
  * const req = useApi('someName', testPost)
  */

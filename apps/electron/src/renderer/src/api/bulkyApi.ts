@@ -6,7 +6,7 @@
 
 import api from './api.wrapper'
 import { GenericRequestFunction, GetRequestConfig, PostRequestConfig } from './api.types'
-import { useApi } from './useApi'
+import { GenericListingDto } from '@web/types/dto.types'
 
 type PostPayload = {
 	we: string
@@ -22,16 +22,22 @@ export const bulkyApi = {
 	postStuff: <TRes extends unknown>(config: PostRequestConfig<PostPayload>) => {
 		return api.post<TRes, PostPayload>(config.url, config.data, config)
 	},
+
+	get: <TRes extends unknown>(config: GetRequestConfig) => {
+		return api.get<TRes>(config.url, config)
+	},
 }
+
+export const getListing: GenericRequestFunction<GenericListingDto[]> = bulkyApi.get
 
 // EXAMPLE
 
-/** create a narrowed GenericRequestFunction type to make the code calling this more concise */
-type PostRequestFunction<TRes extends unknown> = GenericRequestFunction<TRes, PostRequestConfig<PostPayload>>
+// /** create a narrowed GenericRequestFunction type to make the code calling this more concise */
+// type PostRequestFunction<TRes extends unknown> = GenericRequestFunction<TRes, PostRequestConfig<PostPayload>>
 
-/** create the api function with the expected return type */
-const testPost: PostRequestFunction<string> = bulkyApi.postStuff
+// /** create the api function with the expected return type */
+// const testPost: PostRequestFunction<string> = bulkyApi.postStuff
 
-/** this is now typesafe. req.exec will require the PostPayload and req.data.value will be a string */
-const req = useApi('test', testPost)
-console.log(req)
+// /** this is now typesafe. req.exec will require the PostPayload and req.data.value will be a string */
+// const req = useApi('test', testPost)
+// console.log(req)

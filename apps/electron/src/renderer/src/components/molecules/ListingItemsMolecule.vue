@@ -1,17 +1,17 @@
 <template>
-	<div class="m-listing-payload">
+	<div class="m-listing-items">
 		<header class="header">
 			<ExpandSectionAtom :expanded="expanded" @toggle-expanded="expanded = !expanded" />
-			<h3>Listings</h3>
+			<h3 class="no-select">Listings</h3>
 		</header>
 
 		<AccordionTransitionWrapperAtom :expanded="expanded">
-			<ul class="payload-list">
+			<ul class="item-list">
 				<TransitionAtom :group="true" v-on="hooks">
-					<ListItemListingPayloadAtom
-						v-for="item in filteredPayloadDisplayItem"
+					<ListingItemAtom
+						v-for="item in computedItemDisplayValues"
 						:full-buyout-watcher="fullBuyoutWatcher"
-						:computed-payload-display-item="item" />
+						:computed-item-display-values="item" />
 				</TransitionAtom>
 			</ul>
 		</AccordionTransitionWrapperAtom>
@@ -33,18 +33,18 @@
 </template>
 
 <script setup lang="ts">
-import { FilteredPayloadDisplayItem, TotalPrice } from '@web/types/bulky.types'
-import ListItemListingPayloadAtom from '../atoms/ListItemListingPayloadAtom.vue'
+import { ComputedItemDisplayValues, TotalPrice } from '@web/types/bulky.types'
 import ExpandSectionAtom from '../atoms/ExpandSectionAtom.vue'
 import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
+import ListingItemAtom from '../atoms/ListingItemAtom.vue'
 
 // PROPS
 const props = defineProps<{
 	fullBuyoutWatcher: boolean
-	filteredPayloadDisplayItem: FilteredPayloadDisplayItem[]
+	computedItemDisplayValues: ComputedItemDisplayValues[]
 	totalPrice: TotalPrice
 }>()
 
@@ -62,9 +62,14 @@ watch(
 // GETTERS
 const gridTemplateColumns = computed(() => {
 	return props.fullBuyoutWatcher
-		? 'minmax(0, 20ch) 4ch 3.5ch 1ch 3.5ch 24px'
-		: 'minmax(0, 20ch) 4ch 4ch 2.5ch 0.75ch 2.75ch 24px'
+		? 'fit-content(20ch) minmax(4ch, 1fr) fit-content(3.5ch) 1ch fit-content(3.5ch) 24px'
+		: 'fit-content(20ch) minmax(4ch, 1fr) fit-content(4ch) fit-content(2.5ch) 0.75ch fit-content(2.75ch) 24px'
 })
+// const gridTemplateColumns = computed(() => {
+// 	return props.fullBuyoutWatcher
+// 		? 'minmax(0, 20ch) 4ch 3.5ch 1ch 3.5ch 24px'
+// 		: 'minmax(0, 20ch) 4ch 4ch 2.5ch 0.75ch 2.75ch 24px'
+// })
 
 // HOOKS
 const hooks = useListTransition({
@@ -77,14 +82,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.m-listing-payload {
+.m-listing-items {
 	float: right;
 }
-.payload-list {
+
+.item-list {
 	display: grid;
 	grid-template-columns: v-bind(gridTemplateColumns);
 	gap: 0.2rem;
-	transition: grid-template-columns 2s ease;
 	margin-top: 0.5rem;
 }
 

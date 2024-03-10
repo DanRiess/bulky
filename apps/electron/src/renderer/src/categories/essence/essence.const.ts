@@ -23,6 +23,7 @@ export const ESSENCE_TYPE = {
 	HORROR: 'HORROR',
 	DELIRIUM: 'DELIRIUM',
 	HYSTERIA: 'HYSTERIA',
+	UNSUPPORTED: 'UNSUPPORTED',
 } as const
 
 export const ESSENCE_TIER = {
@@ -34,4 +35,15 @@ export const ESSENCE_TIER = {
 	SHRIEKING: 'SHRIEKING',
 	DEAFENING: 'DEAFENING',
 	TIER_8: 'TIER_8',
+} as const
+
+export const ESSENCE_TIER_NUMBER_TO_NAME = {
+	1: 'WHISPERING',
+	2: 'MUTTERING',
+	3: 'WEEPING',
+	4: 'WAILING',
+	5: 'SCREAMING',
+	6: 'SHRIEKING',
+	7: 'DEAFENING',
+	8: 'TIER_8',
 } as const
