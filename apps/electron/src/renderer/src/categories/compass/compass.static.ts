@@ -1,11 +1,14 @@
 /**
- * This component provides static functions to generate / validate typed sextant modifiers.
+ * This component provides static functions to in regards to Compasses.
  */
 
-import { SEXTANT_MODIFIER } from '@web/categories/compass/compass.const'
-import { Compass, SextantModifier, SextantType } from '@web/categories/compass/compass.types'
+import { SEXTANT_MODIFIER, SEXTANT_TIER_NUMBER_TO_NAME } from '@web/categories/compass/compass.const'
+import { Compass, SextantModifier } from '@web/categories/compass/compass.types'
 import { GenericListingItemDto } from '@web/types/dto.types'
 
+// TODO: check modifier string matches when getting actual data
+
+/** Type a returned Compass type DTO and turn it into an Compass type */
 function generateSextantModifierFromDto(modifier: string): SextantModifier {
 	// DELIRIUM
 	if (modifier.match(/mirror/i)) return SEXTANT_MODIFIER.MIRROR_OF_DELIRIUM
@@ -107,13 +110,12 @@ function generateSextantModifierFromDto(modifier: string): SextantModifier {
 	else return SEXTANT_MODIFIER.UNSUPPORTED
 }
 
-function conformCompassFromDto(itemDto: GenericListingItemDto): Compass | null {
-	if (!itemDto.uses || !(itemDto.uses === 4 || itemDto.uses === 16)) return null
-
-	const type: SextantType = itemDto.uses === 4 ? 'AWAKENED' : 'ELEVATED'
+/** Type a returned item DTO and turn it into a Compass item */
+function generateCompassItemFromDto(itemDto: GenericListingItemDto): Compass | null {
+	if (!itemDto.tier || itemDto.tier < 0 || itemDto.tier > 2) return null
 
 	return {
-		type,
+		tier: SEXTANT_TIER_NUMBER_TO_NAME[itemDto.tier],
 		quantity: itemDto.quantity,
 		price: itemDto.price,
 	}
@@ -121,5 +123,5 @@ function conformCompassFromDto(itemDto: GenericListingItemDto): Compass | null {
 
 export const BULKY_SEXTANTS = {
 	generateSextantModifierFromDto,
-	conformCompassFromDto,
+	generateCompassItemFromDto,
 }

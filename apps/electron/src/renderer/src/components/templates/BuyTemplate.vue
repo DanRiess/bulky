@@ -19,42 +19,25 @@
 </template>
 
 <script setup lang="ts">
-import { useCompassListingProps } from '@web/categories/compass/compassListing.props'
-import { useCompassFilterProps } from '@web/categories/compass/compassFilter.props'
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { computed, watch } from 'vue'
+import { watch } from 'vue'
 import FilterOrganism from '../organisms/FilterOrganism.vue'
 import ListingOrganism from '../organisms/ListingOrganism.vue'
 import CategoryMolecule from '../molecules/CategoryMolecule.vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
-import { useEssenceFilterProps } from '@web/categories/essence/essenceFilter.props'
 import { useEssenceListingStore } from '@web/categories/essence/essenceListing.store'
-import { useEssenceListingProps } from '@web/categories/essence/essenceListing.props'
 import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
+import { useListingProps } from '@web/composables/listingProps'
+import { useFilterProps } from '@web/composables/filterProps'
 
 // STORES
 const appStateStore = useAppStateStore()
 const essenceListingStore = useEssenceListingStore()
 const compassListingStore = useCompassListingStore()
 
-const listings = computed(() => {
-	if (appStateStore.selectedCategory === 'COMPASS') {
-		return useCompassListingProps()
-	} else if (appStateStore.selectedCategory === 'ESSENCE') {
-		return useEssenceListingProps()
-	}
-	return []
-})
-
-const filterProps = computed(() => {
-	if (appStateStore.selectedCategory === 'COMPASS') {
-		return useCompassFilterProps()
-	} else if (appStateStore.selectedCategory === 'ESSENCE') {
-		return useEssenceFilterProps()
-	}
-	return undefined
-})
+const listings = useListingProps()
+const filterProps = useFilterProps()
 
 // WATCHERS
 watch(

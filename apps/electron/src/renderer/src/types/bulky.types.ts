@@ -2,7 +2,9 @@ import {
 	Compass,
 	CompassFilter,
 	CompassFilterField,
+	CompassFilterStore,
 	CompassListing,
+	CompassListingStore,
 	SextantModifier,
 	SextantType,
 } from '@web/categories/compass/compass.types'
@@ -12,7 +14,9 @@ import {
 	Essence,
 	EssenceFilter,
 	EssenceFilterField,
+	EssenceFilterStore,
 	EssenceListing,
+	EssenceListingStore,
 	EssenceTier,
 	EssenceType,
 } from '@web/categories/essence/essence.types'
@@ -31,6 +35,10 @@ export const CATEGORY = {
 export type Category = ObjectValues<typeof CATEGORY>
 
 export type MainView = 'BUY' | 'SELL' | 'CONFIG'
+
+// GENERIC STORES
+export type GenericListingStore = CompassListingStore | EssenceListingStore
+export type GenericFilterStore = CompassFilterStore | EssenceFilterStore
 
 // GENERIC FILTER ARGUMENTS, extend these with other categories later
 export type FilterField = CompassFilterField | EssenceFilterField
@@ -62,16 +70,20 @@ export type AnyFilter = GenericFilter<Filter, GenericFilterField<FilterField, Fi
 // GENERIC LISTING ARGUMENTS, extend these with other categories later
 export type ListingType = CompassListing | EssenceListing
 export type ItemType = SextantModifier | EssenceType
+export type ItemTier = SextantType | EssenceTier | undefined
 export type Item = Compass | Essence
 
 // GENERIC LISTING TYPES
 
-export type GenericListingItem<T extends object = {}> = {
+export type GenericItemData<T extends ItemTier = undefined> = {
 	quantity: number
 	price: number
-} & T
+	tier: T
+}
 
-export type GenericListing<ListingType extends OptionalRecord, ItemType extends string, Item extends object> = {
+export type GenericListingItem<TType extends ItemType, TTier extends ItemTier> = PartialRecord<TType, GenericItemData<TTier>[]>
+
+export type GenericListing<ListingType extends OptionalRecord, TType extends ItemType, TTier extends ItemTier> = {
 	uuid: Uuid<ListingType>
 	ign: string
 	league: League
@@ -79,10 +91,14 @@ export type GenericListing<ListingType extends OptionalRecord, ItemType extends 
 	multiplier: number
 	minimumBuyout: number
 	messageSent: boolean
-	items: PartialRecord<ItemType, GenericListingItem<Item>[]>
+	items: GenericListingItem<TType, TTier>
 }
 
-export type AnyListing = GenericListing<ListingType, ItemType, GenericListingItem<Item>>
+export type AnyListing = GenericListing<ListingType, ItemType, ItemTier>
+
+export type GenericListings<TListing extends AnyListing> = Map<Uuid<TListing>, TListing>
+
+export type AnyListings = GenericListings<ListingType>
 
 // DISPLAY TYPES
 
@@ -90,7 +106,7 @@ export type TotalPrice = { chaos: number; divine: number }
 
 export type ComputedItemDisplayValues = {
 	name: string
-	secondaryOption: string
+	secondaryOption?: string
 	quantity: number
 	price: number
 	stock: number

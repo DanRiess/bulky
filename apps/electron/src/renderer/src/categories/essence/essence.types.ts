@@ -1,8 +1,15 @@
 /** define types for essence listings here */
 
-import { GenericFilter, GenericFilterField, GenericListing, GenericListingItem } from '@web/types/bulky.types'
+import { GenericFilter, GenericFilterField, GenericItemData, GenericListing } from '@web/types/bulky.types'
 import { ObjectValues, Uuid } from '@web/types/utitlity.types'
 import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
+import { useEssenceListingStore } from './essenceListing.store'
+import { useEssenceFilterStore } from './essenceFilter.store'
+
+// STORE TYPES
+
+export type EssenceListingStore = ReturnType<typeof useEssenceListingStore>
+export type EssenceFilterStore = ReturnType<typeof useEssenceFilterStore>
 
 // MAIN AND SECONDARY OPTION TYPES
 
@@ -15,10 +22,10 @@ export type EssenceTier = ObjectValues<typeof ESSENCE_TIER>
 // LISTING TYPES
 
 /** extend the generic to include essence specific data */
-export type Essence = GenericListingItem<{ tier: EssenceTier }>
+export type Essence = GenericItemData<EssenceTier>
 
 /** narrow the generic listing to the essence type */
-export interface EssenceListing extends GenericListing<EssenceListing, EssenceType, Essence> {}
+export interface EssenceListing extends GenericListing<EssenceListing, EssenceType, EssenceTier> {}
 
 /** defines the map that is used as state in the essence store */
 export type EssenceListings = Map<Uuid<EssenceListing>, EssenceListing>

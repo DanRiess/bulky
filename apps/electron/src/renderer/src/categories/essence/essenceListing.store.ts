@@ -1,7 +1,7 @@
 /** handle all essence listings through this store */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { Uuid, getKeys } from '@web/types/utitlity.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
@@ -15,7 +15,7 @@ import { ESSENCE_TIER } from './essence.const'
 import { conformListingItems } from '@web/utility/conformers'
 
 export const useEssenceListingStore = defineStore('essenceListingStore', () => {
-	const listings = ref<EssenceListings>(new Map())
+	const listings: Ref<EssenceListings> = ref(new Map())
 
 	/**
 	 * Consume an essence listing dto, type and validate it and add it to the listings
@@ -33,7 +33,7 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 		const items = conformListingItems<Essence>(
 			dto.items,
 			BULKY_ESSENCES.generateEssenceTypeFromDto,
-			BULKY_ESSENCES.conformEssenceFromDto
+			BULKY_ESSENCES.generateEssenceItemFromDto
 		)
 
 		listings.value.set(uuid, {

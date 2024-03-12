@@ -1,10 +1,18 @@
 /** define types for compass listings here */
 
-import { GenericFilter, GenericFilterField, GenericListing, GenericListingItem } from '@web/types/bulky.types'
+import { GenericFilter, GenericFilterField, GenericItemData, GenericListing, GenericListings } from '@web/types/bulky.types'
 import { ObjectValues, Uuid } from '@web/types/utitlity.types'
 import { SEXTANT_MODIFIER, SEXTANT_TYPE } from './compass.const'
+import { useCompassListingStore } from './compassListing.store'
+import { useCompassFilterStore } from './compassFilter.store'
+
+// STORE TYPE
+
+export type CompassListingStore = ReturnType<typeof useCompassListingStore>
+export type CompassFilterStore = ReturnType<typeof useCompassFilterStore>
 
 // MAIN AND SECONDARY OPTION TYPES
+
 /** main option type */
 export type SextantModifier = ObjectValues<typeof SEXTANT_MODIFIER>
 
@@ -14,13 +22,14 @@ export type SextantType = ObjectValues<typeof SEXTANT_TYPE>
 // LISTING TYPES
 
 /** extend the generic to include compass specific data */
-export type Compass = GenericListingItem & { type: SextantType }
+export type Compass = GenericItemData<SextantType>
 
 /** narrow the generic listing to the compass type */
-export interface CompassListing extends GenericListing<CompassListing, SextantModifier, Compass> {}
+export interface CompassListing extends GenericListing<CompassListing, SextantModifier, SextantType> {}
 
 /** defines the map that is used as state in the compass store */
-export type CompassListings = Map<Uuid<CompassListing>, CompassListing>
+// export type CompassListings = Map<Uuid<CompassListing>, CompassListing>
+export type CompassListings = GenericListings<CompassListing>
 
 // FILTER TYPES
 

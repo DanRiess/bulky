@@ -130,7 +130,7 @@ export const SEXTANT_TYPE = {
 	ELEVATED: 'ELEVATED',
 } as const
 
-export const SEXTANT_USES_TO_TYPE = {
-	4: 'AWAKENED',
-	16: 'ELEVATED',
+export const SEXTANT_TIER_NUMBER_TO_NAME = {
+	1: 'AWAKENED',
+	2: 'ELEVATED',
 } as const

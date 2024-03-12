@@ -2,7 +2,7 @@
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { Compass, CompassListing, CompassListings } from './compass.types'
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { Uuid } from '@web/types/utitlity.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
@@ -14,7 +14,7 @@ import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
 
 export const useCompassListingStore = defineStore('compassListingStore', () => {
-	const listings = ref<CompassListings>(new Map())
+	const listings: Ref<CompassListings> = ref(new Map())
 
 	/**
 	 * Consume a compass listing dto, type and validate it and add it to the listings
@@ -32,7 +32,7 @@ export const useCompassListingStore = defineStore('compassListingStore', () => {
 		const items = conformListingItems(
 			dto.items,
 			BULKY_SEXTANTS.generateSextantModifierFromDto,
-			BULKY_SEXTANTS.conformCompassFromDto
+			BULKY_SEXTANTS.generateCompassItemFromDto
 		)
 
 		listings.value.set(uuid, {

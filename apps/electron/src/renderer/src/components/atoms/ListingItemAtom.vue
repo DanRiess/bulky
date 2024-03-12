@@ -1,7 +1,7 @@
 <template>
 	<li class="a-li-listing">
 		<div class="li-listing-name">{{ computedItemDisplayValues.name }}</div>
-		<div class="li-listing-secondary-option">{{ computedItemDisplayValues.secondaryOption }}</div>
+		<div class="li-listing-secondary-option">{{ computedItemDisplayValues.secondaryOption ?? '' }}</div>
 		<div class="li-listing-stock" v-if="!fullBuyoutWatcher">x{{ computedItemDisplayValues.stock }}</div>
 		<div class="li-listing-quantity">{{ computedItemDisplayValues.quantity }}</div>
 		<div>*</div>

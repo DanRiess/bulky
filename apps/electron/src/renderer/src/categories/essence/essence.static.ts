@@ -6,6 +6,7 @@ import { GenericListingItemDto } from '@web/types/dto.types'
 import { ESSENCE_TIER_NUMBER_TO_NAME, ESSENCE_TYPE } from './essence.const'
 import { Essence, EssenceType } from './essence.types'
 
+/** Type a returned Essence type DTO and turn it into an Essence type */
 function generateEssenceTypeFromDto(type: string): EssenceType {
 	if (type.match(/greed/i)) return ESSENCE_TYPE.GREED
 	if (type.match(/contempt/i)) return ESSENCE_TYPE.CONTEMPT
@@ -34,7 +35,8 @@ function generateEssenceTypeFromDto(type: string): EssenceType {
 	else return ESSENCE_TYPE.UNSUPPORTED
 }
 
-function conformEssenceFromDto(itemDto: GenericListingItemDto): Essence | null {
+/** Type a returned item DTO and turn it into an Essence item */
+function generateEssenceItemFromDto(itemDto: GenericListingItemDto): Essence | null {
 	if (!itemDto.tier || itemDto.tier < 0 || itemDto.tier > 8) return null
 
 	return {
@@ -46,5 +48,5 @@ function conformEssenceFromDto(itemDto: GenericListingItemDto): Essence | null {
 
 export const BULKY_ESSENCES = {
 	generateEssenceTypeFromDto,
-	conformEssenceFromDto,
+	generateEssenceItemFromDto,
 }

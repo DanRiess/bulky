@@ -2,7 +2,6 @@ export type GenericListingItemDto = {
 	name: string
 	quantity: number
 	price: number
-	uses?: number
 	tier?: number
 }
 
