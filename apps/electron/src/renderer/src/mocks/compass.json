@@ -34,6 +34,7 @@
 			},
 			{
 				"name": "physicalMonsters",
+				"tier": 2,
 				"quantity": 23,
 				"price": 3
 			}

@@ -2,7 +2,7 @@
  * This component provides static functions to in regards to Compasses.
  */
 
-import { SEXTANT_MODIFIER, SEXTANT_TIER_NUMBER_TO_NAME } from '@web/categories/compass/compass.const'
+import { SEXTANT_MODIFIER, SEXTANT_TIER_IDX_TO_NAME } from '@web/categories/compass/compass.const'
 import { Compass, SextantModifier } from '@web/categories/compass/compass.types'
 import { GenericListingItemDto } from '@web/types/dto.types'
 
@@ -115,7 +115,7 @@ function generateCompassItemFromDto(itemDto: GenericListingItemDto): Compass | n
 	if (!itemDto.tier || itemDto.tier < 0 || itemDto.tier > 2) return null
 
 	return {
-		tier: SEXTANT_TIER_NUMBER_TO_NAME[itemDto.tier],
+		tier: SEXTANT_TIER_IDX_TO_NAME[itemDto.tier],
 		quantity: itemDto.quantity,
 		price: itemDto.price,
 	}

@@ -4,6 +4,7 @@ import {
 	CompassFilterField,
 	CompassFilterStore,
 	CompassListing,
+	CompassListingItems,
 	CompassListingStore,
 	SextantModifier,
 	SextantType,
@@ -16,6 +17,7 @@ import {
 	EssenceFilterField,
 	EssenceFilterStore,
 	EssenceListing,
+	EssenceListingItems,
 	EssenceListingStore,
 	EssenceTier,
 	EssenceType,
@@ -69,6 +71,7 @@ export type AnyFilter = GenericFilter<Filter, GenericFilterField<FilterField, Fi
 
 // GENERIC LISTING ARGUMENTS, extend these with other categories later
 export type ListingType = CompassListing | EssenceListing
+export type ListingItems = CompassListingItems | EssenceListingItems
 export type ItemType = SextantModifier | EssenceType
 export type ItemTier = SextantType | EssenceTier | undefined
 export type Item = Compass | Essence
@@ -81,9 +84,9 @@ export type GenericItemData<T extends ItemTier = undefined> = {
 	tier: T
 }
 
-export type GenericListingItem<TType extends ItemType, TTier extends ItemTier> = PartialRecord<TType, GenericItemData<TTier>[]>
+export type GenericListingItems<TType extends ItemType, TTier extends ItemTier> = PartialRecord<TType, GenericItemData<TTier>[]>
 
-export type GenericListing<ListingType extends OptionalRecord, TType extends ItemType, TTier extends ItemTier> = {
+export type GenericListing<ListingType extends OptionalRecord, TListingItem extends GenericListingItems<ItemType, ItemTier>> = {
 	uuid: Uuid<ListingType>
 	ign: string
 	league: League
@@ -91,10 +94,22 @@ export type GenericListing<ListingType extends OptionalRecord, TType extends Ite
 	multiplier: number
 	minimumBuyout: number
 	messageSent: boolean
-	items: GenericListingItem<TType, TTier>
+	items: TListingItem
 }
+// export type GenericListing<ListingType extends OptionalRecord, TType extends ItemType, TTier extends ItemTier> = {
+// 	uuid: Uuid<ListingType>
+// 	ign: string
+// 	league: League
+// 	chaosPerDiv: number
+// 	multiplier: number
+// 	minimumBuyout: number
+// 	messageSent: boolean
+// 	items: GenericListingItem<TType, TTier>
+// }
 
-export type AnyListing = GenericListing<ListingType, ItemType, ItemTier>
+export type AnyListingItems = GenericListingItems<ItemType, ItemTier>
+
+export type AnyListing = GenericListing<ListingType, AnyListingItems>
 
 export type GenericListings<TListing extends AnyListing> = Map<Uuid<TListing>, TListing>
 

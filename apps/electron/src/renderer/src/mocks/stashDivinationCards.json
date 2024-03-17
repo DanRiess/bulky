@@ -1,0 +1,6344 @@
+{
+	"numTabs": 27,
+	"divinationLayout": {
+		"cards": [
+			{
+				"id": "AChillingWind",
+				"name": "A Chilling Wind"
+			},
+			{
+				"id": "ADabOfInk",
+				"name": "A Dab of Ink"
+			},
+			{
+				"id": "ADustyMemory",
+				"name": "A Dusty Memory"
+			},
+			{
+				"id": "AFamiliarCall",
+				"name": "A Familiar Call"
+			},
+			{
+				"id": "AFateWorseThanDeath",
+				"name": "A Fate Worse Than Death"
+			},
+			{
+				"id": "AModestRequest",
+				"name": "A Modest Request"
+			},
+			{
+				"id": "AMothersPartingGift",
+				"name": "A Mother's Parting Gift"
+			},
+			{
+				"id": "ANoteInTheWind",
+				"name": "A Note in the Wind"
+			},
+			{
+				"id": "ASeaOfBlue",
+				"name": "A Sea of Blue"
+			},
+			{
+				"id": "AStonePerfected",
+				"name": "A Stone Perfected"
+			},
+			{
+				"id": "AbandonedWealth",
+				"name": "Abandoned Wealth"
+			},
+			{
+				"id": "Acclimatisation",
+				"name": "Acclimatisation"
+			},
+			{
+				"id": "AkilsProphecy",
+				"name": "Akil's Prophecy"
+			},
+			{
+				"id": "AliviasGrace",
+				"name": "Alivia's Grace"
+			},
+			{
+				"id": "AlluringBounty",
+				"name": "Alluring Bounty"
+			},
+			{
+				"id": "AloneintheDarkness",
+				"name": "Alone in the Darkness"
+			},
+			{
+				"id": "AlteredPerception",
+				"name": "Altered Perception"
+			},
+			{
+				"id": "AmbitiousObsession",
+				"name": "Ambitious Obsession"
+			},
+			{
+				"id": "AnarchysPrice",
+				"name": "Anarchy's Price"
+			},
+			{
+				"id": "ArroganceoftheVaal",
+				"name": "Arrogance of the Vaal"
+			},
+			{
+				"id": "AssassinsFavor",
+				"name": "Assassin's Favour"
+			},
+			{
+				"id": "AssassinsGift",
+				"name": "Assassin's Gift"
+			},
+			{
+				"id": "AstralProtection",
+				"name": "Astral Protection"
+			},
+			{
+				"id": "AtzirisArmory",
+				"name": "Atziri's Arsenal"
+			},
+			{
+				"id": "Audacity",
+				"name": "Audacity"
+			},
+			{
+				"id": "AuspiciousAmbitions",
+				"name": "Auspicious Ambitions"
+			},
+			{
+				"id": "AzureRage",
+				"name": "Azure Rage"
+			},
+			{
+				"id": "AzyransReward",
+				"name": "Azyran's Reward"
+			},
+			{
+				"id": "BaitedExpectations",
+				"name": "Baited Expectations"
+			},
+			{
+				"id": "BeautyThroughDeath",
+				"name": "Beauty Through Death"
+			},
+			{
+				"id": "Bijoux",
+				"name": "Bijoux"
+			},
+			{
+				"id": "BirthOfTheThree",
+				"name": "Birth of the Three"
+			},
+			{
+				"id": "BlessingOfGod",
+				"name": "Blessing of God",
+				"hidden": true
+			},
+			{
+				"id": "BlindVenture",
+				"name": "Blind Venture"
+			},
+			{
+				"id": "BoonofJustice",
+				"name": "Boon of Justice"
+			},
+			{
+				"id": "BoonoftheFirstOnes",
+				"name": "Boon of the First Ones"
+			},
+			{
+				"id": "BoundlessRealms",
+				"name": "Boundless Realms"
+			},
+			{
+				"id": "BowyersDream",
+				"name": "Bowyer's Dream"
+			},
+			{
+				"id": "BrokenPromises",
+				"name": "Broken Promises"
+			},
+			{
+				"id": "BrokenTruce",
+				"name": "Broken Truce"
+			},
+			{
+				"id": "BrotherhoodInExile",
+				"name": "Brotherhood in Exile"
+			},
+			{
+				"id": "BrotherGift",
+				"name": "Brother's Gift"
+			},
+			{
+				"id": "BrothersStash",
+				"name": "Brother's Stash"
+			},
+			{
+				"id": "BrushPaintAndPalette",
+				"name": "Brush, Paint and Palette"
+			},
+			{
+				"id": "BuriedTreasure",
+				"name": "Buried Treasure"
+			},
+			{
+				"id": "BurningBlood",
+				"name": "Burning Blood"
+			},
+			{
+				"id": "CallToTheFirstOnes",
+				"name": "Call to the First Ones"
+			},
+			{
+				"id": "CameriasCut",
+				"name": "Cameria's Cut"
+			},
+			{
+				"id": "CartographersDelight",
+				"name": "Cartographer's Delight"
+			},
+			{
+				"id": "ChaoticDisposition",
+				"name": "Chaotic Disposition"
+			},
+			{
+				"id": "ChasingRisk",
+				"name": "Chasing Risk"
+			},
+			{
+				"id": "Checkmate",
+				"name": "Checkmate"
+			},
+			{
+				"id": "ChokingGuilt",
+				"name": "Choking Guilt"
+			},
+			{
+				"id": "CostlyCurio",
+				"name": "Costly Curio"
+			},
+			{
+				"id": "CounciloOfCats",
+				"name": "Council of Cats"
+			},
+			{
+				"id": "CovetedPossession",
+				"name": "Coveted Possession"
+			},
+			{
+				"id": "CursedWords",
+				"name": "Cursed Words"
+			},
+			{
+				"id": "DarkDreams",
+				"name": "Dark Dreams"
+			},
+			{
+				"id": "DarkTemptation",
+				"name": "Dark Temptation"
+			},
+			{
+				"id": "TheDarkerHalf",
+				"name": "Darker Half"
+			},
+			{
+				"id": "DeadlyJoy",
+				"name": "Deadly Joy"
+			},
+			{
+				"id": "Death",
+				"name": "Death"
+			},
+			{
+				"id": "DeathlyDesigns",
+				"name": "Deathly Designs"
+			},
+			{
+				"id": "Dementophobia",
+				"name": "Dementophobia"
+			},
+			{
+				"id": "DemigodsWagergives",
+				"name": "Demigod's Wager"
+			},
+			{
+				"id": "DesecratedVirtue",
+				"name": "Desecrated Virtue"
+			},
+			{
+				"id": "DesperateCrusade",
+				"name": "Desperate Crusade"
+			},
+			{
+				"id": "DestinedtoCrumble",
+				"name": "Destined to Crumble"
+			},
+			{
+				"id": "DiallasSubjugation",
+				"name": "Dialla's Subjugation"
+			},
+			{
+				"id": "Disdain",
+				"name": "Disdain"
+			},
+			{
+				"id": "DivineBeauty",
+				"name": "Divine Beauty"
+			},
+			{
+				"id": "DivineJustice",
+				"name": "Divine Justice"
+			},
+			{
+				"id": "DoedresMadness",
+				"name": "Doedre's Madness"
+			},
+			{
+				"id": "DoryanisEpiphany",
+				"name": "Doryani's Epiphany"
+			},
+			{
+				"id": "DrapedInDreams",
+				"name": "Draped in Dreams"
+			},
+			{
+				"id": "Duality",
+				"name": "Duality"
+			},
+			{
+				"id": "DyingAnguish",
+				"name": "Dying Anguish"
+			},
+			{
+				"id": "DyingLight",
+				"name": "Dying Light"
+			},
+			{
+				"id": "EarthDrinker",
+				"name": "Earth Drinker"
+			},
+			{
+				"id": "EchoesOfLove",
+				"name": "Echoes of Love"
+			},
+			{
+				"id": "EldritchPerfection",
+				"name": "Eldritch Perfection"
+			},
+			{
+				"id": "EmperorOfPurity",
+				"name": "Emperor of Purity"
+			},
+			{
+				"id": "EmperorsLuck",
+				"name": "Emperor's Luck"
+			},
+			{
+				"id": "EndlessNight",
+				"name": "Endless Night"
+			},
+			{
+				"id": "EtchedInBlood",
+				"name": "Etched in Blood"
+			},
+			{
+				"id": "EternalBonds",
+				"name": "Eternal Bonds"
+			},
+			{
+				"id": "EverChanging",
+				"name": "Ever-Changing"
+			},
+			{
+				"id": "FatefulMeeting",
+				"name": "Fateful Meeting"
+			},
+			{
+				"id": "FireOfUnknownOrigin",
+				"name": "Fire Of Unknown Origin"
+			},
+			{
+				"id": "ForbiddenPower",
+				"name": "Forbidden Power"
+			},
+			{
+				"id": "Friendship",
+				"name": "Friendship",
+				"hidden": true
+			},
+			{
+				"id": "FromBonesToAshes",
+				"name": "From Bone to Ashes"
+			},
+			{
+				"id": "FurtherInvention",
+				"name": "Further Invention"
+			},
+			{
+				"id": "GemcuttersMercy",
+				"name": "Gemcutter's Mercy"
+			},
+			{
+				"id": "GemcuttersPromise",
+				"name": "Gemcutter's Promise"
+			},
+			{
+				"id": "GiftOfAsenath",
+				"name": "Gift of Asenath"
+			},
+			{
+				"id": "GiftOfTheGemlingQueen",
+				"name": "Gift of the Gemling Queen"
+			},
+			{
+				"id": "GlimmerOfHope",
+				"name": "Glimmer of Hope"
+			},
+			{
+				"id": "GraveKnowledge",
+				"name": "Grave Knowledge"
+			},
+			{
+				"id": "GuardiansChallenge",
+				"name": "Guardian's Challenge"
+			},
+			{
+				"id": "HarmonyOfSouls",
+				"name": "Harmony of Souls"
+			},
+			{
+				"id": "HauntingShadows",
+				"name": "Haunting Shadows"
+			},
+			{
+				"id": "HerMask",
+				"name": "Her Mask"
+			},
+			{
+				"id": "Heterochromia",
+				"name": "Heterochromia"
+			},
+			{
+				"id": "Home",
+				"name": "Home"
+			},
+			{
+				"id": "Hope",
+				"name": "Hope"
+			},
+			{
+				"id": "HouseOfMirrors",
+				"name": "House of Mirrors"
+			},
+			{
+				"id": "Hubris",
+				"name": "Hubris"
+			},
+			{
+				"id": "Humility",
+				"name": "Humility"
+			},
+			{
+				"id": "HuntersResolve",
+				"name": "Hunter's Resolve"
+			},
+			{
+				"id": "HuntersReward",
+				"name": "Hunter's Reward"
+			},
+			{
+				"id": "ISeeBrothers",
+				"name": "I See Brothers"
+			},
+			{
+				"id": "ImmortalResolve",
+				"name": "Immortal Resolve"
+			},
+			{
+				"id": "ImperfectMemories",
+				"name": "Imperfect Memories"
+			},
+			{
+				"id": "ImperialLegacy",
+				"name": "Imperial Legacy"
+			},
+			{
+				"id": "JackInTheBox",
+				"name": "Jack in the Box"
+			},
+			{
+				"id": "JudgingVoices",
+				"name": "Judging Voices"
+			},
+			{
+				"id": "JustifiedAmbition",
+				"name": "Justified Ambition"
+			},
+			{
+				"id": "KeepersCorruption",
+				"name": "Keeper's Corruption"
+			},
+			{
+				"id": "LachrymalNecrosis",
+				"name": "Lachrymal Necrosis"
+			},
+			{
+				"id": "LantadorsLostLove",
+				"name": "Lantador's Lost Love"
+			},
+			{
+				"id": "LastHope",
+				"name": "Last Hope"
+			},
+			{
+				"id": "LeftToFate",
+				"name": "Left to Fate"
+			},
+			{
+				"id": "LetheanTemptation",
+				"name": "Lethean Temptation"
+			},
+			{
+				"id": "LigthAndTruth",
+				"name": "Light and Truth"
+			},
+			{
+				"id": "LingeringRemnants",
+				"name": "Lingering Remnants"
+			},
+			{
+				"id": "LostWorlds",
+				"name": "Lost Worlds"
+			},
+			{
+				"id": "LoveThroughIce",
+				"name": "Love Through Ice"
+			},
+			{
+				"id": "Loyalty",
+				"name": "Loyalty"
+			},
+			{
+				"id": "LuckyConnections",
+				"name": "Lucky Connections"
+			},
+			{
+				"id": "LuckyDeck",
+				"name": "Lucky Deck"
+			},
+			{
+				"id": "LuminousTrove",
+				"name": "Luminous Trove"
+			},
+			{
+				"id": "LysahsRespite",
+				"name": "Lysah's Respite"
+			},
+			{
+				"id": "MagnumOpus",
+				"name": "Magnum Opus"
+			},
+			{
+				"id": "ManWithBear",
+				"name": "Man With Bear"
+			},
+			{
+				"id": "Matryoshka",
+				"name": "Matryoshka"
+			},
+			{
+				"id": "RussiaDivinationCard",
+				"name": "Mawr Blaidd"
+			},
+			{
+				"id": "MercilessArmament",
+				"name": "Merciless Armament"
+			},
+			{
+				"id": "MightIsRight",
+				"name": "Might is Right"
+			},
+			{
+				"id": "MiseryInDarkness",
+				"name": "Misery in Darkness"
+			},
+			{
+				"id": "Mitts",
+				"name": "Mitts"
+			},
+			{
+				"id": "Monochrome",
+				"name": "Monochrome"
+			},
+			{
+				"id": "MoreIsNeverEnough",
+				"name": "More is Never Enough"
+			},
+			{
+				"id": "NoTraces",
+				"name": "No Traces"
+			},
+			{
+				"id": "NooksCrown",
+				"name": "Nook's Crown"
+			},
+			{
+				"id": "ParasiticPassengers",
+				"name": "Parasitic Passengers"
+			},
+			{
+				"id": "PeacefulMoments",
+				"name": "Peaceful Moments"
+			},
+			{
+				"id": "Perfection",
+				"name": "Perfection"
+			},
+			{
+				"id": "PoisonedFaith",
+				"name": "Poisoned Faith"
+			},
+			{
+				"id": "Prejudice",
+				"name": "Prejudice"
+			},
+			{
+				"id": "PrideBeforeTheFall",
+				"name": "Pride Before the Fall"
+			},
+			{
+				"id": "PrideOfTheFirstOnes",
+				"name": "Pride of the First Ones"
+			},
+			{
+				"id": "PrometheusArmory",
+				"name": "Prometheus' Armoury"
+			},
+			{
+				"id": "Prosperity",
+				"name": "Prosperity"
+			},
+			{
+				"id": "RainOfChaos",
+				"name": "Rain of Chaos"
+			},
+			{
+				"id": "RainTempter",
+				"name": "Rain Tempter"
+			},
+			{
+				"id": "Rats",
+				"name": "Rats"
+			},
+			{
+				"id": "BirthOfTheThree",
+				"name": "Rebirth"
+			},
+			{
+				"id": "RebirthAndRenewal",
+				"name": "Rebirth and Renewal"
+			},
+			{
+				"id": "RecklessAmbition",
+				"name": "Reckless Ambition"
+			},
+			{
+				"id": "Remembrance",
+				"name": "Remembrance"
+			},
+			{
+				"id": "SambodhisVow",
+				"name": "Sambodhi's Vow"
+			},
+			{
+				"id": "SambodhisWisdom",
+				"name": "Sambodhi's Wisdom"
+			},
+			{
+				"id": "ScholarOfTheSeas",
+				"name": "Scholar of the Seas"
+			},
+			{
+				"id": "SevenYearsBadLuck",
+				"name": "Seven Years Bad Luck"
+			},
+			{
+				"id": "ShardofFate",
+				"name": "Shard of Fate"
+			},
+			{
+				"id": "SilenceAndFrost",
+				"name": "Silence and Frost"
+			},
+			{
+				"id": "SocietysRemorse",
+				"name": "Society's Remorse"
+			},
+			{
+				"id": "SomethingDark",
+				"name": "Something Dark"
+			},
+			{
+				"id": "SoulQuenched",
+				"name": "Soul Quenched"
+			},
+			{
+				"id": "BaronCat",
+				"name": "Squandered Prosperity",
+				"hidden": true
+			},
+			{
+				"id": "StruckbyLightning",
+				"name": "Struck by Lightning"
+			},
+			{
+				"id": "SuccorOfTheSinless",
+				"name": "Succor of the Sinless"
+			},
+			{
+				"id": "TerribleSecretOfSpace",
+				"name": "Terrible Secret of Space"
+			},
+			{
+				"id": "TheAcademic",
+				"name": "The Academic"
+			},
+			{
+				"id": "TheAdmirer",
+				"name": "The Admirer"
+			},
+			{
+				"id": "TheAdventuringSpirit",
+				"name": "The Adventuring Spirit"
+			},
+			{
+				"id": "TheAesthete",
+				"name": "The Aesthete"
+			},
+			{
+				"id": "TheApothecary",
+				"name": "The Apothecary"
+			},
+			{
+				"id": "TheArchmagesRightHand",
+				"name": "The Archmage's Right Hand"
+			},
+			{
+				"id": "TheArenaChampion",
+				"name": "The Arena Champion"
+			},
+			{
+				"id": "TheArmyOfBlood",
+				"name": "The Army of Blood"
+			},
+			{
+				"id": "TheArtist",
+				"name": "The Artist"
+			},
+			{
+				"id": "Dream",
+				"name": "The Aspirant"
+			},
+			{
+				"id": "TheAstromancer",
+				"name": "The Astromancer"
+			},
+			{
+				"id": "TheAvenger",
+				"name": "The Avenger"
+			},
+			{
+				"id": "TheAwakened",
+				"name": "The Awakened"
+			},
+			{
+				"id": "TheBargain",
+				"name": "The Bargain",
+				"hidden": true
+			},
+			{
+				"id": "TheBattleBorn",
+				"name": "The Battle Born"
+			},
+			{
+				"id": "TheBearWoman",
+				"name": "The Bear Woman"
+			},
+			{
+				"id": "TheBeast",
+				"name": "The Beast"
+			},
+			{
+				"id": "TheBetrayal",
+				"name": "The Betrayal"
+			},
+			{
+				"id": "TheBitterBlossom",
+				"name": "The Bitter Blossom"
+			},
+			{
+				"id": "TheBlazingFire",
+				"name": "The Blazing Fire"
+			},
+			{
+				"id": "TheBlessingOfMoosh",
+				"name": "The Blessing of Moosh"
+			},
+			{
+				"id": "TheBody",
+				"name": "The Body"
+			},
+			{
+				"id": "TheBones",
+				"name": "The Bones"
+			},
+			{
+				"id": "TheBrawnyBattleMage",
+				"name": "The Brawny Battle Mage"
+			},
+			{
+				"id": "TheBreach",
+				"name": "The Breach"
+			},
+			{
+				"id": "TheBrittleEmperor",
+				"name": "The Brittle Emperor"
+			},
+			{
+				"id": "TheCache",
+				"name": "The Cache"
+			},
+			{
+				"id": "TheCacophony",
+				"name": "The Cacophony"
+			},
+			{
+				"id": "TheCalling",
+				"name": "The Calling"
+			},
+			{
+				"id": "TheCardSharp",
+				"name": "The Card Sharp"
+			},
+			{
+				"id": "TheCarrionCrow",
+				"name": "The Carrion Crow"
+			},
+			{
+				"id": "TheMapmaker",
+				"name": "The Cartographer"
+			},
+			{
+				"id": "TheCataclysm",
+				"name": "The Cataclysm"
+			},
+			{
+				"id": "TheCatalyst",
+				"name": "The Catalyst"
+			},
+			{
+				"id": "TheCatch",
+				"name": "The Catch"
+			},
+			{
+				"id": "TheCelestialJusticar",
+				"name": "The Celestial Justicar"
+			},
+			{
+				"id": "TheCelestialStone",
+				"name": "The Celestial Stone"
+			},
+			{
+				"id": "TheChainsThatBind",
+				"name": "The Chains that Bind"
+			},
+			{
+				"id": "TheCheater",
+				"name": "The Cheater"
+			},
+			{
+				"id": "TheChosen",
+				"name": "The Chosen"
+			},
+			{
+				"id": "TheComingStorm",
+				"name": "The Coming Storm"
+			},
+			{
+				"id": "TheConduit",
+				"name": "The Conduit"
+			},
+			{
+				"id": "TheCraving",
+				"name": "The Craving"
+			},
+			{
+				"id": "TheCursedKing",
+				"name": "The Cursed King"
+			},
+			{
+				"id": "TheDamned",
+				"name": "The Damned"
+			},
+			{
+				"id": "TheDapperProdigy",
+				"name": "The Dapper Prodigy"
+			},
+			{
+				"id": "TheDarkMage",
+				"name": "The Dark Mage"
+			},
+			{
+				"id": "TheDarkestDream",
+				"name": "The Darkest Dream"
+			},
+			{
+				"id": "TheDeal",
+				"name": "The Deal"
+			},
+			{
+				"id": "TheDeceiver",
+				"name": "The Deceiver"
+			},
+			{
+				"id": "TheDeepOnes",
+				"name": "The Deep Ones"
+			},
+			{
+				"id": "TheDemon",
+				"name": "The Demon"
+			},
+			{
+				"id": "TheDemoness",
+				"name": "The Demoness"
+			},
+			{
+				"id": "TheDestination",
+				"name": "The Destination"
+			},
+			{
+				"id": "TheDoctor",
+				"name": "The Doctor"
+			},
+			{
+				"id": "TheDoppelganger",
+				"name": "The Doppelganger"
+			},
+			{
+				"id": "TheDragon",
+				"name": "The Dragon"
+			},
+			{
+				"id": "TheDragonsHeart",
+				"name": "The Dragon's Heart"
+			},
+			{
+				"id": "TheDreamer",
+				"name": "The Dreamer"
+			},
+			{
+				"id": "TheDreamland",
+				"name": "The Dreamland"
+			},
+			{
+				"id": "TheDrunkenAristocrat",
+				"name": "The Drunken Aristocrat"
+			},
+			{
+				"id": "TheDungeonMaster",
+				"name": "The Dungeon Master"
+			},
+			{
+				"id": "TheEasyStroll",
+				"name": "The Easy Stroll"
+			},
+			{
+				"id": "TheEldritchDecay",
+				"name": "The Eldritch Decay"
+			},
+			{
+				"id": "TheEmptiness",
+				"name": "The Emptiness"
+			},
+			{
+				"id": "TheEncroachingDarkness",
+				"name": "The Encroaching Darkness"
+			},
+			{
+				"id": "TheEndlessDarkness",
+				"name": "The Endless Darkness"
+			},
+			{
+				"id": "TheEndurance",
+				"name": "The Endurance"
+			},
+			{
+				"id": "TheEnforcer",
+				"name": "The Enforcer"
+			},
+			{
+				"id": "TheEnlightened",
+				"name": "The Enlightened"
+			},
+			{
+				"id": "TheEnthusiasts",
+				"name": "The Enthusiasts"
+			},
+			{
+				"id": "TheEscape",
+				"name": "The Escape"
+			},
+			{
+				"id": "TheEternalWar",
+				"name": "The Eternal War"
+			},
+			{
+				"id": "TheEthereal",
+				"name": "The Ethereal"
+			},
+			{
+				"id": "TheExplorer",
+				"name": "The Explorer"
+			},
+			{
+				"id": "TheEyeOfTerror",
+				"name": "The Eye of Terror"
+			},
+			{
+				"id": "TheEyeOfTheDragon",
+				"name": "The Eye of the Dragon"
+			},
+			{
+				"id": "TheFathomlessDepths",
+				"name": "The Fathomless Depths"
+			},
+			{
+				"id": "TheFeast",
+				"name": "The Feast"
+			},
+			{
+				"id": "TheFiend",
+				"name": "The Fiend"
+			},
+			{
+				"id": "TheFinishingTouch",
+				"name": "The Finishing Touch"
+			},
+			{
+				"id": "TheFishmonger",
+				"name": "The Fishmonger"
+			},
+			{
+				"id": "TheFletcher",
+				"name": "The Fletcher"
+			},
+			{
+				"id": "TheFlorasGift",
+				"name": "The Flora's Gift"
+			},
+			{
+				"id": "TheFool",
+				"name": "The Fool"
+			},
+			{
+				"id": "TheForgottenTreasure",
+				"name": "The Forgotten Treasure"
+			},
+			{
+				"id": "TheFormlessSea",
+				"name": "The Formless Sea"
+			},
+			{
+				"id": "TheForsaken",
+				"name": "The Forsaken"
+			},
+			{
+				"id": "TheFortunate",
+				"name": "The Fortunate"
+			},
+			{
+				"id": "TheForwardGaze",
+				"name": "The Forward Gaze"
+			},
+			{
+				"id": "TheFox",
+				"name": "The Fox"
+			},
+			{
+				"id": "TheFoxInTheBrambles",
+				"name": "The Fox in the Brambles"
+			},
+			{
+				"id": "TheGambler",
+				"name": "The Gambler"
+			},
+			{
+				"id": "GarishPower",
+				"name": "The Garish Power"
+			},
+			{
+				"id": "TheGemcutter",
+				"name": "The Gemcutter"
+			},
+			{
+				"id": "TheGentleman",
+				"name": "The Gentleman"
+			},
+			{
+				"id": "TheGladiator",
+				"name": "The Gladiator"
+			},
+			{
+				"id": "TheGoldenEra",
+				"name": "The Golden Era"
+			},
+			{
+				"id": "TheGreatestIntentions",
+				"name": "The Greatest Intentions"
+			},
+			{
+				"id": "TheGulf",
+				"name": "The Gulf"
+			},
+			{
+				"id": "TheHaleHeart",
+				"name": "The Hale Heart"
+			},
+			{
+				"id": "TheHarvester",
+				"name": "The Harvester"
+			},
+			{
+				"id": "TheHermit",
+				"name": "The Hermit"
+			},
+			{
+				"id": "TheHeroicShot",
+				"name": "The Heroic Shot"
+			},
+			{
+				"id": "TheHiveOfKnowledge",
+				"name": "The Hive of Knowledge"
+			},
+			{
+				"id": "TheHoarder",
+				"name": "The Hoarder"
+			},
+			{
+				"id": "TheHook",
+				"name": "The Hook"
+			},
+			{
+				"id": "TheHunger",
+				"name": "The Hunger"
+			},
+			{
+				"id": "TheImmortal",
+				"name": "The Immortal"
+			},
+			{
+				"id": "TheIncantation",
+				"name": "The Incantation"
+			},
+			{
+				"id": "TheInnocent",
+				"name": "The Innocent"
+			},
+			{
+				"id": "TheInoculated",
+				"name": "The Inoculated"
+			},
+			{
+				"id": "TheInsaneCat",
+				"name": "The Insane Cat"
+			},
+			{
+				"id": "TheInsatiable",
+				"name": "The Insatiable"
+			},
+			{
+				"id": "TheInventor",
+				"name": "The Inventor"
+			},
+			{
+				"id": "TheRustedBard",
+				"name": "The Rusted Bard"
+			},
+			{
+				"id": "TheJester",
+				"name": "The Jester"
+			},
+			{
+				"id": "TheJewellersBoon",
+				"name": "The Jeweller's Boon"
+			},
+			{
+				"id": "TheJournalist",
+				"name": "The Journalist"
+			},
+			{
+				"id": "TheJourney",
+				"name": "The Journey"
+			},
+			{
+				"id": "TheKingsBlade",
+				"name": "The King's Blade"
+			},
+			{
+				"id": "TheKingsHeart",
+				"name": "The King's Heart"
+			},
+			{
+				"id": "TheLanding",
+				"name": "The Landing"
+			},
+			{
+				"id": "TheLastOneStanding",
+				"name": "The Last One Standing"
+			},
+			{
+				"id": "TheLastSupper",
+				"name": "The Last Supper"
+			},
+			{
+				"id": "TheLeviathan",
+				"name": "The Leviathan"
+			},
+			{
+				"id": "TheLich",
+				"name": "The Lich"
+			},
+			{
+				"id": "TheLifeThief",
+				"name": "The Life Thief"
+			},
+			{
+				"id": "TheLion",
+				"name": "The Lion"
+			},
+			{
+				"id": "TheLongCon",
+				"name": "The Long Con"
+			},
+			{
+				"id": "TheLongWatch",
+				"name": "The Long Watch"
+			},
+			{
+				"id": "TheLordInBlack",
+				"name": "The Lord in Black"
+			},
+			{
+				"id": "TheLordofCelebration",
+				"name": "The Lord of Celebration"
+			},
+			{
+				"id": "TheLover",
+				"name": "The Lover"
+			},
+			{
+				"id": "TheLunarisPriestess",
+				"name": "The Lunaris Priestess"
+			},
+			{
+				"id": "TheMadKing",
+				"name": "The Mad King"
+			},
+			{
+				"id": "TheMagmaCrab",
+				"name": "The Magma Crab"
+			},
+			{
+				"id": "TheMaster",
+				"name": "The Master"
+			},
+			{
+				"id": "TheMasterArtisan",
+				"name": "The Master Artisan"
+			},
+			{
+				"id": "TheMayor",
+				"name": "The Mayor",
+				"hidden": true
+			},
+			{
+				"id": "TheMercenary",
+				"name": "The Mercenary"
+			},
+			{
+				"id": "TheMessenger",
+				"name": "The Messenger"
+			},
+			{
+				"id": "TheMetalsmithsGift",
+				"name": "The Metalsmith's Gift"
+			},
+			{
+				"id": "TheMindsEyes",
+				"name": "The Mind's Eyes"
+			},
+			{
+				"id": "TheMountain",
+				"name": "The Mountain"
+			},
+			{
+				"id": "TheNurse",
+				"name": "The Nurse"
+			},
+			{
+				"id": "TheOath",
+				"name": "The Oath"
+			},
+			{
+				"id": "TheObscured",
+				"name": "The Obscured"
+			},
+			{
+				"id": "TheOffering",
+				"name": "The Offering"
+			},
+			{
+				"id": "TheOffspring",
+				"name": "The Offspring"
+			},
+			{
+				"id": "TheOldMan",
+				"name": "The Old Man"
+			},
+			{
+				"id": "TheOneThatGotAway",
+				"name": "The One That Got Away"
+			},
+			{
+				"id": "TheOneWithAll",
+				"name": "The One With All"
+			},
+			{
+				"id": "TheOpulecent",
+				"name": "The Opulent"
+			},
+			{
+				"id": "ThePackLeader",
+				"name": "The Pack Leader"
+			},
+			{
+				"id": "ThePact",
+				"name": "The Pact"
+			},
+			{
+				"id": "ThePatient",
+				"name": "The Patient"
+			},
+			{
+				"id": "ThePenitent",
+				"name": "The Penitent"
+			},
+			{
+				"id": "ThePoet",
+				"name": "The Poet"
+			},
+			{
+				"id": "ThePolymath",
+				"name": "The Polymath"
+			},
+			{
+				"id": "ThePorcupine",
+				"name": "The Porcupine"
+			},
+			{
+				"id": "ThePriceOfDevotion",
+				"name": "The Price of Devotion"
+			},
+			{
+				"id": "ThePriceOfLoyalty",
+				"name": "The Price of Loyalty"
+			},
+			{
+				"id": "ThePriceOfPrescience",
+				"name": "The Price of Prescience"
+			},
+			{
+				"id": "ThePriceofProtection",
+				"name": "The Price of Protection"
+			},
+			{
+				"id": "ThePrimordial",
+				"name": "The Primordial"
+			},
+			{
+				"id": "ThePrinceOfDarkness",
+				"name": "The Prince of Darkness"
+			},
+			{
+				"id": "TheProfessor",
+				"name": "The Professor"
+			},
+			{
+				"id": "TheProgenyofLunaris",
+				"name": "The Progeny of Lunaris"
+			},
+			{
+				"id": "ThePuzzle",
+				"name": "The Puzzle"
+			},
+			{
+				"id": "TheQueen",
+				"name": "The Queen"
+			},
+			{
+				"id": "TheRabbitsFoot",
+				"name": "The Rabbit's Foot"
+			},
+			{
+				"id": "TheRabidRhoa",
+				"name": "The Rabid Rhoa"
+			},
+			{
+				"id": "TheRealm",
+				"name": "The Realm"
+			},
+			{
+				"id": "TheReturnOfTheRat",
+				"name": "The Return of the Rat"
+			},
+			{
+				"id": "TheRisk",
+				"name": "The Risk"
+			},
+			{
+				"id": "TheRiteofElements",
+				"name": "The Rite of Elements"
+			},
+			{
+				"id": "TheRoadToPower",
+				"name": "The Road to Power"
+			},
+			{
+				"id": "TheRuthlessCeinture",
+				"name": "The Ruthless Ceinture"
+			},
+			{
+				"id": "TheSacrifice",
+				"name": "The Sacrifice"
+			},
+			{
+				"id": "TheSaintsTreasure",
+				"name": "The Saint's Treasure"
+			},
+			{
+				"id": "TheSamuraisEye",
+				"name": "The Samurai's Eye"
+			},
+			{
+				"id": "TheScarredMeadow",
+				"name": "The Scarred Meadow"
+			},
+			{
+				"id": "TheScavenger",
+				"name": "The Scavenger"
+			},
+			{
+				"id": "TheScholar",
+				"name": "The Scholar"
+			},
+			{
+				"id": "TheScout",
+				"name": "The Scout"
+			},
+			{
+				"id": "TheSeeker",
+				"name": "The Seeker"
+			},
+			{
+				"id": "TheSephirot",
+				"name": "The Sephirot"
+			},
+			{
+				"id": "TheShepherdsSandals",
+				"name": "The Shepherd's Sandals"
+			},
+			{
+				"id": "TheShieldbearer",
+				"name": "The Shieldbearer"
+			},
+			{
+				"id": "TheShortcut",
+				"name": "The Shortcut"
+			},
+			{
+				"id": "TheSideQuest",
+				"name": "The Side Quest"
+			},
+			{
+				"id": "TheSigil",
+				"name": "The Sigil"
+			},
+			{
+				"id": "TheSiren",
+				"name": "The Siren"
+			},
+			{
+				"id": "TheSkeleton",
+				"name": "The Skeleton"
+			},
+			{
+				"id": "TheSoul",
+				"name": "The Soul"
+			},
+			{
+				"id": "TheSparkAndTheFlame",
+				"name": "The Spark and the Flame"
+			},
+			{
+				"id": "TheSpoiledPrince",
+				"name": "The Spoiled Prince"
+			},
+			{
+				"id": "TheStandOff",
+				"name": "The Standoff"
+			},
+			{
+				"id": "TheStormcaller",
+				"name": "The Stormcaller"
+			},
+			{
+				"id": "TheStrategist",
+				"name": "The Strategist"
+			},
+			{
+				"id": "TheSummoner",
+				"name": "The Summoner"
+			},
+			{
+				"id": "TheSun",
+				"name": "The Sun"
+			},
+			{
+				"id": "TheSurgeon",
+				"name": "The Surgeon"
+			},
+			{
+				"id": "TheSurveyor",
+				"name": "The Surveyor"
+			},
+			{
+				"id": "TheSurvivalist",
+				"name": "The Survivalist"
+			},
+			{
+				"id": "TheSustenance",
+				"name": "The Sustenance"
+			},
+			{
+				"id": "TheSwordKingsSalute",
+				"name": "The Sword King's Salute"
+			},
+			{
+				"id": "TheThaumaturgist",
+				"name": "The Thaumaturgist"
+			},
+			{
+				"id": "TheThrone",
+				"name": "The Throne"
+			},
+			{
+				"id": "TheTinkerersTable",
+				"name": "The Tinkerer's Table"
+			},
+			{
+				"id": "TheTirelessExtractor",
+				"name": "The Tireless Extractor"
+			},
+			{
+				"id": "TheTower",
+				"name": "The Tower"
+			},
+			{
+				"id": "TheTraitor",
+				"name": "The Traitor"
+			},
+			{
+				"id": "TheTransformation",
+				"name": "The Transformation"
+			},
+			{
+				"id": "TheTrial",
+				"name": "The Trial"
+			},
+			{
+				"id": "TheTumbleWeed",
+				"name": "The Tumbleweed"
+			},
+			{
+				"id": "TheTwilightMoon",
+				"name": "The Twilight Moon"
+			},
+			{
+				"id": "TheTwins",
+				"name": "The Twins"
+			},
+			{
+				"id": "TheTyrant",
+				"name": "The Tyrant"
+			},
+			{
+				"id": "TheUndaunted",
+				"name": "The Undaunted"
+			},
+			{
+				"id": "TheUndisputed",
+				"name": "The Undisputed"
+			},
+			{
+				"id": "TheUnexpectedPrize",
+				"name": "The Unexpected Prize"
+			},
+			{
+				"id": "TheUnion",
+				"name": "The Union"
+			},
+			{
+				"id": "TheValkyrie",
+				"name": "The Valkyrie"
+			},
+			{
+				"id": "TheValleyOfSteelBoxes",
+				"name": "The Valley of Steel Boxes",
+				"hidden": true
+			},
+			{
+				"id": "TheVast",
+				"name": "The Vast"
+			},
+			{
+				"id": "TheVisionary",
+				"name": "The Visionary"
+			},
+			{
+				"id": "TheVoid",
+				"name": "The Void"
+			},
+			{
+				"id": "TheWarden",
+				"name": "The Warden"
+			},
+			{
+				"id": "TheWarlord",
+				"name": "The Warlord"
+			},
+			{
+				"id": "TheWatcher",
+				"name": "The Watcher"
+			},
+			{
+				"id": "TheWeb",
+				"name": "The Web"
+			},
+			{
+				"id": "TheWeddingGift",
+				"name": "The Wedding Gift"
+			},
+			{
+				"id": "TheWhiteKnight",
+				"name": "The White Knight"
+			},
+			{
+				"id": "TheWhiteout",
+				"name": "The Whiteout"
+			},
+			{
+				"id": "TheWiltedRose",
+				"name": "The Wilted Rose"
+			},
+			{
+				"id": "TheWind",
+				"name": "The Wind"
+			},
+			{
+				"id": "TheWitch",
+				"name": "The Witch"
+			},
+			{
+				"id": "TheWolf",
+				"name": "The Wolf"
+			},
+			{
+				"id": "TheWolfsLegacy",
+				"name": "The Wolf's Legacy"
+			},
+			{
+				"id": "TheWolfsShadow",
+				"name": "The Wolf's Shadow"
+			},
+			{
+				"id": "TheWolvenKingsBite",
+				"name": "The Wolven King's Bite"
+			},
+			{
+				"id": "TheWolverine",
+				"name": "The Wolverine"
+			},
+			{
+				"id": "TheWorldEater",
+				"name": "The World Eater"
+			},
+			{
+				"id": "TheWrath",
+				"name": "The Wrath"
+			},
+			{
+				"id": "TheWretched",
+				"name": "The Wretched"
+			},
+			{
+				"id": "ThirstForKnowledge",
+				"name": "Thirst for Knowledge"
+			},
+			{
+				"id": "ThreeFacesInTheDark",
+				"name": "Three Faces in the Dark"
+			},
+			{
+				"id": "ThreeVoices",
+				"name": "Three Voices"
+			},
+			{
+				"id": "ThunderousSkies",
+				"name": "Thunderous Skies"
+			},
+			{
+				"id": "TimeLostRelic",
+				"name": "Time-Lost Relic"
+			},
+			{
+				"id": "Tranquillity",
+				"name": "Tranquillity"
+			},
+			{
+				"id": "TreasureHunter",
+				"name": "Treasure Hunter"
+			},
+			{
+				"id": "Triskaidekaphobia",
+				"name": "Triskaidekaphobia"
+			},
+			{
+				"id": "TurnTheOtherCheek",
+				"name": "Turn the Other Cheek"
+			},
+			{
+				"id": "Unchained",
+				"name": "Unchained"
+			},
+			{
+				"id": "UndergroundForest",
+				"name": "Underground Forest"
+			},
+			{
+				"id": "UnrequitedLove",
+				"name": "Unrequited Love"
+			},
+			{
+				"id": "Vanity",
+				"name": "Vanity"
+			},
+			{
+				"id": "VilePower",
+				"name": "Vile Power"
+			},
+			{
+				"id": "ViniasToken",
+				"name": "Vinia's Token"
+			},
+			{
+				"id": "VoidOfTheElements",
+				"name": "Void of the Elements"
+			},
+			{
+				"id": "VolatilePower",
+				"name": "Volatile Power"
+			},
+			{
+				"id": "WealthAndPower",
+				"name": "Wealth and Power"
+			},
+			{
+				"id": "WhoAsked",
+				"name": "Who Asked"
+			},
+			{
+				"id": "WintersEmbrace",
+				"name": "Winter's Embrace"
+			}
+		],
+		"h": 261,
+		"w": 172,
+		"padx": 84,
+		"pady": 1078,
+		"scale": 0.6085192697768763
+	},
+	"items": [
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "7e08dcb3166262dc1bccc47743887b38c72f7ad661fada9608b71d6630275df4",
+			"name": "",
+			"typeLine": "The Academic",
+			"baseType": "The Academic",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Inspired Learning}"
+			],
+			"flavourText": [
+				"<size:26>{\"Such dedication for so many years,\r",
+				"all for a couple extra letters at the front of your name...\"}"
+			],
+			"frameType": 6,
+			"artFilename": "TheAcademic",
+			"x": 66,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 2,
+			"league": "Affliction",
+			"id": "4408c7db3ef8f9ea5d0edc64a9d1bbb6721947f6a0ecf7c0cbfb6e349510b10c",
+			"name": "",
+			"typeLine": "The Wedding Gift",
+			"baseType": "The Wedding Gift",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/2",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Arakaali's Fang}"
+			],
+			"flavourText": [
+				"The acolytes congratulated the lucky groom for becoming one with the goddess."
+			],
+			"frameType": 6,
+			"artFilename": "TheWeddingGift",
+			"x": 172,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "4f9ee9999f9de69c7a2f5c0dc2c7ce638527bc03e3bc82cbe4e8691b75c64e88",
+			"name": "",
+			"typeLine": "The Dragon",
+			"baseType": "The Dragon",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Coruscating Elixir}"
+			],
+			"flavourText": [
+				"<size:28>{Scaly beast of the skies,\r",
+				"watching with his golden eyes.\r",
+				"Shadow that blocks out the sun,\r",
+				"it's too late for you to run.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheDragon",
+			"x": 121,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 8,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "83a4854f1dcb8e7f2967f7ca1e2dbec790597b176b3194a4eea6480f245a5dd7",
+			"name": "",
+			"typeLine": "The King's Blade",
+			"baseType": "The King's Blade",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"8/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<size:31>{<magicitem>{Bloodthirsty Eternal Sword}\r\n<default>{Item Level:} <normal>{66}}"
+			],
+			"flavourText": [
+				"<size:25>{\"To know for what you fight. To get up again when you've been struck down. To outmanoeuvre someone faster, trick someone smarter, crush someone stronger. That's what it takes to claim the crown.\"\r",
+				"- Daresso, the King of Swords}"
+			],
+			"frameType": 6,
+			"artFilename": "TheKingsBlade",
+			"x": 62,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "4a09cb2a0b4d93f1e024f5bd49f20291bc4baeed26023b894813b484cfcc164f",
+			"name": "",
+			"typeLine": "Assassin's Favour",
+			"baseType": "Assassin's Favour",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Dagger}"
+			],
+			"flavourText": [
+				"By the time their eyes meet, \r",
+				"the dark deal has long since been made, \r",
+				"and his fate long since sealed."
+			],
+			"frameType": 6,
+			"artFilename": "AssassinsFavor",
+			"x": 82,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "02fbe3acad1a9696b8da6b735991fc7194ec82e300a00cafebf12e4e2a595ae9",
+			"name": "",
+			"typeLine": "The Opulent",
+			"baseType": "The Opulent",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Ring}\r\n<default>{Item Level:} <normal>{100}"
+			],
+			"flavourText": [
+				"Wealth can, in fact, buy happiness."
+			],
+			"frameType": 6,
+			"artFilename": "TheOpulecent",
+			"x": 181,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "388a2bcd72817b88622adbda1df9b19c15bfb42f7f9ad0b03b6cc3e7479cbb6b",
+			"name": "",
+			"typeLine": "The Transformation",
+			"baseType": "The Transformation",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{Tainted Mythic Orb}"
+			],
+			"flavourText": [
+				"Even the most beautiful of transformations can still have a dark side."
+			],
+			"frameType": 6,
+			"artFilename": "TheTransformation",
+			"x": 137,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 12,
+			"league": "Affliction",
+			"id": "34bdc2426802a82c468b7d19a4eab5762db50fa0688a9b021de507d6711583cc",
+			"name": "",
+			"typeLine": "Divine Beauty",
+			"baseType": "Divine Beauty",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/12",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{7x Divine Orb}"
+			],
+			"flavourText": [
+				"<size:30>{In a land far away lived \r",
+				"a maiden most fair.\r",
+				"Her smile melted the coldest\r",
+				"of hearts, her song made\r",
+				"men and beast cry, \r",
+				"her beauty unparalleled;\r",
+				"Divine.}"
+			],
+			"frameType": 6,
+			"artFilename": "DivineBeauty",
+			"x": 171,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "8e413cc0109a56c019dfe9b84a6864f298068d8b38230eef25b43f3ee90f6461",
+			"name": "",
+			"typeLine": "The Strategist",
+			"baseType": "The Strategist",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Inspired Learning}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"Know thine enemy better than you know thyself."
+			],
+			"frameType": 6,
+			"artFilename": "TheStrategist",
+			"x": 42,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "a0666e1e721f8a38cde5e153072fc1e1c9ac8826bfdf14119aa27bea97c48272",
+			"name": "",
+			"typeLine": "Home",
+			"baseType": "Home",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<gemitem>{Exceptional Gem}\r\n<default>{Quality:} <augmented>{+1-20%}"
+			],
+			"flavourText": [
+				"There are countless people, countless stories, and countless eras, but there is one place that, for a time, each of us loved and was loved. It matters. We matter."
+			],
+			"frameType": 6,
+			"artFilename": "Home",
+			"x": 149,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 10,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "6d86e7debc9f43b7411db2867e06b10814cbc5f4c038c1a16e827c1fbeb67549",
+			"name": "",
+			"typeLine": "Rain of Chaos",
+			"baseType": "Rain of Chaos",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"10/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{Chaos Orb}"
+			],
+			"flavourText": [
+				"<size:27>{Fire filled the sky that night \r",
+				"Chaos reigned \r",
+				"Where the shards fell \r",
+				"All was destroyed \r",
+				"-Jozen Kasigi, retelling an urban legend of the Cataclysm}"
+			],
+			"frameType": 6,
+			"artFilename": "RainOfChaos",
+			"x": 34,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 10,
+			"league": "Affliction",
+			"id": "0c8e965ca45a48fa4a61532a9320695e184129ca91d682399b4fbbc6c2c3612e",
+			"name": "",
+			"typeLine": "The Journalist",
+			"baseType": "The Journalist",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Helmet}\r\n<default>{Double-Veiled Item}"
+			],
+			"flavourText": [
+				"A good spy doesn't forget she's gone undercover."
+			],
+			"frameType": 6,
+			"artFilename": "TheJournalist",
+			"x": 72,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "49413f978bacbf7d89b49324d7d527c6b2b9ad71fd319542ad6532217f595dfb",
+			"name": "",
+			"typeLine": "Misery in Darkness",
+			"baseType": "Misery in Darkness",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Shroud of the Lightless}"
+			],
+			"flavourText": [
+				"<size:30>{He wandered the bone-filled depths hoping each corner would be his last.\r",
+				"Eventually, he found Light.}"
+			],
+			"frameType": 6,
+			"artFilename": "MiseryInDarkness",
+			"x": 131,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "e1ac89a67fd3890ca86e4abbe05805bc8186247f6a04bc3ee1ed65be6a1813ac",
+			"name": "",
+			"typeLine": "The Nurse",
+			"baseType": "The Nurse",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<divination>{The Doctor}"
+			],
+			"flavourText": [
+				"We tried to tell him to get his head checked."
+			],
+			"frameType": 6,
+			"artFilename": "TheNurse",
+			"x": 233,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 5,
+			"maxStackSize": 11,
+			"league": "Affliction",
+			"id": "f0d482a2f60aba50411a5bde9bbc9c5b42dc5c7fe2f7cdcd0d13d298cefcce77",
+			"name": "",
+			"typeLine": "Dementophobia",
+			"baseType": "Dementophobia",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"5/11",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{10x Delirium Orb}"
+			],
+			"flavourText": [
+				"<size:28>{I never truly understood the depths of my insanity,\r",
+				"until I realized the voices beckoning me towards the abyss,\r",
+				"were none other than my own.}"
+			],
+			"frameType": 6,
+			"artFilename": "Dementophobia",
+			"x": 112,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "5cd855d17b796c990252aa9c2491ccf876b3690095d9ffcb8af6875f2f59ad8d",
+			"name": "",
+			"typeLine": "Disdain",
+			"baseType": "Disdain",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{Delirium Orb}"
+			],
+			"flavourText": [
+				"<size:28>{No man sees all, but you'll see more than some see in a lifetime.}"
+			],
+			"frameType": 6,
+			"artFilename": "Disdain",
+			"x": 122,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 1,
+			"league": "Affliction",
+			"id": "7f93127c5a1f571e80add0b6e8fb6ca0f83c9005299c1d7e2202133c8266d47f",
+			"name": "",
+			"typeLine": "Chaotic Disposition",
+			"baseType": "Chaotic Disposition",
+			"ilvl": 0,
+			"identified": true,
+			"explicitMods": [
+				"<currencyitem>{5x Chaos Orb}"
+			],
+			"flavourText": [
+				"Life isn't what you make of it, it's already been made for you."
+			],
+			"frameType": 6,
+			"artFilename": "ChaoticDisposition",
+			"x": 27,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "8a2775e8cd69ca79feeb3b8df2da341552821395605d83ed336d3755db8976f0",
+			"name": "",
+			"typeLine": "The Enthusiasts",
+			"baseType": "The Enthusiasts",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Victario's Influence}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"<size:25>{\"Glimmers of benevolence,\r",
+				"Shrouded a lacquered lust for power,\r",
+				"Yet still they followed his influence.\"}"
+			],
+			"frameType": 6,
+			"artFilename": "TheEnthusiasts",
+			"x": 90,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "8191f59b194a17ff9f0157ca0e9e53dbfcf2d0443a75fd04b8145e5b9d6157e3",
+			"name": "",
+			"typeLine": "Council of Cats",
+			"baseType": "Council of Cats",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Farrul Item}"
+			],
+			"flavourText": [
+				"<size:30>{A King Loved By All,\r",
+				"A Shadow Awaiting Nightfall,\r",
+				"A Speaker Howling Away,\r",
+				"A Hunter Seeking Prey}"
+			],
+			"frameType": 6,
+			"artFilename": "CounciloOfCats",
+			"x": 48,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 13,
+			"league": "Affliction",
+			"id": "07eceb908cc28bea3b04f51f50980ab315e9394fda6143859bb4fd3a007f3815",
+			"name": "",
+			"typeLine": "The Cataclysm",
+			"baseType": "The Cataclysm",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<gemitem>{Level 21 Spell Gem}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"<size:27>{The mighty warriors traded in blows, the nimble archers in arrows, yet it was the brazen thaumaturgists who would bring catastrophe to all.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheCataclysm",
+			"x": 16,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "cf31fdc404851261cdb44872801e18f42389e9a2a609974ee0d606b77f2fc9b9",
+			"name": "",
+			"typeLine": "The Polymath",
+			"baseType": "The Polymath",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Astramentis}"
+			],
+			"flavourText": [
+				"Genius knows no limits."
+			],
+			"frameType": 6,
+			"artFilename": "ThePolymath",
+			"x": 167,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "ad12ed51eb53471d7da15b74bf1064c98cc91614b1b9ff90bca94f6a7032920e",
+			"name": "",
+			"typeLine": "Something Dark",
+			"baseType": "Something Dark",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Blueprint}\r\n<default>{Area Level:} <normal>{83}\r\n<default>{Fully Revealed}"
+			],
+			"flavourText": [
+				"Even in darkness you may find a friend."
+			],
+			"frameType": 6,
+			"artFilename": "SomethingDark",
+			"x": 167,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 2,
+			"league": "Affliction",
+			"id": "40bbcfeea44327959020a1f9ad147dccca1eb4acee2b5b953a5068e19d1fb7b5",
+			"name": "",
+			"typeLine": "Duality",
+			"baseType": "Duality",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/2",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Body Armour}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Double-Influenced Item}"
+			],
+			"flavourText": [
+				"Good and Evil can be woven together to become something greater than either."
+			],
+			"frameType": 6,
+			"artFilename": "Duality",
+			"x": 135,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "fabd40848a74e858a8e1b2d56bf22e3f3753aee08909763f8163d395d32c9edb",
+			"name": "",
+			"typeLine": "Darker Half",
+			"baseType": "Darker Half",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{5x Eldritch Chaos Orb}"
+			],
+			"flavourText": [
+				"When you find what you're looking for, it's never quite right. When you have what you desire, yet you still want more."
+			],
+			"frameType": 6,
+			"artFilename": "TheDarkerHalf",
+			"x": 152,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "0851c915d4023f23ed141080f59cc89087b73748e8fc74ee90dceae78358e5cb",
+			"name": "",
+			"typeLine": "The Dapper Prodigy",
+			"baseType": "The Dapper Prodigy",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Six-Link Body Armour}\r\n<default>{Item Level:} <normal>{100}"
+			],
+			"flavourText": [
+				"\"Many believe murder is a grisly, grim, and grotesque crime. Then there are those who simply make art of it.\""
+			],
+			"frameType": 6,
+			"artFilename": "TheDapperProdigy",
+			"x": 117,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "86a471bc3b4168aabb8a2279014c78aedd5810748d7110e1cd24816f4968d58f",
+			"name": "",
+			"typeLine": "The Doctor",
+			"baseType": "The Doctor",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Headhunter}"
+			],
+			"flavourText": [
+				"\"They said I needed my head examined, but I'd rather just take yours.\" - Klopek the Cannibal"
+			],
+			"frameType": 6,
+			"artFilename": "TheDoctor",
+			"x": 1,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 4,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "8c9214cc9bc5d4d07c694198cf9dcf6dbcedf50c5e6930c0d5ec36e93352ef45",
+			"name": "",
+			"typeLine": "The Hunger",
+			"baseType": "The Hunger",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"4/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Taste of Hate}"
+			],
+			"flavourText": [
+				"\"How many lives have you consumed?\" \r",
+				"\"How many times have you blinked?\""
+			],
+			"frameType": 6,
+			"artFilename": "TheHunger",
+			"x": 17,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "f3caf4a0eebf1e1bde74f49e19226896176128cba5b26b2b5a6fa39dd0432c52",
+			"name": "",
+			"typeLine": "The Witch",
+			"baseType": "The Witch",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Kiara's Determination}"
+			],
+			"flavourText": [
+				"<size:27>{A wanderer in the wild strives \r",
+				"Against countless foes he survives \r",
+				"A fool pursues a quest contrived \r",
+				"By the gift of the witch, alive.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheWitch",
+			"x": 201,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 11,
+			"league": "Affliction",
+			"id": "8e3072812a40875dd287becae997dafcf9a249f8e09abbe650a72b57727a6192",
+			"name": "",
+			"typeLine": "The Sephirot",
+			"baseType": "The Sephirot",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/11",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{10x Divine Orb}"
+			],
+			"flavourText": [
+				"If the path to divinity were simple, we'd all be gods."
+			],
+			"frameType": 6,
+			"artFilename": "TheSephirot",
+			"x": 130,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "2e05434afcf1f4f4db956b9e4d45bdf8a023b3d6c881b86bb85aaa4a02c77b9f",
+			"name": "",
+			"typeLine": "Brotherhood in Exile",
+			"baseType": "Brotherhood in Exile",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{One With Nothing}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"<size:25>{Seeking shelter from the night,\r",
+				"in the warmth of the run-down inn,\r",
+				"erstwhile foes put aside the fight,\r",
+				"to bond over whiskey and gin.}"
+			],
+			"frameType": 6,
+			"artFilename": "BrotherhoodInExile",
+			"x": 87,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 6,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "0057cddae76830bef0ea53b4491cb6153ae7cc9d8a83f66e31a02a49e0618eba",
+			"name": "",
+			"typeLine": "The Patient",
+			"baseType": "The Patient",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"6/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<divination>{The Nurse}"
+			],
+			"flavourText": [
+				"I have a headache, can anyone find me a nurse?"
+			],
+			"frameType": 6,
+			"artFilename": "ThePatient",
+			"x": 84,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "3ed711028052c722017731b098f1c962658e64fccf4142c422a92d3fc56b494b",
+			"name": "",
+			"typeLine": "The Eldritch Decay",
+			"baseType": "The Eldritch Decay",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Uber Elder Fragment}"
+			],
+			"flavourText": [
+				"Time dismantles all things eventually, but some wish to accelerate the process."
+			],
+			"frameType": 6,
+			"artFilename": "TheEldritchDecay",
+			"x": 47,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "606f17bb2e4a3422fdcae2de3fdd71ea8f4601a9385598a856c66f12597808dc",
+			"name": "",
+			"typeLine": "The Gambler",
+			"baseType": "The Gambler",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<divination>{Divination Card}"
+			],
+			"flavourText": [
+				"\"I don't believe in karma. If it were real, I would never win.\""
+			],
+			"frameType": 6,
+			"artFilename": "TheGambler",
+			"x": 25,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 11,
+			"league": "Affliction",
+			"id": "a36ae421169c37921e3abe73d5914ab80b0ab91c4c5c88f0accc95f7bd87e134",
+			"name": "",
+			"typeLine": "The Chains that Bind",
+			"baseType": "The Chains that Bind",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/11",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Six-Link Body Armour}"
+			],
+			"flavourText": [
+				"Scarier than any criminal is an innocent man in chains, for when he breaks free, his revenge will be justified."
+			],
+			"frameType": 6,
+			"artFilename": "TheChainsThatBind",
+			"x": 44,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "fc38a0ae96785f9f61bfccfc1027861f7fc9950ea0386128aa130e42986b9f28",
+			"name": "",
+			"typeLine": "Last Hope",
+			"baseType": "Last Hope",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Mortal Hope}"
+			],
+			"flavourText": [
+				"<size:31>{As their civilisation crumbled, the Vaal looked to their queen. In her, they saw a way out. In them, she saw a burden she was happy to free herself from.}"
+			],
+			"frameType": 6,
+			"artFilename": "LastHope",
+			"x": 99,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "0d691b6eefc388e13668266487a1367bb6f3c4590d9e14bff2946f092ca24677",
+			"name": "",
+			"typeLine": "Shard of Fate",
+			"baseType": "Shard of Fate",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<magicitem>{Vivid Jewel}"
+			],
+			"flavourText": [
+				"Their whims left unknown,\r",
+				"Their life left for others."
+			],
+			"frameType": 6,
+			"artFilename": "ShardofFate",
+			"x": 139,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 10,
+			"league": "Affliction",
+			"id": "1ce0331ff3582cdc9f1ce0d9e0868af1d8b3f97ee7fbe2ee437e185f8dc0d296",
+			"name": "",
+			"typeLine": "The Innocent",
+			"baseType": "The Innocent",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{40x Orb of Regret}"
+			],
+			"flavourText": [
+				"His brother would not atone, so he took his brother's life, and with it, his sins."
+			],
+			"frameType": 6,
+			"artFilename": "TheInnocent",
+			"x": 223,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "463beb8b1ea132723ef664fe267bae6549619c35a38941e7837a063d30e9d96b",
+			"name": "",
+			"typeLine": "A Sea of Blue",
+			"baseType": "A Sea of Blue",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{13x Orb of Alteration}"
+			],
+			"flavourText": [
+				"The harvest ended, the floods began."
+			],
+			"frameType": 6,
+			"artFilename": "ASeaOfBlue",
+			"x": 104,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "c7b8aaefba07e7c644a77a781a0455e3c965df808530c022110452e743630cda",
+			"name": "",
+			"typeLine": "A Fate Worse Than Death",
+			"baseType": "A Fate Worse Than Death",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Cortex}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"\"It was as though my very thoughts were breaking... fracturing into tiny motes to be lost on the wind.\""
+			],
+			"frameType": 6,
+			"artFilename": "AFateWorseThanDeath",
+			"x": 144,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "ac07068434c74badb88f4bffe93cefc4f25f98456e2ad70b16ab94392aa3fd65",
+			"name": "",
+			"typeLine": "The Fletcher",
+			"baseType": "The Fletcher",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Drillneck}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"Let these fine arrows pack a punch."
+			],
+			"frameType": 6,
+			"artFilename": "TheFletcher",
+			"x": 94,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "93f296f4d1b84730d5ad13c1a01882c62bd38a3f46aecca0927bab1544f5233e",
+			"name": "",
+			"typeLine": "The Gemcutter",
+			"baseType": "The Gemcutter",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{Gemcutter's Prism}"
+			],
+			"flavourText": [
+				"In the hands of a master craftsman, a worthless pebble can adorn the crown of a king."
+			],
+			"frameType": 6,
+			"artFilename": "TheGemcutter",
+			"x": 24,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 5,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "702399a5d5b9704c88ba8d74bab94f0e009386f8a811ef845e89136caf4e249d",
+			"name": "",
+			"typeLine": "The Trial",
+			"baseType": "The Trial",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"5/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Map}\r\n<default>{Map Tier:} <normal>{15}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"You cannot journey to new lands until you have the courage to leave the safety of home."
+			],
+			"frameType": 6,
+			"artFilename": "TheTrial",
+			"x": 63,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "c17a139a6ab40be86109660a8ae2bfd23ebde85126e38a5b9294a52c7ae4c755",
+			"name": "",
+			"typeLine": "Alivia's Grace",
+			"baseType": "Alivia's Grace",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Queen of the Forest}"
+			],
+			"flavourText": [
+				"Her innocence and grace were enough to tame even the wildest of beasts."
+			],
+			"frameType": 6,
+			"artFilename": "AliviasGrace",
+			"x": 169,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 4,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "52f6b6805269405931ba7a22759c7beae169a854280cb39781c7259018ac2384",
+			"name": "",
+			"typeLine": "Lucky Connections",
+			"baseType": "Lucky Connections",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"4/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{20x Orb of Fusing}"
+			],
+			"flavourText": [
+				"Luck is a fool's game, and I know plenty of rich fools."
+			],
+			"frameType": 6,
+			"artFilename": "LuckyConnections",
+			"x": 32,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "de059246c6542460aa8cb3738b72e8aa2dcd11df95512eeddfdb3d0936b9638a",
+			"name": "",
+			"typeLine": "The Warden",
+			"baseType": "The Warden",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Amulet}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"<size:31>{Brutus' first innovation as Lord Incarcerator was a weighted chain around every neck so that his prisoners would forever bow to him.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheWarden",
+			"x": 21,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "e6de4d6c6b201caf1f5317c4d787c21a0c7612fed0a0cf702d33db32119eca2e",
+			"name": "",
+			"typeLine": "The Stormcaller",
+			"baseType": "The Stormcaller",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Agnerod Staff}"
+			],
+			"flavourText": [
+				"If you beckon the\r",
+				"Lord of Lightning,\r",
+				"do not be surprised\r",
+				"when you are struck."
+			],
+			"frameType": 6,
+			"artFilename": "TheStormcaller",
+			"x": 149,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 16,
+			"league": "Affliction",
+			"id": "335dc615c0bc0876f190398608078ec7f2144b4dee5bdb0328bb926075e01726",
+			"name": "",
+			"typeLine": "Lingering Remnants",
+			"baseType": "Lingering Remnants",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/16",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Vaal Temple Map}\r\n<default>{Item Level:} <normal>{83}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"Never dying, yet not living,\r",
+				"Endlessly they wander\r",
+				"beneath the harvest moon."
+			],
+			"frameType": 6,
+			"artFilename": "LingeringRemnants",
+			"x": 175,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "0600ee055dfff4ab67990bbec3d739da527fd5435c84faa897b8e21114d1b5eb",
+			"name": "",
+			"typeLine": "No Traces",
+			"baseType": "No Traces",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{30x Orb of Scouring}"
+			],
+			"flavourText": [
+				"<size:31>{There is no mistake so great that it cannot be undone.}"
+			],
+			"frameType": 6,
+			"artFilename": "NoTraces",
+			"x": 185,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 4,
+			"maxStackSize": 12,
+			"league": "Affliction",
+			"id": "665503ef2938bede48df846aab6f13f27aeab6015efe43df25e823f98e433a0e",
+			"name": "",
+			"typeLine": "The Fortunate",
+			"baseType": "The Fortunate",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"4/12",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{2x Divine Orb}"
+			],
+			"flavourText": [
+				"<size:26>{The fortunate find \r",
+				"generosity in the divine.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheFortunate",
+			"x": 183,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "e458e06a33dc4de5cba0d3de1fcfe694e773870bffa8f649456f7890ec01b10a",
+			"name": "",
+			"typeLine": "Immortal Resolve",
+			"baseType": "Immortal Resolve",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Six-Linked Body Armour}\r\n<default>{Influenced Item}"
+			],
+			"flavourText": [
+				"The threads of fate are the strongest ties."
+			],
+			"frameType": 6,
+			"artFilename": "ImmortalResolve",
+			"x": 202,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "c8bd569e8ed3fbb82147d6e6b3848f4be3ad2efcac90371a862dc2103633d6aa",
+			"name": "",
+			"typeLine": "The Sword King's Salute",
+			"baseType": "The Sword King's Salute",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Daresso's Salute}"
+			],
+			"flavourText": [
+				"<size:26>{Many were slain by the sword king \r",
+				"Their blood decorating his ring \r",
+				"Those who retreated were slaughtered \r",
+				"Those who fought bravely were honoured}"
+			],
+			"frameType": 6,
+			"artFilename": "TheSwordKingsSalute",
+			"x": 209,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "b4cb15e6660a1800b57554697b6a811c8816d103f1a5b9549c1cfc5c3b6a80f5",
+			"name": "",
+			"typeLine": "The Lion",
+			"baseType": "The Lion",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Lioneye Item}"
+			],
+			"flavourText": [
+				"<size:31>{The Eternals lauded his valour. The Karui relished his defeat. Yet the final thoughts of Marceus Lioneye were naught but lament for his pride.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheLion",
+			"x": 120,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "e4d62165a15ae69c5cc4ce832eafd3c151cab79d617b4b31959d499652f03f6f",
+			"name": "",
+			"typeLine": "The Realm",
+			"baseType": "The Realm",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<gemitem>{Portal}\r\n<default>{Quality:} <augmented>{+1-20%}"
+			],
+			"flavourText": [
+				"If you wish to rush into strange places, be prepared to face strange things."
+			],
+			"frameType": 6,
+			"artFilename": "TheRealm",
+			"x": 186,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "1405d981f04ad2d15257a77c86bc7459318b9b6b5e659973bde7f0a5349eda59",
+			"name": "",
+			"typeLine": "The Coming Storm",
+			"baseType": "The Coming Storm",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Lightning Coil}"
+			],
+			"flavourText": [
+				"No man may hope to turn back the storm. You can only hope you do not attract its ire."
+			],
+			"frameType": 6,
+			"artFilename": "TheComingStorm",
+			"x": 166,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "bcb9b1ebd6f31c31b24c9ed3c7d65a3f651588b49697bd27393d2e94230076b5",
+			"name": "",
+			"typeLine": "The Inventor",
+			"baseType": "The Inventor",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{10x Vaal Orb}"
+			],
+			"flavourText": [
+				"Jump right in, \r",
+				"But beware \r",
+				"Of things broken \r",
+				"Or beyond compare."
+			],
+			"frameType": 6,
+			"artFilename": "TheInventor",
+			"x": 46,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 4,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "e0ce47c93b55d48b5329ad13da9c8dd4ea4b8cf36028fa7bca201130b646b838",
+			"name": "",
+			"typeLine": "Glimmer of Hope",
+			"baseType": "Glimmer of Hope",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"4/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Gold Ring}"
+			],
+			"flavourText": [
+				"When you dwell in total darkness, even the faintest light may guide you out."
+			],
+			"frameType": 6,
+			"artFilename": "GlimmerOfHope",
+			"x": 113,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "c589efe0558a20e0160946d042d600a0fb7213eddf94ee9a554879cd16823c3d",
+			"name": "",
+			"typeLine": "The Hale Heart",
+			"baseType": "The Hale Heart",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Item}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Elder Item}"
+			],
+			"flavourText": [
+				"Though the years weakened his mind, his body remained deadly as ever."
+			],
+			"frameType": 6,
+			"artFilename": "TheHaleHeart",
+			"x": 216,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 10,
+			"league": "Affliction",
+			"id": "a48bf59770d4408cca29d7a91ebc777b07256bcb25c788f8157d541a7fb94293",
+			"name": "",
+			"typeLine": "The Arena Champion",
+			"baseType": "The Arena Champion",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Map}\r\n<default>{Map Tier:} <normal>{12}"
+			],
+			"flavourText": [
+				"The fight is the easy part. It's the years of training that'll kill you."
+			],
+			"frameType": 6,
+			"artFilename": "TheArenaChampion",
+			"x": 129,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 13,
+			"league": "Affliction",
+			"id": "de8775df36e171e054acae3a959fca366625b278240e75cb9ddbb9131d706129",
+			"name": "",
+			"typeLine": "Seven Years Bad Luck",
+			"baseType": "Seven Years Bad Luck",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{Mirror Shard}"
+			],
+			"flavourText": [
+				"If enough people believe something to be true, whether or not it is becomes irrelevant."
+			],
+			"frameType": 6,
+			"artFilename": "SevenYearsBadLuck",
+			"x": 244,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 13,
+			"league": "Affliction",
+			"id": "ffdc10843be93eb0ff329364a05031259a88f7062e32473f12356d470dfe0631",
+			"name": "",
+			"typeLine": "Cursed Words",
+			"baseType": "Cursed Words",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Maw of Mischief}"
+			],
+			"flavourText": [
+				"If you look hard enough for hidden meaning, you will find it."
+			],
+			"frameType": 6,
+			"artFilename": "CursedWords",
+			"x": 71,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "2b3eab26aef79b524945db6864c5abee9cc2a6b16ca4fc54c6a70b85d174f9a8",
+			"name": "",
+			"typeLine": "Gemcutter's Promise",
+			"baseType": "Gemcutter's Promise",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<gemitem>{Gem}\r\n<default>{Quality:} <augmented>{+20%}"
+			],
+			"flavourText": [
+				"<size:29>{\"I swore to use my position to help the people. What good is power when it just accumulates on the already-powerful?\" - Erasmus, Imperial Gemcutter}"
+			],
+			"frameType": 6,
+			"artFilename": "GemcuttersPromise",
+			"x": 42,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "82c0cd6007f172ab42947c3324eafbd92dbf89de0c0242440d6d8d0110ee3c04",
+			"name": "",
+			"typeLine": "Prometheus' Armoury",
+			"baseType": "Prometheus' Armoury",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{One-Hand Weapon}\r\n<default>{Item Level:} <normal>{100}\r\n<default>{Double-Influenced Item}"
+			],
+			"flavourText": [
+				"It is a mortal man's folly to seek power beyond his comprehension."
+			],
+			"frameType": 6,
+			"artFilename": "PrometheusArmory",
+			"x": 55,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "99228695b82ad333c0e6ab96e2151f79a68d1644d9bff00b16a7bcb3505cbb52",
+			"name": "",
+			"typeLine": "The Battle Born",
+			"baseType": "The Battle Born",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Axe}"
+			],
+			"flavourText": [
+				"\"No man can best me, no demon can fell me. For I vanquish all with my axe!\""
+			],
+			"frameType": 6,
+			"artFilename": "TheBattleBorn",
+			"x": 5,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "4acd49d3b6ac5716c0f310ca7d9a812d23f22e557cd3b33fbc81ef483ffca7dd",
+			"name": "",
+			"typeLine": "Scholar of the Seas",
+			"baseType": "Scholar of the Seas",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Mao Kun}"
+			],
+			"flavourText": [
+				"I've never come upon a ship I could not command. I have however met sailors that were not willing to be led."
+			],
+			"frameType": 6,
+			"artFilename": "ScholarOfTheSeas",
+			"x": 84,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 12,
+			"league": "Affliction",
+			"id": "dff1a97c7f3e0cbcb340bb0661d5d5cf633ce3dc554f627cfd39428731f62c9e",
+			"name": "",
+			"typeLine": "The Hoarder",
+			"baseType": "The Hoarder",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/12",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{Exalted Orb}"
+			],
+			"flavourText": [
+				"\"More! I want more!\" - Faendris, the Insatiable"
+			],
+			"frameType": 6,
+			"artFilename": "TheHoarder",
+			"x": 18,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "942342118ae913b922306056de49d819cdaf87166b7882b74819fb325bfc94df",
+			"name": "",
+			"typeLine": "The Tower",
+			"baseType": "The Tower",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Staff}"
+			],
+			"flavourText": [
+				"A tower built of the strongest stone is not eternal; a towering intellect is not enlightened."
+			],
+			"frameType": 6,
+			"artFilename": "TheTower",
+			"x": 86,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "b8ad29ce9414fa09ba2b3a5633aa052029050b5abb8b8a0e8c9512e38b84582d",
+			"name": "",
+			"typeLine": "The Betrayal",
+			"baseType": "The Betrayal",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Maligaro's Virtuosity}"
+			],
+			"flavourText": [
+				"It's sad times we live in when a friendship has a price people are willing to pay."
+			],
+			"frameType": 6,
+			"artFilename": "TheBetrayal",
+			"x": 54,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 4,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "ea927efd6c49f59b33cfd1876d09ec93d1353604a00bfac85b6bdbaf71f438af",
+			"name": "",
+			"typeLine": "The Metalsmith's Gift",
+			"baseType": "The Metalsmith's Gift",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"4/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Prismatic Ring}"
+			],
+			"flavourText": [
+				"<size:31>{A month's work, a year's wages, a foolish shortcut through a Rhoa's nest, and a grieving bride-to-be, who never received her betrothed's great gift.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheMetalsmithsGift",
+			"x": 4,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "33c9ead88dd6dc0829e037166f64959f654cfb1c209f98c51559d924309a377d",
+			"name": "",
+			"typeLine": "The Celestial Justicar",
+			"baseType": "The Celestial Justicar",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Six-Link Astral Plate}"
+			],
+			"flavourText": [
+				"Wrapped in the glory of the heavens, she comes to mete out justice for the fallen."
+			],
+			"frameType": 6,
+			"artFilename": "TheCelestialJusticar",
+			"x": 43,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "2b377cc5afb4863d21922a66a512b918e3a50e47cb5d2f4f61df8a7e32ab82b7",
+			"name": "",
+			"typeLine": "Doedre's Madness",
+			"baseType": "Doedre's Madness",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Doedre Item}"
+			],
+			"flavourText": [
+				"\"Hold your tongue before I claim it.\" - Doedre Darktongue"
+			],
+			"frameType": 6,
+			"artFilename": "DoedresMadness",
+			"x": 59,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "5af7b4d3f2a492fbcec8c62278fe417c54ad177e24475b5e904eb3014a69ec1d",
+			"name": "",
+			"typeLine": "The Explorer",
+			"baseType": "The Explorer",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Map}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"A map is only useful if you know where you stand."
+			],
+			"frameType": 6,
+			"artFilename": "TheExplorer",
+			"x": 52,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "05612b5fae5af0f966b8a2de827779cd38c2c0ef88c4cbac481da5f1b3b790f5",
+			"name": "",
+			"typeLine": "The Card Sharp",
+			"baseType": "The Card Sharp",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Divination Scarab}"
+			],
+			"flavourText": [
+				"\"The house always wins... except when I do.\""
+			],
+			"frameType": 6,
+			"artFilename": "TheCardSharp",
+			"x": 98,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "6b8601db1131da669b4f50f2898a9495eb69830a23ebf849d6d8241bfa404777",
+			"name": "",
+			"typeLine": "The Incantation",
+			"baseType": "The Incantation",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{The Whispering Ice}"
+			],
+			"flavourText": [
+				"When there is no other choice, even the meekest whisper can bring about the greatest storm."
+			],
+			"frameType": 6,
+			"artFilename": "TheIncantation",
+			"x": 36,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "b8231d59fdbe73c5c7e30f209e4c3444ef8f7184afe3fca1b4247efa2a9cd216",
+			"name": "",
+			"typeLine": "The Aesthete",
+			"baseType": "The Aesthete",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Shavronne Item}"
+			],
+			"flavourText": [
+				"\"Some see our mortal flesh as a limitation. I see it as an opportunity for vast, miraculous improvements.\"\r",
+				"- Shavronne of Umbra"
+			],
+			"frameType": 6,
+			"artFilename": "TheAesthete",
+			"x": 91,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "4ec9e9355298788e78f6584b00c2e6e73b4aed14c8f12c318bc43b0a154a635e",
+			"name": "",
+			"typeLine": "Ever-Changing",
+			"baseType": "Ever-Changing",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{10x Orb of Unmaking}"
+			],
+			"flavourText": [
+				"The Atlas is our prison, and our only defence. She is our only hope, and our certain doom."
+			],
+			"frameType": 6,
+			"artFilename": "EverChanging",
+			"x": 174,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "ede6ddeb1a0d72bb9c37d31bcb0fd231af75851187be5e3890ccd556c5b55b33",
+			"name": "",
+			"typeLine": "Abandoned Wealth",
+			"baseType": "Abandoned Wealth",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{3x Exalted Orb}"
+			],
+			"flavourText": [
+				"When the world burned, the greedy burned with it, while the clever left as paupers."
+			],
+			"frameType": 6,
+			"artFilename": "AbandonedWealth",
+			"x": 39,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "80445d607fe53ee88e142f423d6d6a154c02b92c0e122b09ca0ef9dee54b295d",
+			"name": "",
+			"typeLine": "The Fool",
+			"baseType": "The Fool",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{20x Orb of Chance}"
+			],
+			"flavourText": [
+				"Even the most learned man is a fool to his own fate."
+			],
+			"frameType": 6,
+			"artFilename": "TheFool",
+			"x": 3,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 2,
+			"league": "Affliction",
+			"id": "92aee42b5cb8811be97fc102fb6686ce83cef35f57e67bf6d7322a4d53a06e43",
+			"name": "",
+			"typeLine": "The Unexpected Prize",
+			"baseType": "The Unexpected Prize",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/2",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<size:29>{<uniqueitem>{Attribute Transforming Jewel}}\r\n<size:29>{<corrupted>{Corrupted}}"
+			],
+			"flavourText": [
+				"<size:26>{They came from far and wide under a common banner.\r",
+				"They sought companionship and competition,\r",
+				"but found a treasure none had foreseen.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheUnexpectedPrize",
+			"x": 70,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "b50ec312cab1726c4b5904092a4068aa7f315fde02e62a67c0f23c960b530dd7",
+			"name": "",
+			"typeLine": "The Cache",
+			"baseType": "The Cache",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Jewellery}"
+			],
+			"flavourText": [
+				"<size:23>{Vintage or crafted, Glittering and shiny\r",
+				"Dusty or glittering, huge or tiny\r",
+				"Secured within a chest \r",
+				"or unearthed from your mining\r",
+				"Find jewellery everywhere, \r",
+				"no need for divining!\r",
+				"So why is it so hard \r",
+				"to figure out which one to wear?\r",
+				"This one makes me stronger, \r",
+				"but does it match my hair?}"
+			],
+			"frameType": 6,
+			"artFilename": "TheCache",
+			"x": 65,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "7e0a8ebc0cfaa8c5fd2969e34d4651309a75e7780ab8b16c92bb6e767d8c6966",
+			"name": "",
+			"typeLine": "Emperor of Purity",
+			"baseType": "Emperor of Purity",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Six-Link Holy Chainmail}\r\n<default>{Item Level:} <normal>{60}"
+			],
+			"flavourText": [
+				"True to his title,\r",
+				"Voll, newly crowned,\r",
+				"had many of the\r",
+				"Eternal Empire's signature\r",
+				"extravagances destroyed."
+			],
+			"frameType": 6,
+			"artFilename": "EmperorOfPurity",
+			"x": 147,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "db57612b25cc87e877c3ece3c16c85583763497c2149c3d07161eba6c1314646",
+			"name": "",
+			"typeLine": "The Web",
+			"baseType": "The Web",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<magicitem>{Weapon of Crafting}"
+			],
+			"flavourText": [
+				"<size:30>{A weapon, a shelter, a prison.\r",
+				"The web's purpose changes\r",
+				"with the spider's needs.\r",
+				"A lesson we should\r",
+				"take to heart.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheWeb",
+			"x": 144,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "3dc2038add05978acbfb629ac7bb26818ca5c6e87b31c34df86b80cae4dc6da4",
+			"name": "",
+			"typeLine": "The Fox in the Brambles",
+			"baseType": "The Fox in the Brambles",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Bramblejack}\r\n<corrupted>{Two-Implicit}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"<size:26>{Hemmingsworth 6:10 - \"And the fox gazed out from the brambles, unreachable and smirking.\"}"
+			],
+			"frameType": 6,
+			"artFilename": "TheFoxInTheBrambles",
+			"x": 126,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "3ab65ecfb44221844c779525d54685e4c9f521eae425324fb31da4ff361364cc",
+			"name": "",
+			"typeLine": "The Risk",
+			"baseType": "The Risk",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Ventor's Gamble}"
+			],
+			"flavourText": [
+				"\"There is no right or wrong choice, no best or worst. There are only choices and their consequences.\""
+			],
+			"frameType": 6,
+			"artFilename": "TheRisk",
+			"x": 123,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "2ca2a80d6f550f7b3228d71ac02d9b90124e128bdadd97f9ffb01c6950d239d6",
+			"name": "",
+			"typeLine": "The Standoff",
+			"baseType": "The Standoff",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Rustic Sash}"
+			],
+			"flavourText": [
+				"Sometimes your greatest enemy is the only one keeping you breathing."
+			],
+			"frameType": 6,
+			"artFilename": "TheStandOff",
+			"x": 172,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "71f0c039e042544854b50bdab47cefd9a7d5f04bc3e811f79cdd419846c7da09",
+			"name": "",
+			"typeLine": "The Seeker",
+			"baseType": "The Seeker",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{3x Orb of Annulment}"
+			],
+			"flavourText": [
+				"All that is flawed is worthless. The slightest error, and this might as well be trash."
+			],
+			"frameType": 6,
+			"artFilename": "TheSeeker",
+			"x": 236,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "06ccb19ee444f94fce3c97e65a02edb30b1b32048fe06dc5a1ad801c66618c90",
+			"name": "",
+			"typeLine": "The Side Quest",
+			"baseType": "The Side Quest",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{20x Scouting Report}"
+			],
+			"flavourText": [
+				"You'll never know the things you miss if you keep your eyes closed"
+			],
+			"frameType": 6,
+			"artFilename": "TheSideQuest",
+			"x": 12,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "88856a4cb2929a941d3f330e0de68bae22eba103f6cc71588c20e04e527046c2",
+			"name": "",
+			"typeLine": "The Landing",
+			"baseType": "The Landing",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{The Beachhead}\r\n<default>{Map Tier:} <normal>{15}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"Warriors of a distant land, you embark on a journey from which you may not return, but which we will be all the better for."
+			],
+			"frameType": 6,
+			"artFilename": "TheLanding",
+			"x": 242,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "203f0bd717b55d023f6cc11388d72dd2acf5c4f7a58b02a215034d14aa6565e7",
+			"name": "",
+			"typeLine": "The Survivalist",
+			"baseType": "The Survivalist",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{7x Orb of Alchemy}"
+			],
+			"flavourText": [
+				"A lucky number \r",
+				"For us all \r",
+				"To help us through \r",
+				"The perils told."
+			],
+			"frameType": 6,
+			"artFilename": "TheSurvivalist",
+			"x": 73,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 4,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "f2dc2073345d571cdb61119c80a8bfc671ed1702bdfea6ff9b231c7a701be275",
+			"name": "",
+			"typeLine": "Three Faces in the Dark",
+			"baseType": "Three Faces in the Dark",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"4/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{3x Chaos Orb}"
+			],
+			"flavourText": [
+				"For every threat you spy in the shadows, there are two others you don't."
+			],
+			"frameType": 6,
+			"artFilename": "ThreeFacesInTheDark",
+			"x": 0,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "a159c688dbf3c69f61c07015b5fd1eb1d1306f6c57812a3224b9b9a1cd6a6a31",
+			"name": "",
+			"typeLine": "Eldritch Perfection",
+			"baseType": "Eldritch Perfection",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Item}\r\n<default>{Item Level:} <normal>{100}\r\n<enchanted>{Perfect Eldritch Implicit Modifier}"
+			],
+			"flavourText": [
+				"Embrace horror.\r",
+				"Bathe in its beauty."
+			],
+			"frameType": 6,
+			"artFilename": "EldritchPerfection",
+			"x": 187,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "aa8a88bbfe3fc803ae2a9e4dc80b9fb6c635deac5f13104915561c9b05f7954a",
+			"name": "",
+			"typeLine": "A Stone Perfected",
+			"baseType": "A Stone Perfected",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Jewel}\r\n<magicitem>{Primordial}\r\n<corrupted>{1-2 Implicit}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"<size:28>{They gave the stone life. Over eons spent bathed in Corruption, that life evolved.}"
+			],
+			"frameType": 6,
+			"artFilename": "AStonePerfected",
+			"x": 115,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 5,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "fed623c7a80b68e12b477e80713d8cdc0d7f2b9a7b771f534c7cee7434cabcdb",
+			"name": "",
+			"typeLine": "Rain Tempter",
+			"baseType": "Rain Tempter",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"5/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Map}\r\n<default>{Map Tier:} <normal>{6}"
+			],
+			"flavourText": [
+				"Be like water, friend."
+			],
+			"frameType": 6,
+			"artFilename": "RainTempter",
+			"x": 141,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "2b0143bc777e38be94dc9950cea3e0b77d98e12e1841d437b6562cdb5b5e26fc",
+			"name": "",
+			"typeLine": "Emperor's Luck",
+			"baseType": "Emperor's Luck",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{5x Currency}"
+			],
+			"flavourText": [
+				"The house always wins."
+			],
+			"frameType": 6,
+			"artFilename": "EmperorsLuck",
+			"x": 30,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "dc3be09a00c699b63bd6d71381fe01c4b76a53c8699e3b62feda83face119c24",
+			"name": "",
+			"typeLine": "Alone in the Darkness",
+			"baseType": "Alone in the Darkness",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Delve Item}"
+			],
+			"flavourText": [
+				"\"Sometimes, the most beautiful treasures...are the ones you cannot have.\" \r",
+				"- Beryl, Survivor from the Azurite Mines"
+			],
+			"frameType": 6,
+			"artFilename": "AloneintheDarkness",
+			"x": 248,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "f194250565fc211e2a5bffed2bc983f2a0d86639b3f11f9dc1d0ea261a1e46c6",
+			"name": "",
+			"typeLine": "Coveted Possession",
+			"baseType": "Coveted Possession",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{5x Regal Orb}"
+			],
+			"flavourText": [
+				"A taste of power brings a hunger for more."
+			],
+			"frameType": 6,
+			"artFilename": "CovetedPossession",
+			"x": 37,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "19bb2886b200e6f526a648eb0897c1f21cb4a5857d5f4ad79df38ac66c46b83d",
+			"name": "",
+			"typeLine": "Hunter's Resolve",
+			"baseType": "Hunter's Resolve",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Bow}"
+			],
+			"flavourText": [
+				"Primed, curved and sleek.\r",
+				"Decisive and final.\r",
+				"For malice and righteousness.\r",
+				"There's but one solution."
+			],
+			"frameType": 6,
+			"artFilename": "HuntersResolve",
+			"x": 83,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "74d79855897e39ece07e9fd95cdb2d5beb892c01949ed5cacdfa95e2297d08b3",
+			"name": "",
+			"typeLine": "Vanity",
+			"baseType": "Vanity",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Tabula Rasa}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				" "
+			],
+			"frameType": 6,
+			"artFilename": "Vanity",
+			"x": 251,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "d5cbc7b5f732455a6cc67bb6197c6a84a4b59bd8e3f8dc9f8c032f39e101db93",
+			"name": "",
+			"typeLine": "The Visionary",
+			"baseType": "The Visionary",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Lioneye's Vision}"
+			],
+			"flavourText": [
+				"Lioneye looked to the heights of glorious victory. And thus he missed the defeat right under his nose."
+			],
+			"frameType": 6,
+			"artFilename": "TheVisionary",
+			"x": 131,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 7,
+			"league": "Affliction",
+			"id": "9f4f8c4061c9ca3233aefdf4774a7a75e17f7ecc8fce5a5756af0a31974c846c",
+			"name": "",
+			"typeLine": "More is Never Enough",
+			"baseType": "More is Never Enough",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/7",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Gilded Scarab}"
+			],
+			"flavourText": [
+				"Greed is a hunger that only grows as you feed it"
+			],
+			"frameType": 6,
+			"artFilename": "MoreIsNeverEnough",
+			"x": 16,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 22,
+			"league": "Affliction",
+			"id": "99275656790178cd4aebc535e0bb405704cb1d130c15202683e839422a097bf1",
+			"name": "",
+			"typeLine": "Imperial Legacy",
+			"baseType": "Imperial Legacy",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/22",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Six-Link Imperial Bow}\r\n<default>{Item Level:} <normal>{100}"
+			],
+			"flavourText": [
+				"A life lost, A legacy born."
+			],
+			"frameType": 6,
+			"artFilename": "ImperialLegacy",
+			"x": 252,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "4da555348eb5e2557619b75eaf83ad81a47fdcd59482d11a403baf90e6b40e61",
+			"name": "",
+			"typeLine": "Lachrymal Necrosis",
+			"baseType": "Lachrymal Necrosis",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<rareitem>{Jewel}\r\n<enchanted>{Implicit Modifier:} \r\n<magicitem>{Corrupted Blood cannot be inflicted on you}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"Without the ability to weep, the heart hardens against both the pure and the corrupt."
+			],
+			"frameType": 6,
+			"artFilename": "LachrymalNecrosis",
+			"x": 111,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 6,
+			"maxStackSize": 10,
+			"league": "Affliction",
+			"id": "4ef85817bcd24e04c8686dfe8ddaedb5658608dd5394369b61d1386458aab542",
+			"name": "",
+			"typeLine": "Prosperity",
+			"baseType": "Prosperity",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"6/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<magicitem>{Perandus' Gold Ring}"
+			],
+			"flavourText": [
+				"Accumulating wealth has its own costs."
+			],
+			"frameType": 6,
+			"artFilename": "Prosperity",
+			"x": 115,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "1d3c74b8654c14272f8b1640e36ece6c2ab9dd0980433e1a1e7c92112faeec15",
+			"name": "",
+			"typeLine": "The Cacophony",
+			"baseType": "The Cacophony",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{3x Deafening Essence}"
+			],
+			"flavourText": [
+				"Nothing can be heard above the din or seen amongst the turmoil. The senses are shattered. All is left to fate."
+			],
+			"frameType": 6,
+			"artFilename": "TheCacophony",
+			"x": 230,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 6,
+			"league": "Affliction",
+			"id": "4dc796c30b3d28fec14af04f0e0a5abe3864ec9db7d41604caf5500eda2ce5ec",
+			"name": "",
+			"typeLine": "The Wretched",
+			"baseType": "The Wretched",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/6",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Belt}"
+			],
+			"flavourText": [
+				"Necromancers, believe me, are more terrifying than their thralls."
+			],
+			"frameType": 6,
+			"artFilename": "TheWretched",
+			"x": 170,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 3,
+			"league": "Affliction",
+			"id": "0e463689d109bf564f9cecdd2c7c14cc20c8b0bdb7544432c754aeba638d1836",
+			"name": "",
+			"typeLine": "Sambodhi's Vow",
+			"baseType": "Sambodhi's Vow",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/3",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<whiteitem>{Mortal Fragment}"
+			],
+			"flavourText": [
+				"<size:34>{He dispels dark realms\r",
+				"until mortal sufferings\r",
+				"yield to hopeful light.}"
+			],
+			"frameType": 6,
+			"artFilename": "SambodhisVow",
+			"x": 249,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 2,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "b8eeefc6a4b2709faff12eda58da41f404b874f464ea6fc6d8987f74f15a960b",
+			"name": "",
+			"typeLine": "The Fathomless Depths",
+			"baseType": "The Fathomless Depths",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Lightpoacher}"
+			],
+			"flavourText": [
+				"Fall into endless night; a voyage into an ocean of oblivion."
+			],
+			"frameType": 6,
+			"artFilename": "TheFathomlessDepths",
+			"x": 206,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "2e5ae32a45f11d6621651ad175259e4f2299b133fa15bb2453a35d41fc6c255f",
+			"name": "",
+			"typeLine": "Mitts",
+			"baseType": "Mitts",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Gloves}"
+			],
+			"flavourText": [
+				"Those whose hands are their livelihood know the importance of keeping them safe and warm."
+			],
+			"frameType": 6,
+			"artFilename": "Mitts",
+			"x": 169,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 9,
+			"league": "Affliction",
+			"id": "324c900eef2d25a823cbb64019a7a12d19e79a5dd56d09b1e0a8da4caf7c52e7",
+			"name": "",
+			"typeLine": "Azyran's Reward",
+			"baseType": "Azyran's Reward",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/9",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Prismatic Jewel}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"Method transcends shape and size. Do something in parallel long enough, and you will always find \r",
+				"another way."
+			],
+			"frameType": 6,
+			"artFilename": "AzyransReward",
+			"x": 19,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "ce450fd4defd9dd5f24662538736aa8440d7a67ff6fc620adf7b30ce3b113c88",
+			"name": "",
+			"typeLine": "The Wrath",
+			"baseType": "The Wrath",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{10x Chaos Orb}"
+			],
+			"flavourText": [
+				"<size:31>{\"Daughter of catastrophe, mother of pain. Amongst the filth of Wraeclast, she wanders, and her wrath follows.\" - Quintoon the Returned}"
+			],
+			"frameType": 6,
+			"artFilename": "TheWrath",
+			"x": 61,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "8b5fd3fd90da38e1da52323c59d9c671f9dea31c78c6b1c05f4bd975bbac136b",
+			"name": "",
+			"typeLine": "Hubris",
+			"baseType": "Hubris",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Ring}"
+			],
+			"flavourText": [
+				"\"This one? It is NOT for sale. You would sooner pry it from my lifeless hand.\"\r",
+				"- Jonfé Darontos, Ringmaker"
+			],
+			"frameType": 6,
+			"artFilename": "Hubris",
+			"x": 100,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 7,
+			"maxStackSize": 8,
+			"league": "Affliction",
+			"id": "f7d2430b1481e2654862079761f3a849e913dc427b46ba883c823b93191720cc",
+			"name": "",
+			"typeLine": "The Scout",
+			"baseType": "The Scout",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"7/8",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{7x Exalted Orb}"
+			],
+			"flavourText": [
+				"The first to travel are often rewarded for their journey, but all the treasure in the world cannot bring back those that are lost."
+			],
+			"frameType": 6,
+			"artFilename": "TheScout",
+			"x": 123,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 11,
+			"league": "Affliction",
+			"id": "57f27a7d0a956e8c8b1c76e0fd90cf955b33d8d0d97a9d7370e967e5c2f5535e",
+			"name": "",
+			"typeLine": "The Harvester",
+			"baseType": "The Harvester",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/11",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{The Harvest}"
+			],
+			"flavourText": [
+				"<size:30>{Taste not of their\r",
+				"forbidden fruit.\r",
+				"Theirs is a harvest of\r",
+				"the darkest kind,\r",
+				"twisted, rotten and\r",
+				"damned for eternity.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheHarvester",
+			"x": 145,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 3,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "382dbb0513131919e44dcc7187b0f47a265aa73f7f27c00b719ac1ba58343d7e",
+			"name": "",
+			"typeLine": "The Tinkerer's Table",
+			"baseType": "The Tinkerer's Table",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<currencyitem>{5x Fossil}"
+			],
+			"flavourText": [
+				"Trying to bring your vision to life is enough to drive you mad."
+			],
+			"frameType": 6,
+			"artFilename": "TheTinkerersTable",
+			"x": 44,
+			"y": 1,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 5,
+			"league": "Affliction",
+			"id": "9bb7ed414268db8fc017d9f9b0b9e519ea4b511f76a891b9aeea9a2f00a0bf05",
+			"name": "",
+			"typeLine": "The Rite of Elements",
+			"baseType": "The Rite of Elements",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/5",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<gemitem>{Level 21 Golem Gem}\r\n<corrupted>{Corrupted}"
+			],
+			"flavourText": [
+				"<size:29>{A mind as quick as lightning, \r",
+				"fists as hard as stone, \r",
+				"a heart that burns with fury, \r",
+				"and eyes that chill to the bone.}"
+			],
+			"frameType": 6,
+			"artFilename": "TheRiteofElements",
+			"x": 219,
+			"y": 0,
+			"inventoryId": "Stash5"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvRGl2aW5hdGlvbi9JbnZlbnRvcnlJY29uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f34bf8cbb5/InventoryIcon.png",
+			"stackSize": 1,
+			"maxStackSize": 4,
+			"league": "Affliction",
+			"id": "04480a19b583750d9c4f3d09742ceda9e0443708d31a903cf22d157b8a011b22",
+			"name": "",
+			"typeLine": "Jack in the Box",
+			"baseType": "Jack in the Box",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/4",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"<uniqueitem>{Item}"
+			],
+			"flavourText": [
+				"Turn the crank, \r",
+				"close your eyes, \r",
+				"and pray to the gods \r",
+				"for a pleasant surprise."
+			],
+			"frameType": 6,
+			"artFilename": "JackInTheBox",
+			"x": 48,
+			"y": 0,
+			"inventoryId": "Stash5"
+		}
+	]
+}

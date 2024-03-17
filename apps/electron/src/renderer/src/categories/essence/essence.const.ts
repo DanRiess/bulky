@@ -1,3 +1,5 @@
+import { typedFromEntries } from '@web/types/utitlity.types'
+
 export const ESSENCE_TYPE = {
 	GREED: 'GREED',
 	CONTEMPT: 'CONTEMPT',
@@ -26,6 +28,37 @@ export const ESSENCE_TYPE = {
 	UNSUPPORTED: 'UNSUPPORTED',
 } as const
 
+export const ESSENCE_TYPE_IDX_TO_NAME = {
+	0: 'GREED',
+	1: 'CONTEMPT',
+	2: 'HATRED',
+	3: 'WOE',
+	4: 'FEAR',
+	5: 'ANGER',
+	6: 'TORMENT',
+	7: 'SORROW',
+	8: 'RAGE',
+	9: 'SUFFERING',
+	10: 'WRATH',
+	11: 'DOUBT',
+	12: 'LOATHING',
+	13: 'ZEAL',
+	14: 'ANGUISH',
+	15: 'SPITE',
+	16: 'SCORN',
+	17: 'ENVY',
+	18: 'MISERY',
+	19: 'DREAD',
+	20: 'INSANITY',
+	21: 'HORROR',
+	22: 'DELIRIUM',
+	23: 'HYSTERIA',
+} as const
+
+export const ESSENCE_TYPE_NAME_TO_IDX = typedFromEntries(
+	Object.entries(ESSENCE_TYPE_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)])
+)
+
 export const ESSENCE_TIER = {
 	WHISPERING: 'WHISPERING',
 	MUTTERING: 'MUTTERING',
@@ -37,7 +70,7 @@ export const ESSENCE_TIER = {
 	TIER_8: 'TIER_8',
 } as const
 
-export const ESSENCE_TIER_NUMBER_TO_NAME = {
+export const ESSENCE_TIER_IDX_TO_NAME = {
 	1: 'WHISPERING',
 	2: 'MUTTERING',
 	3: 'WEEPING',
@@ -47,3 +80,7 @@ export const ESSENCE_TIER_NUMBER_TO_NAME = {
 	7: 'DEAFENING',
 	8: 'TIER_8',
 } as const
+
+export const ESSENCE_TIER_NAME_TO_IDX = typedFromEntries(
+	Object.entries(ESSENCE_TIER_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)])
+)

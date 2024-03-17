@@ -1,0 +1,21 @@
+[
+	{
+		"uuid": "8f10b61e-bf10-1051-a001-7ae3186fe621",
+		"ign": "SomeveryveryveryverylongtestName",
+		"league": "Affliction",
+		"chaosPerDiv": 110,
+		"category": "Compass",
+		"multiplier": 1.3,
+		"minimumBuyout": 1100,
+		"items": "QkNGIAEFAERBVEEeAdsAggBCUgICVwD6AEJSDAEKAAQBQlInAQIAMgBCUjsCFwADAEJS"
+	},
+	{
+		"uuid": "8f10b61e-bf10-1051-a001-7ae3186fe622",
+		"ign": "AnotherName",
+		"league": "Affliction",
+		"chaosPerDiv": 110,
+		"category": "Compass",
+		"multiplier": 0.9,
+		"items": "QkNGIAEEAERBVEEeARIAQQBCUgIBFQD6AEJSDAECAAQBQlIDAQIAMgBCUg"
+	}
+]

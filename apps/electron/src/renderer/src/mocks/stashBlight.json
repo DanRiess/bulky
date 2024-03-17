@@ -1,0 +1,1679 @@
+{
+	"numTabs": 27,
+	"blightLayout": {
+		"0": {
+			"x": 30.425963488843816,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"1": {
+			"x": 85.19269776876268,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"2": {
+			"x": 142.39350912778906,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"3": {
+			"x": 198.98580121703856,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"4": {
+			"x": 254.96957403651118,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"5": {
+			"x": 310.9533468559838,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"6": {
+			"x": 368.15415821501017,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"7": {
+			"x": 59.026369168357,
+			"y": 76.67342799188641,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"8": {
+			"x": 114.40162271805275,
+			"y": 76.67342799188641,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"9": {
+			"x": 170.38539553752537,
+			"y": 76.67342799188641,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"10": {
+			"x": 226.97768762677487,
+			"y": 76.67342799188641,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"11": {
+			"x": 283.56997971602436,
+			"y": 76.67342799188641,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"12": {
+			"x": 340.16227180527386,
+			"y": 76.67342799188641,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"13": {
+			"x": 221.50101419878297,
+			"y": 139.95943204868155,
+			"w": 2,
+			"h": 4,
+			"scale": 0.7564102411270142
+		},
+		"15": {
+			"x": 303.0425963488844,
+			"y": 139.95943204868155,
+			"w": 1,
+			"h": 1,
+			"scale": 0.8717948794364929
+		},
+		"16": {
+			"x": 303.0425963488844,
+			"y": 191.07505070993918,
+			"w": 1,
+			"h": 1,
+			"scale": 0.8717948794364929
+		},
+		"17": {
+			"x": 303.0425963488844,
+			"y": 242.19066937119678,
+			"w": 1,
+			"h": 1,
+			"scale": 0.8717948794364929
+		},
+		"18": {
+			"x": 31.643002028397568,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"19": {
+			"x": 74.54361054766734,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"20": {
+			"x": 117.44421906693712,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"21": {
+			"x": 160.34482758620692,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"22": {
+			"x": 203.2454361054767,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"23": {
+			"x": 246.14604462474648,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"24": {
+			"x": 289.04665314401626,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"25": {
+			"x": 331.94726166328604,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"26": {
+			"x": 374.8478701825558,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"27": {
+			"x": 417.7484787018256,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"28": {
+			"x": 460.6490872210954,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"29": {
+			"x": 503.54969574036517,
+			"y": 337.72819472616635,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"30": {
+			"x": 31.643002028397568,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"31": {
+			"x": 74.54361054766734,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"32": {
+			"x": 117.44421906693712,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"33": {
+			"x": 160.34482758620692,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"34": {
+			"x": 203.2454361054767,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"35": {
+			"x": 246.14604462474648,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"36": {
+			"x": 289.04665314401626,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"37": {
+			"x": 331.94726166328604,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"38": {
+			"x": 374.8478701825558,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"39": {
+			"x": 417.7484787018256,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"40": {
+			"x": 460.6490872210954,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"41": {
+			"x": 503.54969574036517,
+			"y": 380.62880324543613,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"42": {
+			"x": 31.643002028397568,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"43": {
+			"x": 74.54361054766734,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"44": {
+			"x": 117.44421906693712,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"45": {
+			"x": 160.34482758620692,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"46": {
+			"x": 203.2454361054767,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"47": {
+			"x": 246.14604462474648,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"48": {
+			"x": 289.04665314401626,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"49": {
+			"x": 331.94726166328604,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"50": {
+			"x": 374.8478701825558,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"51": {
+			"x": 417.7484787018256,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"52": {
+			"x": 460.6490872210954,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"53": {
+			"x": 503.54969574036517,
+			"y": 423.5294117647059,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"54": {
+			"x": 31.643002028397568,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"55": {
+			"x": 74.54361054766734,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"56": {
+			"x": 117.44421906693712,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"57": {
+			"x": 160.34482758620692,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"58": {
+			"x": 203.2454361054767,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"59": {
+			"x": 246.14604462474648,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"60": {
+			"x": 289.04665314401626,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"61": {
+			"x": 331.94726166328604,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"62": {
+			"x": 374.8478701825558,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"63": {
+			"x": 417.7484787018256,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"64": {
+			"x": 460.6490872210954,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"65": {
+			"x": 503.54969574036517,
+			"y": 466.4300202839757,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"66": {
+			"x": 31.643002028397568,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"67": {
+			"x": 74.54361054766734,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"68": {
+			"x": 117.44421906693712,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"69": {
+			"x": 160.34482758620692,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"70": {
+			"x": 203.2454361054767,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"71": {
+			"x": 246.14604462474648,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"72": {
+			"x": 289.04665314401626,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"73": {
+			"x": 331.94726166328604,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"74": {
+			"x": 374.8478701825558,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"75": {
+			"x": 417.7484787018256,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"76": {
+			"x": 460.6490872210954,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"77": {
+			"x": 503.54969574036517,
+			"y": 509.3306288032455,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7179487347602844
+		},
+		"78": {
+			"x": 349.290060851927,
+			"y": 171.60243407707912,
+			"w": 1,
+			"h": 1,
+			"scale": 0.8717948794364929
+		},
+		"79": {
+			"x": 445.43610547667345,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"80": {
+			"x": 503.2454361054767,
+			"y": 27.383367139959436,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		},
+		"81": {
+			"x": 475.2535496957404,
+			"y": 79.10750507099392,
+			"w": 1,
+			"h": 1,
+			"scale": 0.7692307829856873
+		}
+	},
+	"items": [
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QbGF6YSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MTksIm10IjoxNCwibWIiOnRydWV9XQ/8ab8fec126/Plaza.png",
+			"league": "Affliction",
+			"id": "7730b77d177e2c9c8fb27ac21bcfce9c7a5cc30c869963b03dbf946b64ce6320",
+			"name": "",
+			"typeLine": "Blighted Plaza Map",
+			"baseType": "Blighted Plaza Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"14",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 32,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TYW5jdHVhcnkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTMsIm1iIjp0cnVlfV0/ca91fd153b/Sanctuary.png",
+			"league": "Affliction",
+			"id": "1215a2e71151170588d4ad58f3a8c0cf5bc8f409c2984fa0d50da0ec93c7b875",
+			"name": "",
+			"typeLine": "Blighted Crimson Temple Map",
+			"baseType": "Blighted Crimson Temple Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 23,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTQsIm1iIjp0cnVlfV0/c846dd3b59/JungleValley.png",
+			"league": "Affliction",
+			"id": "f49610d9638ae15581ecba2a410a99ce839ca011fcb069536c5ce54c9ee33c56",
+			"name": "",
+			"typeLine": "Blighted Jungle Valley Map",
+			"baseType": "Blighted Jungle Valley Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"14",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 30,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UZW1wbGUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTQsIm1iIjp0cnVlfV0/11417365ef/Temple.png",
+			"league": "Affliction",
+			"id": "1a21ac2c493bae4ac3881274b53153e0e7649f1fb86828d306397d2f25b7f2f7",
+			"name": "",
+			"typeLine": "Blighted Temple Map",
+			"baseType": "Blighted Temple Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"14",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 27,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TYW5jdHVhcnkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTMsIm1iIjp0cnVlfV0/ca91fd153b/Sanctuary.png",
+			"league": "Affliction",
+			"id": "aaca0fa35de46e9498dcf415a4baa70fa55e4c364199ff9d2d00a58f5b777131",
+			"name": "",
+			"typeLine": "Superior Blighted Crimson Temple Map",
+			"baseType": "Blighted Crimson Temple Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				},
+				{
+					"name": "Item Quantity",
+					"values": [
+						[
+							"+17%",
+							1
+						]
+					],
+					"displayMode": 0,
+					"type": 2
+				},
+				{
+					"name": "Quality",
+					"values": [
+						[
+							"+17%",
+							1
+						]
+					],
+					"displayMode": 0,
+					"type": 6
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 25,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYW55b24iLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTMsIm1iIjp0cnVlfV0/b23a2a21e2/Canyon.png",
+			"league": "Affliction",
+			"id": "6020cf13314410e10954096b319af9941bc65a281f758a6274e1fde678809f8d",
+			"name": "",
+			"typeLine": "Blighted Canyon Map",
+			"baseType": "Blighted Canyon Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 29,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CcmFtYmxlZmFsbCIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MTksIm10IjoxNSwibXViIjp0cnVlfV0/c5f6887542/Bramblefall.png",
+			"league": "Affliction",
+			"id": "3b2924ce875d77f0f2e3f3c081e8ed258afc271462a0bb93abc3275ca1f732d6",
+			"name": "",
+			"typeLine": "Blight-ravaged Bramble Valley Map",
+			"baseType": "Blight-ravaged Bramble Valley Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"15",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Monster Level: 85",
+				"200% more Monster Life",
+				"20% increased Monster Movement Speed",
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 50% value\nCan be Anointed up to 9 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 20,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9PcGFsZXNjZW50T2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/11d5d92171/OpalescentOil.png",
+			"stackSize": 10,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "3f5b4beed498141f39d3fbc214cb07c73d39d314b1d2ad70f4d0660eb20f42e8",
+			"name": "",
+			"typeLine": "Opalescent Oil",
+			"baseType": "Opalescent Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"10/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 10,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYWdlIiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoxOSwibXQiOjEzLCJtYiI6dHJ1ZX1d/f1598d3234/Cage.png",
+			"league": "Affliction",
+			"id": "b0b4d6bbe12d8513beef1cbeffc2e7a52f3413fa8f528eb8b1c945ebe7521ac2",
+			"name": "",
+			"typeLine": "Blighted Cage Map",
+			"baseType": "Blighted Cage Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 24,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9Hb2xkZW5PaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/69094a06e9/GoldenOil.png",
+			"stackSize": 3,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "95acaa36f7c966f76257b5dc1414e8d6141ff343dde7429aacb986383e379906",
+			"name": "",
+			"typeLine": "Golden Oil",
+			"baseType": "Golden Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 12,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYWdlIiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoxOSwibXQiOjEzLCJtYiI6dHJ1ZX1d/f1598d3234/Cage.png",
+			"league": "Affliction",
+			"id": "15aee6d07e001869ad6cbee4a2c857415b1a6fe6a45c56f9a843b7aa22d8aec5",
+			"name": "",
+			"typeLine": "Blighted Cage Map",
+			"baseType": "Blighted Cage Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 19,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9WaW9sZXRPaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/64c679a735/VioletOil.png",
+			"stackSize": 1,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "574f20f7a5bbc4a5b30b35ece99033fdc70aced947e1be9f74d30d24e4a7e62c",
+			"name": "",
+			"typeLine": "Violet Oil",
+			"baseType": "Violet Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"1/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 7,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9UZWFsT2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/b6712a15cf/TealOil.png",
+			"stackSize": 66,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "74aa2bd40407758ddc3ff5320119d8a71763e5bfdd6c894cc52d91bb8e6da37e",
+			"name": "",
+			"typeLine": "Teal Oil",
+			"baseType": "Teal Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"66/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 4,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QbGF6YSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MTksIm10IjoxNCwibWIiOnRydWV9XQ/8ab8fec126/Plaza.png",
+			"league": "Affliction",
+			"id": "2cc62d42cdbf93adb0bca6834c437f27dec4f1f1cfd725f533961db800b5ba54",
+			"name": "",
+			"typeLine": "Blighted Plaza Map",
+			"baseType": "Blighted Plaza Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"14",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 31,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NdWRHZXlzZXIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTMsIm1iIjp0cnVlfV0/abf9f00a92/MudGeyser.png",
+			"league": "Affliction",
+			"id": "05677f3b88ae532a456835b4bbe4bdce173834418cb5c6d6519f1bafe450ebd6",
+			"name": "",
+			"typeLine": "Blighted Mud Geyser Map",
+			"baseType": "Blighted Mud Geyser Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 36,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UZW1wbGUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTQsIm1iIjp0cnVlfV0/11417365ef/Temple.png",
+			"league": "Affliction",
+			"id": "d3cf798b7192bd466daa6883654cfbe1f89f8367fd14928fa12f29b7361f781b",
+			"name": "",
+			"typeLine": "Blighted Temple Map",
+			"baseType": "Blighted Temple Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"14",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 34,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NdWRHZXlzZXIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTMsIm1iIjp0cnVlfV0/abf9f00a92/MudGeyser.png",
+			"league": "Affliction",
+			"id": "f98cce437aec3a9a4e284d332fec75fb95b2fe8eb5f0acefbadafa8d37d57482",
+			"name": "",
+			"typeLine": "Blighted Mud Geyser Map",
+			"baseType": "Blighted Mud Geyser Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 35,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9TZXBpYU9pbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/580407bed5/SepiaOil.png",
+			"stackSize": 47,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "0709b07ee89fdaf55a61c64d38a03b04e7713426ceb38a544e85d1738c804a2c",
+			"name": "",
+			"typeLine": "Sepia Oil",
+			"baseType": "Sepia Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"47/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 1,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9BbWJlck9pbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/931f4d2fdd/AmberOil.png",
+			"stackSize": 30,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "32e35eee8d3abeb47674e388293b6594d067ed745e8eb86cfcddb72dc7ac4933",
+			"name": "",
+			"typeLine": "Amber Oil",
+			"baseType": "Amber Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"30/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 2,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9JbmRpZ29PaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/f9356f7cb0/IndigoOil.png",
+			"stackSize": 2,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "b289f89100dd52810bbafc8d80cf3dcdf972b0d2320181ee2808401445815d13",
+			"name": "",
+			"typeLine": "Indigo Oil",
+			"baseType": "Indigo Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"2/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 6,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9SZWVmIiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoxOSwibXQiOjE0LCJtYiI6dHJ1ZX1d/25a1124533/Reef.png",
+			"league": "Affliction",
+			"id": "4b1660dd5b15134ad360bc8fe926b36cad08b405d7b7e2213a56d7a8ad056811",
+			"name": "",
+			"typeLine": "Blighted Reef Map",
+			"baseType": "Blighted Reef Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"14",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 26,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NdWRHZXlzZXIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTMsIm1iIjp0cnVlfV0/abf9f00a92/MudGeyser.png",
+			"league": "Affliction",
+			"id": "1373cad71f582da513b85fbda8f060442720ff529314d0ed4cde11a132ad8abe",
+			"name": "",
+			"typeLine": "Blighted Mud Geyser Map",
+			"baseType": "Blighted Mud Geyser Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"13",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 28,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9Dcmltc29uT2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/54fb620c7e/CrimsonOil.png",
+			"stackSize": 23,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "2172259c7a81c2069e6a2b68f4c6d545bbb266f940124c001e4087da24c26693",
+			"name": "",
+			"typeLine": "Crimson Oil",
+			"baseType": "Crimson Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"23/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 8,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjE5LCJtdCI6MTQsIm1iIjp0cnVlfV0/c846dd3b59/JungleValley.png",
+			"league": "Affliction",
+			"id": "1f2ac374f2081bd0ec7a0214542786ab39696e96d8cf686b3fb1012fbce5d7a9",
+			"name": "",
+			"typeLine": "Blighted Jungle Valley Map",
+			"baseType": "Blighted Jungle Valley Map",
+			"rarity": "Normal",
+			"ilvl": 83,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"14",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 25% value\nCan be Anointed up to 3 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 22,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DaXR5U3F1YXJlIiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoxOSwibXQiOjE2LCJtdWIiOnRydWV9XQ/65e4679e52/CitySquare.png",
+			"league": "Affliction",
+			"id": "83e745be3268105b7d287019f68119ad4bf6e90bf5c4be3030231d2ee1a73e2b",
+			"name": "",
+			"typeLine": "Blight-ravaged City Square Map",
+			"baseType": "Blight-ravaged City Square Map",
+			"rarity": "Normal",
+			"ilvl": 81,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Map Tier",
+					"values": [
+						[
+							"16",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 1
+				}
+			],
+			"implicitMods": [
+				"Monster Level: 85",
+				"200% more Monster Life",
+				"20% increased Monster Movement Speed",
+				"Area is infested with Fungal Growths\nMap's Item Quantity Modifiers also affect Blight Chest count at 50% value\nCan be Anointed up to 9 times",
+				"Natural inhabitants of this area have been removed"
+			],
+			"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+			"frameType": 0,
+			"x": 18,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9TaWx2ZXJPaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/fb57de2d95/SilverOil.png",
+			"stackSize": 3,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "42df163576007a32a831da18e0a54675c7ee7e46cc985707f48cb7ef9f601271",
+			"name": "",
+			"typeLine": "Silver Oil",
+			"baseType": "Silver Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"3/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 11,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9JY2hvckV4dHJhY3RvciIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/21d47cfba0/IchorExtractor.png",
+			"stackSize": 6,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "6566cc85510c87c4fdb2b17af47ca6362c8bf4d5e0a254e7ce4ff32cf73d1d78",
+			"name": "",
+			"typeLine": "Oil Extractor",
+			"baseType": "Oil Extractor",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"6/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"explicitMods": [
+				"Destroys an Anointed Item to recover one of the Oils that was used to apply that Anointment"
+			],
+			"descrText": "Right click this item then left click an Anointed item to destroy it.",
+			"frameType": 5,
+			"x": 80,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9CbGFja09pbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/763ed79fad/BlackOil.png",
+			"stackSize": 16,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "9c6e1e5809ea1adfa0d51efb0bed21f2968b48e1805e351c73023a140049813b",
+			"name": "",
+			"typeLine": "Black Oil",
+			"baseType": "Black Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"16/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 9,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9DbGVhck9pbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/de298bd226/ClearOil.png",
+			"stackSize": 43,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "2d3013aec86d388ba5a058b80587f168492d27ce12359fc9829ef2811ee987eb",
+			"name": "",
+			"typeLine": "Clear Oil",
+			"baseType": "Clear Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"43/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 0,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9BenVyZU9pbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/926343421b/AzureOil.png",
+			"stackSize": 4,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "2d55e4975f15865f59feb87a564b744a41aab647f6fcb8b6f605b8609f5a3e0f",
+			"name": "",
+			"typeLine": "Azure Oil",
+			"baseType": "Azure Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"4/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 5,
+			"y": 0,
+			"inventoryId": "Stash9"
+		},
+		{
+			"verified": false,
+			"w": 1,
+			"h": 1,
+			"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvT2lscy9WZXJkYW50T2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/55a911a67d/VerdantOil.png",
+			"stackSize": 26,
+			"maxStackSize": 5000,
+			"league": "Affliction",
+			"id": "8f14a60484c9669a5494e3791861c690c2430b92223acdce705cda1e37c8e7a9",
+			"name": "",
+			"typeLine": "Verdant Oil",
+			"baseType": "Verdant Oil",
+			"ilvl": 0,
+			"identified": true,
+			"properties": [
+				{
+					"name": "Stack Size",
+					"values": [
+						[
+							"26/10",
+							0
+						]
+					],
+					"displayMode": 0,
+					"type": 32
+				}
+			],
+			"descrText": "Can be combined with other Oils at Cassia to Enchant Rings or Amulets, or to modify Blighted Maps.",
+			"frameType": 5,
+			"x": 3,
+			"y": 0,
+			"inventoryId": "Stash9"
+		}
+	]
+}

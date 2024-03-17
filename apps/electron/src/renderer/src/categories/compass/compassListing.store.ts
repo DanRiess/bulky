@@ -1,17 +1,17 @@
 /** handle all compass listings through this store */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { Compass, CompassListing, CompassListings } from './compass.types'
+import { Compass, CompassListing, CompassListingItems, CompassListings } from './compass.types'
 import { Ref, ref } from 'vue'
 import { Uuid } from '@web/types/utitlity.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BULKY_LEAGUES } from '@web/utility/league'
-import { BULKY_SEXTANTS } from './compass.static'
 import { GenericListingDto } from '@web/types/dto.types'
-import { conformListingItems } from '@web/utility/conformers'
+import { conformBinaryListingItems } from '@web/utility/conformers'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
+import { SEXTANT_MODIFIER_IDX_TO_NAME, SEXTANT_TIER_IDX_TO_NAME } from './compass.const'
 
 export const useCompassListingStore = defineStore('compassListingStore', () => {
 	const listings: Ref<CompassListings> = ref(new Map())
@@ -29,11 +29,13 @@ export const useCompassListingStore = defineStore('compassListingStore', () => {
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = conformListingItems(
+		const items = conformBinaryListingItems<CompassListingItems>(
 			dto.items,
-			BULKY_SEXTANTS.generateSextantModifierFromDto,
-			BULKY_SEXTANTS.generateCompassItemFromDto
+			SEXTANT_MODIFIER_IDX_TO_NAME,
+			SEXTANT_TIER_IDX_TO_NAME
 		)
+
+		if (!items) return
 
 		listings.value.set(uuid, {
 			uuid,
@@ -69,7 +71,7 @@ export const useCompassListingStore = defineStore('compassListingStore', () => {
 		// if (listings.value.size !== 0) return
 
 		const request = useApi('compassListing', getListing)
-		await request.exec({ url: 'http://localhost:5173/src/mocks/compass.json' })
+		await request.exec({ url: 'http://localhost:5173/src/mocks/compassCompressed.json' })
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')

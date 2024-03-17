@@ -3,7 +3,7 @@
  */
 
 import { GenericListingItemDto } from '@web/types/dto.types'
-import { ESSENCE_TIER_NUMBER_TO_NAME, ESSENCE_TYPE } from './essence.const'
+import { ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.const'
 import { Essence, EssenceType } from './essence.types'
 
 /** Type a returned Essence type DTO and turn it into an Essence type */
@@ -40,7 +40,7 @@ function generateEssenceItemFromDto(itemDto: GenericListingItemDto): Essence | n
 	if (!itemDto.tier || itemDto.tier < 0 || itemDto.tier > 8) return null
 
 	return {
-		tier: ESSENCE_TIER_NUMBER_TO_NAME[itemDto.tier],
+		tier: ESSENCE_TIER_IDX_TO_NAME[itemDto.tier],
 		quantity: itemDto.quantity,
 		price: itemDto.price,
 	}

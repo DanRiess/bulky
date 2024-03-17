@@ -6,13 +6,12 @@ import { Uuid, getKeys } from '@web/types/utitlity.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BULKY_LEAGUES } from '@web/utility/league'
-import { Essence, EssenceListing, EssenceListings } from './essence.types'
-import { BULKY_ESSENCES } from './essence.static'
+import { Essence, EssenceListing, EssenceListingItems, EssenceListings } from './essence.types'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
 import { GenericListingDto } from '@web/types/dto.types'
-import { ESSENCE_TIER } from './essence.const'
-import { conformListingItems } from '@web/utility/conformers'
+import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE_IDX_TO_NAME } from './essence.const'
+import { conformBinaryListingItems } from '@web/utility/conformers'
 
 export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 	const listings: Ref<EssenceListings> = ref(new Map())
@@ -30,11 +29,19 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = conformListingItems<Essence>(
+		// const items = conformListingItems<Essence>(
+		// 	dto.items,
+		// 	BULKY_ESSENCES.generateEssenceTypeFromDto,
+		// 	BULKY_ESSENCES.generateEssenceItemFromDto
+		// )
+		const items = conformBinaryListingItems<EssenceListingItems>(
 			dto.items,
-			BULKY_ESSENCES.generateEssenceTypeFromDto,
-			BULKY_ESSENCES.generateEssenceItemFromDto
+			ESSENCE_TYPE_IDX_TO_NAME,
+			ESSENCE_TIER_IDX_TO_NAME
 		)
+		console.log(items)
+
+		if (!items) return
 
 		listings.value.set(uuid, {
 			uuid,
@@ -70,7 +77,7 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 		// if (listings.value.size !== 0) return
 
 		const request = useApi('essencePayload', getListing)
-		await request.exec({ url: 'http://localhost:5173/src/mocks/essence.json' })
+		await request.exec({ url: 'http://localhost:5173/src/mocks/essenceCompressed.json' })
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')
