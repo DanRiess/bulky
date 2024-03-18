@@ -1,6 +1,6 @@
 <template>
 	<main class="t-buy">
-		<div class="main-container">
+		<div class="main-container flow">
 			<CategoryMolecule />
 			<BuyListingsOrganism :listings="listings" />
 		</div>
@@ -147,4 +147,3 @@ const fadeHooks = useGenericTransitionHooks({
 	grid-template-rows: auto minmax(0, 1fr);
 }
 </style>
-@web/categories/compass/compassFilter.props@web/categories/compass/compassListing.props

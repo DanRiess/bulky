@@ -31,9 +31,10 @@ const hooks = useListTransition()
 .o-listing {
 	overflow: auto;
 	border-radius: var(--border-radius-small);
+	padding-right: 0.2rem;
 }
 
-.o-listing > .m-listing-item {
+.o-listing > .m-listing-item:not(:first-child) {
 	margin-top: 1rem;
 }
 </style>

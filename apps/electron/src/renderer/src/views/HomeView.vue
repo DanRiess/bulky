@@ -27,17 +27,20 @@ import { useAppStateStore } from '@web/stores/appStateStore'
 import ButtonAtom from '@web/components/atoms/ButtonAtom.vue'
 import SvgIconAtom from '@web/components/atoms/SvgIconAtom.vue'
 import BuyTemplate from '@web/components/templates/BuyTemplate.vue'
-import SellTemplate from '@web/components/templates/SellTemplate.vue'
 import ConfigTemplate from '@web/components/templates/ConfigTemplate.vue'
 import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+import SellListingTemplate from '@web/components/templates/SellListingTemplate.vue'
+import SellAddTemplate from '@web/components/templates/SellAddTemplate.vue'
 
 // STORES
 const appStateStore = useAppStateStore()
 
 const component = computed(() => {
 	if (appStateStore.selectedView === 'BUY') return markRaw(BuyTemplate)
-	else if (appStateStore.selectedView === 'SELL') return markRaw(SellTemplate)
+	else if (appStateStore.selectedView === 'SELL' && appStateStore.selectedSellView === 'LIST')
+		return markRaw(SellListingTemplate)
+	else if (appStateStore.selectedView === 'SELL' && appStateStore.selectedSellView === 'ADD') return markRaw(SellAddTemplate)
 	else if (appStateStore.selectedView === 'CONFIG') return markRaw(ConfigTemplate)
 	return undefined
 })

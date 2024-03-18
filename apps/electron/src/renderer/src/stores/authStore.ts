@@ -1,8 +1,8 @@
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-export const authStore = defineStore('authStore', () => {
+export const useAuthStore = defineStore('authStore', () => {
 	const router = useRouter()
 	const isLoggedIn = ref(true)
 
@@ -13,3 +13,7 @@ export const authStore = defineStore('authStore', () => {
 
 	return { isLoggedIn, logout }
 })
+
+if (import.meta.hot) {
+	import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
+}

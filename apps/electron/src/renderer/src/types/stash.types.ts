@@ -22,6 +22,7 @@ export type StashTab = {
 	lastSnapshot: number
 	name: string
 	id: string
+	selected: boolean
 	// icon: string // check if the actual api has that or not
 	type: StashType
 	items: PoeItem[]

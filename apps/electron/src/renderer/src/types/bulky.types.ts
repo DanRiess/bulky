@@ -38,6 +38,8 @@ export type Category = ObjectValues<typeof CATEGORY>
 
 export type MainView = 'BUY' | 'SELL' | 'CONFIG'
 
+export type SellView = 'LIST' | 'ADD'
+
 // GENERIC STORES
 export type GenericListingStore = CompassListingStore | EssenceListingStore
 export type GenericFilterStore = CompassFilterStore | EssenceFilterStore

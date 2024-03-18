@@ -8,7 +8,7 @@ import { useApi } from '@web/api/useApi'
 import { StashTabListItemDto } from '@web/types/dto.types'
 import { StashTab } from '@web/types/stash.types'
 import { BULKY_STASH_TABS } from '@web/utility/stastTab'
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useStashStore = defineStore('stashStore', () => {
@@ -33,15 +33,16 @@ export const useStashStore = defineStore('stashStore', () => {
 			const type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
 			const lastSnapshot = 0
 			const items = []
+			const selected = false
 
-			stashTabs.value.push({ name, id, type, lastSnapshot, items })
+			stashTabs.value.push({ name, id, type, lastSnapshot, items, selected })
 		}
 	}
 
 	/**
 	 * Fetch a list of all stash tabs. Only allow this once per hour.
 	 */
-	async function getStashTabList() {
+	async function fetchStashTabList() {
 		// return if the stash tab list was fetched less than an hour ago
 		if (Date.now() - lastListFetch.value < 3_600_000) return
 
@@ -60,6 +61,10 @@ export const useStashStore = defineStore('stashStore', () => {
 	return {
 		stashTabs,
 		lastListFetch,
-		getStashTabList,
+		fetchStashTabList,
 	}
 })
+
+if (import.meta.hot) {
+	import.meta.hot.accept(acceptHMRUpdate(useStashStore, import.meta.hot))
+}

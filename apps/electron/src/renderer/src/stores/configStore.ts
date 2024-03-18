@@ -1,6 +1,6 @@
 import { LEAGUE } from '@web/types/poe.types'
 import { cloneDeep } from 'lodash'
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { BulkyConfig } from 'src/shared/types/config.types'
 import { ref } from 'vue'
 
@@ -34,3 +34,7 @@ export const useConfigStore = defineStore('configStore', () => {
 		writeUserConfig,
 	}
 })
+
+if (import.meta.hot) {
+	import.meta.hot.accept(acceptHMRUpdate(useConfigStore, import.meta.hot))
+}

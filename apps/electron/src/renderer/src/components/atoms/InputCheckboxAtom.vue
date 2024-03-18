@@ -24,6 +24,9 @@ defineProps<{
 	height: 1rem;
 	width: 1rem;
 	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .a-checkbox-input {
 	position: relative;
@@ -49,7 +52,8 @@ defineProps<{
 	position: absolute;
 	height: 1.7rem;
 	width: 1.7rem;
-	top: -5px;
+	top: -6px;
+	left: -2px;
 	pointer-events: none;
 }
 </style>
