@@ -1,6 +1,6 @@
 /** handle compass filters logic in this store */
 
-import { Uuid } from '@web/types/utitlity.types'
+import { Uuid } from '@web/types/utility.types'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { CompassFilter, CompassFilterField, CompassFilters } from './compass.types'

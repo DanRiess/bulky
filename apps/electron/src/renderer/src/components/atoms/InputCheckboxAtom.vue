@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { Uuid } from '@web/types/utitlity.types'
+import { Uuid } from '@web/types/utility.types'
 import SvgIconAtom from './SvgIconAtom.vue'
 
 const model = defineModel<boolean>({ required: true })
@@ -27,7 +27,9 @@ defineProps<{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	translate: 0 -1px;
 }
+
 .a-checkbox-input {
 	position: relative;
 	height: 14px;
@@ -50,10 +52,10 @@ defineProps<{
 
 .checkmark {
 	position: absolute;
-	height: 1.7rem;
-	width: 1.7rem;
-	top: -6px;
-	left: -2px;
+	/* height: 1.7rem;
+	width: 1.7rem; */
+	top: -9px;
+	left: -4px;
 	pointer-events: none;
 }
 </style>

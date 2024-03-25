@@ -34,7 +34,6 @@ const labelEl = ref<InstanceType<typeof LabelAtom>>()
 // LIFECYCLE
 onMounted(() => {
 	if (!labelEl.value) return
-	console.log(labelEl.value.$el)
 
 	labelEl.value.$el.style.gridArea = props.labelPosition
 })

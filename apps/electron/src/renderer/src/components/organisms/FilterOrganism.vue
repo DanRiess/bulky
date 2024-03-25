@@ -63,3 +63,4 @@ const emit = defineEmits<{
 	--flow-space: 0.5em;
 }
 </style>
+@web/types/utility.types

@@ -5,6 +5,7 @@
 			v-model="query"
 			:placeholder="filteredOptions[activeOptionIdx]"
 			:max-width="maxWidth"
+			:background-color="backgroundColor"
 			@update:modelValue="activeOptionIdx = 0"
 			@focus="onInputFocus"
 			@keyup.enter="onInputKeydownEnter" />
@@ -73,7 +74,7 @@ const inputActive = ref(false)
 const comboboxActive = computed(() => inputActive.value && filteredOptions.value.length > 0)
 const activeOptionIdx = ref(0)
 
-// COMPUTEDS
+// GETTERS
 
 const backgroundColorButton = computed(() => {
 	return props.backgroundColor === 'light'
@@ -251,3 +252,4 @@ onMounted(() => {
 	max-height: 250px;
 }
 </style>
+@web/types/utility.types

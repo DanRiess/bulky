@@ -17,5 +17,6 @@ defineProps<{
 <style scoped>
 .chaos-per-div {
 	display: flex;
+	text-wrap: nowrap;
 }
 </style>

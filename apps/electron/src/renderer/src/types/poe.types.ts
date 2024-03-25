@@ -1,4 +1,4 @@
-import { ObjectValues } from './utitlity.types'
+import { ObjectValues } from './utility.types'
 
 export const LEAGUE = {
 	UNSUPPORTED: 'UNSUPPORTED',

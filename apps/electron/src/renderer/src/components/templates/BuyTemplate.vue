@@ -30,7 +30,7 @@ import { useEssenceListingStore } from '@web/categories/essence/essenceListing.s
 import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
 import { useListingProps } from '@web/composables/listingProps'
 import { useFilterProps } from '@web/composables/filterProps'
-import { getEntries } from '@web/types/utitlity.types'
+import { getEntries } from '@web/types/utility.types'
 import { encodeArrayBufferToUrlSafeBase64 } from '@web/utility/arrayBufferBase64'
 import { SEXTANT_MODIFIER_NAME_TO_IDX, SEXTANT_TIER_NAME_TO_IDX } from '@web/categories/compass/compass.const'
 
@@ -147,3 +147,4 @@ const fadeHooks = useGenericTransitionHooks({
 	grid-template-rows: auto minmax(0, 1fr);
 }
 </style>
+@web/types/utility.types

@@ -8,7 +8,7 @@ import {
 	GenericListingItems,
 	GenericListings,
 } from '@web/types/bulky.types'
-import { ObjectValues, Uuid } from '@web/types/utitlity.types'
+import { ObjectValues, Uuid } from '@web/types/utility.types'
 import { SEXTANT_MODIFIER, SEXTANT_TYPE } from './compass.const'
 import { useCompassListingStore } from './compassListing.store'
 import { useCompassFilterStore } from './compassFilter.store'

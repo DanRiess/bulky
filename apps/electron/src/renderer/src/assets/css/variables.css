@@ -53,4 +53,8 @@
 	--dr-color-app: var(--color-light-300);
 
 	--dr-gradient-highlight-overlay: linear-gradient(-45deg, rgb(255 255 255 / 0.1), transparent, rgb(255 255 255 / 0.15));
+
+	/* Utility */
+	--dr-button-height: 2rem;
+	--dr-button-width: 2rem;
 }

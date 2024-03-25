@@ -14,6 +14,7 @@ import { ref } from 'vue'
 export const useStashStore = defineStore('stashStore', () => {
 	const stashTabs = ref<StashTab[]>([])
 	const lastListFetch = ref(0)
+	const fetchTimeout = ref(1000)
 
 	/**
 	 * Consume a stashtab dto, type and validate it and add it to the stashTabs.
@@ -42,25 +43,29 @@ export const useStashStore = defineStore('stashStore', () => {
 	/**
 	 * Fetch a list of all stash tabs. Only allow this once per hour.
 	 */
-	async function fetchStashTabList() {
+	function fetchStashTabList() {
 		// return if the stash tab list was fetched less than an hour ago
-		if (Date.now() - lastListFetch.value < 3_600_000) return
+		if (Date.now() - lastListFetch.value < fetchTimeout.value) return
 
 		const request = useApi('stashTabList', getStashTabListRequest)
-		await request.exec({ url: 'http://localhost:5173/src/mocks/stash_list.json' })
 
-		if (request.error.value || !request.data.value) {
-			console.log('could not find stash list')
-			return
-		}
+		request.exec({ url: 'http://localhost:5173/src/mocks/stash_list.json' }).then(() => {
+			if (request.error.value || !request.data.value) {
+				console.log('could not find stash list')
+				return
+			}
 
-		lastListFetch.value = Date.now()
-		request.data.value.tabs.forEach(tab => addOrModifyStashTabListItem(tab))
+			lastListFetch.value = Date.now()
+			request.data.value.tabs.forEach(tab => addOrModifyStashTabListItem(tab))
+		})
+
+		return request
 	}
 
 	return {
 		stashTabs,
 		lastListFetch,
+		fetchTimeout,
 		fetchStashTabList,
 	}
 })

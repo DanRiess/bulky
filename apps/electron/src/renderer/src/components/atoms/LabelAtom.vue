@@ -1,5 +1,5 @@
 <template>
-	<label :for="id" class="no-select">
+	<label :for="id" class="a-label no-select">
 		<slot />
 	</label>
 </template>
@@ -11,3 +11,10 @@ defineProps<{
 	id: Uuid | string
 }>()
 </script>
+
+<style scoped>
+.a-label {
+	cursor: pointer;
+}
+</style>
+@web/types/utility.types

@@ -3,11 +3,12 @@
 		<LabelAtom :id="uuid">
 			<slot />
 		</LabelAtom>
-		<InputSelectAtom v-model="model" :options="options" :id="uuid" />
+		<InputSelectAtom v-model="model" :options="options" :id="uuid" :background-color="backgroundColor" />
 	</div>
 </template>
 
 <script setup lang="ts" generic="T extends string">
+import { ButtonBackgroundColorScheme } from '@web/types/utitlity.types'
 import InputSelectAtom from '../atoms/InputSelectAtom.vue'
 import LabelAtom from '../atoms/LabelAtom.vue'
 import { BULKY_UUID } from '@web/utility/uuid'
@@ -17,11 +18,13 @@ const uuid = BULKY_UUID.generateTypedUuid()
 
 withDefaults(
 	defineProps<{
-		labelPosition?: 'left' | 'right'
 		options: T[]
+		labelPosition?: 'left' | 'right'
+		backgroundColor?: ButtonBackgroundColorScheme
 	}>(),
 	{
 		labelPosition: 'left',
+		backgroundColor: 'dark',
 	}
 )
 </script>
@@ -35,3 +38,4 @@ withDefaults(
 	align-items: center;
 }
 </style>
+@web/types/utility.types

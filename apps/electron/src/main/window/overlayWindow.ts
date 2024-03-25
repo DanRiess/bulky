@@ -104,7 +104,7 @@ export class OverlayWindow {
 			this.window.loadURL(url)
 			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 
-			this.poeWindow.attach(this, 'Path of Exile')
+			this.poeWindow.attach(this, 'Notepad')
 		} else {
 			this.window.loadURL(url)
 		}

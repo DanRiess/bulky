@@ -1,6 +1,13 @@
 <template>
 	<!-- the svg -->
-	<component :is="iconComponent" class="a-svg-icon" :class="active && 'active'" :height="height" role="img"> </component>
+	<component
+		:is="iconComponent"
+		class="a-svg-icon"
+		:class="active && 'active'"
+		:width="width"
+		:height="height ?? width"
+		role="img">
+	</component>
 
 	<!-- the gradient. i tried moving this to another component and load it here, but css url loading failed -->
 	<svg style="width: 0; height: 0; position: absolute" aria-hidden="true" focusable="false" class="svg-gradient">
@@ -27,6 +34,7 @@ const props = withDefaults(
 		transform?: string
 		cursor?: 'default' | 'pointer' | 'inherit'
 		height?: number | string
+		width?: number | string
 	}>(),
 	{
 		active: false,
@@ -35,6 +43,7 @@ const props = withDefaults(
 		gradientStopColors: () => ['var(--dr-gradient-from-bright)', 'var(--dr-gradient-to-bright)'],
 		cursor: 'inherit',
 		height: '100%',
+		width: 24,
 	}
 )
 
@@ -68,8 +77,8 @@ const iconComponent = computed(() => {
 	transform-origin: 50% 50%;
 	transition: transform 0.15s ease;
 	filter: drop-shadow(2px 2px 4px rgba(0 0 0 / 0.4));
-	/* height: 100%; */
-	width: 100%;
+	width: var(--dr-button-width);
+	height: var(--dr-button-height);
 	fill: v-bind(color);
 	cursor: v-bind(cursor);
 	transform: v-bind(transform);

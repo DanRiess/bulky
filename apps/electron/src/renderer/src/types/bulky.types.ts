@@ -10,7 +10,7 @@ import {
 	SextantType,
 } from '@web/categories/compass/compass.types'
 import { League } from './poe.types'
-import { ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utitlity.types'
+import { ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utility.types'
 import {
 	Essence,
 	EssenceFilter,

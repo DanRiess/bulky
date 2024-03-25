@@ -5,7 +5,7 @@
 import { CompassFilter, CompassListing } from '@web/categories/compass/compass.types'
 import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
 import { useCompassFilterStore } from '@web/categories/compass/compassFilter.store'
-import { OptionalRecord, Uuid } from '@web/types/utitlity.types'
+import { OptionalRecord, Uuid } from '@web/types/utility.types'
 import { v4 as uuidv4, validate } from 'uuid'
 import { EssenceFilter, EssenceListing } from '@web/categories/essence/essence.types'
 import { useEssenceListingStore } from '@web/categories/essence/essenceListing.store'

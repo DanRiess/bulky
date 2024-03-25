@@ -3,7 +3,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { Compass, CompassListing, CompassListingItems, CompassListings } from './compass.types'
 import { Ref, ref } from 'vue'
-import { Uuid } from '@web/types/utitlity.types'
+import { Uuid } from '@web/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BULKY_LEAGUES } from '@web/utility/league'

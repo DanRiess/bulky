@@ -1,4 +1,4 @@
-import { ObjectValues, RequireSome, Uuid } from '@web/types/utitlity.types'
+import { ObjectValues, RequireSome, Uuid } from '@web/types/utility.types'
 import { API_STATUS } from './api.const'
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ComputedRef, Ref } from 'vue'

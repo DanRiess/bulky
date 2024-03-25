@@ -42,7 +42,7 @@ const props = withDefaults(
 	}
 )
 
-// COMPUTEDS
+// GETTERS
 const allowBorder = computed(() => {
 	return !props.editable || props.disabled ? null : true
 })
@@ -117,3 +117,4 @@ const emit = defineEmits<{
 	opacity: 0.5;
 }
 </style>
+@web/types/utility.types

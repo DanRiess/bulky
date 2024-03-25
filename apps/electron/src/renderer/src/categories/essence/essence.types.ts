@@ -8,7 +8,7 @@ import {
 	GenericListingItems,
 	GenericListings,
 } from '@web/types/bulky.types'
-import { ObjectValues, Uuid } from '@web/types/utitlity.types'
+import { ObjectValues, Uuid } from '@web/types/utility.types'
 import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
 import { useEssenceListingStore } from './essenceListing.store'
 import { useEssenceFilterStore } from './essenceFilter.store'

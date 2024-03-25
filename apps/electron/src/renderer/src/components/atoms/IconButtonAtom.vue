@@ -79,3 +79,4 @@ const gridColumnWidth = computed(() => {
 	}
 }
 </style>
+@web/types/utility.types

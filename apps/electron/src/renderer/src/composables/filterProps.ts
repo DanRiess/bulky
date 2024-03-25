@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { Uuid, getKeys } from '@web/types/utitlity.types'
+import { Uuid, getKeys } from '@web/types/utility.types'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { AnyFilter, Filter, FilterMainOption, FilterSecondaryOption, GenericFilterStore } from '@web/types/bulky.types'
 
