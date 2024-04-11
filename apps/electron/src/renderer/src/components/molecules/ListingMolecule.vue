@@ -26,11 +26,11 @@
 <script setup lang="ts">
 import ListingMetadataMolecule from './ListingMetadataMolecule.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
-import { ComputedListingDisplayValues } from '@web/types/bulky.types'
 import { craftWhisperMessage } from '@web/utility/whisper'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { ref } from 'vue'
 import ListingItemsMolecule from './ListingItemsMolecule.vue'
+import { ComputedListingDisplayValues } from '@shared/types/bulky.types'
 
 const messageSent = ref(false)
 

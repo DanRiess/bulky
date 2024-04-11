@@ -7,9 +7,9 @@
 				</LabelWithSelectMolecule>
 			</div>
 
-			<StashTabListOrganism :show-refresh-button="timeout <= 0" />
+			<StashTabListOrganism :show-refresh-button="timeout <= 0" @start-timeout="updateTimeout" />
 
-			<div class="timeout" v-show="timeout > 0">Next refresh possible in {{ minutes }}:{{ seconds }} minutes.</div>
+			<div class="timeout" v-if="timeout > 0">Next refresh possible in {{ minutes }}:{{ seconds }} minutes.</div>
 		</div>
 
 		<div class="main-container"></div>
@@ -17,13 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import { getKeys } from '@web/types/utility.types'
 import StashTabListOrganism from '../organisms/StashTabListOrganism.vue'
-import { CATEGORY } from '@web/types/bulky.types'
 import LabelWithSelectMolecule from '../molecules/LabelWithSelectMolecule.vue'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { computed, onMounted, ref } from 'vue'
 import { useStashStore } from '@web/stores/stashStore'
+import { getKeys } from '@shared/types/utility.types'
+import { CATEGORY } from '@shared/types/bulky.types'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -33,11 +33,8 @@ const stashStore = useStashStore()
 const categories = getKeys(CATEGORY).filter(i => i !== 'UNSUPPORTED')
 const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
 
-console.log(timeout.value)
-
 // GETTERS
 const minutes = computed(() => {
-	console.log(timeout.value)
 	return Math.floor((timeout.value * 0.001) / 60)
 })
 
@@ -45,6 +42,22 @@ const seconds = computed(() => {
 	const s = Math.floor((timeout.value * 0.001) % 60)
 	return s < 10 ? `0${s}` : s
 })
+
+const stashListGridRows = computed(() => {
+	return timeout.value <= 0 ? '2rem calc(100% - 2rem) 0rem' : '2rem calc(100% - 3.5rem) 1.5rem'
+})
+
+// METHODS
+function updateTimeout() {
+	timeout.value = Math.max(0, stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
+
+	// don't actually use setinterval, it has some weird edge cases in which it doesn't use the delay at all
+	if (timeout.value > 0) {
+		setTimeout(() => {
+			updateTimeout()
+		}, 1000)
+	}
+}
 
 // LIFECYCLE
 onMounted(() => {
@@ -66,8 +79,9 @@ onMounted(() => {
 
 .main-container {
 	display: grid;
-	grid-template-rows: auto minmax(0, 1fr) minmax(0, max-content);
-	transition: grid-template-rows 3s ease;
+	/* grid-template-rows: auto minmax(0, 1fr) minmax(0, max-content); */
+	grid-template-rows: v-bind(stashListGridRows);
+	transition: grid-template-rows 0.3s ease;
 }
 
 .category-input {

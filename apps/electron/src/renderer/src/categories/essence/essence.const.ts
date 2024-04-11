@@ -1,4 +1,4 @@
-import { typedFromEntries } from '@web/types/utility.types'
+import { typedFromEntries } from '@shared/types/utility.types'
 
 export const ESSENCE_TYPE = {
 	GREED: 'GREED',

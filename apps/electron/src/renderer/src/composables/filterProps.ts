@@ -1,7 +1,7 @@
 import { computed } from 'vue'
-import { Uuid, getKeys } from '@web/types/utility.types'
+import { Uuid, getKeys } from '@shared/types/utility.types'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { AnyFilter, Filter, FilterMainOption, FilterSecondaryOption, GenericFilterStore } from '@web/types/bulky.types'
+import { AnyFilter, Filter, FilterMainOption, FilterSecondaryOption, GenericFilterStore } from '@shared/types/bulky.types'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useCompassFilterStore } from '@web/categories/compass/compassFilter.store'

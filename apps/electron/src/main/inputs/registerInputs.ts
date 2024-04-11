@@ -16,5 +16,6 @@ function handleKeydownEvents(e: UiohookKeyboardEvent, overlayWindow: OverlayWind
 	// toggle the overlay
 	if (e.ctrlKey && keyCodeToName[e.keycode] === 'Space') {
 		overlayWindow.toggleActiveState()
+		console.log('overlay')
 	}
 }

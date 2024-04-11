@@ -12,9 +12,9 @@ import IconButtonAtom from '../atoms/IconButtonAtom.vue';
 
 <script setup lang="ts">
 import IconButtonAtom from '@web/components/atoms/IconButtonAtom.vue'
-import { CATEGORY, Category } from '@web/types/bulky.types'
 import { ref } from 'vue'
 import { useAppStateStore } from '@web/stores/appStateStore'
+import { CATEGORY, Category } from '@shared/types/bulky.types'
 
 // STORES
 const appStateStore = useAppStateStore()

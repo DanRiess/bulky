@@ -7,7 +7,10 @@ import { registerInputs } from './inputs/registerInputs'
 import { Chatbox } from './inputs/chatbox'
 import { typeInChat } from './ipcCallbacks/typeInChat'
 import { readConfig, writeConfig } from './ipcCallbacks/configActions'
-import { BulkyConfig } from 'src/shared/types/config.types'
+import { BulkyConfig } from '@shared/types/config.types'
+import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
+import { StashTab } from '@shared/types/stash.types'
+import { startOauthRedirectServer } from './utility/oauthServer'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -52,8 +55,12 @@ app.whenReady().then(() => {
 			ipcMain.handle('type', (_, message: string) => typeInChat(message, chatbox))
 
 			ipcMain.on('write-config', (_, config: BulkyConfig) => writeConfig(app, config))
-
 			ipcMain.handle('read-config', () => readConfig(app))
+
+			ipcMain.on('write-stash-tabs', (_, stashTabs: StashTab[]) => writeStashTabs(app, stashTabs))
+			ipcMain.handle('read-stash-tabs', () => readStashTabs(app))
+
+			ipcMain.on('start-oauth-redirect-server', () => startOauthRedirectServer(overlayWindow.getWindow().webContents))
 		},
 		process.platform === 'linux' ? 1000 : 0
 	)

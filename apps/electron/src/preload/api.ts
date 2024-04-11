@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron'
 import { ShowAttachmentPanelDto, ToggleOverlayComponentDto } from '../shared/types/inputDto'
-import { BulkyConfig } from 'src/shared/types/config.types'
+import { BulkyConfig } from '@shared/types/config.types'
+import { StashTab } from '@shared/types/stash.types'
 
 export const api = {
 	// example for bidirectional communication
@@ -24,13 +25,23 @@ export const api = {
 		ipcRenderer.on('toggle-overlay-component', (_event, value: ToggleOverlayComponentDto) => callback(value))
 	},
 
+	onSendOauthAuthorizationCode: (callback: (value: { code: string }) => void) => {
+		ipcRenderer.on('send-oauth-authorization-code', (_, value: { code: string }) => callback(value))
+	},
+
 	// RENDERER -> MAIN ONE WAY
 	closeOverlay: () => ipcRenderer.send('close-overlay'),
 
 	writeConfig: (config: BulkyConfig) => ipcRenderer.send('write-config', config),
 
+	writeStashTabs: (stashTabs: StashTab[]) => ipcRenderer.send('write-stash-tabs', stashTabs),
+
+	startOauthRedirectServer: () => ipcRenderer.send('start-oauth-redirect-server'),
+
 	// RENDERER -> MAIN BIDIRECTIONAL
 	typeInChat: (message: string) => ipcRenderer.invoke('type', message),
 
 	readConfig: () => ipcRenderer.invoke('read-config'),
+
+	readStashTabs: (): Promise<StashTab[]> => ipcRenderer.invoke('read-stash-tabs'),
 }

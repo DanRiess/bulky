@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { Uuid } from '@web/types/utitlity.types'
+import { Uuid } from '@shared/types/utility.types'
 
 const model = defineModel<number>({ required: true })
 
@@ -61,4 +61,3 @@ withDefaults(
 	opacity: 0.5;
 }
 </style>
-@web/types/utility.types

@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts" generic="T extends string">
-import { ButtonBackgroundColorScheme } from '@web/types/utitlity.types'
+import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 import InputSelectAtom from '../atoms/InputSelectAtom.vue'
 import LabelAtom from '../atoms/LabelAtom.vue'
 import { BULKY_UUID } from '@web/utility/uuid'
@@ -38,4 +38,3 @@ withDefaults(
 	align-items: center;
 }
 </style>
-@web/types/utility.types

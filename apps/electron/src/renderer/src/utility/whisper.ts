@@ -1,4 +1,4 @@
-import { ComputedListingDisplayValues } from '@web/types/bulky.types'
+import { ComputedListingDisplayValues } from '@shared/types/bulky.types'
 
 export function craftWhisperMessage(listing: ComputedListingDisplayValues) {
 	const comuputedItemText = listing.computedItems

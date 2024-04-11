@@ -2,7 +2,7 @@
  * This component provides static functions to generate / validate typed Stash Tabs
  */
 
-import { STASH_TYPE, StashType } from '@web/types/stash.types'
+import { STASH_TYPE, StashType } from '@shared/types/stash.types'
 
 function generateStashTabTypeFromDto(type: string): StashType {
 	if (type.match(/premium/i)) return STASH_TYPE.PremiumStash

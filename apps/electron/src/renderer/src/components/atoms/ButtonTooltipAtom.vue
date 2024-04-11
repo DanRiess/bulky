@@ -10,7 +10,7 @@
 import { computed } from 'vue'
 import TransitionAtom from './TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
-import { ButtonBackgroundColorScheme } from '@web/types/utility.types'
+import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 
 const props = withDefaults(
 	defineProps<{

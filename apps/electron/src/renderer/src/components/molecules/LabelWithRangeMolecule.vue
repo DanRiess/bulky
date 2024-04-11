@@ -16,7 +16,7 @@ import InputRangeAtom from '../atoms/InputRangeAtom.vue'
 import InputTextAtom from '../atoms/InputTextAtom.vue'
 import LabelAtom from '../atoms/LabelAtom.vue'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { Uuid } from '@web/types/utitlity.types'
+import { Uuid } from '@shared/types/utility.types'
 
 const model = defineModel<number>({ required: true })
 const textModel = computed(() => {
@@ -55,4 +55,3 @@ withDefaults(
 	gap: 0.5rem;
 }
 </style>
-@web/types/utility.types

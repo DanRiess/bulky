@@ -33,13 +33,13 @@
 </template>
 
 <script setup lang="ts">
-import { ComputedItemDisplayValues, TotalPrice } from '@web/types/bulky.types'
 import ExpandSectionAtom from '../atoms/ExpandSectionAtom.vue'
 import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
 import ListingItemAtom from '../atoms/ListingItemAtom.vue'
+import { ComputedItemDisplayValues, TotalPrice } from '@shared/types/bulky.types'
 
 // PROPS
 const props = defineProps<{

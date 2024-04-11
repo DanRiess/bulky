@@ -8,7 +8,7 @@ import {
 	GenericItemData,
 	ItemTier,
 	ItemType,
-} from '@web/types/bulky.types'
+} from '@shared/types/bulky.types'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useCompassListingStore } from '@web/categories/compass/compassListing.store'

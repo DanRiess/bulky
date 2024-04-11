@@ -28,9 +28,9 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import ListItemComboboxAtom, { SelectableListItem } from './ListItemComboboxAtom.vue'
 import InputTextAtom from './InputTextAtom.vue'
-import { ButtonBackgroundColorScheme, Uuid } from '@web/types/utitlity.types'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { transformToDisplayValue } from '@web/utility/transformers'
+import { ButtonBackgroundColorScheme, Uuid } from '@shared/types/utility.types'
 
 // MODEL
 
@@ -252,4 +252,3 @@ onMounted(() => {
 	max-height: 250px;
 }
 </style>
-@web/types/utility.types

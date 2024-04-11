@@ -36,8 +36,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import SvgIconAtom from './SvgIconAtom.vue'
-import { ButtonBackgroundColorScheme, Uuid } from '@web/types/utitlity.types'
 import { BULKY_UUID } from '@web/utility/uuid'
+import { ButtonBackgroundColorScheme, Uuid } from '@shared/types/utility.types'
 
 const numberInputEl = ref<HTMLInputElement>()
 let fireInterval: NodeJS.Timeout | null = null
@@ -267,4 +267,3 @@ input:focus {
 	opacity: 0.8;
 }
 </style>
-@web/types/utility.types

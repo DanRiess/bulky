@@ -14,8 +14,8 @@
 <script setup lang="ts">
 import { useConfigStore } from '@web/stores/configStore'
 import LabelWithSelectMolecule from '../molecules/LabelWithSelectMolecule.vue'
-import { getKeys } from '@web/types/utility.types'
-import { LEAGUE } from '@web/types/poe.types'
+import { getKeys } from '@shared/types/utility.types'
+import { LEAGUE } from '@shared/types/poe.types'
 
 // STORES
 const configStore = useConfigStore()
@@ -40,4 +40,3 @@ function updateConfig() {
 	margin-left: 1rem;
 }
 </style>
-@web/types/utility.types

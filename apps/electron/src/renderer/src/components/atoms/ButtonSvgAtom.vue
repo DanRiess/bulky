@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { ButtonBackgroundColorScheme } from '@web/types/utility.types'
+import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 import { computed } from 'vue'
 
 const props = withDefaults(
@@ -60,4 +60,3 @@ const backgroundColorButton = computed(() => {
 	background-color: var(--color-dark);
 }
 </style>
-@web/types/utility.types

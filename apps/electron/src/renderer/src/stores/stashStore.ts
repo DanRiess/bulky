@@ -5,8 +5,8 @@
 
 import { getStashTabListRequest } from '@web/api/poeApi'
 import { useApi } from '@web/api/useApi'
-import { StashTabListItemDto } from '@web/types/dto.types'
-import { StashTab } from '@web/types/stash.types'
+import { StashTabListItemDto } from '@shared/types/dto.types'
+import { StashTab } from '@shared/types/stash.types'
 import { BULKY_STASH_TABS } from '@web/utility/stastTab'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -14,7 +14,30 @@ import { ref } from 'vue'
 export const useStashStore = defineStore('stashStore', () => {
 	const stashTabs = ref<StashTab[]>([])
 	const lastListFetch = ref(0)
-	const fetchTimeout = ref(1000)
+	const fetchTimeout = ref(5000)
+	const stashListRequest = useApi('stashTabList', getStashTabListRequest)
+
+	/**
+	 * Initialize the stashes from the last session / save. Should only be called once on app startup.
+	 */
+	async function initialize() {
+		try {
+			const tabs = await window.api.readStashTabs()
+
+			// If tabs are empty array, push the entire read array.
+			// Otherwise, replace old stashes and push the ones that don't exist yet.
+			if (stashTabs.value.length === 0) {
+				stashTabs.value.push(...tabs)
+			} else {
+				tabs.forEach(t => {
+					const tabIndex = stashTabs.value.findIndex(stashTab => stashTab.id === t.id)
+					tabIndex > -1 ? stashTabs.value.splice(tabIndex, 1, t) : stashTabs.value.push(t)
+				})
+			}
+		} catch (e) {
+			console.log('error loading user stash tabs. using empty stash tab list instead.')
+		}
+	}
 
 	/**
 	 * Consume a stashtab dto, type and validate it and add it to the stashTabs.
@@ -42,30 +65,40 @@ export const useStashStore = defineStore('stashStore', () => {
 
 	/**
 	 * Fetch a list of all stash tabs. Only allow this once per hour.
+	 * Only add new stash tabs to the array, don't replace old ones. This would replace its items.
 	 */
-	function fetchStashTabList() {
+	async function fetchStashTabList() {
 		// return if the stash tab list was fetched less than an hour ago
 		if (Date.now() - lastListFetch.value < fetchTimeout.value) return
 
-		const request = useApi('stashTabList', getStashTabListRequest)
+		// return if the status is not idle
+		if (stashListRequest.status.value === 'PENDING') return
 
-		request.exec({ url: 'http://localhost:5173/src/mocks/stash_list.json' }).then(() => {
-			if (request.error.value || !request.data.value) {
-				console.log('could not find stash list')
-				return
-			}
+		// execute the request
+		await stashListRequest.exec()
 
-			lastListFetch.value = Date.now()
-			request.data.value.tabs.forEach(tab => addOrModifyStashTabListItem(tab))
-		})
+		// error handling
+		if (stashListRequest.error.value || !stashListRequest.data.value) {
+			console.log('could not find stash list')
+			return
+		}
 
-		return request
+		// set the last fetch time to now to throttle fetch requests
+		lastListFetch.value = Date.now()
+		stashListRequest.data.value.tabs.forEach(tab => addOrModifyStashTabListItem(tab))
+
+		// reset the request to be able to repeat it later
+		setTimeout(() => {
+			stashListRequest.reset()
+		}, 2000)
 	}
 
 	return {
 		stashTabs,
 		lastListFetch,
 		fetchTimeout,
+		stashListRequest,
+		initialize,
 		fetchStashTabList,
 	}
 })

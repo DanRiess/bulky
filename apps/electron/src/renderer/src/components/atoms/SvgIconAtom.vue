@@ -3,7 +3,7 @@
 	<component
 		:is="iconComponent"
 		class="a-svg-icon"
-		:class="active && 'active'"
+		:class="{ active, rotate }"
 		:width="width"
 		:height="height ?? width"
 		role="img">
@@ -35,6 +35,7 @@ const props = withDefaults(
 		cursor?: 'default' | 'pointer' | 'inherit'
 		height?: number | string
 		width?: number | string
+		rotate?: boolean
 	}>(),
 	{
 		active: false,
@@ -89,6 +90,11 @@ const iconComponent = computed(() => {
 	fill: v-bind(hoverFill);
 }
 
+.a-svg-icon.rotate {
+	fill: v-bind(hoverFill);
+	animation: rotate 1s forwards linear infinite;
+}
+
 .stop {
 	animation-duration: 2000ms;
 	animation-iteration-count: infinite;
@@ -106,7 +112,8 @@ const iconComponent = computed(() => {
 }
 
 .a-svg-icon:hover + .svg-gradient > linearGradient > .stop,
-.a-svg-icon.active + .svg-gradient > linearGradient > .stop {
+.a-svg-icon.active + .svg-gradient > linearGradient > .stop,
+.a-svg-icon.rotate + .svg-gradient > linearGradient > .stop {
 	animation-play-state: running;
 }
 
@@ -131,6 +138,15 @@ const iconComponent = computed(() => {
 	}
 	100% {
 		stop-color: var(--dr-gradient-to-bright);
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
 	}
 }
 </style>

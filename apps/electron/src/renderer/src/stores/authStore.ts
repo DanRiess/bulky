@@ -1,17 +1,22 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('authStore', () => {
-	const router = useRouter()
-	const isLoggedIn = ref(true)
+	const isLoggedIn = ref(false)
 
 	function logout() {
 		isLoggedIn.value = false
-		router.push({ name: 'AuthView' })
 	}
 
-	return { isLoggedIn, logout }
+	/**
+	 * Start the oauth redirection server before initializing the oauth flow.
+	 * It will be closed automatically after receiving and processing the incoming message.
+	 */
+	function startOauthRedirectServer() {
+		window.api.startOauthRedirectServer()
+	}
+
+	return { isLoggedIn, logout, startOauthRedirectServer }
 })
 
 if (import.meta.hot) {

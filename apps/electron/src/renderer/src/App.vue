@@ -10,9 +10,11 @@ import { onClickOutside } from '@vueuse/core'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
+import { useStashStore } from './stores/stashStore'
 
 // STORES
 const configStore = useConfigStore()
+const stashStore = useStashStore()
 
 // STATE
 const target = ref<HTMLElement | null>(null)
@@ -21,18 +23,22 @@ const attachmentPanelActive = ref(false)
 const router = useRouter()
 
 // EVENTS
-// window.api.onToggleOverlayComponent(value => {
-// 	active.value = value.overlayWindowActive
-// })
+window.api.onToggleOverlayComponent(value => {
+	active.value = value.overlayWindowActive
+})
 
-// window.api.onShowAttachmentPanel(value => {
-// 	router.push({ name: 'AttachmentPanel' })
-// 	attachmentPanelActive.value = true
-// 	setTimeout(() => {
-// 		attachmentPanelActive.value = false
-// 		router.push({ name: 'Home' })
-// 	}, value.time)
-// })
+window.api.onShowAttachmentPanel(value => {
+	router.push({ name: 'AttachmentPanel' })
+	attachmentPanelActive.value = true
+	setTimeout(() => {
+		attachmentPanelActive.value = false
+		router.push({ name: 'Home' })
+	}, value.time)
+})
+
+window.api.onSendOauthAuthorizationCode(value => {
+	console.log(value)
+})
 
 // METHODS
 onClickOutside(target, () => {
@@ -42,6 +48,7 @@ onClickOutside(target, () => {
 
 // INITIALIZE NECESSARY STORES
 configStore.getUserConfig()
+stashStore.initialize()
 </script>
 
 <style>

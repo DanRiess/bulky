@@ -1,4 +1,4 @@
-import { ObjectValues, RequireSome, Uuid } from '@web/types/utility.types'
+import { ObjectValues, RequireSome, Uuid } from '@shared/types/utility.types'
 import { API_STATUS } from './api.const'
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ComputedRef, Ref } from 'vue'
@@ -13,6 +13,7 @@ export type BulkyRequest<TFn extends (...args: any) => Promise<AxiosResponse<unk
 	data: Ref<Awaited<ReturnType<TFn>>['data'] | undefined>
 	error: Ref<AxiosError | undefined>
 	exec: (...args: Parameters<TFn>) => Promise<void>
+	reset: () => void
 	progressStatus: Ref<ProgressStatus>
 	statusIdle: NormalizedApiStatus['statusIdle']
 	statusPending: NormalizedApiStatus['statusPending']
@@ -25,12 +26,12 @@ export type ProgressStatus = {
 	total: number
 }
 
-export type GetRequestConfig = RequireSome<AxiosRequestConfig, 'url'>
+// export type GetRequestConfig = RequireSome<AxiosRequestConfig, 'url'>
 
 export type PostRequestConfig<D extends Record<keyof D, unknown> = {}> = RequireSome<AxiosRequestConfig<D>, 'url' | 'data'>
 
 // make this a union with postrequestconf, putrequestconf etc
-export type BulkyRequestConfig = GetRequestConfig | PostRequestConfig
+export type BulkyRequestConfig = AxiosRequestConfig | PostRequestConfig
 
 /**
  * Utility base to typecast expected response and request values. To generate typesafe requests, use it like this:
@@ -40,8 +41,9 @@ export type BulkyRequestConfig = GetRequestConfig | PostRequestConfig
  * const testPost: PostFn<number> = api.testFn
  * const req = useApi('someName', testPost)
  */
-export type GenericRequestFunction<TRes extends unknown, BulkyRequestConfig = GetRequestConfig> = (
-	config: BulkyRequestConfig
+export type GenericRequestFunction<TRes extends unknown, TConf extends BulkyRequestConfig = AxiosRequestConfig> = (
+	path: string,
+	config?: TConf
 ) => Promise<AxiosResponse<TRes>>
 
 // export type GenericRequestFunction<TRes extends unknown, TFn extends (...args: any[]) => any> = (

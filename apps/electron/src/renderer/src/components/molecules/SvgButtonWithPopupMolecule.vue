@@ -6,7 +6,7 @@
 		@mouseenter="onMouseEnter"
 		@mouseleave="onMouseLeave">
 		<ButtonSvgAtom :active="hovered" :background-color="backgroundColor">
-			<SvgIconAtom :name="iconName" />
+			<SvgIconAtom v-bind="svgProps" />
 		</ButtonSvgAtom>
 		<ButtonTooltipAtom :active="hovered" :backgroundColor="backgroundColor">
 			<slot />
@@ -19,15 +19,15 @@ import { ref } from 'vue'
 import ButtonTooltipAtom from '../atoms/ButtonTooltipAtom.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import ButtonSvgAtom from '../atoms/ButtonSvgAtom.vue'
-import { ButtonBackgroundColorScheme } from '@web/types/utility.types'
+import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 
 // PROPS
 withDefaults(
 	defineProps<{
-		iconName: string
 		disabled?: boolean
 		hoverColor?: string
 		backgroundColor?: ButtonBackgroundColorScheme
+		svgProps: InstanceType<typeof SvgIconAtom>['$props']
 	}>(),
 	{
 		disabled: false,

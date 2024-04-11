@@ -3,7 +3,7 @@
  * i. e. which category is selected, toggled menus, etc
  */
 
-import { Category, MainView, SellView } from '@web/types/bulky.types'
+import { Category, MainView, SellView } from '@shared/types/bulky.types'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 

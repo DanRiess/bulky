@@ -5,8 +5,9 @@
  */
 
 import api from './api.wrapper'
-import { GenericRequestFunction, GetRequestConfig, PostRequestConfig } from './api.types'
-import { GenericListingDto } from '@web/types/dto.types'
+import { GenericRequestFunction, PostRequestConfig } from './api.types'
+import { GenericListingDto } from '@shared/types/dto.types'
+import { AxiosRequestConfig } from 'axios'
 
 type PostPayload = {
 	we: string
@@ -14,17 +15,19 @@ type PostPayload = {
 	this: string
 }
 
+const BASE_URL = import.meta.env.VITE_BASE_URL_BULKY
+
 export const bulkyApi = {
-	getJson: <TRes extends unknown>(config: GetRequestConfig) => {
-		return api.get<TRes>(config.url, config)
+	getJson: <TRes extends unknown>(url: string, config: AxiosRequestConfig) => {
+		return api.get<TRes>(url, config)
 	},
 
-	postStuff: <TRes extends unknown>(config: PostRequestConfig<PostPayload>) => {
-		return api.post<TRes, PostPayload>(config.url, config.data, config)
+	postStuff: <TRes extends unknown>(url: string, config: PostRequestConfig<PostPayload>) => {
+		return api.post<TRes, PostPayload>(url, config.data, config)
 	},
 
-	get: <TRes extends unknown>(config: GetRequestConfig) => {
-		return api.get<TRes>(config.url, config)
+	get: <TRes extends unknown>(path: string, config?: AxiosRequestConfig) => {
+		return api.get<TRes>(`${BASE_URL}/${path}`, config)
 	},
 }
 

@@ -4,7 +4,7 @@
 
 import { SEXTANT_MODIFIER, SEXTANT_TIER_IDX_TO_NAME } from '@web/categories/compass/compass.const'
 import { Compass, SextantModifier } from '@web/categories/compass/compass.types'
-import { GenericListingItemDto } from '@web/types/dto.types'
+import { GenericListingItemDto } from '@shared/types/dto.types'
 
 // TODO: check modifier string matches when getting actual data
 

@@ -36,9 +36,9 @@ import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperA
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import FilterFieldHeaderMolecule from './FilterFieldHeaderMolecule.vue'
 import FilterFieldMolecule from './FilterFieldMolecule.vue'
-import { AnyFilter, FilterMainOption, FilterSecondaryOption } from '@web/types/bulky.types'
-import { Uuid } from '@web/types/utitlity.types'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
+import { AnyFilter, FilterMainOption, FilterSecondaryOption } from '@shared/types/bulky.types'
+import { Uuid } from '@shared/types/utility.types'
 
 // PROPS
 defineProps<{
@@ -77,4 +77,3 @@ const buttonHooks = useListTransition({
 	--flow-space: 0.5em;
 }
 </style>
-@web/types/utility.types

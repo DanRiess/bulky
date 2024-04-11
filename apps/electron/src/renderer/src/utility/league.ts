@@ -2,7 +2,7 @@
  * This component provides static functions to generate / validate typed Leagues
  */
 
-import { LEAGUE, League } from '@web/types/poe.types'
+import { LEAGUE, League } from '@shared/types/poe.types'
 
 function generateLeagueFromDto(league: string): League {
 	if (league.match(/affliction/i)) {

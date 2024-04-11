@@ -16,10 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import { AnyFilter, FilterMainOption, FilterSecondaryOption } from '@web/types/bulky.types'
-import { Uuid } from '@web/types/utitlity.types'
+import { AnyFilter, FilterMainOption, FilterSecondaryOption } from '@shared/types/bulky.types'
 import FilterAttributesGlobalMolecule from '../molecules/FilterAttributesGlobalMolecule.vue'
 import FilterAttributesLocalMolecule from '../molecules/FilterAttributesLocalMolecule.vue'
+import { Uuid } from '@shared/types/utility.types'
 
 // PROPS
 defineProps<{
@@ -63,4 +63,3 @@ const emit = defineEmits<{
 	--flow-space: 0.5em;
 }
 </style>
-@web/types/utility.types

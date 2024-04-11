@@ -14,9 +14,9 @@
 <script setup lang="ts">
 import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
-import { ComputedListingDisplayValues } from '@web/types/bulky.types'
 import FallbackListingItemMolecule from '../molecules/fallbacks/FallbackListingItemMolecule.vue'
 import ListingMolecule from '../molecules/ListingMolecule.vue'
+import { ComputedListingDisplayValues } from '@shared/types/bulky.types'
 
 //PROPS
 defineProps<{

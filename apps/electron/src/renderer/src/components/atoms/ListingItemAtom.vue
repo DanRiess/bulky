@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComputedItemDisplayValues } from '@web/types/bulky.types'
+import { ComputedItemDisplayValues } from '@shared/types/bulky.types'
 
 defineProps<{
 	fullBuyoutWatcher: boolean

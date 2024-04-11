@@ -1,4 +1,4 @@
-import { LEAGUE } from '@web/types/poe.types'
+import { LEAGUE } from '@shared/types/poe.types'
 import { cloneDeep } from 'lodash'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { BulkyConfig } from 'src/shared/types/config.types'

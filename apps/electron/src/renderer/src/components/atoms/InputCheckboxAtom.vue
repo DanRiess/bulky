@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { Uuid } from '@web/types/utility.types'
+import { Uuid } from '@shared/types/utility.types'
 import SvgIconAtom from './SvgIconAtom.vue'
 
 const model = defineModel<boolean>({ required: true })

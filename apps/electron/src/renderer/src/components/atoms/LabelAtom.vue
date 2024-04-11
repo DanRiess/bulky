@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { Uuid } from '@web/types/utitlity.types'
+import { Uuid } from '@shared/types/utility.types'
 
 defineProps<{
 	id: Uuid | string
@@ -15,6 +15,6 @@ defineProps<{
 <style scoped>
 .a-label {
 	cursor: pointer;
+	word-break: break-word;
 }
 </style>
-@web/types/utility.types

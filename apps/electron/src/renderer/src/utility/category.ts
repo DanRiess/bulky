@@ -2,7 +2,7 @@
  * This component provides static functions to generate / validate branded categories.
  */
 
-import { CATEGORY, Category } from '@web/types/bulky.types'
+import { CATEGORY, Category } from '@shared/types/bulky.types'
 
 function generateCategoryFromDto(category: string): Category {
 	if (category.match(/compass/i)) {

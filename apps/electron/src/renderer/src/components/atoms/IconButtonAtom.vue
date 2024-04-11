@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
+import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 import { computed } from 'vue'
-import { ButtonBackgroundColorScheme } from '@web/types/utitlity.types'
 
 export type IconButtonProps = {
 	fileName: string
@@ -79,4 +79,3 @@ const gridColumnWidth = computed(() => {
 	}
 }
 </style>
-@web/types/utility.types

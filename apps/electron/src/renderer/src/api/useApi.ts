@@ -3,6 +3,7 @@ import { ApiStatus, BulkyRequest, NormalizedApiStatus, ProgressStatus } from './
 import { API_STATUS } from './api.const'
 import { AxiosError, AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
+import { sleepTimer } from '@web/utility/sleep'
 
 /**
  * Create an object of computed statuses
@@ -71,7 +72,7 @@ export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any
 	/**
 	 * initialise the api request
 	 */
-	const exec = async (...args: Parameters<TFn>) => {
+	async function exec(...args: Parameters<TFn>) {
 		try {
 			// transform the config. this only works if config is the first argument
 			const [config, ..._]: [config?: AxiosRequestConfig, ...rest: any[]] = args
@@ -84,6 +85,11 @@ export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any
 
 			// start api request
 			status.value = 'PENDING'
+
+			// mock a delay
+			// DELETE LATER
+			await sleepTimer(1500)
+
 			const response = await fn(...args)
 
 			// check for response adapter and modify if necessary
@@ -107,6 +113,15 @@ export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any
 		}
 	}
 
+	/** reset this request */
+	function reset() {
+		data.value = undefined
+		error.value = undefined
+		status.value = 'IDLE'
+		progressStatus.value.current = 0
+		progressStatus.value.total = 0
+	}
+
 	return {
 		name: apiName,
 		uuid,
@@ -115,6 +130,7 @@ export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any
 		error,
 		progressStatus,
 		exec,
+		reset,
 		...createNormalisedApiStatuses(status),
 	}
 }

@@ -2,14 +2,14 @@
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { Ref, ref } from 'vue'
-import { Uuid, getKeys } from '@web/types/utility.types'
+import { Uuid, getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BULKY_LEAGUES } from '@web/utility/league'
 import { Essence, EssenceListing, EssenceListingItems, EssenceListings } from './essence.types'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
-import { GenericListingDto } from '@web/types/dto.types'
+import { GenericListingDto } from '@shared/types/dto.types'
 import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE_IDX_TO_NAME } from './essence.const'
 import { conformBinaryListingItems } from '@web/utility/conformers'
 
@@ -77,7 +77,7 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 		// if (listings.value.size !== 0) return
 
 		const request = useApi('essencePayload', getListing)
-		await request.exec({ url: 'http://localhost:5173/src/mocks/essenceCompressed.json' })
+		await request.exec('src/mocks/essenceCompressed.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')

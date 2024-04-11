@@ -17,7 +17,7 @@
 			"srcR": "https://web.poecdn.com/gen/image/WzIzLDEseyJ0IjoiciIsImMiOjQyODE0Nzk3MzB9XQ/dae1ee0a68/Stash_TabL.png"
 		},
 		{
-			"n": "C",
+			"n": "C super long name that should overflow this container hard and it does so lets try thissssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
 			"i": 1,
 			"id": "e716b2affadb25485c57a3089bbf16a9813ce24a0335ff703e2bf2407d0671e3",
 			"type": "CurrencyStash",

@@ -55,7 +55,7 @@ The byte order will be little endian.
 | ITEM: Quant    | 2          |                      | see above                                       |
 | ITEM: Price    | 2          |                      | see above                                       |
 | ITEMBREAK      | 2          | 66 82 ("BR")         | a fixed sequence between 2 items                |
-| Repeat Item    | 8          |                      | full item plus break sequence                   |
+| Next Item      | 8          |                      | full item plus break sequence                   |
 
 This will result in a constant overhead of 11 bytes + 2 bytes per item.
 

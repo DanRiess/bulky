@@ -1,11 +1,10 @@
 <template>
 	<div class="o-stash-tab-list radial-gradient flow" data-b-override>
 		<header class="title">
-			<h2 class="no-select">Stash Tabs {{ fetchStatus }}</h2>
-			<!-- <SvgIconAtom name="refresh" /> -->
+			<h2 class="no-select">Stash Tabs</h2>
 			<TransitionAtom v-on="hooks">
 				<SvgButtonWithPopupMolecule
-					icon-name="refresh"
+					:svg-props="svgIconProps"
 					background-color="dark"
 					v-if="showRefreshButton"
 					@click="fetchStash">
@@ -13,7 +12,8 @@
 				</SvgButtonWithPopupMolecule>
 			</TransitionAtom>
 		</header>
-		<ul class="stash-list">
+		<div v-if="stashStore.stashTabs.length === 0">No tabs found. Please load your stashes.</div>
+		<ul v-else class="stash-list">
 			<LabelWithCheckboxMolecule v-for="stash in stashStore.stashTabs" label-position="right" v-model="stash.selected">
 				{{ stash.name }}
 			</LabelWithCheckboxMolecule>
@@ -23,40 +23,54 @@
 
 <script setup lang="ts">
 import { useStashStore } from '@web/stores/stashStore'
-import { Ref, onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vue'
-import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
-import { ApiStatus } from '@web/api/api.types'
+import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.vue'
 
 // STORES
 const stashStore = useStashStore()
-const fetchStatus = ref<Ref<ApiStatus>>()
 
 // PROPS
 defineProps<{
 	showRefreshButton: boolean
 }>()
 
-// METHODS
-function fetchStash() {
-	const request = stashStore.fetchStashTabList()
+// EMITS
+const emit = defineEmits<{
+	startTimeout: []
+}>()
 
-	fetchStatus.value = request!.status
+// GETTERS
+const svgIconProps = computed(() => {
+	return {
+		name: 'refresh',
+		rotate: stashStore.stashListRequest.statusPending,
+		useGradient: stashStore.stashListRequest.statusPending,
+	}
+})
+
+// METHODS
+async function fetchStash() {
+	await stashStore.fetchStashTabList()
+
+	if (stashStore.stashListRequest.statusSuccess) {
+		emit('startTimeout')
+	}
 }
 
 // HOOKS
 const hooks = useGenericTransitionHooks({
-	duration: 0.25,
+	duration: 0.35,
 	opacity: 0,
-	translateY: '-100px',
+	scale: 0,
 })
 
 // LIFECYCLE
-onMounted(() => {
-	stashStore.fetchStashTabList()
-})
+// onMounted(() => {
+// 	stashStore.fetchStashTabList()
+// })
 </script>
 
 <style scoped>
@@ -79,5 +93,6 @@ onMounted(() => {
 	gap: 0.5rem;
 	overflow: auto;
 	padding-top: 1px; /* for the translated checkbox */
+	padding-right: 0.5rem; /* padding towards the scrollbar */
 }
 </style>

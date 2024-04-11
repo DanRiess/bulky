@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ButtonBackgroundColorScheme, Uuid } from '@web/types/utitlity.types'
+import { ButtonBackgroundColorScheme, Uuid } from '@shared/types/utility.types'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { computed } from 'vue'
 
@@ -117,4 +117,3 @@ const emit = defineEmits<{
 	opacity: 0.5;
 }
 </style>
-@web/types/utility.types

@@ -1,6 +1,6 @@
 import { App } from 'electron'
 import { readFile, writeFile } from 'fs'
-import { BulkyConfig } from 'src/shared/types/config.types'
+import { BulkyConfig } from '@shared/types/config.types'
 
 export function writeConfig(app: App, config: BulkyConfig) {
 	console.log(app.getPath('userData'))
@@ -30,7 +30,7 @@ export async function readConfig(app: App) {
 				const json = JSON.parse(data) as BulkyConfig
 				resolve(json)
 			} catch (e) {
-				reject('not valid json')
+				reject('invalid json')
 			}
 		})
 	})

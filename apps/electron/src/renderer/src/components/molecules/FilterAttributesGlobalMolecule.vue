@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
+import { AnyFilter } from '@shared/types/bulky.types'
 import LabelWithCheckboxMolecule from './LabelWithCheckboxMolecule.vue'
 import LabelWithRangeMolecule from './LabelWithRangeMolecule.vue'
-import { AnyFilter } from '@web/types/bulky.types'
 
 defineProps<{
 	filter: AnyFilter

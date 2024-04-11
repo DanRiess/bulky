@@ -1,4 +1,4 @@
-import { typedFromEntries } from '@web/types/utility.types'
+import { typedFromEntries } from '@shared/types/utility.types'
 
 /** all sextant modifiers. used for types and function parameters */
 export const SEXTANT_MODIFIER = {

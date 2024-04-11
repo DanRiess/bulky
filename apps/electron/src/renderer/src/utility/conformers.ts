@@ -1,4 +1,4 @@
-import { AnyListingItems, ItemTier, ItemType, ListingItems } from '@web/types/bulky.types'
+import { AnyListingItems, ItemTier, ItemType, ListingItems } from '@shared/types/bulky.types'
 import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
 
 /**
