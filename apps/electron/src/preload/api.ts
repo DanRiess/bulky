@@ -2,7 +2,7 @@ import { ipcRenderer } from 'electron'
 import { ShowAttachmentPanelDto, ToggleOverlayComponentDto } from '../shared/types/inputDto'
 import { BulkyConfig } from '@shared/types/config.types'
 import { StashTab } from '@shared/types/stash.types'
-import { OauthTokenResponse } from '@shared/types/auth.types'
+import { OauthErrorResponse, OauthTokenResponse } from '@shared/types/auth.types'
 
 export const api = {
 	// example for bidirectional communication
@@ -48,5 +48,8 @@ export const api = {
 
 	readStashTabs: (): Promise<StashTab[]> => ipcRenderer.invoke('read-stash-tabs'),
 
-	getOauthResponse: (): Promise<OauthTokenResponse> => ipcRenderer.invoke('get-oauth-request'),
+	generateOauthTokens: (): Promise<OauthTokenResponse | OauthErrorResponse> => ipcRenderer.invoke('generate-Oauth-Tokens'),
+
+	redeemRefreshToken: (refreshToken: string): Promise<OauthTokenResponse | OauthErrorResponse> =>
+		ipcRenderer.invoke('redeem-refresh-token', refreshToken),
 }

@@ -1,7 +1,7 @@
 import { ObjectValues, Uuid } from './utility.types'
 
 // better in another file?
-const ACCOUNT_SCOPE = {
+export const ACCOUNT_SCOPE = {
 	'account:profile': 'account:profile',
 	'account:leagues': 'account:leagues',
 	'account:stashes': 'account:stashes',
@@ -17,18 +17,28 @@ const ACCOUNT_SCOPE = {
 
 export type AccountScope = ObjectValues<typeof ACCOUNT_SCOPE>
 
-export type OauthRedirectSuccess = {
+/** Query parameters from successful authorization code request */
+export type OauthAuthorizationCodeResponse = {
 	state: string
 	code: string
 }
 
+/** The returned response after a successful token exchange request */
 export type OauthTokenResponse = {
-	accessToken: string
-	refreshToken: string
-	expires: number
-	scope: AccountScope[]
+	access_token: string
+	refresh_token: string
+	expires_in: number
+	scope: string
 	username: string
 	sub: Uuid
+}
+
+/** The transformed token response that will be stored locally */
+export type LocalOauthTokenStorageStructure = {
+	accessToken: string
+	exp: number
+	username: string
+	scope: AccountScope[]
 }
 
 export type OauthErrorCode =
@@ -61,7 +71,12 @@ export class OauthError extends Error {
 	}
 }
 
-export type OauthCustomErrorCode = 'request_in_progess' | 'port_unavailable' | 'state_mismatch' | 'unknown'
+export type OauthCustomErrorCode =
+	| 'request_in_progess'
+	| 'port_unavailable'
+	| 'state_mismatch'
+	| 'code_verifier_undefined'
+	| 'unknown'
 
 export type OauthCustomErrorParameters = {
 	error: OauthCustomErrorCode

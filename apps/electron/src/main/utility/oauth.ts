@@ -1,11 +1,12 @@
 import {
 	AccountScope,
+	OauthAuthorizationCodeResponse,
 	OauthCustomError,
 	OauthCustomErrorParameters,
 	OauthError,
 	OauthErrorResponse,
 	OauthRedirectErrorQueryParameters,
-	OauthRedirectSuccess,
+	OauthTokenResponse,
 } from '@shared/types/auth.types'
 import express, { Express } from 'express'
 import { Server } from 'http'
@@ -27,10 +28,13 @@ interface ResponseError extends Error {
 let serverRunning: boolean = false
 let codeVerifier: string | undefined = undefined
 const authorizationState = v4()
-const authorizationCodeBaseUrl = 'https://pathofexile.com/oauth/authorize'
-const tokenExchangeUrl = 'https://pathofexile.com/oauth/token'
+const authorizationCodeBaseUrl = import.meta.env.VITE_POE_BASE_AUTH_URL
+const tokenExchangeUrl = import.meta.env.VITE_POE_BASE_TOKEN_URL
 
-export async function getOauthResponse() {
+/**
+ * Flow control function. Controls the authorization code request as well as the token exchange request.
+ */
+export async function generateTokenPair() {
 	const authCodeResponse = await getAuthorizationCode()
 
 	if ('error' in authCodeResponse) {
@@ -38,74 +42,43 @@ export async function getOauthResponse() {
 		return authCodeResponse
 	}
 
-	console.log({ authCodeResponse })
-
-	await exchangeCodeForTokens(authCodeResponse)
+	return await exchangeCodeForTokens(authCodeResponse)
 }
 
-export async function exchangeCodeForTokens(authCodeResponse: OauthRedirectSuccess) {
-	// check if the state is identical
-	if (authCodeResponse.state !== authorizationState) {
-		console.log({ received: authCodeResponse.state, authorizationState })
-		return new OauthCustomError({
-			error: 'state_mismatch',
-			error_description: 'The received state is not identical to the one generated.',
-		})
-	}
-
-	if (!codeVerifier) return
-
-	// get the data for the request
-	const scopes: AccountScope[] = ['account:profile', 'account:stashes']
-	// const data = {
-	// 	client_id: import.meta.env.VITE_CLIENT_ID,
-	// 	client_secret: '',
-	// 	grant_type: 'authorization_code',
-	// 	code: authCodeResponse.code,
-	// 	redirect_uri: import.meta.env.VITE_BASE_REDIRECT_URL,
-	// 	scope: scopes.join(' '),
-	// 	code_verifier: codeVerifier,
-	// }
-
-	// // turn it into x-www-form-urlencoded format
-	// const formBodyArray: string[] = []
-	// for (const property in data) {
-	// 	const encodedKey = encodeURIComponent(property)
-	// 	const encodedValue = encodeURIComponent(data[property])
-	// 	formBodyArray.push(`${encodedKey}=${encodedValue}`)
-	// }
-	// const formBody = formBodyArray.join('&')
-
-	// console.log(formBody)
-	// console.log(data.code, data.code_verifier)
-
-	const data = new URLSearchParams({
+/**
+ * Redeem a refresh token to generate a new token pair.
+ */
+export async function redeemRefreshToken(refreshToken: string) {
+	// compute the config for the request
+	const payload = new URLSearchParams({
 		client_id: import.meta.env.VITE_CLIENT_ID,
-		// client_secret: '',
-		grant_type: 'authorization_code',
-		code: authCodeResponse.code,
-		redirect_uri: import.meta.env.VITE_BASE_REDIRECT_URL,
-		scope: 'account:profile',
-		code_verifier: codeVerifier,
+		grant_type: 'refresh_token',
+		refresh_token: refreshToken,
 	})
 
-	console.log({ code: authCodeResponse.code, verifier: codeVerifier })
+	// compute the config for the request
+	const config = {
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'User-Agent': import.meta.env.VITE_USER_AGENT,
+		},
+	}
 
-	// try {
-	// 	const response = await axios.post(tokenExchangeUrl, data, {
-	// 		headers: {
-	// 			'Content-Type': 'application/x-www-form-urlencoded',
-	// 			'User-Agent': 'Oauth bulky/0.0.1 (contact: riess.dan@gmail.com) StrictMode',
-	// 		},
-	// 	})
-
-	// 	return response
-	// } catch (e) {
-	// 	console.log(e)
-	// 	return e
-	// }
+	// execute the token exchange request
+	try {
+		const response = await axios.post<OauthTokenResponse>(tokenExchangeUrl, payload, config)
+		return response.data
+	} catch (e) {
+		if (e instanceof OauthError) {
+			return generateResponseFromError(e)
+		}
+		return generateResponseFromError(new OauthCustomError({ error: 'unknown', error_description: 'Unknown error' }))
+	}
 }
 
+/**
+ * Implement the steps necessary for the authorization code request.
+ */
 async function getAuthorizationCode() {
 	console.log('starting oauth workflow')
 
@@ -119,15 +92,13 @@ async function getAuthorizationCode() {
 		codeChallenge: generateCodeChallenge(),
 	}
 
-	console.log({ verifier: codeVerifier, challenge: params.codeChallenge })
-
 	// compute the authorization url
 	const authorizationCodeUrl = `${authorizationCodeBaseUrl}?client_id=${params.clientId}&response_type=code&scope=${params.scope}&state=${params.state}&redirect_uri=${params.redirectUrl}&code_challenge=${params.codeChallenge}&code_challenge_method=S256`
 
 	// Server running means the login flow was not completed. The external oauth window was maybe closed.
 	// Since we have no control over it and thus don't know, open it again.
 	// We do know that the previous promise still hasn't settled, otherwise the port would be open again. Return an error here.
-	// When the login process is eventually completed, it will trigger the previous promise actions.
+	// When the login process is eventually completed, it will trigger the initial promise and the flow will continue there.
 	if (serverRunning) {
 		console.log('server is already up and running')
 		openExternalBrowserWindow(authorizationCodeUrl)
@@ -136,6 +107,7 @@ async function getAuthorizationCode() {
 		)
 	}
 
+	// try to start the server and, if successful, open an external browser window for the login flow
 	try {
 		console.log('start server')
 		const { app, server } = await startOauthRedirectServer()
@@ -188,6 +160,8 @@ export function startOauthRedirectServer() {
 					reject(new OauthCustomError(errorParams))
 				}
 			}
+
+			reject(new OauthCustomError({ error: 'unknown', error_description: 'Unknown error during temp server setup' }))
 		})
 	})
 }
@@ -199,7 +173,7 @@ export function startOauthRedirectServer() {
  * Either way, when the route is being invoked, close the server connection.
  */
 function registerOauthCallbackRoute(app: Express, server: Server) {
-	return new Promise((resolve: (res: OauthRedirectSuccess) => void, reject) => {
+	return new Promise((resolve: (res: OauthAuthorizationCodeResponse) => void, reject) => {
 		// Once this path gets triggered, extract the code, send it to the renderer and close the server.
 		app.get('/oauth2redirect/poe', (req, res) => {
 			// Close the server and reset state variables.
@@ -209,7 +183,7 @@ function registerOauthCallbackRoute(app: Express, server: Server) {
 			// If the response has the necessary query parameters, continue the flow. Else, cancel and reject.
 			if ('code' in req.query && 'state' in req.query) {
 				res.sendFile(redirectSuccessUrl)
-				const successQuery = req.query as OauthRedirectSuccess
+				const successQuery = req.query as OauthAuthorizationCodeResponse
 				resolve(successQuery)
 			} else {
 				res.sendFile(redirectErrorUrl)
@@ -221,7 +195,62 @@ function registerOauthCallbackRoute(app: Express, server: Server) {
 }
 
 /**
- * Takes an error that has been thrown at any point in the oauth flow and converts it to an object.
+ * Consume a successful authorization code response and exchange it for a token pair.
+ */
+export async function exchangeCodeForTokens(authCodeResponse: OauthAuthorizationCodeResponse) {
+	// check if the state is identical
+	if (authCodeResponse.state !== authorizationState) {
+		console.log({ received: authCodeResponse.state, authorizationState })
+		return generateResponseFromError(
+			new OauthCustomError({
+				error: 'state_mismatch',
+				error_description: 'The received state is not identical to the one generated.',
+			})
+		)
+	}
+
+	// check if we have a code verifier
+	if (!codeVerifier) {
+		return generateResponseFromError(
+			new OauthCustomError({
+				error: 'code_verifier_undefined',
+				error_description: 'The code verifier is undefined.',
+			})
+		)
+	}
+
+	// compute the payload for the request
+	const scopes: AccountScope[] = ['account:profile', 'account:stashes']
+	const payload = new URLSearchParams({
+		client_id: import.meta.env.VITE_CLIENT_ID,
+		grant_type: 'authorization_code',
+		code: authCodeResponse.code,
+		redirect_uri: import.meta.env.VITE_BASE_REDIRECT_URL,
+		scope: scopes.join(' '),
+		code_verifier: codeVerifier,
+	})
+
+	// compute the config for the request
+	const config = {
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'User-Agent': import.meta.env.VITE_USER_AGENT,
+		},
+	}
+
+	// execute the token exchange request
+	try {
+		const response = await axios.post<OauthTokenResponse>(tokenExchangeUrl, payload, config)
+
+		return response.data
+	} catch (e) {
+		console.log(e)
+		return generateResponseFromError(new OauthCustomError({ error: 'unknown', error_description: 'Unknown error' }))
+	}
+}
+
+/**
+ * Consume an error that has been thrown at any point in the oauth flow and transform it to an object.
  * Errors lose their value when sent back to the renderer otherwise.
  */
 function generateResponseFromError(e: OauthCustomError | OauthError) {
@@ -233,17 +262,22 @@ function generateResponseFromError(e: OauthCustomError | OauthError) {
 	return errorResponse
 }
 
-/** Hash the output of the codeVerifier variable and returns it. */
+/** Consume a base64 encoded string and transform it into a url-safe format. */
+function base64urlEncode(str: string) {
+	return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+}
+
+/** Hash the output of the codeVerifier variable and transform it into a base 64 url-encoded string. */
 function generateCodeChallenge() {
 	if (codeVerifier === undefined) {
 		codeVerifier = generateCodeVerifier()
 	}
 
-	return createHash('sha256').update(codeVerifier).digest('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+	return base64urlEncode(createHash('sha256').update(codeVerifier).digest('base64'))
 }
 
-/** Generate a random 32 byte sequence and return as base 64 string */
+/** Generate a random 32 byte sequence and transform it into a base 64 url-encoded string. */
 function generateCodeVerifier() {
 	const buffer = randomBytes(32)
-	return buffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+	return base64urlEncode(buffer.toString('base64'))
 }

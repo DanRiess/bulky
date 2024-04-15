@@ -1,5 +1,6 @@
 <template>
-	<button @click="getOauthTokens">Start server</button>
+	<button @click="authStore.generateOauthToken">Start server</button>
+	<button @click="authStore.redeemRefreshToken">Redeem Refresh Token</button>
 </template>
 
 <script setup lang="ts">
@@ -7,13 +8,6 @@ import { useAuthStore } from '@web/stores/authStore'
 
 // STORES
 const authStore = useAuthStore()
-
-// STATE
-
-// METHODS
-function getOauthTokens() {
-	authStore.getOauthToken()
-}
 </script>
 
 <style scoped></style>
