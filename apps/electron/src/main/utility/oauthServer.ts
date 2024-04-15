@@ -81,22 +81,29 @@ export async function exchangeCodeForTokens(authCodeResponse: OauthRedirectSucce
 
 	const data = new URLSearchParams({
 		client_id: import.meta.env.VITE_CLIENT_ID,
-		client_secret: '',
+		// client_secret: '',
 		grant_type: 'authorization_code',
 		code: authCodeResponse.code,
 		redirect_uri: import.meta.env.VITE_BASE_REDIRECT_URL,
-		scope: scopes.join(' '),
+		scope: 'account:profile',
 		code_verifier: codeVerifier,
 	})
 
-	const response = await axios.post(tokenExchangeUrl, data, {
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'User-Agent': 'bulky',
-		},
-	})
+	console.log({ code: authCodeResponse.code, verifier: codeVerifier })
 
-	console.log(response.data, response.status, response.statusText)
+	// try {
+	// 	const response = await axios.post(tokenExchangeUrl, data, {
+	// 		headers: {
+	// 			'Content-Type': 'application/x-www-form-urlencoded',
+	// 			'User-Agent': 'Oauth bulky/0.0.1 (contact: riess.dan@gmail.com) StrictMode',
+	// 		},
+	// 	})
+
+	// 	return response
+	// } catch (e) {
+	// 	console.log(e)
+	// 	return e
+	// }
 }
 
 async function getAuthorizationCode() {
@@ -111,6 +118,8 @@ async function getAuthorizationCode() {
 		state: authorizationState,
 		codeChallenge: generateCodeChallenge(),
 	}
+
+	console.log({ verifier: codeVerifier, challenge: params.codeChallenge })
 
 	// compute the authorization url
 	const authorizationCodeUrl = `${authorizationCodeBaseUrl}?client_id=${params.clientId}&response_type=code&scope=${params.scope}&state=${params.state}&redirect_uri=${params.redirectUrl}&code_challenge=${params.codeChallenge}&code_challenge_method=S256`
