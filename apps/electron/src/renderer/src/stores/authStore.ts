@@ -16,7 +16,12 @@ export const useAuthStore = defineStore('authStore', () => {
 		window.api.startOauthRedirectServer()
 	}
 
-	return { isLoggedIn, logout, startOauthRedirectServer }
+	async function getOauthToken() {
+		const response = await window.api.getOauthResponse()
+		console.log({ response })
+	}
+
+	return { isLoggedIn, logout, startOauthRedirectServer, getOauthToken }
 })
 
 if (import.meta.hot) {

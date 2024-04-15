@@ -112,9 +112,7 @@ export class OverlayWindow {
 
 	/** activate the overlay. if the game is not currently focused, do nothing. */
 	public assertOverlayActive = () => {
-		if (!this.poeWindow.isActive) {
-			return
-		}
+		if (!this.poeWindow.isActive) return
 
 		this.ignoreNextFocus = true
 		this.poeWindow.ignoreNextBlur = true

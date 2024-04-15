@@ -10,7 +10,8 @@
 		"composite": true,
 		"baseUrl": ".",
 		"types": [
-			"electron-vite/node"
+			"electron-vite/node",
+			"vite/client"
 		],
 		"paths": {
 			"@main/*": [

@@ -10,7 +10,39 @@ import { readConfig, writeConfig } from './ipcCallbacks/configActions'
 import { BulkyConfig } from '@shared/types/config.types'
 import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
 import { StashTab } from '@shared/types/stash.types'
-import { startOauthRedirectServer } from './utility/oauthServer'
+import { getOauthResponse } from './utility/oauthServer'
+import { resolve } from 'path'
+import { OverlayController } from 'electron-overlay-window'
+
+// Initialize the app.
+// This setup provides deep-linking and the option to open bulky from the browser during oauth flow.
+let deeplinkingUrl: string | undefined
+
+if (import.meta.env.DEV && process.platform === 'win32') {
+	// Set the path of electron.exe and your app.
+	// These two additional parameters are only available on windows.
+	// Setting this is required to get this working in dev mode.
+	console.log('we correct')
+	app.setAsDefaultProtocolClient('bulky', process.execPath, [resolve(process.argv[1])])
+} else {
+	app.setAsDefaultProtocolClient('bulky')
+}
+
+// console.log(app.getApplicationNameForProtocol('bulky://'))
+// console.log(app.isDefaultProtocolClient('Bulky'))
+// app.setAsDefaultProtocolClient('bulky')
+// console.log(app.isDefaultProtocolClient('bulky'))
+
+// Force single instance application
+const gotTheLock = app.requestSingleInstanceLock()
+
+// A second instance is being requested.
+// Block it from creating an entirely new instance.
+// A method that is being triggered within the main instance is in the settimeout function below,
+// because it needs access to the window controllers.
+if (!gotTheLock) {
+	app.quit()
+}
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -60,7 +92,24 @@ app.whenReady().then(() => {
 			ipcMain.on('write-stash-tabs', (_, stashTabs: StashTab[]) => writeStashTabs(app, stashTabs))
 			ipcMain.handle('read-stash-tabs', () => readStashTabs(app))
 
-			ipcMain.on('start-oauth-redirect-server', () => startOauthRedirectServer(overlayWindow.getWindow().webContents))
+			// ipcMain.on('start-oauth-redirect-server', () => startOauthRedirectServer(overlayWindow.getWindow().webContents))
+			ipcMain.handle('get-oauth-request', () => getOauthResponse())
+
+			// A second instance is being requested.
+			// This happens for example during the oauth flow.
+			app.on('second-instance', (_, argv) => {
+				console.log('app on 2nd instance')
+				if (process.platform === 'win32') {
+					// find the argument that is the custom protocol url and store it
+					deeplinkingUrl = argv.find(arg => arg.startsWith('bulky://'))
+				}
+
+				// focus the game, give the focus controller time to trigger, then focus the overlay
+				OverlayController.focusTarget()
+				setTimeout(() => {
+					overlayWindow.assertOverlayActive()
+				}, 50)
+			})
 		},
 		process.platform === 'linux' ? 1000 : 0
 	)
@@ -73,4 +122,10 @@ app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit()
 	}
+})
+
+// deep linking open url
+app.on('open-url', (e, url) => {
+	e.preventDefault()
+	deeplinkingUrl = url
 })

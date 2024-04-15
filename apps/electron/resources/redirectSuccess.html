@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bulky - Browser Based Auth</title>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			// redirect to bulky after page has loaded
+			window.location.assign('bulky://')
+		})
+	</script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			height: 100vh;
+			background-color: #08041b;
+			color: #f0f0f0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			line-height: 1.5;
+			font-family: Montserrat, Helvetica, sans-serif;
+		}
+		.message-container {
+			width: 400px;
+			border-radius: 1rem;
+			background-color: #241442;
+			padding: 1rem;
+		}
+		.header {
+			font-size: 1.3rem;
+			font-weight: 600;
+			letter-spacing: -.32px;
+			text-align: center;
+			margin-top: 1rem;
+		}
+		.info {
+			margin-top: 1.2rem;
+			font-size: 0.9rem;
+			text-align: center;
+
+			p:not(:last-child) {
+				margin-bottom: 0.75rem;
+			}
+		}
+		.bulky-icon {
+			height: 200px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="message-container" id="message-container">
+		<div class="bulky-icon">
+			<img src="https://picsum.photos/200" alt="">
+		</div>
+		<div class="header">Authorization complete!</div>
+		<div class="info">
+			<p>Redirecting you to the Desktop App. You can close this page at any time.</p>
+			<p>If you are not redirected automatically, just open Path of Exile and press Ctrl + Space to open Bulky.</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bulky - Browser Based Auth</title>
+	<script>
+		const urlParams = new URLSearchParams(window.location.search)
+		const error = urlParams.get('error')
+		const errorDescription = urlParams.get('error_description')
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const errorEl = document.getElementById('error')
+			const errorDescriptionEl = document.getElementById('error-description')
+
+			if (errorEl && error) {
+				errorEl.textContent = error
+			}
+
+			if (errorDescriptionEl && errorDescription) {
+				errorDescriptionEl.textContent = errorDescription 
+			}
+		})
+	</script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			height: 100vh;
+			background-color: #08041b;
+			color: #f0f0f0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			line-height: 1.5;
+			font-family: Montserrat, Helvetica, sans-serif;
+		}
+		.message-container {
+			width: 400px;
+			border-radius: 1rem;
+			background-color: #241442;
+			padding: 1rem;
+		}
+		.header {
+			font-size: 1.3rem;
+			font-weight: 600;
+			letter-spacing: -.32px;
+			text-align: center;
+		}
+		.info {
+			margin-top: 2rem;
+			font-size: 0.9rem;
+			display: grid;
+			grid-template-columns: max-content 1fr;
+			column-gap: 1rem;
+			align-items: center;
+
+			p {
+				display: grid;
+				grid-template-columns: subgrid;
+				grid-column: span 2;
+				align-items: center;
+			}
+
+			p:not(:last-child) {
+				margin-bottom: 0.5rem;
+			}
+		}
+		.bulky-icon {
+			height: 200px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="message-container" id="message-container">
+		<div class="bulky-icon">
+			<img src="https://picsum.photos/200" alt="">
+		</div>
+		<div class="header">Something went wrong during the sign in process. See the errors below for more information.</div>
+		<div class="info">
+			<p>Error Code: <span id="error"></span></p>
+			<p>Error Description: <span id="error-description"></span></p>
+		</div>
+	</div>
+</body>
+</html>

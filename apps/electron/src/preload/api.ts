@@ -2,6 +2,7 @@ import { ipcRenderer } from 'electron'
 import { ShowAttachmentPanelDto, ToggleOverlayComponentDto } from '../shared/types/inputDto'
 import { BulkyConfig } from '@shared/types/config.types'
 import { StashTab } from '@shared/types/stash.types'
+import { OauthTokenResponse } from '@shared/types/auth.types'
 
 export const api = {
 	// example for bidirectional communication
@@ -38,10 +39,14 @@ export const api = {
 
 	startOauthRedirectServer: () => ipcRenderer.send('start-oauth-redirect-server'),
 
+	cancelOauthRequest: () => ipcRenderer.send('cancel-oauth-request'),
+
 	// RENDERER -> MAIN BIDIRECTIONAL
 	typeInChat: (message: string) => ipcRenderer.invoke('type', message),
 
 	readConfig: () => ipcRenderer.invoke('read-config'),
 
 	readStashTabs: (): Promise<StashTab[]> => ipcRenderer.invoke('read-stash-tabs'),
+
+	getOauthResponse: (): Promise<OauthTokenResponse> => ipcRenderer.invoke('get-oauth-request'),
 }
