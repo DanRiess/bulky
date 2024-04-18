@@ -1,9 +1,11 @@
 import { Ref, computed, ref } from 'vue'
-import { ApiStatus, BulkyRequest, NormalizedApiStatus, ProgressStatus } from './api.types'
+import { ApiStatus, BulkyRequest, BulkyRequestData, NormalizedApiStatus, ProgressStatus } from './api.types'
 import { API_STATUS } from './api.const'
-import { AxiosError, AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { sleepTimer } from '@web/utility/sleep'
+import { SerializedError } from '@shared/errors/serializedError'
+import { SerializedErrorObject } from '@shared/types/error.types'
 
 /**
  * Create an object of computed statuses
@@ -32,19 +34,6 @@ function isAxiosResponse(obj: any): obj is AxiosResponse {
 	)
 }
 
-/** conform errors to axios error object */
-function conformError(err: string | Error) {
-	const message = typeof err === 'string' ? err : err.message
-	const name = typeof err === 'string' ? err : err.name
-
-	return {
-		message,
-		name,
-		isAxiosError: false,
-		toJSON: () => ({ err }),
-	}
-}
-
 /** pass this function to each request to update the progress tracker */
 export function onProgressEvent(progressEvent: AxiosProgressEvent, progressStatus: Ref<ProgressStatus>) {
 	if (progressEvent.total) {
@@ -54,14 +43,11 @@ export function onProgressEvent(progressEvent: AxiosProgressEvent, progressStatu
 	progressStatus.value.current = progressEvent.loaded
 }
 
-export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any, any>>>(
-	apiName: string,
-	fn: TFn
-): BulkyRequest<TFn> {
+export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName: string, fn: TFn): BulkyRequest<TFn> {
 	// reactive values to store data and api status
-	const data: BulkyRequest<TFn>['data'] = ref(undefined)
+	const data = ref<BulkyRequestData<TFn>>()
 	const status = ref<ApiStatus>('IDLE')
-	const error = ref<AxiosError | undefined>(undefined)
+	const error = ref<SerializedErrorObject>()
 	const progressStatus = ref<ProgressStatus>({
 		current: 0,
 		total: 0,
@@ -87,28 +73,21 @@ export function useApi<TFn extends (...args: any[]) => Promise<AxiosResponse<any
 			status.value = 'PENDING'
 
 			// mock a delay
-			// DELETE LATER
+			// TODO: DELETE LATER
 			await sleepTimer(1500)
 
 			const response = await fn(...args)
 
 			// check for response adapter and modify if necessary
 			// data.value = typeof responseAdapter === 'function' ? responseAdapter(response.data) : response.data
-			data.value = isAxiosResponse(response) ? response.data : response
+			const responseData = isAxiosResponse(response) ? response.data : response
 
+			if (responseData instanceof SerializedError) throw responseData
+
+			data.value = responseData
 			status.value = 'SUCCESS'
 		} catch (e) {
-			console.log(e)
-
-			if (typeof e === 'string') {
-				error.value = conformError(e)
-			} else if (e instanceof AxiosError) {
-				error.value = e
-			} else if (e instanceof Error) {
-				error.value = conformError(e)
-			} else {
-				error.value = conformError('Undefined Error')
-			}
+			error.value = new SerializedError(e).error
 			status.value = 'ERROR'
 		}
 	}

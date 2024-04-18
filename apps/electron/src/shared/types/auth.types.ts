@@ -1,3 +1,4 @@
+import { OauthErrorCode } from './error.types'
 import { ObjectValues, Uuid } from './utility.types'
 
 // better in another file?
@@ -41,62 +42,9 @@ export type LocalOauthTokenStorageStructure = {
 	scope: AccountScope[]
 }
 
-export type OauthErrorCode =
-	| 'invalid_request'
-	| 'unauthorized_client'
-	| 'access_denied'
-	| 'unsupported_response_type'
-	| 'server_error'
-	| 'temporarily_unavailable'
-
 export type OauthRedirectErrorQueryParameters = {
 	error: OauthErrorCode
 	state: string
 	error_description?: string
 	error_uri?: string
-}
-
-export class OauthError extends Error {
-	error: OauthErrorCode
-	state: string
-	description?: string
-	uri?: string
-
-	constructor(params: OauthRedirectErrorQueryParameters) {
-		super()
-		this.error = params.error
-		this.state = params.state
-		this.description = params.error_description
-		this.uri = params.error_uri
-	}
-}
-
-export type OauthCustomErrorCode =
-	| 'request_in_progess'
-	| 'port_unavailable'
-	| 'state_mismatch'
-	| 'code_verifier_undefined'
-	| 'unknown'
-
-export type OauthCustomErrorParameters = {
-	error: OauthCustomErrorCode
-	error_description: string
-}
-
-export class OauthCustomError extends Error {
-	error: OauthCustomErrorCode
-	description?: string
-	state: undefined
-
-	constructor(params: OauthCustomErrorParameters) {
-		super()
-		this.error = params.error
-		this.description = params.error_description
-	}
-}
-
-export type OauthErrorResponse = {
-	error: OauthErrorCode | OauthCustomErrorCode
-	description?: string
-	state?: string
 }

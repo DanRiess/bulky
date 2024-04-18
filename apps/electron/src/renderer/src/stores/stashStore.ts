@@ -3,19 +3,19 @@
  * a list of that stash's unmodified items.
  */
 
-import { getStashTabListRequest } from '@web/api/poeApi'
 import { useApi } from '@web/api/useApi'
 import { StashTabListItemDto } from '@shared/types/dto.types'
 import { StashTab } from '@shared/types/stash.types'
 import { BULKY_STASH_TABS } from '@web/utility/stastTab'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
+import { poeApi } from '@web/api/poeApi'
 
 export const useStashStore = defineStore('stashStore', () => {
 	const stashTabs = ref<StashTab[]>([])
 	const lastListFetch = ref(0)
 	const fetchTimeout = ref(5000)
-	const stashListRequest = useApi('stashTabList', getStashTabListRequest)
+	const stashListRequest = useApi('stashTabList', poeApi.getStashTabList)
 
 	/**
 	 * Initialize the stashes from the last session / save. Should only be called once on app startup.

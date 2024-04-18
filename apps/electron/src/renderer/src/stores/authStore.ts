@@ -1,58 +1,68 @@
 import { ACCOUNT_SCOPE, LocalOauthTokenStorageStructure, OauthTokenResponse } from '@shared/types/auth.types'
-import { ApiStatus } from '@web/api/api.types'
+import { useApi } from '@web/api/useApi'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useAuthStore = defineStore('authStore', () => {
 	const isLoggedIn = ref(false)
-	const requestStatus = ref<ApiStatus>('IDLE')
 
 	function initialize() {}
 
 	async function getAccessToken() {
 		const tokenStructure = getTokenFromLocalStorage()
 		if (!tokenStructure) {
-			isLoggedIn.value = false
-			// TODO: clear profile maybe
+			logout()
 			return
 		}
 
-		try {
-			// token has expired
-			if (Date.now() > tokenStructure.exp) {
+		// token has expired. attempt renewal.
+		if (Date.now() > tokenStructure.exp) {
+			window.localStorage.removeItem('tokenStructure')
+			await refreshTokenRequest().execute()
+
+			return await getAccessToken()
+		}
+
+		return tokenStructure
+	}
+
+	function tokenRequest() {
+		const request = useApi('test', window.api.generateOauthTokens)
+
+		async function execute() {
+			await request.exec()
+
+			if (request.error.value || !request.data.value) {
+				return false
 			}
-		} catch (e) {
-			// do smth
+
+			handleSuccessfulTokenResponse(request.data.value)
+			return true
+		}
+
+		return {
+			request,
+			execute,
 		}
 	}
 
-	async function generateOauthToken() {
-		requestStatus.value = 'PENDING'
-		const response = await window.api.generateOauthTokens()
+	function refreshTokenRequest() {
+		const request = useApi('refreshTokenRequest', window.api.redeemRefreshToken)
 
-		if ('error' in response) {
-			requestStatus.value = 'ERROR'
-			//throw error here instead i think
-			return
+		async function execute() {
+			// TODO: download refresh token from server here
+			const token = '123'
+			await request.exec(token)
+
+			if (request.error.value || !request.data.value) {
+				return false
+			}
+
+			handleSuccessfulTokenResponse(request.data.value)
+			return true
 		}
 
-		requestStatus.value = 'SUCCESS'
-		handleSuccessfulTokenResponse(response)
-	}
-
-	async function redeemRefreshToken() {
-		requestStatus.value = 'PENDING'
-		// TODO: download refresh token from server here
-		const token = '123'
-		const response = await window.api.redeemRefreshToken(token)
-
-		if ('error' in response) {
-			requestStatus.value = 'ERROR'
-			return
-		}
-
-		requestStatus.value = 'SUCCESS'
-		handleSuccessfulTokenResponse(response)
+		return { request, execute }
 	}
 
 	async function handleSuccessfulTokenResponse(response: OauthTokenResponse) {
@@ -91,9 +101,10 @@ export const useAuthStore = defineStore('authStore', () => {
 		isLoggedIn.value = false
 		window.localStorage.removeItem('tokenStructure')
 		// TODO: remove refresh token from server
+		// TODO: clear profile maybe?
 	}
 
-	return { isLoggedIn, logout, generateOauthToken, redeemRefreshToken }
+	return { isLoggedIn, logout, tokenRequest, getAccessToken, initialize }
 })
 
 if (import.meta.hot) {

@@ -36,10 +36,6 @@ window.api.onShowAttachmentPanel(value => {
 	}, value.time)
 })
 
-window.api.onSendOauthAuthorizationCode(value => {
-	console.log(value)
-})
-
 // METHODS
 onClickOutside(target, () => {
 	active.value = false

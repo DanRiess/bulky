@@ -1,17 +1,42 @@
 import { ObjectValues, RequireSome, Uuid } from '@shared/types/utility.types'
 import { API_STATUS } from './api.const'
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ComputedRef, Ref } from 'vue'
+import { SerializedErrorObject } from '@shared/types/error.types'
+import { SerializedError } from '@shared/errors/serializedError'
 
 export type ApiStatus = ObjectValues<typeof API_STATUS>
 export type NormalizedApiStatus = Record<`status${Capitalize<Lowercase<ApiStatus>>}`, ComputedRef<boolean>>
 
-export type BulkyRequest<TFn extends (...args: any) => Promise<AxiosResponse<unknown, any>> = () => Promise<AxiosResponse>> = {
+/**
+ * This type is needed to determine the type of the 'data' field of a BulkyRequest.
+ *
+ * If the function passed to 'useApi' returns an axios request, we want the 'response.data' field of the response
+ * as 'data' field in the BulkyRequest.
+ *
+ * If the function returns the expected type (fetch requests, electron requests), then we want the 'response' field
+ * as 'data' field in the BulkyRequest.
+ */
+type BulkyReturnType<TFn extends (...args: any) => Promise<unknown>> = Awaited<ReturnType<TFn>> extends AxiosResponse
+	? Awaited<ReturnType<TFn>>['data']
+	: Awaited<ReturnType<TFn>>
+
+/**
+ * This type is necessary because electron requests cannot transfer custom error events. We serialize errors and
+ * return them in the response instead of throwing them. The 'useApi' function checks this and takes care of the
+ * throwing, but the error type has to be removed from the response.
+ */
+export type BulkyRequestData<TFn extends (...args: any) => Promise<unknown>> =
+	| Exclude<BulkyReturnType<TFn>, SerializedError>
+	| undefined
+
+export type BulkyRequest<TFn extends (...args: any) => Promise<unknown> = () => Promise<unknown>> = {
 	name: string
 	uuid: Uuid<BulkyRequest>
 	status: Ref<ApiStatus>
-	data: Ref<Awaited<ReturnType<TFn>>['data'] | undefined>
-	error: Ref<AxiosError | undefined>
+	// data: Ref<Exclude<Awaited<ReturnType<TFn>>, SerializedError> | undefined>
+	data: Ref<BulkyRequestData<TFn>>
+	error: Ref<SerializedErrorObject | undefined>
 	exec: (...args: Parameters<TFn>) => Promise<void>
 	reset: () => void
 	progressStatus: Ref<ProgressStatus>

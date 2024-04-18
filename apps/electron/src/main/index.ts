@@ -13,6 +13,7 @@ import { StashTab } from '@shared/types/stash.types'
 import { resolve } from 'path'
 import { OverlayController } from 'electron-overlay-window'
 import { generateTokenPair, redeemRefreshToken } from './utility/oauth'
+import { SerializedError } from '@shared/errors/serializedError'
 
 // Initialize the app.
 // This setup provides deep-linking and the option to open bulky from the browser during oauth flow.
@@ -92,13 +93,18 @@ app.whenReady().then(() => {
 			ipcMain.on('write-stash-tabs', (_, stashTabs: StashTab[]) => writeStashTabs(app, stashTabs))
 			ipcMain.handle('read-stash-tabs', () => readStashTabs(app))
 
-			ipcMain.handle('generate-oauth-tokens', () => generateTokenPair())
+			ipcMain.handle('generate-oauth-tokens', async () => {
+				try {
+					return await generateTokenPair()
+				} catch (e) {
+					return new SerializedError(e)
+				}
+			})
 			ipcMain.handle('redeem-refresh-token', (_, refreshToken: string) => redeemRefreshToken(refreshToken))
 
 			// A second instance is being requested.
-			// This happens for example during the oauth flow.
+			// This happens for example during the oauth flow when the browser window attempts to redirect to the app.
 			app.on('second-instance', (_, argv) => {
-				console.log('app on 2nd instance')
 				if (process.platform === 'win32') {
 					// find the argument that is the custom protocol url and store it
 					deeplinkingUrl = argv.find(arg => arg.startsWith('bulky://'))

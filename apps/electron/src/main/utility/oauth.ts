@@ -1,10 +1,6 @@
 import {
 	AccountScope,
 	OauthAuthorizationCodeResponse,
-	OauthCustomError,
-	OauthCustomErrorParameters,
-	OauthError,
-	OauthErrorResponse,
 	OauthRedirectErrorQueryParameters,
 	OauthTokenResponse,
 } from '@shared/types/auth.types'
@@ -16,10 +12,9 @@ import { v4 } from 'uuid'
 import axios from 'axios'
 import redirectErrorUrl from '../../../resources/redirectError.html?asset'
 import redirectSuccessUrl from '../../../resources/redirectSuccess.html?asset'
-
-interface ResponseError extends Error {
-	code?: string
-}
+import { OauthError } from '@shared/errors/oauthError'
+import { RequestError } from '@shared/errors/requestError'
+import { BulkyError } from '@shared/errors/bulkyError'
 
 /**
  * The server should not be constantly listening, only when an oauth request is fired.
@@ -35,14 +30,12 @@ const tokenExchangeUrl = import.meta.env.VITE_POE_BASE_TOKEN_URL
  * Flow control function. Controls the authorization code request as well as the token exchange request.
  */
 export async function generateTokenPair() {
-	const authCodeResponse = await getAuthorizationCode()
-
-	if ('error' in authCodeResponse) {
-		console.log('error in auth code response')
-		return authCodeResponse
+	try {
+		const authCodeResponse = await getAuthorizationCode()
+		return await exchangeCodeForTokens(authCodeResponse)
+	} catch (e) {
+		throw e
 	}
-
-	return await exchangeCodeForTokens(authCodeResponse)
 }
 
 /**
@@ -69,10 +62,7 @@ export async function redeemRefreshToken(refreshToken: string) {
 		const response = await axios.post<OauthTokenResponse>(tokenExchangeUrl, payload, config)
 		return response.data
 	} catch (e) {
-		if (e instanceof OauthError) {
-			return generateResponseFromError(e)
-		}
-		return generateResponseFromError(new OauthCustomError({ error: 'unknown', error_description: 'Unknown error' }))
+		throw e
 	}
 }
 
@@ -102,9 +92,11 @@ async function getAuthorizationCode() {
 	if (serverRunning) {
 		console.log('server is already up and running')
 		openExternalBrowserWindow(authorizationCodeUrl)
-		return generateResponseFromError(
-			new OauthCustomError({ error: 'request_in_progess', error_description: 'Request in progress' })
-		)
+		throw new RequestError({
+			code: 'duplicate_request',
+			message: 'This request is already in progress',
+			status: 400,
+		})
 	}
 
 	// try to start the server and, if successful, open an external browser window for the login flow
@@ -116,11 +108,8 @@ async function getAuthorizationCode() {
 		openExternalBrowserWindow(authorizationCodeUrl)
 		const response = await registerOauthCallbackRoute(app, server)
 		return response
-	} catch (e: unknown) {
-		if (e instanceof OauthError || e instanceof OauthCustomError) {
-			return generateResponseFromError(e)
-		}
-		return generateResponseFromError(new OauthCustomError({ error: 'unknown', error_description: 'Unknown error' }))
+	} catch (e) {
+		throw e
 	}
 }
 
@@ -144,7 +133,7 @@ export function startOauthRedirectServer() {
 		})
 
 		// retry twice in case of error, afterwards reject the promise
-		server.on('error', (error: ResponseError) => {
+		server.on('error', (error: RequestError) => {
 			if (error.code === 'EADDRINUSE') {
 				retryCount--
 
@@ -153,15 +142,21 @@ export function startOauthRedirectServer() {
 						server.listen(port)
 					}, duration)
 				} else {
-					const errorParams: OauthCustomErrorParameters = {
-						error: 'port_unavailable',
-						error_description: 'Redirect server could not be started. Port unavailable.',
-					}
-					reject(new OauthCustomError(errorParams))
+					reject(
+						new RequestError({
+							code: 'port_unavailable',
+							message: 'Redirect server could not be started. Port unavailable.',
+							status: 400,
+						})
+					)
 				}
 			}
 
-			reject(new OauthCustomError({ error: 'unknown', error_description: 'Unknown error during temp server setup' }))
+			reject(
+				new BulkyError({
+					message: 'Unknown error during temp server setup',
+				})
+			)
 		})
 	})
 }
@@ -188,7 +183,13 @@ function registerOauthCallbackRoute(app: Express, server: Server) {
 			} else {
 				res.sendFile(redirectErrorUrl)
 				const errorQuery = req.query as OauthRedirectErrorQueryParameters
-				reject(new OauthError(errorQuery))
+				reject(
+					new OauthError({
+						code: errorQuery.error,
+						state: errorQuery.state,
+						message: errorQuery.error_description ?? errorQuery.error,
+					})
+				)
 			}
 		})
 	})
@@ -201,22 +202,20 @@ export async function exchangeCodeForTokens(authCodeResponse: OauthAuthorization
 	// check if the state is identical
 	if (authCodeResponse.state !== authorizationState) {
 		console.log({ received: authCodeResponse.state, authorizationState })
-		return generateResponseFromError(
-			new OauthCustomError({
-				error: 'state_mismatch',
-				error_description: 'The received state is not identical to the one generated.',
-			})
-		)
+		throw new OauthError({
+			code: 'state_mismatch',
+			message: 'The received state is not identical to the one generated.',
+			state: authCodeResponse.state,
+		})
 	}
 
 	// check if we have a code verifier
 	if (!codeVerifier) {
-		return generateResponseFromError(
-			new OauthCustomError({
-				error: 'code_verifier_undefined',
-				error_description: 'The code verifier is undefined.',
-			})
-		)
+		throw new OauthError({
+			code: 'code_verifier_undefined',
+			message: 'The code verifier is undefined',
+			state: authCodeResponse.state,
+		})
 	}
 
 	// compute the payload for the request
@@ -244,22 +243,8 @@ export async function exchangeCodeForTokens(authCodeResponse: OauthAuthorization
 
 		return response.data
 	} catch (e) {
-		console.log(e)
-		return generateResponseFromError(new OauthCustomError({ error: 'unknown', error_description: 'Unknown error' }))
+		throw e
 	}
-}
-
-/**
- * Consume an error that has been thrown at any point in the oauth flow and transform it to an object.
- * Errors lose their value when sent back to the renderer otherwise.
- */
-function generateResponseFromError(e: OauthCustomError | OauthError) {
-	const errorResponse: OauthErrorResponse = {
-		error: e.error,
-		description: e.description,
-		state: e.state,
-	}
-	return errorResponse
 }
 
 /** Consume a base64 encoded string and transform it into a url-safe format. */
