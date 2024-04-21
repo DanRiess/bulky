@@ -41,6 +41,7 @@ async function invoke<T extends (...args: any) => any = (...args: any) => any>(
 			return response
 		}
 	} catch (error: unknown) {
+		console.log(error)
 		console.warn('[IpcRendererService.invoke] threw an error or promise was rejected', { error })
 		return new Promise((_, reject) => reject(error))
 	}

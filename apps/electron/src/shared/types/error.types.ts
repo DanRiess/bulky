@@ -30,6 +30,7 @@ export const OAUTH_ERROR_CODE = {
 	temporarily_unavailable: 'temporarily_unavailable',
 	state_mismatch: 'state_mismatch',
 	code_verifier_undefined: 'code_verifier_undefined',
+	redirect_server_unavailable: 'redirect_server_unavailable',
 } as const
 
 export type OauthErrorCode = ObjectValues<typeof OAUTH_ERROR_CODE>

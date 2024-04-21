@@ -4,7 +4,7 @@ import { BulkyConfig } from '@shared/types/config.types'
 import { StashTab } from '@shared/types/stash.types'
 import { OauthTokenResponse } from '@shared/types/auth.types'
 import ipcRendererWrapper from './ipcRendererWrapper'
-import { generateTokenPair } from '@main/utility/oauth'
+import { computeAuthorizationCodeUrl, generateTokenPair, openAuthorizationCodeUrlManually } from '@main/utility/oauth'
 import { SerializedError } from '@shared/errors/serializedError'
 
 export const api = {
@@ -24,7 +24,7 @@ export const api = {
 	// MAIN -> RENDERER ONE WAY
 	onShowAttachmentPanel: (callback: (value: ShowAttachmentPanelDto) => void) => {
 		ipcRenderer.on('show-attachment-panel', (_event, value: ShowAttachmentPanelDto) => {
-			value.time = import.meta.env.DEV ? 1000 : value.time
+			value.time = import.meta.env.DEV ? 10 : value.time
 			callback(value)
 		})
 	},
@@ -50,9 +50,15 @@ export const api = {
 	readStashTabs: (): Promise<StashTab[]> => ipcRenderer.invoke('read-stash-tabs'),
 
 	generateOauthTokens: async (): Promise<OauthTokenResponse | SerializedError> => {
-		return ipcRendererWrapper.invoke<typeof generateTokenPair>('generate-oauth-tokens')
+		return ipcRendererWrapper.invoke<Awaited<typeof generateTokenPair>>('generate-oauth-tokens')
 	},
 
 	redeemRefreshToken: (refreshToken: string): Promise<OauthTokenResponse | SerializedError> =>
 		ipcRenderer.invoke('redeem-refresh-token', refreshToken),
+
+	openAuthorizationCodeUrl: (): Promise<void | SerializedError> =>
+		ipcRendererWrapper.invoke<typeof openAuthorizationCodeUrlManually>('open-authorization-code-url'),
+
+	getAuthorizationCodeUrl: (): Promise<string | SerializedError> =>
+		ipcRendererWrapper.invoke<typeof computeAuthorizationCodeUrl>('get-authorization-code-url'),
 }

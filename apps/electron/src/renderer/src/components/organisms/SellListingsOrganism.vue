@@ -1,15 +1,32 @@
 <template>
-	<ul class="o-sell-listings flow">
-		<TransitionAtom group v-on="hooks">
-			<FallbackSellListingMolecule v-if="listings.length === 0" />
-		</TransitionAtom>
-	</ul>
+	<div class="o-sell-listings flow radial-gradient" data-b-override>
+		<ul class="">
+			<TransitionAtom group v-on="hooks">
+				<FallbackSellListingMolecule v-if="listings.length === 0" />
+			</TransitionAtom>
+		</ul>
+		<div class="button">
+			<template v-if="authStore.isLoggedIn">
+				<ButtonAtom background-color="dark">Create New Sales Listing</ButtonAtom>
+			</template>
+			<template v-else>
+				<ButtonAtom background-color="dark" @click="initializeSignIn"
+					>Sign in with your PoE account to add a new listing</ButtonAtom
+				>
+			</template>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import FallbackSellListingMolecule from '../molecules/fallbacks/FallbackSellListingMolecule.vue'
+import { useAuthStore } from '@web/stores/authStore'
+import ButtonAtom from '../atoms/ButtonAtom.vue'
+
+// STORES
+const authStore = useAuthStore()
 
 const listings = []
 
@@ -20,4 +37,13 @@ const hooks = useGenericTransitionHooks({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.o-sell-listings {
+	padding: 1rem 0.5rem;
+	border-radius: var(--border-radius-medium);
+	text-align: center;
+	display: grid;
+	gap: 1rem;
+	transform-origin: left;
+}
+</style>

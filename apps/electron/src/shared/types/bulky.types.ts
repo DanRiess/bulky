@@ -36,7 +36,7 @@ export const CATEGORY = {
 
 export type Category = ObjectValues<typeof CATEGORY>
 
-export type MainView = 'BUY' | 'SELL' | 'CONFIG'
+export type MainView = 'BUY' | 'SELL' | 'CONFIG' | 'AUTH'
 
 export type SellView = 'LIST' | 'ADD'
 

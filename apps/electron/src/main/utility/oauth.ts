@@ -67,11 +67,9 @@ export async function redeemRefreshToken(refreshToken: string) {
 }
 
 /**
- * Implement the steps necessary for the authorization code request.
+ * Compute the authorization code url that will be opened in an external browser.
  */
-async function getAuthorizationCode() {
-	console.log('starting oauth workflow')
-
+export function computeAuthorizationCodeUrl() {
 	// calculate the relevant query parameters
 	const scopes: AccountScope[] = ['account:profile', 'account:stashes']
 	const params = {
@@ -83,14 +81,23 @@ async function getAuthorizationCode() {
 	}
 
 	// compute the authorization url
-	const authorizationCodeUrl = `${authorizationCodeBaseUrl}?client_id=${params.clientId}&response_type=code&scope=${params.scope}&state=${params.state}&redirect_uri=${params.redirectUrl}&code_challenge=${params.codeChallenge}&code_challenge_method=S256`
+	return encodeURI(
+		`${authorizationCodeBaseUrl}?client_id=${params.clientId}&response_type=code&scope=${params.scope}&state=${params.state}&redirect_uri=${params.redirectUrl}&code_challenge=${params.codeChallenge}&code_challenge_method=S256`
+	)
+}
+
+/**
+ * Implement the steps necessary for the authorization code request.
+ */
+async function getAuthorizationCode() {
+	// compute the authorization url
+	const authorizationCodeUrl = computeAuthorizationCodeUrl()
 
 	// Server running means the login flow was not completed. The external oauth window was maybe closed.
 	// Since we have no control over it and thus don't know, open it again.
 	// We do know that the previous promise still hasn't settled, otherwise the port would be open again. Return an error here.
 	// When the login process is eventually completed, it will trigger the initial promise and the flow will continue there.
 	if (serverRunning) {
-		console.log('server is already up and running')
 		openExternalBrowserWindow(authorizationCodeUrl)
 		throw new RequestError({
 			code: 'duplicate_request',
@@ -101,7 +108,6 @@ async function getAuthorizationCode() {
 
 	// try to start the server and, if successful, open an external browser window for the login flow
 	try {
-		console.log('start server')
 		const { app, server } = await startOauthRedirectServer()
 		serverRunning = true
 		// open the login page
@@ -150,13 +156,13 @@ export function startOauthRedirectServer() {
 						})
 					)
 				}
+			} else {
+				reject(
+					new BulkyError({
+						message: error.message ?? 'Unknown error during temp server setup',
+					})
+				)
 			}
-
-			reject(
-				new BulkyError({
-					message: 'Unknown error during temp server setup',
-				})
-			)
 		})
 	})
 }
@@ -195,13 +201,25 @@ function registerOauthCallbackRoute(app: Express, server: Server) {
 	})
 }
 
+export function openAuthorizationCodeUrlManually() {
+	if (!serverRunning) {
+		throw new OauthError({
+			code: 'redirect_server_unavailable',
+			message: 'The redirect server is currently not running.',
+			state: authorizationState,
+		})
+	}
+
+	const authorizationCodeUrl = computeAuthorizationCodeUrl()
+	openExternalBrowserWindow(authorizationCodeUrl)
+}
+
 /**
  * Consume a successful authorization code response and exchange it for a token pair.
  */
 export async function exchangeCodeForTokens(authCodeResponse: OauthAuthorizationCodeResponse) {
 	// check if the state is identical
 	if (authCodeResponse.state !== authorizationState) {
-		console.log({ received: authCodeResponse.state, authorizationState })
 		throw new OauthError({
 			code: 'state_mismatch',
 			message: 'The received state is not identical to the one generated.',

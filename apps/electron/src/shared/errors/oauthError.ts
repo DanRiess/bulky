@@ -10,7 +10,7 @@ export class OauthError extends BulkyError {
 	constructor(params: OauthErrorParameters) {
 		super(params)
 
-		this.name = 'OAuthError'
+		this.name = 'OauthError'
 		this.code = params.code
 		this.state = params.state
 		this.errorUri = params.errorUri

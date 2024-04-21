@@ -15,7 +15,6 @@ export const useEssenceFilterStore = defineStore('essenceFilterStore', () => {
 
 	/** create a new filter */
 	function createNewFilter() {
-		console.log('new essence filter')
 		const uuid = BULKY_UUID.generateTypedUuid<EssenceFilter>()
 		const name = `Default_${filters.value.size}`
 		const fullBuyout = false

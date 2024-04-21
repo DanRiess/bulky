@@ -33,11 +33,13 @@ window.api.onShowAttachmentPanel(value => {
 	setTimeout(() => {
 		attachmentPanelActive.value = false
 		router.push({ name: 'Home' })
+		// router.push({ name: 'Auth' })
 	}, value.time)
 })
 
 // METHODS
 onClickOutside(target, () => {
+	console.log('click outside triggered')
 	active.value = false
 	window.api.closeOverlay()
 })

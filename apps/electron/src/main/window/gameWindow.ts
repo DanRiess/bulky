@@ -2,6 +2,7 @@ import { AttachEvent, OverlayController } from 'electron-overlay-window'
 import { EventEmitter } from 'events'
 import { dialog } from 'electron'
 import { OverlayWindow } from './overlayWindow'
+import { focusedWindowInsideGameBounds } from '../utility/focusedWindowCalculations'
 
 export class GameWindow extends EventEmitter {
 	private _isActive = false
@@ -15,6 +16,10 @@ export class GameWindow extends EventEmitter {
 
 	get bounds() {
 		return OverlayController.targetBounds
+	}
+
+	get hasFocus() {
+		return OverlayController.targetHasFocus
 	}
 
 	get isActive() {
@@ -41,6 +46,7 @@ export class GameWindow extends EventEmitter {
 		if (!this._isTracking) {
 			// despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('focus', () => {
+				console.log('game focus')
 				if (this.ignoreNextFocus) {
 					this.ignoreNextFocus = false
 					return
@@ -50,7 +56,19 @@ export class GameWindow extends EventEmitter {
 			})
 
 			// despite the name, this listener listens to the game window, not the overlay
-			OverlayController.events.on('blur', () => {
+			OverlayController.events.on('blur', async () => {
+				console.log('game blur')
+				// if the focused window overlaps the game window, hide everything
+				if (focusedWindowInsideGameBounds(this)) {
+					// BrowserWindow.getAllWindows().forEach(w => {
+					// 	w.hide()
+					// })
+					overlayWindow.getWindow().hide()
+					this.isActive = false
+					overlayWindow.assertAllInactive()
+					return
+				}
+
 				if (this.ignoreNextBlur) {
 					this.ignoreNextBlur = false
 					return

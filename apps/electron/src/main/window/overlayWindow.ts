@@ -9,6 +9,8 @@ import type { GameWindow } from './gameWindow'
 import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
 import { mainToRendererEvents } from '../events/mainToRenderer'
+import activeWindow from 'active-win'
+import { focusedWindowOutsideGameBounds } from '../utility/focusedWindowCalculations'
 
 // @ts-ignore - tried to augment the ImportMetaEnv type to include [key: string]: string, but couldn't manage to do it
 // suggestions welcome!
@@ -24,6 +26,7 @@ export class OverlayWindow {
 	constructor(private poeWindow: GameWindow) {
 		this.window = new BrowserWindow({
 			...(process.platform === 'linux' && { icon }),
+			title: import.meta.env.VITE_APP_TITLE,
 			width: 800,
 			height: 600,
 			webPreferences: {
@@ -51,14 +54,23 @@ export class OverlayWindow {
 			return { action: 'deny' }
 		})
 
-		// return for testing purposes
-		// if (noAttachMode) {
-		// 	this.window.setAlwaysOnTop(true)
-		// 	return
-		// }
+		// blur and hide get triggered when focusing a different app (browser) after focusing bulky
+		// check the overlay controller package if the events in there trigger this behavior
+		// prevent default does not work
+		this.window.on('hide', (e: Event) => {
+			e.preventDefault()
+		})
 
 		// overlay window event listeners
-		this.window.on('blur', () => {
+		this.window.on('blur', (e: Event) => {
+			console.log('app blur')
+			// if the focused window lies outside the game's bounds, just return
+			if (focusedWindowOutsideGameBounds(poeWindow)) {
+				e.preventDefault()
+				this.assertOverlayActive()
+				return
+			}
+
 			if (this.ignoreNextBlur) {
 				this.ignoreNextBlur = false
 				return
@@ -104,7 +116,7 @@ export class OverlayWindow {
 			this.window.loadURL(url)
 			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 
-			this.poeWindow.attach(this, 'Notepad')
+			this.poeWindow.attach(this, import.meta.env.VITE_GAME_TITLE)
 		} else {
 			this.window.loadURL(url)
 		}
@@ -134,12 +146,22 @@ export class OverlayWindow {
 		this.handlePoeWindowActiveChange(true)
 	}
 
+	public assertAllInactive = () => {
+		this.isInteractable = false
+		this.poeWindow.isActive = false
+		this.handlePoeWindowActiveChange(false)
+	}
+
 	/** toggle between the game and the overlay */
 	public toggleActiveState = () => {
 		if (this.isInteractable) {
 			this.assertGameActive()
 		} else {
-			this.assertOverlayActive()
+			// only allow toggling the overlay if PoE is the focused window
+			const activeWin = activeWindow.sync()
+			if (activeWin?.title.match(import.meta.env.VITE_GAME_TITLE)) {
+				this.assertOverlayActive()
+			}
 		}
 	}
 
@@ -181,6 +203,13 @@ export class OverlayWindow {
 	 * Dispatches a toggle event to the renderer.
 	 */
 	private handlePoeWindowActiveChange = (poeWindowActive: boolean) => {
+		// console.log('active state changed')
+		// console.log({
+		// 	enforcedOverlay: this.enforceOverlay,
+		// 	poeWindowActive,
+		// 	overlayInteract: this.isInteractable,
+		// })
+		console.log(this.window.isFocused())
 		// check if overlay should stay visible no matter what
 		if (this.enforceOverlay) {
 			mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true, false)

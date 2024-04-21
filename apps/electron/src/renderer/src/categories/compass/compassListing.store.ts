@@ -74,7 +74,6 @@ export const useCompassListingStore = defineStore('compassListingStore', () => {
 		await request.exec('src/mocks/compassCompressed.json')
 
 		if (request.error.value || !request.data.value) {
-			console.log('no way jose')
 			return
 		}
 

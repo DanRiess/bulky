@@ -11,6 +11,11 @@ const routes: RouteRecordRaw[] = [
 		name: 'AttachmentPanel',
 		component: () => import(/* webpackChunkName: "attachment-panel" */ '../views/AttachmentPanelView.vue'),
 	},
+	{
+		path: '/auth',
+		name: 'Auth',
+		component: () => import(/* webpackChunkName: "auth" */ '../views/AuthView.vue'),
+	},
 ]
 
 export const router = createRouter({

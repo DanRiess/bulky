@@ -22,6 +22,7 @@
 		"@electron-toolkit/preload": "^3.0.0",
 		"@electron-toolkit/utils": "^3.0.0",
 		"@vueuse/core": "^10.7.2",
+		"active-win": "^8.2.1",
 		"axios": "^1.6.7",
 		"electron-overlay-window": "^3.3.0",
 		"electron-updater": "^6.1.7",

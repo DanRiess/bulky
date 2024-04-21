@@ -1,5 +1,5 @@
 import { shell } from 'electron'
 
-export function openExternalBrowserWindow(link: string) {
-	return shell.openExternal(link)
+export function openExternalBrowserWindow(url: string) {
+	return shell.openExternal(url)
 }

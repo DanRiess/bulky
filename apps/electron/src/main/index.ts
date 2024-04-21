@@ -2,7 +2,6 @@ import { app, ipcMain } from 'electron'
 import { electronApp } from '@electron-toolkit/utils'
 import { GameWindow } from './window/gameWindow'
 import { OverlayWindow } from './window/overlayWindow'
-import { handleHello } from './ipcCallbacks/hello'
 import { registerInputs } from './inputs/registerInputs'
 import { Chatbox } from './inputs/chatbox'
 import { typeInChat } from './ipcCallbacks/typeInChat'
@@ -12,7 +11,12 @@ import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
 import { StashTab } from '@shared/types/stash.types'
 import { resolve } from 'path'
 import { OverlayController } from 'electron-overlay-window'
-import { generateTokenPair, redeemRefreshToken } from './utility/oauth'
+import {
+	computeAuthorizationCodeUrl,
+	generateTokenPair,
+	openAuthorizationCodeUrlManually,
+	redeemRefreshToken,
+} from './utility/oauth'
 import { SerializedError } from '@shared/errors/serializedError'
 
 // Initialize the app.
@@ -23,16 +27,10 @@ if (import.meta.env.DEV && process.platform === 'win32') {
 	// Set the path of electron.exe and your app.
 	// These two additional parameters are only available on windows.
 	// Setting this is required to get this working in dev mode.
-	console.log('we correct')
 	app.setAsDefaultProtocolClient('bulky', process.execPath, [resolve(process.argv[1])])
 } else {
 	app.setAsDefaultProtocolClient('bulky')
 }
-
-// console.log(app.getApplicationNameForProtocol('bulky://'))
-// console.log(app.isDefaultProtocolClient('Bulky'))
-// app.setAsDefaultProtocolClient('bulky')
-// console.log(app.isDefaultProtocolClient('bulky'))
 
 // Force single instance application
 const gotTheLock = app.requestSingleInstanceLock()
@@ -52,8 +50,6 @@ app.whenReady().then(() => {
 	// Set app user model id for windows
 	electronApp.setAppUserModelId('bulky.poe')
 
-	console.log(process.versions)
-
 	// app.on('activate', function () {
 	// 	// On macOS it's common to re-create a window in the app when the
 	// 	// dock icon is clicked and there are no other windows open.
@@ -61,7 +57,26 @@ app.whenReady().then(() => {
 	// })
 
 	// register ipc handlers (bidirectional with return values)
-	ipcMain.handle('hello', handleHello)
+	/** start the oauth flow to generate a token pair */
+	ipcMain.handle('generate-oauth-tokens', async () => {
+		try {
+			return await generateTokenPair()
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
+
+	/** manually open the authorization code url in case it doesn't happen automatically */
+	ipcMain.handle('open-authorization-code-url', () => {
+		try {
+			return openAuthorizationCodeUrlManually()
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
+
+	/** get the authorization code url to copy to clipboard */
+	ipcMain.handle('get-authorization-code-url', () => computeAuthorizationCodeUrl())
 
 	// register ipc handlers (one way, no return values)
 	ipcMain.on('bye', () => console.log('bye'))
@@ -93,13 +108,6 @@ app.whenReady().then(() => {
 			ipcMain.on('write-stash-tabs', (_, stashTabs: StashTab[]) => writeStashTabs(app, stashTabs))
 			ipcMain.handle('read-stash-tabs', () => readStashTabs(app))
 
-			ipcMain.handle('generate-oauth-tokens', async () => {
-				try {
-					return await generateTokenPair()
-				} catch (e) {
-					return new SerializedError(e)
-				}
-			})
 			ipcMain.handle('redeem-refresh-token', (_, refreshToken: string) => redeemRefreshToken(refreshToken))
 
 			// A second instance is being requested.

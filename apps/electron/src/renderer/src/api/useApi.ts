@@ -3,9 +3,8 @@ import { ApiStatus, BulkyRequest, BulkyRequestData, NormalizedApiStatus, Progres
 import { API_STATUS } from './api.const'
 import { AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { sleepTimer } from '@web/utility/sleep'
 import { SerializedError } from '@shared/errors/serializedError'
-import { SerializedErrorObject } from '@shared/types/error.types'
+import { deserializeError } from '@web/utility/deserializeError'
 
 /**
  * Create an object of computed statuses
@@ -47,7 +46,7 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 	// reactive values to store data and api status
 	const data = ref<BulkyRequestData<TFn>>()
 	const status = ref<ApiStatus>('IDLE')
-	const error = ref<SerializedErrorObject>()
+	const error = ref<Error>()
 	const progressStatus = ref<ProgressStatus>({
 		current: 0,
 		total: 0,
@@ -72,11 +71,9 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 			// start api request
 			status.value = 'PENDING'
 
-			// mock a delay
-			// TODO: DELETE LATER
-			await sleepTimer(1500)
-
 			const response = await fn(...args)
+
+			console.log({ response })
 
 			// check for response adapter and modify if necessary
 			// data.value = typeof responseAdapter === 'function' ? responseAdapter(response.data) : response.data
@@ -87,7 +84,7 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 			data.value = responseData
 			status.value = 'SUCCESS'
 		} catch (e) {
-			error.value = new SerializedError(e).error
+			error.value = deserializeError(e)
 			status.value = 'ERROR'
 		}
 	}

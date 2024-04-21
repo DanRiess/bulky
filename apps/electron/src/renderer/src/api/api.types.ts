@@ -2,7 +2,6 @@ import { ObjectValues, RequireSome, Uuid } from '@shared/types/utility.types'
 import { API_STATUS } from './api.const'
 import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ComputedRef, Ref } from 'vue'
-import { SerializedErrorObject } from '@shared/types/error.types'
 import { SerializedError } from '@shared/errors/serializedError'
 
 export type ApiStatus = ObjectValues<typeof API_STATUS>
@@ -26,17 +25,14 @@ type BulkyReturnType<TFn extends (...args: any) => Promise<unknown>> = Awaited<R
  * return them in the response instead of throwing them. The 'useApi' function checks this and takes care of the
  * throwing, but the error type has to be removed from the response.
  */
-export type BulkyRequestData<TFn extends (...args: any) => Promise<unknown>> =
-	| Exclude<BulkyReturnType<TFn>, SerializedError>
-	| undefined
+export type BulkyRequestData<TFn extends (...args: any) => Promise<unknown>> = Exclude<BulkyReturnType<TFn>, SerializedError>
 
 export type BulkyRequest<TFn extends (...args: any) => Promise<unknown> = () => Promise<unknown>> = {
 	name: string
 	uuid: Uuid<BulkyRequest>
 	status: Ref<ApiStatus>
-	// data: Ref<Exclude<Awaited<ReturnType<TFn>>, SerializedError> | undefined>
-	data: Ref<BulkyRequestData<TFn>>
-	error: Ref<SerializedErrorObject | undefined>
+	data: Ref<BulkyRequestData<TFn> | undefined>
+	error: Ref<Error | undefined>
 	exec: (...args: Parameters<TFn>) => Promise<void>
 	reset: () => void
 	progressStatus: Ref<ProgressStatus>

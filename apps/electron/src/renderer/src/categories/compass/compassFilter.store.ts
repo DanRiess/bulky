@@ -15,7 +15,6 @@ export const useCompassFilterStore = defineStore('compassFilterStore', () => {
 
 	/** create a new filter */
 	function createNewFilter() {
-		console.log('new filter')
 		const uuid = BULKY_UUID.generateTypedUuid<CompassFilter>()
 		const name = `Default_${filters.value.size}`
 		const fullBuyout = false

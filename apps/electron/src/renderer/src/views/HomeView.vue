@@ -1,5 +1,5 @@
 <template>
-	<div class="home-view">
+	<div class="v-home">
 		<header class="header">
 			<ButtonAtom :active="appStateStore.selectedView === 'BUY'" @click="appStateStore.selectedView = 'BUY'">
 				Buy
@@ -32,17 +32,15 @@ import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import SellListingTemplate from '@web/components/templates/SellListingTemplate.vue'
 import SellAddTemplate from '@web/components/templates/SellAddTemplate.vue'
-import { useAuthStore } from '@web/stores/authStore'
 import AuthTemplate from '@web/components/templates/AuthTemplate.vue'
 
 // STORES
 const appStateStore = useAppStateStore()
-const authStore = useAuthStore()
 
 // GETTERS
 const component = computed(() => {
 	if (appStateStore.selectedView === 'BUY') return markRaw(BuyTemplate)
-	else if (appStateStore.selectedView === 'SELL' && !authStore.isLoggedIn) return markRaw(AuthTemplate)
+	else if (appStateStore.selectedView === 'AUTH') return markRaw(AuthTemplate)
 	else if (appStateStore.selectedView === 'SELL' && appStateStore.selectedSellView === 'LIST')
 		return markRaw(SellListingTemplate)
 	else if (appStateStore.selectedView === 'SELL' && appStateStore.selectedSellView === 'ADD') return markRaw(SellAddTemplate)
@@ -59,7 +57,7 @@ const transitionHooks = useGenericTransitionHooks({
 </script>
 
 <style scoped>
-.home-view {
+.v-home {
 	--button-width: 2rem;
 	--button-height: 2rem;
 
