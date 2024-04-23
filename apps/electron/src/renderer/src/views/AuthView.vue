@@ -17,6 +17,7 @@ const tokenRequest = authStore.tokenRequest()
 
 // METHODS
 async function restartTokenRequest() {
+	authStore.authorizationState = 'IDLE'
 	await tokenRequest.execute()
 }
 

@@ -41,6 +41,9 @@ export function focusedWindowOutsideGameBounds(poeWindow: GameWindow) {
 	if (activeWin && activeWin.title !== import.meta.env.VITE_APP_TITLE) {
 		const activeWindowBounds = activeWin.bounds
 
+		console.log(activeWindowBounds)
+		console.log(poeWindow.bounds)
+
 		// allow a 16px overlap, as some apps seem to calculate their bounding boxes with additional padding
 		// Chrome / FF: 8px
 		// Notepad: 2px

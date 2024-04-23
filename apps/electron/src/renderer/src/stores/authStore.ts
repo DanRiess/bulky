@@ -1,8 +1,16 @@
 import { RequestError } from '@shared/errors/requestError'
 import { SerializedError } from '@shared/errors/serializedError'
-import { ACCOUNT_SCOPE, LocalOauthTokenStorageStructure, OauthTokenResponse } from '@shared/types/auth.types'
+import {
+	ACCOUNT_SCOPE,
+	LocalOauthTokenStorageStructure,
+	OauthTokenResponse,
+	PoeProfile,
+	isPoeProfileResponse,
+} from '@shared/types/auth.types'
 import { ApiStatus } from '@web/api/api.types'
+import { poeApi } from '@web/api/poeApi'
 import { useApi } from '@web/api/useApi'
+import { BULKY_UUID } from '@web/utility/uuid'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -10,8 +18,22 @@ export const useAuthStore = defineStore('authStore', () => {
 	const isLoggedIn = ref(false)
 	const authorizationState = ref<ApiStatus>('IDLE')
 	const serializedError = ref<SerializedError>(new SerializedError())
+	const profile = ref<PoeProfile>()
 
-	function initialize() {}
+	/**
+	 * Check if token and profile can be pulled from local storage.
+	 * Attempt to refetch both of these if not.
+	 */
+	async function initialize() {
+		const token = await getAccessToken()
+		if (!token) return
+
+		isLoggedIn.value = true
+
+		if (!profile.value) {
+			profile.value = await getProfile()
+		}
+	}
 
 	/**
 	 * This function returns the currently saved access token from local storage.
@@ -37,6 +59,24 @@ export const useAuthStore = defineStore('authStore', () => {
 	}
 
 	/**
+	 * This function returns the profile from local storage if it exists.
+	 * If not, it attempts to fetch it.
+	 */
+	async function getProfile() {
+		const profile = getProfileFromLocalStorage()
+
+		if (!profile) {
+			const profileRequest = getProfileRequest()
+			const success = await profileRequest.execute()
+
+			if (!success) return undefined
+			else return getProfileFromLocalStorage()
+		}
+
+		return profile
+	}
+
+	/**
 	 * Send a command to the node environment to start the oauth process.
 	 */
 	function tokenRequest() {
@@ -56,6 +96,7 @@ export const useAuthStore = defineStore('authStore', () => {
 			}
 
 			handleSuccessfulTokenResponse(request.data.value)
+			authorizationState.value = 'SUCCESS'
 			return true
 		}
 
@@ -111,11 +152,31 @@ export const useAuthStore = defineStore('authStore', () => {
 	}
 
 	/**
+	 * Get the PoE profile.
+	 */
+	function getProfileRequest() {
+		const request = useApi('profileRequest', poeApi.getProfile)
+
+		async function execute() {
+			await request.exec()
+
+			if (request.error.value || !request.data.value) {
+				return false
+			}
+
+			window.localStorage.setItem('poeProfile', JSON.stringify(request.data.value))
+			return true
+		}
+
+		return { request, execute }
+	}
+
+	/**
 	 * Retrieve the token structure from localstorage if it exists.
 	 */
 	function getTokenFromLocalStorage() {
 		const tokenString = window.localStorage.getItem('tokenStructure')
-		if (!tokenString) return
+		if (!tokenString) return undefined
 
 		try {
 			return JSON.parse(tokenString) as LocalOauthTokenStorageStructure
@@ -126,23 +187,47 @@ export const useAuthStore = defineStore('authStore', () => {
 	}
 
 	/**
+	 * Retrieve the profile from localstorage if it exists.
+	 */
+	function getProfileFromLocalStorage() {
+		const profileString = window.localStorage.getItem('poeProfile')
+		if (!profileString) return undefined
+
+		try {
+			// assert the type of this response, JSON.parse is not foolproof and can be wrong
+			const rawProfile = JSON.parse(profileString)
+			if (!isPoeProfileResponse(rawProfile)) throw new TypeError('Unexpected type.')
+
+			const uuid = BULKY_UUID.generateTypedUuid<PoeProfile>(rawProfile.uuid)
+			return { ...rawProfile, uuid }
+		} catch (e) {
+			window.localStorage.removeItem('poeProfile')
+			return undefined
+		}
+	}
+
+	/**
 	 * Log out the user and reset state variables.
 	 */
 	function logout() {
 		isLoggedIn.value = false
+		profile.value = undefined
 		window.localStorage.removeItem('tokenStructure')
+		window.localStorage.removeItem('poeProfile')
+
 		// TODO: remove refresh token from server
-		// TODO: clear profile maybe?
 	}
 
 	return {
 		isLoggedIn,
+		profile,
 		authorizationState,
 		serializedError,
 		logout,
 		tokenRequest,
 		getAccessToken,
 		initialize,
+		getProfileRequest,
 	}
 })
 

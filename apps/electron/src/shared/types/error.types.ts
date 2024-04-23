@@ -9,9 +9,10 @@ const REQUEST_ERROR_CODE = {
 	EADDRINUSE: 'EADDRINUSE',
 	duplicate_request: 'duplicate_request',
 	port_unavailable: 'port_unavailable',
+	token_unavailable: 'token_unavailable',
 } as const
 
-export type RequestErrorCode = 'duplicate_request' | 'port_unavailable' | 'EADDRINUSE'
+export type RequestErrorCode = ObjectValues<typeof REQUEST_ERROR_CODE>
 export function isRequestErrorCode(str: string | undefined): str is RequestErrorCode {
 	return str !== undefined && !!REQUEST_ERROR_CODE[str]
 }

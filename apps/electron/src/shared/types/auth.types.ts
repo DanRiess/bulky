@@ -42,9 +42,34 @@ export type LocalOauthTokenStorageStructure = {
 	scope: AccountScope[]
 }
 
+/** Possible error query parameters that can be present in GGG's auth code redirect url */
 export type OauthRedirectErrorQueryParameters = {
 	error: OauthErrorCode
 	state: string
 	error_description?: string
 	error_uri?: string
+}
+
+/** Server response from the /profile endpoint */
+export type PoeProfileResponse = {
+	uuid: string
+	name: string
+	locale?: string
+	realm?: 'pc' | 'xbox' | 'sony'
+	guild?: {
+		name: string
+	}
+	twitch?: {
+		name: string
+	}
+}
+
+/** Profile type that Bulky uses internally for stronger typings */
+export type PoeProfile = PoeProfileResponse & {
+	uuid: Uuid<PoeProfile>
+}
+
+/** Validator for a /profile server response */
+export function isPoeProfileResponse(obj: any): obj is PoeProfileResponse {
+	return obj && obj.uuid && obj.name
 }

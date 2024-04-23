@@ -11,10 +11,12 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
+import { useAuthStore } from './stores/authStore'
 
 // STORES
 const configStore = useConfigStore()
 const stashStore = useStashStore()
+const authStore = useAuthStore()
 
 // STATE
 const target = ref<HTMLElement | null>(null)
@@ -33,13 +35,11 @@ window.api.onShowAttachmentPanel(value => {
 	setTimeout(() => {
 		attachmentPanelActive.value = false
 		router.push({ name: 'Home' })
-		// router.push({ name: 'Auth' })
 	}, value.time)
 })
 
 // METHODS
 onClickOutside(target, () => {
-	console.log('click outside triggered')
 	active.value = false
 	window.api.closeOverlay()
 })
@@ -47,6 +47,7 @@ onClickOutside(target, () => {
 // INITIALIZE NECESSARY STORES
 configStore.getUserConfig()
 stashStore.initialize()
+authStore.initialize()
 </script>
 
 <style>

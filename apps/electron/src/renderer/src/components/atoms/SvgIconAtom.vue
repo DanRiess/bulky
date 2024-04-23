@@ -6,7 +6,10 @@
 		:class="{ active, rotate }"
 		:width="width"
 		:height="height ?? width"
-		role="img">
+		role="img"
+		@click="emit('click')"
+		@mouseenter="emit('mouseenter')"
+		@mouseleave="emit('mouseleave')">
 	</component>
 
 	<!-- the gradient. i tried moving this to another component and load it here, but css url loading failed -->
@@ -23,6 +26,19 @@ import { v4 } from 'uuid'
 import { computed, defineAsyncComponent, ref } from 'vue'
 import { upperFirst, camelCase } from 'lodash'
 
+// EMITS
+const emit = defineEmits<{
+	click: []
+	mouseenter: []
+	mouseleave: []
+}>()
+
+// OPTIONS
+defineOptions({
+	inheritAttrs: false,
+})
+
+// PROPS
 const props = withDefaults(
 	defineProps<{
 		name: string
@@ -48,11 +64,13 @@ const props = withDefaults(
 	}
 )
 
+// STATE
 // define a random id for the gradient.
 // has to be done, since a linearGradient is instantiated with every icon
 const gradientId = ref(v4())
 const gradientIdUrl = `url(#${gradientId.value})`
 
+// GETTERS
 /** return either the url of the gradient or the specified hover color */
 const hoverFill = computed(() => {
 	return props.useGradient ? gradientIdUrl : props.hoverColor ? props.hoverColor : props.color
@@ -81,8 +99,8 @@ const iconComponent = computed(() => {
 	width: var(--dr-button-width);
 	height: var(--dr-button-height);
 	fill: v-bind(color);
-	cursor: v-bind(cursor);
 	transform: v-bind(transform);
+	cursor: v-bind(cursor);
 }
 
 .a-svg-icon:hover,

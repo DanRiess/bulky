@@ -19,6 +19,8 @@ import AuthPendingMolecule from '../molecules/AuthPendingMolecule.vue'
 import { useAuthStore } from '@web/stores/authStore'
 import AuthErrorMolecule from '../molecules/AuthErrorMolecule.vue'
 import { SerializedError } from '@shared/errors/serializedError'
+import { onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
 // EMITS
 const emit = defineEmits<{
@@ -27,6 +29,9 @@ const emit = defineEmits<{
 
 // STORES
 const authStore = useAuthStore()
+
+// STATE
+const router = useRouter()
 
 // METHODS
 async function openSignInPage() {
@@ -51,6 +56,23 @@ async function copySignInUrl() {
 
 	navigator.clipboard.writeText(request.data.value)
 }
+
+// WATCHERS
+watch(
+	() => authStore.authorizationState,
+	state => {
+		if (state === 'SUCCESS') {
+			router.back()
+		}
+	}
+)
+
+// HOOKS
+onMounted(() => {
+	if (authStore.authorizationState === 'SUCCESS') {
+		router.back()
+	}
+})
 </script>
 
 <style scoped>

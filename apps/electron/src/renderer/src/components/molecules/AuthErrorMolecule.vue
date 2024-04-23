@@ -15,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@web/stores/authStore'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 
 // EMITS
@@ -23,12 +22,8 @@ const emit = defineEmits<{
 	restartTokenRequest: []
 }>()
 
-// STORES
-const authStore = useAuthStore()
-
 // METHODS
 function restartAuthorization() {
-	authStore.authorizationState = 'IDLE'
 	emit('restartTokenRequest')
 }
 </script>

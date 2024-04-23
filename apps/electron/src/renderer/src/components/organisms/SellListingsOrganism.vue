@@ -10,9 +10,9 @@
 				<ButtonAtom background-color="dark">Create New Sales Listing</ButtonAtom>
 			</template>
 			<template v-else>
-				<ButtonAtom background-color="dark" @click="initializeSignIn"
-					>Sign in with your PoE account to add a new listing</ButtonAtom
-				>
+				<ButtonAtom background-color="dark" @click="initializeSignIn">
+					Sign in with your PoE account to add a new listing
+				</ButtonAtom>
 			</template>
 		</div>
 	</div>
@@ -24,12 +24,21 @@ import TransitionAtom from '../atoms/TransitionAtom.vue'
 import FallbackSellListingMolecule from '../molecules/fallbacks/FallbackSellListingMolecule.vue'
 import { useAuthStore } from '@web/stores/authStore'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
+import { useRouter } from 'vue-router'
 
 // STORES
 const authStore = useAuthStore()
 
+// STATE
+const router = useRouter()
 const listings = []
 
+// METHODS
+function initializeSignIn() {
+	router.push({ name: 'Auth' })
+}
+
+// HOOKS
 const hooks = useGenericTransitionHooks({
 	opacity: 0,
 	transform: 'scaleX(0.01)',

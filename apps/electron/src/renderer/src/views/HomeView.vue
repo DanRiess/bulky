@@ -1,20 +1,6 @@
 <template>
 	<div class="v-home">
-		<header class="header">
-			<ButtonAtom :active="appStateStore.selectedView === 'BUY'" @click="appStateStore.selectedView = 'BUY'">
-				Buy
-			</ButtonAtom>
-			<ButtonAtom :active="appStateStore.selectedView === 'SELL'" @click="appStateStore.selectedView = 'SELL'">
-				Sell
-			</ButtonAtom>
-			<div class="user-icon" @click="appStateStore.selectedView = 'CONFIG'">
-				<SvgIconAtom
-					name="settings"
-					:use-gradient="true"
-					cursor="pointer"
-					:active="appStateStore.selectedView === 'CONFIG'"></SvgIconAtom>
-			</div>
-		</header>
+		<NavbarOrganism />
 		<TransitionAtom v-on="transitionHooks" mode="out-in">
 			<component :is="component" />
 		</TransitionAtom>
@@ -22,10 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, markRaw } from 'vue'
+import { computed, markRaw, onMounted } from 'vue'
 import { useAppStateStore } from '@web/stores/appStateStore'
-import ButtonAtom from '@web/components/atoms/ButtonAtom.vue'
-import SvgIconAtom from '@web/components/atoms/SvgIconAtom.vue'
 import BuyTemplate from '@web/components/templates/BuyTemplate.vue'
 import ConfigTemplate from '@web/components/templates/ConfigTemplate.vue'
 import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
@@ -33,9 +17,12 @@ import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHoo
 import SellListingTemplate from '@web/components/templates/SellListingTemplate.vue'
 import SellAddTemplate from '@web/components/templates/SellAddTemplate.vue'
 import AuthTemplate from '@web/components/templates/AuthTemplate.vue'
+import { useAuthStore } from '@web/stores/authStore'
+import NavbarOrganism from '@web/components/organisms/NavbarOrganism.vue'
 
 // STORES
 const appStateStore = useAppStateStore()
+const authStore = useAuthStore()
 
 // GETTERS
 const component = computed(() => {
@@ -53,6 +40,10 @@ const transitionHooks = useGenericTransitionHooks({
 	opacity: 0,
 	transform: 'scaleY(0.01)',
 	duration: 0.25,
+})
+
+onMounted(() => {
+	authStore.initialize()
 })
 </script>
 

@@ -54,22 +54,14 @@ export class OverlayWindow {
 			return { action: 'deny' }
 		})
 
-		// blur and hide get triggered when focusing a different app (browser) after focusing bulky
-		// check the overlay controller package if the events in there trigger this behavior
-		// prevent default does not work
-		this.window.on('hide', (e: Event) => {
-			e.preventDefault()
-		})
-
 		// overlay window event listeners
-		this.window.on('blur', (e: Event) => {
-			console.log('app blur')
+		this.window.on('blur', () => {
 			// if the focused window lies outside the game's bounds, just return
-			if (focusedWindowOutsideGameBounds(poeWindow)) {
-				e.preventDefault()
-				this.assertOverlayActive()
-				return
-			}
+			// DOES NOT WORK and results in infinite blur/focus loop. don't know why.
+			// if (focusedWindowOutsideGameBounds(poeWindow)) {
+			// 	this.window.show()
+			// 	return
+			// }
 
 			if (this.ignoreNextBlur) {
 				this.ignoreNextBlur = false
@@ -209,7 +201,6 @@ export class OverlayWindow {
 		// 	poeWindowActive,
 		// 	overlayInteract: this.isInteractable,
 		// })
-		console.log(this.window.isFocused())
 		// check if overlay should stay visible no matter what
 		if (this.enforceOverlay) {
 			mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true, false)
