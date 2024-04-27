@@ -1,5 +1,5 @@
 <template>
-	<div class="user-icon" @mouseenter="menuExpanded = true" @mouseleave="menuExpanded = false">
+	<div class="user-icon" ref="userIconEl" @click="menuExpanded = !menuExpanded">
 		<SvgIconAtom :name="iconName" :use-gradient="true" cursor="pointer" />
 		<TransitionAtom v-on="hooks">
 			<ul class="popup-menu radial-gradient" v-if="menuExpanded" data-b-override>
@@ -16,32 +16,20 @@ import { useAuthStore } from '@web/stores/authStore'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
+import { onClickOutside } from '@vueuse/core'
 
 // STORES
 const authStore = useAuthStore()
 
-// PROPS
-const props = withDefaults(
-	defineProps<{
-		backgroundColor?: ButtonBackgroundColorScheme
-	}>(),
-	{
-		backgroundColor: 'dark',
-	}
-)
-
 // STATE
 const router = useRouter()
 const menuExpanded = ref(false)
+const userIconEl = ref<HTMLElement | null>(null)
 
 // GETTERS
-const iconName = computed(() => {
-	console.log('profile changed')
-	return authStore.profile ? 'person' : 'person-cancel'
-})
+const iconName = computed(() => (authStore.profile ? 'person' : 'person-cancel'))
 
 const menuOptions = computed(() => {
 	if (authStore.profile) {
@@ -61,17 +49,15 @@ const menuOptions = computed(() => {
 	}
 })
 
-const backgroundColorMenu = computed(() => {
-	return props.backgroundColor === 'light'
-		? 'var(--dr-background-color-button-light)'
-		: 'var(--dr-background-color-button-dark)'
-})
-
 // HOOKS
 const hooks = useGenericTransitionHooks({
 	scaleY: 0.01,
 	opacity: 0,
 	duration: 0.25,
+})
+
+onClickOutside(userIconEl, () => {
+	menuExpanded.value = false
 })
 </script>
 
@@ -83,7 +69,6 @@ const hooks = useGenericTransitionHooks({
 .popup-menu {
 	position: absolute;
 	padding: 0.25rem 0.5rem;
-	background-color: v-bind(backgroundColorMenu);
 	border: 1px solid white;
 	width: max-content;
 	right: 0;

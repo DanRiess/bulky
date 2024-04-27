@@ -31,6 +31,8 @@ import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { ref } from 'vue'
 import ListingItemsMolecule from './ListingItemsMolecule.vue'
 import { ComputedListingDisplayValues } from '@shared/types/bulky.types'
+import { useApi } from '@web/api/useApi'
+import { nodeApi } from '@web/api/nodeApi'
 
 const messageSent = ref(false)
 
@@ -40,8 +42,11 @@ const props = defineProps<{
 
 async function sendMessage() {
 	const message = craftWhisperMessage(props.computedListing)
-	const response = await window.api.typeInChat(message)
-	if (response) {
+
+	const request = useApi('typeInChat', nodeApi.typeInChat)
+	await request.exec(message)
+
+	if (request.data.value) {
 		messageSent.value = true
 		setTimeout(() => {
 			messageSent.value = false

@@ -1,7 +1,7 @@
 <template>
 	<li class="a-list-item specular-glance-animation" :class="{ hovered }" data-b-override @click="emit('click', displayName)">
 		<div class="chevron">
-			<SvgIconAtom name="chevron-right" :use-gradient="true" :active="true" />
+			<SvgIconAtom name="chevron-right" :use-gradient="true" :active="true" width="100%" />
 		</div>
 		<div class="content">{{ displayName }}</div>
 	</li>
@@ -42,7 +42,7 @@ const emit = defineEmits<{
 
 /* .a-list-item:not(:disabled):hover, */
 .a-list-item:not(:disabled).hovered {
-	--left-column: 1.5rem;
+	--left-column: 2rem;
 }
 
 .a-list-item:not(:disabled):hover::after {
@@ -51,6 +51,7 @@ const emit = defineEmits<{
 
 .chevron {
 	height: var(--height);
+	overflow: hidden;
 }
 
 .content {

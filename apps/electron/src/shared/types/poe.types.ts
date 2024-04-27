@@ -1,15 +1,3 @@
-import { ObjectValues } from './utility.types'
-
-export const LEAGUE = {
-	UNSUPPORTED: 'UNSUPPORTED',
-	STANDARD_SC: 'STANDARD_SC',
-	STANDARD_HC: 'STANDARD_HC',
-	AFFLICTION_SC: 'AFFLICTION_SC',
-	AFFLICTION_HC: 'AFFLICTION_HC',
-} as const
-
-export type League = ObjectValues<typeof LEAGUE>
-
 export const enum PoeDisplayMode {
 	'Name should be followed by values' = 0,
 	'Values should be followed by name',
@@ -195,4 +183,56 @@ export type PoeItem = {
 	inventoryId?: string
 	socket?: number
 	colour?: 'S' | 'D' | 'I' | 'G'
+}
+
+export type PoeLeague = {
+	id: string
+	realm: string
+	url: string
+	startAt: string
+	endAt: string | null
+	description: string
+	category: {
+		id: string
+		current?: boolean
+	}
+	registerAt: string
+	delveEvent: boolean
+	rules: PoeLeagueRule[]
+}
+
+interface PoeLeagueRule {
+	id: string
+	name: string
+	description: string
+}
+
+export class SSFRule implements PoeLeagueRule {
+	id = 'NoParties'
+	name = 'Solo'
+	description = 'You may not party in this league.'
+
+	// enables instanceof checks for objects that haven't been instantiated with this constructor but follow the schema
+	static [Symbol.hasInstance](obj: any) {
+		if (!obj) return false
+
+		return obj.id === 'NoParties' && obj.name === 'Solo' && obj.description === 'You may not party in this league.'
+	}
+}
+
+export class RuthlessRule implements PoeLeagueRule {
+	id = 'HardMode'
+	name = 'Ruthless'
+	description = 'A significantly different game experience with extreme item scarcity, among other changes.'
+
+	// enables instanceof checks for objects that haven't been instantiated with this constructor but follow the schema
+	static [Symbol.hasInstance](obj: any) {
+		if (!obj) return false
+
+		return (
+			obj.id === 'HardMode' &&
+			obj.name === 'Ruthless' &&
+			obj.description === 'A significantly different game experience with extreme item scarcity, among other changes.'
+		)
+	}
 }

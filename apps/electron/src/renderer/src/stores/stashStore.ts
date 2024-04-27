@@ -22,7 +22,9 @@ export const useStashStore = defineStore('stashStore', () => {
 	 */
 	async function initialize() {
 		try {
-			const tabs = await window.api.readStashTabs()
+			await fetchStashTabList()
+			// TODO: change this to read indexed db later
+			const tabs: StashTab[] = []
 
 			// If tabs are empty array, push the entire read array.
 			// Otherwise, replace old stashes and push the ones that don't exist yet.
@@ -49,17 +51,18 @@ export const useStashStore = defineStore('stashStore', () => {
 
 		// if the tab exists already, just update its name
 		if (existingTab) {
-			existingTab.name = dto.n
+			existingTab.name = dto.name
 			existingTab.type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
 		} else {
-			const name = dto.n
+			const name = dto.name
 			const id = dto.id
 			const type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
+			const color = dto.metadata.colour
 			const lastSnapshot = 0
 			const items = []
 			const selected = false
 
-			stashTabs.value.push({ name, id, type, lastSnapshot, items, selected })
+			stashTabs.value.push({ name, id, type, lastSnapshot, color, items, selected })
 		}
 	}
 
@@ -68,10 +71,11 @@ export const useStashStore = defineStore('stashStore', () => {
 	 * Only add new stash tabs to the array, don't replace old ones. This would replace its items.
 	 */
 	async function fetchStashTabList() {
+		// TODO: change this to use the rate limiter store instead
 		// return if the stash tab list was fetched less than an hour ago
 		if (Date.now() - lastListFetch.value < fetchTimeout.value) return
 
-		// return if the status is not idle
+		// return if the status is in progress
 		if (stashListRequest.status.value === 'PENDING') return
 
 		// execute the request
@@ -85,7 +89,9 @@ export const useStashStore = defineStore('stashStore', () => {
 
 		// set the last fetch time to now to throttle fetch requests
 		lastListFetch.value = Date.now()
-		stashListRequest.data.value.tabs.forEach(tab => addOrModifyStashTabListItem(tab))
+		stashListRequest.data.value.stashes.forEach(tab => addOrModifyStashTabListItem(tab))
+
+		// TODO: save results into indexeddb
 
 		// reset the request to be able to repeat it later
 		setTimeout(() => {

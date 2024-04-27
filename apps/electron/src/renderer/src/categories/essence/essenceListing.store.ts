@@ -5,7 +5,6 @@ import { Ref, ref } from 'vue'
 import { Uuid, getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { BULKY_LEAGUES } from '@web/utility/league'
 import { Essence, EssenceListing, EssenceListingItems, EssenceListings } from './essence.types'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
@@ -25,7 +24,7 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 
 		const uuid = BULKY_UUID.generateTypedUuid<EssenceListing>(dto.uuid)
 		const ign = dto.ign
-		const league = BULKY_LEAGUES.generateLeagueFromDto(dto.league)
+		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const minimumBuyout = dto.minimumBuyout ?? 0

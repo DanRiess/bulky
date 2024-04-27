@@ -106,7 +106,7 @@ export function decodeUrlSafeBase64ToArrayBuffer(str: string): ArrayBuffer {
 	}
 
 	// 3-byte chunk
-	let chunk
+	let chunk: number
 	const resultBuffer = new Uint8Array(mainByteLength + restByteLength)
 
 	// process main string

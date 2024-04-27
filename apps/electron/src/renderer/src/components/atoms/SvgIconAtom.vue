@@ -6,10 +6,7 @@
 		:class="{ active, rotate }"
 		:width="width"
 		:height="height ?? width"
-		role="img"
-		@click="emit('click')"
-		@mouseenter="emit('mouseenter')"
-		@mouseleave="emit('mouseleave')">
+		role="img">
 	</component>
 
 	<!-- the gradient. i tried moving this to another component and load it here, but css url loading failed -->
@@ -25,18 +22,6 @@
 import { v4 } from 'uuid'
 import { computed, defineAsyncComponent, ref } from 'vue'
 import { upperFirst, camelCase } from 'lodash'
-
-// EMITS
-const emit = defineEmits<{
-	click: []
-	mouseenter: []
-	mouseleave: []
-}>()
-
-// OPTIONS
-defineOptions({
-	inheritAttrs: false,
-})
 
 // PROPS
 const props = withDefaults(
@@ -78,12 +63,12 @@ const hoverFill = computed(() => {
 
 /** Instantiate the icon. Uses the capitalized svg's name as source. */
 const iconComponent = computed(() => {
+	// has to be referenced here, otherwise this computed does not detect updates to props or reactive variables
+	const name = props.name
 	return defineAsyncComponent(
 		() =>
 			import(
-				/* webpackChunkName: "icon-[request]" */ `../../assets/svg-icons/${upperFirst(
-					camelCase(props.name)
-				)}Icon.vue?component`
+				/* webpackChunkName: "icon-[request]" */ `../../assets/svg-icons/${upperFirst(camelCase(name))}Icon.vue?component`
 			)
 	)
 })
@@ -96,8 +81,8 @@ const iconComponent = computed(() => {
 	transform-origin: 50% 50%;
 	transition: transform 0.15s ease;
 	filter: drop-shadow(2px 2px 4px rgba(0 0 0 / 0.4));
-	width: var(--dr-button-width);
-	height: var(--dr-button-height);
+	/* width: var(--dr-button-width);
+	height: var(--dr-button-height); */
 	fill: v-bind(color);
 	transform: v-bind(transform);
 	cursor: v-bind(cursor);

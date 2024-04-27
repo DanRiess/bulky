@@ -4,9 +4,9 @@
 			<h2>Configuration Options</h2>
 		</header>
 		<main class="main">
-			<LabelWithSelectMolecule v-model="configStore.config.league" :options="leagues" @update:model-value="updateConfig"
-				>League:</LabelWithSelectMolecule
-			>
+			<LabelWithSelectMolecule v-model="configStore.config.league" :options="leagues" @update:model-value="updateConfig">
+				League:
+			</LabelWithSelectMolecule>
 		</main>
 	</div>
 </template>
@@ -14,13 +14,17 @@
 <script setup lang="ts">
 import { useConfigStore } from '@web/stores/configStore'
 import LabelWithSelectMolecule from '../molecules/LabelWithSelectMolecule.vue'
-import { getKeys } from '@shared/types/utility.types'
-import { LEAGUE } from '@shared/types/poe.types'
+// import { getKeys } from '@shared/types/utility.types'
+// import { LEAGUE } from '@shared/types/poe.types'
+import { useLeagueStore } from '@web/stores/leagueStore'
 
 // STORES
 const configStore = useConfigStore()
+const leagueStore = useLeagueStore()
 
-const leagues = getKeys(LEAGUE).filter(l => l !== 'UNSUPPORTED')
+// STATE
+// const leagues = getKeys(LEAGUE).filter(l => l !== 'UNSUPPORTED')
+const leagues = leagueStore.leagues?.map(l => l.id) ?? []
 
 // replace this later and only call in a beforeunmount hook
 function updateConfig() {

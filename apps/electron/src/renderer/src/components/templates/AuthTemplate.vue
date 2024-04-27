@@ -21,6 +21,7 @@ import AuthErrorMolecule from '../molecules/AuthErrorMolecule.vue'
 import { SerializedError } from '@shared/errors/serializedError'
 import { onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { nodeApi } from '@web/api/nodeApi'
 
 // EMITS
 const emit = defineEmits<{
@@ -35,7 +36,7 @@ const router = useRouter()
 
 // METHODS
 async function openSignInPage() {
-	const request = useApi('openAuthCodeUrl', window.api.openAuthorizationCodeUrl)
+	const request = useApi('openAuthCodeUrl', nodeApi.openAuthorizationCodeUrl)
 	await request.exec()
 
 	if (request.error.value) {
@@ -45,7 +46,7 @@ async function openSignInPage() {
 }
 
 async function copySignInUrl() {
-	const request = useApi('getAuthorizationCodeUrl', window.api.getAuthorizationCodeUrl)
+	const request = useApi('getAuthorizationCodeUrl', nodeApi.getAuthorizationCodeUrl)
 	await request.exec()
 
 	if (request.error.value || !request.data.value) {

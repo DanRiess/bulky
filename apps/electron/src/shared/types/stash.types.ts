@@ -2,7 +2,7 @@ import { PoeItem } from './poe.types'
 import { ObjectValues } from './utility.types'
 
 export const STASH_TYPE = {
-	Stash: 'Stash',
+	NormalStash: 'NormalStash',
 	PremiumStash: 'PremiumStash',
 	QuadStash: 'QuadStash',
 	CurrencyStash: 'CurrencyStash',
@@ -23,6 +23,7 @@ export type StashTab = {
 	name: string
 	id: string
 	selected: boolean
+	color?: string
 	// icon: string // check if the actual api has that or not
 	type: StashType
 	items: PoeItem[]

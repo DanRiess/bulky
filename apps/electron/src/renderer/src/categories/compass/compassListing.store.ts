@@ -6,7 +6,6 @@ import { Ref, ref } from 'vue'
 import { Uuid } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { BULKY_LEAGUES } from '@web/utility/league'
 import { GenericListingDto } from '@shared/types/dto.types'
 import { conformBinaryListingItems } from '@web/utility/conformers'
 import { useApi } from '@web/api/useApi'
@@ -25,7 +24,7 @@ export const useCompassListingStore = defineStore('compassListingStore', () => {
 
 		const uuid = BULKY_UUID.generateTypedUuid<CompassListing>(dto.uuid)
 		const ign = dto.ign
-		const league = BULKY_LEAGUES.generateLeagueFromDto(dto.league)
+		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const minimumBuyout = dto.minimumBuyout ?? 0

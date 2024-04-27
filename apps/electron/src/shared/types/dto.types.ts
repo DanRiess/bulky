@@ -1,3 +1,5 @@
+import { PoeItem } from './poe.types'
+
 export type GenericListingItemDto = {
 	name: string
 	quantity: number
@@ -28,19 +30,21 @@ export type GenericListingDto = {
 }
 
 export type StashTabListItemDto = {
-	n: string
-	i: number
 	id: string
+	parent?: string
+	name: string
 	type: string
-	selected: boolean
-	colour: {
-		r: number
-		g: number
-		b: number
+	index?: number
+	metadata: {
+		public?: true
+		folder?: true
+		colour?: string
 	}
-	srcL: string
-	srcC: string
-	srcR: string
+	children?: StashTabListItemDto[]
+}
+
+export type StashTabDto = StashTabListItemDto & {
+	items: PoeItem[]
 }
 
 export type StashTabListDto = {

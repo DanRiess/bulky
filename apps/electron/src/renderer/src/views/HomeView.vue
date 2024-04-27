@@ -1,6 +1,7 @@
 <template>
 	<div class="v-home">
 		<NavbarOrganism />
+		<button @click="test">testme</button>
 		<TransitionAtom v-on="transitionHooks" mode="out-in">
 			<component :is="component" />
 		</TransitionAtom>
@@ -19,10 +20,16 @@ import SellAddTemplate from '@web/components/templates/SellAddTemplate.vue'
 import AuthTemplate from '@web/components/templates/AuthTemplate.vue'
 import { useAuthStore } from '@web/stores/authStore'
 import NavbarOrganism from '@web/components/organisms/NavbarOrganism.vue'
+import { useStashStore } from '@web/stores/stashStore'
+// import { useApi } from '@web/api/useApi'
+// import { poeApi } from '@web/api/poeApi'
 
 // STORES
 const appStateStore = useAppStateStore()
 const authStore = useAuthStore()
+
+// delete
+const stashStore = useStashStore()
 
 // GETTERS
 const component = computed(() => {
@@ -42,8 +49,20 @@ const transitionHooks = useGenericTransitionHooks({
 	duration: 0.25,
 })
 
+function test() {
+	stashStore.fetchStashTabList()
+}
+
 onMounted(() => {
 	authStore.initialize()
+
+	// //test requests
+	// setTimeout(async () => {
+	// 	console.log('requesting')
+	// 	const request = useApi('leaguereq', poeApi.getLeagues)
+	// 	await request.exec()
+	// 	console.log(request)
+	// }, 500)
 })
 </script>
 

@@ -47,6 +47,7 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 	const data = ref<BulkyRequestData<TFn>>()
 	const status = ref<ApiStatus>('IDLE')
 	const error = ref<Error>()
+	const headers = ref<AxiosResponse['headers']>()
 	const progressStatus = ref<ProgressStatus>({
 		current: 0,
 		total: 0,
@@ -73,11 +74,13 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 
 			const response = await fn(...args)
 
-			console.log({ response })
+			// set headers
 
 			// check for response adapter and modify if necessary
 			// data.value = typeof responseAdapter === 'function' ? responseAdapter(response.data) : response.data
 			const responseData = isAxiosResponse(response) ? response.data : response
+			headers.value = isAxiosResponse(response) ? response.headers : undefined
+			console.log(headers.value)
 
 			if (responseData instanceof SerializedError) throw responseData
 
@@ -104,6 +107,7 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 		data,
 		status,
 		error,
+		headers,
 		progressStatus,
 		exec,
 		reset,

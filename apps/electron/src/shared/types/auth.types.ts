@@ -42,6 +42,11 @@ export type LocalOauthTokenStorageStructure = {
 	scope: AccountScope[]
 }
 
+/** Validator for an oauth token object */
+export function isLocalOauthTokenStructure(obj: any): obj is LocalOauthTokenStorageStructure {
+	return obj && 'accessToken' in obj && 'exp' in obj && 'username' in obj && 'scope' in obj
+}
+
 /** Possible error query parameters that can be present in GGG's auth code redirect url */
 export type OauthRedirectErrorQueryParameters = {
 	error: OauthErrorCode

@@ -12,11 +12,13 @@ import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
 import { useAuthStore } from './stores/authStore'
+import { useLeagueStore } from './stores/leagueStore'
 
 // STORES
 const configStore = useConfigStore()
 const stashStore = useStashStore()
 const authStore = useAuthStore()
+const leagueStore = useLeagueStore()
 
 // STATE
 const target = ref<HTMLElement | null>(null)
@@ -48,6 +50,7 @@ onClickOutside(target, () => {
 configStore.getUserConfig()
 stashStore.initialize()
 authStore.initialize()
+leagueStore.initialize()
 </script>
 
 <style>

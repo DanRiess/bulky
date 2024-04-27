@@ -8,6 +8,7 @@ import {
 	isPoeProfileResponse,
 } from '@shared/types/auth.types'
 import { ApiStatus } from '@web/api/api.types'
+import { nodeApi } from '@web/api/nodeApi'
 import { poeApi } from '@web/api/poeApi'
 import { useApi } from '@web/api/useApi'
 import { BULKY_UUID } from '@web/utility/uuid'
@@ -80,7 +81,7 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Send a command to the node environment to start the oauth process.
 	 */
 	function tokenRequest() {
-		const request = useApi('tokenRequest', window.api.generateOauthTokens)
+		const request = useApi('tokenRequest', nodeApi.generateOauthTokens)
 
 		async function execute() {
 			authorizationState.value = 'PENDING'
@@ -107,7 +108,7 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Send a request to the node environment to redeem a refresh token.
 	 */
 	function refreshTokenRequest() {
-		const request = useApi('refreshTokenRequest', window.api.redeemRefreshToken)
+		const request = useApi('refreshTokenRequest', nodeApi.redeemRefreshToken)
 
 		async function execute() {
 			// TODO: download refresh token from server here

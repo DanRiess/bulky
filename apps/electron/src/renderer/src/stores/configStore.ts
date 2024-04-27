@@ -1,4 +1,5 @@
-import { LEAGUE } from '@shared/types/poe.types'
+import { nodeApi } from '@web/api/nodeApi'
+import { useApi } from '@web/api/useApi'
 import { cloneDeep } from 'lodash'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { BulkyConfig } from 'src/shared/types/config.types'
@@ -8,24 +9,32 @@ export const useConfigStore = defineStore('configStore', () => {
 	/** Initialized with default values */
 	const config = ref<BulkyConfig>({
 		version: '0.0.1',
-		league: LEAGUE.AFFLICTION_SC,
+		league: 'Standard',
 		overlayKey: 'CTRL + SPACE',
 		gameWindowTitle: 'Path of Exile',
 	})
 
 	async function getUserConfig() {
-		try {
-			const savedConfig = await window.api.readConfig()
-			config.value = { ...config.value, ...savedConfig }
-		} catch (e) {
-			console.log('error loading user config. using default config instead.')
+		const request = useApi('readConfigRequest', nodeApi.readConfig)
+		await request.exec()
+
+		if (request.error.value || !request.data.value) {
+			console.log(request.error.value)
+			return
 		}
+
+		config.value = { ...config.value, ...request.data.value }
 	}
 
 	/** Write the current config to the user config file. */
-	function writeUserConfig() {
+	async function writeUserConfig() {
 		const configClone = cloneDeep(config.value)
-		window.api.writeConfig(configClone)
+		const request = useApi('writeConfigRequest', nodeApi.writeConfig)
+		await request.exec(configClone)
+
+		if (request.error.value) {
+			console.log(request.error.value)
+		}
 	}
 
 	return {

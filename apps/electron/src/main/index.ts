@@ -9,7 +9,7 @@ import { readConfig, writeConfig } from './ipcCallbacks/configActions'
 import { BulkyConfig } from '@shared/types/config.types'
 import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
 import { StashTab } from '@shared/types/stash.types'
-import { resolve } from 'path'
+import { join, resolve } from 'path'
 import { OverlayController } from 'electron-overlay-window'
 import {
 	computeAuthorizationCodeUrl,
@@ -77,6 +77,15 @@ app.whenReady().then(() => {
 
 	/** get the authorization code url to copy to clipboard */
 	ipcMain.handle('get-authorization-code-url', () => computeAuthorizationCodeUrl())
+
+	/** return the league static json file */
+	ipcMain.handle('get-leagues', async () => {
+		try {
+			return await import('../../resources/leagues.json')
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
 
 	// register ipc handlers (one way, no return values)
 	ipcMain.on('bye', () => console.log('bye'))

@@ -33,6 +33,7 @@ export type BulkyRequest<TFn extends (...args: any) => Promise<unknown> = () => 
 	status: Ref<ApiStatus>
 	data: Ref<BulkyRequestData<TFn> | undefined>
 	error: Ref<Error | undefined>
+	headers: Ref<AxiosResponse['headers'] | undefined>
 	exec: (...args: Parameters<TFn>) => Promise<void>
 	reset: () => void
 	progressStatus: Ref<ProgressStatus>

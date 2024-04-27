@@ -6,6 +6,7 @@ import { OauthTokenResponse } from '@shared/types/auth.types'
 import ipcRendererWrapper from './ipcRendererWrapper'
 import { computeAuthorizationCodeUrl, generateTokenPair, openAuthorizationCodeUrlManually } from '@main/utility/oauth'
 import { SerializedError } from '@shared/errors/serializedError'
+import { PoeLeagueResponse } from '@shared/types/response.types'
 
 export const api = {
 	// example for bidirectional communication
@@ -61,4 +62,6 @@ export const api = {
 
 	getAuthorizationCodeUrl: (): Promise<string | SerializedError> =>
 		ipcRendererWrapper.invoke<typeof computeAuthorizationCodeUrl>('get-authorization-code-url'),
+
+	getLeagues: (): Promise<PoeLeagueResponse> => ipcRendererWrapper.invoke('get-leagues'),
 }

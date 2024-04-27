@@ -1,8 +1,6 @@
-import { League } from '@shared/types/poe.types'
-
 export type BulkyConfig = {
 	version: string
-	league: League
+	league: string
 	overlayKey: string
 	gameWindowTitle: string
 }
