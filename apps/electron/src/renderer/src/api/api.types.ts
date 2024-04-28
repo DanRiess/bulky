@@ -4,6 +4,7 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { ComputedRef, Ref } from 'vue'
 import { SerializedError } from '@shared/errors/serializedError'
 
+export type ApiType = 'poe' | 'bulky' | 'node' | 'other'
 export type ApiStatus = ObjectValues<typeof API_STATUS>
 export type NormalizedApiStatus = Record<`status${Capitalize<Lowercase<ApiStatus>>}`, ComputedRef<boolean>>
 
@@ -71,3 +72,26 @@ export type GenericRequestFunction<TRes extends unknown, TConf extends BulkyRequ
 // export type GenericRequestFunction<TRes extends unknown, TFn extends (...args: any[]) => any> = (
 // 	config: Parameters<TFn>
 // ) => Promise<AxiosResponse<TRes>>
+
+// RATE LIMIT TYPES
+
+/** Rate limit object for checking if a request should be fired or not */
+type RateLimit = {
+	testPeriod: number[]
+	current: number[]
+	max: number[]
+	timeout: number[]
+	activeTimeout: number[]
+}
+
+/** A list of rate limit objects for all currently rate-limited APIs */
+export type RateLimits = {
+	poe: RateLimit
+	bulky: RateLimit
+}
+
+/** An array for collecting timestamps of fired requests to calculate rate limits */
+export type RequestTimestamps = {
+	poe: number[]
+	bulky: number[]
+}

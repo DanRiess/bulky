@@ -1,87 +1,230 @@
+import { ApiType, RateLimits, RequestTimestamps } from '@web/api/api.types'
 import { AxiosResponse } from 'axios'
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useRateLimitStore = defineStore('rateLimitStore', () => {
-	/** rate limit per 15 seconds */
-	const rateLimit15 = ref({
-		current: 0,
-		max: 10,
-		testPeriod: 15,
-		timeout: 60,
-		activeTimeout: 0,
+	/**
+	 * Rate limits for the rate-limited APIS.
+	 *
+	 * Each API can have multiple test periods as defined in the testPeriod property.
+	 * All test periods have to be checked in the respective functions.
+	 * As an example, the PoE API currently has a 15s and a 60s rate limit. As such,
+	 * the first entry in any properties value array is for the 15s limit, the second
+	 * entry is for the 60s entry.
+	 *
+	 * Important: Test periods have to be listed in descending order!
+	 */
+	const rateLimits = ref<RateLimits>({
+		poe: {
+			testPeriod: [60, 15], // test periods. 15 and 60 seconds
+			current: [0, 0], // currenct requests in the respective test period
+			max: [30, 10], // maximum number of allowed request per respective test period
+			timeout: [300, 60], // timeout per respective test period if the rate limit is breached
+			activeTimeout: [0, 0], // currently active timeout per respective test period
+		},
+		bulky: {
+			testPeriod: [60, 15], // test periods. 15 and 60 seconds
+			current: [0, 0], // currenct requests in the respective test period
+			max: [30, 10], // maximum number of allowed request per respective test period
+			timeout: [300, 60], // timeout per respective test period if the rate limit is breached
+			activeTimeout: [0, 0], // currently active timeout per respective test period
+		},
 	})
 
-	/** rate limit per 60 seconds */
-	const rateLimit60 = ref({
-		current: 0,
-		max: 30,
-		testPeriod: 60,
-		timeout: 300,
-		activeTimeout: 0,
+	/** Timestamps of fired requests to rate-limited APIs */
+	const requestTimestamps = ref<RequestTimestamps>({
+		poe: [],
+		bulky: [],
 	})
+
+	/**
+	 * Calculate rate limits depending on the collected timestamps and the current time.
+	 *
+	 * This function will update the reactive rateLimits variable with values for each
+	 * test period and will also remove any timestamps older than the largest test period.
+	 *
+	 * Important: This calculation can only provide a best-guess. Multiple apps may share
+	 * the same rate limits, which it cannot know about in advance. You MUST NOT replace
+	 * the 429 error code handling with this.
+	 */
+	function calculateCurrentRateLimits(apiType: ApiType) {
+		if (apiType === 'node' || apiType === 'other') return
+
+		const timestamps = requestTimestamps.value[apiType]
+		const limits = rateLimits.value[apiType]
+
+		// Array to collect the offsets for each rate limit period
+		let offsets: number[] = Array(limits.testPeriod.length).fill(0)
+		const currentTime = Date.now()
+
+		for (let i = 0; i < timestamps.length; ++i) {
+			const timestampAge = currentTime - timestamps[i]
+			let offsetIncreased = false
+
+			limits.testPeriod.forEach((period, periodIdx) => {
+				// if the current timestamp's age is larger than the test period, increase the period's offset
+				if (timestampAge > period * 1000) {
+					++offsets[periodIdx]
+					offsetIncreased = true
+				}
+			})
+
+			// If the offset wasn't increased for any period, it means all subsequest requests must also be
+			// a part of every interval. It's safe to break the loop here
+			if (offsetIncreased === false) {
+				break
+			}
+		}
+
+		// update rate limits
+		for (let i = 0; i < limits.testPeriod.length; ++i) {
+			limits.current[i] = timestamps.length - offsets[i]
+		}
+
+		// remove entries older than the largest test period
+		if (offsets[0] > 0) {
+			timestamps.splice(0, offsets[0])
+		}
+	}
 
 	/**
 	 * Calculate if the attempted amount of requests should be allowed or not.
 	 * True means requests should be blocked.
 	 */
-	function rateLimitRequest(attemptedRequests = 1) {
-		if (rateLimit15.value.activeTimeout > 0) return true
-		if (rateLimit60.value.activeTimeout > 0) return true
+	function blockRequest(apiType: ApiType, attemptedRequests = 1) {
+		if (apiType === 'node' || apiType === 'other') return false
 
-		if (rateLimit15.value.current + attemptedRequests > rateLimit15.value.max) return true
-		if (rateLimit60.value.current + attemptedRequests > rateLimit60.value.max) return true
+		calculateCurrentRateLimits(apiType)
+		const limits = rateLimits.value[apiType]
+
+		const activeTimeout = limits.activeTimeout.some(t => t > 0)
+		const current = limits.current.some((curr, idx) => curr + attemptedRequests > limits.max[idx])
+
+		if (activeTimeout || current) return true
 
 		return false
 	}
 
-	function updateRateLimits(headers: AxiosResponse['headers']) {
-		if (!headers['x-rate-limit-account'] || !headers['x-rate-limit-account-state']) return
+	/**
+	 * Consume response headers and extract the rate limit headers from there.
+	 * This function will update the reactive rateLimits variable with the received
+	 * values from the server.
+	 *
+	 * If the returned 'current' values are higher than the ones calculated, assume that
+	 * another app was using the endpoints and add the according number of timestamps
+	 * to the reactive array to take those extra requests into account for the next calculation.
+	 */
+	function updateRateLimitsFromHeaders(apiType: ApiType, headers: AxiosResponse['headers']) {
+		if (
+			apiType === 'node' ||
+			apiType === 'other' ||
+			!headers['x-rate-limit-account'] ||
+			!headers['x-rate-limit-account-state']
+		)
+			return
 
-		const limit = headers['x-rate-limit-account'] as string
-		const state = headers['x-rate-limit-account-state'] as string
+		calculateCurrentRateLimits(apiType)
+		const timestamps = requestTimestamps.value[apiType]
+		const limits = rateLimits.value[apiType]
 
-		const limits = limit.split(',')
-		const states = state.split(',')
+		const maxLimitString = headers['x-rate-limit-account'] as string
+		const currentLimitString = headers['x-rate-limit-account-state'] as string
 
-		limits.forEach(l => {
-			const atoms = l.split(':')
-			if (atoms.length !== 3) return
+		const headerMaxLimits = maxLimitString.split(',')
+		const headerCurrentLimits = currentLimitString.split(',')
 
-			const max = parseInt(atoms[0])
-			const testPeriod = parseInt(atoms[1])
-			const timeout = parseInt(atoms[2])
+		if (headerMaxLimits.length !== headerCurrentLimits.length) {
+			// TODO: error handling
+			console.log('header responses have unequal length')
+			return
+		}
 
-			if (testPeriod === 15) {
-				rateLimit15.value.max = max
-				rateLimit15.value.timeout = timeout
-			} else if (testPeriod === 60) {
-				rateLimit60.value.max = max
-				rateLimit60.value.timeout = timeout
-			} else {
-				// TODO: probably throw error here
-				console.log('unknown rate limit')
+		// In the next section, a delta between the 'current' rate limit
+		// requests from the header and the 'current' rate limit from the
+		// reactive variable will be determined. Save these deltas here.
+		const savedRequestDeltas: number[] = []
+
+		headerMaxLimits.forEach(maxLimitString => {
+			const maxLimitValues = maxLimitString.split(':')
+			if (maxLimitValues.length !== 3) {
+				// TODO: error handling
+				console.log('rate limit headers have unknown structure')
+				return
 			}
+
+			// get the values from the max limit header
+			const max = parseInt(maxLimitValues[0])
+			const testPeriod = parseInt(maxLimitValues[1])
+			const timeout = parseInt(maxLimitValues[2])
+
+			// find the
+			const regex = new RegExp(`:${testPeriod}:`, 'ig')
+			const currentLimitString = headerCurrentLimits.find(h => h.match(regex))
+			const currentLimitValues = currentLimitString?.split(':')
+			if (currentLimitValues?.length !== 3) {
+				// TODO: error handling
+				console.log('rate limit header structure unknown')
+				return
+			}
+
+			const current = parseInt(currentLimitValues[0])
+			const activeTimeout = parseInt(currentLimitValues[2])
+
+			// get the index of the properties in the reactive rateLimits variable that should be updated
+			const reactiveLimitIndex = limits.testPeriod.findIndex(p => p === testPeriod)
+
+			if (reactiveLimitIndex === -1) {
+				// TODO: error handling
+				console.log('unknown test period')
+				return
+			}
+
+			// Check if the returned 'current' value is larger than the saved 'current' value.
+			// If yes, assume that another application has used the same rate limits and some
+			// dummy timestamps to simulate this.
+			const timestampsToAdd = Math.max(0, current - limits.current[reactiveLimitIndex])
+			savedRequestDeltas[reactiveLimitIndex] = timestampsToAdd
+
+			// update all values
+			limits.current[reactiveLimitIndex] = current
+			limits.max[reactiveLimitIndex] = max
+			limits.timeout[reactiveLimitIndex] = timeout
+			limits.activeTimeout[reactiveLimitIndex] = activeTimeout
 		})
 
-		states.forEach(s => {
-			const atoms = s.split(':')
-			if (atoms.length !== 3) return
-
-			const current = parseInt(atoms[0])
-			const testPeriod = parseInt(atoms[1])
-			const activeTimeout = parseInt(atoms[2])
-
-			if (testPeriod === 15) {
-				rateLimit15.value.current = current
-				rateLimit15.value.activeTimeout = activeTimeout
-			} else if (testPeriod === 60) {
-				rateLimit60.value.current = current
-				rateLimit60.value.activeTimeout = activeTimeout
+		// Iterate over the savedRequestDeltas and insert dummy timestamps
+		// if necessary. Different deltas have to inserted at different
+		// positions. E.g. if the 60s test period is off by 1 and the 15s
+		// test period is accurate, then the dummy timestamp has to be at
+		// most Date.now() - 15001 to not appear in future 15s test period
+		// checks. That also means it can't just be pushed to the array.
+		for (let i = savedRequestDeltas.length - 1; i >= 0; --i) {
+			if (savedRequestDeltas[i + 1] === undefined) {
+				const amountToInsert = savedRequestDeltas[i]
+				const dummy = Date.now()
+				timestamps.push(...Array(amountToInsert).fill(dummy))
 			} else {
-				// TODO: probably throw error here
-				console.log('unknown rate limit')
+				const amountToInsert = Math.max(0, savedRequestDeltas[i] - savedRequestDeltas[i + 1])
+				const dummy = Date.now() - limits.testPeriod[i + 1] * 1001
+				const insertionIndex = timestamps.findIndex(ts => ts > dummy)
+				if (insertionIndex === -1) {
+					timestamps.push(...Array(amountToInsert).fill(dummy))
+				} else {
+					timestamps.splice(insertionIndex, 0, ...Array(amountToInsert).fill(dummy))
+				}
 			}
-		})
+		}
+	}
+
+	return {
+		rateLimits,
+		requestTimestamps,
+		blockRequest,
+		updateRateLimitsFromHeaders,
 	}
 })
+
+if (import.meta.hot) {
+	import.meta.hot.accept(acceptHMRUpdate(useRateLimitStore, import.meta.hot))
+}

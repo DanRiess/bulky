@@ -33,6 +33,8 @@ export function deserializeError(e: unknown) {
 				status: e.error.status,
 			})
 		}
+	} else if (e instanceof Error) {
+		return e
 	}
 	console.log(e)
 	return new Error('Unknown Error')

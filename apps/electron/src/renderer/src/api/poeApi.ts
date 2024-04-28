@@ -46,6 +46,13 @@ export const poeApi = {
 // >(null, 'http://localhost:5173/src/mocks/stash_list.json')
 
 /**
+ * Check if the passed function is a member of poeApi
+ */
+export function isPoeApiFunction(fn: Function) {
+	return Object.keys(poeApi).find(name => poeApi[name] === fn)
+}
+
+/**
  * Get the currently selected league. Required for some endpoints.
  */
 function getSelectedLeague() {

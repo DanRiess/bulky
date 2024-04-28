@@ -33,3 +33,10 @@ export const nodeApi = {
 		return window.api.writeConfig(config)
 	},
 }
+
+/**
+ * Check if the passed function is a member of poeApi
+ */
+export function isNodeApiFunction(fn: Function) {
+	return Object.keys(nodeApi).find(name => nodeApi[name] === fn)
+}

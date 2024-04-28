@@ -44,3 +44,10 @@ export const getListing: GenericRequestFunction<GenericListingDto[]> = bulkyApi.
 // /** this is now typesafe. req.exec will require the PostPayload and req.data.value will be a string */
 // const req = useApi('test', testPost)
 // console.log(req)
+
+/**
+ * Check if the passed function is a member of poeApi
+ */
+export function isBulkyApiFunction(fn: Function) {
+	return Object.keys(bulkyApi).find(name => bulkyApi[name] === fn)
+}

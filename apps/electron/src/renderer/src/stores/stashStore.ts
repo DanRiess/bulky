@@ -10,8 +10,10 @@ import { BULKY_STASH_TABS } from '@web/utility/stastTab'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 import { poeApi } from '@web/api/poeApi'
+import { useRateLimitStore } from './ratelimitStore'
 
 export const useStashStore = defineStore('stashStore', () => {
+	const rateLimitStore = useRateLimitStore()
 	const stashTabs = ref<StashTab[]>([])
 	const lastListFetch = ref(0)
 	const fetchTimeout = ref(5000)
@@ -86,6 +88,7 @@ export const useStashStore = defineStore('stashStore', () => {
 			console.log('could not find stash list')
 			return
 		}
+		if (stashListRequest.headers.value) rateLimitStore.updateRateLimitsFromHeaders('poe', stashListRequest.headers.value)
 
 		// set the last fetch time to now to throttle fetch requests
 		lastListFetch.value = Date.now()
