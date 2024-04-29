@@ -5,10 +5,11 @@ import { AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { SerializedError } from '@shared/errors/serializedError'
 import { deserializeError } from '@web/utility/deserializeError'
-import { useRateLimitStore } from '@web/stores/ratelimitStore'
+import { useRateLimitStore } from '@web/stores/rateLimitStore'
 import { isPoeApiFunction } from './poeApi'
 import { isBulkyApiFunction } from './bulkyApi'
 import { isNodeApiFunction } from './nodeApi'
+import { RequestError } from '@shared/errors/requestError'
 
 /**
  * Create an object of computed statuses
@@ -89,23 +90,34 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 			const apiType = calculateApiType(fn)
 			const shouldBlockRequest = rateLimitStore.blockRequest(apiType)
 			if (shouldBlockRequest) {
-				throw new RateLimitError()
+				throw new RequestError({
+					message: 'Potential rate limitation detected',
+					code: 'computed_rate_limit',
+					status: 492,
+				})
 			}
 
-			const response = await fn(...args)
+			// add a new timestamp to the rate limit store
+			rateLimitStore.addTimestamp(apiType)
 
-			// set headers
+			const response = await fn(...args)
 
 			// check for response adapter and modify if necessary
 			// data.value = typeof responseAdapter === 'function' ? responseAdapter(response.data) : response.data
 			const responseData = isAxiosResponse(response) ? response.data : response
 			headers.value = isAxiosResponse(response) ? response.headers : undefined
 
+			// update the rate limit from response headers
+			if (headers.value) {
+				rateLimitStore.updateRateLimitsFromHeaders(apiType, headers.value)
+			}
+
 			if (responseData instanceof SerializedError) throw responseData
 
 			data.value = responseData
 			status.value = 'SUCCESS'
 		} catch (e) {
+			console.log(e)
 			error.value = deserializeError(e)
 			status.value = 'ERROR'
 		}

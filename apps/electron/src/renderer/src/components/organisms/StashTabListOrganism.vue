@@ -42,20 +42,23 @@ const emit = defineEmits<{
 	startTimeout: []
 }>()
 
+// STATE
+const stashListRequest = stashStore.getStashTabListRequest()
+
 // GETTERS
 const svgIconProps = computed(() => {
 	return {
 		name: 'refresh',
-		rotate: stashStore.stashListRequest.statusPending,
-		useGradient: stashStore.stashListRequest.statusPending,
+		rotate: stashListRequest.request.statusPending.value,
+		useGradient: stashListRequest.request.statusPending.value,
 	}
 })
 
 // METHODS
 async function fetchStash() {
-	await stashStore.fetchStashTabList()
+	await stashListRequest.execute()
 
-	if (stashStore.stashListRequest.statusSuccess) {
+	if (stashListRequest.request.statusSuccess) {
 		emit('startTimeout')
 	}
 }

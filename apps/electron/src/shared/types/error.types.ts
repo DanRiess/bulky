@@ -10,6 +10,8 @@ const REQUEST_ERROR_CODE = {
 	duplicate_request: 'duplicate_request',
 	port_unavailable: 'port_unavailable',
 	token_unavailable: 'token_unavailable',
+	computed_rate_limit: 'computed_rate_limit',
+	rate_limit: 'rate_limit',
 } as const
 
 export type RequestErrorCode = ObjectValues<typeof REQUEST_ERROR_CODE>

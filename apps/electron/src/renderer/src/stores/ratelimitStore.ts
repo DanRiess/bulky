@@ -1,3 +1,22 @@
+/**
+ * This store aims to implement smart rate-limiting. Instead of blindly triggering
+ * a rate limit response and activating the assiciated timeout, it calculates if
+ * a given request would trigger the rate limit response and will prematurely block
+ * it.
+ *
+ * The advantage is that by not triggering the rate-limit response from the server,
+ * the request can be repeated much sooner. A helper function to calculate this
+ * will be provided as well.
+ *
+ * All of these calculations can only be taken as estimates. The request times saved
+ * on the server will not match the ones here perfectly. Also, desktop apps share
+ * enpoint rate limits for PoE. If the user works with i. e. Exilence at the same
+ * time, numbers here will be off. This means that rate-limit responses can still occur
+ * even though calculations here would say otherwise. Proper error handling MUST
+ * NOT be neglected.
+ */
+
+import { BulkyError } from '@shared/errors/bulkyError'
 import { ApiType, RateLimits, RequestTimestamps } from '@web/api/api.types'
 import { AxiosResponse } from 'axios'
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -32,11 +51,30 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 		},
 	})
 
-	/** Timestamps of fired requests to rate-limited APIs */
+	/** Timestamps of fired requests to rate-limited APIs. */
 	const requestTimestamps = ref<RequestTimestamps>({
 		poe: [],
 		bulky: [],
 	})
+
+	// METHODS
+	/**
+	 * Add a timestamp to the desired API. Will add a simulated 1 second server delay.
+	 */
+	function addTimestamp(apiType: ApiType) {
+		if (apiType === 'node' || apiType === 'other') return
+
+		// add a 1 second delay to generously estimate server delay
+		requestTimestamps.value[apiType].push(Date.now() + 1000)
+
+		// add 1 to all 'current' values in rate limits
+		for (let i = 0; i < rateLimits.value[apiType].testPeriod.length; ++i) {
+			++rateLimits.value[apiType].current[i]
+		}
+
+		console.log('added stamps')
+		console.log(rateLimits.value[apiType])
+	}
 
 	/**
 	 * Calculate rate limits depending on the collected timestamps and the current time.
@@ -104,6 +142,65 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 		if (activeTimeout || current) return true
 
 		return false
+	}
+
+	/**
+	 * Calculates the timeout until a given amount of requests can be executed
+	 * without running into a rate limit response.
+	 */
+	function calculateTimeToRequest(apiType: ApiType, requestAmount = 1) {
+		const result = {
+			timeout: 0,
+			possibleNow: 1000,
+		}
+
+		if (apiType === 'node' || apiType === 'other') return result
+
+		const limits = rateLimits.value[apiType]
+		const timestamps = requestTimestamps.value[apiType]
+		const currentTime = Date.now()
+
+		if (requestAmount < 0 || requestAmount > Math.min(...limits.max)) {
+			throw new BulkyError({
+				message: `The request amount must be between 0 and ${Math.min(...limits.max)}`,
+			})
+		}
+
+		// calculate updated rate limits
+		calculateCurrentRateLimits(apiType)
+
+		const possibleNowArray: number[] = []
+		const timeoutArray: number[] = []
+
+		for (let i = 0; i < limits.testPeriod.length; ++i) {
+			const possible = limits.max[i] - limits.current[i]
+			possibleNowArray[i] = possible
+
+			// if possible requests are higher than the requested amount, return 0
+			if (possible >= requestAmount) {
+				timeoutArray[i] = 0
+				continue
+			}
+
+			// calculate the amount of timestamps that need to expire
+			const needToExpire = requestAmount - possible
+
+			// find the timestamp index of the first entry that falls into this test period
+			// and add the amount of indices that need to expire before reattempting request
+			const idxToExpire =
+				timestamps.findIndex(timestampAge => timestampAge > currentTime - limits.testPeriod[i] * 1000) + needToExpire
+
+			const exactTimeToRequest = Math.max(0, timestamps[idxToExpire] + limits.testPeriod[i] * 1000 - currentTime)
+
+			// round to the next second
+			const timeToRequest = Math.ceil(exactTimeToRequest / 1000) * 1000
+
+			timeoutArray[i] = timeToRequest
+		}
+
+		result.possibleNow = Math.min(...possibleNowArray)
+		result.timeout = Math.max(...timeoutArray)
+		return result
 	}
 
 	/**
@@ -198,8 +295,9 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 		// positions. E.g. if the 60s test period is off by 1 and the 15s
 		// test period is accurate, then the dummy timestamp has to be at
 		// most Date.now() - 15001 to not appear in future 15s test period
-		// checks. That also means it can't just be pushed to the array.
+		// checks. That also means it must be spliced into the array.
 		for (let i = savedRequestDeltas.length - 1; i >= 0; --i) {
+			// last index (smallest test period). dummies can be pushed here.
 			if (savedRequestDeltas[i + 1] === undefined) {
 				const amountToInsert = savedRequestDeltas[i]
 				const dummy = Date.now()
@@ -219,9 +317,10 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 
 	return {
 		rateLimits,
-		requestTimestamps,
 		blockRequest,
 		updateRateLimitsFromHeaders,
+		addTimestamp,
+		calculateTimeToRequest,
 	}
 })
 

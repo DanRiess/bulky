@@ -10,21 +10,18 @@ import { BULKY_STASH_TABS } from '@web/utility/stastTab'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 import { poeApi } from '@web/api/poeApi'
-import { useRateLimitStore } from './ratelimitStore'
 
 export const useStashStore = defineStore('stashStore', () => {
-	const rateLimitStore = useRateLimitStore()
 	const stashTabs = ref<StashTab[]>([])
 	const lastListFetch = ref(0)
 	const fetchTimeout = ref(5000)
-	const stashListRequest = useApi('stashTabList', poeApi.getStashTabList)
+	// const stashListRequest = useApi('stashTabList', poeApi.getStashTabList)
 
 	/**
 	 * Initialize the stashes from the last session / save. Should only be called once on app startup.
 	 */
 	async function initialize() {
 		try {
-			await fetchStashTabList()
 			// TODO: change this to read indexed db later
 			const tabs: StashTab[] = []
 
@@ -72,43 +69,39 @@ export const useStashStore = defineStore('stashStore', () => {
 	 * Fetch a list of all stash tabs. Only allow this once per hour.
 	 * Only add new stash tabs to the array, don't replace old ones. This would replace its items.
 	 */
-	async function fetchStashTabList() {
-		// TODO: change this to use the rate limiter store instead
-		// return if the stash tab list was fetched less than an hour ago
-		if (Date.now() - lastListFetch.value < fetchTimeout.value) return
+	function getStashTabListRequest() {
+		const request = useApi('stashListRequest', poeApi.getStashTabList)
 
-		// return if the status is in progress
-		if (stashListRequest.status.value === 'PENDING') return
+		async function execute() {
+			// return if the status is in progress
+			if (request.status.value === 'PENDING') return
 
-		// execute the request
-		await stashListRequest.exec()
+			// execute the request
+			await request.exec()
 
-		// error handling
-		if (stashListRequest.error.value || !stashListRequest.data.value) {
-			console.log('could not find stash list')
-			return
+			// error handling
+			if (request.error.value || !request.data.value) {
+				// TODO: error handling
+				console.log('could not find stash list')
+				return
+			}
+
+			// set the last fetch time to now to throttle fetch requests
+			lastListFetch.value = Date.now()
+			request.data.value.stashes.forEach(tab => addOrModifyStashTabListItem(tab))
+
+			// TODO: save results into indexeddb
 		}
-		if (stashListRequest.headers.value) rateLimitStore.updateRateLimitsFromHeaders('poe', stashListRequest.headers.value)
 
-		// set the last fetch time to now to throttle fetch requests
-		lastListFetch.value = Date.now()
-		stashListRequest.data.value.stashes.forEach(tab => addOrModifyStashTabListItem(tab))
-
-		// TODO: save results into indexeddb
-
-		// reset the request to be able to repeat it later
-		setTimeout(() => {
-			stashListRequest.reset()
-		}, 2000)
+		return { request, execute }
 	}
 
 	return {
 		stashTabs,
 		lastListFetch,
 		fetchTimeout,
-		stashListRequest,
 		initialize,
-		fetchStashTabList,
+		getStashTabListRequest,
 	}
 })
 
