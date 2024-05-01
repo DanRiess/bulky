@@ -1,5 +1,5 @@
 <template>
-	<button class="a-button specular-glance-animation gradient-border" data-b-override :class="{ active }">
+	<button class="a-button specular-glance-animation gradient-border" data-b-override :class="{ active }" :disabled="disabled">
 		<slot />
 	</button>
 </template>
@@ -12,10 +12,12 @@ const { backgroundColor } = withDefaults(
 	defineProps<{
 		active?: boolean
 		backgroundColor?: ButtonBackgroundColorScheme
+		disabled?: boolean
 	}>(),
 	{
 		active: false,
 		backgroundColor: 'light',
+		disabled: false,
 	}
 )
 
@@ -53,7 +55,7 @@ const backgroundColorButton = computed(() => {
 
 .a-button:disabled {
 	cursor: default;
-	color: var(--color-darker);
-	background-color: var(--color-dark);
+	color: var(--color-dark-100);
+	opacity: 0.7;
 }
 </style>

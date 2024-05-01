@@ -1,5 +1,5 @@
 <template>
-	<div class="o-stash-tab-list radial-gradient flow" data-b-override>
+	<div class="o-stash-tab-list animated-gradient-background flow" data-b-override>
 		<header class="title">
 			<h2 class="no-select">Stash Tabs</h2>
 			<TransitionAtom v-on="hooks">
@@ -14,9 +14,17 @@
 		</header>
 		<div v-if="stashStore.stashTabs.length === 0">No tabs found. Please load your stashes.</div>
 		<ul v-else class="stash-list">
-			<LabelWithCheckboxMolecule v-for="stash in stashStore.stashTabs" label-position="right" v-model="stash.selected">
-				{{ stash.name }}
-			</LabelWithCheckboxMolecule>
+			<template v-for="stash in stashStore.stashTabs" :key="stash.id">
+				<LabelWithCheckboxMolecule v-if="stash.type !== 'Folder'" label-position="right" v-model="stash.selected">
+					{{ stash.name }}
+				</LabelWithCheckboxMolecule>
+				<ul v-else class="stash-folder-list" :style="{ borderColor: '#' + stash.color ?? 'transparent' }">
+					<li>{{ stash.name }} Folder</li>
+					<LabelWithCheckboxMolecule v-for="child in stash.children" label-position="right" v-model="child.selected">
+						{{ child.name }}
+					</LabelWithCheckboxMolecule>
+				</ul>
+			</template>
 		</ul>
 	</div>
 </template>
@@ -51,6 +59,7 @@ const svgIconProps = computed(() => {
 		name: 'refresh',
 		rotate: stashListRequest.request.statusPending.value,
 		useGradient: stashListRequest.request.statusPending.value,
+		width: '100%',
 	}
 })
 
@@ -88,6 +97,7 @@ const hooks = useGenericTransitionHooks({
 	display: grid;
 	grid-template-columns: 1fr 2rem;
 	align-items: center;
+	height: 2rem;
 }
 
 .stash-list {
@@ -97,5 +107,27 @@ const hooks = useGenericTransitionHooks({
 	overflow: auto;
 	padding-top: 1px; /* for the translated checkbox */
 	padding-right: 0.5rem; /* padding towards the scrollbar */
+}
+
+.stash-folder-list {
+	grid-column: span 2;
+	display: grid;
+	grid-template-columns: 3.5rem 1fr;
+	gap: 0.5rem;
+	border: 2px solid;
+	border-radius: var(--border-radius-medium);
+}
+
+.stash-folder-list > li {
+	padding: 0.25rem 0 0 0.25rem;
+	grid-column: span 2;
+}
+
+.stash-folder-list > div {
+	padding-left: 2rem;
+}
+
+.stash-folder-list > div:last-child {
+	padding-bottom: 0.25rem;
 }
 </style>

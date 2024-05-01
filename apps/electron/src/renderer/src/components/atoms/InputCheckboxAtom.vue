@@ -2,7 +2,7 @@
 	<div class="a-checkbox">
 		<input type="checkbox" class="a-checkbox-input" :id="id" v-model="model" :disabled="disabled" />
 		<div class="checkmark" v-if="model">
-			<SvgIconAtom name="done" :use-gradient="true" :active="true" />
+			<SvgIconAtom name="done" :use-gradient="true" :active="true" width="175%" height="175%" />
 		</div>
 	</div>
 </template>
@@ -52,10 +52,11 @@ defineProps<{
 
 .checkmark {
 	position: absolute;
-	/* height: 1.7rem;
-	width: 1.7rem; */
-	top: -9px;
-	left: -4px;
+	height: 100%;
+	width: 100%;
+	/* top: -9px;
+	left: -4px; */
 	pointer-events: none;
+	transform: translate(-20%, -40%);
 }
 </style>

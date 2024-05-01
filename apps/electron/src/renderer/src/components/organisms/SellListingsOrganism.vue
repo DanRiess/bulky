@@ -1,5 +1,5 @@
 <template>
-	<div class="o-sell-listings flow radial-gradient" data-b-override>
+	<div class="o-sell-listings flow animated-gradient-background" data-b-override>
 		<ul class="">
 			<TransitionAtom group v-on="hooks">
 				<FallbackSellListingMolecule v-if="listings.length === 0" />
@@ -7,11 +7,13 @@
 		</ul>
 		<div class="button">
 			<template v-if="authStore.isLoggedIn">
-				<ButtonAtom background-color="dark">Create New Sales Listing</ButtonAtom>
+				<ButtonAtom background-color="dark" @click="appStateStore.selectedSellView = 'ADD'">
+					Create New Sales Listing
+				</ButtonAtom>
 			</template>
 			<template v-else>
 				<ButtonAtom background-color="dark" @click="initializeSignIn">
-					Sign in with your PoE account to add a new listing
+					Sign in with your PoE account to add a new listing {{ authStore.isLoggedIn }}
 				</ButtonAtom>
 			</template>
 		</div>
@@ -25,9 +27,11 @@ import FallbackSellListingMolecule from '../molecules/fallbacks/FallbackSellList
 import { useAuthStore } from '@web/stores/authStore'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useRouter } from 'vue-router'
+import { useAppStateStore } from '@web/stores/appStateStore'
 
 // STORES
 const authStore = useAuthStore()
+const appStateStore = useAppStateStore()
 
 // STATE
 const router = useRouter()

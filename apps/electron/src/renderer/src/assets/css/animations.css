@@ -127,7 +127,7 @@ body .specular-glance-animation.active[data-b-override]::after {
 }
 
 /* 
-Card gradient definition
+Animated gradient background definition
 */
 @property --gradient-percentage-x {
 	syntax: '<percentage>';
@@ -140,14 +140,14 @@ Card gradient definition
 	initial-value: 0%;
 }
 
-body .radial-gradient[data-b-override] {
+body .animated-gradient-background[data-b-override] {
 	background-image: 
 		radial-gradient(circle at var(--gradient-percentage-x) var(--gradient-percentage-y), transparent, rgb(255 255 255 / 0.1)),
 		linear-gradient(45deg, var(--color-stop-1, var(--dr-gradient-from-dark, #241442)), var(--color-stop-2, var(--dr-gradient-to-dark, #051e32)));
-	animation: radial-gradient-rotation 5s linear infinite;
+	animation: animated-gradient-rotation 5s linear infinite;
 }
 
-@keyframes radial-gradient-rotation {
+@keyframes animated-gradient-rotation {
 	0%, 100% {
 		--gradient-percentage-x: 20%;
 		--gradient-percentage-y: 50%;

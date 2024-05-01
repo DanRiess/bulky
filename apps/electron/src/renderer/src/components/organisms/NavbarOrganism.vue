@@ -10,7 +10,8 @@
 					name="settings"
 					:use-gradient="true"
 					cursor="pointer"
-					:active="appStateStore.selectedView === 'CONFIG'"></SvgIconAtom>
+					:active="appStateStore.selectedView === 'CONFIG'"
+					width="100%"></SvgIconAtom>
 			</div>
 			<UserIconMolecule />
 		</div>
@@ -39,5 +40,9 @@ const appStateStore = useAppStateStore()
 	grid-column: 4/4;
 	display: flex;
 	gap: 1rem;
+}
+
+.settings-icon {
+	width: 2rem;
 }
 </style>

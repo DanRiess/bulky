@@ -1,4 +1,4 @@
-import { Ref } from 'vue'
+import { MaybeRefOrGetter, Ref, isRef } from 'vue'
 
 export type ObjectValues<T> = T[keyof T]
 export type OptionalRecord = Record<string, unknown> | undefined
@@ -34,6 +34,13 @@ export type MaybeRef<T> = T | Ref<T>
 export type RequireSome<T, K extends keyof T> = T & { [P in K]-?: T[P] }
 
 export type ButtonBackgroundColorScheme = 'dark' | 'light'
+
+export type RefOrGetter<T> = Ref<T> | (() => T)
+
+/** Utility function to check if a variable can be used in a Vue watcher */
+export function isWatchable<T>(value: MaybeRefOrGetter<T>): value is RefOrGetter<T> {
+	return isRef(value) || typeof value === 'function'
+}
 
 /** ------------------------------------------------------------------------------------------------------------------------------
  * Utility for typed Object.fromEntries

@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
@@ -27,18 +27,18 @@ const attachmentPanelActive = ref(false)
 const router = useRouter()
 
 // EVENTS
-window.api.onToggleOverlayComponent(value => {
-	active.value = value.overlayWindowActive
-})
+// window.api.onToggleOverlayComponent(value => {
+// 	active.value = value.overlayWindowActive
+// })
 
-window.api.onShowAttachmentPanel(value => {
-	router.push({ name: 'AttachmentPanel' })
-	attachmentPanelActive.value = true
-	setTimeout(() => {
-		attachmentPanelActive.value = false
-		router.push({ name: 'Home' })
-	}, value.time)
-})
+// window.api.onShowAttachmentPanel(value => {
+// 	router.push({ name: 'AttachmentPanel' })
+// 	attachmentPanelActive.value = true
+// 	setTimeout(() => {
+// 		attachmentPanelActive.value = false
+// 		router.push({ name: 'Home' })
+// 	}, value.time)
+// })
 
 // METHODS
 onClickOutside(target, () => {
@@ -51,6 +51,13 @@ configStore.getUserConfig()
 stashStore.initialize()
 authStore.initialize()
 leagueStore.initialize()
+
+// HOOKS
+onMounted(() => {
+	if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+		authStore.isLoggedIn = true
+	}
+})
 </script>
 
 <style>

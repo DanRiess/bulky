@@ -1,8 +1,8 @@
 <template>
 	<div class="user-icon" ref="userIconEl" @click="menuExpanded = !menuExpanded">
-		<SvgIconAtom :name="iconName" :use-gradient="true" cursor="pointer" />
+		<SvgIconAtom :name="iconName" :use-gradient="true" cursor="pointer" width="100%" />
 		<TransitionAtom v-on="hooks">
-			<ul class="popup-menu radial-gradient" v-if="menuExpanded" data-b-override>
+			<ul class="popup-menu animated-gradient-background" v-if="menuExpanded" data-b-override>
 				<li v-for="option in menuOptions" :key="option.name" @click="option.click()">
 					{{ option.name }}
 				</li>
@@ -64,6 +64,7 @@ onClickOutside(userIconEl, () => {
 <style scoped>
 .user-icon {
 	position: relative;
+	width: 2rem;
 }
 
 .popup-menu {

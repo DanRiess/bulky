@@ -14,7 +14,7 @@ import { RequestError } from '@shared/errors/requestError'
 /**
  * Create an object of computed statuses
  */
-const createNormalisedApiStatuses = (status: Ref<ApiStatus>) => {
+export const createNormalisedApiStatuses = (status: Ref<ApiStatus>) => {
 	const normalizedApiStatus: NormalizedApiStatus = {
 		statusIdle: computed(() => status.value === API_STATUS.IDLE),
 		statusPending: computed(() => status.value === API_STATUS.PENDING),

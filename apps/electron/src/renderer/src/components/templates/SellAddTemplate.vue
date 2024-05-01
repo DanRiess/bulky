@@ -1,6 +1,6 @@
 <template>
 	<main class="t-sell-add">
-		<div class="main-container flow">
+		<div class="main-container stash-list flow">
 			<div class="category-input">
 				<LabelWithSelectMolecule :options="categories" v-model="appStateStore.selectedCategory" background-color="light">
 					Select Category:
@@ -12,7 +12,12 @@
 			<div class="timeout" v-if="timeout > 0">Next refresh possible in {{ minutes }}:{{ seconds }} minutes.</div>
 		</div>
 
-		<div class="main-container"></div>
+		<div class="main-container flow">
+			<StashTabItemsOrganism />
+			<div class="buttons">
+				<ButtonAtom>Back To My Listings</ButtonAtom>
+			</div>
+		</div>
 	</main>
 </template>
 
@@ -24,6 +29,8 @@ import { computed, onMounted, ref } from 'vue'
 import { useStashStore } from '@web/stores/stashStore'
 import { getKeys } from '@shared/types/utility.types'
 import { CATEGORY } from '@shared/types/bulky.types'
+import StashTabItemsOrganism from '../organisms/StashTabItemsOrganism.vue'
+import ButtonAtom from '../atoms/ButtonAtom.vue'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -79,9 +86,13 @@ onMounted(() => {
 
 .main-container {
 	display: grid;
-	/* grid-template-rows: auto minmax(0, 1fr) minmax(0, max-content); */
-	grid-template-rows: v-bind(stashListGridRows);
+	grid-template-rows: auto minmax(0, max-content);
 	transition: grid-template-rows 0.3s ease;
+}
+
+/* override for the stash list */
+.stash-list {
+	grid-template-rows: v-bind(stashListGridRows);
 }
 
 .category-input {
@@ -93,5 +104,10 @@ onMounted(() => {
 .timeout {
 	text-align: right;
 	font-size: 0.8rem;
+}
+
+.buttons {
+	display: flex;
+	justify-content: flex-end;
 }
 </style>

@@ -16,11 +16,10 @@
  * NOT be neglected.
  */
 
-import { BulkyError } from '@shared/errors/bulkyError'
 import { ApiType, RateLimits, RequestTimestamps } from '@web/api/api.types'
 import { AxiosResponse } from 'axios'
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { ref } from 'vue'
+import { readonly, ref } from 'vue'
 
 export const useRateLimitStore = defineStore('rateLimitStore', () => {
 	/**
@@ -71,9 +70,6 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 		for (let i = 0; i < rateLimits.value[apiType].testPeriod.length; ++i) {
 			++rateLimits.value[apiType].current[i]
 		}
-
-		console.log('added stamps')
-		console.log(rateLimits.value[apiType])
 	}
 
 	/**
@@ -109,7 +105,7 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 			})
 
 			// If the offset wasn't increased for any period, it means all subsequest requests must also be
-			// a part of every interval. It's safe to break the loop here
+			// a part of every test period. It's safe to break the loop here
 			if (offsetIncreased === false) {
 				break
 			}
@@ -145,7 +141,17 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 	}
 
 	/**
-	 * Calculates the timeout until a given amount of requests can be executed
+	 * Get the maximum amount of possible requests within the shortest test period.
+	 */
+	function getMaxRequestsForShortestTestPeriod(apiType: ApiType) {
+		if (apiType === 'node' || apiType === 'other') return Infinity
+
+		// the shortest time period is by definition the last entry in the array
+		return rateLimits.value[apiType].max[rateLimits.value[apiType].max.length - 1]
+	}
+
+	/**
+	 * Calculate the timeout until a given amount of requests can be executed
 	 * without running into a rate limit response.
 	 */
 	function calculateTimeToRequest(apiType: ApiType, requestAmount = 1) {
@@ -161,9 +167,10 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 		const currentTime = Date.now()
 
 		if (requestAmount < 0 || requestAmount > Math.min(...limits.max)) {
-			throw new BulkyError({
-				message: `The request amount must be between 0 and ${Math.min(...limits.max)}`,
-			})
+			return {
+				timeout: Infinity,
+				possibleNow: 0,
+			}
 		}
 
 		// calculate updated rate limits
@@ -187,8 +194,7 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 
 			// find the timestamp index of the first entry that falls into this test period
 			// and add the amount of indices that need to expire before reattempting request
-			const idxToExpire =
-				timestamps.findIndex(timestampAge => timestampAge > currentTime - limits.testPeriod[i] * 1000) + needToExpire
+			const idxToExpire = timestamps.findIndex(ts => ts > currentTime - limits.testPeriod[i] * 1000) + needToExpire - 1
 
 			const exactTimeToRequest = Math.max(0, timestamps[idxToExpire] + limits.testPeriod[i] * 1000 - currentTime)
 
@@ -317,10 +323,12 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 
 	return {
 		rateLimits,
+		timestamps: readonly(requestTimestamps),
 		blockRequest,
 		updateRateLimitsFromHeaders,
 		addTimestamp,
 		calculateTimeToRequest,
+		getMaxRequestsForShortestTestPeriod,
 	}
 })
 

@@ -211,6 +211,9 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Log out the user and reset state variables.
 	 */
 	function logout() {
+		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+			return
+		}
 		isLoggedIn.value = false
 		profile.value = undefined
 		window.localStorage.removeItem('tokenStructure')

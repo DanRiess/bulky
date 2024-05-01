@@ -1,5 +1,5 @@
 <template>
-	<div class="attachment-panel-view radial-gradient" data-b-override>
+	<div class="attachment-panel-view animated-gradient-background" data-b-override>
 		<h1 class="header">Bulky is running in the background</h1>
 		<section class="info">Press Ctrl + Space to open the overlay</section>
 	</div>

@@ -1,5 +1,9 @@
 <template>
-	<button class="a-button-svg specular-glance-animation gradient-border" data-b-override :class="{ active }">
+	<button
+		class="a-button-svg specular-glance-animation gradient-border"
+		data-b-override
+		:class="{ active }"
+		:disabled="disabled">
 		<slot />
 	</button>
 </template>
@@ -12,10 +16,12 @@ const props = withDefaults(
 	defineProps<{
 		active?: boolean
 		backgroundColor?: ButtonBackgroundColorScheme
+		disabled?: boolean
 	}>(),
 	{
 		active: false,
 		backgroundColor: 'light',
+		disabled: false,
 	}
 )
 
@@ -30,7 +36,9 @@ const backgroundColorButton = computed(() => {
 .a-button-svg {
 	--border-width: 2px;
 
-	height: max-content;
+	/* height: max-content; */
+	height: 2rem;
+	width: 2rem;
 	background-image: v-bind(backgroundColorButton);
 	color: inherit;
 	cursor: pointer;
@@ -57,6 +65,6 @@ const backgroundColorButton = computed(() => {
 .a-button-svg:disabled {
 	cursor: default;
 	color: var(--color-darker);
-	background-color: var(--color-dark);
+	background-color: v-bind(backgroundColorButton);
 }
 </style>

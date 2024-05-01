@@ -1,9 +1,9 @@
 <template>
 	<main class="t-config">
-		<div class="main-container radial-gradient" data-b-override>
+		<div class="main-container animated-gradient-background" data-b-override>
 			<ConfigCategoriesMolecule />
 		</div>
-		<div class="main-container radial-gradient" data-b-override>
+		<div class="main-container animated-gradient-background" data-b-override>
 			<ConfigOrganism />
 		</div>
 	</main>

@@ -8,17 +8,37 @@ import { StashTabListItemDto } from '@shared/types/dto.types'
 import { StashTab } from '@shared/types/stash.types'
 import { BULKY_STASH_TABS } from '@web/utility/stastTab'
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { poeApi } from '@web/api/poeApi'
+import { useConfigStore } from './configStore'
 
 export const useStashStore = defineStore('stashStore', () => {
+	const configStore = useConfigStore()
 	const stashTabs = ref<StashTab[]>([])
 	const lastListFetch = ref(0)
-	const fetchTimeout = ref(5000)
-	// const stashListRequest = useApi('stashTabList', poeApi.getStashTabList)
+	const fetchTimeout = ref(15000)
+
+	// GETTERS
+
+	const selectedStashTabs = computed(() => {
+		return stashTabs.value
+			.map(tab => {
+				if (tab.type === 'Folder') {
+					// get children
+					const children = tab.children?.filter(child => child.selected)
+					return children
+				}
+				return tab.selected ? tab : undefined
+			})
+			.filter(Boolean)
+			.flat()
+	})
+
+	// METHODS
 
 	/**
-	 * Initialize the stashes from the last session / save. Should only be called once on app startup.
+	 * Initialize the stashes from the last session / save.
+	 * Should only be called on app startup or when the league config changes.
 	 */
 	async function initialize() {
 		try {
@@ -45,7 +65,7 @@ export const useStashStore = defineStore('stashStore', () => {
 	 * The method to filter out existing stashes is highly inefficient at O(n²),
 	 * but for the number of stashes of a standard player, this shouldn't matter too much.
 	 */
-	function addOrModifyStashTabListItem(dto: StashTabListItemDto) {
+	function addOrModifyStashTabListItem(dto: StashTabListItemDto, parent?: StashTab) {
 		const existingTab = stashTabs.value.find(t => t.id === dto.id)
 
 		// if the tab exists already, just update its name
@@ -58,10 +78,21 @@ export const useStashStore = defineStore('stashStore', () => {
 			const type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
 			const color = dto.metadata.colour
 			const lastSnapshot = 0
-			const items = []
 			const selected = false
+			const league = configStore.config.league
 
-			stashTabs.value.push({ name, id, type, lastSnapshot, color, items, selected })
+			const tab: StashTab = { name, id, type, lastSnapshot, color, selected, league }
+
+			// process the folder's children
+			dto.children?.forEach(child => {
+				addOrModifyStashTabListItem(child, tab)
+			})
+
+			if (parent) {
+				parent.children ? parent.children.push(tab) : (parent.children = [tab])
+			} else {
+				stashTabs.value.push(tab)
+			}
 		}
 	}
 
@@ -96,12 +127,23 @@ export const useStashStore = defineStore('stashStore', () => {
 		return { request, execute }
 	}
 
+	/**
+	 * Reset the state.
+	 * I. e. when the user changes the league in the config
+	 */
+	function reset() {
+		stashTabs.value.length = 0
+		lastListFetch.value = 0
+	}
+
 	return {
 		stashTabs,
+		selectedStashTabs,
 		lastListFetch,
 		fetchTimeout,
 		initialize,
 		getStashTabListRequest,
+		reset,
 	}
 })
 

@@ -1,5 +1,5 @@
 <template>
-	<div class="t-auth radial-gradient" data-b-override>
+	<div class="t-auth animated-gradient-background" data-b-override>
 		<AuthPendingMolecule
 			v-if="authStore.authorizationState === 'PENDING' || authStore.authorizationState === 'IDLE'"
 			@copy-sign-in-url="copySignInUrl"

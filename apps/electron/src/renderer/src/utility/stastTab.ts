@@ -5,7 +5,8 @@
 import { STASH_TYPE, StashType } from '@shared/types/stash.types'
 
 function generateStashTabTypeFromDto(type: string): StashType {
-	if (type.match(/premium/i)) return STASH_TYPE.PremiumStash
+	if (type.match(/folder/i)) return STASH_TYPE.Folder
+	else if (type.match(/premium/i)) return STASH_TYPE.PremiumStash
 	else if (type.match(/quad/i)) return STASH_TYPE.QuadStash
 	else if (type.match(/currency/i)) return STASH_TYPE.CurrencyStash
 	else if (type.match(/map/i)) return STASH_TYPE.MapStash
@@ -16,7 +17,7 @@ function generateStashTabTypeFromDto(type: string): StashType {
 	else if (type.match(/delve/i)) return STASH_TYPE.DelveStash
 	else if (type.match(/blight/i)) return STASH_TYPE.BlightStash
 	else if (type.match(/ultimatum/i)) return STASH_TYPE.UltimatumStash
-	else return STASH_TYPE.Stash
+	else return STASH_TYPE.NormalStash
 }
 
 export const BULKY_STASH_TABS = {

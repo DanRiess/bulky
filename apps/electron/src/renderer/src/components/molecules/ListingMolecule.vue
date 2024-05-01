@@ -1,5 +1,5 @@
 <template>
-	<div class="m-listing-item radial-gradient" data-b-override>
+	<div class="m-listing-item animated-gradient-background" data-b-override>
 		<div class="flow">
 			<ListingMetadataMolecule
 				:ign="computedListing.ign"

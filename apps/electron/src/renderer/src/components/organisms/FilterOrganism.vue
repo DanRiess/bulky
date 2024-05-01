@@ -1,5 +1,5 @@
 <template>
-	<div class="o-filter-generic radial-gradient flow" data-b-override>
+	<div class="o-filter-generic animated-gradient-background flow" data-b-override>
 		<header class="title">
 			<h1 class="no-select">
 				<slot name="title">Filter</slot>

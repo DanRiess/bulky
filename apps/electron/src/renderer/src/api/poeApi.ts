@@ -9,16 +9,37 @@ import { useAuthStore } from '@web/stores/authStore'
 import { RequestError } from '@shared/errors/requestError'
 import { PoeProfileResponse } from '@shared/types/auth.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { PoeStashListResponse } from '@shared/types/response.types'
+import { PoeStashItemResponse, PoeStashListResponse } from '@shared/types/response.types'
+import { StashTab } from '@shared/types/stash.types'
 
+/**
+ * Validator: Check if the passed function is a member of poeApi
+ */
+export function isPoeApiFunction(fn: Function) {
+	return Object.keys(poeApi).find(name => poeApi[name] === fn)
+}
+
+/**
+ * THE API
+ */
 export const poeApi = {
 	getStashTabList: async (config?: AxiosRequestConfig) => {
-		// return api.get<StashTabListDto>('http://localhost:5173/src/mocks/stash_list.json', config)
+		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+			return api.get<PoeStashListResponse>('http://localhost:5173/src/mocks/stash_list.json', config)
+		}
 
 		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + '/stash/' + getSelectedLeague()
 		const updatedConfig = await updateConfig(config)
 
 		return api.get<PoeStashListResponse>(url, updatedConfig)
+	},
+
+	getStashTabItems: async (stashTab: StashTab, config?: AxiosRequestConfig) => {
+		// TODO: rework stash tab to include parent
+		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + `/stash/${getSelectedLeague()}/${stashTab.id}`
+		const updatedConfig = await updateConfig(config)
+
+		return api.get<PoeStashItemResponse>(url, updatedConfig)
 	},
 
 	getProfile: async (config?: AxiosRequestConfig) => {
@@ -46,10 +67,18 @@ export const poeApi = {
 // >(null, 'http://localhost:5173/src/mocks/stash_list.json')
 
 /**
- * Check if the passed function is a member of poeApi
+ * Compute and add the bearer token to the supplied config object.
  */
-export function isPoeApiFunction(fn: Function) {
-	return Object.keys(poeApi).find(name => poeApi[name] === fn)
+async function updateConfig(config?: AxiosRequestConfig) {
+	const token = await getAccessToken()
+
+	const defaultConfig: AxiosRequestConfig = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	}
+
+	return { ...defaultConfig, ...config }
 }
 
 /**
@@ -77,19 +106,4 @@ async function getAccessToken() {
 	}
 
 	return token
-}
-
-/**
- * Compute and add the bearer token to the supplied config object.
- */
-async function updateConfig(config?: AxiosRequestConfig) {
-	const token = await getAccessToken()
-
-	const defaultConfig: AxiosRequestConfig = {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	}
-
-	return { ...defaultConfig, ...config }
 }

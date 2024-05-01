@@ -1,5 +1,5 @@
 <template>
-	<div class="m-listing-item radial-gradient" data-b-override>
+	<div class="m-listing-item animated-gradient-background" data-b-override>
 		<p>Sorry, there are no listings matching your current filter.</p>
 	</div>
 </template>

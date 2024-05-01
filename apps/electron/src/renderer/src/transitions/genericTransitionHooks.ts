@@ -32,10 +32,27 @@ export function useGenericTransitionHooks(options: gsap.TweenVars = {}) {
 		})
 	}
 
+	// These 2 function are necessary because of a Vue internals bug.
+	// While hovering over a leaving element that is a child of an element with mouse listeners,
+	// Vue will throw 'Cannot read properties of null (reading 'insertBefore')'.
+	function onBeforeLeave(el: Element) {
+		if (!(el instanceof HTMLElement)) return
+
+		el.style.pointerEvents = 'none'
+	}
+
+	function onAfterLeave(el: Element) {
+		if (!(el instanceof HTMLElement)) return
+
+		el.style.pointerEvents = 'unset'
+	}
+
 	return computed(() => {
 		return {
 			enter: onEnter,
 			leave: onLeave,
+			beforeLeave: onBeforeLeave,
+			afterLeave: onAfterLeave,
 		}
 	})
 }

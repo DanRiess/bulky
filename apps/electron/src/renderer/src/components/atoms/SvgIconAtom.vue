@@ -1,21 +1,26 @@
 <template>
-	<!-- the svg -->
-	<component
-		:is="iconComponent"
-		class="a-svg-icon"
-		:class="{ active, rotate }"
-		:width="width"
-		:height="height ?? width"
-		role="img">
-	</component>
+	<div class="svg-container">
+		<!-- the svg -->
+		<component
+			v-show="timeout === 0"
+			:is="iconComponent"
+			class="a-svg-icon"
+			:class="{ active, rotate, timeout }"
+			:width="width"
+			:height="height ?? width"
+			role="img">
+		</component>
 
-	<!-- the gradient. i tried moving this to another component and load it here, but css url loading failed -->
-	<svg style="width: 0; height: 0; position: absolute" aria-hidden="true" focusable="false" class="svg-gradient">
-		<linearGradient :id="gradientId" x2="1" y2="1">
-			<stop class="stop" offset="0%" :stop-color="gradientStopColors[0]"></stop>
-			<stop class="stop" offset="100%" :stop-color="gradientStopColors[1]"></stop>
-		</linearGradient>
-	</svg>
+		<div class="timeout-overlay" v-if="timeout > 0">{{ timeout > 999 ? 'X' : timeout }}</div>
+
+		<!-- the gradient. i tried moving this to another component and load it here, but css url loading failed -->
+		<svg style="width: 0; height: 0; position: absolute" aria-hidden="true" focusable="false" class="svg-gradient">
+			<linearGradient :id="gradientId" x2="1" y2="1">
+				<stop class="stop" offset="0%" :stop-color="gradientStopColors[0]"></stop>
+				<stop class="stop" offset="100%" :stop-color="gradientStopColors[1]"></stop>
+			</linearGradient>
+		</svg>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -37,6 +42,7 @@ const props = withDefaults(
 		height?: number | string
 		width?: number | string
 		rotate?: boolean
+		timeout?: number
 	}>(),
 	{
 		active: false,
@@ -46,8 +52,14 @@ const props = withDefaults(
 		cursor: 'inherit',
 		height: '100%',
 		width: 24,
+		timeout: 0,
 	}
 )
+
+// My ts compiler throws a bunch of errors in this components if I don't define these macros.
+// Tried to debug this behavior for hours, but didn't find anything.
+// Solutions welcome, but it's likely just a bug on my machine.
+defineOptions()
 
 // STATE
 // define a random id for the gradient.
@@ -75,6 +87,12 @@ const iconComponent = computed(() => {
 </script>
 
 <style scoped>
+.svg-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
 .a-svg-icon {
 	display: inline-block;
 	vertical-align: baseline;
@@ -88,14 +106,29 @@ const iconComponent = computed(() => {
 	cursor: v-bind(cursor);
 }
 
-.a-svg-icon:hover,
-.a-svg-icon.active {
+.a-svg-icon:hover:not(.timeout),
+.a-svg-icon.active:not(.timeout) {
 	fill: v-bind(hoverFill);
 }
 
 .a-svg-icon.rotate {
 	fill: v-bind(hoverFill);
 	animation: rotate 1s forwards linear infinite;
+}
+
+.a-svg-icon.timeout {
+	opacity: 0.6;
+	cursor: default;
+}
+
+.timeout-overlay {
+	position: absolute;
+	font-weight: 500;
+	font-size: 1.1rem;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: default;
 }
 
 .stop {

@@ -1,38 +1,40 @@
 <template>
 	<div
 		class="m-svg-button-with-popup"
-		:class="{ disabled }"
+		:class="{ disabled: computedDisabled }"
 		@click="onClick"
 		@mouseenter="onMouseEnter"
 		@mouseleave="onMouseLeave">
-		<ButtonSvgAtom :active="hovered" :background-color="backgroundColor">
+		<ButtonSvgAtom :active="hovered" :background-color="backgroundColor" :disabled="computedDisabled">
 			<SvgIconAtom v-bind="svgProps" />
 		</ButtonSvgAtom>
-		<ButtonTooltipAtom :active="hovered" :backgroundColor="backgroundColor">
+		<ButtonTooltipAtom :active="hovered || alwaysShowTooltip" v-bind="tooltipProps" :backgroundColor="backgroundColor">
 			<slot />
 		</ButtonTooltipAtom>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import ButtonTooltipAtom from '../atoms/ButtonTooltipAtom.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import ButtonSvgAtom from '../atoms/ButtonSvgAtom.vue'
 import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 
 // PROPS
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		disabled?: boolean
 		hoverColor?: string
 		backgroundColor?: ButtonBackgroundColorScheme
+		alwaysShowTooltip?: boolean
 		svgProps: InstanceType<typeof SvgIconAtom>['$props']
+		tooltipProps?: Omit<InstanceType<typeof ButtonTooltipAtom>['$props'], 'active'>
 	}>(),
 	{
 		disabled: false,
-		hoverColor: 'var(--neb-highlight-hover)',
 		backgroundColor: 'dark',
+		alwaysShowTooltip: false,
 	}
 )
 
@@ -43,6 +45,15 @@ const emit = defineEmits<{
 
 // STATE
 const hovered = ref(false)
+
+// GETTERS
+const computedDisabled = computed(() => {
+	if (props.svgProps.timeout) {
+		return props.disabled || !!props.svgProps.timeout
+	}
+
+	return props.disabled
+})
 
 // METHODS
 function onClick() {
@@ -70,9 +81,9 @@ function onMouseLeave() {
 	transform-origin: center;
 }
 
-.m-svg-button-with-popup:not(.disabled):hover {
+/* .m-svg-button-with-popup:not(.disabled):hover {
 	color: v-bind(hoverColor);
-}
+} */
 
 /* .button {
 	border-radius: var(--border-radius-small);
