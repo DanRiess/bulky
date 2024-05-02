@@ -66,6 +66,7 @@ export const useStashStore = defineStore('stashStore', () => {
 	 * but for the number of stashes of a standard player, this shouldn't matter too much.
 	 */
 	function addOrModifyStashTabListItem(dto: StashTabListItemDto, parent?: StashTab) {
+		console.log(dto)
 		const existingTab = stashTabs.value.find(t => t.id === dto.id)
 
 		// if the tab exists already, just update its name

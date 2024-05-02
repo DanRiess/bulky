@@ -9,7 +9,6 @@ import {
 	SextantModifier,
 	SextantType,
 } from '@web/categories/compass/compass.types'
-import { League } from './poe.types'
 import { ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utility.types'
 import {
 	Essence,
@@ -22,6 +21,7 @@ import {
 	EssenceTier,
 	EssenceType,
 } from '@web/categories/essence/essence.types'
+import { PoeItem } from './poe.types'
 
 // APP STATE TYPES
 
@@ -39,6 +39,27 @@ export type Category = ObjectValues<typeof CATEGORY>
 export type MainView = 'BUY' | 'SELL' | 'CONFIG' | 'AUTH'
 
 export type SellView = 'LIST' | 'ADD'
+
+// TRANSFORMED THINGS
+export type BulkyItem = Pick<
+	PoeItem,
+	| 'id'
+	| 'inventoryId'
+	| 'name'
+	| 'baseType'
+	| 'icon'
+	| 'itemLevel'
+	| 'stackSize'
+	| 'maxStackSize'
+	| 'implicitMods'
+	| 'explicitMods'
+	| 'ultimatumMods'
+	| 'enchantMods'
+	| 'w'
+	| 'h'
+	| 'x'
+	| 'y'
+>
 
 // GENERIC STORES
 export type GenericListingStore = CompassListingStore | EssenceListingStore
@@ -91,7 +112,7 @@ export type GenericListingItems<TType extends ItemType, TTier extends ItemTier> 
 export type GenericListing<ListingType extends OptionalRecord, TListingItem extends GenericListingItems<ItemType, ItemTier>> = {
 	uuid: Uuid<ListingType>
 	ign: string
-	league: League
+	league: string
 	chaosPerDiv: number
 	multiplier: number
 	minimumBuyout: number
@@ -101,7 +122,7 @@ export type GenericListing<ListingType extends OptionalRecord, TListingItem exte
 // export type GenericListing<ListingType extends OptionalRecord, TType extends ItemType, TTier extends ItemTier> = {
 // 	uuid: Uuid<ListingType>
 // 	ign: string
-// 	league: League
+// 	league: string
 // 	chaosPerDiv: number
 // 	multiplier: number
 // 	minimumBuyout: number

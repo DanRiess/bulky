@@ -27,18 +27,18 @@ const attachmentPanelActive = ref(false)
 const router = useRouter()
 
 // EVENTS
-// window.api.onToggleOverlayComponent(value => {
-// 	active.value = value.overlayWindowActive
-// })
+window.api.onToggleOverlayComponent(value => {
+	active.value = value.overlayWindowActive
+})
 
-// window.api.onShowAttachmentPanel(value => {
-// 	router.push({ name: 'AttachmentPanel' })
-// 	attachmentPanelActive.value = true
-// 	setTimeout(() => {
-// 		attachmentPanelActive.value = false
-// 		router.push({ name: 'Home' })
-// 	}, value.time)
-// })
+window.api.onShowAttachmentPanel(value => {
+	router.push({ name: 'AttachmentPanel' })
+	attachmentPanelActive.value = true
+	setTimeout(() => {
+		attachmentPanelActive.value = false
+		router.push({ name: 'Home' })
+	}, value.time)
+})
 
 // METHODS
 onClickOutside(target, () => {

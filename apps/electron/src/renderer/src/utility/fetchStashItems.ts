@@ -1,20 +1,21 @@
-import { PoeItem } from '@shared/types/poe.types'
+import { BulkyItem } from '@shared/types/bulky.types'
 import { StashTab } from '@shared/types/stash.types'
 import { ApiStatus } from '@web/api/api.types'
 import { poeApi } from '@web/api/poeApi'
 import { createNormalisedApiStatuses, useApi } from '@web/api/useApi'
-import { ref } from 'vue'
+import { MaybeRefOrGetter, ref, toValue } from 'vue'
+import { transformPoeItemToBulkyItem } from './transformers'
 
-export function useFetchStashItems(stashTabs: StashTab[]) {
+export function useFetchStashItems(stashTabs: MaybeRefOrGetter<StashTab[]>) {
 	const status = ref<ApiStatus>('IDLE')
-	const data = ref<{ [key: StashTab['id']]: PoeItem[] }>({})
+	const data = ref<{ [key: StashTab['id']]: BulkyItem[] }>({})
 	const error = ref<Error>()
 
 	async function execute() {
 		status.value = 'PENDING'
 
 		await Promise.allSettled(
-			stashTabs.map(async tab => {
+			toValue(stashTabs).map(async tab => {
 				const request = useApi(`${tab.id}ItemRequest`, poeApi.getStashTabItems)
 				await request.exec(tab)
 
@@ -29,8 +30,9 @@ export function useFetchStashItems(stashTabs: StashTab[]) {
 				}
 
 				// convert dto to BulkyItem first
+				const bulkyItems = request.data.value.stash.items.map(poeItem => transformPoeItemToBulkyItem(poeItem))
 
-				data.value[tab.id] = request.data.value
+				data.value[tab.id] = bulkyItems
 			})
 		)
 	}

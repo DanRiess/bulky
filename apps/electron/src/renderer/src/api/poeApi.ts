@@ -9,8 +9,8 @@ import { useAuthStore } from '@web/stores/authStore'
 import { RequestError } from '@shared/errors/requestError'
 import { PoeProfileResponse } from '@shared/types/auth.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { PoeStashItemResponse, PoeStashListResponse } from '@shared/types/response.types'
 import { StashTab } from '@shared/types/stash.types'
+import { PoeStashTabListResponse, PoeStashTabResponse } from '@shared/types/response.types'
 
 /**
  * Validator: Check if the passed function is a member of poeApi
@@ -25,21 +25,24 @@ export function isPoeApiFunction(fn: Function) {
 export const poeApi = {
 	getStashTabList: async (config?: AxiosRequestConfig) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-			return api.get<PoeStashListResponse>('http://localhost:5173/src/mocks/stash_list.json', config)
+			return api.get<PoeStashTabListResponse>('http://localhost:5173/src/mocks/stash_list.json', config)
 		}
 
 		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + '/stash/' + getSelectedLeague()
 		const updatedConfig = await updateConfig(config)
 
-		return api.get<PoeStashListResponse>(url, updatedConfig)
+		return api.get<PoeStashTabListResponse>(url, updatedConfig)
 	},
 
 	getStashTabItems: async (stashTab: StashTab, config?: AxiosRequestConfig) => {
-		// TODO: rework stash tab to include parent
+		if (import.meta.env.VITE_MOCK_DATA === 'true') {
+			return api.get<PoeStashTabResponse>('http://localhost:5173/src/mocks/stashFragment.json', config)
+		}
+
 		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + `/stash/${getSelectedLeague()}/${stashTab.id}`
 		const updatedConfig = await updateConfig(config)
 
-		return api.get<PoeStashItemResponse>(url, updatedConfig)
+		return api.get<PoeStashTabResponse>(url, updatedConfig)
 	},
 
 	getProfile: async (config?: AxiosRequestConfig) => {
@@ -71,6 +74,7 @@ export const poeApi = {
  */
 async function updateConfig(config?: AxiosRequestConfig) {
 	const token = await getAccessToken()
+	console.log(token)
 
 	const defaultConfig: AxiosRequestConfig = {
 		headers: {
