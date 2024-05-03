@@ -44,7 +44,6 @@ export type SellView = 'LIST' | 'ADD'
 export type BulkyItem = Pick<
 	PoeItem,
 	| 'id'
-	| 'inventoryId'
 	| 'name'
 	| 'baseType'
 	| 'icon'
@@ -59,7 +58,9 @@ export type BulkyItem = Pick<
 	| 'h'
 	| 'x'
 	| 'y'
->
+> & {
+	stashId: string
+}
 
 // GENERIC STORES
 export type GenericListingStore = CompassListingStore | EssenceListingStore

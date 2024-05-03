@@ -73,7 +73,7 @@ export type PoeItem = {
 	maxStackSize?: number
 	stackSizeText?: string
 	league?: string
-	id?: string
+	id: string
 	influences: PoeInfluences
 	shaper?: boolean
 	elder?: boolean
