@@ -1,16 +1,24 @@
 import { BulkyItem } from '@shared/types/bulky.types'
+import { BulkyNinjaPriceBlock, PoeNinjaCategory } from '@shared/types/ninja.types'
 import { StashTab } from '@shared/types/stash.types'
+import { Id } from '@shared/types/utility.types'
+import { deepToRaw } from '@web/utility/deepToRaw'
 import { openDB, DBSchema, IDBPDatabase } from 'idb'
 
 interface BulkyDB extends DBSchema {
 	stash: {
 		key: StashTab['id'] // stash id
 		value: StashTab
+		indexes: { 'by-league': StashTab['league'] }
 	}
 	item: {
 		key: BulkyItem['id']
 		value: BulkyItem
 		indexes: { 'by-tab': StashTab['id']; 'by-basetype': BulkyItem['baseType'] }
+	}
+	price: {
+		key: BulkyNinjaPriceBlock['category']
+		value: BulkyNinjaPriceBlock
 	}
 }
 
@@ -27,14 +35,19 @@ export function useBulkyIdb() {
 	async function initDB() {
 		return await openDB<BulkyDB>('BulkyIdb', 1, {
 			upgrade(db) {
-				db.createObjectStore('stash', {
+				const stashStore = db.createObjectStore('stash', {
 					keyPath: 'id',
 				})
+				stashStore.createIndex('by-league', 'league')
 
 				const itemStore = db.createObjectStore('item', {
 					keyPath: 'id',
 				})
-				itemStore.createIndex('by-tab', 'stashId')
+				itemStore.createIndex('by-tab', 'stashTabId')
+
+				db.createObjectStore('price', {
+					keyPath: 'category',
+				})
 			},
 			blocked(currentVersion, blockedVersion, event) {
 				console.log(currentVersion, blockedVersion, event)
@@ -56,7 +69,7 @@ export function useBulkyIdb() {
 			const tx = db.transaction('stash', 'readwrite')
 
 			const ops = stashTabs.map(stashTab => {
-				tx.store.put(stashTab)
+				tx.store.put(deepToRaw(stashTab))
 			})
 
 			await Promise.all([...ops, tx.done])
@@ -70,13 +83,13 @@ export function useBulkyIdb() {
 	/**
 	 * Get all stash tabs
 	 */
-	async function getStashTabs() {
+	async function getStashTabsByLeague(league: string) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 		const stashTabs: StashTab[] = []
 
 		try {
 			db = await initDB()
-			stashTabs.push(...(await db.getAll('stash')))
+			stashTabs.push(...(await db.getAllFromIndex('stash', 'by-league', league)))
 		} catch (e) {
 			console.log(e)
 		} finally {
@@ -88,14 +101,14 @@ export function useBulkyIdb() {
 	/**
 	 * Delete an array of stash tabs
 	 */
-	async function deleteStashTabs(stashTabs: StashTab[]) {
+	async function deleteStashTabs(stashTabIds: Id<StashTab>[]) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
 			db = await initDB()
 			const tx = db.transaction('stash', 'readwrite')
 
-			const ops = stashTabs.map(stashTab => tx.store.delete(stashTab.id))
+			const ops = stashTabIds.map(id => tx.store.delete(id))
 			await Promise.all([...ops, tx.done])
 		} catch (e) {
 			console.log(e)
@@ -115,7 +128,7 @@ export function useBulkyIdb() {
 			const tx = db.transaction('item', 'readwrite')
 
 			const ops = items.map(item => {
-				tx.store.put(item)
+				tx.store.put(deepToRaw(item))
 			})
 
 			await Promise.all([...ops, tx.done])
@@ -129,7 +142,7 @@ export function useBulkyIdb() {
 	/**
 	 * Get all items of a stash tab.
 	 */
-	async function getItemsByStashTab(stashTabId: string) {
+	async function getItemsByStashTab(stashTabId: Id<StashTab>) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 		const items: BulkyItem[] = []
 
@@ -165,14 +178,14 @@ export function useBulkyIdb() {
 	/**
 	 * Delete an array of items
 	 */
-	async function deleteItems(items: BulkyItem[]) {
+	async function deleteItems(itemIds: Id<BulkyItem>[]) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
 			db = await initDB()
 			const tx = db.transaction('item', 'readwrite')
 
-			const ops = items.map(item => tx.store.delete(item.id))
+			const ops = itemIds.map(id => tx.store.delete(id))
 			await Promise.all([...ops, tx.done])
 		} catch (e) {
 			console.log(e)
@@ -181,13 +194,49 @@ export function useBulkyIdb() {
 		}
 	}
 
+	/**
+	 * Add a new price item to the price store
+	 */
+	async function putPriceBlock(ninjaPrice: BulkyNinjaPriceBlock) {
+		let db: IDBPDatabase<BulkyDB> | undefined
+
+		try {
+			db = await initDB()
+			await db.put('price', deepToRaw(ninjaPrice))
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+		}
+	}
+
+	/**
+	 * Get prices for a category
+	 */
+	async function getPriceBlockByCategory(category: PoeNinjaCategory) {
+		let db: IDBPDatabase<BulkyDB> | undefined
+		let price: BulkyNinjaPriceBlock | undefined
+
+		try {
+			db = await initDB()
+			price = await db.get('price', category)
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+			return price
+		}
+	}
+
 	return {
 		putStashTabs,
-		getStashTabs,
+		getStashTabsByLeague,
 		deleteStashTabs,
 		putItems,
 		getItemsByBaseType,
 		getItemsByStashTab,
 		deleteItems,
+		putPriceBlock,
+		getPriceBlockByCategory,
 	}
 }

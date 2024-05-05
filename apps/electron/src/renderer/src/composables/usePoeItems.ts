@@ -1,34 +1,107 @@
-import { PoeItem } from '@shared/types/poe.types'
+import { BulkyItemsByStash } from '@shared/types/bulky.types'
 import { StashTab } from '@shared/types/stash.types'
-import { isWatchable } from '@shared/types/utility.types'
-import { MaybeRefOrGetter, ref, watch } from 'vue'
+import { getKeys, isWatchable } from '@shared/types/utility.types'
+import { isEqual } from 'lodash'
+import { MaybeRefOrGetter, ref, toValue, watch } from 'vue'
+import { useBulkyIdb } from './useBulkyIdb'
+import { compareObjectsByBaseType } from '@web/utility/compareFunctions'
 
+/**
+ * Compose a ref of items from currently selected stash tabs.
+ * The items variable will update itself when the stash tab selection changes.
+ * A change can be forced by calling the exposed 'update' function, i. e. after a folder sync.
+ */
 export function usePoeItems(stashTabs: MaybeRefOrGetter<StashTab[]>) {
-	const items = ref<{ [key: StashTab['id']]: PoeItem[] }>({})
+	const bulkyIdb = useBulkyIdb()
+	const items = ref<BulkyItemsByStash>({})
 
-	// save items to indexeddb with index of stashtabid, so they can be easily grabbed
-	// save them in this 'items' structure as {stashtabid: poeitem[]}
-	// in the filter step later, this should be reduced to a pure poeitem[] where
-	// identical entries from different folders would be combined
+	// Load items of selected tabs from idb.
+	;(async function initialize() {
+		await Promise.allSettled(
+			toValue(stashTabs).map(async stashTab => {
+				const bulkyItems = (await bulkyIdb.getItemsByStashTab(stashTab.id)).sort(compareObjectsByBaseType)
+				items.value[stashTab.id] = bulkyItems
+			})
+		)
+	})().catch(e => {
+		console.log(e)
+	})
 
-	// get items from indexeddb by stashid
-
-	// create a watcher that updates the items
-	// the comparison inside the watcher is only possible with a ComputedRef!
+	// Create a watcher that updates the items when stash selection changes.
+	// Update here means fetching new tab's items from idb and deleting removed tab's items from the variable.
+	// The comparison inside the watcher is only possible with a ComputedRef!
 	if (isWatchable(stashTabs)) {
 		watch(stashTabs, (newTabs, oldTabs) => {
 			// compare which tabs have been added and which have been removed
 			const remove = oldTabs.filter(val => !newTabs.includes(val))
 			const add = newTabs.filter(val => !oldTabs.includes(val))
-			console.log({ remove, add })
 
 			// remove necessary items (items[id].length = 0)
 			remove.forEach(tab => items.value[tab.id] && (items.value[tab.id].length = 0))
 
 			// get new tabs' items from indexeddb
-			add.forEach(tab => (items.value[tab.id] = []))
+			add.forEach(tab => {
+				bulkyIdb.getItemsByStashTab(tab.id).then(newItems => {
+					items.value[tab.id] = newItems
+				})
+			})
 		})
 	}
 
-	return { items }
+	/**
+	 * Update the items after a stash sync action.
+	 * This is also possible as a watcher if downloaded items are passed to the use function as Ref.
+	 */
+	async function updateItemsByStash(downloadedItems: BulkyItemsByStash) {
+		// Find all items that don't exist in the downloaded items anymore.
+		const remove = getKeys(downloadedItems)
+			.map(key => {
+				return items.value[key]
+					.map((oldItem, idx) => {
+						if (!downloadedItems[key].some(newItem => isEqual(newItem, oldItem))) {
+							return { id: oldItem.id, idx, stashTabId: key }
+						}
+						return null
+					})
+					.filter(Boolean)
+					.sort((a, b) => a.idx - b.idx)
+			})
+			.flat()
+
+		// Find all items that are either new or have changed data (different stack size for example).
+		const add = getKeys(downloadedItems)
+			.map(key => {
+				return downloadedItems[key].filter(
+					downloadedItem => !items.value[key].some(oldItem => isEqual(oldItem, downloadedItem))
+				)
+			})
+			.flat()
+
+		console.log({ removedItems: remove, updatedItems: add })
+
+		// Remove items from the state variable.
+		for (let i = remove.length - 1; i >= 0; --i) {
+			const key = remove[i].stashTabId
+			items.value[key].splice(remove[i].idx, 1)
+		}
+
+		// Add new items or edit the ones with changes.
+		add.forEach(downloadedItem => {
+			const key = downloadedItem.stashTabId
+			const idx = items.value[key].findIndex(oldItem => oldItem.id === downloadedItem.id)
+
+			// If the index is 0 or higher, an item with the same id already exists. Replace it.
+			// Otherwise, push the new item to the array.
+			idx > -1 ? items.value[key].splice(idx, 1, downloadedItem) : items.value[key].push(downloadedItem)
+		})
+
+		// Sort the items.
+		getKeys(items.value).forEach(stashTabId => items.value[stashTabId].sort(compareObjectsByBaseType))
+
+		// Update idb to reflect the changes
+		await bulkyIdb.deleteItems(remove.map(r => r.id))
+		await bulkyIdb.putItems(add)
+	}
+
+	return { items, updateItemsByStash }
 }

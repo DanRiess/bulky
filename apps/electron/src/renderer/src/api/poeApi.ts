@@ -25,7 +25,7 @@ export function isPoeApiFunction(fn: Function) {
 export const poeApi = {
 	getStashTabList: async (config?: AxiosRequestConfig) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-			return api.get<PoeStashTabListResponse>('http://localhost:5173/src/mocks/stash_list.json', config)
+			return api.get<PoeStashTabListResponse>('http://localhost:5174/src/mocks/stash_list.json', config)
 		}
 
 		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + '/stash/' + getSelectedLeague()
@@ -35,8 +35,8 @@ export const poeApi = {
 	},
 
 	getStashTabItems: async (stashTab: StashTab, config?: AxiosRequestConfig) => {
-		if (import.meta.env.VITE_MOCK_DATA === 'true') {
-			return api.get<PoeStashTabResponse>('http://localhost:5173/src/mocks/stashFragment.json', config)
+		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+			return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashFragment.json', config)
 		}
 
 		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + `/stash/${getSelectedLeague()}/${stashTab.id}`

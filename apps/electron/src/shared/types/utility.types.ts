@@ -5,6 +5,7 @@ export type OptionalRecord = Record<string, unknown> | undefined
 export type PartialRecord<K extends keyof any, T> = Partial<Record<K, T>>
 
 export type Uuid<T extends OptionalRecord = undefined> = string & { __uuidBrand: T }
+export type Id<T extends OptionalRecord = undefined> = string & { __idBrand: T }
 
 /**
  * type assertions for Object.keys

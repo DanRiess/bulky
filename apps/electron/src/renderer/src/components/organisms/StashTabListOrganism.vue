@@ -14,13 +14,16 @@
 		</header>
 		<div v-if="stashStore.stashTabs.length === 0">No tabs found. Please load your stashes.</div>
 		<ul v-else class="stash-list">
-			<template v-for="stash in stashStore.stashTabs" :key="stash.id">
+			<template v-for="stash in stashTabHierarchy.root" :key="stash.id">
 				<LabelWithCheckboxMolecule v-if="stash.type !== 'Folder'" label-position="right" v-model="stash.selected">
 					{{ stash.name }}
 				</LabelWithCheckboxMolecule>
 				<ul v-else class="stash-folder-list" :style="{ borderColor: '#' + stash.color ?? 'transparent' }">
 					<li>{{ stash.name }} Folder</li>
-					<LabelWithCheckboxMolecule v-for="child in stash.children" label-position="right" v-model="child.selected">
+					<LabelWithCheckboxMolecule
+						v-for="child in stashTabHierarchy[stash.id]"
+						label-position="right"
+						v-model="child.selected">
 						{{ child.name }}
 					</LabelWithCheckboxMolecule>
 				</ul>
@@ -36,6 +39,14 @@ import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vu
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.vue'
+import { StashTab } from '@shared/types/stash.types'
+
+// LOCAL TYPES
+type StashTabHierarchy = {
+	root: StashTab[]
+} & {
+	[key: string]: StashTab[]
+}
 
 // STORES
 const stashStore = useStashStore()
@@ -54,6 +65,20 @@ const emit = defineEmits<{
 const stashListRequest = stashStore.getStashTabListRequest()
 
 // GETTERS
+const stashTabHierarchy = computed(() => {
+	return stashStore.stashTabs.reduce(
+		(prev, curr) => {
+			if (curr.parentId) {
+				prev[curr.parentId] ? prev[curr.parentId].push(curr) : (prev[curr.parentId] = [curr])
+			} else {
+				prev.root.push(curr)
+			}
+			return prev
+		},
+		{ root: [] } as StashTabHierarchy
+	)
+})
+
 const svgIconProps = computed(() => {
 	return {
 		name: 'refresh',

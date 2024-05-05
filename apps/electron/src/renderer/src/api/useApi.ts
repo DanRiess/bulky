@@ -1,7 +1,7 @@
 import { Ref, computed, ref } from 'vue'
 import { ApiStatus, ApiType, BulkyRequest, BulkyRequestData, NormalizedApiStatus, ProgressStatus } from './api.types'
 import { API_STATUS } from './api.const'
-import { AxiosProgressEvent, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosProgressEvent, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { SerializedError } from '@shared/errors/serializedError'
 import { deserializeError } from '@web/utility/deserializeError'
@@ -72,13 +72,15 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 	 */
 	async function exec(...args: Parameters<TFn>) {
 		try {
+			console.log({ args })
 			const rateLimitStore = useRateLimitStore()
 
-			// transform the config. this only works if config is the first argument
-			const [config, ..._]: [config?: AxiosRequestConfig, ...rest: any[]] = args
-			if (config && typeof config === 'object') {
-				config.onDownloadProgress = e => onProgressEvent(e, progressStatus)
-			}
+			// transform the config. Doesn't work anymore since I've changed the request structure.
+			// Will probably need an isAxiosRequestConfig assertor function.
+			// const [config, ..._]: [config?: AxiosRequestConfig, ...rest: any[]] = args
+			// if (config && typeof config === 'object' && isConfig) {
+			// 	config.onDownloadProgress = e => onProgressEvent(e, progressStatus)
+			// }
 
 			//clear current error value
 			error.value = undefined

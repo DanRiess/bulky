@@ -1,4 +1,4 @@
-import { ObjectValues } from './utility.types'
+import { Id, ObjectValues } from './utility.types'
 
 export const STASH_TYPE = {
 	Folder: 'Folder',
@@ -20,13 +20,15 @@ export type StashType = ObjectValues<typeof STASH_TYPE>
 
 export type StashTab = {
 	name: string
-	id: string
+	index: number
+	id: Id<StashTab>
+	parentId?: Id<StashTab>
+	children?: Id<StashTab>[]
 	color?: string
 	lastSnapshot: number
 	// icon: string // check if the actual api has that or not
 	type: StashType
 	league: string
 	// items: PoeItem[]
-	children?: StashTab[]
 	selected: boolean // for v-model
 }

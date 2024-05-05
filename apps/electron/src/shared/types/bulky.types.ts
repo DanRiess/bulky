@@ -9,7 +9,7 @@ import {
 	SextantModifier,
 	SextantType,
 } from '@web/categories/compass/compass.types'
-import { ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utility.types'
+import { Id, ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utility.types'
 import {
 	Essence,
 	EssenceFilter,
@@ -22,6 +22,7 @@ import {
 	EssenceType,
 } from '@web/categories/essence/essence.types'
 import { PoeItem } from './poe.types'
+import { StashTab } from './stash.types'
 
 // APP STATE TYPES
 
@@ -43,7 +44,6 @@ export type SellView = 'LIST' | 'ADD'
 // TRANSFORMED THINGS
 export type BulkyItem = Pick<
 	PoeItem,
-	| 'id'
 	| 'name'
 	| 'baseType'
 	| 'icon'
@@ -59,7 +59,12 @@ export type BulkyItem = Pick<
 	| 'x'
 	| 'y'
 > & {
-	stashId: string
+	id: Id<BulkyItem>
+	stashTabId: Id<StashTab>
+}
+
+export type BulkyItemsByStash = {
+	[key: StashTab['id']]: BulkyItem[]
 }
 
 // GENERIC STORES

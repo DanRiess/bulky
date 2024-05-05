@@ -11,9 +11,16 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { poeApi } from '@web/api/poeApi'
 import { useConfigStore } from './configStore'
+import { useBulkyIdb } from '@web/composables/useBulkyIdb'
+import { BULKY_ID } from '@web/utility/typedId'
+import { isEqual } from 'lodash'
 
 export const useStashStore = defineStore('stashStore', () => {
 	const configStore = useConfigStore()
+	const bulkyIdb = useBulkyIdb()
+
+	// STATE
+
 	const stashTabs = ref<StashTab[]>([])
 	const lastListFetch = ref(0)
 	const fetchTimeout = ref(15000)
@@ -21,17 +28,7 @@ export const useStashStore = defineStore('stashStore', () => {
 	// GETTERS
 
 	const selectedStashTabs = computed(() => {
-		return stashTabs.value
-			.map(tab => {
-				if (tab.type === 'Folder') {
-					// get children
-					const children = tab.children?.filter(child => child.selected)
-					return children
-				}
-				return tab.selected ? tab : undefined
-			})
-			.filter(Boolean)
-			.flat()
+		return stashTabs.value.filter(tab => tab.selected)
 	})
 
 	// METHODS
@@ -42,15 +39,17 @@ export const useStashStore = defineStore('stashStore', () => {
 	 */
 	async function initialize() {
 		try {
-			// TODO: change this to read indexed db later
-			const tabs: StashTab[] = []
+			// get lst saved stashes from idb
+			const league = configStore.config.league
+			const tabs = await bulkyIdb.getStashTabsByLeague(league)
+			const sortedTabs = tabs.toSorted((a, b) => a.index - b.index)
 
 			// If tabs are empty array, push the entire read array.
 			// Otherwise, replace old stashes and push the ones that don't exist yet.
 			if (stashTabs.value.length === 0) {
-				stashTabs.value.push(...tabs)
+				stashTabs.value.push(...sortedTabs)
 			} else {
-				tabs.forEach(t => {
+				sortedTabs.forEach(t => {
 					const tabIndex = stashTabs.value.findIndex(stashTab => stashTab.id === t.id)
 					tabIndex > -1 ? stashTabs.value.splice(tabIndex, 1, t) : stashTabs.value.push(t)
 				})
@@ -61,40 +60,77 @@ export const useStashStore = defineStore('stashStore', () => {
 	}
 
 	/**
-	 * Consume a stashtab dto, type and validate it and add it to the stashTabs.
-	 * The method to filter out existing stashes is highly inefficient at O(n²),
-	 * but for the number of stashes of a standard player, this shouldn't matter too much.
+	 * Consume a stash tab dto and type and validate it.
 	 */
-	function addOrModifyStashTabListItem(dto: StashTabListItemDto, parent?: StashTab) {
-		console.log(dto)
-		const existingTab = stashTabs.value.find(t => t.id === dto.id)
+	function generateTypedStashTab(dto: StashTabListItemDto, parent?: StashTab): StashTab[] {
+		const name = dto.name
+		const index = dto.index ?? 99999
+		const id = BULKY_ID.generateTypedId<StashTab>(dto.id)
+		const type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
+		const color = dto.metadata.colour
+		const lastSnapshot = 0
+		const selected = false
+		const league = configStore.config.league
+		const parentId = parent?.id
 
-		// if the tab exists already, just update its name
-		if (existingTab) {
-			existingTab.name = dto.name
-			existingTab.type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
-		} else {
-			const name = dto.name
-			const id = dto.id
-			const type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
-			const color = dto.metadata.colour
-			const lastSnapshot = 0
-			const selected = false
-			const league = configStore.config.league
+		const tab: StashTab = { name, index, id, parentId, type, lastSnapshot, color, selected, league }
 
-			const tab: StashTab = { name, id, type, lastSnapshot, color, selected, league }
-
-			// process the folder's children
-			dto.children?.forEach(child => {
-				addOrModifyStashTabListItem(child, tab)
+		// process the folder's children
+		const children = dto.children
+			?.map(child => {
+				return generateTypedStashTab(child, tab)
 			})
+			.filter(Boolean)
+			.flat()
 
-			if (parent) {
-				parent.children ? parent.children.push(tab) : (parent.children = [tab])
-			} else {
-				stashTabs.value.push(tab)
-			}
+		if (parent) {
+			parent.children ? parent.children.push(id) : (parent.children = [id])
 		}
+
+		return children ? [tab, ...children] : [tab]
+	}
+
+	/**
+	 * Compare current stash tabs with new downloaded ones.
+	 * Replace, add, or remove changed stash tabs from the state variable and indexeddb.
+	 */
+	async function compareStashTabs(newStashTabs: StashTab[]) {
+		// Find all tabs that don't exist in the newStashTabs anymore.
+		// This should only apply to remove-only tabs that have been cleared.
+		const remove = stashTabs.value
+			.map((oldTab, idx) => {
+				if (oldTab.name.match(/\(remove-only\)/gi) && !newStashTabs.some(newTab => isEqual(newTab, oldTab))) {
+					return { id: oldTab.id, idx }
+				}
+				return null
+			})
+			.filter(Boolean)
+			.sort((a, b) => a.idx - b.idx)
+
+		// Find all tabs that are either new or have changed data (different name for example).
+		const add = newStashTabs.filter(newTab => !stashTabs.value.some(oldTab => isEqual(newTab, oldTab)))
+		console.log({ remove, add })
+
+		// Remove stash tabs from the state variable.
+		for (let i = remove.length - 1; i >= 0; --i) {
+			stashTabs.value.splice(remove[i].idx, 1)
+		}
+
+		// Add new tabs or edit the ones with changes.
+		add.forEach(tab => {
+			const idx = stashTabs.value.findIndex(t => t.id === tab.id)
+
+			// If the index is 0 or higher, a tab with the same id already exists. Replace it.
+			// Otherwise, push the new tab to the array.
+			idx > -1 ? stashTabs.value.splice(idx, 1, tab) : stashTabs.value.push(tab)
+		})
+
+		// Sort the tabs.
+		stashTabs.value.sort((a, b) => a.index - b.index)
+
+		// Remove and add stash tabs from indexed db.
+		await bulkyIdb.deleteStashTabs(remove.map(r => r.id))
+		await bulkyIdb.putStashTabs(add)
 	}
 
 	/**
@@ -105,24 +141,25 @@ export const useStashStore = defineStore('stashStore', () => {
 		const request = useApi('stashListRequest', poeApi.getStashTabList)
 
 		async function execute() {
-			// return if the status is in progress
+			// Return if the request is already in progress
 			if (request.status.value === 'PENDING') return
 
-			// execute the request
+			// Execute the request
 			await request.exec()
 
-			// error handling
+			// Error handling
 			if (request.error.value || !request.data.value) {
 				// TODO: error handling
 				console.log('could not find stash list')
 				return
 			}
 
-			// set the last fetch time to now to throttle fetch requests
+			// Set the last fetch time to now to throttle fetch requests.
 			lastListFetch.value = Date.now()
-			request.data.value.stashes.forEach(tab => addOrModifyStashTabListItem(tab))
+			const typedStashTabs = request.data.value.stashes.map(tab => generateTypedStashTab(tab)).flat()
 
-			// TODO: save results into indexeddb
+			// Compare and save changes into the state variable and idb.
+			await compareStashTabs(typedStashTabs)
 		}
 
 		return { request, execute }
