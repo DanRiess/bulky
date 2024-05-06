@@ -1,6 +1,6 @@
 <template>
 	<ul class="m-stash-item-list">
-		<StashItemAtom v-for="item in items[getKeys(items)[0]]" :item="item" :key="item.id" />
+		<StashItemAtom v-for="item in items[getKeys(items)[0]]" :item="item" :ninja-data="prices[item.baseType]" :key="item.id" />
 	</ul>
 </template>
 
@@ -8,10 +8,12 @@
 import { BulkyItemsByStash } from '@shared/types/bulky.types'
 import StashItemAtom from '../atoms/StashItemAtom.vue'
 import { getKeys } from '@shared/types/utility.types'
+import { CurrentNinjaPrices } from '@shared/types/ninja.types'
 
 // PROPS
 defineProps<{
 	items: BulkyItemsByStash
+	prices: CurrentNinjaPrices
 }>()
 </script>
 

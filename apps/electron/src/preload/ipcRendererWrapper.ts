@@ -28,12 +28,9 @@
 import { SerializedError } from '@shared/errors/serializedError'
 import { ipcRenderer } from 'electron'
 
-async function invoke<T extends (...args: any) => any = (...args: any) => any>(
-	channel: string,
-	args?: Parameters<T>
-): Promise<ReturnType<T> | SerializedError> {
+async function invoke(channel: string, args?: any) {
 	try {
-		const response: ReturnType<T> | SerializedError = await ipcRenderer.invoke(channel, args)
+		const response = await ipcRenderer.invoke(channel, args)
 
 		if (response instanceof SerializedError) {
 			throw response

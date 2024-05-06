@@ -5,15 +5,18 @@
 		</div>
 		<div class="name">{{ item.baseType }}</div>
 		<div class="stack-size">{{ item.stackSize }}</div>
+		<div class="price">{{ ninjaData?.chaos ?? 0 }}</div>
 	</li>
 </template>
 
 <script setup lang="ts">
 import { BulkyItem } from '@shared/types/bulky.types'
+import { BulkyNinjaPriceItem } from '@shared/types/ninja.types'
 
 // PROPS
 defineProps<{
 	item: BulkyItem
+	ninjaData?: BulkyNinjaPriceItem
 }>()
 </script>
 

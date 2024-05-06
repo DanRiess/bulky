@@ -1,5 +1,7 @@
 import { Id } from './utility.types'
 
+export type CurrentNinjaPrices = Record<BulkyNinjaPriceItem['name'], BulkyNinjaPriceItem>
+
 export type BulkyNinjaPriceBlock = {
 	category: PoeNinjaCategory
 	lastSnapshot: number
@@ -32,7 +34,7 @@ export type PoeNinjaItemLine = {
 	baseType: string
 	stackSize: number
 	itemClass: number
-	sparkLine: PoeNinjaSparkLine
+	sparkline: PoeNinjaSparkLine
 	lowConfidenceSparkLine: PoeNinjaSparkLine
 	implicitModifiers: string[]
 	explicitModifiers: string[]

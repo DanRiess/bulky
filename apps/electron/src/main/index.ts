@@ -18,10 +18,12 @@ import {
 	redeemRefreshToken,
 } from './utility/oauth'
 import { SerializedError } from '@shared/errors/serializedError'
+import axios from 'axios'
+import { PoeNinjaCurrencyLine, PoeNinjaItemLine } from '@shared/types/ninja.types'
 
 // Initialize the app.
 // This setup provides deep-linking and the option to open bulky from the browser during oauth flow.
-let deeplinkingUrl: string | undefined
+// let deeplinkingUrl: string | undefined
 
 if (import.meta.env.DEV && process.platform === 'win32') {
 	// Set the path of electron.exe and your app.
@@ -87,6 +89,18 @@ app.whenReady().then(() => {
 		}
 	})
 
+	/**
+	 * Get a poe.ninja category.
+	 */
+	ipcMain.handle('get-ninja-category', async (_, url) => {
+		try {
+			const res = await axios.get<Record<'lines', PoeNinjaCurrencyLine[] | PoeNinjaItemLine[]>>(url)
+			return res.data
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
+
 	// register ipc handlers (one way, no return values)
 	ipcMain.on('bye', () => console.log('bye'))
 
@@ -124,7 +138,7 @@ app.whenReady().then(() => {
 			app.on('second-instance', (_, argv) => {
 				if (process.platform === 'win32') {
 					// find the argument that is the custom protocol url and store it
-					deeplinkingUrl = argv.find(arg => arg.startsWith('bulky://'))
+					// deeplinkingUrl = argv.find(arg => arg.startsWith('bulky://'))
 				}
 
 				// focus the game, give the focus controller time to trigger, then focus the overlay
@@ -150,5 +164,5 @@ app.on('window-all-closed', () => {
 // deep linking open url
 app.on('open-url', (e, url) => {
 	e.preventDefault()
-	deeplinkingUrl = url
+	// deeplinkingUrl = url
 })
