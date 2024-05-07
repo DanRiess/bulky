@@ -10,12 +10,12 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyItem } from '@shared/types/bulky.types'
+import { PoeItem } from '@shared/types/bulky.types'
 import { BulkyNinjaPriceItem } from '@shared/types/ninja.types'
 
 // PROPS
 defineProps<{
-	item: BulkyItem
+	item: PoeItem
 	ninjaData?: BulkyNinjaPriceItem
 }>()
 </script>

@@ -5,14 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyItemsByStash } from '@shared/types/bulky.types'
+import { PoeItemsByStash } from '@shared/types/bulky.types'
 import StashItemAtom from '../atoms/StashItemAtom.vue'
 import { getKeys } from '@shared/types/utility.types'
 import { CurrentNinjaPrices } from '@shared/types/ninja.types'
 
 // PROPS
 defineProps<{
-	items: BulkyItemsByStash
+	items: PoeItemsByStash
 	prices: CurrentNinjaPrices
 }>()
 </script>

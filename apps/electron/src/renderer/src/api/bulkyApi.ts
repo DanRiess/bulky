@@ -6,7 +6,7 @@
 
 import api from './api.wrapper'
 import { GenericRequestFunction, PostRequestConfig } from './api.types'
-import { GenericListingDto } from '@shared/types/dto.types'
+import { GenericListingDto } from '@shared/types/dtoRequest.types'
 import { AxiosRequestConfig } from 'axios'
 
 type PostPayload = {

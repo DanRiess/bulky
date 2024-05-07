@@ -39,13 +39,13 @@ import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vu
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.vue'
-import { StashTab } from '@shared/types/stash.types'
+import { PoeStashTab } from '@shared/types/stash.types'
 
 // LOCAL TYPES
 type StashTabHierarchy = {
-	root: StashTab[]
+	root: PoeStashTab[]
 } & {
-	[key: string]: StashTab[]
+	[key: string]: PoeStashTab[]
 }
 
 // STORES

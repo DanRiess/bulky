@@ -2,7 +2,7 @@
  * This component provides static functions in regards to essences.
  */
 
-import { GenericListingItemDto } from '@shared/types/dto.types'
+import { GenericListingItemDto } from '@shared/types/dtoRequest.types'
 import { ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.const'
 import { Essence, EssenceType } from './essence.types'
 

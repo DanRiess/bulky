@@ -1,8 +1,8 @@
-import { BulkyItem } from '@shared/types/bulky.types'
-import { PoeItem } from '@shared/types/poe.types'
-import { StashTab } from '@shared/types/stash.types'
+import { PoeItem } from '@shared/types/bulky.types'
+import { PoeStashTab } from '@shared/types/stash.types'
 import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
+import { PoeItemDto } from '@shared/types/dtoResponse.types'
 
 export function transformToDisplayValue(string: string) {
 	const arr = string.split('_')
@@ -11,11 +11,10 @@ export function transformToDisplayValue(string: string) {
 }
 
 /**
- * Transform a Poe Item into a Bulky Item.
- * A Bulky item contains only a subset of a Poe Item's properties.
+ * Generate a PoeItem from its corresponding dto.
  */
-export function transformPoeItemToBulkyItem(item: PoeItem, stashTab: StashTab) {
-	const transformedItem: BulkyItem = {
+export function generatePoeItemFromDto(item: PoeItemDto, stashTab: PoeStashTab) {
+	const poeItem: PoeItem = {
 		id: BULKY_ID.generateTypedId(item.id),
 		stashTabId: stashTab.id,
 		name: item.name,
@@ -34,5 +33,5 @@ export function transformPoeItemToBulkyItem(item: PoeItem, stashTab: StashTab) {
 		y: item.y,
 	}
 
-	return transformedItem
+	return poeItem
 }

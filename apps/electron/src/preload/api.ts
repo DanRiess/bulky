@@ -1,13 +1,12 @@
 import { ipcRenderer } from 'electron'
-import { ShowAttachmentPanelDto, ToggleOverlayComponentDto } from '@shared/types/inputDto'
+import { ShowAttachmentPanelDto, ToggleOverlayComponentDto } from '@shared/types/dtoOneway.types'
 import { BulkyConfig } from '@shared/types/config.types'
-import { StashTab } from '@shared/types/stash.types'
+import { PoeStashTab } from '@shared/types/stash.types'
 import { OauthTokenResponse } from '@shared/types/auth.types'
 import ipcRendererWrapper from './ipcRendererWrapper'
 import { SerializedError } from '@shared/errors/serializedError'
-import { PoeLeagueResponse } from '@shared/types/response.types'
+import { PoeLeagueRecordDtoResponse } from '@shared/types/dtoResponse.types'
 import { PoeNinjaCurrencyLine, PoeNinjaItemLine } from '@shared/types/ninja.types'
-import { AxiosResponse } from 'axios'
 
 export const api = {
 	// example for bidirectional communication
@@ -41,7 +40,7 @@ export const api = {
 
 	writeConfig: (config: BulkyConfig) => ipcRenderer.send('write-config', config),
 
-	writeStashTabs: (stashTabs: StashTab[]) => ipcRenderer.send('write-stash-tabs', stashTabs),
+	writeStashTabs: (stashTabs: PoeStashTab[]) => ipcRenderer.send('write-stash-tabs', stashTabs),
 
 	// ------------------------------------------------
 	// RENDERER -> MAIN BIDIRECTIONAL
@@ -49,7 +48,7 @@ export const api = {
 
 	readConfig: () => ipcRenderer.invoke('read-config'),
 
-	readStashTabs: (): Promise<StashTab[]> => ipcRenderer.invoke('read-stash-tabs'),
+	readStashTabs: (): Promise<PoeStashTab[]> => ipcRenderer.invoke('read-stash-tabs'),
 
 	generateOauthTokens: async (): Promise<OauthTokenResponse | SerializedError> => {
 		return ipcRendererWrapper.invoke('generate-oauth-tokens')
@@ -62,7 +61,7 @@ export const api = {
 
 	getAuthorizationCodeUrl: (): Promise<string | SerializedError> => ipcRendererWrapper.invoke('get-authorization-code-url'),
 
-	getLeagues: (): Promise<PoeLeagueResponse> => ipcRendererWrapper.invoke('get-leagues'),
+	getLeagues: (): Promise<PoeLeagueRecordDtoResponse> => ipcRendererWrapper.invoke('get-leagues'),
 
 	getNinjaCategory: (url: string): Promise<Record<'lines', PoeNinjaCurrencyLine[] | PoeNinjaItemLine[]> | SerializedError> =>
 		ipcRendererWrapper.invoke('get-ninja-category', url),

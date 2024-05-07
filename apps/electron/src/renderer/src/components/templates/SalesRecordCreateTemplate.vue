@@ -1,5 +1,5 @@
 <template>
-	<main class="t-sell-add">
+	<main class="t-sales-record-create">
 		<div class="main-container stash-list flow">
 			<div class="category-input">
 				<LabelWithSelectMolecule :options="categories" v-model="appStateStore.selectedCategory" background-color="light">
@@ -75,7 +75,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.t-sell-add {
+.t-sales-record-create {
 	display: grid;
 	grid-template-columns: minmax(350px, 0.5fr) minmax(450px, 1fr);
 	grid-template-rows: minmax(0, 1fr);

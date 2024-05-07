@@ -8,7 +8,7 @@ import { BULKY_UUID } from '@web/utility/uuid'
 import { Essence, EssenceListing, EssenceListingItems, EssenceListings } from './essence.types'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
-import { GenericListingDto } from '@shared/types/dto.types'
+import { GenericListingDto } from '@shared/types/dtoRequest.types'
 import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE_IDX_TO_NAME } from './essence.const'
 import { conformBinaryListingItems } from '@web/utility/conformers'
 

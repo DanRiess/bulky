@@ -1,5 +1,5 @@
-import { BulkyItemsByStash } from '@shared/types/bulky.types'
-import { StashTab } from '@shared/types/stash.types'
+import { PoeItemsByStash } from '@shared/types/bulky.types'
+import { PoeStashTab } from '@shared/types/stash.types'
 import { getKeys, isWatchable } from '@shared/types/utility.types'
 import { isEqual } from 'lodash'
 import { MaybeRefOrGetter, ref, toValue, watch } from 'vue'
@@ -11,9 +11,9 @@ import { compareObjectsByBaseType } from '@web/utility/compareFunctions'
  * The items variable will update itself when the stash tab selection changes.
  * A change can be forced by calling the exposed 'update' function, i. e. after a folder sync.
  */
-export function usePoeItems(stashTabs: MaybeRefOrGetter<StashTab[]>) {
+export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 	const bulkyIdb = useBulkyIdb()
-	const items = ref<BulkyItemsByStash>({})
+	const items = ref<PoeItemsByStash>({})
 
 	// Load items of selected tabs from idb.
 	;(async function initialize() {
@@ -52,7 +52,7 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<StashTab[]>) {
 	 * Update the items after a stash sync action.
 	 * This is also possible as a watcher if downloaded items are passed to the use function as Ref.
 	 */
-	async function updateItemsByStash(downloadedItems: BulkyItemsByStash) {
+	async function updateItemsByStash(downloadedItems: PoeItemsByStash) {
 		// Find all items that don't exist in the downloaded items anymore.
 		const remove = getKeys(downloadedItems)
 			.map(key => {

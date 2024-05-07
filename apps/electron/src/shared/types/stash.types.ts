@@ -1,5 +1,6 @@
 import { Id, ObjectValues } from './utility.types'
 
+// PoeStashType
 export const STASH_TYPE = {
 	Folder: 'Folder',
 	NormalStash: 'NormalStash',
@@ -18,17 +19,18 @@ export const STASH_TYPE = {
 
 export type StashType = ObjectValues<typeof STASH_TYPE>
 
-export type StashTab = {
+// BulkyStashTab
+export type PoeStashTab = {
 	name: string
 	index: number
-	id: Id<StashTab>
-	parentId?: Id<StashTab>
-	children?: Id<StashTab>[]
+	id: Id<PoeStashTab>
+	parentId?: Id<PoeStashTab>
+	children?: Id<PoeStashTab>[]
 	color?: string
 	lastSnapshot: number
 	// icon: string // check if the actual api has that or not
 	type: StashType
 	league: string
-	// items: PoeItem[]
+	// items: PoeItemDto[]
 	selected: boolean // for v-model
 }

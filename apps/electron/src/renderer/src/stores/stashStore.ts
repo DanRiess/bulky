@@ -4,8 +4,7 @@
  */
 
 import { useApi } from '@web/api/useApi'
-import { StashTabListItemDto } from '@shared/types/dto.types'
-import { StashTab } from '@shared/types/stash.types'
+import { PoeStashTab } from '@shared/types/stash.types'
 import { BULKY_STASH_TABS } from '@web/utility/stastTab'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
@@ -14,6 +13,7 @@ import { useConfigStore } from './configStore'
 import { useBulkyIdb } from '@web/composables/useBulkyIdb'
 import { BULKY_ID } from '@web/utility/typedId'
 import { isEqual } from 'lodash'
+import { PoeStashTabDto } from '@shared/types/dtoResponse.types'
 
 export const useStashStore = defineStore('stashStore', () => {
 	const configStore = useConfigStore()
@@ -21,7 +21,7 @@ export const useStashStore = defineStore('stashStore', () => {
 
 	// STATE
 
-	const stashTabs = ref<StashTab[]>([])
+	const stashTabs = ref<PoeStashTab[]>([])
 	const lastListFetch = ref(0)
 	const fetchTimeout = ref(15000)
 
@@ -62,10 +62,10 @@ export const useStashStore = defineStore('stashStore', () => {
 	/**
 	 * Consume a stash tab dto and type and validate it.
 	 */
-	function generateTypedStashTab(dto: StashTabListItemDto, parent?: StashTab): StashTab[] {
+	function generateTypedStashTab(dto: Omit<PoeStashTabDto, 'items'>, parent?: PoeStashTab): PoeStashTab[] {
 		const name = dto.name
 		const index = dto.index ?? 99999
-		const id = BULKY_ID.generateTypedId<StashTab>(dto.id)
+		const id = BULKY_ID.generateTypedId<PoeStashTab>(dto.id)
 		const type = BULKY_STASH_TABS.generateStashTabTypeFromDto(dto.type)
 		const color = dto.metadata.colour
 		const lastSnapshot = 0
@@ -73,7 +73,7 @@ export const useStashStore = defineStore('stashStore', () => {
 		const league = configStore.config.league
 		const parentId = parent?.id
 
-		const tab: StashTab = { name, index, id, parentId, type, lastSnapshot, color, selected, league }
+		const tab: PoeStashTab = { name, index, id, parentId, type, lastSnapshot, color, selected, league }
 
 		// process the folder's children
 		const children = dto.children
@@ -94,7 +94,7 @@ export const useStashStore = defineStore('stashStore', () => {
 	 * Compare current stash tabs with new downloaded ones.
 	 * Replace, add, or remove changed stash tabs from the state variable and indexeddb.
 	 */
-	async function compareStashTabs(newStashTabs: StashTab[]) {
+	async function compareStashTabs(newStashTabs: PoeStashTab[]) {
 		// Find all tabs that don't exist in the newStashTabs anymore.
 		// This should only apply to remove-only tabs that have been cleared.
 		const remove = stashTabs.value

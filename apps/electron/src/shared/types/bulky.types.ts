@@ -8,7 +8,7 @@ import {
 	CompassListingStore,
 	SextantModifier,
 	SextantType,
-} from '@web/categories/compass/compass.types'
+} from '../../renderer/src/categories/compass/compass.types'
 import { Id, ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utility.types'
 import {
 	Essence,
@@ -20,9 +20,9 @@ import {
 	EssenceListingStore,
 	EssenceTier,
 	EssenceType,
-} from '@web/categories/essence/essence.types'
-import { PoeItem } from './poe.types'
-import { StashTab } from './stash.types'
+} from '../../renderer/src/categories/essence/essence.types'
+import { PoeStashTab } from './stash.types'
+import { PoeItemDto } from './dtoResponse.types'
 
 // APP STATE TYPES
 
@@ -42,8 +42,8 @@ export type MainView = 'BUY' | 'SELL' | 'CONFIG' | 'AUTH'
 export type SellView = 'LIST' | 'ADD'
 
 // TRANSFORMED THINGS
-export type BulkyItem = Pick<
-	PoeItem,
+export type PoeItem = Pick<
+	PoeItemDto,
 	| 'name'
 	| 'baseType'
 	| 'icon'
@@ -59,12 +59,12 @@ export type BulkyItem = Pick<
 	| 'x'
 	| 'y'
 > & {
-	id: Id<BulkyItem>
-	stashTabId: Id<StashTab>
+	id: Id<PoeItem>
+	stashTabId: Id<PoeStashTab>
 }
 
-export type BulkyItemsByStash = {
-	[key: StashTab['id']]: BulkyItem[]
+export type PoeItemsByStash = {
+	[key: PoeStashTab['id']]: PoeItem[]
 }
 
 // GENERIC STORES

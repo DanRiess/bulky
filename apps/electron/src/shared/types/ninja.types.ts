@@ -1,13 +1,18 @@
 import { Id } from './utility.types'
 
+// Prefix all new type names with 'Ninja'
+
+// BulkyPriceCollection
 export type CurrentNinjaPrices = Record<BulkyNinjaPriceItem['name'], BulkyNinjaPriceItem>
 
+// CategoryPriceBlock
 export type BulkyNinjaPriceBlock = {
 	category: PoeNinjaCategory
 	lastSnapshot: number
 	items: BulkyNinjaPriceItem[]
 }
 
+// ItemPriceDetails
 export type BulkyNinjaPriceItem = {
 	id: Id<BulkyNinjaPriceItem>
 	name: string
@@ -15,6 +20,7 @@ export type BulkyNinjaPriceItem = {
 	tendency: number // receiveSparkLine.totalChange (number in percent)
 }
 
+// NinjaCurrencyDetails
 export type PoeNinjaCurrencyLine = {
 	currencyName: string
 	chaosEquivalent: number
@@ -27,6 +33,7 @@ export type PoeNinjaCurrencyLine = {
 	lowConfidenceReceiveSparkLine: PoeNinjaSparkLine
 }
 
+// NinjaItemDetails
 export type PoeNinjaItemLine = {
 	id: number
 	name: string
@@ -48,6 +55,7 @@ export type PoeNinjaItemLine = {
 	listingCount: number
 }
 
+// Category
 export type PoeNinjaCategory =
 	| 'Currency'
 	| 'Fragment'
@@ -82,6 +90,7 @@ export type PoeNinjaCategory =
 	| 'AllflameEmber'
 	| 'ClusterJewel'
 
+// SparkLineDetails
 type PoeNinjaLineDetails = {
 	id: number
 	league_id: number
@@ -95,6 +104,7 @@ type PoeNinjaLineDetails = {
 	listing_count: number
 }
 
+// SparkLine
 type PoeNinjaSparkLine = {
 	data: number[]
 	totalChange: number

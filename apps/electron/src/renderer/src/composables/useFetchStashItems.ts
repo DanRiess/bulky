@@ -1,20 +1,20 @@
-import { BulkyItemsByStash } from '@shared/types/bulky.types'
-import { StashTab } from '@shared/types/stash.types'
+import { PoeItemsByStash } from '@shared/types/bulky.types'
+import { PoeStashTab } from '@shared/types/stash.types'
 import { ApiStatus } from '@web/api/api.types'
 import { poeApi } from '@web/api/poeApi'
 import { createNormalisedApiStatuses, useApi } from '@web/api/useApi'
 import { MaybeRefOrGetter, ref, toValue } from 'vue'
-import { transformPoeItemToBulkyItem } from '../utility/transformers'
 import { useBulkyIdb } from './useBulkyIdb'
+import { generatePoeItemFromDto } from '@web/utility/transformers'
 
 /**
  * Fetch items from the passed stash tabs. If 'stashTabs' is a ref/computed,
  * calling the 'execute' function will use the reactive values as well.
  */
-export function useFetchStashItems(stashTabs: MaybeRefOrGetter<StashTab[]>) {
+export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 	const bulkyIdb = useBulkyIdb()
 	const status = ref<ApiStatus>('IDLE')
-	const data = ref<BulkyItemsByStash>()
+	const data = ref<PoeItemsByStash>()
 	const error = ref<Error>()
 
 	/**
@@ -39,8 +39,8 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<StashTab[]>) {
 					status.value = 'SUCCESS'
 				}
 
-				// Convert dto to BulkyItem.
-				const bulkyItems = request.data.value.stash.items.map(poeItem => transformPoeItemToBulkyItem(poeItem, tab))
+				// Convert dto to PoeItem.
+				const bulkyItems = request.data.value.stash.items.map(poeItem => generatePoeItemFromDto(poeItem, tab))
 
 				// Save the transformed items to the data object.
 				data.value ? (data.value[tab.id] = bulkyItems) : (data.value = { [tab.id]: bulkyItems })

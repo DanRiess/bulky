@@ -1,20 +1,20 @@
-import { BulkyItem } from '@shared/types/bulky.types'
+import { PoeItem } from '@shared/types/bulky.types'
 import { BulkyNinjaPriceBlock, PoeNinjaCategory } from '@shared/types/ninja.types'
-import { StashTab } from '@shared/types/stash.types'
+import { PoeStashTab } from '@shared/types/stash.types'
 import { Id } from '@shared/types/utility.types'
 import { deepToRaw } from '@web/utility/deepToRaw'
 import { openDB, DBSchema, IDBPDatabase } from 'idb'
 
 interface BulkyDB extends DBSchema {
 	stash: {
-		key: StashTab['id'] // stash id
-		value: StashTab
-		indexes: { 'by-league': StashTab['league'] }
+		key: PoeStashTab['id'] // stash id
+		value: PoeStashTab
+		indexes: { 'by-league': PoeStashTab['league'] }
 	}
 	item: {
-		key: BulkyItem['id']
-		value: BulkyItem
-		indexes: { 'by-tab': StashTab['id']; 'by-basetype': BulkyItem['baseType'] }
+		key: PoeItem['id']
+		value: PoeItem
+		indexes: { 'by-tab': PoeStashTab['id']; 'by-basetype': PoeItem['baseType'] }
 	}
 	price: {
 		key: BulkyNinjaPriceBlock['category']
@@ -61,7 +61,7 @@ export function useBulkyIdb() {
 	/**
 	 * Add / Put an array of stash tabs to the stash store.
 	 */
-	async function putStashTabs(stashTabs: StashTab[]) {
+	async function putStashTabs(stashTabs: PoeStashTab[]) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
@@ -85,7 +85,7 @@ export function useBulkyIdb() {
 	 */
 	async function getStashTabsByLeague(league: string) {
 		let db: IDBPDatabase<BulkyDB> | undefined
-		const stashTabs: StashTab[] = []
+		const stashTabs: PoeStashTab[] = []
 
 		try {
 			db = await initDB()
@@ -101,7 +101,7 @@ export function useBulkyIdb() {
 	/**
 	 * Delete an array of stash tabs
 	 */
-	async function deleteStashTabs(stashTabIds: Id<StashTab>[]) {
+	async function deleteStashTabs(stashTabIds: Id<PoeStashTab>[]) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
@@ -120,7 +120,7 @@ export function useBulkyIdb() {
 	/**
 	 * Add an array of items to the item store
 	 */
-	async function putItems(items: BulkyItem[]) {
+	async function putItems(items: PoeItem[]) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
@@ -142,9 +142,9 @@ export function useBulkyIdb() {
 	/**
 	 * Get all items of a stash tab.
 	 */
-	async function getItemsByStashTab(stashTabId: Id<StashTab>) {
+	async function getItemsByStashTab(stashTabId: Id<PoeStashTab>) {
 		let db: IDBPDatabase<BulkyDB> | undefined
-		const items: BulkyItem[] = []
+		const items: PoeItem[] = []
 
 		try {
 			db = await initDB()
@@ -162,7 +162,7 @@ export function useBulkyIdb() {
 	 */
 	async function getItemsByBaseType(baseType: string) {
 		let db: IDBPDatabase<BulkyDB> | undefined
-		const items: BulkyItem[] = []
+		const items: PoeItem[] = []
 
 		try {
 			db = await initDB()
@@ -178,7 +178,7 @@ export function useBulkyIdb() {
 	/**
 	 * Delete an array of items
 	 */
-	async function deleteItems(itemIds: Id<BulkyItem>[]) {
+	async function deleteItems(itemIds: Id<PoeItem>[]) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {

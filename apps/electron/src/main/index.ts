@@ -8,8 +8,8 @@ import { typeInChat } from './ipcCallbacks/typeInChat'
 import { readConfig, writeConfig } from './ipcCallbacks/configActions'
 import { BulkyConfig } from '@shared/types/config.types'
 import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
-import { StashTab } from '@shared/types/stash.types'
-import { join, resolve } from 'path'
+import { PoeStashTab } from '@shared/types/stash.types'
+import { resolve } from 'path'
 import { OverlayController } from 'electron-overlay-window'
 import {
 	computeAuthorizationCodeUrl,
@@ -128,7 +128,7 @@ app.whenReady().then(() => {
 			ipcMain.on('write-config', (_, config: BulkyConfig) => writeConfig(app, config))
 			ipcMain.handle('read-config', () => readConfig(app))
 
-			ipcMain.on('write-stash-tabs', (_, stashTabs: StashTab[]) => writeStashTabs(app, stashTabs))
+			ipcMain.on('write-stash-tabs', (_, stashTabs: PoeStashTab[]) => writeStashTabs(app, stashTabs))
 			ipcMain.handle('read-stash-tabs', () => readStashTabs(app))
 
 			ipcMain.handle('redeem-refresh-token', (_, refreshToken: string) => redeemRefreshToken(refreshToken))

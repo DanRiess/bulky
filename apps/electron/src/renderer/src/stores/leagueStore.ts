@@ -1,11 +1,11 @@
-import { PoeLeague, RuthlessRule, SSFRule } from '@shared/types/poe.types'
+import { PoeLeagueRecordDto, RuthlessRule, SSFRule } from '@shared/types/dtoResponse.types'
 import { poeApi } from '@web/api/poeApi'
 import { useApi } from '@web/api/useApi'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useLeagueStore = defineStore('leagueStore', () => {
-	const leagues = ref<PoeLeague[]>()
+	const leagues = ref<PoeLeagueRecordDto[]>()
 
 	async function initialize() {
 		if (leagues.value !== undefined) return
@@ -25,7 +25,7 @@ export const useLeagueStore = defineStore('leagueStore', () => {
 	 * Filter out all leagues that are ruthless, ssf, or both.
 	 * Sort entries to list current league options first.
 	 */
-	function filterLeagues(leagues: PoeLeague[]) {
+	function filterLeagues(leagues: PoeLeagueRecordDto[]) {
 		return leagues
 			.filter(league => {
 				return !!!league.rules.find(rule => rule instanceof SSFRule || rule instanceof RuthlessRule)

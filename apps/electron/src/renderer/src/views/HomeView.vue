@@ -14,11 +14,11 @@ import BuyTemplate from '@web/components/templates/BuyTemplate.vue'
 import ConfigTemplate from '@web/components/templates/ConfigTemplate.vue'
 import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
-import SellListingTemplate from '@web/components/templates/SellListingTemplate.vue'
-import SellAddTemplate from '@web/components/templates/SellAddTemplate.vue'
 import AuthTemplate from '@web/components/templates/AuthTemplate.vue'
 import { useAuthStore } from '@web/stores/authStore'
 import NavbarOrganism from '@web/components/organisms/NavbarOrganism.vue'
+import SalesRecordOverviewTemplate from '@web/components/templates/SalesRecordOverviewTemplate.vue'
+import SalesRecordCreateTemplate from '@web/components/templates/SalesRecordCreateTemplate.vue'
 // import { useApi } from '@web/api/useApi'
 // import { poeApi } from '@web/api/poeApi'
 
@@ -31,8 +31,9 @@ const component = computed(() => {
 	if (appStateStore.selectedView === 'BUY') return markRaw(BuyTemplate)
 	else if (appStateStore.selectedView === 'AUTH') return markRaw(AuthTemplate)
 	else if (appStateStore.selectedView === 'SELL' && appStateStore.selectedSellView === 'LIST')
-		return markRaw(SellListingTemplate)
-	else if (appStateStore.selectedView === 'SELL' && appStateStore.selectedSellView === 'ADD') return markRaw(SellAddTemplate)
+		return markRaw(SalesRecordOverviewTemplate)
+	else if (appStateStore.selectedView === 'SELL' && appStateStore.selectedSellView === 'ADD')
+		return markRaw(SalesRecordCreateTemplate)
 	else if (appStateStore.selectedView === 'CONFIG') return markRaw(ConfigTemplate)
 	return undefined
 })

@@ -9,8 +9,8 @@ import { useAuthStore } from '@web/stores/authStore'
 import { RequestError } from '@shared/errors/requestError'
 import { PoeProfileResponse } from '@shared/types/auth.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { StashTab } from '@shared/types/stash.types'
-import { PoeStashTabListResponse, PoeStashTabResponse } from '@shared/types/response.types'
+import { PoeStashTab } from '@shared/types/stash.types'
+import { PoeStashTabCollectionResponse, PoeStashTabResponse } from '@shared/types/dtoResponse.types'
 
 /**
  * Validator: Check if the passed function is a member of poeApi
@@ -25,16 +25,16 @@ export function isPoeApiFunction(fn: Function) {
 export const poeApi = {
 	getStashTabList: async (config?: AxiosRequestConfig) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-			return api.get<PoeStashTabListResponse>('http://localhost:5174/src/mocks/stash_list.json', config)
+			return api.get<PoeStashTabCollectionResponse>('http://localhost:5174/src/mocks/stash_list.json', config)
 		}
 
 		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + '/stash/' + getSelectedLeague()
 		const updatedConfig = await updateConfig(config)
 
-		return api.get<PoeStashTabListResponse>(url, updatedConfig)
+		return api.get<PoeStashTabCollectionResponse>(url, updatedConfig)
 	},
 
-	getStashTabItems: async (stashTab: StashTab, config?: AxiosRequestConfig) => {
+	getStashTabItems: async (stashTab: PoeStashTab, config?: AxiosRequestConfig) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
 			return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashFragment.json', config)
 		}
