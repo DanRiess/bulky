@@ -1,5 +1,5 @@
 <template>
-	<div class="m-listing-metadata flow">
+	<div class="m-bazaar-offer-metadata flow">
 		<div class="ign">IGN: {{ ign }}</div>
 		<ChaosPerDivAtom :chaos-per-div="chaosPerDiv" />
 		<div class="multiplier no-select">Multiplier: {{ multiplier * 100 }}%</div>
@@ -17,7 +17,7 @@ defineProps<{
 </script>
 
 <style scoped>
-.m-listing-metadata {
+.m-bazaar-offer-metadata {
 	--flow-space: 0.2em;
 }
 

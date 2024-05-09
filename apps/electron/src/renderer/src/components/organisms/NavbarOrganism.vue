@@ -1,31 +1,22 @@
 <template>
 	<nav class="nav">
-		<ButtonAtom :active="appStateStore.selectedView === 'BUY'" @click="appStateStore.selectedView = 'BUY'"> Buy </ButtonAtom>
-		<ButtonAtom :active="appStateStore.selectedView === 'SELL'" @click="appStateStore.selectedView = 'SELL'">
-			Sell
-		</ButtonAtom>
+		<ButtonAtom :active="router.currentRoute.value.name === 'Bazaar'" @click="router.push('Bazaar')"> Bazaar </ButtonAtom>
+		<ButtonAtom :active="router.currentRoute.value.name === 'Shop'" @click="router.push('Shop')"> Shop </ButtonAtom>
 		<div class="icon-buttons">
-			<div class="settings-icon" @click="appStateStore.selectedView = 'CONFIG'">
-				<SvgIconAtom
-					name="settings"
-					:use-gradient="true"
-					cursor="pointer"
-					:active="appStateStore.selectedView === 'CONFIG'"
-					width="100%"></SvgIconAtom>
-			</div>
+			<SettingsIconMolecule />
 			<UserIconMolecule />
 		</div>
 	</nav>
 </template>
 
 <script setup lang="ts">
-import { useAppStateStore } from '@web/stores/appStateStore'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
-import SvgIconAtom from '../atoms/SvgIconAtom.vue'
+import SettingsIconMolecule from '../molecules/SettingsIconMolecule.vue'
 import UserIconMolecule from '../molecules/UserIconMolecule.vue'
+import { useRouter } from 'vue-router'
 
-// STORES
-const appStateStore = useAppStateStore()
+// COMPOSABLES
+const router = useRouter()
 </script>
 
 <style scoped>
@@ -40,9 +31,5 @@ const appStateStore = useAppStateStore()
 	grid-column: 4/4;
 	display: flex;
 	gap: 1rem;
-}
-
-.settings-icon {
-	width: 2rem;
 }
 </style>

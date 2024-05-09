@@ -1,10 +1,10 @@
 <template>
-	<div class="m-listing-item animated-gradient-background" data-b-override>
-		<div class="flow">
-			<ListingMetadataMolecule
-				:ign="computedListing.ign"
-				:chaos-per-div="computedListing.chaosPerDiv"
-				:multiplier="computedListing.multiplier" />
+	<div class="o-bazaar-offer animated-gradient-background" data-b-override>
+		<div class="metadata-and-whisper flow">
+			<BazaarOfferMetadataMolecule
+				:ign="computedOffer.ign"
+				:chaos-per-div="computedOffer.chaosPerDiv"
+				:multiplier="computedOffer.multiplier" />
 			<ButtonAtom background-color="dark" @click="sendMessage">
 				<template v-if="messageSent">
 					<div class="message-sent">
@@ -16,32 +16,35 @@
 			</ButtonAtom>
 		</div>
 
-		<ListingItemsMolecule
-			:full-buyout-watcher="computedListing.fullBuyoutWatcher"
-			:computed-item-display-values="computedListing.computedItems"
-			:total-price="computedListing.totalPrice" />
+		<div class="items-and-price">
+			<BazaarOfferItemsMolecule
+				:full-buyout-watcher="computedOffer.fullBuyoutWatcher"
+				:computed-item-display-values="computedOffer.computedItems" />
+			<BazaarOfferCurrentPriceAtom :total-price="computedOffer.totalPrice" />
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import ListingMetadataMolecule from './ListingMetadataMolecule.vue'
-import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { craftWhisperMessage } from '@web/utility/whisper'
-import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { ref } from 'vue'
-import ListingItemsMolecule from './ListingItemsMolecule.vue'
-import { ComputedListingDisplayValues } from '@shared/types/bulky.types'
+import { ComputedOfferDisplayValues } from '@shared/types/bulky.types'
 import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
+import BazaarOfferMetadataMolecule from '../molecules/BazaarOfferMetadataMolecule.vue'
+import ButtonAtom from '../atoms/ButtonAtom.vue'
+import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
+import SvgIconAtom from '../atoms/SvgIconAtom.vue'
+import BazaarOfferCurrentPriceAtom from '../atoms/BazaarOfferCurrentPriceAtom.vue'
 
 const messageSent = ref(false)
 
 const props = defineProps<{
-	computedListing: ComputedListingDisplayValues
+	computedOffer: ComputedOfferDisplayValues
 }>()
 
 async function sendMessage() {
-	const message = craftWhisperMessage(props.computedListing)
+	const message = craftWhisperMessage(props.computedOffer)
 
 	const request = useApi('typeInChat', nodeApi.typeInChat)
 	await request.exec(message)
@@ -56,7 +59,7 @@ async function sendMessage() {
 </script>
 
 <style scoped>
-.m-listing-item {
+.o-bazaar-offer {
 	display: grid;
 	grid-template-columns: 15ch 1fr;
 	gap: 1.5rem;

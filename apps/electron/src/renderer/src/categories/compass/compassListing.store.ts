@@ -67,6 +67,7 @@ export const useCompassListingStore = defineStore('compassListingStore', () => {
 	}
 
 	async function getTestData() {
+		console.log('get compass test data')
 		// if (listings.value.size !== 0) return
 
 		const request = useApi('compassListing', getListing)

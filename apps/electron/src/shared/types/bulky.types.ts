@@ -156,7 +156,7 @@ export type ComputedItemDisplayValues = {
 	stock: number
 }
 
-export type ComputedListingDisplayValues = {
+export type ComputedOfferDisplayValues = {
 	uuid: Uuid<AnyListing>
 	ign: string
 	chaosPerDiv: number

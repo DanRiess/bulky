@@ -16,6 +16,26 @@ const routes: RouteRecordRaw[] = [
 		name: 'Auth',
 		component: () => import(/* webpackChunkName: "auth" */ '../views/AuthView.vue'),
 	},
+	{
+		path: '/shop',
+		name: 'Shop',
+		component: () => import(/* webpackChunkName: "shop" */ '../views/ShopView.vue'),
+	},
+	{
+		path: '/shop/create',
+		name: 'CreateOffer',
+		component: () => import(/* webpackChunkName: "create-offer" */ '../views/ShopCreateOfferView.vue'),
+	},
+	{
+		path: '/bazaar',
+		name: 'Bazaar',
+		component: () => import(/* webpackChunkName: "bazaar" */ '../views/BazaarView.vue'),
+	},
+	{
+		path: '/settings',
+		name: 'Settings',
+		component: () => import(/* webpackChunkName: "settings" */ '../views/SettingsView.vue'),
+	},
 ]
 
 export const router = createRouter({

@@ -32,13 +32,6 @@ onMounted(async () => {
 
 <style scoped>
 .v-auth {
-	height: 600px;
-	width: 1000px;
-	background-color: var(--dr-background-color-app);
-	border-radius: 1rem;
-	padding: 1rem;
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
+	margin: 0 auto;
 }
 </style>

@@ -7,9 +7,7 @@
 		</ul>
 		<div class="button">
 			<template v-if="authStore.isLoggedIn">
-				<ButtonAtom background-color="dark" @click="appStateStore.selectedSellView = 'ADD'">
-					Create New Sales Listing
-				</ButtonAtom>
+				<ButtonAtom background-color="dark" @click="router.push('CreateOffer')"> Create New Sales Listing </ButtonAtom>
 			</template>
 			<template v-else>
 				<ButtonAtom background-color="dark" @click="initializeSignIn">
@@ -27,11 +25,9 @@ import FallbackSellListingMolecule from '../molecules/fallbacks/FallbackSellList
 import { useAuthStore } from '@web/stores/authStore'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useRouter } from 'vue-router'
-import { useAppStateStore } from '@web/stores/appStateStore'
 
 // STORES
 const authStore = useAuthStore()
-const appStateStore = useAppStateStore()
 
 // STATE
 const router = useRouter()

@@ -1,11 +1,11 @@
 <template>
-	<li class="a-li-listing">
-		<div class="li-listing-name">{{ computedItemDisplayValues.name }}</div>
-		<div class="li-listing-secondary-option">{{ computedItemDisplayValues.secondaryOption ?? '' }}</div>
-		<div class="li-listing-stock" v-if="!fullBuyoutWatcher">x{{ computedItemDisplayValues.stock }}</div>
-		<div class="li-listing-quantity">{{ computedItemDisplayValues.quantity }}</div>
+	<li class="a-bazaar-offer-item">
+		<div class="name">{{ computedItemDisplayValues.name }}</div>
+		<div class="secondary-option">{{ computedItemDisplayValues.secondaryOption ?? '' }}</div>
+		<div class="stock" v-if="!fullBuyoutWatcher">x{{ computedItemDisplayValues.stock }}</div>
+		<div class="quantity">{{ computedItemDisplayValues.quantity }}</div>
 		<div>*</div>
-		<div class="li-listing-price">{{ computedItemDisplayValues.price }}</div>
+		<div class="price">{{ computedItemDisplayValues.price }}</div>
 		<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 	</li>
 </template>
@@ -20,7 +20,7 @@ defineProps<{
 </script>
 
 <style scoped>
-.a-li-listing {
+.a-bazaar-offer-item {
 	display: grid;
 	grid-template-columns: subgrid;
 	grid-column: span 7;
@@ -29,28 +29,28 @@ defineProps<{
 	transition: all 0.25s ease;
 }
 
-.li-listing-name,
-.li-listing-secondary-option {
+.name,
+.secondary-option {
 	text-wrap: nowrap;
 	overflow: hidden;
 }
 
-.li-listing-name {
+.name {
 	font-weight: 500;
 	margin-right: 0.5rem;
 }
 
-.li-listing-stock {
+.stock {
 	text-align: left;
 	padding-left: 0.25rem;
 	padding-right: 0.4rem;
 }
 
-.li-listing-quantity {
+.quantity {
 	text-align: end;
 }
 
-.li-listing-price {
+.price {
 	text-align: start;
 }
 </style>
