@@ -38,7 +38,7 @@ withDefaults(
 	appearance: none;
 	background: transparent;
 	cursor: pointer;
-	width: 10rem;
+	/* width: 10rem; */
 }
 
 .a-range-input::-webkit-slider-runnable-track {

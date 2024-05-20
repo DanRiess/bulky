@@ -1,5 +1,5 @@
 <template>
-	<div class="a-input-number gradient-border" data-b-override>
+	<div class="a-input-number gradient-border" data-b-override :class="{ disabled }">
 		<div
 			class="arrow-container next-container"
 			@mousedown="e => onMousedown(e, 'add')"
@@ -184,11 +184,11 @@ function clearRepeatEvent() {
 	transition: all 0.25s ease;
 }
 
-.a-input-number:not(:disabled):hover {
-	width: max(var(--input-width) + 30px, 5ch + 30px);
+.a-input-number:hover {
+	width: max(var(--input-width) + 30px, 3ch + 30px);
 }
 
-.a-input-number:not(:disabled):hover::before {
+.a-input-number:hover::before {
 	--show-border: 1;
 }
 
@@ -197,14 +197,14 @@ function clearRepeatEvent() {
 	display: flex;
 	align-items: center;
 	height: 100%;
-	width: 20px;
+	width: max-content;
 	cursor: pointer;
 	opacity: 0;
 	transition: all 0.25s ease;
 }
 
 .next-container {
-	right: 0;
+	right: -5px;
 }
 
 .a-input-number:hover .next-container {
@@ -213,7 +213,7 @@ function clearRepeatEvent() {
 }
 
 .prev-container {
-	left: 0;
+	left: -5px;
 }
 
 .a-input-number:hover .prev-container {
@@ -256,14 +256,5 @@ input {
 
 input:focus {
 	outline: none;
-}
-
-.disabled {
-	pointer-events: none;
-	cursor: default;
-}
-
-.disabled .a-input-number {
-	opacity: 0.8;
 }
 </style>

@@ -1,13 +1,14 @@
 <template>
-	<div class="v-auth">
-		<AuthTemplate @restart-token-request="restartTokenRequest" />
-	</div>
+	<SingleColumnLayout>
+		<AuthOrganism @restart-token-request="restartTokenRequest" />
+	</SingleColumnLayout>
 </template>
 
 <script setup lang="ts">
-import AuthTemplate from '@web/components/templates/AuthTemplate.vue'
-import { useAuthStore } from '@web/stores/authStore'
 import { onMounted } from 'vue'
+import SingleColumnLayout from '@web/components/layouts/SingleColumnLayout.vue'
+import AuthOrganism from '@web/components/organisms/AuthOrganism.vue'
+import { useAuthStore } from '@web/stores/authStore'
 
 // STORES
 const authStore = useAuthStore()
@@ -30,8 +31,4 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped>
-.v-auth {
-	margin: 0 auto;
-}
-</style>
+<style scoped></style>

@@ -1,10 +1,11 @@
-import { PoeItemsByStash } from '@shared/types/bulky.types'
-import { PoeStashTab } from '@shared/types/stash.types'
 import { getKeys, isWatchable } from '@shared/types/utility.types'
 import { isEqual } from 'lodash'
-import { MaybeRefOrGetter, ref, toValue, watch } from 'vue'
 import { useBulkyIdb } from './useBulkyIdb'
 import { compareObjectsByBaseType } from '@web/utility/compareFunctions'
+import { MaybeRefOrGetter, computed, ref, toValue, watch } from 'vue'
+import { PoeItemsByStash, PoeStashTab } from '@shared/types/poe.types'
+import { useAppStateStore } from '@web/stores/appStateStore'
+import { BULKY_CATEGORIES } from '@web/utility/category'
 
 /**
  * Compose a ref of items from currently selected stash tabs.
@@ -12,15 +13,26 @@ import { compareObjectsByBaseType } from '@web/utility/compareFunctions'
  * A change can be forced by calling the exposed 'update' function, i. e. after a folder sync.
  */
 export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
+	const appStateStore = useAppStateStore()
 	const bulkyIdb = useBulkyIdb()
-	const items = ref<PoeItemsByStash>({})
+	const itemsByStash = ref<PoeItemsByStash>({})
+
+	const categoryFilteredItemsByStash = computed(() => {
+		console.log('category change triggered compute')
+		return getKeys(itemsByStash.value).reduce((prev, curr) => {
+			prev[curr] = itemsByStash.value[curr].filter(item =>
+				BULKY_CATEGORIES.isBaseTypeInCategory(appStateStore.selectedCategory, item.baseType)
+			)
+			return prev
+		}, {} as PoeItemsByStash)
+	})
 
 	// Load items of selected tabs from idb.
 	;(async function initialize() {
 		await Promise.allSettled(
 			toValue(stashTabs).map(async stashTab => {
 				const bulkyItems = (await bulkyIdb.getItemsByStashTab(stashTab.id)).sort(compareObjectsByBaseType)
-				items.value[stashTab.id] = bulkyItems
+				itemsByStash.value[stashTab.id] = bulkyItems
 			})
 		)
 	})().catch(e => {
@@ -37,12 +49,12 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 			const add = newTabs.filter(val => !oldTabs.includes(val))
 
 			// remove necessary items (items[id].length = 0)
-			remove.forEach(tab => items.value[tab.id] && (items.value[tab.id].length = 0))
+			remove.forEach(tab => itemsByStash.value[tab.id] && (itemsByStash.value[tab.id].length = 0))
 
 			// get new tabs' items from indexeddb
 			add.forEach(tab => {
 				bulkyIdb.getItemsByStashTab(tab.id).then(newItems => {
-					items.value[tab.id] = newItems
+					itemsByStash.value[tab.id] = newItems
 				})
 			})
 		})
@@ -56,7 +68,7 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		// Find all items that don't exist in the downloaded items anymore.
 		const remove = getKeys(downloadedItems)
 			.map(key => {
-				return items.value[key]
+				return itemsByStash.value[key]
 					.map((oldItem, idx) => {
 						if (!downloadedItems[key].some(newItem => isEqual(newItem, oldItem))) {
 							return { id: oldItem.id, idx, stashTabId: key }
@@ -72,7 +84,7 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		const add = getKeys(downloadedItems)
 			.map(key => {
 				return downloadedItems[key].filter(
-					downloadedItem => !items.value[key].some(oldItem => isEqual(oldItem, downloadedItem))
+					downloadedItem => !itemsByStash.value[key].some(oldItem => isEqual(oldItem, downloadedItem))
 				)
 			})
 			.flat()
@@ -82,26 +94,26 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		// Remove items from the state variable.
 		for (let i = remove.length - 1; i >= 0; --i) {
 			const key = remove[i].stashTabId
-			items.value[key].splice(remove[i].idx, 1)
+			itemsByStash.value[key].splice(remove[i].idx, 1)
 		}
 
 		// Add new items or edit the ones with changes.
 		add.forEach(downloadedItem => {
 			const key = downloadedItem.stashTabId
-			const idx = items.value[key].findIndex(oldItem => oldItem.id === downloadedItem.id)
+			const idx = itemsByStash.value[key].findIndex(oldItem => oldItem.id === downloadedItem.id)
 
 			// If the index is 0 or higher, an item with the same id already exists. Replace it.
 			// Otherwise, push the new item to the array.
-			idx > -1 ? items.value[key].splice(idx, 1, downloadedItem) : items.value[key].push(downloadedItem)
+			idx > -1 ? itemsByStash.value[key].splice(idx, 1, downloadedItem) : itemsByStash.value[key].push(downloadedItem)
 		})
 
 		// Sort the items.
-		getKeys(items.value).forEach(stashTabId => items.value[stashTabId].sort(compareObjectsByBaseType))
+		getKeys(itemsByStash.value).forEach(stashTabId => itemsByStash.value[stashTabId].sort(compareObjectsByBaseType))
 
 		// Update idb to reflect the changes
 		await bulkyIdb.deleteItems(remove.map(r => r.id))
 		await bulkyIdb.putItems(add)
 	}
 
-	return { items, updateItemsByStash }
+	return { itemsByStash, categoryFilteredItemsByStash, updateItemsByStash }
 }

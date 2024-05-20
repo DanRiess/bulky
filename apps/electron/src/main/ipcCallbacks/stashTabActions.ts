@@ -1,4 +1,4 @@
-import { PoeStashTab } from '@shared/types/stash.types'
+import { PoeStashTab } from '@shared/types/poe.types'
 import { App } from 'electron'
 import { readFile, writeFile } from 'fs'
 

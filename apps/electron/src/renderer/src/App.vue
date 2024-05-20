@@ -92,7 +92,7 @@ body {
 }
 
 .main-app-window {
-	height: 600px;
+	height: 700px;
 	width: 1000px;
 	display: grid;
 	grid-template-rows: auto minmax(0, 1fr);

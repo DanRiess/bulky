@@ -3,11 +3,11 @@
  */
 
 import { GenericListingItemDto } from '@shared/types/dtoRequest.types'
-import { ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.const'
-import { Essence, EssenceType } from './essence.types'
+import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.const'
+import { Essence, EssenceTier, EssenceType } from './essence.types'
 
 /** Type a returned Essence type DTO and turn it into an Essence type */
-function generateEssenceTypeFromDto(type: string): EssenceType {
+function generateEssenceTypeFromBaseType(type: string): EssenceType | undefined {
 	if (type.match(/greed/i)) return ESSENCE_TYPE.GREED
 	if (type.match(/contempt/i)) return ESSENCE_TYPE.CONTEMPT
 	if (type.match(/hatred/i)) return ESSENCE_TYPE.HATRED
@@ -32,7 +32,22 @@ function generateEssenceTypeFromDto(type: string): EssenceType {
 	if (type.match(/horror/i)) return ESSENCE_TYPE.HORROR
 	if (type.match(/delirium/i)) return ESSENCE_TYPE.DELIRIUM
 	if (type.match(/hysteria/i)) return ESSENCE_TYPE.HYSTERIA
-	else return ESSENCE_TYPE.UNSUPPORTED
+	else return undefined
+}
+
+/**
+ * Get the tier of an essence based on its name.
+ */
+function generateEssenceTierFromBaseType(name: string): EssenceTier | undefined {
+	if (name.match(/whispering/i)) return ESSENCE_TIER.WHISPERING
+	else if (name.match(/muttering/i)) return ESSENCE_TIER.MUTTERING
+	else if (name.match(/weeping/i)) return ESSENCE_TIER.WEEPING
+	else if (name.match(/wailing/i)) return ESSENCE_TIER.WAILING
+	else if (name.match(/screaming/i)) return ESSENCE_TIER.SCREAMING
+	else if (name.match(/shrieking/i)) return ESSENCE_TIER.SHRIEKING
+	else if (name.match(/deafening/i)) return ESSENCE_TIER.DEAFENING
+	else if (name.match(/insanity|horror|delirium|hysteria/i)) return ESSENCE_TIER.TIER_8
+	else return undefined
 }
 
 /** Type a returned item DTO and turn it into an Essence item */
@@ -47,6 +62,7 @@ function generateEssenceItemFromDto(itemDto: GenericListingItemDto): Essence | n
 }
 
 export const BULKY_ESSENCES = {
-	generateEssenceTypeFromDto,
+	generateEssenceTypeFromBaseType,
 	generateEssenceItemFromDto,
+	generateEssenceTierFromBaseType,
 }

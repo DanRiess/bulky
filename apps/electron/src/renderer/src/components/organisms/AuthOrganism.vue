@@ -1,5 +1,5 @@
 <template>
-	<div class="t-auth animated-gradient-background" data-b-override>
+	<div class="o-auth animated-gradient-background" data-b-override>
 		<AuthPendingMolecule
 			v-if="authStore.authorizationState === 'PENDING' || authStore.authorizationState === 'IDLE'"
 			@copy-sign-in-url="copySignInUrl"
@@ -77,8 +77,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.t-auth {
-	margin-top: 8rem;
+.o-auth {
+	margin: 8rem auto 0 auto;
 	padding: 1rem 0.5rem;
 	border-radius: var(--border-radius-medium);
 	text-align: center;

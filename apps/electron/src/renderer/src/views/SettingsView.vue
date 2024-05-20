@@ -1,12 +1,12 @@
 <template>
 	<DefaultLayout grid-template-columns="25ch minmax(0, 1fr)">
 		<template #leftColumn>
-			<div class="main-container animated-gradient-background" data-b-override>
+			<div class="animated-gradient-background" data-b-override>
 				<SettingsCategoriesMolecule />
 			</div>
 		</template>
 		<template #rightColumn>
-			<div class="main-container animated-gradient-background" data-b-override>
+			<div class="animated-gradient-background" data-b-override>
 				<SettingsOrganism />
 			</div>
 		</template>

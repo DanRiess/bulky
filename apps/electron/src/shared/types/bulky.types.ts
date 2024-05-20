@@ -1,152 +1,157 @@
-import {
-	Compass,
-	CompassFilter,
-	CompassFilterField,
-	CompassFilterStore,
-	CompassListing,
-	CompassListingItems,
-	CompassListingStore,
-	SextantModifier,
-	SextantType,
-} from '../../renderer/src/categories/compass/compass.types'
-import { Id, ObjectValues, OptionalRecord, PartialRecord, Uuid } from './utility.types'
-import {
-	Essence,
-	EssenceFilter,
-	EssenceFilterField,
-	EssenceFilterStore,
-	EssenceListing,
-	EssenceListingItems,
-	EssenceListingStore,
-	EssenceTier,
-	EssenceType,
-} from '../../renderer/src/categories/essence/essence.types'
-import { PoeStashTab } from './stash.types'
-import { PoeItemDto } from './dtoResponse.types'
+import { Essence, EssenceFilterField } from '@web/categories/essence/essence.types'
+import { ObjectValues, PartialRecord, Uuid } from './utility.types'
 
 // APP STATE TYPES
 
+// export const CATEGORY = {
+// 	UNSUPPORTED: 'UNSUPPORTED',
+// 	COMPASS: 'COMPASS',
+// 	SCARAB: 'SCARAB',
+// 	ESSENCE: 'ESSENCE',
+// 	DELI_ORB: 'DELI_ORB',
+// 	CONQ_MAP: 'CONQ_MAP',
+// } as const
+
 export const CATEGORY = {
-	UNSUPPORTED: 'UNSUPPORTED',
-	COMPASS: 'COMPASS',
-	SCARAB: 'SCARAB',
 	ESSENCE: 'ESSENCE',
-	DELI_ORB: 'DELI_ORB',
-	CONQ_MAP: 'CONQ_MAP',
+	SCARAB: 'SCARAB',
 } as const
 
 export type Category = ObjectValues<typeof CATEGORY>
 
-export type MainView = 'BUY' | 'SELL' | 'CONFIG' | 'AUTH'
+// BULKY ITEM TYPES
 
-export type SellView = 'LIST' | 'ADD'
-
-// TRANSFORMED THINGS
-export type PoeItem = Pick<
-	PoeItemDto,
-	| 'name'
-	| 'baseType'
-	| 'icon'
-	| 'itemLevel'
-	| 'stackSize'
-	| 'maxStackSize'
-	| 'implicitMods'
-	| 'explicitMods'
-	| 'ultimatumMods'
-	| 'enchantMods'
-	| 'w'
-	| 'h'
-	| 'x'
-	| 'y'
-> & {
-	id: Id<PoeItem>
-	stashTabId: Id<PoeStashTab>
+/**
+ * Generic type that needs to be extended to make sense. This is done in the categories' type files.
+ *
+ * @example
+ * type Essence = BulkyItemBase<typeof CATEGORY.ESSENCE> & {
+ *		type: EssenceType
+ *		tier: EssenceTier
+ *	}
+ */
+export type BulkyItemBase<T extends Category> = {
+	category: T
+	type: string
+	quantity: number
+	price: number
+	priceOverride: number
+	league: string
 }
 
-export type PoeItemsByStash = {
-	[key: PoeStashTab['id']]: PoeItem[]
+/**
+ * A collection of every implementation of BulkyItemBase throughout the app.
+ * This will be used as a generic type argument for every higher level type.
+ *
+ * @example
+ * type BulkyOffer<T extends BulkyItem = BulkyItem> = {
+ * 		offerProps: offerValues
+ * }
+ */
+export type BulkyItem = Essence
+
+/** Type that bulky items will be saved as */
+export type BulkyItemRecord = PartialRecord<BulkyItem['type'], BulkyItem[]>
+
+/**
+ * A BulkyOffer contains all necessary offer metadata as well as the items contained within the offer.
+ * This type can be used as a generic type argument or to instantiate a type-safe offer.
+ *
+ * @example
+ * const essenceOffer: BulkyOffer<Essence> = {
+ * 		metadata: metadata
+ * 		items: Essence[] // will throw if any item other than an essence is pushed
+ * }
+ */
+export type BulkyOffer<T extends BulkyItem = BulkyItem> = {
+	uuid: Uuid<BulkyOffer<T>>
+	user: string
+	ign: string
+	league: string
+	category: T['category']
+	chaosPerDiv: number
+	multiplier: number
+	minimumBuyout: number
+	fullBuyout: boolean
+	items: T[]
 }
-
-// GENERIC STORES
-export type GenericListingStore = CompassListingStore | EssenceListingStore
-export type GenericFilterStore = CompassFilterStore | EssenceFilterStore
-
-// GENERIC FILTER ARGUMENTS, extend these with other categories later
-export type FilterField = CompassFilterField | EssenceFilterField
-export type FilterMainOption = SextantModifier | EssenceType
-export type FilterSecondaryOption = SextantType | EssenceTier
-export type Filter = CompassFilter | EssenceFilter
 
 // FILTER TYPES
 
-export type GenericFilterField<T extends FilterField, M extends FilterMainOption, S extends FilterSecondaryOption> = {
-	uuid: Uuid<T>
-	mainOption: M
-	secondaryOption: S
+/**
+ * Generic type that needs to be extended to make sense. This is done in the categories' type files.
+ *
+ * @example
+ * type EssenceFilterField = BulkyFilterFieldBase<typeof CATEGORY.ESSENCE> & {
+ *		type: EssenceType
+ *		tier: EssenceTier
+ *	}
+ */
+export type BulkyFilterFieldBase<T extends Category> = {
+	uuid: Uuid<BulkyFilterFieldBase<T>>
+	category: T
+	type: string
 	quantity: number
 	maxBuyout: number
 }
 
-export type GenericFilter<T extends Filter, FilterField> = {
+/**
+ * A collection of every implementation of BulkyFilterFieldBase throughout the app.
+ */
+type BulkyFilterField = EssenceFilterField
+
+/**
+ * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.
+ * This type can be used as a generic type argument or to instantiate a type-safe filter.
+ *
+ * @example
+ * const essenceFilter: BulkyFilter<EssenceFilterField> = {
+ * 		...metadata: metadata
+ * 		fields: EssenceFilterField[] // will throw if incorrect filter field is pushed
+ * }
+ */
+export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
 	uuid: Uuid<T>
 	name: string
 	multiplier: number
 	fullBuyout: boolean
 	alwaysMaxQuantity: boolean
-	fields: FilterField[]
+	fields: T[]
 }
 
-export type AnyFilter = GenericFilter<Filter, GenericFilterField<FilterField, FilterMainOption, FilterSecondaryOption>>
+// PRICES
 
-// GENERIC LISTING ARGUMENTS, extend these with other categories later
-export type ListingType = CompassListing | EssenceListing
-export type ListingItems = CompassListingItems | EssenceListingItems
-export type ItemType = SextantModifier | EssenceType
-export type ItemTier = SextantType | EssenceTier | undefined
-export type Item = Compass | Essence
-
-// GENERIC LISTING TYPES
-
-export type GenericItemData<T extends ItemTier = undefined> = {
-	quantity: number
-	price: number
-	tier: T
-}
-
-export type GenericListingItems<TType extends ItemType, TTier extends ItemTier> = PartialRecord<TType, GenericItemData<TTier>[]>
-
-export type GenericListing<ListingType extends OptionalRecord, TListingItem extends GenericListingItems<ItemType, ItemTier>> = {
-	uuid: Uuid<ListingType>
-	ign: string
+/**
+ * Price overrides are being saved separately. This is why this type needs to have all of
+ * the additional metadata.
+ */
+export type BulkyPriceOverrideItem<T extends BulkyItem = BulkyItem> = {
+	category: T['category']
+	type: T['type']
+	tier: T['tier']
 	league: string
-	chaosPerDiv: number
-	multiplier: number
-	minimumBuyout: number
-	messageSent: boolean
-	items: TListingItem
+	priceOverride: number
 }
-// export type GenericListing<ListingType extends OptionalRecord, TType extends ItemType, TTier extends ItemTier> = {
-// 	uuid: Uuid<ListingType>
-// 	ign: string
-// 	league: string
-// 	chaosPerDiv: number
-// 	multiplier: number
-// 	minimumBuyout: number
-// 	messageSent: boolean
-// 	items: GenericListingItem<TType, TTier>
-// }
 
-export type AnyListingItems = GenericListingItems<ItemType, ItemTier>
-
-export type AnyListing = GenericListing<ListingType, AnyListingItems>
-
-export type GenericListings<TListing extends AnyListing> = Map<Uuid<TListing>, TListing>
-
-export type AnyListings = GenericListings<ListingType>
-
-// DISPLAY TYPES
+/**
+ * Structures overrides in object form.
+ * The key is the item type, the value is an array of this item type's available tiers.
+ *
+ * @example
+ * const essenceOverrideRecord = {
+ * 	DREAD: [
+ * 		{...props: props, tier: 'DEAFENING'},
+ * 		{...props: props, tier: 'SHRIEKING'}
+ * 	]
+ * }
+ */
+export type BulkyPriceOverrideRecord<T extends BulkyItem = BulkyItem> = Partial<
+	Record<BulkyPriceOverrideItem<T>['type'], BulkyPriceOverrideItem<T>[]>
+>
 
 export type TotalPrice = { chaos: number; divine: number }
+
+// DISPLAY TYPES
 
 export type ComputedItemDisplayValues = {
 	name: string
@@ -157,7 +162,7 @@ export type ComputedItemDisplayValues = {
 }
 
 export type ComputedOfferDisplayValues = {
-	uuid: Uuid<AnyListing>
+	uuid: Uuid<BulkyOffer>
 	ign: string
 	chaosPerDiv: number
 	computedItems: ComputedItemDisplayValues[]

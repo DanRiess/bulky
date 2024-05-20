@@ -1,11 +1,10 @@
-import { PoeItemsByStash } from '@shared/types/bulky.types'
-import { PoeStashTab } from '@shared/types/stash.types'
 import { ApiStatus } from '@web/api/api.types'
 import { poeApi } from '@web/api/poeApi'
 import { createNormalisedApiStatuses, useApi } from '@web/api/useApi'
 import { MaybeRefOrGetter, ref, toValue } from 'vue'
 import { useBulkyIdb } from './useBulkyIdb'
 import { generatePoeItemFromDto } from '@web/utility/transformers'
+import { PoeItemsByStash, PoeStashTab } from '@shared/types/poe.types'
 
 /**
  * Fetch items from the passed stash tabs. If 'stashTabs' is a ref/computed,

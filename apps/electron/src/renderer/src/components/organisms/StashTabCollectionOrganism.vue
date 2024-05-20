@@ -1,6 +1,6 @@
 <template>
-	<div class="o-stash-tab-list animated-gradient-background flow" data-b-override>
-		<header class="title">
+	<div class="o-stash-tab-collection animated-gradient-background flow" data-b-override>
+		<header class="header">
 			<h2 class="no-select">Stash Tabs</h2>
 			<TransitionAtom v-on="hooks">
 				<SvgButtonWithPopupMolecule
@@ -33,13 +33,13 @@
 </template>
 
 <script setup lang="ts">
-import { useStashStore } from '@web/stores/stashStore'
 import { computed } from 'vue'
-import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
-import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vue'
 import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.vue'
-import { PoeStashTab } from '@shared/types/stash.types'
+import { useStashStore } from '@web/stores/stashStore'
+import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+import { PoeStashTab } from '@shared/types/poe.types'
 
 // LOCAL TYPES
 type StashTabHierarchy = {
@@ -103,22 +103,18 @@ const hooks = useGenericTransitionHooks({
 	opacity: 0,
 	scale: 0,
 })
-
-// LIFECYCLE
-// onMounted(() => {
-// 	stashStore.fetchStashTabList()
-// })
 </script>
 
 <style scoped>
-.o-stash-tab-list {
+.o-stash-tab-collection {
 	border-radius: var(--border-radius-medium);
 	padding: 1rem;
 	display: grid;
 	grid-template-rows: auto 1fr;
+	overflow-y: auto;
 }
 
-.title {
+.header {
 	display: grid;
 	grid-template-columns: 1fr 2rem;
 	align-items: center;

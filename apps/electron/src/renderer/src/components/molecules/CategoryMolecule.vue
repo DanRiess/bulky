@@ -21,11 +21,8 @@ const appStateStore = useAppStateStore()
 
 // STATE
 const components = ref([
-	{ displayName: 'Compasses', fileName: 'charged-compass', category: CATEGORY.COMPASS },
 	{ displayName: 'Essences', fileName: 'essence-woe-deafening', category: CATEGORY.ESSENCE },
 	{ displayName: 'Scarabs', fileName: 'scarab-breach-gilded', category: CATEGORY.SCARAB },
-	{ displayName: 'Delirium Orbs', fileName: 'deli-orb-scarab', category: CATEGORY.DELI_ORB },
-	{ displayName: 'Conqueror Maps', fileName: 'map-conq-baran', category: CATEGORY.CONQ_MAP },
 ])
 
 // METHODS

@@ -25,11 +25,6 @@ export type PoeStashTabDto = {
 	items: PoeItemDto[]
 }
 
-export type StashTabListDto = {
-	numTabs: number
-	tabs: PoeStashTabDto[]
-}
-
 const enum PoeDisplayMode {
 	'Name should be followed by values' = 0,
 	'Values should be followed by name',

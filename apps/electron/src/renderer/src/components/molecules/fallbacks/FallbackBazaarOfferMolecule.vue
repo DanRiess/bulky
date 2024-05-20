@@ -1,6 +1,6 @@
 <template>
 	<div class="m-fb-bazaar-offer animated-gradient-background" data-b-override>
-		<p>Sorry, there are no listings matching your current filter.</p>
+		<p>Sorry, there are no offers matching your current filter.</p>
 	</div>
 </template>
 

@@ -8,7 +8,6 @@ import { typeInChat } from './ipcCallbacks/typeInChat'
 import { readConfig, writeConfig } from './ipcCallbacks/configActions'
 import { BulkyConfig } from '@shared/types/config.types'
 import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
-import { PoeStashTab } from '@shared/types/stash.types'
 import { resolve } from 'path'
 import { OverlayController } from 'electron-overlay-window'
 import {
@@ -19,7 +18,8 @@ import {
 } from './utility/oauth'
 import { SerializedError } from '@shared/errors/serializedError'
 import axios from 'axios'
-import { PoeNinjaCurrencyLine, PoeNinjaItemLine } from '@shared/types/ninja.types'
+import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
+import { PoeStashTab } from '@shared/types/poe.types'
 
 // Initialize the app.
 // This setup provides deep-linking and the option to open bulky from the browser during oauth flow.
@@ -94,7 +94,7 @@ app.whenReady().then(() => {
 	 */
 	ipcMain.handle('get-ninja-category', async (_, url) => {
 		try {
-			const res = await axios.get<Record<'lines', PoeNinjaCurrencyLine[] | PoeNinjaItemLine[]>>(url)
+			const res = await axios.get<Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]>>(url)
 			return res.data
 		} catch (e) {
 			return new SerializedError(e)

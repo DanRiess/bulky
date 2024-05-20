@@ -3,7 +3,7 @@
  */
 
 import { BulkyConfig } from '@shared/types/config.types'
-import { PoeNinjaCategory, PoeNinjaCurrencyLine, PoeNinjaItemLine } from '@shared/types/ninja.types'
+import { NinjaCategory, NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { useConfigStore } from '@web/stores/configStore'
 import api from './api.wrapper'
 
@@ -36,13 +36,13 @@ export const nodeApi = {
 		return window.api.writeConfig(config)
 	},
 
-	getNinjaCategory: async (category: PoeNinjaCategory) => {
+	getNinjaCategory: async (category: NinjaCategory) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
 			// The type cast is only here because return type of window.api functions
 			// is different than an axios response and it messes up other scripts.
 			return api.get('http://localhost:5174/src/mocks/ninjaMaps.json') as unknown as Record<
 				'lines',
-				PoeNinjaCurrencyLine[] | PoeNinjaItemLine[]
+				NinjaCurrencyDto[] | NinjaItemDto[]
 			>
 		}
 

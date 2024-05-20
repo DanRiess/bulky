@@ -1,10 +1,10 @@
 import {
-	BulkyNinjaPriceBlock,
-	BulkyNinjaPriceItem,
-	CurrentNinjaPrices,
-	PoeNinjaCategory,
-	PoeNinjaCurrencyLine,
-	PoeNinjaItemLine,
+	NinjaPriceCollection,
+	NinjaItem,
+	NinjaPriceRecord,
+	NinjaCategory,
+	NinjaCurrencyDto,
+	NinjaItemDto,
 } from '@shared/types/ninja.types'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { ref, watch } from 'vue'
@@ -13,15 +13,20 @@ import { Category } from '@shared/types/bulky.types'
 import { useApi } from '@web/api/useApi'
 import { BULKY_ID } from '@web/utility/typedId'
 import { nodeApi } from '@web/api/nodeApi'
+import { useConfigStore } from '@web/stores/configStore'
 
+const UPDATE_INTERVAL = 30 * 60 * 1000
+
+/**
+ * Composable that will hold the prices of the currently selected category.
+ * Categories will be updated every 30 minutes if they are in use.
+ */
 export function usePoeNinja() {
 	const appStateStore = useAppStateStore()
 
-	const prices = ref<CurrentNinjaPrices>({})
+	const prices = ref<NinjaPriceRecord>({})
 
-	/**
-	 * Load the current category's prices whenever the category changes.
-	 */
+	// Load the current category's prices whenever the category changes.
 	watch(
 		() => appStateStore.selectedCategory,
 		category => {
@@ -32,7 +37,29 @@ export function usePoeNinja() {
 		{ immediate: true }
 	)
 
+	// Reload prices every 30 minutes.
+	setInterval(() => {
+		updateStateVariable(appStateStore.selectedCategory).then(state => {
+			prices.value = state
+		})
+	}, UPDATE_INTERVAL + 60 * 1000)
+
 	return { prices }
+}
+
+/**
+ * This function will get the current chaos per div ratio.
+ * If the idb value is older than 30 minutes, it will automatically update it.
+ */
+export async function getChaosPerDiv() {
+	const collection = await updateNinjaCategoryPrices('Currency')
+	const currencyCollection = collection.find(c => c.category === 'Currency')
+	if (!currencyCollection) return 0
+
+	const divine = currencyCollection.items.find(i => i.id === 'divine-orb')
+	if (!divine) return 0
+
+	return divine.chaos
 }
 
 // LOCAL API
@@ -45,17 +72,18 @@ async function updateStateVariable(category: Category) {
 	const ninjaCategory = bulkyToNinjaCategory(category)
 	if (!ninjaCategory) return {}
 
-	// Get an existing or a new price block for this category.
-	const priceBlock = await updateNinjaCategoryPrices(ninjaCategory)
+	// Get an existing or a new price collection for this category.
+	const priceCollections = await updateNinjaCategoryPrices(ninjaCategory)
 
-	// Transform the price block into the form expected by the state variable
-	return transformPriceBlockToState(priceBlock)
+	// Transform the price collection into the form expected by the state variable
+	return transformPriceCollectionToState(priceCollections)
 }
 
 /**
  * Map a bulky defined category into the corresponding poe.ninja category.
  */
-function bulkyToNinjaCategory(bulkyCategory: Category): PoeNinjaCategory | undefined {
+function bulkyToNinjaCategory(bulkyCategory: Category): NinjaCategory | undefined {
+	// TODO: enhance with more categories
 	if (bulkyCategory === 'ESSENCE') return 'Essence'
 	else if (bulkyCategory === 'SCARAB') return 'Scarab'
 	else if (bulkyCategory === 'DELI_ORB') return 'DeliriumOrb'
@@ -68,86 +96,88 @@ function bulkyToNinjaCategory(bulkyCategory: Category): PoeNinjaCategory | undef
  * If the last snapshot is older than 30 minutes or it can't find it, it will download it
  * from poe.ninja instead.
  */
-async function updateNinjaCategoryPrices(categories: PoeNinjaCategory | PoeNinjaCategory[]) {
+async function updateNinjaCategoryPrices(categories: NinjaCategory | NinjaCategory[]) {
 	const bulkyIdb = useBulkyIdb()
 
 	if (typeof categories === 'string') {
 		categories = [categories]
 	}
 
-	const priceBlocks = await Promise.all(
+	const priceCollections = await Promise.all(
 		categories.map(async category => {
 			// Fetch the category from idb.
-			const priceBlock = await bulkyIdb.getPriceBlockByCategory(category)
+			const priceCollection = await bulkyIdb.getPriceCollectionByCategory(category)
 
 			// Return the saved price block if the last snapshot is not older than 30 minutes
-			if (priceBlock && Date.now() - priceBlock.lastSnapshot < 30 * 60 * 1000) return priceBlock
+			if (priceCollection && Date.now() - priceCollection.lastSnapshot < UPDATE_INTERVAL) return priceCollection
 
 			// Fetch the category from the poe.ninja API instead.
-			// TODO: change ninja api to go through node backend
 			const request = useApi('ninjaRequest', nodeApi.getNinjaCategory)
 			await request.exec(category)
 
 			// If the request errors, return the saved price block (or undefined if it doesn't exist)
 			if (request.error.value || !request.data.value) {
 				console.log({ ninjaError: request.error.value })
-				return priceBlock
+				return priceCollection
 			}
 
-			const newPriceBlock = transformNinjaResponseToPriceBlock(request.data.value, category)
+			const newpriceCollection = transformNinjaResponseToPriceCollection(request.data.value, category)
 
 			// Save the new data to idb.
-			await bulkyIdb.putPriceBlock(newPriceBlock)
+			await bulkyIdb.putPriceCollection(newpriceCollection)
 
-			return newPriceBlock
+			return newpriceCollection
 		})
 	)
 
-	return priceBlocks.filter(Boolean)
+	return priceCollections.filter(Boolean)
 }
 
 /**
- * Consume a poe.ninja API response and transform it into a price block.
+ * Consume a poe.ninja API response and transform it into a price collection.
  * This function can handle both the 'currency line' and 'item line' format.
  */
-function transformNinjaResponseToPriceBlock(
-	ninjaResponse: Record<'lines', PoeNinjaCurrencyLine[] | PoeNinjaItemLine[]>,
-	category: PoeNinjaCategory
+function transformNinjaResponseToPriceCollection(
+	ninjaResponse: Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]>,
+	category: NinjaCategory
 ) {
-	const items = ninjaResponse.lines.map((line: PoeNinjaCurrencyLine | PoeNinjaItemLine) => {
+	const configStore = useConfigStore()
+
+	const items = ninjaResponse.lines.map((line: NinjaCurrencyDto | NinjaItemDto) => {
 		// Narrow line type by checking for an exclusive property.
 		return {
-			id: BULKY_ID.generateTypedId<BulkyNinjaPriceItem>(line.detailsId),
-			name: 'chaosEquivalent' in line ? line.currencyName : line.name,
+			id: BULKY_ID.generateTypedId<NinjaItem>(line.detailsId),
+			name: 'chaosEquivalent' in line ? line.currencyTypeName : line.name,
 			chaos: 'chaosEquivalent' in line ? line.chaosEquivalent : line.chaosValue,
 			tendency: 'chaosEquivalent' in line ? line.receiveSparkLine.totalChange : line.sparkline.totalChange,
 		}
 	})
 
-	const priceBlock: BulkyNinjaPriceBlock = {
+	const priceCollection: NinjaPriceCollection = {
 		category,
+		league: configStore.config.league,
 		lastSnapshot: Date.now(),
 		items,
 	}
 
-	return priceBlock
+	return priceCollection
 }
 
 /**
  * Transform a price block to the form expected by the state variable.
  */
-function transformPriceBlockToState(priceBlocks: BulkyNinjaPriceBlock | BulkyNinjaPriceBlock[]): CurrentNinjaPrices {
-	if (!Array.isArray(priceBlocks)) {
-		priceBlocks = [priceBlocks]
+function transformPriceCollectionToState(priceCollections: NinjaPriceCollection | NinjaPriceCollection[]): NinjaPriceRecord {
+	if (!Array.isArray(priceCollections)) {
+		priceCollections = [priceCollections]
 	}
 
-	const state = {} as CurrentNinjaPrices
+	const state = {} as NinjaPriceRecord
 
 	// Loop over every block / category and combine the results into one state variable
-	priceBlocks.forEach(block => {
-		block.items.reduce((prevState, currItem) => {
+	priceCollections.forEach(collection => {
+		collection.items.reduce((prevState, currItem) => {
 			// Filter out maps below t16
-			if (block.category === 'Map' && !(currItem.id.match(/t16/gi) || currItem.id.match(/t17/gi))) return prevState
+			if (collection.category === 'Map' && !(currItem.id.match(/t16/gi) || currItem.id.match(/t17/gi))) return prevState
 			prevState[currItem.name] = currItem
 			return prevState
 		}, state)

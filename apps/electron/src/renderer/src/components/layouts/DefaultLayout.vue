@@ -1,5 +1,5 @@
 <template>
-	<main class="t-layout">
+	<main class="l-default">
 		<slot name="leftColumn"></slot>
 		<slot name="rightColumn"></slot>
 	</main>
@@ -23,7 +23,7 @@ withDefaults(
 </script>
 
 <style scoped>
-.t-layout {
+.l-default {
 	display: grid;
 	grid-template-columns: v-bind(gridTemplateColumns);
 	grid-template-rows: 1fr;

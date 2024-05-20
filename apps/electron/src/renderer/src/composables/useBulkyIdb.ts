@@ -1,7 +1,8 @@
-import { PoeItem } from '@shared/types/bulky.types'
-import { BulkyNinjaPriceBlock, PoeNinjaCategory } from '@shared/types/ninja.types'
-import { PoeStashTab } from '@shared/types/stash.types'
+import { BulkyPriceOverrideItem, Category } from '@shared/types/bulky.types'
+import { NinjaPriceCollection, NinjaCategory } from '@shared/types/ninja.types'
+import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { Id } from '@shared/types/utility.types'
+import { useConfigStore } from '@web/stores/configStore'
 import { deepToRaw } from '@web/utility/deepToRaw'
 import { openDB, DBSchema, IDBPDatabase } from 'idb'
 
@@ -16,9 +17,17 @@ interface BulkyDB extends DBSchema {
 		value: PoeItem
 		indexes: { 'by-tab': PoeStashTab['id']; 'by-basetype': PoeItem['baseType'] }
 	}
-	price: {
-		key: BulkyNinjaPriceBlock['category']
-		value: BulkyNinjaPriceBlock
+	ninja_price: {
+		// key: NinjaPriceCollection['category']
+		/** String is the selected league */
+		key: [NinjaCategory, string]
+		value: NinjaPriceCollection
+	}
+	price_override: {
+		key: [BulkyPriceOverrideItem['type'], BulkyPriceOverrideItem['tier'], BulkyPriceOverrideItem['league']]
+		value: BulkyPriceOverrideItem
+		/** String is the selected league */
+		indexes: { 'by-category': [Category, string] }
 	}
 }
 
@@ -45,9 +54,15 @@ export function useBulkyIdb() {
 				})
 				itemStore.createIndex('by-tab', 'stashTabId')
 
-				db.createObjectStore('price', {
-					keyPath: 'category',
+				db.createObjectStore('ninja_price', {
+					keyPath: ['category', 'league'],
 				})
+
+				const priceOverrideStore = db.createObjectStore('price_override', {
+					keyPath: ['type', 'tier', 'league'],
+				})
+
+				priceOverrideStore.createIndex('by-category', ['category', 'league'])
 			},
 			blocked(currentVersion, blockedVersion, event) {
 				console.log(currentVersion, blockedVersion, event)
@@ -197,12 +212,12 @@ export function useBulkyIdb() {
 	/**
 	 * Add a new price item to the price store
 	 */
-	async function putPriceBlock(ninjaPrice: BulkyNinjaPriceBlock) {
+	async function putPriceCollection(ninjaPrice: NinjaPriceCollection) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
 			db = await initDB()
-			await db.put('price', deepToRaw(ninjaPrice))
+			await db.put('ninja_price', deepToRaw(ninjaPrice))
 		} catch (e) {
 			console.log(e)
 		} finally {
@@ -213,13 +228,49 @@ export function useBulkyIdb() {
 	/**
 	 * Get prices for a category
 	 */
-	async function getPriceBlockByCategory(category: PoeNinjaCategory) {
+	async function getPriceCollectionByCategory(category: NinjaCategory) {
+		const configStore = useConfigStore()
 		let db: IDBPDatabase<BulkyDB> | undefined
-		let price: BulkyNinjaPriceBlock | undefined
+		let price: NinjaPriceCollection | undefined
 
 		try {
 			db = await initDB()
-			price = await db.get('price', category)
+			price = await db.get('ninja_price', [category, configStore.config.league])
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+			return price
+		}
+	}
+
+	/**
+	 * Add a new price override to the store
+	 */
+	async function putPriceOverride(overrideItem: BulkyPriceOverrideItem) {
+		let db: IDBPDatabase<BulkyDB> | undefined
+
+		try {
+			db = await initDB()
+			await db.put('price_override', deepToRaw(overrideItem))
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+		}
+	}
+
+	/**
+	 * Get price overrides for a category
+	 */
+	async function getPriceOverrideByCategory(category: Category) {
+		const configStore = useConfigStore()
+		let db: IDBPDatabase<BulkyDB> | undefined
+		const price: BulkyPriceOverrideItem[] = []
+
+		try {
+			db = await initDB()
+			price.push(...(await db.getAllFromIndex('price_override', 'by-category', [category, configStore.config.league])))
 		} catch (e) {
 			console.log(e)
 		} finally {
@@ -236,7 +287,9 @@ export function useBulkyIdb() {
 		getItemsByBaseType,
 		getItemsByStashTab,
 		deleteItems,
-		putPriceBlock,
-		getPriceBlockByCategory,
+		putPriceCollection,
+		getPriceCollectionByCategory,
+		putPriceOverride,
+		getPriceOverrideByCategory,
 	}
 }

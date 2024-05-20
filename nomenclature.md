@@ -9,15 +9,15 @@ Settings: obvious.
 
 These are the organisms that make a main category.
 
-Offer: An offer contains one or more collections of Bulky items with prices with additional metadata, like ign, minBuyout, full or partial buyout, etc.
+Offer: An offer contains one or more Bulky items with prices and additional metadata, like ign, minBuyout, full or partial buyout, etc.
 
 ### 3rd level categories
 
-BulkyItem: An abstraction of a collection of PoE items. This is best illustrated by an example. Imagine a stash tab with a couple of stacks of Deafening Essences of Dread. They have all of their normal PoE item properties, each stack has a unique id. A bulky item equivalent would only have the type (Essence), the name (Dread) and the tier (Deafening), the total quantity and a price. Any listable item should be able to be abstracted into a Bulky item to provide consistency.
+BulkyItem: An abstraction PoE items of the same base type. This is best illustrated by an example. Imagine a stash tab with a couple of stacks of Deafening Essences of Dread. They have all of their normal PoE item properties, each stack has a unique id. A BulkyItem equivalent abstracts the stacks into one object, combines the quantities and only save some metadata properties it needs.
 
 #### 4th level categories
 
-PoeItem: A modified item from a stash tab. Compared to its ancestor, it has far fewer properties. It also has additional properties that were not present before. This is what is saved into the local idb.
+PoeItem: A modified item from a PoeItemDto. Compared to its ancestor, it has far fewer properties. It also has additional properties that were not present before. This is what is saved into the local idb.
 
 StashTab: A modified item from a stash tab list request. Compared to its ancestor, it has fewer categories. This is what is saved into the local idb.
 

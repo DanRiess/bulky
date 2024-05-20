@@ -3,17 +3,17 @@
  * a list of that stash's unmodified items.
  */
 
-import { useApi } from '@web/api/useApi'
-import { PoeStashTab } from '@shared/types/stash.types'
 import { BULKY_STASH_TABS } from '@web/utility/stastTab'
-import { acceptHMRUpdate, defineStore } from 'pinia'
+import { BULKY_ID } from '@web/utility/typedId'
 import { computed, ref } from 'vue'
+import { acceptHMRUpdate, defineStore } from 'pinia'
+import { isEqual } from 'lodash'
+import { useApi } from '@web/api/useApi'
 import { poeApi } from '@web/api/poeApi'
 import { useConfigStore } from './configStore'
 import { useBulkyIdb } from '@web/composables/useBulkyIdb'
-import { BULKY_ID } from '@web/utility/typedId'
-import { isEqual } from 'lodash'
 import { PoeStashTabDto } from '@shared/types/dtoResponse.types'
+import { PoeStashTab } from '@shared/types/poe.types'
 
 export const useStashStore = defineStore('stashStore', () => {
 	const configStore = useConfigStore()

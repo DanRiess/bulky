@@ -1,7 +1,11 @@
 <template>
 	<nav class="nav">
-		<ButtonAtom :active="router.currentRoute.value.name === 'Bazaar'" @click="router.push('Bazaar')"> Bazaar </ButtonAtom>
-		<ButtonAtom :active="router.currentRoute.value.name === 'Shop'" @click="router.push('Shop')"> Shop </ButtonAtom>
+		<ButtonAtom :active="router.currentRoute.value.name === 'Bazaar'" @click="router.push({ name: 'Bazaar' })">
+			Bazaar
+		</ButtonAtom>
+		<ButtonAtom :active="!!router.currentRoute.value.path.match('shop')" @click="router.push({ name: 'Shop' })">
+			Shop
+		</ButtonAtom>
 		<div class="icon-buttons">
 			<SettingsIconMolecule />
 			<UserIconMolecule />

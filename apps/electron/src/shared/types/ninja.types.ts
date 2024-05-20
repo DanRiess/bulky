@@ -1,48 +1,42 @@
 import { Id } from './utility.types'
 
-// Prefix all new type names with 'Ninja'
+export type NinjaPriceRecord = Record<NinjaItem['name'], NinjaItem>
 
-// BulkyPriceCollection
-export type CurrentNinjaPrices = Record<BulkyNinjaPriceItem['name'], BulkyNinjaPriceItem>
-
-// CategoryPriceBlock
-export type BulkyNinjaPriceBlock = {
-	category: PoeNinjaCategory
+export type NinjaPriceCollection = {
+	category: NinjaCategory
+	league: string
 	lastSnapshot: number
-	items: BulkyNinjaPriceItem[]
+	items: NinjaItem[]
 }
 
-// ItemPriceDetails
-export type BulkyNinjaPriceItem = {
-	id: Id<BulkyNinjaPriceItem>
+export type NinjaItem = {
+	id: Id<NinjaItem>
 	name: string
 	chaos: number
 	tendency: number // receiveSparkLine.totalChange (number in percent)
 }
 
-// NinjaCurrencyDetails
-export type PoeNinjaCurrencyLine = {
-	currencyName: string
+export type NinjaCurrencyDto = {
+	currencyTypeName: string
 	chaosEquivalent: number
 	detailsId: string
-	pay: PoeNinjaLineDetails
-	receive: PoeNinjaLineDetails
-	paySparkLine: PoeNinjaSparkLine
-	receiveSparkLine: PoeNinjaSparkLine
-	lowConfidencePaySparkLine: PoeNinjaSparkLine
-	lowConfidenceReceiveSparkLine: PoeNinjaSparkLine
+	pay: NinjaSparkLineDetails
+	receive: NinjaSparkLineDetails
+	paySparkLine: NinjaSparkLine
+	receiveSparkLine: NinjaSparkLine
+	lowConfidencePaySparkLine: NinjaSparkLine
+	lowConfidenceReceiveSparkLine: NinjaSparkLine
 }
 
-// NinjaItemDetails
-export type PoeNinjaItemLine = {
+export type NinjaItemDto = {
 	id: number
 	name: string
 	icon: string
 	baseType: string
 	stackSize: number
 	itemClass: number
-	sparkline: PoeNinjaSparkLine
-	lowConfidenceSparkLine: PoeNinjaSparkLine
+	sparkline: NinjaSparkLine
+	lowConfidenceSparkLine: NinjaSparkLine
 	implicitModifiers: string[]
 	explicitModifiers: string[]
 	flavourText: string
@@ -55,8 +49,7 @@ export type PoeNinjaItemLine = {
 	listingCount: number
 }
 
-// Category
-export type PoeNinjaCategory =
+export type NinjaCategory =
 	| 'Currency'
 	| 'Fragment'
 	| 'Oil'
@@ -90,8 +83,7 @@ export type PoeNinjaCategory =
 	| 'AllflameEmber'
 	| 'ClusterJewel'
 
-// SparkLineDetails
-type PoeNinjaLineDetails = {
+type NinjaSparkLineDetails = {
 	id: number
 	league_id: number
 	pay_currency_id: number
@@ -104,8 +96,7 @@ type PoeNinjaLineDetails = {
 	listing_count: number
 }
 
-// SparkLine
-type PoeNinjaSparkLine = {
+type NinjaSparkLine = {
 	data: number[]
 	totalChange: number
 }

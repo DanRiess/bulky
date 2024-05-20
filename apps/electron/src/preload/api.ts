@@ -1,12 +1,12 @@
 import { ipcRenderer } from 'electron'
 import { ShowAttachmentPanelDto, ToggleOverlayComponentDto } from '@shared/types/dtoOneway.types'
 import { BulkyConfig } from '@shared/types/config.types'
-import { PoeStashTab } from '@shared/types/stash.types'
 import { OauthTokenResponse } from '@shared/types/auth.types'
 import ipcRendererWrapper from './ipcRendererWrapper'
 import { SerializedError } from '@shared/errors/serializedError'
 import { PoeLeagueRecordDtoResponse } from '@shared/types/dtoResponse.types'
-import { PoeNinjaCurrencyLine, PoeNinjaItemLine } from '@shared/types/ninja.types'
+import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
+import { PoeStashTab } from '@shared/types/poe.types'
 
 export const api = {
 	// example for bidirectional communication
@@ -63,6 +63,6 @@ export const api = {
 
 	getLeagues: (): Promise<PoeLeagueRecordDtoResponse> => ipcRendererWrapper.invoke('get-leagues'),
 
-	getNinjaCategory: (url: string): Promise<Record<'lines', PoeNinjaCurrencyLine[] | PoeNinjaItemLine[]> | SerializedError> =>
+	getNinjaCategory: (url: string): Promise<Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]> | SerializedError> =>
 		ipcRendererWrapper.invoke('get-ninja-category', url),
 }
