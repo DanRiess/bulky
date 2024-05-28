@@ -1,4 +1,4 @@
-import { MaybeRefOrGetter, Ref, isRef } from 'vue'
+import { ComputedRef, MaybeRefOrGetter, Ref, isRef } from 'vue'
 
 export type ObjectValues<T> = T[keyof T]
 export type OptionalRecord = Record<string, unknown> | undefined
@@ -30,6 +30,8 @@ export function typedFromEntries<ARR_T extends EntriesType>(arr: ARR_T): Entries
 }
 
 export type MaybeRef<T> = T | Ref<T>
+
+export type MaybeComputedRef<T> = T | ComputedRef<T>
 
 /** make some properties of an object required */
 export type RequireSome<T, K extends keyof T> = T & { [P in K]-?: T[P] }

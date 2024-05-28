@@ -1,6 +1,6 @@
 import { Id } from './utility.types'
 
-export type NinjaPriceRecord = Record<NinjaItem['name'], NinjaItem>
+export type NinjaPriceRecord = Map<NinjaItem['name'], NinjaItem>
 
 export type NinjaPriceCollection = {
 	category: NinjaCategory

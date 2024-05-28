@@ -5,6 +5,11 @@
 			<TransitionAtom v-on="hooks">
 				<SvgButtonWithPopupMolecule
 					:svg-props="svgIconProps"
+					:tooltip-props="{
+						position: 'bottom',
+						transitionDirection: 'toBottom',
+						popupAlignment: 'right',
+					}"
 					background-color="dark"
 					v-if="showRefreshButton"
 					@click="fetchStash">

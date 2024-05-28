@@ -1,8 +1,15 @@
+import { PoeItem } from '@shared/types/poe.types'
 import { SCARAB_TYPE } from './scarab.const'
-import { ScarabType } from './scarab.types'
+import { Scarab, ScarabTier, ScarabType } from './scarab.types'
+import { Ref, computed } from 'vue'
+import { NinjaPriceRecord } from '@shared/types/ninja.types'
+import { BulkyPriceOverrideRecord } from '@shared/types/bulky.types'
+import { useConfigStore } from '@web/stores/configStore'
 
 export const BULKY_SCARABS = {
 	generateScarabTypeFromBaseType,
+	generateScarabTier,
+	generateScarabFromPoeItem,
 }
 
 function generateScarabTypeFromBaseType(baseType: string): ScarabType | undefined {
@@ -123,4 +130,37 @@ function generateScarabTypeFromBaseType(baseType: string): ScarabType | undefine
 	if (baseType === 'Horned Scarab of Glittering') return SCARAB_TYPE.HORNED_SCARAB_OF_GLITTERING
 	if (baseType === 'Horned Scarab of Pandemonium') return SCARAB_TYPE.HORNED_SCARAB_OF_PANDEMONIUM
 	else return undefined
+}
+
+function generateScarabTier(): ScarabTier {
+	return '0'
+}
+
+function generateScarabFromPoeItem(
+	poeItem: PoeItem,
+	prices: Ref<NinjaPriceRecord>,
+	priceOverrides: Ref<BulkyPriceOverrideRecord>
+): Scarab | undefined {
+	const configStore = useConfigStore()
+
+	const type = generateScarabTypeFromBaseType(poeItem.baseType)
+	const tier = generateScarabTier()
+
+	if (!type || !tier || !poeItem.stackSize) return
+
+	return {
+		type: type,
+		tier: tier,
+		name: poeItem.baseType,
+		icon: poeItem.icon,
+		quantity: poeItem.stackSize,
+		price: computed(() => {
+			return prices.value.get(poeItem.baseType)?.chaos ?? 0
+		}),
+		league: configStore.config.league,
+		category: 'SCARAB',
+		priceOverride: computed(() => {
+			return priceOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0
+		}),
+	}
 }

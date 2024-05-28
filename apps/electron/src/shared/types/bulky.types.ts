@@ -1,5 +1,7 @@
 import { Essence, EssenceFilterField } from '@web/categories/essence/essence.types'
-import { ObjectValues, PartialRecord, Uuid } from './utility.types'
+import { MaybeComputedRef, ObjectValues, Uuid } from './utility.types'
+import { ComputedRef } from 'vue'
+import { Scarab } from '@web/categories/scarab/scarab.types'
 
 // APP STATE TYPES
 
@@ -32,10 +34,12 @@ export type Category = ObjectValues<typeof CATEGORY>
  */
 export type BulkyItemBase<T extends Category> = {
 	category: T
-	type: string
+	name: string
+	type: string // will be overridden
 	quantity: number
-	price: number
-	priceOverride: number
+	price: MaybeComputedRef<number>
+	priceOverride: ComputedRef<number>
+	icon: string
 	league: string
 }
 
@@ -48,10 +52,11 @@ export type BulkyItemBase<T extends Category> = {
  * 		offerProps: offerValues
  * }
  */
-export type BulkyItem = Essence
+export type BulkyItem = Essence | Scarab
 
 /** Type that bulky items will be saved as */
-export type BulkyItemRecord = PartialRecord<BulkyItem['type'], BulkyItem[]>
+// export type BulkyItemRecord = PartialRecord<BulkyItem['type'], BulkyItem[]>
+export type BulkyItemRecord = Map<`${BulkyItem['type']}_${BulkyItem['tier']}`, BulkyItem>
 
 /**
  * A BulkyOffer contains all necessary offer metadata as well as the items contained within the offer.
@@ -134,19 +139,17 @@ export type BulkyPriceOverrideItem<T extends BulkyItem = BulkyItem> = {
 }
 
 /**
- * Structures overrides in object form.
- * The key is the item type, the value is an array of this item type's available tiers.
+ * Structures overrides in map form.
+ * The key is the item type and item tier, the value is the item.
  *
  * @example
- * const essenceOverrideRecord = {
- * 	DREAD: [
- * 		{...props: props, tier: 'DEAFENING'},
- * 		{...props: props, tier: 'SHRIEKING'}
- * 	]
- * }
+ * const essenceOverrideRecord = new Map({
+ * 	'ZEAL_DEAFENING': EssenceItem
+ * })
  */
-export type BulkyPriceOverrideRecord<T extends BulkyItem = BulkyItem> = Partial<
-	Record<BulkyPriceOverrideItem<T>['type'], BulkyPriceOverrideItem<T>[]>
+export type BulkyPriceOverrideRecord<T extends BulkyItem = BulkyItem> = Map<
+	`${T['type']}_${T['tier']}`,
+	BulkyPriceOverrideItem<T>
 >
 
 export type TotalPrice = { chaos: number; divine: number }

@@ -5,48 +5,53 @@
 import { GenericListingItemDto } from '@shared/types/dtoRequest.types'
 import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.const'
 import { Essence, EssenceTier, EssenceType } from './essence.types'
+import { PoeItem } from '@shared/types/poe.types'
+import { NinjaPriceRecord } from '@shared/types/ninja.types'
+import { BulkyPriceOverrideRecord } from '@shared/types/bulky.types'
+import { Ref, computed } from 'vue'
+import { useConfigStore } from '@web/stores/configStore'
 
 /** Type a returned Essence type DTO and turn it into an Essence type */
-function generateEssenceTypeFromBaseType(type: string): EssenceType | undefined {
-	if (type.match(/greed/i)) return ESSENCE_TYPE.GREED
-	if (type.match(/contempt/i)) return ESSENCE_TYPE.CONTEMPT
-	if (type.match(/hatred/i)) return ESSENCE_TYPE.HATRED
-	if (type.match(/woe/i)) return ESSENCE_TYPE.WOE
-	if (type.match(/fear/i)) return ESSENCE_TYPE.FEAR
-	if (type.match(/anger/i)) return ESSENCE_TYPE.ANGER
-	if (type.match(/torment/i)) return ESSENCE_TYPE.TORMENT
-	if (type.match(/sorrow/i)) return ESSENCE_TYPE.SORROW
-	if (type.match(/rage/i)) return ESSENCE_TYPE.RAGE
-	if (type.match(/suffering/i)) return ESSENCE_TYPE.SUFFERING
-	if (type.match(/wrath/i)) return ESSENCE_TYPE.WRATH
-	if (type.match(/doubt/i)) return ESSENCE_TYPE.DOUBT
-	if (type.match(/loathing/i)) return ESSENCE_TYPE.LOATHING
-	if (type.match(/zeal/i)) return ESSENCE_TYPE.ZEAL
-	if (type.match(/anguish/i)) return ESSENCE_TYPE.ANGUISH
-	if (type.match(/spite/i)) return ESSENCE_TYPE.SPITE
-	if (type.match(/scorn/i)) return ESSENCE_TYPE.SCORN
-	if (type.match(/envy/i)) return ESSENCE_TYPE.ENVY
-	if (type.match(/misery/i)) return ESSENCE_TYPE.MISERY
-	if (type.match(/dread/i)) return ESSENCE_TYPE.DREAD
-	if (type.match(/insanity/i)) return ESSENCE_TYPE.INSANITY
-	if (type.match(/horror/i)) return ESSENCE_TYPE.HORROR
-	if (type.match(/delirium/i)) return ESSENCE_TYPE.DELIRIUM
-	if (type.match(/hysteria/i)) return ESSENCE_TYPE.HYSTERIA
+function generateEssenceTypeFromBaseType(baseType: string): EssenceType | undefined {
+	if (baseType.match(/essence of greed/i)) return ESSENCE_TYPE.GREED
+	if (baseType.match(/essence of contempt/i)) return ESSENCE_TYPE.CONTEMPT
+	if (baseType.match(/essence of hatred/i)) return ESSENCE_TYPE.HATRED
+	if (baseType.match(/essence of woe/i)) return ESSENCE_TYPE.WOE
+	if (baseType.match(/essence of fear/i)) return ESSENCE_TYPE.FEAR
+	if (baseType.match(/essence of anger/i)) return ESSENCE_TYPE.ANGER
+	if (baseType.match(/essence of torment/i)) return ESSENCE_TYPE.TORMENT
+	if (baseType.match(/essence of sorrow/i)) return ESSENCE_TYPE.SORROW
+	if (baseType.match(/essence of rage/i)) return ESSENCE_TYPE.RAGE
+	if (baseType.match(/essence of suffering/i)) return ESSENCE_TYPE.SUFFERING
+	if (baseType.match(/essence of wrath/i)) return ESSENCE_TYPE.WRATH
+	if (baseType.match(/essence of doubt/i)) return ESSENCE_TYPE.DOUBT
+	if (baseType.match(/essence of loathing/i)) return ESSENCE_TYPE.LOATHING
+	if (baseType.match(/essence of zeal/i)) return ESSENCE_TYPE.ZEAL
+	if (baseType.match(/essence of anguish/i)) return ESSENCE_TYPE.ANGUISH
+	if (baseType.match(/essence of spite/i)) return ESSENCE_TYPE.SPITE
+	if (baseType.match(/essence of scorn/i)) return ESSENCE_TYPE.SCORN
+	if (baseType.match(/essence of envy/i)) return ESSENCE_TYPE.ENVY
+	if (baseType.match(/essence of misery/i)) return ESSENCE_TYPE.MISERY
+	if (baseType.match(/essence of dread/i)) return ESSENCE_TYPE.DREAD
+	if (baseType.match(/essence of insanity/i)) return ESSENCE_TYPE.INSANITY
+	if (baseType.match(/essence of horror/i)) return ESSENCE_TYPE.HORROR
+	if (baseType.match(/essence of delirium/i)) return ESSENCE_TYPE.DELIRIUM
+	if (baseType.match(/essence of hysteria/i)) return ESSENCE_TYPE.HYSTERIA
 	else return undefined
 }
 
 /**
  * Get the tier of an essence based on its name.
  */
-function generateEssenceTierFromBaseType(name: string): EssenceTier | undefined {
-	if (name.match(/whispering/i)) return ESSENCE_TIER.WHISPERING
-	else if (name.match(/muttering/i)) return ESSENCE_TIER.MUTTERING
-	else if (name.match(/weeping/i)) return ESSENCE_TIER.WEEPING
-	else if (name.match(/wailing/i)) return ESSENCE_TIER.WAILING
-	else if (name.match(/screaming/i)) return ESSENCE_TIER.SCREAMING
-	else if (name.match(/shrieking/i)) return ESSENCE_TIER.SHRIEKING
-	else if (name.match(/deafening/i)) return ESSENCE_TIER.DEAFENING
-	else if (name.match(/insanity|horror|delirium|hysteria/i)) return ESSENCE_TIER.TIER_8
+function generateEssenceTierFromBaseType(baseType: string): EssenceTier | undefined {
+	if (baseType.match(/whispering/i)) return ESSENCE_TIER.WHISPERING
+	else if (baseType.match(/muttering/i)) return ESSENCE_TIER.MUTTERING
+	else if (baseType.match(/weeping/i)) return ESSENCE_TIER.WEEPING
+	else if (baseType.match(/wailing/i)) return ESSENCE_TIER.WAILING
+	else if (baseType.match(/screaming/i)) return ESSENCE_TIER.SCREAMING
+	else if (baseType.match(/shrieking/i)) return ESSENCE_TIER.SHRIEKING
+	else if (baseType.match(/deafening/i)) return ESSENCE_TIER.DEAFENING
+	else if (baseType.match(/insanity|horror|delirium|hysteria/i)) return ESSENCE_TIER.TIER_8
 	else return undefined
 }
 
@@ -61,8 +66,38 @@ function generateEssenceItemFromDto(itemDto: GenericListingItemDto): Essence | n
 	}
 }
 
+function generateEssenceFromPoeItem(
+	poeItem: PoeItem,
+	prices: Ref<NinjaPriceRecord>,
+	priceOverrides: Ref<BulkyPriceOverrideRecord>
+): Essence | undefined {
+	const configStore = useConfigStore()
+
+	const type = generateEssenceTypeFromBaseType(poeItem.baseType)
+	const tier = generateEssenceTierFromBaseType(poeItem.baseType)
+
+	if (!type || !tier || !poeItem.stackSize) return
+
+	return {
+		type: type,
+		tier: tier,
+		name: poeItem.baseType,
+		icon: poeItem.icon,
+		quantity: poeItem.stackSize,
+		price: computed(() => {
+			return prices.value.get(poeItem.baseType)?.chaos ?? 0
+		}),
+		league: configStore.config.league,
+		category: 'ESSENCE',
+		priceOverride: computed(() => {
+			return priceOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0
+		}),
+	}
+}
+
 export const BULKY_ESSENCES = {
 	generateEssenceTypeFromBaseType,
 	generateEssenceItemFromDto,
 	generateEssenceTierFromBaseType,
+	generateEssenceFromPoeItem,
 }

@@ -17,8 +17,7 @@ function generateCategoryFromDto(category: string): Category | undefined {
 
 function isBaseTypeInCategory(category: Category, baseType: string) {
 	if (category === 'ESSENCE') {
-		const essenceType = BULKY_ESSENCES.generateEssenceTypeFromName(baseType)
-		return essenceType !== 'UNSUPPORTED'
+		return !!BULKY_ESSENCES.generateEssenceTypeFromBaseType(baseType)
 	} else if (category === 'SCARAB') {
 		return !!BULKY_SCARABS.generateScarabTypeFromBaseType(baseType)
 	}

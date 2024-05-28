@@ -24,7 +24,7 @@ const UPDATE_INTERVAL = 30 * 60 * 1000
 export function usePoeNinja() {
 	const appStateStore = useAppStateStore()
 
-	const prices = ref<NinjaPriceRecord>({})
+	const prices = ref<NinjaPriceRecord>(new Map())
 
 	// Load the current category's prices whenever the category changes.
 	watch(
@@ -67,10 +67,10 @@ export async function getChaosPerDiv() {
 /**
  * Load the current category's prices from idb.
  */
-async function updateStateVariable(category: Category) {
+async function updateStateVariable(category: Category): Promise<NinjaPriceRecord> {
 	// Try to find the correct poe.ninja category.
 	const ninjaCategory = bulkyToNinjaCategory(category)
-	if (!ninjaCategory) return {}
+	if (!ninjaCategory) return new Map()
 
 	// Get an existing or a new price collection for this category.
 	const priceCollections = await updateNinjaCategoryPrices(ninjaCategory)
@@ -171,14 +171,14 @@ function transformPriceCollectionToState(priceCollections: NinjaPriceCollection 
 		priceCollections = [priceCollections]
 	}
 
-	const state = {} as NinjaPriceRecord
+	const state: NinjaPriceRecord = new Map()
 
 	// Loop over every block / category and combine the results into one state variable
 	priceCollections.forEach(collection => {
 		collection.items.reduce((prevState, currItem) => {
 			// Filter out maps below t16
 			if (collection.category === 'Map' && !(currItem.id.match(/t16/gi) || currItem.id.match(/t17/gi))) return prevState
-			prevState[currItem.name] = currItem
+			prevState.set(currItem.name, currItem)
 			return prevState
 		}, state)
 	})

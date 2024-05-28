@@ -74,7 +74,7 @@ const backgroundColorButton = computed(() => {
 })
 
 const hooks = useGenericTransitionHooks({
-	duration: 0.35,
+	duration: 0.15,
 	opacity: 0,
 	transform: transform.value,
 })

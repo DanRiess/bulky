@@ -1,20 +1,10 @@
 <template>
 	<div class="o-stash-tab-items flow animated-gradient-background" data-b-override>
 		<LoadStashTabsMolecule :sync-request-status="stashTabRequest.status.value" @sync-folders="syncSelectedFolders" />
-		<!-- <StashItemListMolecule :items="items" :prices="prices" /> -->
-
-		<div class="testlists">
-			<div class="items">
-				<ul v-for="itemArr in itemsByStash">
-					<li v-for="item in itemArr">{{ item.baseType }}</li>
-				</ul>
-			</div>
-			<div class="computeditems">
-				<ul v-for="itemArr in categoryFilteredItemsByStash">
-					<li v-for="item in itemArr">{{ item.baseType }}</li>
-				</ul>
-			</div>
-		</div>
+		<StashItemListMolecule
+			:items="items"
+			:override-prices="priceOverrides"
+			@change-price-override="(item, price) => putPriceOverride(item, price)" />
 	</div>
 </template>
 
@@ -37,10 +27,10 @@ const { selectedStashTabs } = storeToRefs(stashStore)
 const stashTabRequest = useFetchStashItems(selectedStashTabs)
 
 // COMPOSABLES
-const { itemsByStash, categoryFilteredItemsByStash, updateItemsByStash } = usePoeItems(selectedStashTabs)
+const { categoryFilteredItemsByStash, updateItemsByStash } = usePoeItems(selectedStashTabs)
 const { prices } = usePoeNinja()
-const { priceOverrides } = usePriceOverride()
-const { items } = useBulkyItems(categoryFilteredItemsByStash, priceOverrides)
+const { priceOverrides, putPriceOverride } = usePriceOverride()
+const { items } = useBulkyItems(categoryFilteredItemsByStash, prices, priceOverrides)
 
 // METHODS
 async function syncSelectedFolders() {
@@ -71,10 +61,5 @@ async function syncSelectedFolders() {
 	display: grid;
 	grid-template-rows: auto 1fr;
 	overflow: hidden;
-}
-
-.testlists {
-	display: flex;
-	overflow: auto;
 }
 </style>

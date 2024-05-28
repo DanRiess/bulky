@@ -18,7 +18,6 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 	const itemsByStash = ref<PoeItemsByStash>({})
 
 	const categoryFilteredItemsByStash = computed(() => {
-		console.log('category change triggered compute')
 		return getKeys(itemsByStash.value).reduce((prev, curr) => {
 			prev[curr] = itemsByStash.value[curr].filter(item =>
 				BULKY_CATEGORIES.isBaseTypeInCategory(appStateStore.selectedCategory, item.baseType)
@@ -44,6 +43,7 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 	// The comparison inside the watcher is only possible with a ComputedRef!
 	if (isWatchable(stashTabs)) {
 		watch(stashTabs, (newTabs, oldTabs) => {
+			console.log('POE ITEMS watcher')
 			// compare which tabs have been added and which have been removed
 			const remove = oldTabs.filter(val => !newTabs.includes(val))
 			const add = newTabs.filter(val => !oldTabs.includes(val))

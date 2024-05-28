@@ -375,6 +375,56 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9Ob3JtYWxTY2FyYWJFeHBlZGl0aW9uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/a1f5997c7d/NormalScarabExpedition.png",
+				"stackSize": 3,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "a8ed21bec458fad5dece42c60c02bd47d4ba5df025bbdc3c3db4c25924584c85",
+				"name": "",
+				"typeLine": "Expedition Scarab of Runefinding",
+				"baseType": "Expedition Scarab of Runefinding",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"3/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"2",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Expedition Encounters in Area have 100% increased\nnumber of Runic Monster Markers"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"That which came from the stars longs to return."
+				],
+				"frameType": 0,
+				"x": 16,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzMwLDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9CbGFja0hvbGUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/8680619c44/BlackHole.png",
 				"support": false,
 				"league": "Necropolis",
@@ -3274,6 +3324,56 @@
 				"frameType": 11,
 				"x": 12,
 				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9HcmVhdGVyU2NhcmFiSGFyYmluZ2VycyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/ce393cfd58/GreaterScarabHarbingers.png",
+				"stackSize": 5,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "8dc352010e5af507218be39e906b6a62aef718b49ee331189ac425eec45a0516",
+				"name": "",
+				"typeLine": "Harbinger Scarab of Regency",
+				"baseType": "Harbinger Scarab of Regency",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"1",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Harbingers in Area have a 50% chance to be replaced by a powerful Harbinger Boss"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"The truly noble wage war from the front."
+				],
+				"frameType": 0,
+				"x": 16,
+				"y": 2,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -6284,6 +6384,57 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9Ob3JtYWxTY2FyYWJEZWxpcml1bSIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/9f8ae4cdb7/NormalScarabDelirium.png",
+				"stackSize": 3,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "f2444565ba619d1a9b9f7fce49f3add36d88714839214fef2d75092674ace619",
+				"name": "",
+				"typeLine": "Delirium Scarab of Mania",
+				"baseType": "Delirium Scarab of Mania",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"3/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"2",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Delirium Reward Meters fill 100% faster in Area"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"They're so loud! Why are they so loud?!\r",
+					"All you can do is scream!"
+				],
+				"frameType": 0,
+				"x": 15,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9TdXBwb3J0L0RlY2F5IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/a88201c7c2/Decay.png",
 				"support": true,
 				"league": "Necropolis",
@@ -6969,6 +7120,56 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9MZXNzZXJTY2FyYWJFbGRlciIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/11cabe4d12/LesserScarabElder.png",
+				"stackSize": 14,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "609fadc5d4d98fe89ca8718c8e7a77de31155f5670746b3407c242ca82bebac0",
+				"name": "",
+				"typeLine": "Influencing Scarab of the Elder",
+				"baseType": "Influencing Scarab of the Elder",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"14/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"1",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Adds Elder Influence outcome to Area"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"Beyond the light lies only the void."
+				],
+				"frameType": 0,
+				"x": 18,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQW11bGV0cy9BbXVsZXQ1IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/998c42287b/Amulet5.png",
 				"league": "Necropolis",
 				"id": "ef0663a65f781738a31343770fd7f50af46000303039b446a6b305c06fe3d481",
@@ -7318,6 +7519,56 @@
 				"frameType": 4,
 				"x": 3,
 				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9MZXNzZXJTY2FyYWJTdHJvbmdib3hlcyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/5600ee7971/LesserScarabStrongboxes.png",
+				"stackSize": 6,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "ca99ed5c0d010ca704d96482258080d03561467665bad73626a9b11179d3603a",
+				"name": "",
+				"typeLine": "Ambush Scarab",
+				"baseType": "Ambush Scarab",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"6/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"4",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Area contains 5 additional Strongboxes"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"Is it still an ambush if you're expecting it?"
+				],
+				"frameType": 0,
+				"x": 17,
+				"y": 1,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -8287,6 +8538,56 @@
 				"frameType": 2,
 				"x": 1,
 				"y": 10,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9BbHROb3JtYWxTY2FyYWJNYXBzIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/95a7a8097c/AltNormalScarabMaps.png",
+				"stackSize": 2,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "52cf11edbefc66a44f7ff52470162637a3c62e2e6203b99fe63d13f510ca1e3d",
+				"name": "",
+				"typeLine": "Cartography Scarab of Singularity",
+				"baseType": "Cartography Scarab of Singularity",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"2/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"1",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"A Unique Map will drop from the Final Map Boss"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"Some regions of the Atlas never change."
+				],
+				"frameType": 0,
+				"x": 17,
+				"y": 0,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -9548,6 +9849,106 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9Ob3JtYWxTY2FyYWJJbmN1cnNpb24iLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/992c5f7548/NormalScarabIncursion.png",
+				"stackSize": 3,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "c636c4d00cffc1e95f7e0e2e1c35b982df7edae41e5d0ff7646eaa7c13291c9e",
+				"name": "",
+				"typeLine": "Incursion Scarab of Invasion",
+				"baseType": "Incursion Scarab of Invasion",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"3/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"2",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Area contains 12-16 additional packs of Incursion Monsters"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"A gate, once opened, may swing in either direction."
+				],
+				"frameType": 0,
+				"x": 16,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9BbHRHcmVhdGVyU2NhcmFiQnJlYWNoIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/e324a54cdc/AltGreaterScarabBreach.png",
+				"stackSize": 2,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "0fd24c7d51278fd9006f943c857fb946de883289fb80a29f4c7e8f385cde3f4a",
+				"name": "",
+				"typeLine": "Breach Scarab of Splintering",
+				"baseType": "Breach Scarab of Splintering",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"2/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"2",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Breach Monsters in Area drop 50% more Breach Splinters\nClasped Hands in Area drop 50% more Breach Splinters"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"Bit by bit."
+				],
+				"frameType": 0,
+				"x": 18,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
 				"league": "Necropolis",
 				"id": "189ee51781671cc1366ebef295a486b31e92cff2db34897491e94ad503e31c2a",
@@ -10096,6 +10497,106 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9MZXNzZXJTY2FyYWJFc3NlbmNlIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/c9f153a8cf/LesserScarabEssence.png",
+				"stackSize": 20,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "9b92c2a650534f89cae8ec3ced951347d7123c69493808f5216d783f3ce5a67c",
+				"name": "",
+				"typeLine": "Essence Scarab",
+				"baseType": "Essence Scarab",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"20/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"4",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Area contains 2 additional Essences"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"It is perfectly safe, the creatures trapped inside couldn't possibly still be living."
+				],
+				"frameType": 0,
+				"x": 15,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9Ob3JtYWxTY2FyYWJBYnlzcyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/c78d645398/NormalScarabAbyss.png",
+				"stackSize": 2,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "09c830aae131bf53a99bbb7de206bf54e184158be834aa19e54042195db6abad",
+				"name": "",
+				"typeLine": "Abyss Scarab of Multitudes",
+				"baseType": "Abyss Scarab of Multitudes",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"2/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"2",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Abysses in Area spawn 75% increased Monsters"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"They ceaselessly sprout from the murderous earth."
+				],
+				"frameType": 0,
+				"x": 18,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL1JpdmV0ZWRFeWUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/a17c4bcc60/RivetedEye.png",
 				"league": "Necropolis",
 				"id": "70b20bc82da1a3e90d165c9233e8bf2ea3512956d5cbcbae90d3b766430204a5",
@@ -10117,6 +10618,56 @@
 				"frameType": 2,
 				"x": 12,
 				"y": 12,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9HcmVhdGVyU2NhcmFiQmV0cmF5YWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/85f51a19b8/GreaterScarabBetrayal.png",
+				"stackSize": 7,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "00b20f0553c23f253dddb98a8e66e57dd1baad2bd06e986d823965e8b5df2013",
+				"name": "",
+				"typeLine": "Betrayal Scarab of Reinforcements",
+				"baseType": "Betrayal Scarab of Reinforcements",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"7/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"1",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Immortal Syndicate Members in Area have 50% increased chance to be accompanied by reinforcements"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"Move and countermove."
+				],
+				"frameType": 0,
+				"x": 17,
+				"y": 2,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -14613,6 +15164,56 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9TdXBlclNjYXJhYjIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/f4c8c526ba/SuperScarab2.png",
+				"stackSize": 1,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "6c982d1b7e06cc769a19a92cfb3f310a7b9342bd060d1d33eca6b381ebf98099",
+				"name": "",
+				"typeLine": "Horned Scarab of Nemeses",
+				"baseType": "Horned Scarab of Nemeses",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"1",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Rare Monsters in Area have 2 additional Modifiers"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"Glory draws ever tighter its own doom."
+				],
+				"frameType": 0,
+				"x": 19,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTmVjcm9wb2xpcy9BbGxmbGFtZUVtYmVyc0Jhc2VCcmVhY2giLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/94dfa4b492/AllflameEmbersBaseBreach.png",
 				"league": "Necropolis",
 				"id": "7076c449202edce6c6e7a3f57685f359977e567716f0ae98efafde45b12b1d5b",
@@ -14913,6 +15514,92 @@
 			},
 			{
 				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9FbnZ5NyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/7e2590a0e6/Envy7.png",
+				"stackSize": 9,
+				"maxStackSize": 9,
+				"league": "Necropolis",
+				"id": "491a69bdc30bef6e54fa079ab0c31c770023014b407f5bb2cbb1b474a73e9816",
+				"name": "",
+				"typeLine": "Deafening Essence of Envy",
+				"baseType": "Deafening Essence of Envy",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"9/9",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Upgrades a normal item to rare or reforges a rare item, guaranteeing one property",
+					"",
+					"One Handed Weapon: Adds (53-79) to (101-131) Chaos Damage",
+					"Two Handed Weapon: Adds (89-131) to (181-229) Chaos Damage",
+					"Armour: (31-35)% to Chaos Resistance",
+					"Quiver: Adds (23-37) to (49-61) Chaos Damage to Attacks",
+					"Belt: (31-35)% to Chaos Resistance",
+					"Other Jewellery: (31-34)% increased Chaos Damage"
+				],
+				"descrText": "Right click this item then left click a normal or rare item to apply it.",
+				"frameType": 5,
+				"x": 15,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9FbnZ5NyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/7e2590a0e6/Envy7.png",
+				"stackSize": 9,
+				"maxStackSize": 9,
+				"league": "Necropolis",
+				"id": "ce30f3d3fcdfb00038b1f6161cbea09ee4a4a7c7a076cb813ab0ba1490436625",
+				"name": "",
+				"typeLine": "Deafening Essence of Envy",
+				"baseType": "Deafening Essence of Envy",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"9/9",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Upgrades a normal item to rare or reforges a rare item, guaranteeing one property",
+					"",
+					"One Handed Weapon: Adds (53-79) to (101-131) Chaos Damage",
+					"Two Handed Weapon: Adds (89-131) to (181-229) Chaos Damage",
+					"Armour: (31-35)% to Chaos Resistance",
+					"Quiver: Adds (23-37) to (49-61) Chaos Damage to Attacks",
+					"Belt: (31-35)% to Chaos Resistance",
+					"Other Jewellery: (31-34)% increased Chaos Damage"
+				],
+				"descrText": "Right click this item then left click a normal or rare item to apply it.",
+				"frameType": 5,
+				"x": 16,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
 				"w": 2,
 				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTmVjcm9wb2xpcy9OZWNyb3BvbGlzQ29mZmluRmlsbGVkIiwidyI6MiwiaCI6MSwic2NhbGUiOjF9XQ/5b4214a420/NecropolisCoffinFilled.png",
@@ -14965,6 +15652,56 @@
 				"frameType": 5,
 				"x": 20,
 				"y": 9,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9MZXNzZXJTY2FyYWJBYnlzcyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/5afc346c84/LesserScarabAbyss.png",
+				"stackSize": 4,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "2d25f21a1b45c44cfde67f4ed39d43894d54c818a9e572ccc3a890159b63ff98",
+				"name": "",
+				"typeLine": "Abyss Scarab",
+				"baseType": "Abyss Scarab",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"4/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Limit",
+						"values": [
+							[
+								"2",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 87
+					}
+				],
+				"explicitMods": [
+					"Area contains an additional Abyss"
+				],
+				"descrText": "Can be used in a personal Map Device to add modifiers to a Map.",
+				"flavourText": [
+					"They search forever for more souls to drag to the dark."
+				],
+				"frameType": 0,
+				"x": 15,
+				"y": 0,
 				"inventoryId": "Stash1"
 			},
 			{

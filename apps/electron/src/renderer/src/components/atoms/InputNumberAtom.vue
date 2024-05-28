@@ -1,5 +1,5 @@
 <template>
-	<div class="a-input-number gradient-border" data-b-override :class="{ disabled }">
+	<div class="a-input-number gradient-border" data-b-override :class="{ disabled }" @mouseleave="emit('mouseleave')">
 		<div
 			class="arrow-container next-container"
 			@mousedown="e => onMousedown(e, 'add')"
@@ -70,11 +70,21 @@ const props = withDefaults(
 
 // EMITS
 const emit = defineEmits<{
-	(e: 'update:modelValue', value: number): void
-	(e: 'change:modelValue'): void
+	'update:modelValue': [value: number]
+	'change:modelValue': []
+	mouseleave: []
 }>()
 
-// COMPUTEDS
+// GETTERS
+
+/**
+ * Compute the allowed number of digits after the decimal point.
+ * Has to be at least the number of digits of the 'step' prop.
+ */
+const allowedNumDigits = computed(() => {
+	const numDigitsInStepProp = props.step % 1 ? props.step.toString().split('.')[1].length : 0
+	return Math.max(props.numDigits, numDigitsInStepProp)
+})
 
 /** compute the background color for this component */
 const backgroundColorButton = computed(() => {
@@ -84,7 +94,9 @@ const backgroundColorButton = computed(() => {
 })
 
 /** the value being displayed in the input element */
-const roundedValue = computed(() => Math.round(props.modelValue * Math.pow(10, props.numDigits)) / Math.pow(10, props.numDigits))
+const roundedValue = computed(
+	() => Math.round(props.modelValue * Math.pow(10, allowedNumDigits.value)) / Math.pow(10, allowedNumDigits.value)
+)
 
 /** compute the base input width depending on how long the number is */
 const inputWidth = computed(() => {
@@ -131,7 +143,7 @@ function onInput(event: Event, operator?: string) {
 function assertAllowedNumber(n: number) {
 	// float
 	if (n % 1 !== 0) {
-		n = Math.round(n * Math.pow(10, props.numDigits)) / Math.pow(10, props.numDigits)
+		n = Math.round(n * Math.pow(10, allowedNumDigits.value)) / Math.pow(10, allowedNumDigits.value)
 	}
 	return n > props.max ? props.max : n < props.min ? props.min : n
 }
@@ -147,6 +159,7 @@ function onChange() {
  * adds an interval function with a delay for repeated events on mousedown
  */
 function onMousedown(event: Event, operator: 'add' | 'subtract') {
+	console.log('mousing down')
 	onInput(event, operator)
 	fireTimeout = setTimeout(() => {
 		fireInterval = setInterval(onInput.bind(null, event, operator), props.intervalFiringTimer)

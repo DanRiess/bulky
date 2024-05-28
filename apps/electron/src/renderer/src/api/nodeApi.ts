@@ -38,12 +38,19 @@ export const nodeApi = {
 
 	getNinjaCategory: async (category: NinjaCategory) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+			let url: string
+			if (category === 'Essence') {
+				url = 'http://localhost:5174/src/mocks/ninjaEssence.json'
+			} else if (category === 'Scarab') {
+				url = 'http://localhost:5174/src/mocks/ninjaScarab.json'
+			} else if (category === 'Currency') {
+				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
+			} else {
+				url = 'http://localhost:5174/src/mocks/ninjaMaps.json'
+			}
 			// The type cast is only here because return type of window.api functions
 			// is different than an axios response and it messes up other scripts.
-			return api.get('http://localhost:5174/src/mocks/ninjaMaps.json') as unknown as Record<
-				'lines',
-				NinjaCurrencyDto[] | NinjaItemDto[]
-			>
+			return api.get(url) as unknown as Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]>
 		}
 
 		const configStore = useConfigStore()

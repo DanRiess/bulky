@@ -11,7 +11,7 @@ import { BULKY_TRANSFORM } from '@web/utility/transformers'
 export function usePriceOverride() {
 	const appStateStore = useAppStateStore()
 
-	const priceOverrides: Ref<BulkyPriceOverrideRecord> = ref({})
+	const priceOverrides: Ref<BulkyPriceOverrideRecord> = ref(new Map())
 
 	// Load the current category's prices whenever the category changes.
 	watch(
@@ -25,32 +25,24 @@ export function usePriceOverride() {
 	)
 
 	/**
-	 * Edit or add a price override
+	 * Edit or add a price override.
+	 * Pass the new price as explicit parameter, since on the BulkyItem,
+	 * the price override is computed only.
 	 */
-	function editPriceOverride(item: BulkyItem) {
+	function putPriceOverride(item: BulkyItem, price: number) {
 		const bulkyIdb = useBulkyIdb()
 
-		const newItem = BULKY_TRANSFORM.bulkyItemToPriceOverrideItem(item)
+		// generate the new override item
+		const newItem = BULKY_TRANSFORM.bulkyItemToPriceOverrideItem(item, price)
 
-		// override does not exist in the state variable yet
-		if (!priceOverrides.value[item.type]) {
-			priceOverrides.value[item.type] = [newItem]
-		}
-
-		// override does exist, find the correct tier in the array
-		else {
-			let existingItem = priceOverrides.value[item.type]!.find(override => override.tier === item.tier)
-
-			existingItem
-				? (existingItem.priceOverride = item.priceOverride)
-				: priceOverrides.value[item.type]!.push(BULKY_TRANSFORM.bulkyItemToPriceOverrideItem(item))
-		}
+		// set the new item in the map
+		priceOverrides.value.set(`${newItem.type}_${newItem.tier}`, newItem)
 
 		// put the new item in the database
 		bulkyIdb.putPriceOverride(newItem)
 	}
 
-	return { priceOverrides, editPriceOverride }
+	return { priceOverrides, putPriceOverride }
 }
 
 // LOCAL API
@@ -72,14 +64,10 @@ async function updateStateVariable(category: Category) {
  * Transform a price override item to the form expected by the state variable.
  */
 function transformOverridesToState(overrides: BulkyPriceOverrideItem[]): BulkyPriceOverrideRecord {
-	const state = {} as BulkyPriceOverrideRecord
+	const state = new Map() as BulkyPriceOverrideRecord
 
 	overrides.reduce((prevState, currItem) => {
-		if (!prevState[currItem.type]) {
-			prevState[currItem.type] = []
-		}
-
-		prevState[currItem.type]?.push(currItem)
+		prevState.set(`${currItem.type}_${currItem.tier}`, currItem)
 		return prevState
 	}, state)
 

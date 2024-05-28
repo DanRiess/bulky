@@ -38,6 +38,8 @@ export const poeApi = {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
 			if (stashTab.name === 'F')
 				return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashFragment.json', config)
+			else if (stashTab.name === 'E')
+				return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashEssence.json', config)
 			else return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashDump.json', config)
 		}
 
