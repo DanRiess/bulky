@@ -1,4 +1,10 @@
-import { BulkyItem, BulkyPriceOverrideItem, BulkyPriceOverrideRecord, Category } from '@shared/types/bulky.types'
+import {
+	BulkyItem,
+	BulkyItemOverrideInstance,
+	BulkyItemOverrideOptions,
+	BulkyItemOverrideRecord,
+	Category,
+} from '@shared/types/bulky.types'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { Ref, ref, watch } from 'vue'
 import { useBulkyIdb } from './useBulkyIdb'
@@ -8,17 +14,17 @@ import { BULKY_TRANSFORM } from '@web/utility/transformers'
  * This function returns a ref that holds the current category's price overrides.
  * Price overrides are saved in the price_override store in the idb.
  */
-export function usePriceOverride() {
+export function useItemOverrides() {
 	const appStateStore = useAppStateStore()
 
-	const priceOverrides: Ref<BulkyPriceOverrideRecord> = ref(new Map())
+	const itemOverrides: Ref<BulkyItemOverrideRecord> = ref(new Map())
 
 	// Load the current category's prices whenever the category changes.
 	watch(
 		() => appStateStore.selectedCategory,
 		category => {
 			updateStateVariable(category).then(state => {
-				priceOverrides.value = state
+				itemOverrides.value = state
 			})
 		},
 		{ immediate: true }
@@ -29,20 +35,20 @@ export function usePriceOverride() {
 	 * Pass the new price as explicit parameter, since on the BulkyItem,
 	 * the price override is computed only.
 	 */
-	function putPriceOverride(item: BulkyItem, price: number) {
+	function putItemOverride(item: BulkyItem, overrides: BulkyItemOverrideOptions) {
 		const bulkyIdb = useBulkyIdb()
 
-		// generate the new override item
-		const newItem = BULKY_TRANSFORM.bulkyItemToPriceOverrideItem(item, price)
+		// Generate the new override item.
+		const newItem = BULKY_TRANSFORM.bulkyItemToPriceOverrideItem(item, overrides)
 
-		// set the new item in the map
-		priceOverrides.value.set(`${newItem.type}_${newItem.tier}`, newItem)
+		// Set the new item in the map.
+		itemOverrides.value.set(`${newItem.type}_${newItem.tier}`, newItem)
 
-		// put the new item in the database
-		bulkyIdb.putPriceOverride(newItem)
+		// Put the new item in the database.
+		bulkyIdb.putItemOverride(newItem)
 	}
 
-	return { priceOverrides, putPriceOverride }
+	return { itemOverrides, putItemOverride }
 }
 
 // LOCAL API
@@ -54,7 +60,7 @@ async function updateStateVariable(category: Category) {
 	const bulkyIdb = useBulkyIdb()
 
 	// Get overrides for this category from idb.
-	const overrides = await bulkyIdb.getPriceOverrideByCategory(category)
+	const overrides = await bulkyIdb.getItemOverrideByCategory(category)
 
 	// Transform the overrides into the form expected by the state variable
 	return transformOverridesToState(overrides)
@@ -63,8 +69,8 @@ async function updateStateVariable(category: Category) {
 /**
  * Transform a price override item to the form expected by the state variable.
  */
-function transformOverridesToState(overrides: BulkyPriceOverrideItem[]): BulkyPriceOverrideRecord {
-	const state = new Map() as BulkyPriceOverrideRecord
+function transformOverridesToState(overrides: BulkyItemOverrideInstance[]): BulkyItemOverrideRecord {
+	const state = new Map() as BulkyItemOverrideRecord
 
 	overrides.reduce((prevState, currItem) => {
 		prevState.set(`${currItem.type}_${currItem.tier}`, currItem)

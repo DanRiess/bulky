@@ -7,7 +7,7 @@ import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.
 import { Essence, EssenceTier, EssenceType } from './essence.types'
 import { PoeItem } from '@shared/types/poe.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
-import { BulkyPriceOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { Ref, computed } from 'vue'
 import { useConfigStore } from '@web/stores/configStore'
 
@@ -44,11 +44,11 @@ function generateEssenceTypeFromBaseType(baseType: string): EssenceType | undefi
  * Get the tier of an essence based on its name.
  */
 function generateEssenceTierFromBaseType(baseType: string): EssenceTier | undefined {
-	if (baseType.match(/whispering/i)) return ESSENCE_TIER.WHISPERING
-	else if (baseType.match(/muttering/i)) return ESSENCE_TIER.MUTTERING
-	else if (baseType.match(/weeping/i)) return ESSENCE_TIER.WEEPING
-	else if (baseType.match(/wailing/i)) return ESSENCE_TIER.WAILING
-	else if (baseType.match(/screaming/i)) return ESSENCE_TIER.SCREAMING
+	// if (baseType.match(/whispering/i)) return ESSENCE_TIER.WHISPERING
+	// else if (baseType.match(/muttering/i)) return ESSENCE_TIER.MUTTERING
+	// else if (baseType.match(/weeping/i)) return ESSENCE_TIER.WEEPING
+	// else if (baseType.match(/wailing/i)) return ESSENCE_TIER.WAILING
+	if (baseType.match(/screaming/i)) return ESSENCE_TIER.SCREAMING
 	else if (baseType.match(/shrieking/i)) return ESSENCE_TIER.SHRIEKING
 	else if (baseType.match(/deafening/i)) return ESSENCE_TIER.DEAFENING
 	else if (baseType.match(/insanity|horror|delirium|hysteria/i)) return ESSENCE_TIER.TIER_8
@@ -69,7 +69,7 @@ function generateEssenceItemFromDto(itemDto: GenericListingItemDto): Essence | n
 function generateEssenceFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
-	priceOverrides: Ref<BulkyPriceOverrideRecord>
+	priceOverrides: Ref<BulkyItemOverrideRecord>
 ): Essence | undefined {
 	const configStore = useConfigStore()
 
@@ -85,12 +85,15 @@ function generateEssenceFromPoeItem(
 		icon: poeItem.icon,
 		quantity: poeItem.stackSize,
 		price: computed(() => {
-			return prices.value.get(poeItem.baseType)?.chaos ?? 0
+			return Math.round((prices.value.get(poeItem.baseType)?.chaos ?? 0) * 10) / 10
 		}),
 		league: configStore.config.league,
 		category: 'ESSENCE',
 		priceOverride: computed(() => {
-			return priceOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0
+			return Math.round((priceOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
+		}),
+		selected: computed(() => {
+			return priceOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
 	}
 }

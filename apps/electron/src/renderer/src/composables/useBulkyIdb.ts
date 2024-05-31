@@ -1,4 +1,4 @@
-import { BulkyPriceOverrideItem, Category } from '@shared/types/bulky.types'
+import { BulkyItemOverrideInstance, Category } from '@shared/types/bulky.types'
 import { NinjaPriceCollection, NinjaCategory } from '@shared/types/ninja.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { Id } from '@shared/types/utility.types'
@@ -23,9 +23,9 @@ interface BulkyDB extends DBSchema {
 		key: [NinjaCategory, string]
 		value: NinjaPriceCollection
 	}
-	price_override: {
-		key: [BulkyPriceOverrideItem['type'], BulkyPriceOverrideItem['tier'], BulkyPriceOverrideItem['league']]
-		value: BulkyPriceOverrideItem
+	item_override: {
+		key: [BulkyItemOverrideInstance['type'], BulkyItemOverrideInstance['tier'], BulkyItemOverrideInstance['league']]
+		value: BulkyItemOverrideInstance
 		/** String is the selected league */
 		indexes: { 'by-category': [Category, string] }
 	}
@@ -58,7 +58,7 @@ export function useBulkyIdb() {
 					keyPath: ['category', 'league'],
 				})
 
-				const priceOverrideStore = db.createObjectStore('price_override', {
+				const priceOverrideStore = db.createObjectStore('item_override', {
 					keyPath: ['type', 'tier', 'league'],
 				})
 
@@ -247,12 +247,12 @@ export function useBulkyIdb() {
 	/**
 	 * Add a new price override to the store
 	 */
-	async function putPriceOverride(overrideItem: BulkyPriceOverrideItem) {
+	async function putItemOverride(overrideItem: BulkyItemOverrideInstance) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
 			db = await initDB()
-			await db.put('price_override', deepToRaw(overrideItem))
+			await db.put('item_override', deepToRaw(overrideItem))
 		} catch (e) {
 			console.log(e)
 		} finally {
@@ -263,14 +263,14 @@ export function useBulkyIdb() {
 	/**
 	 * Get price overrides for a category
 	 */
-	async function getPriceOverrideByCategory(category: Category) {
+	async function getItemOverrideByCategory(category: Category) {
 		const configStore = useConfigStore()
 		let db: IDBPDatabase<BulkyDB> | undefined
-		const price: BulkyPriceOverrideItem[] = []
+		const price: BulkyItemOverrideInstance[] = []
 
 		try {
 			db = await initDB()
-			price.push(...(await db.getAllFromIndex('price_override', 'by-category', [category, configStore.config.league])))
+			price.push(...(await db.getAllFromIndex('item_override', 'by-category', [category, configStore.config.league])))
 		} catch (e) {
 			console.log(e)
 		} finally {
@@ -289,7 +289,7 @@ export function useBulkyIdb() {
 		deleteItems,
 		putPriceCollection,
 		getPriceCollectionByCategory,
-		putPriceOverride,
-		getPriceOverrideByCategory,
+		putItemOverride,
+		getItemOverrideByCategory,
 	}
 }

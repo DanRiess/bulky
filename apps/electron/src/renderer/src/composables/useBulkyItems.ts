@@ -1,15 +1,16 @@
-import { BulkyItemRecord, BulkyPriceOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyItemRecord, BulkyItemSortOptions, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem, PoeItemsByStash } from '@shared/types/poe.types'
 import { RefOrGetter, getKeys, isWatchable } from '@shared/types/utility.types'
 import { useAppStateStore } from '@web/stores/appStateStore'
+import { compareStrings } from '@web/utility/compareFunctions'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
-import { Ref, ref, watch } from 'vue'
+import { Ref, ref, toValue, watch } from 'vue'
 
 export function useBulkyItems(
 	poeItems: RefOrGetter<PoeItemsByStash>,
 	prices: Ref<NinjaPriceRecord>,
-	priceOverrides: Ref<BulkyPriceOverrideRecord>
+	priceOverrides: Ref<BulkyItemOverrideRecord>
 ) {
 	const appStateStore = useAppStateStore()
 
@@ -23,13 +24,16 @@ export function useBulkyItems(
 	 * ])
 	 */
 	const items = ref(new Map()) as Ref<BulkyItemRecord>
+	const sortOptions = ref<BulkyItemSortOptions>({
+		key: 'STACKPRICE',
+		direction: 'DESC',
+	})
 
 	// Create a watcher that updates the items when stash selection changes.
 	// Update here means fetching new tab's items from idb and deleting removed tab's items from the variable.
 	// The comparison inside the watcher is only possible with a ComputedRef!
 	if (isWatchable(poeItems)) {
 		watch(poeItems, (newItems, oldItems) => {
-			// console.log('POE ITEMS CHANGED')
 			const add = getKeys(newItems).reduce((prev, curr) => {
 				prev[curr] = newItems[curr].filter(item => !oldItems[curr]?.includes(item))
 				return prev
@@ -56,9 +60,19 @@ export function useBulkyItems(
 				remove[stashTabId].forEach(poeItem => deleteItem(poeItem))
 			})
 
-			items.value = new Map([...items.value.entries()].sort())
+			// Default to sorting the items by stack price
+			// sortItems('STACKPRICE')
 		})
 	}
+
+	/**
+	 * Sort the map when either ninja prices or price overrides change.
+	 * This will not trigger when items within the maps change, though it could (deep: true).
+	 * This will however lead to weird UX as entries will jump around while editing.
+	 */
+	watch([prices, priceOverrides], () => {
+		sortItems()
+	})
 
 	/**
 	 * Add the stack size of a PoeItem to its corresponding BulkyItem.
@@ -109,5 +123,51 @@ export function useBulkyItems(
 		return false
 	}
 
-	return { items }
+	/**
+	 * Sort the item map by a given search key.
+	 */
+	function sortItems(sortKey?: BulkyItemSortOptions['key']) {
+		const key = sortKey ?? sortOptions.value.key
+
+		// If the key is identical, switch the sort direction.
+		if (sortKey && key === sortOptions.value.key) {
+			sortOptions.value.direction = sortOptions.value.direction === 'ASC' ? 'DESC' : 'ASC'
+		} else if (sortKey) {
+			// Default to sorting in ascending order for strings and descending order for numbers.
+			sortOptions.value.direction = key === 'NAME' ? 'ASC' : 'DESC'
+			sortOptions.value.key = key
+		}
+
+		// Mathmatically, always sort in ascending order and just multiply the result by -1 if descending order is required.
+		const sortModifier = sortOptions.value.direction === 'ASC' ? 1 : -1
+
+		// Implement functions for the possible search keys.
+		if (key === 'NAME') {
+			items.value = new Map([...items.value.entries()].sort((a, b) => compareStrings(a[0], b[0]) * sortModifier))
+		} else if (key === 'QUANT') {
+			items.value = new Map(
+				[...items.value.entries()].sort((a, b) => {
+					return (a[1].quantity - b[1].quantity) * sortModifier
+				})
+			)
+		} else if (key === 'PRICE') {
+			items.value = new Map(
+				[...items.value.entries()].sort((a, b) => {
+					const priceA = toValue(a[1].priceOverride) > 0 ? a[1].priceOverride : a[1].price
+					const priceB = toValue(b[1].priceOverride) > 0 ? b[1].priceOverride : b[1].price
+					return (toValue(priceA) - toValue(priceB)) * sortModifier
+				})
+			)
+		} else if (key === 'STACKPRICE') {
+			items.value = new Map(
+				[...items.value.entries()].sort((a, b) => {
+					const priceA = toValue(a[1].priceOverride) > 0 ? a[1].priceOverride : a[1].price
+					const priceB = toValue(b[1].priceOverride) > 0 ? b[1].priceOverride : b[1].price
+					return (toValue(priceA) * a[1].quantity - toValue(priceB) * b[1].quantity) * sortModifier
+				})
+			)
+		}
+	}
+
+	return { items, sortOptions, sortItems }
 }

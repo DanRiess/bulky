@@ -43,7 +43,6 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 	// The comparison inside the watcher is only possible with a ComputedRef!
 	if (isWatchable(stashTabs)) {
 		watch(stashTabs, (newTabs, oldTabs) => {
-			console.log('POE ITEMS watcher')
 			// compare which tabs have been added and which have been removed
 			const remove = oldTabs.filter(val => !newTabs.includes(val))
 			const add = newTabs.filter(val => !oldTabs.includes(val))

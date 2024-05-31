@@ -27,7 +27,7 @@
 				:max="max"
 				:step="step"
 				@input="onInput"
-				@change="onChange"
+				@change="emit('change:modelValue')"
 				@click.stop="" />
 		</div>
 	</div>
@@ -75,6 +75,11 @@ const emit = defineEmits<{
 	mouseleave: []
 }>()
 
+// EXPOSE
+defineExpose({
+	focus,
+})
+
 // GETTERS
 
 /**
@@ -86,27 +91,31 @@ const allowedNumDigits = computed(() => {
 	return Math.max(props.numDigits, numDigitsInStepProp)
 })
 
-/** compute the background color for this component */
+/** Compute the background color for this component. */
 const backgroundColorButton = computed(() => {
 	return props.backgroundColor === 'light'
 		? 'var(--dr-background-color-button-light)'
 		: 'var(--dr-background-color-button-dark)'
 })
 
-/** the value being displayed in the input element */
+/** The value being displayed in the input element. */
 const roundedValue = computed(
 	() => Math.round(props.modelValue * Math.pow(10, allowedNumDigits.value)) / Math.pow(10, allowedNumDigits.value)
 )
 
-/** compute the base input width depending on how long the number is */
+/** Compute the base input width depending on how long the number is. */
 const inputWidth = computed(() => {
-	// cast the rounded value to a string, remove decimal point, take the length and return that as css unit
+	// Cast the rounded value to a string, remove decimal point, take the length and return that as css unit
 	return `${(roundedValue.value + '').replace('.', '').length + 2}ch`
 })
 
 // METHODS
 
-/** clears the current selection */
+/**
+ * Clear the current selection.
+ * Clicking on the arrows fast might select multiple elements unintentionally.
+ * This function reverses that.
+ */
 function clearSelection() {
 	const selection = document.getSelection()
 	if (selection) {
@@ -118,14 +127,27 @@ function clearSelection() {
 }
 
 /**
- * handle different sort of input events
- * events can be triggered by typing in a new number manually
- * or by clicking on the arrows
+ * Handle different sort of input events.
+ * Events can be triggered by typing in a new number manually or by clicking on the arrows.
  */
 function onInput(event: Event, operator?: string) {
 	const target = event.target
 	if (target instanceof HTMLInputElement) {
-		if (target.value === '') return
+		if (event instanceof InputEvent) {
+			// Handle decimal point input
+			if (event.data === '.' && !target.value.includes('.')) return
+
+			// Handle remove event.
+			// If the first decimal place is removed, the cursor jumps to the start by default.
+			// To avoid this, change the 'value' prop and then reset it back.
+			// This is verbose, but the change is necessary for this workaround to work.
+			if (event.inputType === 'deleteContentBackward') {
+				const temp = target.value === '' ? '0' : target.value
+				target.value = ''
+				target.value = temp
+			}
+		}
+
 		const newValue = assertAllowedNumber(parseFloat(target.value))
 		target.value = newValue.toString()
 		emit('update:modelValue', newValue)
@@ -139,7 +161,9 @@ function onInput(event: Event, operator?: string) {
 	}
 }
 
-/** clamps the number input between the passed prop values */
+/**
+ * Clamps the number input between the passed prop values.
+ */
 function assertAllowedNumber(n: number) {
 	// float
 	if (n % 1 !== 0) {
@@ -149,17 +173,9 @@ function assertAllowedNumber(n: number) {
 }
 
 /**
- * emit on a change event
- */
-function onChange() {
-	emit('change:modelValue')
-}
-
-/**
- * adds an interval function with a delay for repeated events on mousedown
+ * Add an interval function with a delay for repeated events on mousedown.
  */
 function onMousedown(event: Event, operator: 'add' | 'subtract') {
-	console.log('mousing down')
 	onInput(event, operator)
 	fireTimeout = setTimeout(() => {
 		fireInterval = setInterval(onInput.bind(null, event, operator), props.intervalFiringTimer)
@@ -167,7 +183,15 @@ function onMousedown(event: Event, operator: 'add' | 'subtract') {
 }
 
 /**
- * clear all potentially existing fire intervals and timeouts
+ * Focus the input.
+ * This function is being exposed to be called from any respective parent.
+ */
+function focus() {
+	numberInputEl.value?.focus()
+}
+
+/**
+ * Clear all potentially existing fire intervals and timeouts.
  */
 function clearRepeatEvent() {
 	if (fireInterval) {

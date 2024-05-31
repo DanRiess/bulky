@@ -25,6 +25,7 @@ export function usePoeNinja() {
 	const appStateStore = useAppStateStore()
 
 	const prices = ref<NinjaPriceRecord>(new Map())
+	const chaosPerDiv = ref(0)
 
 	// Load the current category's prices whenever the category changes.
 	watch(
@@ -32,6 +33,11 @@ export function usePoeNinja() {
 		category => {
 			updateStateVariable(category).then(state => {
 				prices.value = state
+
+				// Get the current chaos per div conversion rate.
+				getChaosPerDiv().then(price => {
+					chaosPerDiv.value = price
+				})
 			})
 		},
 		{ immediate: true }
@@ -41,17 +47,24 @@ export function usePoeNinja() {
 	setInterval(() => {
 		updateStateVariable(appStateStore.selectedCategory).then(state => {
 			prices.value = state
+
+			// Get the current chaos per div conversion rate
+			getChaosPerDiv().then(price => {
+				chaosPerDiv.value = price
+			})
 		})
 	}, UPDATE_INTERVAL + 60 * 1000)
 
-	return { prices }
+	return { prices, chaosPerDiv }
 }
+
+// LOCAL API
 
 /**
  * This function will get the current chaos per div ratio.
  * If the idb value is older than 30 minutes, it will automatically update it.
  */
-export async function getChaosPerDiv() {
+async function getChaosPerDiv() {
 	const collection = await updateNinjaCategoryPrices('Currency')
 	const currencyCollection = collection.find(c => c.category === 'Currency')
 	if (!currencyCollection) return 0
@@ -61,8 +74,6 @@ export async function getChaosPerDiv() {
 
 	return divine.chaos
 }
-
-// LOCAL API
 
 /**
  * Load the current category's prices from idb.

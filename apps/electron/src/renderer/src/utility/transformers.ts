@@ -2,9 +2,9 @@ import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
 import { PoeItemDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
-import { BulkyItem, BulkyPriceOverrideItem, BulkyPriceOverrideRecord, Category } from '@shared/types/bulky.types'
+import { BulkyItem, BulkyItemOverrideInstance, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.static'
-import { Ref } from 'vue'
+import { Ref, toValue } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BULKY_SCARABS } from '@web/categories/scarab/scarab.static'
 
@@ -69,7 +69,7 @@ function poeItemToBulkyItem(
 	item: PoeItem,
 	category: Category,
 	prices: Ref<NinjaPriceRecord>,
-	priceOverrides: Ref<BulkyPriceOverrideRecord>
+	priceOverrides: Ref<BulkyItemOverrideRecord>
 ): BulkyItem | undefined {
 	if (category === 'ESSENCE') {
 		return BULKY_ESSENCES.generateEssenceFromPoeItem(item, prices, priceOverrides)
@@ -80,13 +80,17 @@ function poeItemToBulkyItem(
 	return undefined
 }
 
-function bulkyItemToPriceOverrideItem(item: BulkyItem, newPrice: number): BulkyPriceOverrideItem {
+function bulkyItemToPriceOverrideItem(
+	item: BulkyItem,
+	overrides: { price?: number; selected?: boolean }
+): BulkyItemOverrideInstance {
 	return {
 		type: item.type,
 		tier: item.tier,
-		priceOverride: newPrice,
+		priceOverride: overrides.price ?? toValue(item.priceOverride),
 		league: item.league,
 		category: item.category,
+		selected: overrides.selected ?? toValue(item.selected),
 	}
 }
 

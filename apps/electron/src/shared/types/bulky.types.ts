@@ -41,6 +41,7 @@ export type BulkyItemBase<T extends Category> = {
 	priceOverride: ComputedRef<number>
 	icon: string
 	league: string
+	selected: MaybeComputedRef<boolean>
 }
 
 /**
@@ -130,12 +131,13 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
  * Price overrides are being saved separately. This is why this type needs to have all of
  * the additional metadata.
  */
-export type BulkyPriceOverrideItem<T extends BulkyItem = BulkyItem> = {
+export type BulkyItemOverrideInstance<T extends BulkyItem = BulkyItem> = {
 	category: T['category']
 	type: T['type']
 	tier: T['tier']
 	league: string
 	priceOverride: number
+	selected: boolean
 }
 
 /**
@@ -147,10 +149,19 @@ export type BulkyPriceOverrideItem<T extends BulkyItem = BulkyItem> = {
  * 	'ZEAL_DEAFENING': EssenceItem
  * })
  */
-export type BulkyPriceOverrideRecord<T extends BulkyItem = BulkyItem> = Map<
+export type BulkyItemOverrideRecord<T extends BulkyItem = BulkyItem> = Map<
 	`${T['type']}_${T['tier']}`,
-	BulkyPriceOverrideItem<T>
+	BulkyItemOverrideInstance<T>
 >
+
+/**
+ * Properties in a BulkyItem that can be overwritten and saved to the DB.
+ * This type serves as a function argument mostly.
+ */
+export type BulkyItemOverrideOptions = {
+	price?: number
+	selected?: boolean
+}
 
 export type TotalPrice = { chaos: number; divine: number }
 
@@ -177,4 +188,11 @@ export type ComputedOfferDisplayValues = {
 	 * Watch this to expand / collapse the listing's items when full buyout input gets toggled.
 	 */
 	fullBuyoutWatcher: boolean
+}
+
+// UTILITY TYPES
+
+export type BulkyItemSortOptions = {
+	key: 'NAME' | 'QUANT' | 'PRICE' | 'STACKPRICE'
+	direction: 'ASC' | 'DESC'
 }
