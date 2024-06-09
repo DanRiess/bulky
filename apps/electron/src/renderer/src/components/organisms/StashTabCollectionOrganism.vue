@@ -20,7 +20,11 @@
 		<div v-if="stashStore.stashTabs.length === 0">No tabs found. Please load your stashes.</div>
 		<ul v-else class="stash-list">
 			<template v-for="stash in stashTabHierarchy.root" :key="stash.id">
-				<LabelWithCheckboxMolecule v-if="stash.type !== 'Folder'" label-position="right" v-model="stash.selected">
+				<LabelWithCheckboxMolecule
+					v-if="stash.type !== 'Folder'"
+					label-position="right"
+					v-model="stash.selected"
+					@update:model-value="selected => updateStashPropSelected(stash, selected)">
 					{{ stash.name }}
 				</LabelWithCheckboxMolecule>
 				<ul v-else class="stash-folder-list" :style="{ borderColor: '#' + stash.color ?? 'transparent' }">
@@ -28,7 +32,8 @@
 					<LabelWithCheckboxMolecule
 						v-for="child in stashTabHierarchy[stash.id]"
 						label-position="right"
-						v-model="child.selected">
+						v-model="child.selected"
+						@update:model-value="selected => updateStashPropSelected(child, selected)">
 						{{ child.name }}
 					</LabelWithCheckboxMolecule>
 				</ul>
@@ -45,6 +50,7 @@ import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.
 import { useStashStore } from '@web/stores/stashStore'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import { PoeStashTab } from '@shared/types/poe.types'
+import { useBulkyIdb } from '@web/composables/useBulkyIdb'
 
 // LOCAL TYPES
 type StashTabHierarchy = {
@@ -68,6 +74,9 @@ const emit = defineEmits<{
 
 // STATE
 const stashListRequest = stashStore.getStashTabListRequest()
+
+// COMPOSABLES
+const bulkyIdb = useBulkyIdb()
 
 // GETTERS
 const stashTabHierarchy = computed(() => {
@@ -100,6 +109,14 @@ async function fetchStash() {
 	if (stashListRequest.request.statusSuccess) {
 		emit('startTimeout')
 	}
+}
+
+/**
+ * Update the idb entry when the user (un)selects a stash tab.
+ */
+async function updateStashPropSelected(stash: PoeStashTab, selected: boolean) {
+	stash.selected = selected
+	await bulkyIdb.putStashTabs([stash])
 }
 
 // HOOKS

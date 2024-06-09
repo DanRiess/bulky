@@ -1,4 +1,4 @@
-import { BulkyItemOverrideInstance, Category } from '@shared/types/bulky.types'
+import { BulkyItemOverrideInstance, BulkyOffer, Category } from '@shared/types/bulky.types'
 import { NinjaPriceCollection, NinjaCategory } from '@shared/types/ninja.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { Id } from '@shared/types/utility.types'
@@ -18,16 +18,18 @@ interface BulkyDB extends DBSchema {
 		indexes: { 'by-tab': PoeStashTab['id']; 'by-basetype': PoeItem['baseType'] }
 	}
 	ninja_price: {
-		// key: NinjaPriceCollection['category']
-		/** String is the selected league */
-		key: [NinjaCategory, string]
+		key: [NinjaCategory, NinjaPriceCollection['league']]
 		value: NinjaPriceCollection
 	}
 	item_override: {
 		key: [BulkyItemOverrideInstance['type'], BulkyItemOverrideInstance['tier'], BulkyItemOverrideInstance['league']]
 		value: BulkyItemOverrideInstance
-		/** String is the selected league */
-		indexes: { 'by-category': [Category, string] }
+		indexes: { 'by-category': [Category, BulkyItemOverrideInstance['league']] }
+	}
+	shop_offer: {
+		key: [BulkyOffer['uuid'], BulkyOffer['league']]
+		value: BulkyOffer
+		indexes: { 'by-league': [BulkyOffer['league']] }
 	}
 }
 
@@ -63,6 +65,10 @@ export function useBulkyIdb() {
 				})
 
 				priceOverrideStore.createIndex('by-category', ['category', 'league'])
+
+				db.createObjectStore('shop_offer', {
+					keyPath: ['uuid', 'league'],
+				})
 			},
 			blocked(currentVersion, blockedVersion, event) {
 				console.log(currentVersion, blockedVersion, event)
@@ -279,6 +285,41 @@ export function useBulkyIdb() {
 		}
 	}
 
+	/**
+	 * Get all shop offers for the current league.
+	 */
+	async function getShopOffersByLeague() {
+		const configStore = useConfigStore()
+		let db: IDBPDatabase<BulkyDB> | undefined
+		const offers: BulkyOffer[] = []
+
+		try {
+			db = await initDB()
+			offers.push(...(await db.getAllFromIndex('shop_offer', 'by-league', [configStore.config.league])))
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+			return offers
+		}
+	}
+
+	/**
+	 * Put an offer to the store.
+	 */
+	async function putShopOffer(offer: BulkyOffer) {
+		let db: IDBPDatabase<BulkyDB> | undefined
+
+		try {
+			db = await initDB()
+			await db.put('shop_offer', deepToRaw(offer))
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+		}
+	}
+
 	return {
 		putStashTabs,
 		getStashTabsByLeague,
@@ -291,5 +332,7 @@ export function useBulkyIdb() {
 		getPriceCollectionByCategory,
 		putItemOverride,
 		getItemOverrideByCategory,
+		getShopOffersByLeague,
+		putShopOffer,
 	}
 }

@@ -12,6 +12,7 @@ export const useConfigStore = defineStore('configStore', () => {
 		league: 'Standard',
 		overlayKey: 'CTRL + SPACE',
 		gameWindowTitle: 'Path of Exile',
+		ign: '',
 	})
 
 	async function getUserConfig() {

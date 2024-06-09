@@ -80,5 +80,8 @@ const { timer } = useRateLimitTimer('poe', selectedStashTabLength)
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	/* Make sure that this component is on top the ul below it */
+	z-index: 1;
 }
 </style>

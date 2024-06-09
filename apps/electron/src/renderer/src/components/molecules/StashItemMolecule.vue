@@ -16,7 +16,7 @@
 					@update:model-value="updateOverrideValue"
 					ref="inputEl" />
 			</template>
-			<template v-else>{{ item.price }}</template>
+			<template v-else>{{ Math.round(toValue(item.price) * offerMultiplier * 10) / 10 }}</template>
 		</div>
 		<div class="stack-price">{{ stackPrice }}</div>
 	</li>
@@ -33,6 +33,7 @@ import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 const props = defineProps<{
 	item: BulkyItem
 	overridePrices: BulkyItemOverrideRecord
+	offerMultiplier: number
 }>()
 
 // EMITS
@@ -71,7 +72,8 @@ watch(
  * Compute the price of the entire stack.
  */
 const stackPrice = computed(() => {
-	const price = toValue(props.item.priceOverride) > 0 ? props.item.priceOverride : props.item.price
+	const price =
+		toValue(props.item.priceOverride) > 0 ? props.item.priceOverride : toValue(props.item.price) * props.offerMultiplier
 	return Math.round(toValue(price) * props.item.quantity * 10) / 10
 })
 

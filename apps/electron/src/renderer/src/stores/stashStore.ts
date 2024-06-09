@@ -109,7 +109,6 @@ export const useStashStore = defineStore('stashStore', () => {
 
 		// Find all tabs that are either new or have changed data (different name for example).
 		const add = newStashTabs.filter(newTab => !stashTabs.value.some(oldTab => isEqual(newTab, oldTab)))
-		console.log({ remove, add })
 
 		// Remove stash tabs from the state variable.
 		for (let i = remove.length - 1; i >= 0; --i) {

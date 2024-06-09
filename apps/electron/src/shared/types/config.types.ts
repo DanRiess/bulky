@@ -3,4 +3,5 @@ export type BulkyConfig = {
 	league: string
 	overlayKey: string
 	gameWindowTitle: string
+	ign: string
 }

@@ -69,7 +69,9 @@ const emit = defineEmits<{
 	position: relative;
 }
 
-.a-input-text:not(:disabled):hover::before {
+/* Show the animated border on hover or focus-visible */
+.a-input-text:has(.input-text:not(:disabled)):hover::before,
+.a-input-text:has(.input-text:not(:disabled):focus-visible)::before {
 	--show-border: 1;
 }
 

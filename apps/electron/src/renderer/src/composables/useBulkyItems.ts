@@ -44,7 +44,7 @@ export function useBulkyItems(
 			}, {} as PoeItemsByStash)
 
 			// Check if the category has changed.
-			// I did not want to create a dedicated watcher to this because I'm afraid of race conditions.
+			// I did not want to create a dedicated watcher for this because I'm afraid of race conditions.
 			// Imagine user changes category. If this watcher triggers before the category watcher,
 			// the category watcher would remove every item and we'd end up with an empty map.
 			if (items.value.entries().next().value?.[1]?.category !== appStateStore.selectedCategory) {
@@ -59,20 +59,15 @@ export function useBulkyItems(
 			getKeys(remove).forEach(stashTabId => {
 				remove[stashTabId].forEach(poeItem => deleteItem(poeItem))
 			})
-
-			// Default to sorting the items by stack price
-			// sortItems('STACKPRICE')
 		})
 	}
 
 	/**
-	 * Sort the map when either ninja prices or price overrides change.
+	 * Sort the map when either ninja prices, price overrides change or the user (un)selects a stash tab.
 	 * This will not trigger when items within the maps change, though it could (deep: true).
-	 * This will however lead to weird UX as entries will jump around while editing.
+	 * Doing that would however lead to weird UX as entries will jump around while editing.
 	 */
-	watch([prices, priceOverrides], () => {
-		sortItems()
-	})
+	watch([prices, priceOverrides, poeItems], () => sortItems())
 
 	/**
 	 * Add the stack size of a PoeItem to its corresponding BulkyItem.

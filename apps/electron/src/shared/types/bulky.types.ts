@@ -47,11 +47,6 @@ export type BulkyItemBase<T extends Category> = {
 /**
  * A collection of every implementation of BulkyItemBase throughout the app.
  * This will be used as a generic type argument for every higher level type.
- *
- * @example
- * type BulkyOffer<T extends BulkyItem = BulkyItem> = {
- * 		offerProps: offerValues
- * }
  */
 export type BulkyItem = Essence | Scarab
 

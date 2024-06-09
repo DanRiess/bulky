@@ -5,9 +5,13 @@
 			:items="items"
 			:override-prices="itemOverrides"
 			:sort-fn="sortItems"
+			:offer-multiplier="offerMultiplier"
 			@change-item-override="(item, options) => putItemOverride(item, options)" />
-		<div class="total-price">
-			<PriceAtom :price="totalPrice" />
+		<div class="total-value">
+			<PriceAtom :price="totalValue" label="Total Value:" />
+			<ButtonAtom background-color="dark" @click="emit('generateOffer', items)" :disabled="disableOfferGenerationButton">
+				Generate Offer
+			</ButtonAtom>
 		</div>
 	</div>
 </template>
@@ -23,8 +27,20 @@ import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useBulkyItems } from '@web/composables/useBulkyItems'
 import { useItemOverrides } from '@web/composables/useItemOverrides'
 import { computed, toValue } from 'vue'
-import { TotalPrice } from '@shared/types/bulky.types'
+import { BulkyItemRecord, TotalPrice } from '@shared/types/bulky.types'
 import PriceAtom from '../atoms/PriceAtom.vue'
+import ButtonAtom from '../atoms/ButtonAtom.vue'
+
+// PROPS
+const props = defineProps<{
+	offerMultiplier: number
+	disableOfferGenerationButton: boolean
+}>()
+
+// EMITS
+const emit = defineEmits<{
+	generateOffer: [items: BulkyItemRecord]
+}>()
 
 // STORES
 const stashStore = useStashStore()
@@ -40,7 +56,12 @@ const { itemOverrides, putItemOverride } = useItemOverrides()
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides)
 
 // GETTERS
-const totalPrice = computed<TotalPrice>(() => {
+
+/**
+ * Calculate the total price of all selected item stacks.
+ * Takes overrides and multipliers into account.
+ */
+const totalValue = computed<TotalPrice>(() => {
 	let price = 0
 
 	items.value.forEach(item => {
@@ -49,7 +70,7 @@ const totalPrice = computed<TotalPrice>(() => {
 			price += toValue(item.priceOverride) * item.quantity
 			return
 		}
-		price += toValue(item.price) * item.quantity
+		price += toValue(item.price) * item.quantity * props.offerMultiplier
 	})
 
 	return {
@@ -59,6 +80,10 @@ const totalPrice = computed<TotalPrice>(() => {
 })
 
 // METHODS
+
+/**
+ * Synchronize the items in the selected folders.
+ */
 async function syncSelectedFolders() {
 	// Download the selected folder's items.
 	await stashTabRequest.execute()
@@ -85,14 +110,14 @@ async function syncSelectedFolders() {
 	border-radius: var(--border-radius-medium);
 	padding: 1rem;
 	display: grid;
-	grid-template-rows: auto 1fr 2rem;
+	grid-template-rows: auto 1fr auto;
 	overflow: hidden;
 }
 
-.total-price {
-	margin-right: 2rem;
+.total-value {
 	display: flex;
 	justify-content: flex-end;
-	gap: 0.5rem;
+	align-items: center;
+	gap: 2rem;
 }
 </style>

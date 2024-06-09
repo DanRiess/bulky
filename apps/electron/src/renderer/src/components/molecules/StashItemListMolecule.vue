@@ -2,6 +2,7 @@
 	<ul class="m-stash-item-list">
 		<BaseTransition v-on="headerHooks">
 			<li class="header" v-if="items.size > 0">
+				<div class="header-option selected">Select</div>
 				<div class="header-option name" @click="sortFn('NAME')">Name</div>
 				<div class="header-option quantity" @click="sortFn('QUANT')">Qnt</div>
 				<div class="override"></div>
@@ -15,6 +16,7 @@
 				:item="item[1]"
 				:key="item[0]"
 				:override-prices="overridePrices"
+				:offer-multiplier="offerMultiplier"
 				@change-item-override="(item, options) => emit('changeItemOverride', item, options)" />
 		</CssListTransition>
 	</ul>
@@ -37,6 +39,7 @@ import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHoo
 defineProps<{
 	items: BulkyItemRecord
 	overridePrices: BulkyItemOverrideRecord
+	offerMultiplier: number
 	sortFn: (sortOption: BulkyItemSortOptions['key']) => void
 }>()
 
@@ -69,8 +72,12 @@ const headerHooks = useGenericTransitionHooks({
 .header {
 	display: grid;
 	grid-template-columns: subgrid;
-	grid-column: 3 / 8;
+	grid-column: 1 / 8;
 	cursor: default;
+}
+
+.selected {
+	grid-column: span 2;
 }
 
 .header-option {

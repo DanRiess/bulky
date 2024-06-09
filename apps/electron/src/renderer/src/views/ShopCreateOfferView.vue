@@ -13,51 +13,86 @@
 
 				<StashTabCollectionOrganism :show-refresh-button="timeout <= 0" @start-timeout="updateTimeout" />
 
-				<ShopOfferConfigMolecule />
+				<ShopOfferConfigMolecule
+					v-model:ign="ign"
+					@update:ign="updateIgn"
+					v-model:multiplier="multiplier"
+					v-model:full-buyout="fullBuyout"
+					v-model:min-buyout="minBuyout" />
 			</div>
 		</template>
+
 		<template #rightColumn>
 			<div class="item-collection flow">
-				<StashTabItemsOrganism />
-				<div class="buttons">
+				<StashTabItemsOrganism
+					:offer-multiplier="multiplier"
+					@generate-offer="generateOffer"
+					:disable-offer-generation-button="disableOfferGenerationButton" />
+				<!-- <div class="buttons">
 					<ButtonAtom>Back To My Shop</ButtonAtom>
-				</div>
+				</div> -->
 			</div>
 		</template>
 	</DefaultLayout>
 </template>
 
 <script setup lang="ts">
-import { CATEGORY } from '@shared/types/bulky.types'
+import { BulkyItem, BulkyItemRecord, BulkyOffer, CATEGORY } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
-import ButtonAtom from '@web/components/atoms/ButtonAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import LabelWithSelectMolecule from '@web/components/molecules/LabelWithSelectMolecule.vue'
 import ShopOfferConfigMolecule from '@web/components/molecules/ShopOfferConfigMolecule.vue'
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
+import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useAppStateStore } from '@web/stores/appStateStore'
+import { useAuthStore } from '@web/stores/authStore'
+import { useConfigStore } from '@web/stores/configStore'
+import { useShopStore } from '@web/stores/shopStore'
 import { useStashStore } from '@web/stores/stashStore'
-import { computed, onMounted, ref } from 'vue'
+import { BULKY_UUID } from '@web/utility/uuid'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 // STORES
+const authStore = useAuthStore()
 const appStateStore = useAppStateStore()
+const configStore = useConfigStore()
 const stashStore = useStashStore()
+const shopStore = useShopStore()
 
 // STATE
 const categories = getKeys(CATEGORY)
 const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
+const disableOfferGenerationButton = ref(false)
 
-// GETTERS
-const stashListGridRows = computed(() => {
-	return timeout.value <= 0 ? '2rem calc(100% - 2rem) 0rem' : '2rem calc(100% - 3.5rem) 1.5rem'
+// COMPOSABLES
+const { chaosPerDiv } = usePoeNinja()
+const router = useRouter()
+
+// MODEL VALUES
+
+/** Offer multiplier model value. */
+const multiplier = ref(1)
+/** Offer ign model value. Fetch from localstorage if available. */
+const ign = ref(window.localStorage.getItem('ign') ?? '')
+/** Offer minimum buyout model value. */
+const minBuyout = ref({
+	chaos: 0,
+	divine: 0,
 })
+/** Offer full buyout model value */
+const fullBuyout = ref(false)
 
 // METHODS
+
+/**
+ * Update the timeout value and call this function recursively after 1 second until the timeout is 0.
+ */
 function updateTimeout() {
 	timeout.value = Math.max(0, stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
 
-	// don't actually use setinterval, it has some weird edge cases in which it doesn't use the delay at all
+	// Don't actually use setInterval, it has some weird edge cases in which it doesn't use the delay at all.
 	if (timeout.value > 0) {
 		setTimeout(() => {
 			updateTimeout()
@@ -65,32 +100,70 @@ function updateTimeout() {
 	}
 }
 
-// LIFECYCLE
-onMounted(() => {
-	setInterval(() => {
-		timeout.value = Math.max(0, stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
-	}, 1000)
-})
+/**
+ * Custom model value update function for the ign model.
+ * In addition to the changes to the variable, also save it to local storage.
+ */
+function updateIgn(val: string) {
+	ign.value = val
+	window.localStorage.setItem('ign', val)
+}
+
+async function generateOffer(itemRecord: BulkyItemRecord) {
+	disableOfferGenerationButton.value = true
+
+	// TODO: Handle errors
+	if (!authStore.profile?.name) {
+		console.log('You have to sign in before creating a new offer')
+		disableOfferGenerationButton.value = false
+		return
+	}
+
+	if (!ign.value) {
+		console.log('Ign is required')
+		disableOfferGenerationButton.value = false
+		return
+	}
+
+	const items: BulkyItem[] = []
+
+	itemRecord.forEach(item => {
+		if (!item.selected) return
+		items.push(item)
+	})
+
+	const offer: BulkyOffer = {
+		uuid: BULKY_UUID.generateTypedUuid<BulkyOffer>(),
+		user: authStore.profile.name,
+		ign: ign.value,
+		multiplier: multiplier.value,
+		minimumBuyout: Math.round(minBuyout.value.divine * chaosPerDiv.value + minBuyout.value.chaos),
+		fullBuyout: fullBuyout.value,
+		chaosPerDiv: chaosPerDiv.value,
+		category: appStateStore.selectedCategory,
+		league: configStore.config.league,
+		items,
+	}
+
+	await shopStore.putOffer(offer)
+
+	disableOfferGenerationButton.value = false
+
+	router.push({ name: 'Shop' })
+}
 </script>
 
 <style scoped>
-/* .main-container {
-	display: grid;
-	grid-template-rows: auto minmax(0, max-content);
-	transition: grid-template-rows 0.3s ease;
-} */
-
 .item-collection {
 	display: grid;
-	grid-template-rows: auto minmax(0, max-content);
+	/* grid-template-rows: auto minmax(0, max-content); */
 	overflow: hidden;
 }
 
 /* override for the stash list */
 .stash-list {
 	display: grid;
-	grid-template-rows: v-bind(stashListGridRows);
-	grid-template-rows: 2rem 1fr max-content;
+	grid-template-rows: 2rem 1fr;
 	overflow: hidden;
 }
 
