@@ -75,6 +75,8 @@ export type BulkyOffer<T extends BulkyItem = BulkyItem> = {
 	minimumBuyout: number
 	fullBuyout: boolean
 	items: T[]
+	fullPrice: TotalPrice
+	timestamp: number
 }
 
 // FILTER TYPES

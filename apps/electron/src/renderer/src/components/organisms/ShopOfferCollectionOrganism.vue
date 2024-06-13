@@ -1,8 +1,9 @@
 <template>
-	<div class="o-sell-listings flow animated-gradient-background" data-b-override>
+	<div class="o-shop-offers flow animated-gradient-background" data-b-override>
 		<ul class="">
 			<TransitionAtom group v-on="hooks">
-				<FallbackShopOfferMolecule v-if="offers.length === 0" />
+				<FallbackShopOfferMolecule v-if="shopStore.offers.length === 0" />
+				<ShopOfferMolecule v-for="offer in shopStore.offers" :offer="offer" />
 			</TransitionAtom>
 		</ul>
 	</div>
@@ -12,9 +13,14 @@
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import FallbackShopOfferMolecule from '../molecules/fallbacks/FallbackShopOfferMolecule.vue'
+import { useShopStore } from '@web/stores/shopStore'
+import ShopOfferMolecule from '../molecules/ShopOfferMolecule.vue'
+
+// STORES
+const shopStore = useShopStore()
 
 // STATE
-const offers = []
+console.log(shopStore.offers)
 
 // HOOKS
 const hooks = useGenericTransitionHooks({
@@ -25,7 +31,7 @@ const hooks = useGenericTransitionHooks({
 </script>
 
 <style scoped>
-.o-sell-listings {
+.o-shop-offers {
 	padding: 1rem 0.5rem;
 	border-radius: var(--border-radius-medium);
 	text-align: center;

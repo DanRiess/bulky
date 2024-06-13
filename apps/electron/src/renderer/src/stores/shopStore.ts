@@ -7,7 +7,7 @@ export const useShopStore = defineStore('shopStore', () => {
 	const bulkyIdb = useBulkyIdb()
 
 	// STATE
-	const offers: Ref<BulkyOffer[]> = ref([])
+	const offers = ref([]) as Ref<BulkyOffer[]>
 
 	// METHODS
 
@@ -19,26 +19,6 @@ export const useShopStore = defineStore('shopStore', () => {
 	async function initialize() {
 		offers.value = await bulkyIdb.getShopOffersByLeague()
 	}
-
-	/**
-	 * Generate a reactive BulkyOffer.
-	 * Use this as reactive baseline when creating a new offer.
-	 * Only push this to the 'offers' state variable on user request and after validation.
-	 */
-	// function createReactiveOffer(): Ref<BulkyOffer> {
-	// 	return ref({
-	// 		uuid: BULKY_UUID.generateTypedUuid<BulkyOffer>(),
-	// 		user: authStore.profile?.name ?? '',
-	// 		ign: configStore.config.ign,
-	// 		league: configStore.config.league,
-	// 		category: appStateStore.selectedCategory,
-	// 		chaosPerDiv,
-	// 		multiplier: 1,
-	// 		minimumBuyout: 0,
-	// 		fullBuyout: false,
-	// 		items: [],
-	// 	})
-	// }
 
 	/**
 	 * Retrieve an offer by its uuid.

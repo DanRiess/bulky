@@ -66,9 +66,11 @@ export function useBulkyIdb() {
 
 				priceOverrideStore.createIndex('by-category', ['category', 'league'])
 
-				db.createObjectStore('shop_offer', {
+				const shopOfferStore = db.createObjectStore('shop_offer', {
 					keyPath: ['uuid', 'league'],
 				})
+
+				shopOfferStore.createIndex('by-league', ['league'])
 			},
 			blocked(currentVersion, blockedVersion, event) {
 				console.log(currentVersion, blockedVersion, event)

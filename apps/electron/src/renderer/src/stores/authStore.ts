@@ -26,11 +26,21 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Attempt to refetch both of these if not.
 	 */
 	async function initialize() {
+		// In test mode, initialize a random user profile.
+		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+			profile.value = {
+				name: 'Chavincar',
+				uuid: BULKY_UUID.generateTypedUuid<PoeProfile>(),
+			}
+		}
+
+		// Get the access token.
 		const token = await getAccessToken()
 		if (!token) return
 
 		isLoggedIn.value = true
 
+		// Get the profile if it is not initialized yet.
 		if (!profile.value) {
 			profile.value = await getProfile()
 		}

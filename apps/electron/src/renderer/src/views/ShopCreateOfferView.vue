@@ -13,7 +13,7 @@
 
 				<StashTabCollectionOrganism :show-refresh-button="timeout <= 0" @start-timeout="updateTimeout" />
 
-				<ShopOfferConfigMolecule
+				<ShopCreateOfferConfigMolecule
 					v-model:ign="ign"
 					@update:ign="updateIgn"
 					v-model:multiplier="multiplier"
@@ -41,9 +41,10 @@ import { BulkyItem, BulkyItemRecord, BulkyOffer, CATEGORY } from '@shared/types/
 import { getKeys } from '@shared/types/utility.types'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import LabelWithSelectMolecule from '@web/components/molecules/LabelWithSelectMolecule.vue'
-import ShopOfferConfigMolecule from '@web/components/molecules/ShopOfferConfigMolecule.vue'
+import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
+import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
 import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useAuthStore } from '@web/stores/authStore'
@@ -132,6 +133,8 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 		items.push(item)
 	})
 
+	const fullPrice = useAggregateItemPrice(itemRecord, multiplier.value, chaosPerDiv)
+
 	const offer: BulkyOffer = {
 		uuid: BULKY_UUID.generateTypedUuid<BulkyOffer>(),
 		user: authStore.profile.name,
@@ -143,6 +146,8 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 		category: appStateStore.selectedCategory,
 		league: configStore.config.league,
 		items,
+		timestamp: Date.now(),
+		fullPrice: fullPrice.value,
 	}
 
 	await shopStore.putOffer(offer)
