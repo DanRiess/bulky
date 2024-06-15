@@ -20,12 +20,14 @@ import { useAuthStore } from './stores/authStore'
 import { useLeagueStore } from './stores/leagueStore'
 import NavbarOrganism from './components/organisms/NavbarOrganism.vue'
 import { useRouteTransitionHooks } from './transitions/routeTransitionHooks'
+import { useShopStore } from './stores/shopStore'
 
 // STORES
 const configStore = useConfigStore()
 const stashStore = useStashStore()
 const authStore = useAuthStore()
 const leagueStore = useLeagueStore()
+const shopStore = useShopStore()
 
 // STATE
 const mainAppWindow = ref<HTMLElement | null>(null)
@@ -62,6 +64,7 @@ configStore.getUserConfig()
 stashStore.initialize()
 authStore.initialize()
 leagueStore.initialize()
+shopStore.initialize()
 
 // HOOKS
 onMounted(() => {

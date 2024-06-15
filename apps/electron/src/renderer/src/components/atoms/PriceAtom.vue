@@ -46,6 +46,7 @@ const templateColumns = computed(() => {
 	grid-template-columns: v-bind(templateColumns);
 	gap: 0.5rem;
 	transition: 300ms ease;
+	width: max-content;
 }
 
 .currency-section {

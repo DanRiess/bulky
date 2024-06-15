@@ -12,6 +12,12 @@ import TransitionAtom from './TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 
+export type TooltipPropsWithoutActive = {
+	position?: 'top' | 'bottom' | 'right'
+	transitionDirection?: 'toTop' | 'toBottom' | 'toRight'
+	popupAlignment?: 'left' | 'right'
+}
+
 const props = withDefaults(
 	defineProps<{
 		active: boolean

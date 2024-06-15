@@ -7,7 +7,7 @@ export const useShopStore = defineStore('shopStore', () => {
 	const bulkyIdb = useBulkyIdb()
 
 	// STATE
-	const offers = ref([]) as Ref<BulkyOffer[]>
+	const offers: Ref<BulkyOffer[]> = ref([])
 
 	// METHODS
 
@@ -25,6 +25,24 @@ export const useShopStore = defineStore('shopStore', () => {
 	 */
 	function getOfferByUuid(uuid: BulkyOffer['uuid']): BulkyOffer | undefined {
 		return offers.value.find(offer => offer.uuid === uuid)
+	}
+
+	/**
+	 * Proxy function to get the 'offers' ref and avoid simplifying its type.
+	 *
+	 * Using the exported 'offers' in components (i.e. shopStore.offers or storeToRefs(offers)) will
+	 * for some reason mess up its type. These offers then cannot be passed to functions
+	 * anymore without throwing a ts error.
+	 *
+	 * @example
+	 * const { offers } = storeToRefs(shopStore)
+	 * shopStore.putOffer(offers.value[0]) // will throw, although it shouldn't
+	 *
+	 * const offers = shopStore.getOffers()
+	 * shopStore.putOffer(offers.value[0]) // ok!
+	 */
+	function getOffers() {
+		return offers
 	}
 
 	/**
@@ -53,6 +71,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		offers,
 		// createReactiveOffer,
 		initialize,
+		getOffers,
 		getOfferByUuid,
 		putOffer,
 	}
