@@ -1,7 +1,7 @@
 <template>
 	<div class="o-shop-offers">
 		<FallbackShopOfferMolecule v-if="shopStore.offers.length === 0" />
-		<ShopOfferMolecule v-for="offer in offers" :offer="offer" />
+		<ShopOfferMolecule v-for="(_, idx) in shopStore.offers" v-model="shopStore.offers[idx]" />
 	</div>
 </template>
 
@@ -12,9 +12,6 @@ import ShopOfferMolecule from '../molecules/ShopOfferMolecule.vue'
 
 // STORES
 const shopStore = useShopStore()
-
-// STATE
-const offers = shopStore.getOffers()
 </script>
 
 <style scoped>

@@ -30,6 +30,7 @@ import { computed, toValue } from 'vue'
 import { BulkyItemRecord, TotalPrice } from '@shared/types/bulky.types'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
+import { useAppStateStore } from '@web/stores/appStateStore'
 
 // PROPS
 const props = defineProps<{
@@ -44,14 +45,17 @@ const emit = defineEmits<{
 
 // STORES
 const stashStore = useStashStore()
+const appStateStore = useAppStateStore()
 
 // STATE
 const { selectedStashTabs } = storeToRefs(stashStore)
-const stashTabRequest = useFetchStashItems(selectedStashTabs)
+const { selectedCategory } = storeToRefs(appStateStore)
 
 // COMPOSABLES
-const { categoryFilteredItemsByStash, updateItemsByStash } = usePoeItems(selectedStashTabs)
-const { prices, chaosPerDiv } = usePoeNinja()
+const stashTabRequest = useFetchStashItems(selectedStashTabs)
+const { filterItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
+const categoryFilteredItemsByStash = filterItemsByCategory(appStateStore.selectedCategory)
+const { prices, chaosPerDiv } = usePoeNinja(selectedCategory)
 const { itemOverrides, putItemOverride } = useItemOverrides()
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides)
 

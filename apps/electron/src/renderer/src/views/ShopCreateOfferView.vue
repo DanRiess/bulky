@@ -51,8 +51,9 @@ import { useAuthStore } from '@web/stores/authStore'
 import { useConfigStore } from '@web/stores/configStore'
 import { useShopStore } from '@web/stores/shopStore'
 import { useStashStore } from '@web/stores/stashStore'
+import { deepToRaw } from '@web/utility/deepToRaw'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { ref } from 'vue'
+import { UnwrapRef, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 // STORES
@@ -68,7 +69,7 @@ const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.no
 const disableOfferGenerationButton = ref(false)
 
 // COMPOSABLES
-const { chaosPerDiv } = usePoeNinja()
+const { chaosPerDiv } = usePoeNinja(appStateStore.selectedCategory)
 const router = useRouter()
 
 // MODEL VALUES
@@ -126,19 +127,21 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 		return
 	}
 
-	const items: BulkyItem[] = []
+	const items: UnwrapRef<BulkyItem>[] = []
 
 	itemRecord.forEach(item => {
 		if (!item.selected) return
-		items.push(item)
+		items.push(deepToRaw(item))
 	})
 
 	const fullPrice = useAggregateItemPrice(itemRecord, multiplier.value, chaosPerDiv)
+	const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
 
 	const offer: BulkyOffer = {
 		uuid: BULKY_UUID.generateTypedUuid<BulkyOffer>(),
 		user: authStore.profile.name,
 		ign: ign.value,
+		stashTabIds,
 		multiplier: multiplier.value,
 		minimumBuyout: Math.round(minBuyout.value.divine * chaosPerDiv.value + minBuyout.value.chaos),
 		fullBuyout: fullBuyout.value,
@@ -146,8 +149,10 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 		category: appStateStore.selectedCategory,
 		league: configStore.config.league,
 		items,
-		timestamp: Date.now(),
+		lastUploaded: 0,
 		fullPrice: fullPrice.value,
+		active: false,
+		autoSync: true,
 	}
 
 	await shopStore.putOffer(offer)

@@ -34,6 +34,13 @@ export const useStashStore = defineStore('stashStore', () => {
 	// METHODS
 
 	/**
+	 * Get a stash tab by its id.
+	 */
+	function getStashTabById(id: PoeStashTab['id']) {
+		return stashTabs.value.find(t => t.id === id)
+	}
+
+	/**
 	 * Initialize the stashes from the last session / save.
 	 * Should only be called on app startup or when the league config changes.
 	 */
@@ -179,6 +186,7 @@ export const useStashStore = defineStore('stashStore', () => {
 		lastListFetch,
 		fetchTimeout,
 		initialize,
+		getStashTabById,
 		getStashTabListRequest,
 		reset,
 	}

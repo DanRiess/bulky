@@ -89,7 +89,6 @@ const iconComponent = computed(() => {
 <style scoped>
 .svg-container {
 	position: relative;
-	width: 100%;
 	height: 100%;
 }
 

@@ -19,14 +19,14 @@
 import ExpandSectionAtom from '../atoms/ExpandSectionAtom.vue'
 import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
-import { ref } from 'vue'
+import { UnwrapRef, ref } from 'vue'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
 import { BulkyItem } from '@shared/types/bulky.types'
 import ShopOfferItemAtom from '../atoms/ShopOfferItemAtom.vue'
 
 // PROPS
 defineProps<{
-	items: BulkyItem[]
+	items: BulkyItem[] | UnwrapRef<BulkyItem>[]
 }>()
 
 // STATE

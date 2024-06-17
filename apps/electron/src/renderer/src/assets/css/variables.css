@@ -19,6 +19,12 @@
 	--color-purple-dark: var(--dark-purple);
 	--color-purple-bright: var(--phlox);
 
+	/* API Colors (https: //mui.com/material-ui/customization/palette/) */
+	--color-success: #66bb6a;
+	--color-warning: #ffa726;
+	--color-info: #29b6f6;
+	--color-error: #f44336;
+
 
 	/* Utility Colors */
 	--color-light-200: #f0f0f0;

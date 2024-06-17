@@ -1,6 +1,6 @@
-import { toRaw, isRef, isReactive, isProxy, toValue } from 'vue'
+import { toRaw, isRef, isReactive, isProxy, toValue, UnwrapNestedRefs } from 'vue'
 
-export function deepToRaw<T extends Record<string, any>>(sourceObj: T): T {
+export function deepToRaw<T extends Record<string, any>>(sourceObj: T): UnwrapNestedRefs<T> {
 	const objectIterator = (input: any): any => {
 		if (Array.isArray(input)) {
 			return input.map(item => objectIterator(item))

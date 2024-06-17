@@ -6,14 +6,15 @@ import {
 	NinjaCurrencyDto,
 	NinjaItemDto,
 } from '@shared/types/ninja.types'
-import { useAppStateStore } from '@web/stores/appStateStore'
-import { ref, watch } from 'vue'
+import { MaybeRef, Ref, ref, toValue, watch } from 'vue'
 import { useBulkyIdb } from './useBulkyIdb'
 import { Category } from '@shared/types/bulky.types'
 import { useApi } from '@web/api/useApi'
 import { BULKY_ID } from '@web/utility/typedId'
 import { nodeApi } from '@web/api/nodeApi'
 import { useConfigStore } from '@web/stores/configStore'
+import { isWatchable } from '@shared/types/utility.types'
+import { ApiStatus } from '@web/api/api.types'
 
 const UPDATE_INTERVAL = 30 * 60 * 1000
 
@@ -21,44 +22,56 @@ const UPDATE_INTERVAL = 30 * 60 * 1000
  * Composable that will hold the prices of the currently selected category.
  * Categories will be updated every 30 minutes if they are in use.
  */
-export function usePoeNinja() {
-	const appStateStore = useAppStateStore()
-
+export function usePoeNinja(category: MaybeRef<Category>) {
 	const prices = ref<NinjaPriceRecord>(new Map())
+	const loadingStatus = ref<ApiStatus>('IDLE')
 	const chaosPerDiv = ref(0)
 
 	// Load the current category's prices whenever the category changes.
-	watch(
-		() => appStateStore.selectedCategory,
-		category => {
-			updateStateVariable(category).then(state => {
-				prices.value = state
+	if (isWatchable(category)) {
+		watch(
+			category,
+			category => {
+				loadingStatus.value = 'PENDING'
 
-				// Get the current chaos per div conversion rate.
-				getChaosPerDiv().then(price => {
-					chaosPerDiv.value = price
-				})
-			})
-		},
-		{ immediate: true }
-	)
+				updateStateVariables(prices, chaosPerDiv, category)
+					.then(() => (loadingStatus.value = 'SUCCESS'))
+					.catch(() => (loadingStatus.value = 'ERROR'))
+			},
+			{ immediate: true }
+		)
+	}
+
+	// If 'category' is not watchable, load it here once
+	else {
+		loadingStatus.value = 'PENDING'
+
+		updateStateVariables(prices, chaosPerDiv, category)
+			.then(() => (loadingStatus.value = 'SUCCESS'))
+			.catch(() => (loadingStatus.value = 'ERROR'))
+	}
 
 	// Reload prices every 30 minutes.
 	setInterval(() => {
-		updateStateVariable(appStateStore.selectedCategory).then(state => {
-			prices.value = state
+		loadingStatus.value = 'PENDING'
 
-			// Get the current chaos per div conversion rate
-			getChaosPerDiv().then(price => {
-				chaosPerDiv.value = price
-			})
-		})
+		updateStateVariables(prices, chaosPerDiv, category)
+			.then(() => (loadingStatus.value = 'SUCCESS'))
+			.catch(() => (loadingStatus.value = 'ERROR'))
 	}, UPDATE_INTERVAL + 60 * 1000)
 
-	return { prices, chaosPerDiv }
+	return { prices, chaosPerDiv, loadingStatus }
 }
 
 // LOCAL API
+
+/**
+ * Ease of use function to update the state variables.
+ */
+async function updateStateVariables(prices: Ref<NinjaPriceRecord>, chaosPerDiv: Ref<number>, category: MaybeRef<Category>) {
+	prices.value = await getPricesByCategory(toValue(category))
+	chaosPerDiv.value = await getChaosPerDiv()
+}
 
 /**
  * This function will get the current chaos per div ratio.
@@ -78,7 +91,7 @@ async function getChaosPerDiv() {
 /**
  * Load the current category's prices from idb.
  */
-async function updateStateVariable(category: Category): Promise<NinjaPriceRecord> {
+async function getPricesByCategory(category: Category): Promise<NinjaPriceRecord> {
 	// Try to find the correct poe.ninja category.
 	const ninjaCategory = bulkyToNinjaCategory(category)
 	if (!ninjaCategory) return new Map()

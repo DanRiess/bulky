@@ -9,9 +9,10 @@
 
 <script setup lang="ts">
 import { BulkyItem } from '@shared/types/bulky.types'
+import { UnwrapRef } from 'vue'
 
 defineProps<{
-	item: BulkyItem
+	item: BulkyItem | UnwrapRef<BulkyItem>
 }>()
 </script>
 

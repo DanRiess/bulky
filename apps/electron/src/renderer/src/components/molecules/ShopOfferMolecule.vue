@@ -8,21 +8,27 @@
 		<ShopOfferConfigMolecule :offer="offer" />
 		<section class="footer-section">
 			<div class="info-toggles">
-				Active
+				<ActiveOrInactiveAtom :active="offer.active" />
 				<div>&ndash;</div>
-				<SvgIconAtom name="syncDisabled" />
+				<SvgIconAtom v-bind="autoSyncProps" @click="toggleAutoSync" />
+				<TransitionAtom v-on="transitionHooks">
+					<div class="auto-sync-tooltip" v-if="showAutoSyncTooltip">
+						{{ offer.autoSync ? 'Auto Sync Enabled' : 'Auto Sync Disabled' }}
+					</div>
+				</TransitionAtom>
 			</div>
 			<div class="actions">
 				<SvgButtonWithPopupMolecule
 					:svg-props="{
 						name: 'refresh',
-						rotate: testRequestPendingState,
-						useGradient: testRequestPendingState,
+						rotate: refreshState === 'PENDING',
+						useGradient: refreshState === 'PENDING',
 					}"
 					:tooltip-props="tooltipProps"
 					background-color="dark"
-					>Refresh Offer</SvgButtonWithPopupMolecule
-				>
+					@click="refreshOffer(offer.uuid)">
+					Refresh Offer
+				</SvgButtonWithPopupMolecule>
 
 				<SvgButtonWithPopupMolecule :svg-props="{ name: 'edit' }" :tooltip-props="tooltipProps" background-color="dark">
 					Edit Offer
@@ -45,20 +51,36 @@ import ShopOfferConfigMolecule from './ShopOfferConfigMolecule.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import SvgButtonWithPopupMolecule from './SvgButtonWithPopupMolecule.vue'
 import { TooltipPropsWithoutActive } from '../atoms/ButtonTooltipAtom.vue'
+import ActiveOrInactiveAtom from '../atoms/ActiveOrInactiveAtom.vue'
+import TransitionAtom from '../atoms/TransitionAtom.vue'
+import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+import { useBulkyIdb } from '@web/composables/useBulkyIdb'
+import { ApiStatus } from '@web/api/api.types'
+import { useShopStore } from '@web/stores/shopStore'
 
-// PROPS
-const props = defineProps<{
-	offer: BulkyOffer
-}>()
+// STORES
+const shopStore = useShopStore()
+
+// MODELS
+const offer = defineModel<BulkyOffer>({ required: true })
 
 // STATE
-const testRequestPendingState = ref(true)
+const bulkyIdb = useBulkyIdb()
+const showAutoSyncTooltip = ref(false)
+const refreshState = ref<ApiStatus>('IDLE')
+
+// COMPOSABLES
+const transitionHooks = useGenericTransitionHooks({
+	duration: 0.15,
+	opacity: 0,
+	scaleX: 0.01,
+})
 
 // GETTERS
 const imgSource = computed(() => {
-	if (props.offer.category === 'ESSENCE') {
+	if (offer.value.category === 'ESSENCE') {
 		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQ3Iiwic2NhbGUiOjF9XQ/a69c5c06cc/Hatred7.png'
-	} else if (props.offer.category === 'SCARAB') {
+	} else if (offer.value.category === 'SCARAB') {
 		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9HcmVhdGVyU2NhcmFiQnJlYWNoIiwic2NhbGUiOjF9XQ/b129897f73/GreaterScarabBreach.png'
 	}
 	return ''
@@ -68,6 +90,31 @@ const tooltipProps: TooltipPropsWithoutActive = {
 	position: 'top',
 	transitionDirection: 'toTop',
 	popupAlignment: 'left',
+}
+
+const autoSyncProps = computed(() => {
+	return {
+		name: offer.value.autoSync ? 'sync' : 'syncDisabled',
+		color: offer.value.autoSync ? 'var(--color-success)' : 'var(--color-error)',
+		cursor: 'pointer',
+	} as const
+})
+
+// METHODS
+async function toggleAutoSync() {
+	offer.value.autoSync = !offer.value.autoSync
+	await bulkyIdb.putShopOffer(offer.value)
+
+	if (showAutoSyncTooltip.value === true) return
+
+	showAutoSyncTooltip.value = true
+	setTimeout(() => {
+		showAutoSyncTooltip.value = false
+	}, 2000)
+}
+
+function refreshOffer(uuid: BulkyOffer['uuid']) {
+	shopStore.refreshOffer(uuid, refreshState)
 }
 </script>
 
@@ -87,6 +134,7 @@ const tooltipProps: TooltipPropsWithoutActive = {
 
 .footer-section {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 }
 
@@ -94,10 +142,21 @@ const tooltipProps: TooltipPropsWithoutActive = {
 	display: flex;
 	height: 1.5rem;
 	gap: 0.5rem;
+	user-select: none;
 }
 
 .actions {
 	display: flex;
 	gap: 0.5rem;
+}
+
+.auto-sync-tooltip {
+	font-size: 0.8rem;
+	transform-origin: left;
+	background-color: black;
+	padding: 0.25rem;
+	border-radius: var(--border-radius-small);
+	display: flex;
+	align-items: center;
 }
 </style>

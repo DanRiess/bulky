@@ -25,6 +25,9 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 
 		await Promise.allSettled(
 			toValue(stashTabs).map(async tab => {
+				// Block the request if the tab synchronized less than 30 seconds ago.
+				if (Date.now() - tab.lastSnapshot < 30000) return
+
 				const request = useApi(`${tab.id}ItemRequest`, poeApi.getStashTabItems)
 				await request.exec(tab)
 
@@ -39,10 +42,10 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 				}
 
 				// Convert dto to PoeItem.
-				const bulkyItems = request.data.value.stash.items.map(poeItem => generatePoeItemFromDto(poeItem, tab))
+				const poeItems = request.data.value.stash.items.map(poeItem => generatePoeItemFromDto(poeItem, tab))
 
 				// Save the transformed items to the data object.
-				data.value ? (data.value[tab.id] = bulkyItems) : (data.value = { [tab.id]: bulkyItems })
+				data.value ? (data.value[tab.id] = poeItems) : (data.value = { [tab.id]: poeItems })
 
 				// update the snapshot time and save it to idb
 				tab.lastSnapshot = Date.now()

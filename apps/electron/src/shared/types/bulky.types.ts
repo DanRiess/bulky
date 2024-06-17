@@ -1,7 +1,8 @@
 import { Essence, EssenceFilterField } from '@web/categories/essence/essence.types'
 import { MaybeComputedRef, ObjectValues, Uuid } from './utility.types'
-import { ComputedRef } from 'vue'
+import { ComputedRef, UnwrapRef } from 'vue'
 import { Scarab } from '@web/categories/scarab/scarab.types'
+import { PoeStashTab } from './poe.types'
 
 // APP STATE TYPES
 
@@ -70,13 +71,16 @@ export type BulkyOffer<T extends BulkyItem = BulkyItem> = {
 	ign: string
 	league: string
 	category: T['category']
+	stashTabIds: PoeStashTab['id'][]
 	chaosPerDiv: number
 	multiplier: number
 	minimumBuyout: number
 	fullBuyout: boolean
-	items: T[]
+	items: UnwrapRef<T>[]
 	fullPrice: TotalPrice
-	timestamp: number
+	lastUploaded: number
+	active: boolean
+	autoSync: boolean
 }
 
 // FILTER TYPES

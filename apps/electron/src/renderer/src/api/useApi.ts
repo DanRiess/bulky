@@ -72,7 +72,6 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 	 */
 	async function exec(...args: Parameters<TFn>) {
 		try {
-			console.log({ args })
 			const rateLimitStore = useRateLimitStore()
 
 			// transform the config. Doesn't work anymore since I've changed the request structure.

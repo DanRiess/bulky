@@ -4,8 +4,8 @@ import { useBulkyIdb } from './useBulkyIdb'
 import { compareObjectsByBaseType } from '@web/utility/compareFunctions'
 import { MaybeRefOrGetter, computed, ref, toValue, watch } from 'vue'
 import { PoeItemsByStash, PoeStashTab } from '@shared/types/poe.types'
-import { useAppStateStore } from '@web/stores/appStateStore'
 import { BULKY_CATEGORIES } from '@web/utility/category'
+import { Category } from '@shared/types/bulky.types'
 
 /**
  * Compose a ref of items from currently selected stash tabs.
@@ -13,18 +13,8 @@ import { BULKY_CATEGORIES } from '@web/utility/category'
  * A change can be forced by calling the exposed 'update' function, i. e. after a folder sync.
  */
 export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
-	const appStateStore = useAppStateStore()
 	const bulkyIdb = useBulkyIdb()
 	const itemsByStash = ref<PoeItemsByStash>({})
-
-	const categoryFilteredItemsByStash = computed(() => {
-		return getKeys(itemsByStash.value).reduce((prev, curr) => {
-			prev[curr] = itemsByStash.value[curr].filter(item =>
-				BULKY_CATEGORIES.isBaseTypeInCategory(appStateStore.selectedCategory, item.baseType)
-			)
-			return prev
-		}, {} as PoeItemsByStash)
-	})
 
 	// Load items of selected tabs from idb.
 	;(async function initialize() {
@@ -56,6 +46,19 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 					itemsByStash.value[tab.id] = newItems
 				})
 			})
+		})
+	}
+
+	// METHODS
+
+	function filterItemsByCategory(category: Category) {
+		return computed(() => {
+			return getKeys(itemsByStash.value).reduce((prev, curr) => {
+				prev[curr] = itemsByStash.value[curr].filter(item =>
+					BULKY_CATEGORIES.isBaseTypeInCategory(category, item.baseType)
+				)
+				return prev
+			}, {} as PoeItemsByStash)
 		})
 	}
 
@@ -114,5 +117,5 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		await bulkyIdb.putItems(add)
 	}
 
-	return { itemsByStash, categoryFilteredItemsByStash, updateItemsByStash }
+	return { itemsByStash, updateItemsByStash, filterItemsByCategory }
 }
