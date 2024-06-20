@@ -1,8 +1,11 @@
 <template>
 	<div class="m-shop-offer flow animated-gradient-background" data-b-override>
 		<section class="title-section">
-			<img :src="imgSource" decoding="async" loading="lazy" /> &ndash;
-			<PriceAtom label="Value:" :price="offer.fullPrice" />
+			<div class="offer-main-info">
+				<img :src="imgSource" decoding="async" loading="lazy" /> &ndash;
+				<PriceAtom label="" :price="divPrice" />
+			</div>
+			<span>Posted: {{ timeAgo }}</span>
 		</section>
 		<ShopOfferItemCollectionMolecule :items="offer.items" />
 		<ShopOfferConfigMolecule :offer="offer" />
@@ -30,7 +33,18 @@
 					Refresh Offer
 				</SvgButtonWithPopupMolecule>
 
-				<SvgButtonWithPopupMolecule :svg-props="{ name: 'edit' }" :tooltip-props="tooltipProps" background-color="dark">
+				<SvgButtonWithPopupMolecule
+					:svg-props="{ name: 'edit' }"
+					:tooltip-props="tooltipProps"
+					background-color="dark"
+					@click="
+						router.push({
+							name: 'EditOffer',
+							params: {
+								uuid: offer.uuid,
+							},
+						})
+					">
 					Edit Offer
 				</SvgButtonWithPopupMolecule>
 
@@ -57,6 +71,9 @@ import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHoo
 import { useBulkyIdb } from '@web/composables/useBulkyIdb'
 import { ApiStatus } from '@web/api/api.types'
 import { useShopStore } from '@web/stores/shopStore'
+import { useTimeAgo } from '@vueuse/core'
+import { useChaosToDiv } from '@web/composables/useChaosToDiv'
+import { useRouter } from 'vue-router'
 
 // STORES
 const shopStore = useShopStore()
@@ -70,6 +87,9 @@ const showAutoSyncTooltip = ref(false)
 const refreshState = ref<ApiStatus>('IDLE')
 
 // COMPOSABLES
+const router = useRouter()
+const timeAgo = useTimeAgo(() => offer.value.lastUploaded)
+const divPrice = useChaosToDiv(() => offer.value.fullPrice, offer.value.chaosPerDiv)
 const transitionHooks = useGenericTransitionHooks({
 	duration: 0.15,
 	opacity: 0,
@@ -127,6 +147,11 @@ function refreshOffer(uuid: BulkyOffer['uuid']) {
 }
 
 .title-section {
+	display: flex;
+	justify-content: space-between;
+}
+
+.offer-main-info {
 	display: flex;
 	height: 1.5rem;
 	gap: 0.5rem;

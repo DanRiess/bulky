@@ -134,7 +134,7 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 		items.push(deepToRaw(item))
 	})
 
-	const fullPrice = useAggregateItemPrice(itemRecord, multiplier.value, chaosPerDiv)
+	const fullPrice = useAggregateItemPrice(itemRecord, multiplier.value)
 	const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
 
 	const offer: BulkyOffer = {

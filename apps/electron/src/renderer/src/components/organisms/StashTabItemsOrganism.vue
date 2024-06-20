@@ -8,10 +8,19 @@
 			:offer-multiplier="offerMultiplier"
 			@change-item-override="(item, options) => putItemOverride(item, options)" />
 		<div class="total-value">
-			<PriceAtom :price="totalValue" label="Total Value:" />
-			<ButtonAtom background-color="dark" @click="emit('generateOffer', items)" :disabled="disableOfferGenerationButton">
-				Generate Offer
-			</ButtonAtom>
+			<PriceAtom :price="divValue" label="Total Value:" />
+			<template v-if="!editOffer">
+				<ButtonAtom
+					background-color="dark"
+					@click="emit('generateOffer', items)"
+					:disabled="disableOfferGenerationButton">
+					Generate Offer
+				</ButtonAtom>
+			</template>
+			<template v-else>
+				<ButtonAtom background-color="dark">Edit Offer</ButtonAtom>
+				<ButtonAtom background-color="dark">Cancel</ButtonAtom>
+			</template>
 		</div>
 	</div>
 </template>
@@ -26,16 +35,18 @@ import StashItemListMolecule from '../molecules/StashItemListMolecule.vue'
 import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useBulkyItems } from '@web/composables/useBulkyItems'
 import { useItemOverrides } from '@web/composables/useItemOverrides'
-import { computed, toValue } from 'vue'
-import { BulkyItemRecord, TotalPrice } from '@shared/types/bulky.types'
+import { BulkyItemRecord } from '@shared/types/bulky.types'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useAppStateStore } from '@web/stores/appStateStore'
+import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
+import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 
 // PROPS
 const props = defineProps<{
 	offerMultiplier: number
-	disableOfferGenerationButton: boolean
+	disableOfferGenerationButton?: boolean
+	editOffer?: boolean
 }>()
 
 // EMITS
@@ -65,23 +76,8 @@ const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices,
  * Calculate the total price of all selected item stacks.
  * Takes overrides and multipliers into account.
  */
-const totalValue = computed<TotalPrice>(() => {
-	let price = 0
-
-	items.value.forEach(item => {
-		if (!item.selected) return
-		if (toValue(item.priceOverride) > 0) {
-			price += toValue(item.priceOverride) * item.quantity
-			return
-		}
-		price += toValue(item.price) * item.quantity * props.offerMultiplier
-	})
-
-	return {
-		divine: Math.floor(price / chaosPerDiv.value),
-		chaos: Math.floor(price % chaosPerDiv.value),
-	}
-})
+const chaosValue = useAggregateItemPrice(items, props.offerMultiplier)
+const divValue = useChaosToDiv(chaosValue, chaosPerDiv)
 
 // METHODS
 

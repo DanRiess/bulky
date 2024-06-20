@@ -13,12 +13,46 @@ import { ApiStatus } from '@web/api/api.types'
 import { sleepTimer } from '@web/utility/sleep'
 import { useFetchStashItems } from '@web/composables/useFetchStashItems'
 
+/** TTL of any given offer. Default to 15 minutes. */
+const offerTtl = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
+
+/** Declare the interval for automatic offer resync. Default to 10 minutes. */
+const autoSyncInterval = parseInt(import.meta.env.VITE_OFFER_AUTOSYNC_INTERVAL ?? 600000)
+
 export const useShopStore = defineStore('shopStore', () => {
 	const bulkyIdb = useBulkyIdb()
 	const stashStore = useStashStore()
 
 	// STATE
 	const offers = ref<BulkyOffer[]>([])
+
+	/**
+	 * Every 30 seconds, check all offers.
+	 * Decide if the active status has to change.
+	 * If auto resync is enabled, reupload the offer if the appropriate amount of time has passed.
+	 */
+	setInterval(async function () {
+		for await (const offer of offers.value) {
+			// Define flags for deciding whether the offer has changed and needs to be put into IDB.
+			const active = offer.active
+
+			const timeSinceLastUpdate = Date.now() - offer.lastUploaded
+
+			// Check the active property.
+			offer.active = timeSinceLastUpdate < offerTtl
+
+			// Check if the project needs to be refreshed.
+			if (offer.autoSync && timeSinceLastUpdate > autoSyncInterval) {
+				console.log(`auto sync triggered for offer ${offer.category}`)
+				await refreshOffer(offer.uuid)
+			}
+
+			// Refreshing the offer already puts it into IDB, so this condition is only relevant otherwise.
+			else if (active !== offer.active) {
+				bulkyIdb.putShopOffer(offer)
+			}
+		}
+	}, 30000)
 
 	// METHODS
 
@@ -82,7 +116,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		const poeItems = filterItemsByCategory(offer.category)
 
 		// Generate BulkyItems from the PoeItems with prices and overrides.
-		const { prices, chaosPerDiv, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
+		const { prices, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
 		const { itemOverrides } = useItemOverrides()
 		const { items: itemRecord } = useBulkyItems(poeItems, prices, itemOverrides)
 
@@ -94,7 +128,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			await updateItemsByStash(stashTabRequest.data.value)
 		}
 
-		// Wait while the prices are being loaded from server or IDB.
+		// Wait while ninja prices are being loaded from server or IDB.
 		while (ninjaLoadingStatus.value === 'IDLE' || ninjaLoadingStatus.value === 'PENDING') {
 			await sleepTimer(150)
 		}
@@ -108,7 +142,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		})
 
 		// Calculate the full price.
-		const fullPrice = useAggregateItemPrice(itemRecord, offer.multiplier, chaosPerDiv)
+		const fullPrice = useAggregateItemPrice(itemRecord, offer.multiplier)
 
 		// Edit and reupload the offer.
 		offer.fullPrice = fullPrice.value

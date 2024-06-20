@@ -77,7 +77,7 @@ export type BulkyOffer<T extends BulkyItem = BulkyItem> = {
 	minimumBuyout: number
 	fullBuyout: boolean
 	items: UnwrapRef<T>[]
-	fullPrice: TotalPrice
+	fullPrice: number
 	lastUploaded: number
 	active: boolean
 	autoSync: boolean

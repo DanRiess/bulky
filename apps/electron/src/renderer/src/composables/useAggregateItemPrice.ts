@@ -1,8 +1,8 @@
-import { BulkyItemRecord, TotalPrice } from '@shared/types/bulky.types'
+import { BulkyItemRecord } from '@shared/types/bulky.types'
 import { MaybeRef, computed, toValue } from 'vue'
 
-export function useAggregateItemPrice(items: MaybeRef<BulkyItemRecord>, multiplier: number, chaosPerDiv: MaybeRef<number>) {
-	return computed<TotalPrice>(() => {
+export function useAggregateItemPrice(items: MaybeRef<BulkyItemRecord>, multiplier: number) {
+	return computed<number>(() => {
 		let price = 0
 
 		toValue(items).forEach(item => {
@@ -14,9 +14,6 @@ export function useAggregateItemPrice(items: MaybeRef<BulkyItemRecord>, multipli
 			price += toValue(item.price) * item.quantity * multiplier
 		})
 
-		return {
-			divine: Math.floor(price / toValue(chaosPerDiv)),
-			chaos: Math.floor(price % toValue(chaosPerDiv)),
-		}
+		return price
 	})
 }

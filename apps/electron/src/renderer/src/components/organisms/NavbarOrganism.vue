@@ -28,7 +28,7 @@ import ChaosPerDivAtom from '../atoms/ChaosPerDivAtom.vue'
 
 // COMPOSABLES
 const router = useRouter()
-const { chaosPerDiv } = usePoeNinja()
+const { chaosPerDiv } = usePoeNinja('ESSENCE')
 </script>
 
 <style scoped>

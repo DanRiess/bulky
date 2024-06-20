@@ -2,18 +2,25 @@
 	<li class="a-bazaar-offer-item">
 		<div class="name">{{ item.name }}</div>
 		<div class="quantity">x{{ item.quantity }}</div>
-		<div class="price">{{ item.price }}</div>
+		<div class="price">{{ price }}</div>
 		<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 	</li>
 </template>
 
 <script setup lang="ts">
 import { BulkyItem } from '@shared/types/bulky.types'
-import { UnwrapRef } from 'vue'
+import { UnwrapRef, computed, toValue } from 'vue'
 
-defineProps<{
+// PROPS
+const props = defineProps<{
 	item: BulkyItem | UnwrapRef<BulkyItem>
 }>()
+
+// GETTERS
+const price = computed(() => {
+	const p = toValue(props.item.priceOverride) > 0 ? props.item.priceOverride : props.item.price
+	return toValue(p)
+})
 </script>
 
 <style scoped>

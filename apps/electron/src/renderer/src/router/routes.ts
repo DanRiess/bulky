@@ -27,6 +27,12 @@ const routes: RouteRecordRaw[] = [
 		component: () => import(/* webpackChunkName: "create-offer" */ '../views/ShopCreateOfferView.vue'),
 	},
 	{
+		path: '/shop/edit/:uuid',
+		name: 'EditOffer',
+		component: () => import(/* webpackChunkName: "edit-offer" */ '../views/ShopEditOfferView.vue'),
+		props: true,
+	},
+	{
 		path: '/bazaar',
 		name: 'Bazaar',
 		component: () => import(/* webpackChunkName: "bazaar" */ '../views/BazaarView.vue'),
