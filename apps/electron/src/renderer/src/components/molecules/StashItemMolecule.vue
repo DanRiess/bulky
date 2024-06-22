@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyItem, BulkyItemOverrideOptions, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyShopItem, BulkyItemOverrideOptions, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { computed, nextTick, ref, toValue, watch } from 'vue'
 import InputCheckboxAtom from '../atoms/InputCheckboxAtom.vue'
 import InputToggleAtom from '../atoms/InputToggleAtom.vue'
@@ -31,14 +31,14 @@ import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 
 // PROPS
 const props = defineProps<{
-	item: BulkyItem
+	item: BulkyShopItem
 	overridePrices: BulkyItemOverrideRecord
 	offerMultiplier: number
 }>()
 
 // EMITS
 const emit = defineEmits<{
-	changeItemOverride: [item: BulkyItem, options: BulkyItemOverrideOptions]
+	changeItemOverride: [item: BulkyShopItem, options: BulkyItemOverrideOptions]
 }>()
 
 // STATE

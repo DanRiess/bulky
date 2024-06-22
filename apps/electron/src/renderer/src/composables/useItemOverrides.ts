@@ -1,5 +1,5 @@
 import {
-	BulkyItem,
+	BulkyShopItem,
 	BulkyItemOverrideInstance,
 	BulkyItemOverrideOptions,
 	BulkyItemOverrideRecord,
@@ -36,10 +36,10 @@ export function useItemOverrides(category: MaybeRefOrGetter<Category>) {
 
 	/**
 	 * Edit or add a price override.
-	 * Pass the new price as explicit parameter, since on the BulkyItem,
+	 * Pass the new price as explicit parameter, since on the BulkyShopItem,
 	 * the price override is computed only.
 	 */
-	function putItemOverride(item: BulkyItem, overrides: BulkyItemOverrideOptions) {
+	function putItemOverride(item: BulkyShopItem, overrides: BulkyItemOverrideOptions) {
 		const bulkyIdb = useBulkyIdb()
 
 		// Generate the new override item.

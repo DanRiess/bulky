@@ -8,12 +8,12 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyItem } from '@shared/types/bulky.types'
+import { BulkyShopItem } from '@shared/types/bulky.types'
 import { UnwrapRef, computed, toValue } from 'vue'
 
 // PROPS
 const props = defineProps<{
-	item: BulkyItem | UnwrapRef<BulkyItem>
+	item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 }>()
 
 // GETTERS

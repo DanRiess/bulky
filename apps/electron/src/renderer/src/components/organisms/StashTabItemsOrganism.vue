@@ -33,7 +33,7 @@ import StashItemListMolecule from '../molecules/StashItemListMolecule.vue'
 import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useBulkyItems } from '@web/composables/useBulkyItems'
 import { useItemOverrides } from '@web/composables/useItemOverrides'
-import { BulkyItemRecord, Category } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord, Category } from '@shared/types/bulky.types'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
@@ -50,8 +50,8 @@ const props = defineProps<{
 
 // EMITS
 const emit = defineEmits<{
-	generateOffer: [items: BulkyItemRecord]
-	syncChanges: [items: BulkyItemRecord]
+	generateOffer: [items: BulkyShopItemRecord]
+	syncChanges: [items: BulkyShopItemRecord]
 }>()
 
 // STORES

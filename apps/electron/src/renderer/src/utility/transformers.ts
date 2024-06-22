@@ -2,7 +2,7 @@ import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
 import { PoeItemDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
-import { BulkyItem, BulkyItemOverrideInstance, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
+import { BulkyShopItem, BulkyItemOverrideInstance, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.static'
 import { Ref, toValue } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
@@ -43,9 +43,9 @@ export function generatePoeItemFromDto(item: PoeItemDto, stashTab: PoeStashTab) 
 function poeItemBaseTypeToBulkyTypeAndTier(
 	item: PoeItem,
 	category: Category
-): { type: BulkyItem['type']; tier: BulkyItem['tier'] } | undefined {
-	let type: BulkyItem['type'] | undefined
-	let tier: BulkyItem['tier'] | undefined
+): { type: BulkyShopItem['type']; tier: BulkyShopItem['tier'] } | undefined {
+	let type: BulkyShopItem['type'] | undefined
+	let tier: BulkyShopItem['tier'] | undefined
 
 	if (category === 'ESSENCE') {
 		type = BULKY_ESSENCES.generateEssenceTypeFromBaseType(item.baseType)
@@ -63,14 +63,14 @@ function poeItemBaseTypeToBulkyTypeAndTier(
 }
 
 /**
- * Generate a BulkyItem from a PoeItem.
+ * Generate a BulkyShopItem from a PoeItem.
  */
 function poeItemToBulkyItem(
 	item: PoeItem,
 	category: Category,
 	prices: Ref<NinjaPriceRecord>,
 	priceOverrides: Ref<BulkyItemOverrideRecord>
-): BulkyItem | undefined {
+): BulkyShopItem | undefined {
 	if (category === 'ESSENCE') {
 		return BULKY_ESSENCES.generateEssenceFromPoeItem(item, prices, priceOverrides)
 	} else if (category === 'SCARAB') {
@@ -81,7 +81,7 @@ function poeItemToBulkyItem(
 }
 
 function bulkyItemToPriceOverrideItem(
-	item: BulkyItem,
+	item: BulkyShopItem,
 	overrides: { price?: number; selected?: boolean }
 ): BulkyItemOverrideInstance {
 	return {

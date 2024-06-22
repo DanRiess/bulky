@@ -2,14 +2,12 @@
  * This component provides static functions to generate / validate branded uuids.
  */
 
-import { CompassFilter, CompassListing } from '@web/categories/compass/compass.types'
-import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
-import { useCompassFilterStore } from '@web/categories/compass/compassFilter.store'
 import { OptionalRecord, Uuid } from '@shared/types/utility.types'
 import { v4 as uuidv4, validate } from 'uuid'
-import { EssenceFilter, EssenceListing } from '@web/categories/essence/essence.types'
-import { useEssenceListingStore } from '@web/categories/essence/essenceListing.store'
+import { ShopEssence } from '@web/categories/essence/essence.types'
+import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.store'
+import { BulkyShopOffer } from '@shared/types/bulky.types'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -35,21 +33,9 @@ function generateTypedUuid<T extends OptionalRecord = undefined>(maybeUuid?: str
 // VALIDATORS
 
 /** Validate if a given string is a compass listing uuid. */
-function isCompassListingUuid(uuid: string): uuid is Uuid<CompassListing> {
-	const compassListingStore = useCompassListingStore()
-	return !!compassListingStore.listings.has(uuid)
-}
-
-/** Validate if a given string is a compass filter uuid */
-function isCompassFilterUuid(uuid: string): uuid is Uuid<CompassFilter> {
-	const compassFilterStore = useCompassFilterStore()
-	return !!compassFilterStore.filters.has(uuid)
-}
-
-/** Validate if a given string is a compass listing uuid. */
-function isEssenceListingUuid(uuid: string): uuid is Uuid<EssenceListing> {
-	const essenceListingStore = useEssenceListingStore()
-	return !!essenceListingStore.listings.has(uuid)
+function isEssenceOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopEssence>> {
+	const essenceListingStore = useEssenceOfferStore()
+	return !!essenceListingStore.offers.has(uuid)
 }
 
 /** Validate if a given string is a compass filter uuid */
@@ -60,8 +46,6 @@ function isEssenceFilterUuid(uuid: string): uuid is Uuid<EssenceFilter> {
 
 export const BULKY_UUID = {
 	generateTypedUuid,
-	isCompassListingUuid,
-	isCompassFilterUuid,
-	isEssenceListingUuid,
+	isEssenceOfferUuid,
 	isEssenceFilterUuid,
 }

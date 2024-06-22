@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyItem, BulkyItemRecord, BulkyOffer } from '@shared/types/bulky.types'
+import { BulkyShopItem, BulkyShopItemRecord, BulkyShopOffer } from '@shared/types/bulky.types'
 import ImgCategoryAtom from '@web/components/atoms/ImgCategoryAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
@@ -52,7 +52,7 @@ const shopStore = useShopStore()
 
 // PROPS
 const props = defineProps<{
-	uuid: BulkyOffer['uuid']
+	uuid: BulkyShopOffer['uuid']
 }>()
 
 // STATE
@@ -69,9 +69,9 @@ function updateIgn(val: string) {
 	window.localStorage.setItem('ign', val)
 }
 
-async function syncChanges(itemRecord: BulkyItemRecord) {
+async function syncChanges(itemRecord: BulkyShopItemRecord) {
 	if (offer.value) {
-		const items: UnwrapRef<BulkyItem>[] = []
+		const items: UnwrapRef<BulkyShopItem>[] = []
 		let computedMultiplier = offer.value.multiplier
 
 		itemRecord.forEach(item => {

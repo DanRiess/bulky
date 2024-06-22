@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyItem, BulkyItemRecord, BulkyOffer, CATEGORY } from '@shared/types/bulky.types'
+import { BulkyShopItem, BulkyShopItemRecord, BulkyShopOffer, CATEGORY } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import LabelWithSelectMolecule from '@web/components/molecules/LabelWithSelectMolecule.vue'
@@ -101,7 +101,7 @@ function updateIgn(val: string) {
 	window.localStorage.setItem('ign', val)
 }
 
-async function generateOffer(itemRecord: BulkyItemRecord) {
+async function generateOffer(itemRecord: BulkyShopItemRecord) {
 	disableOfferGenerationButton.value = true
 
 	// TODO: Handle errors
@@ -117,7 +117,7 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 		return
 	}
 
-	const items: UnwrapRef<BulkyItem>[] = []
+	const items: UnwrapRef<BulkyShopItem>[] = []
 	let computedMultiplier = multiplier.value
 
 	itemRecord.forEach(item => {
@@ -134,8 +134,8 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 	const fullPrice = useAggregateItemPrice(itemRecord, multiplier.value)
 	const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
 
-	const offer: BulkyOffer = {
-		uuid: BULKY_UUID.generateTypedUuid<BulkyOffer>(),
+	const offer: BulkyShopOffer = {
+		uuid: BULKY_UUID.generateTypedUuid<BulkyShopOffer>(),
 		user: authStore.profile.name,
 		ign: ign.value,
 		stashTabIds,

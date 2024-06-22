@@ -13,7 +13,7 @@ Offer: An offer contains one or more Bulky items with prices and additional meta
 
 ### 3rd level categories
 
-BulkyItem: An abstraction PoE items of the same base type. This is best illustrated by an example. Imagine a stash tab with a couple of stacks of Deafening Essences of Dread. They have all of their normal PoE item properties, each stack has a unique id. A BulkyItem equivalent abstracts the stacks into one object, combines the quantities and only save some metadata properties it needs.
+BulkyShopItem: An abstraction PoE items of the same base type. This is best illustrated by an example. Imagine a stash tab with a couple of stacks of Deafening Essences of Dread. They have all of their normal PoE item properties, each stack has a unique id. A BulkyShopItem equivalent abstracts the stacks into one object, combines the quantities and only save some metadata properties it needs.
 
 #### 4th level categories
 

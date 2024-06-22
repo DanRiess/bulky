@@ -47,12 +47,12 @@
 import ExpandSectionAtom from '../atoms/ExpandSectionAtom.vue'
 import { ref } from 'vue'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
-import { BulkyOffer } from '@shared/types/bulky.types'
+import { BulkyShopOffer } from '@shared/types/bulky.types'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 
 // PROPS
 defineProps<{
-	offer: BulkyOffer
+	offer: BulkyShopOffer
 }>()
 
 // STATE

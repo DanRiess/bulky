@@ -24,8 +24,8 @@
 
 <script setup lang="ts">
 import {
-	BulkyItem,
-	BulkyItemRecord,
+	BulkyShopItem,
+	BulkyShopItemRecord,
 	BulkyItemSortOptions,
 	BulkyItemOverrideRecord,
 	BulkyItemOverrideOptions,
@@ -37,7 +37,7 @@ import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHoo
 
 // PROPS
 defineProps<{
-	items: BulkyItemRecord
+	items: BulkyShopItemRecord
 	overridePrices: BulkyItemOverrideRecord
 	offerMultiplier: number
 	sortFn: (sortOption: BulkyItemSortOptions['key']) => void
@@ -45,7 +45,7 @@ defineProps<{
 
 // EMITS
 const emit = defineEmits<{
-	changeItemOverride: [item: BulkyItem, price: BulkyItemOverrideOptions]
+	changeItemOverride: [item: BulkyShopItem, price: BulkyItemOverrideOptions]
 }>()
 
 // COMPOSABLES

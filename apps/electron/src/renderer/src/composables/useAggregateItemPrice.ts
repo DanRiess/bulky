@@ -1,7 +1,7 @@
-import { BulkyItemRecord } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord } from '@shared/types/bulky.types'
 import { MaybeRef, MaybeRefOrGetter, computed, toValue } from 'vue'
 
-export function useAggregateItemPrice(items: MaybeRef<BulkyItemRecord>, multiplier: MaybeRefOrGetter<number>) {
+export function useAggregateItemPrice(items: MaybeRef<BulkyShopItemRecord>, multiplier: MaybeRefOrGetter<number>) {
 	return computed<number>(() => {
 		let price = 0
 

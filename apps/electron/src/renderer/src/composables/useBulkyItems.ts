@@ -1,4 +1,4 @@
-import { BulkyItemRecord, BulkyItemSortOptions, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord, BulkyItemSortOptions, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem, PoeItemsByStash } from '@shared/types/poe.types'
 import { RefOrGetter, getKeys, isWatchable } from '@shared/types/utility.types'
@@ -21,7 +21,7 @@ export function useBulkyItems(
 	 * 	['GREED_DEAFENING', EssenceItem]
 	 * ])
 	 */
-	const items = ref(new Map()) as Ref<BulkyItemRecord>
+	const items = ref(new Map()) as Ref<BulkyShopItemRecord>
 	const sortOptions = ref<BulkyItemSortOptions>({
 		key: 'STACKPRICE',
 		direction: 'DESC',
@@ -68,8 +68,8 @@ export function useBulkyItems(
 	watch([prices, priceOverrides, poeItems], () => sortItems())
 
 	/**
-	 * Add the stack size of a PoeItem to its corresponding BulkyItem.
-	 * If the BulkyItem does not exist yet, create it instead.
+	 * Add the stack size of a PoeItem to its corresponding BulkyShopItem.
+	 * If the BulkyShopItem does not exist yet, create it instead.
 	 */
 	function putItem(poeItem: PoeItem) {
 		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, toValue(category))
@@ -82,7 +82,7 @@ export function useBulkyItems(
 			itemInMap.quantity += poeItem.stackSize ?? 0
 		}
 
-		// ...otherwise, create a new BulkyItem and add it to the map
+		// ...otherwise, create a new BulkyShopItem and add it to the map
 		else {
 			const bulkyItem = BULKY_TRANSFORM.poeItemToBulkyItem(poeItem, toValue(category), prices, priceOverrides)
 			if (!bulkyItem) return
@@ -91,8 +91,8 @@ export function useBulkyItems(
 	}
 
 	/**
-	 * Remove the stack size of a PoeItem from its corresponding BulkyItem.
-	 * If the stack size is 0, remove the BulkyItem.
+	 * Remove the stack size of a PoeItem from its corresponding BulkyShopItem.
+	 * If the stack size is 0, remove the BulkyShopItem.
 	 */
 	function deleteItem(poeItem: PoeItem) {
 		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, toValue(category))
@@ -102,7 +102,7 @@ export function useBulkyItems(
 		const itemInMap = items.value.get(`${base.type}_${base.tier}`)
 
 		if (itemInMap) {
-			// Subtract this PoeItem's stack size from its corresponding BulkyItem.
+			// Subtract this PoeItem's stack size from its corresponding BulkyShopItem.
 			itemInMap.quantity -= poeItem.stackSize ?? 0
 
 			// Remove the item from the map if its quantity is 0 or lower.

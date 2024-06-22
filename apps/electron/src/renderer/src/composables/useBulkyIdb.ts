@@ -1,4 +1,4 @@
-import { BulkyItemOverrideInstance, BulkyOffer, Category } from '@shared/types/bulky.types'
+import { BulkyItemOverrideInstance, BulkyShopOffer, Category } from '@shared/types/bulky.types'
 import { NinjaPriceCollection, NinjaCategory } from '@shared/types/ninja.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { Id } from '@shared/types/utility.types'
@@ -27,9 +27,9 @@ interface BulkyDB extends DBSchema {
 		indexes: { 'by-category': [Category, BulkyItemOverrideInstance['league']] }
 	}
 	shop_offer: {
-		key: [BulkyOffer['uuid'], BulkyOffer['league']]
-		value: BulkyOffer
-		indexes: { 'by-league': [BulkyOffer['league']] }
+		key: [BulkyShopOffer['uuid'], BulkyShopOffer['league']]
+		value: BulkyShopOffer
+		indexes: { 'by-league': [BulkyShopOffer['league']] }
 	}
 }
 
@@ -293,7 +293,7 @@ export function useBulkyIdb() {
 	async function getShopOffersByLeague() {
 		const configStore = useConfigStore()
 		let db: IDBPDatabase<BulkyDB> | undefined
-		const offers: BulkyOffer[] = []
+		const offers: BulkyShopOffer[] = []
 
 		try {
 			db = await initDB()
@@ -309,7 +309,7 @@ export function useBulkyIdb() {
 	/**
 	 * Put an offer to the store.
 	 */
-	async function putShopOffer(offer: BulkyOffer) {
+	async function putShopOffer(offer: BulkyShopOffer) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {
@@ -325,7 +325,7 @@ export function useBulkyIdb() {
 	/**
 	 * Delete an offer from the store
 	 */
-	async function deleteShopOffer(uuid: BulkyOffer['uuid'], league: BulkyOffer['league']) {
+	async function deleteShopOffer(uuid: BulkyShopOffer['uuid'], league: BulkyShopOffer['league']) {
 		let db: IDBPDatabase<BulkyDB> | undefined
 
 		try {

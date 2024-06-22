@@ -1,46 +1,39 @@
 import { computed } from 'vue'
 import { transformToDisplayValue } from '@web/utility/transformers'
-import {
-	AnyFilter,
-	AnyListings,
-	ComputedItemDisplayValues,
-	ComputedListingDisplayValues,
-	GenericItemData,
-	ItemTier,
-	ItemType,
-} from '@shared/types/bulky.types'
+// import {
+// 	AnyFilter,
+// 	AnyListings,
+// 	ComputedItemDisplayValues,
+// 	ComputedListingDisplayValues,
+// 	GenericItemData,
+// 	ItemTier,
+// 	ItemType,
+// } from '@shared/types/bulky.types'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
-import { useEssenceListingStore } from '@web/categories/essence/essenceListing.store'
 import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.store'
-import { useCompassFilterStore } from '@web/categories/compass/compassFilter.store'
+import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
  */
-export function useListingProps() {
+export function useBazaarOfferProps() {
 	const appStateStore = useAppStateStore()
-	const compassListingStore = useCompassListingStore()
-	const compassFilterStore = useCompassFilterStore()
-	const essenceListingStore = useEssenceListingStore()
+	const essenceOfferStore = useEssenceOfferStore()
 	const essenceFilterStore = useEssenceFilterStore()
 
 	return computed<ComputedListingDisplayValues[]>(() => {
-		let listings: AnyListings | undefined
+		let offers: AnyListings | undefined
 		let filter: AnyFilter | undefined
 
-		if (appStateStore.selectedCategory === 'COMPASS') {
-			listings = compassListingStore.listings
-			filter = compassFilterStore.currentFilter
-		} else if (appStateStore.selectedCategory === 'ESSENCE') {
-			listings = essenceListingStore.listings
+		if (appStateStore.selectedCategory === 'ESSENCE') {
+			offers = essenceOfferStore.offers
 			filter = essenceFilterStore.currentFilter
 		}
 
-		if (!listings || !filter) return []
+		if (!offers || !filter) return []
 
-		return [...listings]
+		return [...offers]
 			.map(([_, listing]) => {
 				const ign = listing.ign
 				const chaosPerDiv = listing.chaosPerDiv

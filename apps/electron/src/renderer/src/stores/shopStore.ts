@@ -1,4 +1,4 @@
-import { BulkyItem, BulkyOffer } from '@shared/types/bulky.types'
+import { BulkyShopItem, BulkyShopOffer } from '@shared/types/bulky.types'
 import { useBulkyIdb } from '@web/composables/useBulkyIdb'
 import { defineStore } from 'pinia'
 import { Ref, UnwrapRef, ref } from 'vue'
@@ -24,7 +24,7 @@ export const useShopStore = defineStore('shopStore', () => {
 	const stashStore = useStashStore()
 
 	// STATE
-	const offers = ref<BulkyOffer[]>([])
+	const offers = ref<BulkyShopOffer[]>([])
 
 	/**
 	 * Every 30 seconds, check all offers.
@@ -73,14 +73,14 @@ export const useShopStore = defineStore('shopStore', () => {
 	/**
 	 * Retrieve an offer by its uuid.
 	 */
-	function getOfferByUuid(uuid: BulkyOffer['uuid']) {
+	function getOfferByUuid(uuid: BulkyShopOffer['uuid']) {
 		return offers.value.find(offer => offer.uuid === uuid)
 	}
 
 	/**
 	 * Put an offer into the state variable and idb.
 	 */
-	async function putOffer(offer: BulkyOffer) {
+	async function putOffer(offer: BulkyShopOffer) {
 		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === offer.uuid)
 
 		// Offer already exists, edit it
@@ -103,7 +103,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		await bulkyIdb.putShopOffer(offer)
 	}
 
-	async function refreshOffer(uuid: BulkyOffer['uuid'], status?: Ref<ApiStatus>) {
+	async function refreshOffer(uuid: BulkyShopOffer['uuid'], status?: Ref<ApiStatus>) {
 		status && (status.value = 'PENDING')
 
 		const offer = getOfferByUuid(uuid)
@@ -139,8 +139,8 @@ export const useShopStore = defineStore('shopStore', () => {
 			await sleepTimer(150)
 		}
 
-		// Flatten the BulkyItemRecord into a non-reactive array.
-		const items: UnwrapRef<BulkyItem>[] = []
+		// Flatten the BulkyShopItemRecord into a non-reactive array.
+		const items: UnwrapRef<BulkyShopItem>[] = []
 
 		itemRecord.value.forEach(item => {
 			if (!item.selected) return
@@ -159,7 +159,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		status && (status.value = 'SUCCESS')
 	}
 
-	async function deleteOffer(uuid: BulkyOffer['uuid']) {
+	async function deleteOffer(uuid: BulkyShopOffer['uuid']) {
 		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === uuid)
 
 		// TODO: handle error

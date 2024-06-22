@@ -1,7 +1,7 @@
-import { Essence, EssenceFilterField } from '@web/categories/essence/essence.types'
+import { ShopEssence, BazaarEssence, EssenceFilterField, EssenceFilterStore } from '@web/categories/essence/essence.types'
 import { MaybeComputedRef, ObjectValues, Uuid } from './utility.types'
 import { ComputedRef, UnwrapRef } from 'vue'
-import { Scarab } from '@web/categories/scarab/scarab.types'
+import { BazaarScarab, ShopScarab } from '@web/categories/scarab/scarab.types'
 import { PoeStashTab } from './poe.types'
 
 // APP STATE TYPES
@@ -22,21 +22,27 @@ export const CATEGORY = {
 
 export type Category = ObjectValues<typeof CATEGORY>
 
-// BULKY ITEM TYPES
+type BulkyItemOptions = {
+	prefix: string[]
+	suffix: string[]
+}
+
+// BULKY SHOP ITEM TYPES
 
 /**
  * Generic type that needs to be extended to make sense. This is done in the categories' type files.
  *
  * @example
- * type Essence = BulkyItemBase<typeof CATEGORY.ESSENCE> & {
+ * type ShopEssence = BulkyShopItemBase<typeof CATEGORY.ESSENCE> & {
  *		type: EssenceType
  *		tier: EssenceTier
  *	}
  */
-export type BulkyItemBase<T extends Category> = {
+export type BulkyShopItemBase<T extends Category> = {
 	category: T
 	name: string
 	type: string // will be overridden
+	options?: BulkyItemOptions
 	quantity: number
 	price: MaybeComputedRef<number>
 	priceOverride: ComputedRef<number>
@@ -46,27 +52,26 @@ export type BulkyItemBase<T extends Category> = {
 }
 
 /**
- * A collection of every implementation of BulkyItemBase throughout the app.
+ * A collection of every implementation of BulkyShopItemBase throughout the app.
  * This will be used as a generic type argument for every higher level type.
  */
-export type BulkyItem = Essence | Scarab
+export type BulkyShopItem = ShopEssence | ShopScarab
 
 /** Type that bulky items will be saved as */
-// export type BulkyItemRecord = PartialRecord<BulkyItem['type'], BulkyItem[]>
-export type BulkyItemRecord = Map<`${BulkyItem['type']}_${BulkyItem['tier']}`, BulkyItem>
+export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
 
 /**
- * A BulkyOffer contains all necessary offer metadata as well as the items contained within the offer.
+ * A BulkyShopOffer contains all necessary offer metadata as well as the items contained within the offer.
  * This type can be used as a generic type argument or to instantiate a type-safe offer.
  *
  * @example
- * const essenceOffer: BulkyOffer<Essence> = {
+ * const essenceOffer: BulkyShopOffer<ShopEssence> = {
  * 		metadata: metadata
- * 		items: Essence[] // will throw if any item other than an essence is pushed
+ * 		items: ShopEssence[] // will throw if any item other than an essence is pushed
  * }
  */
-export type BulkyOffer<T extends BulkyItem = BulkyItem> = {
-	uuid: Uuid<BulkyOffer<T>>
+export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
+	uuid: Uuid<BulkyShopOffer<T>>
 	user: string
 	ign: string
 	league: string
@@ -85,6 +90,37 @@ export type BulkyOffer<T extends BulkyItem = BulkyItem> = {
 	lastUploaded: number
 	active: boolean
 	autoSync: boolean
+}
+
+// BULKY BAZAAR ITEM TYPES
+
+export type BulkyBazaarItemBase = {
+	type: string // will be overridden
+	options?: BulkyItemOptions
+	quantity: number
+	price: number
+	icon: string
+}
+
+export type BulkyBazaarItem = BazaarEssence | BazaarScarab
+
+export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
+
+export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
+	uuid: Uuid<BulkyBazaarOffer<T>>
+	ign: string
+	league: string
+	chaosPerDiv: number
+	multiplier: number
+	minimumBuyout: {
+		divine: number
+		chaos: number
+	}
+	items: BulkyBazaarItemRecord<T>
+	contact: {
+		messageSent: boolean
+		timestamp: number
+	}
 }
 
 // FILTER TYPES
@@ -109,7 +145,7 @@ export type BulkyFilterFieldBase<T extends Category> = {
 /**
  * A collection of every implementation of BulkyFilterFieldBase throughout the app.
  */
-type BulkyFilterField = EssenceFilterField
+export type BulkyFilterField = EssenceFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.
@@ -130,13 +166,15 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
 	fields: T[]
 }
 
+export type BulkyFilterStore = EssenceFilterStore
+
 // PRICES
 
 /**
  * Price overrides are being saved separately. This is why this type needs to have all of
  * the additional metadata.
  */
-export type BulkyItemOverrideInstance<T extends BulkyItem = BulkyItem> = {
+export type BulkyItemOverrideInstance<T extends BulkyShopItem = BulkyShopItem> = {
 	category: T['category']
 	type: T['type']
 	tier: T['tier']
@@ -154,13 +192,13 @@ export type BulkyItemOverrideInstance<T extends BulkyItem = BulkyItem> = {
  * 	'ZEAL_DEAFENING': EssenceItem
  * })
  */
-export type BulkyItemOverrideRecord<T extends BulkyItem = BulkyItem> = Map<
+export type BulkyItemOverrideRecord<T extends BulkyShopItem = BulkyShopItem> = Map<
 	`${T['type']}_${T['tier']}`,
 	BulkyItemOverrideInstance<T>
 >
 
 /**
- * Properties in a BulkyItem that can be overwritten and saved to the DB.
+ * Properties in a BulkyShopItem that can be overwritten and saved to the DB.
  * This type serves as a function argument mostly.
  */
 export type BulkyItemOverrideOptions = {
@@ -169,6 +207,22 @@ export type BulkyItemOverrideOptions = {
 }
 
 export type TotalPrice = { chaos: number; divine: number }
+
+// DTO TYPES
+
+export type BulkyBazaarOfferDto = {
+	category: string
+	uuid: string
+	ign: string
+	league: string
+	chaosPerDiv: number
+	multiplier: number
+	minimumBuyout: {
+		divine: number
+		chaos: number
+	}
+	items: string
+}
 
 // DISPLAY TYPES
 
@@ -181,7 +235,7 @@ export type ComputedItemDisplayValues = {
 }
 
 export type ComputedOfferDisplayValues = {
-	uuid: Uuid<BulkyOffer>
+	uuid: Uuid<BulkyShopOffer>
 	ign: string
 	chaosPerDiv: number
 	computedItems: ComputedItemDisplayValues[]

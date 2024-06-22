@@ -2,13 +2,13 @@
 
 import { ObjectValues } from '@shared/types/utility.types'
 import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
-import { useEssenceListingStore } from './essenceListing.store'
+import { useEssenceOfferStore } from './essenceOffers.store'
 import { useEssenceFilterStore } from './essenceFilter.store'
-import { BulkyFilterFieldBase, BulkyItemBase, CATEGORY } from '@shared/types/bulky.types'
+import { BulkyBazaarItemBase, BulkyFilterFieldBase, BulkyShopItemBase, CATEGORY } from '@shared/types/bulky.types'
 
 // STORE TYPES
 
-export type EssenceListingStore = ReturnType<typeof useEssenceListingStore>
+export type EssenceListingStore = ReturnType<typeof useEssenceOfferStore>
 export type EssenceFilterStore = ReturnType<typeof useEssenceFilterStore>
 
 // ITEM TYPES
@@ -19,8 +19,14 @@ export type EssenceType = ObjectValues<typeof ESSENCE_TYPE>
 /** All possible essence tiers */
 export type EssenceTier = ObjectValues<typeof ESSENCE_TIER>
 
-/** BulkyItem implementation for the essence category */
-export type Essence = BulkyItemBase<typeof CATEGORY.ESSENCE> & {
+/** BulkyShopItem implementation for the essence category */
+export type ShopEssence = BulkyShopItemBase<typeof CATEGORY.ESSENCE> & {
+	type: EssenceType
+	tier: EssenceTier
+}
+
+/** BulkyBazaarItem implementation for the essence category */
+export type BazaarEssence = BulkyBazaarItemBase & {
 	type: EssenceType
 	tier: EssenceTier
 }
@@ -36,7 +42,7 @@ export type EssenceFilterField = BulkyFilterFieldBase<typeof CATEGORY.ESSENCE> &
 // // LISTING TYPES
 
 // /** extend the generic to include essence specific data */
-// export type Essence = GenericItemData<EssenceTier>
+// export type ShopEssence = GenericItemData<EssenceTier>
 
 // /** extend the generic to include essence specific data */
 // export type EssenceListingItems = GenericListingItems<EssenceType, EssenceTier>

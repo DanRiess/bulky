@@ -1,48 +1,39 @@
-/** handle all essence listings through this store */
+/**
+ * Handle all essence offers through this store.
+ */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { Ref, ref } from 'vue'
-import { Uuid, getKeys } from '@shared/types/utility.types'
+import { ref } from 'vue'
+import { getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { Essence, EssenceListing, EssenceListingItems, EssenceListings } from './essence.types'
+import { BazaarEssence } from './essence.types'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
-import { GenericListingDto } from '@shared/types/dtoRequest.types'
 import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE_IDX_TO_NAME } from './essence.const'
 import { conformBinaryListingItems } from '@web/utility/conformers'
+import { BulkyBazaarOffer, BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 
-export const useEssenceListingStore = defineStore('essenceListingStore', () => {
-	const listings: Ref<EssenceListings> = ref(new Map())
+export const useEssenceOfferStore = defineStore('essenceListingStore', () => {
+	const offers = ref<Map<BulkyBazaarOffer<BazaarEssence>['uuid'], BulkyBazaarOffer<BazaarEssence>>>(new Map())
 
 	/**
 	 * Consume an essence listing dto, type and validate it and add it to the listings
 	 */
-	function addOrModifyListing(dto: GenericListingDto) {
+	function addOrModifyListing(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'ESSENCE') return
 
-		const uuid = BULKY_UUID.generateTypedUuid<EssenceListing>(dto.uuid)
+		const uuid = BULKY_UUID.generateTypedUuid<BulkyBazaarOffer<BazaarEssence>>(dto.uuid)
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
-		const minimumBuyout = dto.minimumBuyout ?? 0
-		// const items = conformListingItems<Essence>(
-		// 	dto.items,
-		// 	BULKY_ESSENCES.generateEssenceTypeFromDto,
-		// 	BULKY_ESSENCES.generateEssenceItemFromDto
-		// )
-		const items = conformBinaryListingItems<EssenceListingItems>(
-			dto.items,
-			ESSENCE_TYPE_IDX_TO_NAME,
-			ESSENCE_TIER_IDX_TO_NAME
-		)
-		console.log(items)
-
+		const minimumBuyout = dto.minimumBuyout
+		const items = conformBinaryListingItems<BazaarEssence>(dto.items, ESSENCE_TYPE_IDX_TO_NAME, ESSENCE_TIER_IDX_TO_NAME)
 		if (!items) return
 
-		listings.value.set(uuid, {
+		offers.value.set(uuid, {
 			uuid,
 			ign,
 			league,
@@ -50,17 +41,20 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 			multiplier,
 			items,
 			minimumBuyout,
-			messageSent: false,
+			contact: {
+				messageSent: false,
+				timestamp: 0,
+			},
 		})
 	}
 
 	/** delete listing */
-	function deleteListing(uuid: Uuid<EssenceListing>) {
-		listings.value.delete(uuid)
+	function deleteListing(uuid: BulkyBazaarOffer<BazaarEssence>['uuid']) {
+		offers.value.delete(uuid)
 	}
 
 	/** validate if an object is a BulkyEssence or not */
-	function isEssence(obj: any): obj is Essence {
+	function isEssence(obj: any): obj is BazaarEssence {
 		return (
 			obj &&
 			'tier' in obj &&
@@ -87,7 +81,7 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 	}
 
 	return {
-		listings,
+		offers,
 		addOrModifyListing,
 		deleteListing,
 		isEssence,
@@ -96,5 +90,5 @@ export const useEssenceListingStore = defineStore('essenceListingStore', () => {
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useEssenceListingStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useEssenceOfferStore, import.meta.hot))
 }

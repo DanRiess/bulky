@@ -1,4 +1,4 @@
-import { AnyListingItems, ItemTier, ItemType, ListingItems } from '@shared/types/bulky.types'
+import { BulkyBazaarItem, BulkyBazaarItemRecord } from '@shared/types/bulky.types'
 import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
 
 /**
@@ -33,11 +33,11 @@ import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
  * Transform a binary listing into the Bulky standard object type
  * Performance: ~0.1 - 0.2 ms per listing with 20 items
  */
-export function conformBinaryListingItems<T extends ListingItems>(
+export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 	items: string,
-	idxToTypeMapper: Record<number, ItemType>,
-	idxToTierMapper: Record<number, ItemTier>
-): T | undefined {
+	idxToTypeMapper: Record<number, T['type']>,
+	idxToTierMapper: Record<number, T['tier']>
+): BulkyBazaarItemRecord<T> | undefined {
 	const t0 = performance.now()
 	const itemBuffer = decodeUrlSafeBase64ToArrayBuffer(items)
 	const dv = new DataView(itemBuffer)
@@ -63,7 +63,7 @@ export function conformBinaryListingItems<T extends ListingItems>(
 		return
 	}
 
-	const conformedItems: AnyListingItems = {}
+	const conformedItems: BulkyBazaarItemRecord = new Map()
 
 	// byte offset until now. It has to be always 11 at this point.
 	let offset = 11
@@ -94,17 +94,21 @@ export function conformBinaryListingItems<T extends ListingItems>(
 		const type = idxToTypeMapper[typeIdx]
 		const tier = idxToTierMapper[tierIdx]
 
+		// TODO: conform icon
+		const icon = ''
+
 		if (type === 'UNSUPPORTED') continue
 
-		if (!conformedItems[type]) {
-			conformedItems[type] = []
-		}
-
-		conformedItems[type]?.push({
+		// @ts-ignore
+		const item: T = {
+			type,
 			tier,
 			quantity,
 			price,
-		})
+			icon,
+		}
+
+		conformedItems.set(`${type}_${tier}`, item)
 
 		offset += 8
 	}

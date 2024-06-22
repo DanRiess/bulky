@@ -6,8 +6,8 @@
 
 import api from './api.wrapper'
 import { GenericRequestFunction, PostRequestConfig } from './api.types'
-import { GenericListingDto } from '@shared/types/dtoRequest.types'
 import { AxiosRequestConfig } from 'axios'
+import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 
 type PostPayload = {
 	we: string
@@ -31,7 +31,7 @@ export const bulkyApi = {
 	},
 }
 
-export const getListing: GenericRequestFunction<GenericListingDto[]> = bulkyApi.get
+export const getListing: GenericRequestFunction<BulkyBazaarOfferDto[]> = bulkyApi.get
 
 // EXAMPLE
 

@@ -12,8 +12,8 @@
 					<FilterOrganism
 						v-if="filterProps"
 						:filter="filterProps.filter"
-						:main-options="filterProps.mainOptions"
-						:secondary-options="filterProps.secondaryOptions"
+						:main-options="filterProps.filterFieldTypeOptions"
+						:secondary-options="filterProps.filterFieldTierOptions"
 						@add-filter-field="filterProps.addFilterField"
 						@remove-filter-field="filterProps.removeFilterField" />
 				</TransitionAtom>
@@ -23,23 +23,21 @@
 </template>
 
 <script setup lang="ts">
-import { useCompassListingStore } from '@web/categories/compass/compassListing.store'
-import { useEssenceListingStore } from '@web/categories/essence/essenceListing.store'
+import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import CategoryMolecule from '@web/components/molecules/CategoryMolecule.vue'
 import BazaarOfferCollectionOrganism from '@web/components/organisms/BazaarOfferCollectionOrganism.vue'
 import FilterOrganism from '@web/components/organisms/FilterOrganism.vue'
-import { useFilterProps } from '@web/composables/filterProps'
-import { useListingProps } from '@web/composables/listingProps'
+import { useBazaarOfferProps } from '@web/composables/useBazaarOfferProps'
+import { useFilterProps } from '@web/composables/useFilterProps'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import { watch } from 'vue'
 
 // STORES
 const appStateStore = useAppStateStore()
-const essenceListingStore = useEssenceListingStore()
-const compassListingStore = useCompassListingStore()
+const essenceListingStore = useEssenceOfferStore()
 
 // COMPOSABLES
 const hooks = useGenericTransitionHooks({
@@ -47,7 +45,7 @@ const hooks = useGenericTransitionHooks({
 	transform: 'scaleX(0.01)',
 	duration: 0.35,
 })
-const offers = useListingProps()
+const offers = useBazaarOfferProps()
 const filterProps = useFilterProps()
 
 // WATCHERS
@@ -56,11 +54,12 @@ watch(
 	cat => {
 		if (cat === 'ESSENCE') {
 			essenceListingStore.getTestData()
-		} else if (cat === 'COMPASS') {
-			compassListingStore.getTestData()
+		} else if (cat === 'SCARAB') {
+			console.log('scarab category')
 		}
 
 		// makeBinTestData()
-	}
+	},
+	{ immediate: true }
 )
 </script>

@@ -21,12 +21,12 @@ import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { UnwrapRef, ref } from 'vue'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
-import { BulkyItem } from '@shared/types/bulky.types'
+import { BulkyShopItem } from '@shared/types/bulky.types'
 import ShopOfferItemAtom from '../atoms/ShopOfferItemAtom.vue'
 
 // PROPS
 defineProps<{
-	items: BulkyItem[] | UnwrapRef<BulkyItem>[]
+	items: BulkyShopItem[] | UnwrapRef<BulkyShopItem>[]
 }>()
 
 // STATE

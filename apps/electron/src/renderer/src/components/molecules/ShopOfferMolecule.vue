@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyOffer } from '@shared/types/bulky.types'
+import { BulkyShopOffer } from '@shared/types/bulky.types'
 import { computed, ref } from 'vue'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ShopOfferItemCollectionMolecule from './ShopOfferItemCollectionMolecule.vue'
@@ -84,7 +84,7 @@ import ImgCategoryAtom from '../atoms/ImgCategoryAtom.vue'
 const shopStore = useShopStore()
 
 // MODELS
-const offer = defineModel<BulkyOffer>({ required: true })
+const offer = defineModel<BulkyShopOffer>({ required: true })
 
 // STATE
 const bulkyIdb = useBulkyIdb()
@@ -138,7 +138,7 @@ async function toggleAutoSync() {
 	}, 2000)
 }
 
-function refreshOffer(uuid: BulkyOffer['uuid']) {
+function refreshOffer(uuid: BulkyShopOffer['uuid']) {
 	shopStore.refreshOffer(uuid, refreshState)
 }
 </script>

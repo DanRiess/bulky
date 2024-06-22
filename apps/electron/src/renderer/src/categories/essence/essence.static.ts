@@ -4,14 +4,14 @@
 
 import { GenericListingItemDto } from '@shared/types/dtoRequest.types'
 import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.const'
-import { Essence, EssenceTier, EssenceType } from './essence.types'
+import { ShopEssence, EssenceTier, EssenceType } from './essence.types'
 import { PoeItem } from '@shared/types/poe.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { Ref, computed } from 'vue'
 import { useConfigStore } from '@web/stores/configStore'
 
-/** Type a returned Essence type DTO and turn it into an Essence type */
+/** Type a returned ShopEssence type DTO and turn it into an ShopEssence type */
 function generateEssenceTypeFromBaseType(baseType: string): EssenceType | undefined {
 	if (baseType.match(/essence of greed/i)) return ESSENCE_TYPE.GREED
 	if (baseType.match(/essence of contempt/i)) return ESSENCE_TYPE.CONTEMPT
@@ -55,8 +55,8 @@ function generateEssenceTierFromBaseType(baseType: string): EssenceTier | undefi
 	else return undefined
 }
 
-/** Type a returned item DTO and turn it into an Essence item */
-function generateEssenceItemFromDto(itemDto: GenericListingItemDto): Essence | null {
+/** Type a returned item DTO and turn it into an ShopEssence item */
+function generateEssenceItemFromDto(itemDto: GenericListingItemDto): ShopEssence | null {
 	if (!itemDto.tier || itemDto.tier < 0 || itemDto.tier > 8) return null
 
 	return {
@@ -70,7 +70,7 @@ function generateEssenceFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	priceOverrides: Ref<BulkyItemOverrideRecord>
-): Essence | undefined {
+): ShopEssence | undefined {
 	const configStore = useConfigStore()
 
 	const type = generateEssenceTypeFromBaseType(poeItem.baseType)
