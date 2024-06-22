@@ -2,7 +2,7 @@
 	<div class="m-shop-offer flow animated-gradient-background" data-b-override>
 		<section class="title-section">
 			<div class="offer-main-info">
-				<img :src="imgSource" decoding="async" loading="lazy" /> &ndash;
+				<ImgCategoryAtom :category="offer.category" /> &ndash;
 				<PriceAtom label="" :price="divPrice" />
 			</div>
 			<span>Posted: {{ timeAgo }}</span>
@@ -48,7 +48,11 @@
 					Edit Offer
 				</SvgButtonWithPopupMolecule>
 
-				<SvgButtonWithPopupMolecule :svg-props="{ name: 'trash' }" :tooltip-props="tooltipProps" background-color="dark">
+				<SvgButtonWithPopupMolecule
+					:svg-props="{ name: 'trash' }"
+					:tooltip-props="tooltipProps"
+					background-color="dark"
+					@click="shopStore.deleteOffer(offer.uuid)">
 					Delete Offer
 				</SvgButtonWithPopupMolecule>
 			</div>
@@ -74,6 +78,7 @@ import { useShopStore } from '@web/stores/shopStore'
 import { useTimeAgo } from '@vueuse/core'
 import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 import { useRouter } from 'vue-router'
+import ImgCategoryAtom from '../atoms/ImgCategoryAtom.vue'
 
 // STORES
 const shopStore = useShopStore()
@@ -97,14 +102,14 @@ const transitionHooks = useGenericTransitionHooks({
 })
 
 // GETTERS
-const imgSource = computed(() => {
-	if (offer.value.category === 'ESSENCE') {
-		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQ3Iiwic2NhbGUiOjF9XQ/a69c5c06cc/Hatred7.png'
-	} else if (offer.value.category === 'SCARAB') {
-		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9HcmVhdGVyU2NhcmFiQnJlYWNoIiwic2NhbGUiOjF9XQ/b129897f73/GreaterScarabBreach.png'
-	}
-	return ''
-})
+// const imgSource = computed(() => {
+// 	if (offer.value.category === 'ESSENCE') {
+// 		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQ3Iiwic2NhbGUiOjF9XQ/a69c5c06cc/Hatred7.png'
+// 	} else if (offer.value.category === 'SCARAB') {
+// 		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9HcmVhdGVyU2NhcmFiQnJlYWNoIiwic2NhbGUiOjF9XQ/b129897f73/GreaterScarabBreach.png'
+// 	}
+// 	return ''
+// })
 
 const tooltipProps: TooltipPropsWithoutActive = {
 	position: 'top',

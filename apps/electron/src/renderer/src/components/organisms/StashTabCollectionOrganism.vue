@@ -11,7 +11,7 @@
 						popupAlignment: 'right',
 					}"
 					background-color="dark"
-					v-if="showRefreshButton"
+					v-if="timeout <= 0"
 					@click="fetchStash">
 					Refresh Stash List
 				</SvgButtonWithPopupMolecule>
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vue'
 import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.vue'
@@ -63,17 +63,18 @@ type StashTabHierarchy = {
 const stashStore = useStashStore()
 
 // PROPS
-defineProps<{
-	showRefreshButton: boolean
-}>()
+// defineProps<{
+// 	showRefreshButton: boolean
+// }>()
 
-// EMITS
-const emit = defineEmits<{
-	startTimeout: []
-}>()
+// // EMITS
+// const emit = defineEmits<{
+// 	startTimeout: []
+// }>()
 
 // STATE
 const stashListRequest = stashStore.getStashTabListRequest()
+const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
 
 // COMPOSABLES
 const bulkyIdb = useBulkyIdb()
@@ -107,7 +108,21 @@ async function fetchStash() {
 	await stashListRequest.execute()
 
 	if (stashListRequest.request.statusSuccess) {
-		emit('startTimeout')
+		updateTimeout()
+	}
+}
+
+/**
+ * Update the timeout value and call this function recursively after 1 second until the timeout is 0.
+ */
+function updateTimeout() {
+	timeout.value = Math.max(0, stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
+
+	// Don't actually use setInterval, it has some weird edge cases in which it doesn't use the delay at all.
+	if (timeout.value > 0) {
+		setTimeout(() => {
+			updateTimeout()
+		}, 1000)
 	}
 }
 

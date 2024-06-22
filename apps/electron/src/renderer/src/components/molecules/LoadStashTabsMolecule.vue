@@ -7,7 +7,7 @@
 			background-color="dark"
 			:disabled="syncButtonDisabled"
 			:always-show-tooltip="selectedStashTabLength > maxParallelRequests"
-			@click="emit('syncFolders')">
+			@click="syncSelectedFolders">
 			<template v-if="selectedStashTabLength > maxParallelRequests">
 				You have selected {{ selectedStashTabLength }} stashes, but the maximum is {{ maxParallelRequests }}
 			</template>
@@ -26,21 +26,12 @@ import { useRateLimitStore } from '@web/stores/rateLimitStore'
 import { storeToRefs } from 'pinia'
 import SvgButtonWithPopupMolecule from './SvgButtonWithPopupMolecule.vue'
 import LastSyncedAtom from '../atoms/LastSyncedAtom.vue'
-import { ApiStatus } from '@web/api/api.types'
-
-// PROPS
-const props = withDefaults(
-	defineProps<{
-		syncRequestStatus: ApiStatus
-	}>(),
-	{
-		syncRequestStatus: 'IDLE',
-	}
-)
+import { useFetchStashItems } from '@web/composables/useFetchStashItems'
+import { PoeItemsByStash } from '@shared/types/poe.types'
 
 // EMITS
 const emit = defineEmits<{
-	syncFolders: []
+	syncFolders: [items: PoeItemsByStash]
 }>()
 
 // STORES
@@ -52,16 +43,21 @@ const maxParallelRequests = rateLimitStore.getMaxRequestsForShortestTestPeriod('
 const { selectedStashTabs } = storeToRefs(stashStore)
 // const stashTabRequest = useFetchStashItems(selectedStashTabs)
 
-// GETTERS
 const selectedStashTabLength = computed(() => {
 	return selectedStashTabs.value.length
 })
 
+// COMPOSABLES
+const stashTabRequest = useFetchStashItems(selectedStashTabs)
+const { timer } = useRateLimitTimer('poe', selectedStashTabLength)
+
+// GETTERS
+
 const svgIconProps = computed(() => {
 	return {
 		name: 'refresh',
-		rotate: props.syncRequestStatus === 'PENDING',
-		useGradient: props.syncRequestStatus === 'PENDING',
+		rotate: stashTabRequest.statusPending.value,
+		useGradient: stashTabRequest.statusPending.value,
 		width: '100%',
 		timeout: timer.value,
 	}
@@ -71,8 +67,25 @@ const syncButtonDisabled = computed(() => {
 	return selectedStashTabLength.value === 0 || selectedStashTabLength.value > maxParallelRequests || timer.value > 0
 })
 
-// COMPOSABLES
-const { timer } = useRateLimitTimer('poe', selectedStashTabLength)
+// METHODS
+
+/**
+ * Synchronize the items in the selected folders.
+ */
+async function syncSelectedFolders() {
+	// Download the selected folder's items.
+	await stashTabRequest.execute()
+
+	// Handle error. Don't return, as there might still be results.
+	if (stashTabRequest.error.value) {
+		// TODO: handle error
+		console.log(stashTabRequest.error.value)
+	}
+
+	if (stashTabRequest.data.value) {
+		emit('syncFolders', stashTabRequest.data.value)
+	}
+}
 </script>
 
 <style scoped>
@@ -81,7 +94,7 @@ const { timer } = useRateLimitTimer('poe', selectedStashTabLength)
 	justify-content: space-between;
 	align-items: center;
 
-	/* Make sure that this component is on top the ul below it */
+	/* Make sure that this component is on top the element below it (because of popup) */
 	z-index: 1;
 }
 </style>

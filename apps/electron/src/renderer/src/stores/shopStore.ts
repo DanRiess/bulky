@@ -30,8 +30,10 @@ export const useShopStore = defineStore('shopStore', () => {
 	 * Every 30 seconds, check all offers.
 	 * Decide if the active status has to change.
 	 * If auto resync is enabled, reupload the offer if the appropriate amount of time has passed.
+	 *
+	 * Start the cycle in the initialize function.
 	 */
-	setInterval(async function () {
+	async function regularUpdate() {
 		for await (const offer of offers.value) {
 			// Define flags for deciding whether the offer has changed and needs to be put into IDB.
 			const active = offer.active
@@ -52,7 +54,9 @@ export const useShopStore = defineStore('shopStore', () => {
 				bulkyIdb.putShopOffer(offer)
 			}
 		}
-	}, 30000)
+
+		setTimeout(regularUpdate, 30000)
+	}
 
 	// METHODS
 
@@ -62,6 +66,8 @@ export const useShopStore = defineStore('shopStore', () => {
 	 */
 	async function initialize() {
 		offers.value = await bulkyIdb.getShopOffersByLeague()
+
+		await regularUpdate()
 	}
 
 	/**
@@ -117,8 +123,8 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		// Generate BulkyItems from the PoeItems with prices and overrides.
 		const { prices, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
-		const { itemOverrides } = useItemOverrides()
-		const { items: itemRecord } = useBulkyItems(poeItems, prices, itemOverrides)
+		const { itemOverrides } = useItemOverrides(offer.category)
+		const { items: itemRecord } = useBulkyItems(poeItems, prices, itemOverrides, offer.category)
 
 		// Resync the stash tabs
 		const stashTabRequest = useFetchStashItems(stashTabs)
@@ -153,11 +159,31 @@ export const useShopStore = defineStore('shopStore', () => {
 		status && (status.value = 'SUCCESS')
 	}
 
+	async function deleteOffer(uuid: BulkyOffer['uuid']) {
+		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === uuid)
+
+		// TODO: handle error
+		if (offerIdx < 0) {
+			console.log('Offer not found')
+			return
+		}
+
+		// Remove the offer from the public db.
+
+		// If the deletion succeeds, remove the offer from idb and the array
+		// TODO: fix condition
+		if (true) {
+			await bulkyIdb.deleteShopOffer(uuid, offers.value[offerIdx].league)
+			offers.value.splice(offerIdx, 1)
+		}
+	}
+
 	return {
 		offers,
 		initialize,
 		getOfferByUuid,
 		putOffer,
 		refreshOffer,
+		deleteOffer,
 	}
 })

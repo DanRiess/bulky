@@ -1,38 +1,50 @@
 <template>
-	<DefaultLayout grid-template-columns="minmax(350px, 0.5fr) minmax(450px, 1fr)">
+	<DefaultLayout grid-template-columns="minmax(350px, 0.5fr) minmax(450px, 1fr)" v-if="offer">
 		<template #leftColumn>
 			<div class="stash-list flow">
-				<div class="category-input">Category: {{ offer?.category }}</div>
+				<div class="category-input">
+					<span>Category:</span>
+					<ImgCategoryAtom :category="offer.category" />
+					<span>{{ capitalize(offer.category) }}</span>
+				</div>
 
-				<StashTabCollectionOrganism :show-refresh-button="timeout <= 0" @start-timeout="updateTimeout" />
+				<StashTabCollectionOrganism />
 
 				<ShopCreateOfferConfigMolecule
-					v-model:ign="ign"
+					v-model:ign="offer.ign"
 					@update:ign="updateIgn"
-					v-model:multiplier="multiplier"
-					v-model:full-buyout="fullBuyout"
-					v-model:min-buyout="minBuyout" />
+					v-model:multiplier="offer.multiplier"
+					v-model:full-buyout="offer.fullBuyout"
+					v-model:min-buyout="offer.minimumBuyout" />
 			</div>
 		</template>
 
 		<template #rightColumn>
 			<div class="item-collection flow">
-				<StashTabItemsOrganism :offer-multiplier="multiplier" :edit-offer="true" />
+				<StashTabItemsOrganism
+					operation="edit"
+					:category="offer.category"
+					:offer-multiplier="offer.multiplier"
+					@sync-changes="syncChanges" />
 			</div>
 		</template>
 	</DefaultLayout>
 </template>
 
 <script setup lang="ts">
-import { BulkyItem, BulkyOffer } from '@shared/types/bulky.types'
+import { BulkyItem, BulkyItemRecord, BulkyOffer } from '@shared/types/bulky.types'
+import ImgCategoryAtom from '@web/components/atoms/ImgCategoryAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
-import { useChaosToDiv } from '@web/composables/useChaosToDiv'
+import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
 import { useShopStore } from '@web/stores/shopStore'
 import { useStashStore } from '@web/stores/stashStore'
-import { computed, ref } from 'vue'
+import { deepToRaw } from '@web/utility/deepToRaw'
+import { capitalize } from 'lodash'
+import { UnwrapRef, onBeforeMount, ref, toValue } from 'vue'
+import { useRouter } from 'vue-router'
 
 // STORES
 const stashStore = useStashStore()
@@ -43,55 +55,66 @@ const props = defineProps<{
 	uuid: BulkyOffer['uuid']
 }>()
 
-console.log({ props })
-
-// EMITS
-const emit = defineEmits<{
-	editOffer: [ign: string, multiplier: number, fullBuyout: boolean, minBuyout: number, items: BulkyItem[]]
-}>()
-
 // STATE
-const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
-
-// GETTERS
-const offer = computed(() => shopStore.getOfferByUuid(props.uuid))
-const minBuyoutDivValue = useChaosToDiv(() => offer.value?.minimumBuyout ?? 1, offer.value?.chaosPerDiv ?? 0)
-
-// MODEL VALUES
-
-/** Offer multiplier model value. */
-const multiplier = ref(offer.value?.multiplier ?? 1)
-/** Offer ign model value. Fetch from localstorage if available. */
-const ign = ref(offer.value?.ign ?? '')
-/** Offer minimum buyout model value. */
-const minBuyout = ref(minBuyoutDivValue.value)
-/** Offer full buyout model value */
-const fullBuyout = ref(offer.value?.fullBuyout ?? false)
+const router = useRouter()
+const offer = ref(shopStore.getOfferByUuid(props.uuid))
 
 // METHODS
-
-/**
- * Update the timeout value and call this function recursively after 1 second until the timeout is 0.
- */
-function updateTimeout() {
-	timeout.value = Math.max(0, stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
-
-	// Don't actually use setInterval, it has some weird edge cases in which it doesn't use the delay at all.
-	if (timeout.value > 0) {
-		setTimeout(() => {
-			updateTimeout()
-		}, 1000)
-	}
-}
 
 /**
  * Custom model value update function for the ign model.
  * In addition to the changes to the variable, also save it to local storage.
  */
 function updateIgn(val: string) {
-	ign.value = val
 	window.localStorage.setItem('ign', val)
 }
+
+async function syncChanges(itemRecord: BulkyItemRecord) {
+	if (offer.value) {
+		const items: UnwrapRef<BulkyItem>[] = []
+		let computedMultiplier = offer.value.multiplier
+
+		itemRecord.forEach(item => {
+			if (!item.selected) return
+			items.push(deepToRaw(item))
+
+			// calculate the multiplier for this item
+			const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
+			if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
+				computedMultiplier = itemMultiplier
+			}
+		})
+
+		const fullPrice = useAggregateItemPrice(itemRecord, offer.value.multiplier)
+		const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
+
+		offer.value.stashTabIds = stashTabIds
+		offer.value.items = items
+		offer.value.fullPrice = fullPrice.value
+		offer.value.computedMultiplier = computedMultiplier
+
+		await shopStore.putOffer(offer.value)
+	}
+	router.push({ name: 'Shop' })
+}
+
+// LIFECYCLE
+
+onBeforeMount(() => {
+	// TODO: handle error
+	if (!offer.value) {
+		console.log('Offer not found')
+		return
+	}
+
+	// Unselect all stash tabs and select the ones from the offer
+	stashStore.unselectAll()
+	offer.value.stashTabIds.forEach(id => {
+		const tab = stashStore.getStashTabById(id)
+		if (!tab) return
+		tab.selected = true
+	})
+})
 </script>
 
 <style scoped>
@@ -110,8 +133,9 @@ function updateIgn(val: string) {
 
 .category-input {
 	display: grid;
-	grid-template-columns: max-content 1fr;
+	grid-template-columns: max-content 1.5rem 1fr;
 	gap: 0.5rem;
+	user-select: none;
 }
 
 .timeout {

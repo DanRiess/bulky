@@ -9,7 +9,7 @@
 			<div class="config">
 				<div class="config-option multiplier">
 					<label>Price Multiplier:</label>
-					<div>{{ offer.multiplier * 100 }} %</div>
+					<div>{{ Math.round(offer.computedMultiplier * 100) }} %</div>
 				</div>
 				<div class="config-option full-buyout">
 					<label>FullBuyout:</label>
@@ -18,8 +18,8 @@
 				<div class="config-option min-buyout" v-if="!offer.fullBuyout">
 					<label>Min Buyout:</label>
 					<div class="min-buyout-value">
-						<div class="currency-section" v-if="Math.floor(offer.minimumBuyout / offer.chaosPerDiv) > 0">
-							{{ Math.floor(offer.minimumBuyout / offer.chaosPerDiv) }}
+						<div class="currency-section" v-if="offer.minimumBuyout.divine > 0">
+							{{ offer.minimumBuyout.divine }}
 							<img
 								src="/src/assets/png-icons/currency-divine.png"
 								height="24"
@@ -27,13 +27,8 @@
 								decoding="async"
 								loading="lazy" />
 						</div>
-						<div
-							class="currency-section"
-							v-if="
-								Math.floor(offer.minimumBuyout % offer.chaosPerDiv) > 0 ||
-								Math.floor(offer.minimumBuyout / offer.chaosPerDiv) === 0
-							">
-							{{ offer.minimumBuyout % offer.chaosPerDiv }}
+						<div class="currency-section" v-if="offer.minimumBuyout.chaos > 0 || offer.minimumBuyout.divine === 0">
+							{{ offer.minimumBuyout.chaos }}
 							<img
 								src="/src/assets/png-icons/currency-chaos.png"
 								height="24"

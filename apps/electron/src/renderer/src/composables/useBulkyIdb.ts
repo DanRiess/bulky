@@ -322,6 +322,22 @@ export function useBulkyIdb() {
 		}
 	}
 
+	/**
+	 * Delete an offer from the store
+	 */
+	async function deleteShopOffer(uuid: BulkyOffer['uuid'], league: BulkyOffer['league']) {
+		let db: IDBPDatabase<BulkyDB> | undefined
+
+		try {
+			db = await initDB()
+			await db.delete('shop_offer', [uuid, league])
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+		}
+	}
+
 	return {
 		putStashTabs,
 		getStashTabsByLeague,
@@ -336,5 +352,6 @@ export function useBulkyIdb() {
 		getItemOverrideByCategory,
 		getShopOffersByLeague,
 		putShopOffer,
+		deleteShopOffer,
 	}
 }

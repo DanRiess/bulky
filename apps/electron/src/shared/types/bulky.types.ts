@@ -74,7 +74,11 @@ export type BulkyOffer<T extends BulkyItem = BulkyItem> = {
 	stashTabIds: PoeStashTab['id'][]
 	chaosPerDiv: number
 	multiplier: number
-	minimumBuyout: number
+	computedMultiplier: number
+	minimumBuyout: {
+		divine: number
+		chaos: number
+	}
 	fullBuyout: boolean
 	items: UnwrapRef<T>[]
 	fullPrice: number

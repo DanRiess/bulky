@@ -91,8 +91,6 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 			})
 			.flat()
 
-		console.log({ removedItems: remove, updatedItems: add })
-
 		// Remove items from the state variable.
 		for (let i = remove.length - 1; i >= 0; --i) {
 			const key = remove[i].stashTabId

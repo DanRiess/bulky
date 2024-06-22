@@ -11,7 +11,7 @@
 					</LabelWithSelectMolecule>
 				</div>
 
-				<StashTabCollectionOrganism :show-refresh-button="timeout <= 0" @start-timeout="updateTimeout" />
+				<StashTabCollectionOrganism />
 
 				<ShopCreateOfferConfigMolecule
 					v-model:ign="ign"
@@ -25,12 +25,11 @@
 		<template #rightColumn>
 			<div class="item-collection flow">
 				<StashTabItemsOrganism
+					operation="create"
 					:offer-multiplier="multiplier"
-					@generate-offer="generateOffer"
-					:disable-offer-generation-button="disableOfferGenerationButton" />
-				<!-- <div class="buttons">
-					<ButtonAtom>Back To My Shop</ButtonAtom>
-				</div> -->
+					:category="appStateStore.selectedCategory"
+					:disable-offer-generation-button="disableOfferGenerationButton"
+					@generate-offer="generateOffer" />
 			</div>
 		</template>
 	</DefaultLayout>
@@ -53,7 +52,7 @@ import { useShopStore } from '@web/stores/shopStore'
 import { useStashStore } from '@web/stores/stashStore'
 import { deepToRaw } from '@web/utility/deepToRaw'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { UnwrapRef, ref } from 'vue'
+import { UnwrapRef, computed, onBeforeMount, ref, toValue } from 'vue'
 import { useRouter } from 'vue-router'
 
 // STORES
@@ -64,8 +63,6 @@ const stashStore = useStashStore()
 const shopStore = useShopStore()
 
 // STATE
-const categories = getKeys(CATEGORY)
-const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
 const disableOfferGenerationButton = ref(false)
 
 // COMPOSABLES
@@ -86,21 +83,14 @@ const minBuyout = ref({
 /** Offer full buyout model value */
 const fullBuyout = ref(false)
 
+// GETTERS
+const categories = computed(() => {
+	const availableCategories = getKeys(CATEGORY)
+	const usedCategories = shopStore.offers.map(o => o.category)
+	return availableCategories.filter(el => !usedCategories.includes(el))
+})
+
 // METHODS
-
-/**
- * Update the timeout value and call this function recursively after 1 second until the timeout is 0.
- */
-function updateTimeout() {
-	timeout.value = Math.max(0, stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
-
-	// Don't actually use setInterval, it has some weird edge cases in which it doesn't use the delay at all.
-	if (timeout.value > 0) {
-		setTimeout(() => {
-			updateTimeout()
-		}, 1000)
-	}
-}
 
 /**
  * Custom model value update function for the ign model.
@@ -128,10 +118,17 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 	}
 
 	const items: UnwrapRef<BulkyItem>[] = []
+	let computedMultiplier = multiplier.value
 
 	itemRecord.forEach(item => {
 		if (!item.selected) return
 		items.push(deepToRaw(item))
+
+		// calculate the multiplier for this item
+		const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
+		if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
+			computedMultiplier = itemMultiplier
+		}
 	})
 
 	const fullPrice = useAggregateItemPrice(itemRecord, multiplier.value)
@@ -143,7 +140,8 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 		ign: ign.value,
 		stashTabIds,
 		multiplier: multiplier.value,
-		minimumBuyout: Math.round(minBuyout.value.divine * chaosPerDiv.value + minBuyout.value.chaos),
+		computedMultiplier,
+		minimumBuyout: minBuyout.value,
 		fullBuyout: fullBuyout.value,
 		chaosPerDiv: chaosPerDiv.value,
 		category: appStateStore.selectedCategory,
@@ -161,6 +159,13 @@ async function generateOffer(itemRecord: BulkyItemRecord) {
 
 	router.push({ name: 'Shop' })
 }
+
+// HOOKS
+onBeforeMount(() => {
+	if (!categories.value.includes(appStateStore.selectedCategory)) {
+		appStateStore.selectedCategory = categories.value[0]
+	}
+})
 </script>
 
 <style scoped>

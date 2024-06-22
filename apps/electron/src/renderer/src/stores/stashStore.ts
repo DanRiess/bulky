@@ -67,6 +67,13 @@ export const useStashStore = defineStore('stashStore', () => {
 	}
 
 	/**
+	 * Unselect all stash tabs.
+	 */
+	function unselectAll() {
+		stashTabs.value.forEach(t => (t.selected = false))
+	}
+
+	/**
 	 * Consume a stash tab dto and type and validate it.
 	 */
 	function generateTypedStashTab(dto: Omit<PoeStashTabDto, 'items'>, parent?: PoeStashTab): PoeStashTab[] {
@@ -115,7 +122,21 @@ export const useStashStore = defineStore('stashStore', () => {
 			.sort((a, b) => a.idx - b.idx)
 
 		// Find all tabs that are either new or have changed data (different name for example).
-		const add = newStashTabs.filter(newTab => !stashTabs.value.some(oldTab => isEqual(newTab, oldTab)))
+		const add = newStashTabs.filter(
+			newTab =>
+				!stashTabs.value.some(oldTab => {
+					// Compare all relevant properties (skip 'selected' and 'lastSnapshot')
+					return (
+						newTab.color === oldTab.color &&
+						newTab.id === oldTab.id &&
+						newTab.index === oldTab.index &&
+						newTab.league === oldTab.league &&
+						newTab.name === oldTab.name &&
+						newTab.parentId === oldTab.parentId &&
+						newTab.type === oldTab.type
+					)
+				})
+		)
 
 		// Remove stash tabs from the state variable.
 		for (let i = remove.length - 1; i >= 0; --i) {
@@ -126,9 +147,20 @@ export const useStashStore = defineStore('stashStore', () => {
 		add.forEach(tab => {
 			const idx = stashTabs.value.findIndex(t => t.id === tab.id)
 
-			// If the index is 0 or higher, a tab with the same id already exists. Replace it.
+			// If the index is 0 or higher, a tab with the same id already exists.
+			// Replace necessary properties (skip 'selected' and 'lastSnapshot').
 			// Otherwise, push the new tab to the array.
-			idx > -1 ? stashTabs.value.splice(idx, 1, tab) : stashTabs.value.push(tab)
+			if (idx > -1) {
+				stashTabs.value[idx].color = tab.color
+				stashTabs.value[idx].id = tab.id
+				stashTabs.value[idx].index = tab.index
+				stashTabs.value[idx].league = tab.league
+				stashTabs.value[idx].name = tab.name
+				stashTabs.value[idx].parentId = tab.parentId
+				stashTabs.value[idx].type = tab.type
+			} else {
+				stashTabs.value.push(tab)
+			}
 		})
 
 		// Sort the tabs.
@@ -187,6 +219,7 @@ export const useStashStore = defineStore('stashStore', () => {
 		fetchTimeout,
 		initialize,
 		getStashTabById,
+		unselectAll,
 		getStashTabListRequest,
 		reset,
 	}

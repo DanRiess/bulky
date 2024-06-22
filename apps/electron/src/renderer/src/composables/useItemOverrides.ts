@@ -5,30 +5,34 @@ import {
 	BulkyItemOverrideRecord,
 	Category,
 } from '@shared/types/bulky.types'
-import { useAppStateStore } from '@web/stores/appStateStore'
-import { Ref, ref, watch } from 'vue'
+import { MaybeRefOrGetter, Ref, ref, watch } from 'vue'
 import { useBulkyIdb } from './useBulkyIdb'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
+import { isWatchable } from '@shared/types/utility.types'
 
 /**
  * This function returns a ref that holds the current category's price overrides.
  * Price overrides are saved in the price_override store in the idb.
  */
-export function useItemOverrides() {
-	const appStateStore = useAppStateStore()
-
+export function useItemOverrides(category: MaybeRefOrGetter<Category>) {
 	const itemOverrides: Ref<BulkyItemOverrideRecord> = ref(new Map())
 
 	// Load the current category's prices whenever the category changes.
-	watch(
-		() => appStateStore.selectedCategory,
-		category => {
-			updateStateVariable(category).then(state => {
-				itemOverrides.value = state
-			})
-		},
-		{ immediate: true }
-	)
+	if (isWatchable(category)) {
+		watch(
+			category,
+			category => {
+				updateStateVariable(category).then(state => {
+					itemOverrides.value = state
+				})
+			},
+			{ immediate: true }
+		)
+	} else {
+		updateStateVariable(category).then(state => {
+			itemOverrides.value = state
+		})
+	}
 
 	/**
 	 * Edit or add a price override.

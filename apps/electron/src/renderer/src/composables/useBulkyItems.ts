@@ -1,19 +1,17 @@
-import { BulkyItemRecord, BulkyItemSortOptions, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyItemRecord, BulkyItemSortOptions, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem, PoeItemsByStash } from '@shared/types/poe.types'
 import { RefOrGetter, getKeys, isWatchable } from '@shared/types/utility.types'
-import { useAppStateStore } from '@web/stores/appStateStore'
 import { compareStrings } from '@web/utility/compareFunctions'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
-import { Ref, ref, toValue, watch } from 'vue'
+import { MaybeRefOrGetter, Ref, ref, toValue, watch } from 'vue'
 
 export function useBulkyItems(
 	poeItems: RefOrGetter<PoeItemsByStash>,
 	prices: Ref<NinjaPriceRecord>,
-	priceOverrides: Ref<BulkyItemOverrideRecord>
+	priceOverrides: Ref<BulkyItemOverrideRecord>,
+	category: MaybeRefOrGetter<Category>
 ) {
-	const appStateStore = useAppStateStore()
-
 	/**
 	 * Reactive map of item records.
 	 * Stores records in the form [ 'itemType_itemTier', item ]
@@ -47,7 +45,7 @@ export function useBulkyItems(
 			// I did not want to create a dedicated watcher for this because I'm afraid of race conditions.
 			// Imagine user changes category. If this watcher triggers before the category watcher,
 			// the category watcher would remove every item and we'd end up with an empty map.
-			if (items.value.entries().next().value?.[1]?.category !== appStateStore.selectedCategory) {
+			if (items.value.entries().next().value?.[1]?.category !== toValue(category)) {
 				items.value = new Map()
 			}
 
@@ -74,7 +72,7 @@ export function useBulkyItems(
 	 * If the BulkyItem does not exist yet, create it instead.
 	 */
 	function putItem(poeItem: PoeItem) {
-		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, appStateStore.selectedCategory)
+		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, toValue(category))
 		if (!base) return
 
 		const itemInMap = items.value.get(`${base.type}_${base.tier}`)
@@ -86,7 +84,7 @@ export function useBulkyItems(
 
 		// ...otherwise, create a new BulkyItem and add it to the map
 		else {
-			const bulkyItem = BULKY_TRANSFORM.poeItemToBulkyItem(poeItem, appStateStore.selectedCategory, prices, priceOverrides)
+			const bulkyItem = BULKY_TRANSFORM.poeItemToBulkyItem(poeItem, toValue(category), prices, priceOverrides)
 			if (!bulkyItem) return
 			items.value.set(`${bulkyItem.type}_${bulkyItem.tier}`, bulkyItem)
 		}
@@ -97,7 +95,7 @@ export function useBulkyItems(
 	 * If the stack size is 0, remove the BulkyItem.
 	 */
 	function deleteItem(poeItem: PoeItem) {
-		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, appStateStore.selectedCategory)
+		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, toValue(category))
 		if (!base) return false
 
 		// Check if this item is in the map.
