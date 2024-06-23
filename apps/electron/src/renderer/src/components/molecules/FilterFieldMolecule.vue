@@ -1,18 +1,18 @@
 <template>
-	<div class="m-filter-field" :data-index="idx">
+	<div class="m-filter-field">
 		<div class="item">
-			<InputSelectAtom v-model="mainModel" :id="itemId" :options="mainOptions"></InputSelectAtom>
+			<InputSelectAtom v-model="filterField.type" :id="itemId" :options="store.filterFieldTypeOptions"></InputSelectAtom>
 		</div>
-		<div class="modifier" v-if="secondaryOptions">
-			<InputSelectAtom v-model="secondaryModel" :id="modifierId" :options="secondaryOptions"></InputSelectAtom>
+		<div class="modifier" v-if="store.filterFieldTierOptions.length > 0">
+			<InputSelectAtom
+				v-model="filterField.tier"
+				:id="modifierId"
+				:options="store.filterFieldTierOptions"></InputSelectAtom>
 		</div>
-		<div class="quantity" :class="{ hidden: alwaysMaxQuantity }">
-			<InputNumberAtom v-model="quantityModel" :id="quantityId" :min="1" />
+		<div class="quantity" :class="{ hidden: store.filter.alwaysMaxQuantity }">
+			<InputNumberAtom v-model="filterField.quantity" :id="quantityId" :min="1" />
 		</div>
-		<!-- <div class="max-price">
-			<InputNumberAtom v-model="maxBuyoutModel" :id="maxPriceId" :min="0" />
-		</div> -->
-		<div class="remove" @click="emit('removeFilter')" v-if="!disableRemove">
+		<div class="remove" @click="emit('removeFilterField')" v-if="!disableRemove">
 			<SvgIconAtom name="close" cursor="pointer" :use-gradient="true" />
 		</div>
 	</div>
@@ -24,44 +24,40 @@ import InputSelectAtom from '../atoms/InputSelectAtom.vue'
 import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed } from 'vue'
+import { BulkyFilterField, ComputedBulkyFilterStore } from '@shared/types/bulky.types'
 
 // MODELS
-const mainModel = defineModel<string>('mainModel')
-const secondaryModel = defineModel<string>('secondaryModel')
-const quantityModel = defineModel<number>('quantityModel', { required: true })
-// const maxBuyoutModel = defineModel<number>('maxBuyoutModel', { required: true })
+// const mainModel = defineModel<string>('mainModel')
+// const secondaryModel = defineModel<string>('secondaryModel')
+// const quantityModel = defineModel<number>('quantityModel', { required: true })
+// // const maxBuyoutModel = defineModel<number>('maxBuyoutModel', { required: true })
+const filterField = defineModel<BulkyFilterField>({ required: true })
 
 //PROPS
-const props = withDefaults(
-	defineProps<{
-		mainOptions: MainOptionType[]
-		secondaryOptions?: SecondaryOptionType[]
-		disableRemove?: boolean
-		alwaysMaxQuantity: boolean
-		idx: number
-	}>(),
-	{
-		disableRemove: false,
-	}
-)
+const props = defineProps<{
+	store: ComputedBulkyFilterStore
+	zIndex: number
+}>()
 
 // EMITS
 const emit = defineEmits<{
-	removeFilter: []
+	removeFilterField: []
 }>()
 
 // STATE
 const itemId = BULKY_UUID.generateTypedUuid()
 const modifierId = BULKY_UUID.generateTypedUuid()
 const quantityId = BULKY_UUID.generateTypedUuid()
-// const maxPriceId = BULKY_UUID.generateTypedUuid()
-const zIndex = 300 - props.idx
 
 // GETTERS
+const disableRemove = computed(() => {
+	return props.store.filter.fields.length <= 1
+})
+
 const gridTemplateColumns = computed(() => {
-	const secondary = props.secondaryOptions ? '1fr' : '0'
-	const quant = props.alwaysMaxQuantity ? '0' : 'min(7ch)'
-	return `2fr ${secondary} ${quant} 1.5rem`
+	const tierOptionsAvailable = props.store.filterFieldTierOptions.length > 0 ? '1fr' : '0'
+	const quant = props.store.filter.alwaysMaxQuantity ? '0' : 'min(7ch)'
+	return `2fr ${tierOptionsAvailable} ${quant} 1.5rem`
 })
 </script>
 

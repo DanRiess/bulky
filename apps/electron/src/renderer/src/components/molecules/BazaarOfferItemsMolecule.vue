@@ -3,15 +3,15 @@
 		<header class="header">
 			<ExpandSectionAtom :expanded="expanded" @toggle-expanded="expanded = !expanded" />
 			<h3 class="no-select">Items</h3>
+			<div class="price">
+				<PriceAtom label="Price:" :price="price" />
+			</div>
 		</header>
 
 		<AccordionTransitionWrapperAtom :expanded="expanded">
 			<ul class="item-list">
 				<TransitionAtom :group="true" v-on="hooks">
-					<BazaarOfferItemAtom
-						v-for="item in computedItemDisplayValues"
-						:full-buyout-watcher="fullBuyoutWatcher"
-						:computed-item-display-values="item" />
+					<BazaarOfferItemAtom v-for="item in items" :filter="filter" :item="item" />
 				</TransitionAtom>
 			</ul>
 		</AccordionTransitionWrapperAtom>
@@ -24,21 +24,23 @@ import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
-import { ComputedItemDisplayValues } from '@shared/types/bulky.types'
+import { BulkyBazaarItem, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
 import BazaarOfferItemAtom from '../atoms/BazaarOfferItemAtom.vue'
+import PriceAtom from '../atoms/PriceAtom.vue'
 
 // PROPS
 const props = defineProps<{
-	fullBuyoutWatcher: boolean
-	computedItemDisplayValues: ComputedItemDisplayValues[]
+	items: BulkyBazaarItem[]
+	filter: BulkyFilter
+	price: TotalPrice
 }>()
 
 // STATE
-const expanded = ref(!props.fullBuyoutWatcher)
+const expanded = ref(!props.filter.fullBuyout)
 
 // WATCHERS
 watch(
-	() => props.fullBuyoutWatcher,
+	() => props.filter.fullBuyout,
 	bool => {
 		expanded.value = !bool
 	}
@@ -46,9 +48,9 @@ watch(
 
 // GETTERS
 const gridTemplateColumns = computed(() => {
-	return props.fullBuyoutWatcher
-		? 'fit-content(20ch) minmax(4ch, 1fr) fit-content(3.5ch) 1ch fit-content(3.5ch) 24px'
-		: 'fit-content(20ch) minmax(4ch, 1fr) fit-content(4ch) fit-content(2.5ch) 0.75ch fit-content(2.75ch) 24px'
+	return props.filter.fullBuyout
+		? 'fit-content(25ch) minmax(2.5ch, 1fr) 1ch fit-content(3.5ch) 24px'
+		: 'fit-content(25ch) minmax(4ch, 1fr) fit-content(2.5ch) 0.75ch fit-content(2.75ch) 24px'
 })
 
 // HOOKS
@@ -57,7 +59,7 @@ const hooks = useListTransition({
 })
 
 onMounted(() => {
-	expanded.value = !props.fullBuyoutWatcher
+	expanded.value = !props.filter.fullBuyout
 })
 </script>
 
@@ -67,12 +69,20 @@ onMounted(() => {
 	grid-template-columns: v-bind(gridTemplateColumns);
 	gap: 0.2rem;
 	margin-top: 0.5rem;
+	max-height: 8rem;
+	overflow-y: auto;
+	scrollbar-gutter: stable;
 }
 
 .header {
 	display: grid;
-	grid-template-columns: 1.5rem auto;
+	grid-template-columns: 1.5rem auto 1fr;
 	align-items: center;
 	gap: 0.25rem;
+}
+
+.header .price {
+	justify-self: end;
+	margin-right: 5px;
 }
 </style>

@@ -2,14 +2,14 @@
  * This component provides static functions in regards to essences.
  */
 
-import { GenericListingItemDto } from '@shared/types/dtoRequest.types'
-import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE } from './essence.const'
+import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
 import { ShopEssence, EssenceTier, EssenceType } from './essence.types'
 import { PoeItem } from '@shared/types/poe.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { Ref, computed } from 'vue'
 import { useConfigStore } from '@web/stores/configStore'
+import { capitalize } from 'lodash'
 
 /** Type a returned ShopEssence type DTO and turn it into an ShopEssence type */
 function generateEssenceTypeFromBaseType(baseType: string): EssenceType | undefined {
@@ -55,17 +55,6 @@ function generateEssenceTierFromBaseType(baseType: string): EssenceTier | undefi
 	else return undefined
 }
 
-/** Type a returned item DTO and turn it into an ShopEssence item */
-function generateEssenceItemFromDto(itemDto: GenericListingItemDto): ShopEssence | null {
-	if (!itemDto.tier || itemDto.tier < 0 || itemDto.tier > 8) return null
-
-	return {
-		tier: ESSENCE_TIER_IDX_TO_NAME[itemDto.tier],
-		quantity: itemDto.quantity,
-		price: itemDto.price,
-	}
-}
-
 function generateEssenceFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
@@ -98,9 +87,16 @@ function generateEssenceFromPoeItem(
 	}
 }
 
+function generateEssenceNameFromTypeAndTier(type: EssenceType, tier: EssenceTier) {
+	if (type === 'HYSTERIA' || type === 'DELIRIUM' || type === 'INSANITY' || type === 'HORROR') {
+		return `Essence of ${capitalize(type)}`
+	}
+	return `${capitalize(tier)} E. of ${capitalize(type)}`
+}
+
 export const BULKY_ESSENCES = {
 	generateEssenceTypeFromBaseType,
-	generateEssenceItemFromDto,
 	generateEssenceTierFromBaseType,
 	generateEssenceFromPoeItem,
+	generateEssenceNameFromTypeAndTier,
 }

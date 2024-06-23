@@ -5,34 +5,26 @@
 				<slot name="title">Filter</slot>
 			</h1>
 		</header>
-		<FilterAttributesGlobalMolecule :filter="filter" />
-		<FilterAttributesLocalMolecule
-			:filter="filter"
-			:main-options="mainOptions"
-			:secondary-options="secondaryOptions"
-			@add-filter-field="e => emit('addFilterField', e)"
-			@remove-filter-field="(...args) => emit('removeFilterField', ...args)" />
+		<FilterAttributesGlobalMolecule :filter="store.filter" />
+		<FilterAttributesLocalMolecule :store="store" />
 	</div>
 </template>
 
 <script setup lang="ts">
-import { AnyFilter, FilterMainOption, FilterSecondaryOption } from '@shared/types/bulky.types'
+import { ComputedBulkyFilterStore } from '@shared/types/bulky.types'
 import FilterAttributesGlobalMolecule from '../molecules/FilterAttributesGlobalMolecule.vue'
 import FilterAttributesLocalMolecule from '../molecules/FilterAttributesLocalMolecule.vue'
-import { Uuid } from '@shared/types/utility.types'
 
 // PROPS
 defineProps<{
-	filter: AnyFilter
-	mainOptions: FilterMainOption[]
-	secondaryOptions: FilterSecondaryOption[]
+	store: ComputedBulkyFilterStore
 }>()
 
 // EMITS
-const emit = defineEmits<{
-	addFilterField: [uuid: Uuid<AnyFilter>]
-	removeFilterField: [uuid: Uuid<AnyFilter>, idx: number]
-}>()
+// const emit = defineEmits<{
+// 	addFilterField: [uuid: Uuid<BulkyFilter>]
+// 	removeFilterField: [uuid: Uuid<BulkyFilter>, idx: number]
+// }>()
 </script>
 
 <style scoped>

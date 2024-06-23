@@ -1,4 +1,10 @@
-import { ShopEssence, BazaarEssence, EssenceFilterField, EssenceFilterStore } from '@web/categories/essence/essence.types'
+import {
+	ShopEssence,
+	BazaarEssence,
+	EssenceFilterField,
+	EssenceFilterStore,
+	EssenceOfferStore,
+} from '@web/categories/essence/essence.types'
 import { MaybeComputedRef, ObjectValues, Uuid } from './utility.types'
 import { ComputedRef, UnwrapRef } from 'vue'
 import { BazaarScarab, ShopScarab } from '@web/categories/scarab/scarab.types'
@@ -26,6 +32,10 @@ type BulkyItemOptions = {
 	prefix: string[]
 	suffix: string[]
 }
+
+// STORES
+export type BulkyFilterStore = EssenceFilterStore
+export type BulkyOfferStore = EssenceOfferStore
 
 // BULKY SHOP ITEM TYPES
 
@@ -95,7 +105,9 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 // BULKY BAZAAR ITEM TYPES
 
 export type BulkyBazaarItemBase = {
+	name: string
 	type: string // will be overridden
+	tier: string
 	options?: BulkyItemOptions
 	quantity: number
 	price: number
@@ -112,15 +124,22 @@ export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
 	league: string
 	chaosPerDiv: number
 	multiplier: number
-	minimumBuyout: {
-		divine: number
-		chaos: number
-	}
-	items: BulkyBazaarItemRecord<T>
+	fullPrice: number
+	minimumBuyout: number
+	items: BulkyBazaarItem[]
 	contact: {
 		messageSent: boolean
 		timestamp: number
 	}
+}
+
+/**
+ * This type will be generated on demand to be passed down to components.
+ * Depending on the category (and at a later stage depending on the filter name as well),
+ * it will choose a filter from the correct store and computed utility functions around it.
+ */
+export type ComputedBulkyOfferStore = {
+	offers: BulkyOfferStore['offers']
 }
 
 // FILTER TYPES
@@ -139,7 +158,6 @@ export type BulkyFilterFieldBase<T extends Category> = {
 	category: T
 	type: string
 	quantity: number
-	maxBuyout: number
 }
 
 /**
@@ -158,7 +176,8 @@ export type BulkyFilterField = EssenceFilterField
  * }
  */
 export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
-	uuid: Uuid<T>
+	uuid: Uuid<BulkyFilter<T>>
+	category: T['category']
 	name: string
 	multiplier: number
 	fullBuyout: boolean
@@ -166,7 +185,18 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
 	fields: T[]
 }
 
-export type BulkyFilterStore = EssenceFilterStore
+/**
+ * This type will be generated on demand to be passed down to components.
+ * Depending on the category (and at a later stage depending on the filter name as well),
+ * it will choose a filter from the correct store and computed utility functions around it.
+ */
+export type ComputedBulkyFilterStore = {
+	filter: BulkyFilter
+	filterFieldTypeOptions: BulkyFilterField['type'][]
+	filterFieldTierOptions: BulkyFilterField['tier'][]
+	addFilterField: <T extends BulkyFilter['uuid']>(uuid: T) => void
+	removeFilterField: <T extends BulkyFilter['uuid']>(uuid: T, idx: number) => void
+}
 
 // PRICES
 
@@ -217,36 +247,9 @@ export type BulkyBazaarOfferDto = {
 	league: string
 	chaosPerDiv: number
 	multiplier: number
-	minimumBuyout: {
-		divine: number
-		chaos: number
-	}
+	fullPrice: number
+	minimumBuyout: number
 	items: string
-}
-
-// DISPLAY TYPES
-
-export type ComputedItemDisplayValues = {
-	name: string
-	secondaryOption?: string
-	quantity: number
-	price: number
-	stock: number
-}
-
-export type ComputedOfferDisplayValues = {
-	uuid: Uuid<BulkyShopOffer>
-	ign: string
-	chaosPerDiv: number
-	computedItems: ComputedItemDisplayValues[]
-	totalPrice: TotalPrice
-	messageSent: boolean
-	multiplier: number
-	/**
-	 * Proxy to filter.fullBuyout.
-	 * Watch this to expand / collapse the listing's items when full buyout input gets toggled.
-	 */
-	fullBuyoutWatcher: boolean
 }
 
 // UTILITY TYPES

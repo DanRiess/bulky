@@ -1,12 +1,9 @@
 <template>
 	<div class="o-bazaar-offer animated-gradient-background" data-b-override>
 		<div class="metadata-and-whisper flow">
-			<BazaarOfferMetadataMolecule
-				:ign="computedOffer.ign"
-				:chaos-per-div="computedOffer.chaosPerDiv"
-				:multiplier="computedOffer.multiplier" />
+			<BazaarOfferMetadataMolecule :offer="offer" />
 			<ButtonAtom background-color="dark" @click="sendMessage">
-				<template v-if="messageSent">
+				<template v-if="offer.contact.messageSent">
 					<div class="message-sent">
 						Message Sent!
 						<SvgIconAtom name="done" height="24" color="var(--color-blue-bright)" />
@@ -17,42 +14,87 @@
 		</div>
 
 		<div class="items-and-price">
-			<BazaarOfferItemsMolecule
-				:full-buyout-watcher="computedOffer.fullBuyoutWatcher"
-				:computed-item-display-values="computedOffer.computedItems" />
-			<BazaarOfferCurrentPriceAtom :total-price="computedOffer.totalPrice" />
+			<BazaarOfferItemsMolecule :filter="filter" :items="filteredItems" :price="filteredPrice" />
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { craftWhisperMessage } from '@web/utility/whisper'
-import { ref } from 'vue'
-import { ComputedOfferDisplayValues } from '@shared/types/bulky.types'
+import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
 import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
 import BazaarOfferMetadataMolecule from '../molecules/BazaarOfferMetadataMolecule.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
-import BazaarOfferCurrentPriceAtom from '../atoms/BazaarOfferCurrentPriceAtom.vue'
+import { computed } from 'vue'
 
-const messageSent = ref(false)
-
+// PROPS
 const props = defineProps<{
-	computedOffer: ComputedOfferDisplayValues
+	offer: BulkyBazaarOffer
+	filter: BulkyFilter
 }>()
 
+// GETTERS
+
+/** Filter the offer's items based on the filter */
+const filteredItems = computed<BulkyBazaarItem[]>(() => {
+	// If the user wants to buy the full offer, return all items
+	if (props.filter.fullBuyout) {
+		return props.offer.items
+	}
+
+	return props.offer.items.filter(item => {
+		return props.filter.fields.find(field => field.type === item.type && field.tier === item.tier)
+	})
+})
+
+/** Calculate the price of the filtered items. */
+const filteredPrice = computed<TotalPrice>(() => {
+	const t0 = performance.now()
+	// If 'fullBuyout' is chosen, return the offer's full price.
+	// Else, calculate the filtered items price.
+	const chaosValue = props.filter.fullBuyout
+		? props.offer.fullPrice
+		: filteredItems.value.reduce((prev, curr) => {
+				// If 'alwaysMaxQuantity' is picked, just return the items price * quantity.
+				if (props.filter.alwaysMaxQuantity) {
+					return (prev += curr.price * curr.quantity)
+				}
+
+				// Find the filter field that corresponds to the item and return its quantity * the items price.
+				const field = props.filter.fields.find(field => field.type === curr.type && field.tier === curr.tier)
+				if (!field) {
+					return prev
+				}
+
+				return (prev += curr.price * field.quantity)
+		  }, 0)
+
+	console.log(`Compute filtered price performance: ${performance.now() - t0}`)
+
+	return {
+		divine: Math.floor(chaosValue / props.offer.chaosPerDiv),
+		chaos: chaosValue % props.offer.chaosPerDiv,
+	}
+})
+
+// METHODS
+
+/**
+ * Create a whisper message and instruct Node to send it ingame.
+ */
 async function sendMessage() {
-	const message = craftWhisperMessage(props.computedOffer)
+	const message = craftWhisperMessage(props.offer)
 
 	const request = useApi('typeInChat', nodeApi.typeInChat)
 	await request.exec(message)
 
 	if (request.data.value) {
-		messageSent.value = true
+		props.offer.contact.messageSent = true
 		setTimeout(() => {
-			messageSent.value = false
+			props.offer.contact.messageSent = false
 		}, 60000)
 	}
 }
@@ -61,11 +103,17 @@ async function sendMessage() {
 <style scoped>
 .o-bazaar-offer {
 	display: grid;
-	grid-template-columns: 15ch 1fr;
+	grid-template-columns: 17ch 1fr;
 	gap: 1.5rem;
 	padding: 0.5rem;
 	border-radius: var(--border-radius-medium);
 	/* transition: margin-top 1s cubic-bezier(0, 0, 0.85, 1); */
+}
+
+.price {
+	float: right;
+	margin-top: 0.5rem;
+	margin-right: 5px;
 }
 
 .message-sent {

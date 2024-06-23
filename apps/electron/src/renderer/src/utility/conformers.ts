@@ -1,4 +1,4 @@
-import { BulkyBazaarItem, BulkyBazaarItemRecord } from '@shared/types/bulky.types'
+import { BulkyBazaarItem } from '@shared/types/bulky.types'
 import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
 
 /**
@@ -35,9 +35,10 @@ import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
  */
 export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 	items: string,
+	generateNameFromTypeAndTier: (type: T['type'], tier: T['tier']) => string,
 	idxToTypeMapper: Record<number, T['type']>,
 	idxToTierMapper: Record<number, T['tier']>
-): BulkyBazaarItemRecord<T> | undefined {
+): T[] | undefined {
 	const t0 = performance.now()
 	const itemBuffer = decodeUrlSafeBase64ToArrayBuffer(items)
 	const dv = new DataView(itemBuffer)
@@ -63,7 +64,7 @@ export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 		return
 	}
 
-	const conformedItems: BulkyBazaarItemRecord = new Map()
+	const conformedItems: T[] = []
 
 	// byte offset until now. It has to be always 11 at this point.
 	let offset = 11
@@ -99,21 +100,20 @@ export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 
 		if (type === 'UNSUPPORTED') continue
 
-		// @ts-ignore
-		const item: T = {
+		const item = {
+			name: generateNameFromTypeAndTier(type, tier),
 			type,
 			tier,
 			quantity,
 			price,
 			icon,
-		}
+		} as T
 
-		conformedItems.set(`${type}_${tier}`, item)
+		conformedItems.push(item)
 
 		offset += 8
 	}
 	console.log(`Performance: ${performance.now() - t0}`)
 
-	// @ts-ignore
 	return conformedItems
 }

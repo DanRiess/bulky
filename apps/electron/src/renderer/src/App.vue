@@ -96,7 +96,7 @@ body {
 
 .main-app-window {
 	height: 700px;
-	width: 1000px;
+	width: 1100px;
 	display: grid;
 	grid-template-rows: auto minmax(0, 1fr);
 	border-radius: 1rem;
