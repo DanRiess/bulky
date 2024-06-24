@@ -3,10 +3,10 @@ import { BULKY_ID } from './typedId'
 import { PoeItemDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { BulkyShopItem, BulkyItemOverrideInstance, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
-import { BULKY_ESSENCES } from '@web/categories/essence/essence.static'
+import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
 import { Ref, toValue } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
-import { BULKY_SCARABS } from '@web/categories/scarab/scarab.static'
+import { BULKY_SCARABS } from '@web/categories/scarab/scarab.transformers'
 
 export function transformToDisplayValue(string: string) {
 	const arr = string.split('_')

@@ -1,15 +1,17 @@
 import { PoeItem } from '@shared/types/poe.types'
 import { SCARAB_TYPE } from './scarab.const'
-import { Scarab, ScarabTier, ScarabType } from './scarab.types'
+import { ScarabTier, ScarabType, ShopScarab } from './scarab.types'
 import { Ref, computed } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
+import { capitalize } from 'lodash'
 
 export const BULKY_SCARABS = {
 	generateScarabTypeFromBaseType,
 	generateScarabTier,
 	generateScarabFromPoeItem,
+	generateScarabNameFromType,
 }
 
 function generateScarabTypeFromBaseType(baseType: string): ScarabType | undefined {
@@ -140,7 +142,7 @@ function generateScarabFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	priceOverrides: Ref<BulkyItemOverrideRecord>
-): Scarab | undefined {
+): ShopScarab | undefined {
 	const configStore = useConfigStore()
 
 	const type = generateScarabTypeFromBaseType(poeItem.baseType)
@@ -166,4 +168,11 @@ function generateScarabFromPoeItem(
 			return priceOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
 	}
+}
+
+function generateScarabNameFromType(type: ScarabType) {
+	return type
+		.split('_')
+		.map(t => capitalize(t))
+		.join(' ')
 }

@@ -35,6 +35,7 @@ import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
  */
 export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 	items: string,
+	category: T['category'],
 	generateNameFromTypeAndTier: (type: T['type'], tier: T['tier']) => string,
 	idxToTypeMapper: Record<number, T['type']>,
 	idxToTierMapper: Record<number, T['tier']>
@@ -98,9 +99,8 @@ export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 		// TODO: conform icon
 		const icon = ''
 
-		if (type === 'UNSUPPORTED') continue
-
 		const item = {
+			category,
 			name: generateNameFromTypeAndTier(type, tier),
 			type,
 			tier,
@@ -117,3 +117,5 @@ export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 
 	return conformedItems
 }
+
+// NEXT STEP: define dto as json (because of item 'option' property, binary won't be feasible)

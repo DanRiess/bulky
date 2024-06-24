@@ -36,6 +36,5 @@ function onClick(category: Category) {
 	display: flex;
 	gap: 1rem;
 	flex-wrap: wrap;
-	margin-bottom: 0.5rem;
 }
 </style>

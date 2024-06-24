@@ -3,8 +3,8 @@
  */
 
 import { CATEGORY, Category } from '@shared/types/bulky.types'
-import { BULKY_ESSENCES } from '@web/categories/essence/essence.static'
-import { BULKY_SCARABS } from '@web/categories/scarab/scarab.static'
+import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
+import { BULKY_SCARABS } from '@web/categories/scarab/scarab.transformers'
 
 function generateCategoryFromDto(category: string): Category | undefined {
 	if (category.match(/scarab/i)) {

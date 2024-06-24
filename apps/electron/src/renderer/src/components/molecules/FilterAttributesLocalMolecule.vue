@@ -2,11 +2,7 @@
 	<AccordionTransitionWrapperAtom :expanded="!store.filter.fullBuyout">
 		<h2>Specific Filter Fields</h2>
 		<div class="filters flow">
-			<FilterFieldHeaderMolecule
-				main-option-name="Name"
-				secondary-option-name="Tier"
-				:always-max-quantity="store.filter.alwaysMaxQuantity"
-				key="header" />
+			<FilterFieldHeaderMolecule main-option-name="Name" secondary-option-name="Tier" :store="store" key="header" />
 			<TransitionAtom :group="true" v-on="hooks">
 				<FilterFieldMolecule
 					v-for="(field, idx) in store.filter.fields"

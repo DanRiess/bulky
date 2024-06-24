@@ -1,18 +1,20 @@
 <template>
 	<div class="m-filter-field">
-		<div class="item">
+		<div class="field-type">
 			<InputSelectAtom v-model="filterField.type" :id="itemId" :options="store.filterFieldTypeOptions"></InputSelectAtom>
 		</div>
-		<div class="modifier" v-if="store.filterFieldTierOptions.length > 0">
+
+		<!-- A filter has at least one secondary option, because it's required for consistent typing -->
+		<div class="field-tier" v-if="store.filterFieldTierOptions.length > 1">
 			<InputSelectAtom
 				v-model="filterField.tier"
 				:id="modifierId"
 				:options="store.filterFieldTierOptions"></InputSelectAtom>
 		</div>
-		<div class="quantity" :class="{ hidden: store.filter.alwaysMaxQuantity }">
+		<div class="field-quantity" :class="{ hidden: store.filter.alwaysMaxQuantity }">
 			<InputNumberAtom v-model="filterField.quantity" :id="quantityId" :min="1" />
 		</div>
-		<div class="remove" @click="emit('removeFilterField')" v-if="!disableRemove">
+		<div class="field-remove" @click="emit('removeFilterField')" v-if="!disableRemove">
 			<SvgIconAtom name="close" cursor="pointer" :use-gradient="true" />
 		</div>
 	</div>
@@ -55,14 +57,14 @@ const disableRemove = computed(() => {
 })
 
 const gridTemplateColumns = computed(() => {
-	const tierOptionsAvailable = props.store.filterFieldTierOptions.length > 0 ? '1fr' : '0'
+	const tierOptionsAvailable = props.store.filterFieldTierOptions.length > 1 ? '1fr' : '0'
 	const quant = props.store.filter.alwaysMaxQuantity ? '0' : 'min(7ch)'
 	return `2fr ${tierOptionsAvailable} ${quant} 1.5rem`
 })
 </script>
 
 <style scoped>
-/* don't use subgrid here, it will muck up the filter field animation */
+/* don't use subgrid here, it will somehow mess up the filter field animation */
 .m-filter-field {
 	/* display: grid;
 	grid: subgrid / subgrid;
@@ -76,14 +78,22 @@ const gridTemplateColumns = computed(() => {
 	transition: grid-template-columns 0.25s ease;
 }
 
-.remove {
-	display: flex;
-	align-items: center;
+.field-type {
+	grid-column: 1/2;
 }
 
-.max-price,
-.quantity {
+.field-tier {
+	grid-column: 2/3;
+}
+
+.field-quantity {
 	place-self: center;
+	grid-column: 3/4;
 	transition: opacity 0.25s ease;
+}
+
+.field-remove {
+	display: flex;
+	align-items: center;
 }
 </style>

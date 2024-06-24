@@ -1,5 +1,5 @@
 /**
- * Handle all essence offers through this store.
+ * Handle all scarab offers through this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -7,37 +7,37 @@ import { ref } from 'vue'
 import { getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { BazaarEssence, BazaarEssenceOffer } from './essence.types'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
-import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE, ESSENCE_TYPE_IDX_TO_NAME } from './essence.const'
 import { conformBinaryListingItems } from '@web/utility/conformers'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
-import { BULKY_ESSENCES } from './essence.transformers'
+import { BazaarScarab, BazaarScarabOffer } from './scarab.types'
+import { BULKY_SCARABS } from './scarab.transformers'
+import { SCARAB_TYPE, SCARAB_TYPE_IDX_TO_NAME } from './scarab.const'
 
-export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
-	const offers = ref<Map<BazaarEssenceOffer['uuid'], BazaarEssenceOffer>>(new Map())
+export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
+	const offers = ref<Map<BazaarScarabOffer['uuid'], BazaarScarabOffer>>(new Map())
 
 	/**
-	 * Consume an essence listing dto, type and validate it and add it to the listings.
+	 * Consume an scarab listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
-		if (category !== 'ESSENCE') return
+		if (category !== 'SCARAB') return
 
-		const uuid = BULKY_UUID.generateTypedUuid<BazaarEssenceOffer>(dto.uuid)
+		const uuid = BULKY_UUID.generateTypedUuid<BazaarScarabOffer>(dto.uuid)
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice ?? 5400
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = conformBinaryListingItems<BazaarEssence>(
+		const items = conformBinaryListingItems<BazaarScarab>(
 			dto.items,
-			'ESSENCE',
-			BULKY_ESSENCES.generateEssenceNameFromTypeAndTier,
-			ESSENCE_TYPE_IDX_TO_NAME,
-			ESSENCE_TIER_IDX_TO_NAME
+			'SCARAB',
+			BULKY_SCARABS.generateScarabNameFromType,
+			SCARAB_TYPE_IDX_TO_NAME,
+			['0']
 		)
 		if (!items) return
 
@@ -61,20 +61,20 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
-	function deleteOffer(uuid: BazaarEssenceOffer['uuid']) {
+	function deleteOffer(uuid: BazaarScarabOffer['uuid']) {
 		offers.value.delete(uuid)
 	}
 
 	/**
-	 * Validate if an object is a BazaarEssence or not.
+	 * Validate if an object is a BazaarScarab or not.
 	 */
-	function isEssence(obj: any): obj is BazaarEssence {
+	function isScarab(obj: any): obj is BazaarScarab {
 		return (
 			obj &&
 			'type' in obj &&
-			getKeys(ESSENCE_TYPE).includes(obj.type) &&
+			getKeys(SCARAB_TYPE).includes(obj.type) &&
 			'tier' in obj &&
-			getKeys(ESSENCE_TIER).includes(obj.tier) &&
+			obj.tier === '0' &&
 			'quantity' in obj &&
 			typeof obj.quantity === 'number' &&
 			'price' in obj &&
@@ -85,8 +85,8 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	async function getTestData() {
 		// if (listings.value.size !== 0) return
 
-		const request = useApi('essencePayload', getListing)
-		await request.exec('src/mocks/essenceCompressed.json')
+		const request = useApi('scarabPayload', getListing)
+		await request.exec('src/mocks/scarabCompressed.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')
@@ -97,23 +97,23 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	}
 
 	/**
-	 * Fetch all new essence offers since the last fetch action.
+	 * Fetch all new scarab offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch essence offers')
+		console.log('Refetch scarab offers')
 	}
 
 	return {
 		offers,
 		putOffer,
 		deleteOffer,
-		isEssence,
+		isScarab,
 		refetchOffers,
 		getTestData,
 	}
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useEssenceOfferStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useScarabOfferStore, import.meta.hot))
 }

@@ -6,6 +6,8 @@ import { BulkyFilter, BulkyFilterField, BulkyFilterStore, ComputedBulkyFilterSto
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.store'
 import { ESSENCE_TIER, ESSENCE_TYPE } from '@web/categories/essence/essence.const'
+import { useScarabFilterStore } from '@web/categories/scarab/scarabFilter.store'
+import { SCARAB_TYPE } from '@web/categories/scarab/scarab.const'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
@@ -13,6 +15,7 @@ import { ESSENCE_TIER, ESSENCE_TYPE } from '@web/categories/essence/essence.cons
 export function useComputedFilterStore() {
 	const appStateStore = useAppStateStore()
 	const essenceFilterStore = useEssenceFilterStore()
+	const scarabFilterStore = useScarabFilterStore()
 
 	return computed<ComputedBulkyFilterStore | undefined>(() => {
 		let store: BulkyFilterStore | undefined
@@ -23,10 +26,15 @@ export function useComputedFilterStore() {
 		// Assign the state variables according to the selected category.
 		if (appStateStore.selectedCategory === 'ESSENCE') {
 			store = essenceFilterStore
-			filter = essenceFilterStore.currentFilter
 			filterFieldTypeOptions = getKeys(ESSENCE_TYPE)
 			filterFieldTierOptions = getKeys(ESSENCE_TIER)
+		} else if (appStateStore.selectedCategory === 'SCARAB') {
+			store = scarabFilterStore
+			filterFieldTypeOptions = getKeys(SCARAB_TYPE)
+			filterFieldTierOptions = ['0']
 		}
+
+		filter = store?.currentFilter
 
 		// Return if something went wrong with the variable assignments.
 		if (!store || !filterFieldTypeOptions || !filterFieldTierOptions) return
@@ -44,16 +52,18 @@ export function useComputedFilterStore() {
 		function addFilterField<T extends BulkyFilter>(uuid: Uuid<T>) {
 			if (!store) return
 
-			// assert that store and uuid type are compatible
+			// Assert that store and uuid type are compatible.
 			if (store === essenceFilterStore && BULKY_UUID.isEssenceFilterUuid(uuid)) store.addFilterField(uuid)
+			else if (store === scarabFilterStore && BULKY_UUID.isScarabFilterUuid(uuid)) store.addFilterField(uuid)
 		}
 
 		/** Remove a filter field from the current filter */
 		function removeFilterField<T extends BulkyFilter>(uuid: Uuid<T>, idx: number) {
 			if (!store) return
 
-			// assert that store and uuid type are compatible
+			// Assert that store and uuid type are compatible.
 			if (store === essenceFilterStore && BULKY_UUID.isEssenceFilterUuid(uuid)) store.removeFilterField(uuid, idx)
+			else if (store === scarabFilterStore && BULKY_UUID.isScarabFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 		}
 
 		return {

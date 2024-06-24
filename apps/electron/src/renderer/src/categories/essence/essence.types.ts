@@ -14,7 +14,6 @@ import {
 } from '@shared/types/bulky.types'
 
 // STORE TYPES
-
 export type EssenceOfferStore = ReturnType<typeof useEssenceOfferStore>
 export type EssenceFilterStore = ReturnType<typeof useEssenceFilterStore>
 
@@ -33,7 +32,7 @@ export type ShopEssence = BulkyShopItemBase<typeof CATEGORY.ESSENCE> & {
 }
 
 /** BulkyBazaarItem implementation for the essence category */
-export type BazaarEssence = BulkyBazaarItemBase & {
+export type BazaarEssence = BulkyBazaarItemBase<typeof CATEGORY.ESSENCE> & {
 	type: EssenceType
 	tier: EssenceTier
 }

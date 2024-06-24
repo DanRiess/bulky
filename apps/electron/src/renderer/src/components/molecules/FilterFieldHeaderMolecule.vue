@@ -1,26 +1,26 @@
 <template>
 	<div class="a-filter-field-header no-select">
-		<div class="main">{{ mainOptionName }}</div>
-		<div class="secondary" v-show="secondaryOptionName">{{ secondaryOptionName }}</div>
-		<div class="quantity" v-show="!alwaysMaxQuantity">Quantity</div>
-		<!-- <div class="buyout">
-			<img src="/src/assets/png-icons/currency-chaos.png" decoding="async" loading="lazy" />
-		</div> -->
+		<div class="field-type">{{ mainOptionName }}</div>
+		<div class="field-tier" v-show="secondaryOptionName && store.filterFieldTierOptions.length > 1">
+			{{ secondaryOptionName }}
+		</div>
+		<div class="field-quantity" v-show="!store.filter.alwaysMaxQuantity">Quantity</div>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { ComputedBulkyFilterStore } from '@shared/types/bulky.types'
 import { computed } from 'vue'
 
 const props = defineProps<{
 	mainOptionName: string
 	secondaryOptionName?: string
-	alwaysMaxQuantity: boolean
+	store: ComputedBulkyFilterStore
 }>()
 
 const gridTemplateColumns = computed(() => {
-	const secondary = props.secondaryOptionName ? '1fr' : '0'
-	const quant = props.alwaysMaxQuantity ? '0' : 'min(7ch)'
+	const secondary = props.secondaryOptionName && props.store.filterFieldTierOptions.length > 1 ? '1fr' : '0'
+	const quant = props.store.filter.alwaysMaxQuantity ? '0' : 'min(7ch)'
 	return `2fr ${secondary} ${quant} 1.5rem`
 })
 </script>
@@ -38,15 +38,16 @@ const gridTemplateColumns = computed(() => {
 	transition: grid-template-columns 0.25s ease;
 }
 
-.quantity {
-	place-self: center;
+.field-type {
+	grid-column: 1/2;
 }
 
-.buyout {
-	place-self: center;
+.field-tier {
+	grid-column: 2/3;
+}
 
-	img {
-		height: 1.5rem;
-	}
+.field-quantity {
+	place-self: center;
+	grid-column: 3/4;
 }
 </style>

@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import { BulkyOfferStore, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
 
@@ -12,6 +13,7 @@ const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?
 export function useComputedOffersStore() {
 	const appStateStore = useAppStateStore()
 	const essenceOfferStore = useEssenceOfferStore()
+	const scarabOfferStore = useScarabOfferStore()
 
 	return computed<ComputedBulkyOfferStore>(() => {
 		let store: BulkyOfferStore | undefined
@@ -19,10 +21,11 @@ export function useComputedOffersStore() {
 
 		if (appStateStore.selectedCategory === 'ESSENCE') {
 			store = essenceOfferStore
-			offers = store.offers
-		} else {
-			offers = new Map()
+		} else if (appStateStore.selectedCategory === 'SCARAB') {
+			store = scarabOfferStore
 		}
+
+		offers = store ? store.offers : new Map()
 
 		/**
 		 * Interval function. Call this every x seconds. Define the interval in the .env file.

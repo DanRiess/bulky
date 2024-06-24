@@ -5,9 +5,15 @@ import {
 	EssenceFilterStore,
 	EssenceOfferStore,
 } from '@web/categories/essence/essence.types'
-import { MaybeComputedRef, ObjectValues, Uuid } from './utility.types'
+import { MaybeComputedRef, ObjectValues, Uuid, getKeys } from './utility.types'
 import { ComputedRef, UnwrapRef } from 'vue'
-import { BazaarScarab, ShopScarab } from '@web/categories/scarab/scarab.types'
+import {
+	BazaarScarab,
+	ScarabFilterField,
+	ScarabFilterStore,
+	ScarabOfferStore,
+	ShopScarab,
+} from '@web/categories/scarab/scarab.types'
 import { PoeStashTab } from './poe.types'
 
 // APP STATE TYPES
@@ -21,10 +27,17 @@ import { PoeStashTab } from './poe.types'
 // 	CONQ_MAP: 'CONQ_MAP',
 // } as const
 
+// DO NOT CHANGE THE ORDER
 export const CATEGORY = {
 	ESSENCE: 'ESSENCE',
 	SCARAB: 'SCARAB',
 } as const
+
+export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
+export const CATEGORY_NAME_TO_IDX = CATEGORY_IDX_TO_NAME.reduce((prev, curr, idx) => {
+	prev[curr] = idx
+	return prev
+}, {} as Record<keyof typeof CATEGORY, number>)
 
 export type Category = ObjectValues<typeof CATEGORY>
 
@@ -34,8 +47,8 @@ type BulkyItemOptions = {
 }
 
 // STORES
-export type BulkyFilterStore = EssenceFilterStore
-export type BulkyOfferStore = EssenceOfferStore
+export type BulkyFilterStore = EssenceFilterStore | ScarabFilterStore
+export type BulkyOfferStore = EssenceOfferStore | ScarabOfferStore
 
 // BULKY SHOP ITEM TYPES
 
@@ -104,13 +117,15 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 
 // BULKY BAZAAR ITEM TYPES
 
-export type BulkyBazaarItemBase = {
+export type BulkyBazaarItemBase<T extends Category> = {
+	category: T
 	name: string
 	type: string // will be overridden
 	tier: string
 	options?: BulkyItemOptions
 	quantity: number
 	price: number
+	/** The actual url, not the /data/static id. */
 	icon: string
 }
 
@@ -120,13 +135,14 @@ export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> =
 
 export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
 	uuid: Uuid<BulkyBazaarOffer<T>>
+	category: T['category']
 	ign: string
 	league: string
 	chaosPerDiv: number
 	multiplier: number
 	fullPrice: number
 	minimumBuyout: number
-	items: BulkyBazaarItem[]
+	items: T[]
 	contact: {
 		messageSent: boolean
 		timestamp: number
@@ -163,7 +179,7 @@ export type BulkyFilterFieldBase<T extends Category> = {
 /**
  * A collection of every implementation of BulkyFilterFieldBase throughout the app.
  */
-export type BulkyFilterField = EssenceFilterField
+export type BulkyFilterField = EssenceFilterField | ScarabFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.
@@ -249,7 +265,7 @@ export type BulkyBazaarOfferDto = {
 	multiplier: number
 	fullPrice: number
 	minimumBuyout: number
-	items: string
+	items: string // base64 encoded binary
 }
 
 // UTILITY TYPES

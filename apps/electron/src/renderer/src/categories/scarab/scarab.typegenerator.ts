@@ -590,12 +590,12 @@ const scarabTypes = uppercaseNames.reduce((prev, curr) => {
 	prev[curr] = curr
 	return prev
 }, {})
-console.log(scarabTypes)
+// console.log(scarabTypes)
 
-// copy the output into the scarab.static.ts name generator function
+// copy the output into the scarab.transformers.ts name generator function
 const staticNameToTypedConditionals = uppercaseNames
 	.map((upp, idx) => {
 		return `if (baseType === '${names[idx]}') return SCARAB_TYPE.${upp}`
 	})
 	.join('\n')
-console.log(staticNameToTypedConditionals)
+// console.log(staticNameToTypedConditionals)

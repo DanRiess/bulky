@@ -1,7 +1,7 @@
 <template>
 	<DefaultLayout grid-template-columns="minmax(520px, 1.5fr) minmax(450px, 1fr)">
 		<template #leftColumn>
-			<div class="main-container flow">
+			<div class="offer-collection-container flow">
 				<CategoryMolecule />
 				<BazaarOfferCollectionOrganism
 					v-if="computedFilterStore"
@@ -60,3 +60,10 @@ watch(
 	{ immediate: true }
 )
 </script>
+
+<style scoped>
+.offer-collection-container {
+	display: grid;
+	grid-template-rows: auto 1fr;
+}
+</style>
