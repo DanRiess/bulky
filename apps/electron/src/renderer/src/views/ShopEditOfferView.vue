@@ -32,18 +32,16 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyShopItem, BulkyShopItemRecord, BulkyShopOffer } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord, BulkyShopOffer } from '@shared/types/bulky.types'
 import ImgCategoryAtom from '@web/components/atoms/ImgCategoryAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
-import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
 import { useShopStore } from '@web/stores/shopStore'
 import { useStashStore } from '@web/stores/stashStore'
-import { deepToRaw } from '@web/utility/deepToRaw'
 import { capitalize } from 'lodash'
-import { UnwrapRef, onBeforeMount, ref, toValue } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 // STORES
@@ -69,31 +67,13 @@ function updateIgn(val: string) {
 	window.localStorage.setItem('ign', val)
 }
 
+/**
+ * Update the offer in the store and update it in the database and idb.
+ */
 async function syncChanges(itemRecord: BulkyShopItemRecord) {
 	if (offer.value) {
-		const items: UnwrapRef<BulkyShopItem>[] = []
-		let computedMultiplier = offer.value.multiplier
-
-		itemRecord.forEach(item => {
-			if (!item.selected) return
-			items.push(deepToRaw(item))
-
-			// calculate the multiplier for this item
-			const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
-			if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
-				computedMultiplier = itemMultiplier
-			}
-		})
-
-		const fullPrice = useAggregateItemPrice(itemRecord, offer.value.multiplier)
-		const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
-
-		offer.value.stashTabIds = stashTabIds
-		offer.value.items = items
-		offer.value.fullPrice = fullPrice.value
-		offer.value.computedMultiplier = computedMultiplier
-
-		await shopStore.putOffer(offer.value)
+		const updatedOffer = shopStore.updateOffer(offer.value, itemRecord)
+		await shopStore.putOffer(updatedOffer)
 	}
 	router.push({ name: 'Shop' })
 }

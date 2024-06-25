@@ -117,5 +117,3 @@ export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 
 	return conformedItems
 }
-
-// NEXT STEP: define dto as json (because of item 'option' property, binary won't be feasible)

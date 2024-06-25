@@ -2,11 +2,18 @@ import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
 import { PoeItemDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
-import { BulkyShopItem, BulkyItemOverrideInstance, BulkyItemOverrideRecord, Category } from '@shared/types/bulky.types'
+import {
+	BulkyShopItem,
+	BulkyItemOverrideInstance,
+	BulkyItemOverrideRecord,
+	Category,
+	BulkyBazaarItemDto,
+} from '@shared/types/bulky.types'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
-import { Ref, toValue } from 'vue'
+import { Ref, UnwrapRef, toValue } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BULKY_SCARABS } from '@web/categories/scarab/scarab.transformers'
+import { BULKY_FACTORY } from './factory'
 
 export function transformToDisplayValue(string: string) {
 	const arr = string.split('_')
@@ -94,8 +101,33 @@ function bulkyItemToPriceOverrideItem(
 	}
 }
 
+function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>): BulkyBazaarItemDto | undefined {
+	const nameToIdxTypeMap = BULKY_FACTORY.getNameToIdxTypeMap(item.category)
+	const nameToIdxTierMap = BULKY_FACTORY.getNameToIdxTierMap(item.category)
+
+	if (nameToIdxTypeMap === undefined || nameToIdxTierMap === undefined) return
+
+	const price = toValue(item.priceOverride) > 0 ? toValue(item.priceOverride) : toValue(item.price)
+
+	const itemDto: BulkyBazaarItemDto = {
+		type: nameToIdxTypeMap[item.type],
+		tier: nameToIdxTierMap[item.tier],
+		qnt: item.quantity,
+		prc: price,
+	}
+
+	if (item.options) {
+		// TODO: apply options
+		const options = undefined
+		itemDto.opt = options
+	}
+
+	return itemDto
+}
+
 export const BULKY_TRANSFORM = {
-	bulkyItemToPriceOverrideItem,
 	poeItemBaseTypeToBulkyTypeAndTier,
 	poeItemToBulkyItem,
+	bulkyItemToPriceOverrideItem,
+	bulkyItemToBazaarItemDto,
 }

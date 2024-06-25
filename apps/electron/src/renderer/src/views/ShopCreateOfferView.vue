@@ -29,37 +29,28 @@
 					:offer-multiplier="multiplier"
 					:category="appStateStore.selectedCategory"
 					:disable-offer-generation-button="disableOfferGenerationButton"
-					@generate-offer="generateOffer" />
+					@generate-offer="createOffer" />
 			</div>
 		</template>
 	</DefaultLayout>
 </template>
 
 <script setup lang="ts">
-import { BulkyShopItem, BulkyShopItemRecord, BulkyShopOffer, CATEGORY } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord, CATEGORY } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import LabelWithSelectMolecule from '@web/components/molecules/LabelWithSelectMolecule.vue'
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
-import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
 import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { useAuthStore } from '@web/stores/authStore'
-import { useConfigStore } from '@web/stores/configStore'
 import { useShopStore } from '@web/stores/shopStore'
-import { useStashStore } from '@web/stores/stashStore'
-import { deepToRaw } from '@web/utility/deepToRaw'
-import { BULKY_UUID } from '@web/utility/uuid'
-import { UnwrapRef, computed, onBeforeMount, ref, toValue } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 // STORES
-const authStore = useAuthStore()
 const appStateStore = useAppStateStore()
-const configStore = useConfigStore()
-const stashStore = useStashStore()
 const shopStore = useShopStore()
 
 // STATE
@@ -101,15 +92,11 @@ function updateIgn(val: string) {
 	window.localStorage.setItem('ign', val)
 }
 
-async function generateOffer(itemRecord: BulkyShopItemRecord) {
+/**
+ * Call the generateOffer function from the store and provide some visual UI feedback while the offer is being uploaded.
+ */
+async function createOffer(itemRecord: BulkyShopItemRecord) {
 	disableOfferGenerationButton.value = true
-
-	// TODO: Handle errors
-	if (!authStore.profile?.name) {
-		console.log('You have to sign in before creating a new offer')
-		disableOfferGenerationButton.value = false
-		return
-	}
 
 	if (!ign.value) {
 		console.log('Ign is required')
@@ -117,46 +104,27 @@ async function generateOffer(itemRecord: BulkyShopItemRecord) {
 		return
 	}
 
-	const items: UnwrapRef<BulkyShopItem>[] = []
-	let computedMultiplier = multiplier.value
+	// Generate a new offer.
+	const offer = await shopStore.generateOffer(
+		itemRecord,
+		ign.value,
+		chaosPerDiv.value,
+		multiplier.value,
+		minBuyout.value,
+		fullBuyout.value
+	)
 
-	itemRecord.forEach(item => {
-		if (!item.selected) return
-		items.push(deepToRaw(item))
-
-		// calculate the multiplier for this item
-		const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
-		if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
-			computedMultiplier = itemMultiplier
-		}
-	})
-
-	const fullPrice = useAggregateItemPrice(itemRecord, multiplier.value)
-	const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
-
-	const offer: BulkyShopOffer = {
-		uuid: BULKY_UUID.generateTypedUuid<BulkyShopOffer>(),
-		user: authStore.profile.name,
-		ign: ign.value,
-		stashTabIds,
-		multiplier: multiplier.value,
-		computedMultiplier,
-		minimumBuyout: minBuyout.value,
-		fullBuyout: fullBuyout.value,
-		chaosPerDiv: chaosPerDiv.value,
-		category: appStateStore.selectedCategory,
-		league: configStore.config.league,
-		items,
-		lastUploaded: 0,
-		fullPrice: fullPrice.value,
-		active: false,
-		autoSync: true,
+	if (!offer) {
+		// TODO: handle error
+		console.log('did not generate offer')
+		disableOfferGenerationButton.value = false
+		return
 	}
 
+	// Upload the offer to the public db and save it to idb.
 	await shopStore.putOffer(offer)
 
 	disableOfferGenerationButton.value = false
-
 	router.push({ name: 'Shop' })
 }
 

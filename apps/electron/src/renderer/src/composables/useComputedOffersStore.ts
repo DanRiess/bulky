@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, onUnmounted } from 'vue'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
@@ -14,6 +14,11 @@ export function useComputedOffersStore() {
 	const appStateStore = useAppStateStore()
 	const essenceOfferStore = useEssenceOfferStore()
 	const scarabOfferStore = useScarabOfferStore()
+
+	let timeout: NodeJS.Timeout | undefined
+	onUnmounted(() => {
+		clearTimeout(timeout)
+	})
 
 	return computed<ComputedBulkyOfferStore>(() => {
 		let store: BulkyOfferStore | undefined
@@ -36,7 +41,7 @@ export function useComputedOffersStore() {
 			if (store) store.refetchOffers()
 
 			// Call this function again after x seconds.
-			setTimeout(refetchOffers, REFETCH_INTERVAL)
+			timeout = setTimeout(refetchOffers, REFETCH_INTERVAL)
 		}
 
 		refetchOffers()

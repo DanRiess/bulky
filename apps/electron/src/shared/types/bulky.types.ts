@@ -256,16 +256,28 @@ export type TotalPrice = { chaos: number; divine: number }
 
 // DTO TYPES
 
+export type BulkyBazaarItemDto = {
+	type: number
+	tier: number
+	opt?: Record<string, number[]>
+	qnt: number
+	prc: number
+}
+
 export type BulkyBazaarOfferDto = {
-	category: string
 	uuid: string
+	timestamp: number
+	account: string
 	ign: string
+	category: string
 	league: string
 	chaosPerDiv: number
 	multiplier: number
 	fullPrice: number
 	minimumBuyout: number
-	items: string // base64 encoded binary
+	fullBuyout: boolean
+	// items: string // base64 encoded binary
+	items: BulkyBazaarItemDto[]
 }
 
 // UTILITY TYPES
