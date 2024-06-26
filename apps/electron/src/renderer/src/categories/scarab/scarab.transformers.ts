@@ -170,6 +170,10 @@ function generateScarabFromPoeItem(
 	}
 }
 
+/**
+ * Generate the display name from the type
+ * E. g. SCARAB_OF_WISPS -> Scarab Of Wisps
+ */
 function generateScarabNameFromType(type: ScarabType) {
 	return type
 		.split('_')

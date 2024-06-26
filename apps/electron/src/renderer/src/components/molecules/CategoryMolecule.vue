@@ -23,6 +23,7 @@ const appStateStore = useAppStateStore()
 const components = ref([
 	{ displayName: 'Essences', fileName: 'essence-woe-deafening', category: CATEGORY.ESSENCE },
 	{ displayName: 'Scarabs', fileName: 'scarab-breach-gilded', category: CATEGORY.SCARAB },
+	{ displayName: 'Delirium Orbs', fileName: 'deli-orb-scarab', category: CATEGORY.DELIRIUM_ORB },
 ])
 
 // METHODS

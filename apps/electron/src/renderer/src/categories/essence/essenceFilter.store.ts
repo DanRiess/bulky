@@ -1,4 +1,6 @@
-/** handle compass filters logic in this store */
+/**
+ * Handle essence filter logic in this store.
+ */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'

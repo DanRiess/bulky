@@ -33,7 +33,7 @@ const imgSource = computed(() => {
 
 /** calculate the necessary width according to displayName length */
 const gridColumnWidth = computed(() => {
-	return `${displayName.length + 1}ch`
+	return `${displayName.length}ch`
 })
 </script>
 

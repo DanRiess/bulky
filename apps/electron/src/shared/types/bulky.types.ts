@@ -15,6 +15,7 @@ import {
 	ShopScarab,
 } from '@web/categories/scarab/scarab.types'
 import { PoeStashTab } from './poe.types'
+import { BazaarDeliriumOrb, DeliriumOrbFilterField, ShopDeliriumOrb } from '@web/categories/deliriumOrb/deliriumOrb.types'
 
 // APP STATE TYPES
 
@@ -31,6 +32,7 @@ import { PoeStashTab } from './poe.types'
 export const CATEGORY = {
 	ESSENCE: 'ESSENCE',
 	SCARAB: 'SCARAB',
+	DELIRIUM_ORB: 'DELIRIUM_ORB',
 } as const
 
 export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
@@ -78,7 +80,7 @@ export type BulkyShopItemBase<T extends Category> = {
  * A collection of every implementation of BulkyShopItemBase throughout the app.
  * This will be used as a generic type argument for every higher level type.
  */
-export type BulkyShopItem = ShopEssence | ShopScarab
+export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb
 
 /** Type that bulky items will be saved as */
 export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
@@ -103,10 +105,13 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 	chaosPerDiv: number
 	multiplier: number
 	computedMultiplier: number
-	minimumBuyout: {
-		divine: number
-		chaos: number
-	}
+	/**
+	 * Do not change this type to a number.
+	 * While more consistent, when the offer updates, chaosPerDiv updates as well.
+	 * However, the user would expect that his minimum buyout stays the same.
+	 * We'd have to watch for cpd changes and do unnecessarily complex recalculations.
+	 */
+	minimumBuyout: TotalPrice
 	fullBuyout: boolean
 	items: UnwrapRef<T>[]
 	fullPrice: number
@@ -129,7 +134,7 @@ export type BulkyBazaarItemBase<T extends Category> = {
 	icon: string
 }
 
-export type BulkyBazaarItem = BazaarEssence | BazaarScarab
+export type BulkyBazaarItem = BazaarEssence | BazaarScarab | BazaarDeliriumOrb
 
 export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
 
@@ -179,7 +184,7 @@ export type BulkyFilterFieldBase<T extends Category> = {
 /**
  * A collection of every implementation of BulkyFilterFieldBase throughout the app.
  */
-export type BulkyFilterField = EssenceFilterField | ScarabFilterField
+export type BulkyFilterField = EssenceFilterField | ScarabFilterField | DeliriumOrbFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.
