@@ -8,8 +8,12 @@ import {
 	BulkyShopItemBase,
 	CATEGORY,
 } from '@shared/types/bulky.types'
+import { useDeliriumOrbOfferStore } from './deliriumOrbOffer.store'
+import { useDeliriumOrbFilterStore } from './deliriumOrbFilter.store'
 
 // STORE TYPES
+export type DeliriumOrbOfferStore = ReturnType<typeof useDeliriumOrbOfferStore>
+export type DeliriumOrbFilterStore = ReturnType<typeof useDeliriumOrbFilterStore>
 
 // ITEM TYPES
 

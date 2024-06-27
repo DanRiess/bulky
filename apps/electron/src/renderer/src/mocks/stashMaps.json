@@ -1,0 +1,2416 @@
+{
+	"stash": {
+		"id": "707ff7938e",
+		"folder": "656b5c647a",
+		"name": "M",
+		"type": "MapStash",
+		"index": 4,
+		"metadata": {
+			"colour": "638000",
+			"map": {
+				"series": 23
+			}
+		},
+		"children": [
+			{
+				"id": "c9530a9c4f",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier3",
+						"name": "Overgrown Shrine Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9PdmVyZ3Jvd25TaHJpbmUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6M31d/6bae4e4a41/OvergrownShrine.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "b131bfa4a1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier9",
+						"name": "Lookout Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Mb29rb3V0Iiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/e2af9f4349/Lookout.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "371865ee0b",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier6",
+						"name": "Arid Lake Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BcmlkTGFrZSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo2fV0/19b6ca5ad2/AridLake.png",
+						"tier": 6
+					}
+				}
+			},
+			{
+				"id": "bebb8cdec4",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier3",
+						"name": "Toxic Sewer Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TZXdlciIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjozfV0/4be118e1f2/Sewer.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "dc8167f2e9",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "special",
+						"name": "The Enslaver",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhc01hcEd1YXJkaWFuRmlyZUl0ZW0iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtZyI6MSwibWkiOjJ9XQ/c0d745af57/AtlasMapGuardianFireItem.png",
+						"index": 4
+					}
+				}
+			},
+			{
+				"id": "ec9b973258",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier3",
+						"name": "Strand Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TdHJhbmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6M31d/d28c014be5/Strand.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "251c338bc4",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier16",
+						"name": "Temple Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UZW1wbGUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/5060ce1dd4/Temple.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "21ab9f2477",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier10",
+						"name": "Underground Sea Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9VbmRlcmdyb3VuZFNlYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMH1d/5edaee18c2/UndergroundSea.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "936788c9c6",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier10",
+						"name": "Volcano Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Wb2xjYW5vIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEwfV0/a0affa3238/Volcano.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "8179239b74",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "unique",
+						"name": "Acton's Nightmare",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9tdXNpY2JveCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxfV0/bb6421b16c/musicbox.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "841b8672ed",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Mineral Pools Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NaW5lcmFsUG9vbHMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/5d7162a820/MineralPools.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "df8a534d83",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier3",
+						"name": "Crystal Ore Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DcnlzdGFsT3JlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjN9XQ/2e8548848c/CrystalOre.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "d07172f0d4",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier16",
+						"name": "Sulphur Vents Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3Jyb3Npb24iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/db98b60ac0/Corrosion.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "8a44fd608d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier9",
+						"name": "Stagnation Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TdGFnbmF0aW9uIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/8fbf25b2b9/Stagnation.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "833d4bc975",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier13",
+						"name": "Terrace Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9IaWdoR2FyZGVucyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxM31d/e56717758a/HighGardens.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "8beb7d76bf",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier14",
+						"name": "Conservatory Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXRocyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxNH1d/6a09633cb6/Baths.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "9081315368",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier17",
+						"name": "Sanctuary Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9VYmVyUmVsaWNDaGFtYmVycyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxN31d/92ee6c6383/UberRelicChambers.png",
+						"tier": 17
+					}
+				}
+			},
+			{
+				"id": "03c7cf8710",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier12",
+						"name": "Barrows Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXJyb3dzIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEyfV0/c65b2887fe/Barrows.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "f86071c841",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier13",
+						"name": "Arid Lake Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BcmlkTGFrZSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxM31d/d6c93aaa1b/AridLake.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "f76a5c2ad7",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier14",
+						"name": "Courthouse Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3VydGhvdXNlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE0fV0/60cb53cc97/Courthouse.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "c443490fa6",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Residence Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9SZXNpZGVuY2UiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/faec982d4c/Residence.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "948e1ef5be",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Barrows Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXJyb3dzIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/cb886ddf06/Barrows.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "c4a531bc03",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier8",
+						"name": "Reef Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9SZWVmIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjh9XQ/eb7b103349/Reef.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "193d8473cd",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier3",
+						"name": "Mausoleum Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NYXVzb2xldW0iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6M31d/a69b5f511b/Mausoleum.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "dc1f971ea9",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier6",
+						"name": "Shore Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaG9yZSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo2fV0/63d2785e1a/Shore.png",
+						"tier": 6
+					}
+				}
+			},
+			{
+				"id": "9593a763c9",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier16",
+						"name": "Lava Chamber Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DcmVtYXRvcml1bSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxNn1d/8cf377c0fc/Crematorium.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "1f8c32aa97",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier1",
+						"name": "Crimson Township Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Dcmltc29uVG93bnNoaXAiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MX1d/49a64ad78b/CrimsonTownship.png",
+						"tier": 1
+					}
+				}
+			},
+			{
+				"id": "5021b519fc",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier1",
+						"name": "Bone Crypt Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYXRhY29tYiIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxfV0/79c96000a2/Catacomb.png",
+						"tier": 1
+					}
+				}
+			},
+			{
+				"id": "8ecaf00d7b",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier14",
+						"name": "Waste Pool Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9XYXN0ZVBvb2wiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTR9XQ/fd88ecafd8/WastePool.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "8bd6cf52f9",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier7",
+						"name": "Cursed Crypt Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DcnlwdCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo3fV0/ae21eaac98/Crypt.png",
+						"tier": 7
+					}
+				}
+			},
+			{
+				"id": "be3c32fc29",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier2",
+						"name": "Dunes Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EdW5lcyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoyfV0/46bae670a7/Dunes.png",
+						"tier": 2
+					}
+				}
+			},
+			{
+				"id": "0da60a6139",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "special",
+						"name": "Baran, The Crusader",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhc01hcENydXNhZGVyIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibWMiOjF9XQ/4d5f33910a/AtlasMapCrusader.png"
+					}
+				}
+			},
+			{
+				"id": "28a5821e16",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier5",
+						"name": "Phantasmagoria Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QaGFudGFzbWFnb3JpYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo1fV0/220fb127d1/Phantasmagoria.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "de02d1d3cc",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier12",
+						"name": "Cage Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYWdlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEyfV0/14aa34a166/Cage.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "c44ce4f037",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier5",
+						"name": "Gardens Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UZXJyYWNlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjV9XQ/006e65322b/Terrace.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "f4977a052b",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier15",
+						"name": "Necropolis Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9OZWNyb3BvbGlzIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE1fV0/5562fca7d6/Necropolis.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "d82a6361a0",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Academy Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BY2FkZW15Iiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/4e0b68dbcf/Academy.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "406df871d6",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier9",
+						"name": "Iceberg Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9JY2ViZXJnIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/7ae896b94c/Iceberg.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "eb9697bd07",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier14",
+						"name": "Silo Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Sb2JvdFR1bm5lbFNpbG8iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTR9XQ/9f117ce573/RobotTunnelSilo.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "9ff7ac4ea0",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Estuary Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Fc3R1YXJ5Iiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/7404aeee7a/Estuary.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "fef9a84862",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier9",
+						"name": "Park Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QYXJrIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/8a9f2c1090/Park.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "91c5aeb016",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier5",
+						"name": "Burial Chambers Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CdXJpYWxDaGFtYmVycyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo1fV0/f4381fa5ab/BurialChambers.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "5f67beaa3f",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier9",
+						"name": "Belfry Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CZWxmcnkiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6OX1d/deaa565810/Belfry.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "73513164e5",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier7",
+						"name": "Bramble Valley Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CcmFtYmxlZmFsbCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo3fV0/2ad43a9012/Bramblefall.png",
+						"tier": 7
+					}
+				}
+			},
+			{
+				"id": "9137085285",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier11",
+						"name": "Plaza Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QbGF6YSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMX1d/06ad78c509/Plaza.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "4085e4b33d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier13",
+						"name": "Mineral Pools Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NaW5lcmFsUG9vbHMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTN9XQ/e3dabb2e87/MineralPools.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "3d3eeb329a",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier12",
+						"name": "Museum Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NdXNldW0iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTJ9XQ/92e6a1e655/Museum.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "df6b040bbc",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier15",
+						"name": "Reef Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9SZWVmIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE1fV0/f262a04845/Reef.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "b4a48802d4",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier13",
+						"name": "Shrine Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaHJpbmUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTN9XQ/6333a45d6c/Shrine.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "2e66333eee",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier13",
+						"name": "Underground Sea Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9VbmRlcmdyb3VuZFNlYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxM31d/57bb767cb2/UndergroundSea.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "26bd5bb10e",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier7",
+						"name": "Dungeon Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EdW5nZW9uIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjd9XQ/0963bcf64e/Dungeon.png",
+						"tier": 7
+					}
+				}
+			},
+			{
+				"id": "98737bbff1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier7",
+						"name": "Silo Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Sb2JvdFR1bm5lbFNpbG8iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6N31d/6af2096105/RobotTunnelSilo.png",
+						"tier": 7
+					}
+				}
+			},
+			{
+				"id": "ab03e2797d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier1",
+						"name": "Shipyard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaGlweWFyZCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxfV0/352203bfea/Shipyard.png",
+						"tier": 1
+					}
+				}
+			},
+			{
+				"id": "4fceb51990",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 5,
+					"map": {
+						"section": "tier13",
+						"name": "Grave Trough Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CdXJuIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEzfV0/b8a574637e/Burn.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "01798748bd",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier8",
+						"name": "Shipyard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaGlweWFyZCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo4fV0/9d0b708204/Shipyard.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "db9686d558",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "special",
+						"name": "Lair of the Hydra",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9IeWRyYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm1pIjoxfV0/c272a6b3a2/Hydra.png",
+						"index": 9
+					}
+				}
+			},
+			{
+				"id": "2c3654e613",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier9",
+						"name": "Pier Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QaWVyIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/16118f5132/Pier.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "6b7886b8c7",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier16",
+						"name": "Shrine Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaHJpbmUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/99a9a1c24e/Shrine.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "379f755886",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier13",
+						"name": "Dry Sea Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EZXNlcnRTaGlwR3JhdmV5YXJkIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEzfV0/69bb80a7b9/DesertShipGraveyard.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "36390c8b68",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier10",
+						"name": "Mausoleum Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NYXVzb2xldW0iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTB9XQ/bbf8e12cb5/Mausoleum.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "aeaea00c2b",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier12",
+						"name": "Necropolis Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9OZWNyb3BvbGlzIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEyfV0/2e86cab41c/Necropolis.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "c54ec6f846",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier8",
+						"name": "Orchard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9PcmNoYXJkIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjh9XQ/285045aa11/Orchard.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "c7682c148c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier9",
+						"name": "Arsenal Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BcnNlbmFsIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/cf17f39c1f/Arsenal.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "17857dfe9c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier13",
+						"name": "Tower Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Ub3dlciIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxM31d/c70d3b1125/Tower.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "cd34e61c72",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier12",
+						"name": "Graveyard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9HcmF2ZXlhcmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTJ9XQ/7574545ad7/Graveyard.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "4c4d539c94",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier12",
+						"name": "Atoll Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BdG9sbCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMn1d/b5dc766432/Atoll.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "df4b92df5d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier1",
+						"name": "Desert Spring Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9PYXNpcyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxfV0/64f87053b8/Oasis.png",
+						"tier": 1
+					}
+				}
+			},
+			{
+				"id": "d85d90fd6c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier7",
+						"name": "Courthouse Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3VydGhvdXNlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjd9XQ/0ef2382e57/Courthouse.png",
+						"tier": 7
+					}
+				}
+			},
+			{
+				"id": "a0227f4b1a",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Pit Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QaXQxIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/21a1cc5003/Pit1.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "f79bef1ec2",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier8",
+						"name": "Bone Crypt Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYXRhY29tYiIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo4fV0/71cd2bb79f/Catacomb.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "40999dab38",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier9",
+						"name": "Arcade Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BcmNhZGUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6OX1d/b43302037f/Arcade.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "996bdeae16",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier15",
+						"name": "Lava Lake Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3Jwc2UiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTV9XQ/ac40508ec1/Corpse.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "30d214321e",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier10",
+						"name": "Crystal Ore Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DcnlzdGFsT3JlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEwfV0/a64b54d944/CrystalOre.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "cdb59cff44",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier8",
+						"name": "Ashen Wood Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EcnlXb29kcyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo4fV0/b0a50f29ea/DryWoods.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "9e628ce5a1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 5,
+					"map": {
+						"section": "tier14",
+						"name": "Spider Forest Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TcGlkZXJGb3Jlc3QiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTR9XQ/daad615c6e/SpiderForest.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "2fd5d2d1a1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier7",
+						"name": "Spider Forest Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TcGlkZXJGb3Jlc3QiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6N31d/7ca94b0f0b/SpiderForest.png",
+						"tier": 7
+					}
+				}
+			},
+			{
+				"id": "30425da086",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier5",
+						"name": "Courtyard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3VydHlhcmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6NX1d/2d17541a29/Courtyard.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "7f13bd3776",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier2",
+						"name": "Iceberg Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9JY2ViZXJnIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjJ9XQ/1db16a3a14/Iceberg.png",
+						"tier": 2
+					}
+				}
+			},
+			{
+				"id": "e6d3e3519c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier12",
+						"name": "Courtyard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3VydHlhcmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTJ9XQ/efe0a81b66/Courtyard.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "9a23868f3c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier8",
+						"name": "Crimson Township Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Dcmltc29uVG93bnNoaXAiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6OH1d/a7f43eb265/CrimsonTownship.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "a9561c18f6",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Thicket Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UaGlja2V0Iiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/b2c9771ec2/Thicket.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "7d935d1280",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier5",
+						"name": "Graveyard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9HcmF2ZXlhcmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6NX1d/8eff334d68/Graveyard.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "0dca24f084",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier11",
+						"name": "Fields Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9GaWVsZHMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTF9XQ/1c62a2bca8/Fields.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "63cf343a2c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier9",
+						"name": "Academy Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BY2FkZW15Iiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/b53ce4824a/Academy.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "2a7e8c85f1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier7",
+						"name": "Waste Pool Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9XYXN0ZVBvb2wiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6N31d/fb1ed93834/WastePool.png",
+						"tier": 7
+					}
+				}
+			},
+			{
+				"id": "d5317b308f",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier11",
+						"name": "Cells Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DZWxscyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMX1d/5b06f8eb93/Cells.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "dba1041e3b",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier3",
+						"name": "Volcano Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Wb2xjYW5vIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjN9XQ/a9918c3855/Volcano.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "d85f757ae9",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier13",
+						"name": "Waterways Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9XYXRlcndheXMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTN9XQ/0a10cd1457/Waterways.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "3079d10013",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier13",
+						"name": "Basilica Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXNpbGljYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxM31d/8a589c2d7f/Basilica.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "bdb16964cb",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier15",
+						"name": "Cold River Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db2xkUml2ZXIiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTV9XQ/fafa7bb05f/ColdRiver.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "1f84266312",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 5,
+					"map": {
+						"section": "tier6",
+						"name": "Dry Sea Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EZXNlcnRTaGlwR3JhdmV5YXJkIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjZ9XQ/3a8f97bb5f/DesertShipGraveyard.png",
+						"tier": 6
+					}
+				}
+			},
+			{
+				"id": "bd6748d227",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier4",
+						"name": "Cemetery Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DZW1ldGVyeSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo0fV0/4e7d98da8c/Cemetery.png",
+						"tier": 4
+					}
+				}
+			},
+			{
+				"id": "2e25220efd",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier6",
+						"name": "Promenade Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Qcm9tZW5hZGUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6Nn1d/6a37f62ad6/Promenade.png",
+						"tier": 6
+					}
+				}
+			},
+			{
+				"id": "cd86e2b05a",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier2",
+						"name": "Wharf Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9XaGFyZiIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoyfV0/d37ef7deec/Wharf.png",
+						"tier": 2
+					}
+				}
+			},
+			{
+				"id": "6c84a30fea",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier5",
+						"name": "Cage Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYWdlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjV9XQ/db519478e1/Cage.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "d81466769d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "special",
+						"name": "Drox, The Warlord",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhc01hcFdhcmxvcmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtYyI6NH1d/4ff4874c58/AtlasMapWarlord.png",
+						"index": 3
+					}
+				}
+			},
+			{
+				"id": "a817ec3fb1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier9",
+						"name": "Glacier Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9HbGFjaWVyIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/98f54f00f1/Glacier.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "6455cc653d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier4",
+						"name": "Fields Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9GaWVsZHMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6NH1d/4bbcd0b94b/Fields.png",
+						"tier": 4
+					}
+				}
+			},
+			{
+				"id": "813d57b5f0",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier11",
+						"name": "Foundry Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UaGF1bWF0dXJneUR1bmdlb24iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTF9XQ/25678506c8/ThaumaturgyDungeon.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "022b0b9d85",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier15",
+						"name": "Frozen Cabins Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Gcm96ZW5DYWJpbnMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTV9XQ/c19a3f557c/FrozenCabins.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "cbf2275b9c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier12",
+						"name": "Siege Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Cb3VsZXZhcmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTJ9XQ/152bc34b69/Boulevard.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "ba08e28f62",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 7,
+					"map": {
+						"section": "tier13",
+						"name": "Shore Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaG9yZSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxM31d/168973ff42/Shore.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "450a304c4d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier11",
+						"name": "Conservatory Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXRocyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMX1d/480a70ef5f/Baths.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "50eebd147f",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier6",
+						"name": "Basilica Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXNpbGljYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo2fV0/554cdb3583/Basilica.png",
+						"tier": 6
+					}
+				}
+			},
+			{
+				"id": "7546bf14f1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "unique",
+						"name": "Hall of Grandmasters",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9IYWxsT2ZHcmFuZG1hc3RlcnMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MX1d/a695d3c91f/HallOfGrandmasters.png",
+						"tier": 6
+					}
+				}
+			},
+			{
+				"id": "25c8111ceb",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 10,
+					"map": {
+						"section": "tier8",
+						"name": "Desert Spring Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9PYXNpcyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo4fV0/6db2355c50/Oasis.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "cd64021fe1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier15",
+						"name": "Sunken City Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TdW5rZW5DaXR5Iiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE1fV0/e82eaac329/SunkenCity.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "daaefcee1e",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "unique",
+						"name": "Hallowed Ground",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9IYWxsb3dlZEdyb3VuZCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxfV0/774df1895c/HallowedGround.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "b296b4234f",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier11",
+						"name": "Cemetery Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DZW1ldGVyeSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMX1d/a0b3db0958/Cemetery.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "084355898d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Lookout Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Mb29rb3V0Iiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/50b6a3f4b7/Lookout.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "436ca1e5dc",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 9,
+					"map": {
+						"section": "tier10",
+						"name": "Wasteland Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9XYXN0ZWxhbmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTB9XQ/2d410c4a9c/Wasteland.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "88a6325454",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier8",
+						"name": "Lava Lake Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3Jwc2UiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6OH1d/0e111e5882/Corpse.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "62f5bbb187",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier14",
+						"name": "Defiled Cathedral Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EZWZpbGVkQ2F0aGVkcmFsIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE0fV0/10a527fc6a/DefiledCathedral.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "823c4e1c82",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Vaal Temple Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9WYWFsVGVtcGxlQmFzZSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjowfV0/5446084c83/VaalTempleBase.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "4893e64c12",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier12",
+						"name": "Gardens Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UZXJyYWNlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEyfV0/d79b9584a6/Terrace.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "0aad26bab1",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier14",
+						"name": "Dungeon Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EdW5nZW9uIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE0fV0/f0edcf424c/Dungeon.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "0c28c52765",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 6,
+					"map": {
+						"section": "tier11",
+						"name": "Sulphur Vents Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3Jyb3Npb24iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTF9XQ/a538d1750e/Corrosion.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "329c5e0fb7",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier16",
+						"name": "Museum Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NdXNldW0iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/9fd511de04/Museum.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "399f26e891",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier9",
+						"name": "Tropical Island Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Ucm9waWNhbElzbGFuZCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo5fV0/868dac43a4/TropicalIsland.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "b1367aeb1e",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier12",
+						"name": "Burial Chambers Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CdXJpYWxDaGFtYmVycyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMn1d/c591882395/BurialChambers.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "81119c973c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Underground Sea Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9VbmRlcmdyb3VuZFNlYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxNn1d/abc7f89c64/UndergroundSea.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "3019cb871f",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier11",
+						"name": "Acid Caverns Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TdWxwaHVyVmVudHMiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTF9XQ/c41735c0b2/SulphurVents.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "850d20cfeb",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Flooded Mine Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYXZlcm4iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/c517c946c6/Cavern.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "0a25b6b9e7",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier3",
+						"name": "Channel Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DaGFubmVsIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjN9XQ/b6166f00e1/Channel.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "f64e299199",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 5,
+					"map": {
+						"section": "tier10",
+						"name": "Strand Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TdHJhbmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTB9XQ/8855da6aed/Strand.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "6d98e70485",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier4",
+						"name": "Cells Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DZWxscyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo0fV0/b767db3bb2/Cells.png",
+						"tier": 4
+					}
+				}
+			},
+			{
+				"id": "180f49519d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier15",
+						"name": "Vault Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9WYXVsdCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxNX1d/7a11290a94/Vault.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "500fd13076",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier14",
+						"name": "Cursed Crypt Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DcnlwdCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxNH1d/0569dad70d/Crypt.png",
+						"tier": 14
+					}
+				}
+			},
+			{
+				"id": "aeb5aa45a4",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 5,
+					"map": {
+						"section": "tier5",
+						"name": "Siege Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Cb3VsZXZhcmQiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6NX1d/5f42fd9218/Boulevard.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "4f7a09e272",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier10",
+						"name": "Grotto Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Hcm90dG8iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTB9XQ/cbddec8d7e/Grotto.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "a4abd437ba",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier2",
+						"name": "Arsenal Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BcnNlbmFsIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjJ9XQ/12603c0fa3/Arsenal.png",
+						"tier": 2
+					}
+				}
+			},
+			{
+				"id": "6bf02dc687",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier9",
+						"name": "Dunes Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EdW5lcyIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo5fV0/3cae66279b/Dunes.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "08c80536a5",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier9",
+						"name": "Wharf Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9XaGFyZiIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo5fV0/8dc3584726/Wharf.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "303e8ba23b",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier4",
+						"name": "Vaal Pyramid Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9WYWFsUHlyYW1pZCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo0fV0/2c7c48569d/VaalPyramid.png",
+						"tier": 4
+					}
+				}
+			},
+			{
+				"id": "2ff047f850",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier16",
+						"name": "Maze Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NYXplIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/39ff94f8dc/Maze.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "89bec720e0",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier9",
+						"name": "Arid Lake Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BcmlkTGFrZSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo5fV0/59885d698a/AridLake.png",
+						"tier": 9
+					}
+				}
+			},
+			{
+				"id": "4e27c161a6",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier10",
+						"name": "Toxic Sewer Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TZXdlciIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMH1d/91d215c733/Sewer.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "c5576e8541",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier12",
+						"name": "Crimson Temple Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TYW5jdHVhcnkiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTJ9XQ/445b9618fb/Sanctuary.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "6590384e2f",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "unique",
+						"name": "Mao Kun",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9GYWlyZ3JhdmVzTWFwMDEiLCJzY2FsZSI6MSwidyI6MSwiaCI6MX1d/cb0c0b99b6/FairgravesMap01.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "a7368bdcd9",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier3",
+						"name": "Fungal Hollow Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9GdW5nYWxDYXZlcm5zIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjN9XQ/5ba4aa31ee/FungalCaverns.png",
+						"tier": 3
+					}
+				}
+			},
+			{
+				"id": "cd3a6700e3",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier2",
+						"name": "Arcade Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BcmNhZGUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6Mn1d/5efd538326/Arcade.png",
+						"tier": 2
+					}
+				}
+			},
+			{
+				"id": "068c1629fa",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier15",
+						"name": "Orchard Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9PcmNoYXJkIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE1fV0/2cd6e10331/Orchard.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "04992e1fe2",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 2,
+					"map": {
+						"section": "tier13",
+						"name": "Flooded Mine Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9DYXZlcm4iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTN9XQ/6a82b788ed/Cavern.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "c11065b661",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier10",
+						"name": "Excavation Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9FeGNhdmF0aW9uIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjEwfV0/704a997781/Excavation.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "835279f46a",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier8",
+						"name": "Jungle Valley Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6OH1d/a650ce22cf/JungleValley.png",
+						"tier": 8
+					}
+				}
+			},
+			{
+				"id": "365d0de3bd",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 5,
+					"map": {
+						"section": "tier11",
+						"name": "Residence Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9SZXNpZGVuY2UiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTF9XQ/e7ce901ff1/Residence.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "3f86fca063",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier16",
+						"name": "Grave Trough Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CdXJuIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjE2fV0/50ee996abb/Burn.png",
+						"tier": 16
+					}
+				}
+			},
+			{
+				"id": "9872018b3d",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier12",
+						"name": "Phantasmagoria Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9QaGFudGFzbWFnb3JpYSIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMn1d/9573479921/Phantasmagoria.png",
+						"tier": 12
+					}
+				}
+			},
+			{
+				"id": "f5e8565b5c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier11",
+						"name": "Moon Temple Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9MdW5hcmlzVGVtcGxlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjExfV0/f6b684f8bb/LunarisTemple.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "b53c35f95c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier2",
+						"name": "Belfry Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CZWxmcnkiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6Mn1d/bace5dc2a4/Belfry.png",
+						"tier": 2
+					}
+				}
+			},
+			{
+				"id": "f16ccff380",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier13",
+						"name": "Promenade Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Qcm9tZW5hZGUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTN9XQ/df7580c7f7/Promenade.png",
+						"tier": 13
+					}
+				}
+			},
+			{
+				"id": "c589f49a9b",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier10",
+						"name": "Overgrown Shrine Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9PdmVyZ3Jvd25TaHJpbmUiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTB9XQ/c324ab6dc8/OvergrownShrine.png",
+						"tier": 10
+					}
+				}
+			},
+			{
+				"id": "2d6ad479c0",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "special",
+						"name": "The Purifier",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhc01hcEd1YXJkaWFuSG9seUl0ZW0iLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtZyI6NCwibWkiOjJ9XQ/5828b4c45c/AtlasMapGuardianHolyItem.png",
+						"index": 7
+					}
+				}
+			},
+			{
+				"id": "d26544ded2",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier11",
+						"name": "Primordial Pool Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Qcmltb3JkaWFsUG9vbCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10IjoxMX1d/6efc161b2d/PrimordialPool.png",
+						"tier": 11
+					}
+				}
+			},
+			{
+				"id": "d67e851985",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "special",
+						"name": "Maze of the Minotaur",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NaW5vdGF1ciIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm1pIjoxfV0/1b13211a33/Minotaur.png",
+						"index": 11
+					}
+				}
+			},
+			{
+				"id": "3da7f205ce",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier4",
+						"name": "Primordial Pool Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Qcmltb3JkaWFsUG9vbCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo0fV0/a16a934c10/PrimordialPool.png",
+						"tier": 4
+					}
+				}
+			},
+			{
+				"id": "aa14b860ee",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 3,
+					"map": {
+						"section": "tier5",
+						"name": "Atoll Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9BdG9sbCIsInNjYWxlIjoxLCJ3IjoxLCJoIjoxLCJtbiI6MjAsIm10Ijo1fV0/91bd20a87c/Atoll.png",
+						"tier": 5
+					}
+				}
+			},
+			{
+				"id": "d509b73a26",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 4,
+					"map": {
+						"section": "tier4",
+						"name": "Moon Temple Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9MdW5hcmlzVGVtcGxlIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjR9XQ/334af8b0ae/LunarisTemple.png",
+						"tier": 4
+					}
+				}
+			},
+			{
+				"id": "3c4db95c77",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 7,
+					"map": {
+						"section": "tier15",
+						"name": "Jungle Valley Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJzY2FsZSI6MSwidyI6MSwiaCI6MSwibW4iOjIwLCJtdCI6MTV9XQ/67c95b6c6a/JungleValley.png",
+						"tier": 15
+					}
+				}
+			},
+			{
+				"id": "604408276c",
+				"parent": "707ff7938e",
+				"name": "",
+				"type": "MapStash",
+				"metadata": {
+					"items": 1,
+					"map": {
+						"section": "tier9",
+						"name": "Lair Map",
+						"image": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9MYWlyIiwic2NhbGUiOjEsInciOjEsImgiOjEsIm1uIjoyMCwibXQiOjl9XQ/2fa0003b1b/Lair.png",
+						"tier": 9
+					}
+				}
+			}
+		]
+	}
+}

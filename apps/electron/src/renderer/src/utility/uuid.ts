@@ -11,6 +11,9 @@ import { BulkyShopOffer } from '@shared/types/bulky.types'
 import { useScarabFilterStore } from '@web/categories/scarab/scarabFilter.store'
 import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
 import { ScarabFilter, ShopScarab } from '@web/categories/scarab/scarab.types'
+import { DeliriumOrbFilter, ShopDeliriumOrb } from '@web/categories/deliriumOrb/deliriumOrb.types'
+import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOrbOffer.store'
+import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumOrbFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -37,26 +40,38 @@ function generateTypedUuid<T extends OptionalRecord = undefined>(maybeUuid?: str
 
 /** Validate if a given string is a essence offer uuid. */
 function isEssenceOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopEssence>> {
-	const essenceListingStore = useEssenceOfferStore()
-	return !!essenceListingStore.offers.has(uuid)
+	const store = useEssenceOfferStore()
+	return !!store.offers.has(uuid)
 }
 
 /** Validate if a given string is a essence filter uuid */
 function isEssenceFilterUuid(uuid: string): uuid is Uuid<EssenceFilter> {
-	const essenceFilterStore = useEssenceFilterStore()
-	return !!essenceFilterStore.filters.has(uuid)
+	const store = useEssenceFilterStore()
+	return !!store.filters.has(uuid)
 }
 
 /** Validate if a given string is a scarab offer uuid. */
 function isScarabOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopScarab>> {
-	const scarabOfferStore = useScarabOfferStore()
-	return !!scarabOfferStore.offers.has(uuid)
+	const store = useScarabOfferStore()
+	return !!store.offers.has(uuid)
 }
 
 /** Validate if a given string is a scarab filter uuid */
 function isScarabFilterUuid(uuid: string): uuid is Uuid<ScarabFilter> {
-	const scarabFilterStore = useScarabFilterStore()
-	return !!scarabFilterStore.filters.has(uuid)
+	const store = useScarabFilterStore()
+	return !!store.filters.has(uuid)
+}
+
+/** Validate if a given string is a delirium orb offer uuid. */
+function isDeliriumOrbOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopDeliriumOrb>> {
+	const store = useDeliriumOrbOfferStore()
+	return !!store.offers.has(uuid)
+}
+
+/** Validate if a given string is a scarab filter uuid */
+function isDeliriumOrbFilterUuid(uuid: string): uuid is Uuid<DeliriumOrbFilter> {
+	const store = useDeliriumOrbFilterStore()
+	return !!store.filters.has(uuid)
 }
 
 export const BULKY_UUID = {
@@ -65,4 +80,6 @@ export const BULKY_UUID = {
 	isEssenceFilterUuid,
 	isScarabOfferUuid,
 	isScarabFilterUuid,
+	isDeliriumOrbOfferUuid,
+	isDeliriumOrbFilterUuid,
 }

@@ -53,6 +53,8 @@ watch(
 			essenceListingStore.getTestData()
 		} else if (cat === 'SCARAB') {
 			console.log('scarab category')
+		} else if (cat === 'DELIRIUM_ORB') {
+			console.log('deli orb category')
 		}
 
 		// makeBinTestData()

@@ -3,7 +3,7 @@ import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem, PoeItemsByStash } from '@shared/types/poe.types'
 import { RefOrGetter, getKeys, isWatchable } from '@shared/types/utility.types'
 import { compareStrings } from '@web/utility/compareFunctions'
-import { BULKY_TRANSFORM } from '@web/utility/transformers'
+import { BULKY_FACTORY } from '@web/utility/factory'
 import { MaybeRefOrGetter, Ref, ref, toValue, watch } from 'vue'
 
 export function useBulkyItems(
@@ -41,6 +41,8 @@ export function useBulkyItems(
 				return prev
 			}, {} as PoeItemsByStash)
 
+			console.log({ add, remove })
+
 			// Check if the category has changed.
 			// I did not want to create a dedicated watcher for this because I'm afraid of race conditions.
 			// Imagine user changes category. If this watcher triggers before the category watcher,
@@ -57,6 +59,8 @@ export function useBulkyItems(
 			getKeys(remove).forEach(stashTabId => {
 				remove[stashTabId].forEach(poeItem => deleteItem(poeItem))
 			})
+
+			console.log({ newItems }, items.value)
 		})
 	}
 
@@ -72,10 +76,11 @@ export function useBulkyItems(
 	 * If the BulkyShopItem does not exist yet, create it instead.
 	 */
 	function putItem(poeItem: PoeItem) {
-		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, toValue(category))
-		if (!base) return
+		const type = BULKY_FACTORY.getTypeFromPoeItem(poeItem, toValue(category))
+		const tier = BULKY_FACTORY.getTierFromPoeItem(poeItem, toValue(category))
+		if (!type || !tier) return
 
-		const itemInMap = items.value.get(`${base.type}_${base.tier}`)
+		const itemInMap = items.value.get(`${type}_${tier}`)
 
 		// If this item exists already, only adjust the quantity...
 		if (itemInMap) {
@@ -84,7 +89,7 @@ export function useBulkyItems(
 
 		// ...otherwise, create a new BulkyShopItem and add it to the map
 		else {
-			const bulkyItem = BULKY_TRANSFORM.poeItemToBulkyItem(poeItem, toValue(category), prices, priceOverrides)
+			const bulkyItem = BULKY_FACTORY.generateBulkyItemFromPoeItem(poeItem, toValue(category), prices, priceOverrides)
 			if (!bulkyItem) return
 			items.value.set(`${bulkyItem.type}_${bulkyItem.tier}`, bulkyItem)
 		}
@@ -95,11 +100,12 @@ export function useBulkyItems(
 	 * If the stack size is 0, remove the BulkyShopItem.
 	 */
 	function deleteItem(poeItem: PoeItem) {
-		const base = BULKY_TRANSFORM.poeItemBaseTypeToBulkyTypeAndTier(poeItem, toValue(category))
-		if (!base) return false
+		const type = BULKY_FACTORY.getTypeFromPoeItem(poeItem, toValue(category))
+		const tier = BULKY_FACTORY.getTierFromPoeItem(poeItem, toValue(category))
+		if (!type || !tier) return false
 
 		// Check if this item is in the map.
-		const itemInMap = items.value.get(`${base.type}_${base.tier}`)
+		const itemInMap = items.value.get(`${type}_${tier}`)
 
 		if (itemInMap) {
 			// Subtract this PoeItem's stack size from its corresponding BulkyShopItem.
@@ -107,7 +113,7 @@ export function useBulkyItems(
 
 			// Remove the item from the map if its quantity is 0 or lower.
 			if (itemInMap.quantity <= 0) {
-				return items.value.delete(`${base.type}_${base.tier}`)
+				return items.value.delete(`${type}_${tier}`)
 			}
 
 			return true

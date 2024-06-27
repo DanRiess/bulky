@@ -51,11 +51,11 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 
 	// METHODS
 
-	function filterItemsByCategory(category: Category) {
+	function filterItemsByCategory(category: MaybeRefOrGetter<Category>) {
 		return computed(() => {
 			return getKeys(itemsByStash.value).reduce((prev, curr) => {
 				prev[curr] = itemsByStash.value[curr].filter(item =>
-					BULKY_CATEGORIES.isBaseTypeInCategory(category, item.baseType)
+					BULKY_CATEGORIES.isBaseTypeInCategory(toValue(category), item.baseType)
 				)
 				return prev
 			}, {} as PoeItemsByStash)

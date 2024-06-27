@@ -114,7 +114,7 @@ function bulkyToNinjaCategory(bulkyCategory: Category): NinjaCategory | undefine
 	// TODO: enhance with more categories
 	if (bulkyCategory === 'ESSENCE') return 'Essence'
 	else if (bulkyCategory === 'SCARAB') return 'Scarab'
-	else if (bulkyCategory === 'DELI_ORB') return 'DeliriumOrb'
+	else if (bulkyCategory === 'DELIRIUM_ORB') return 'DeliriumOrb'
 	return undefined
 }
 

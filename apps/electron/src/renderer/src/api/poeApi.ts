@@ -36,11 +36,15 @@ export const poeApi = {
 
 	getStashTabItems: async (stashTab: PoeStashTab, config?: AxiosRequestConfig) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-			if (stashTab.name === 'F')
-				return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashFragment.json', config)
-			else if (stashTab.name === 'E')
-				return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashEssence.json', config)
-			else return api.get<PoeStashTabResponse>('http://localhost:5174/src/mocks/stashDump.json', config)
+			const mockBase = 'http://localhost:5174/src/mocks'
+			if (stashTab.name === 'F') return api.get<PoeStashTabResponse>(mockBase + '/stashFragment.json', config)
+			else if (stashTab.name === 'E') return api.get<PoeStashTabResponse>(mockBase + '/stashEssence.json', config)
+			else if (stashTab.name === 'Deli') return api.get<PoeStashTabResponse>(mockBase + '/stashDelirium.json', config)
+			else if (stashTab.name === 'D') return api.get<PoeStashTabResponse>(mockBase + '/stashDivinationCards.json', config)
+			else if (stashTab.name === 'Del') return api.get<PoeStashTabResponse>(mockBase + '/stashDelve.json', config)
+			else if (stashTab.name === 'Mta') return api.get<PoeStashTabResponse>(mockBase + '/stashUltimatum.json', config)
+			else if (stashTab.name === 'M') return api.get<PoeStashTabResponse>(mockBase + '/stashMaps.json', config)
+			else return api.get<PoeStashTabResponse>(mockBase + '/stashDump.json', config)
 		}
 
 		const url = import.meta.env.VITE_POE_SERVER_ENDPOINT + `/stash/${getSelectedLeague()}/${stashTab.id}`

@@ -1,9 +1,8 @@
 import { computed, onUnmounted } from 'vue'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import { BulkyOfferStore, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
-import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
+import { BULKY_FACTORY } from '@web/utility/factory'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
 
@@ -12,8 +11,6 @@ const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?
  */
 export function useComputedOffersStore() {
 	const appStateStore = useAppStateStore()
-	const essenceOfferStore = useEssenceOfferStore()
-	const scarabOfferStore = useScarabOfferStore()
 
 	let timeout: NodeJS.Timeout | undefined
 	onUnmounted(() => {
@@ -21,16 +18,9 @@ export function useComputedOffersStore() {
 	})
 
 	return computed<ComputedBulkyOfferStore>(() => {
-		let store: BulkyOfferStore | undefined
-		let offers: BulkyOfferStore['offers'] | undefined
+		const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
 
-		if (appStateStore.selectedCategory === 'ESSENCE') {
-			store = essenceOfferStore
-		} else if (appStateStore.selectedCategory === 'SCARAB') {
-			store = scarabOfferStore
-		}
-
-		offers = store ? store.offers : new Map()
+		const offers: BulkyOfferStore['offers'] = store ? store.offers : new Map()
 
 		/**
 		 * Interval function. Call this every x seconds. Define the interval in the .env file.

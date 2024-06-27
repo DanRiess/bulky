@@ -43,7 +43,7 @@ export function useItemOverrides(category: MaybeRefOrGetter<Category>) {
 		const bulkyIdb = useBulkyIdb()
 
 		// Generate the new override item.
-		const newItem = BULKY_TRANSFORM.bulkyItemToPriceOverrideItem(item, overrides)
+		const newItem = BULKY_TRANSFORM.bulkyItemToOverrideItem(item, overrides)
 
 		// Set the new item in the map.
 		itemOverrides.value.set(`${newItem.type}_${newItem.tier}`, newItem)

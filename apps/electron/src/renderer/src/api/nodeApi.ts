@@ -45,6 +45,8 @@ export const nodeApi = {
 				url = 'http://localhost:5174/src/mocks/ninjaScarab.json'
 			} else if (category === 'Currency') {
 				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
+			} else if (category === 'DeliriumOrb') {
+				url = 'http://localhost:5174/src/mocks/ninjaDelirium.json'
 			} else {
 				url = 'http://localhost:5174/src/mocks/ninjaMaps.json'
 			}

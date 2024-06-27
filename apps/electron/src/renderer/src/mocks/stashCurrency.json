@@ -1,0 +1,1853 @@
+{
+	"stash": {
+		"id": "75c342b2ef",
+		"folder": "656b5c647a",
+		"name": "C",
+		"type": "CurrencyStash",
+		"index": 3,
+		"metadata": {
+			"colour": "590000"
+		},
+		"items": [
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmluZGluZ1NoYXJkIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/4c5b54654a/BindingShard.png",
+				"stackSize": 3,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "dd4a0a503a20be7dfd7960915a2cdceb41c624258b554dc74372e8cabe4a313a",
+				"name": "",
+				"typeLine": "Binding Shard",
+				"baseType": "Binding Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"3/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes an Orb of Binding.",
+				"frameType": 5,
+				"x": 63,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxSYXJlIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/d119a0d734/CurrencyRerollRare.png",
+				"stackSize": 362,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "795efad91860edbf027d4344762d01b1bea9d9186ef3ac5ef3bbb63faf743187",
+				"name": "",
+				"typeLine": "Chaos Orb",
+				"baseType": "Chaos Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"362/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Reforges a rare item with new random modifiers"
+				],
+				"descrText": "Right click this item then left click a rare item to apply it.",
+				"frameType": 5,
+				"x": 2,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXhwZWRpdGlvbi9GbGFza0luamVjdG9yIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/08e3793591/FlaskInjector.png",
+				"stackSize": 27,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "acb6f2a75e749d369ac5a3fe0a0d8f0a3e9c33868ab6aa4f90378dcbbd139480",
+				"name": "",
+				"typeLine": "Instilling Orb",
+				"baseType": "Instilling Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"27/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds an enchantment to a utility flask that will cause\r\nit to be used when certain conditions are met\r\nReplaces any existing enchantment"
+				],
+				"descrText": "Right click this item then left click a flask to apply it.",
+				"frameType": 5,
+				"x": 74,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2xlYW5zaW5nRmlyZU9yYlJhbmszIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/65093ad252/CleansingFireOrbRank3.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "a06e208d5f8e136d227b433730ac23d4a2b41e0faccfde7e080224f8ad81379a",
+				"name": "",
+				"typeLine": "Grand Eldritch Ember",
+				"baseType": "Grand Eldritch Ember",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds a Grand Searing Exarch implicit modifier to\r\na Body Armour, Boots, Gloves or Helmet\r\nThis replaces any existing implicit modifiers other than Eater of Worlds implicit modifiers"
+				],
+				"descrText": "Right click this item then left click a normal, magic or rare item to apply it. Cannot be used on Shaper, Elder or Elderslayer influenced items.",
+				"frameType": 5,
+				"x": 79,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSG9yaXpvbk9yYiIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/a48e326c68/HorizonOrb.png",
+				"stackSize": 26,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "5dcd772a600ce33412af6c7e6ce1214fc7bbf84a6604c97d916247439d5c4b5e",
+				"name": "",
+				"typeLine": "Orb of Horizons",
+				"baseType": "Orb of Horizons",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"26/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Reforges a map item as another of the same tier"
+				],
+				"descrText": "Right click this item then left click a map to apply it.",
+				"frameType": 5,
+				"x": 55,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNb2RWYWx1ZXMiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/e1a54ff97d/CurrencyModValues.png",
+				"stackSize": 5,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "149553b6f0a727baf1378044ee7ec9093cdd8fc113f2838f18fa89abbc2c90a8",
+				"name": "",
+				"typeLine": "Divine Orb",
+				"baseType": "Divine Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Randomises the values of the random modifiers on an item"
+				],
+				"descrText": "Right click this item then left click a magic, rare or unique item to apply it.",
+				"frameType": 5,
+				"x": 20,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lJbXBsaWNpdE1vZCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/c3cbf3e5ab/CurrencyImplicitMod.png",
+				"stackSize": 54,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "c997c501fb4244eff036de40583d29f663063f6955a29b5fddf28553564a0b94",
+				"name": "",
+				"typeLine": "Blessed Orb",
+				"baseType": "Blessed Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"54/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Randomises the values of the implicit modifiers of an item"
+				],
+				"descrText": "Right click this item then left click another item to apply it.",
+				"frameType": 5,
+				"x": 21,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXROdW1iZXJzIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/685633cb14/CurrencyRerollSocketNumbers.png",
+				"stackSize": 428,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "7762b8c993424f087509d11b3116c4ec885593067d37c6bf91b3ef9723ff7a93",
+				"name": "",
+				"typeLine": "Jeweller's Orb",
+				"baseType": "Jeweller's Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"428/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Reforges the number of sockets on an item"
+				],
+				"descrText": "Right click this item then left click a socketed item to apply it. The item's quality increases the chances of obtaining more sockets.",
+				"frameType": 5,
+				"x": 19,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lNYXBRdWFsaXR5IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/c83c35bed5/CurrencyMapQuality.png",
+				"stackSize": 268,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "1ade78def9307d817aa38b2586906210039e2226149e731a36f6ca536a37e486",
+				"name": "",
+				"typeLine": "Cartographer's Chisel",
+				"baseType": "Cartographer's Chisel",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"268/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Improves the quality of a map"
+				],
+				"descrText": "Right click this item then left click a map to apply it. Has greater effect on lower-rarity maps. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 22,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBcm1vdXJRdWFsaXR5IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/0b964e9b9e/CurrencyArmourQuality.png",
+				"stackSize": 611,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "a87411481eba55c03ee0bb7096b4ea6ce9fa4238911298b8361c0c1c24be91d9",
+				"name": "",
+				"typeLine": "Armourer's Scrap",
+				"baseType": "Armourer's Scrap",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"611/40",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Improves the quality of an armour"
+				],
+				"descrText": "Right click this item then left click an armour to apply it. Has greater effect on lower-rarity armours. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 3,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lQb3J0YWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/a55c72f398/CurrencyPortal.png",
+				"stackSize": 53,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "ebc364c234b03d1e16160c448812a4155302044615b63691f84f4c523ed62034",
+				"name": "",
+				"typeLine": "Portal Scroll",
+				"baseType": "Portal Scroll",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"53/40",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Creates a portal to town"
+				],
+				"descrText": "Right click on this item to use it.",
+				"frameType": 5,
+				"x": 14,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lJZGVudGlmaWNhdGlvbiIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/3a1e615322/CurrencyIdentification.png",
+				"stackSize": 186,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "eed7813a48abf9d3d22bd0a45676c706541a25a03b5ede7f22df8caf7aac8c36",
+				"name": "",
+				"typeLine": "Scroll of Wisdom",
+				"baseType": "Scroll of Wisdom",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"186/40",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Identifies an item"
+				],
+				"descrText": "Right click this item then left click an unidentified item to apply it.",
+				"frameType": 5,
+				"x": 1,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9SYXJlU2hhcmQiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/2e51dc8c8c/CurrencyUpgradeToRareShard.png",
+				"stackSize": 19,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "c926d347a3e80951cf44f75ac8e13e1ae0bb5c7c5afe6dd2e983256b8c8b9ee3",
+				"name": "",
+				"typeLine": "Alchemy Shard",
+				"baseType": "Alchemy Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"19/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes an Orb of Alchemy.",
+				"frameType": 5,
+				"x": 26,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lGbGFza1F1YWxpdHkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/8a36dffe11/CurrencyFlaskQuality.png",
+				"stackSize": 47,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "01905427695c4b64dfc93f4503f92ea0f4992dfceaf3c768ed98aa22badc15cf",
+				"name": "",
+				"typeLine": "Glassblower's Bauble",
+				"baseType": "Glassblower's Bauble",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"47/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Improves the quality of a flask"
+				],
+				"descrText": "Right click this item then left click a flask to apply it. Has greater effect on lower-rarity flasks. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 15,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXRDb2xvdXJzIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/136314c10a/CurrencyRerollSocketColours.png",
+				"stackSize": 155,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "58c5ff1a0a49f713f37ff76e56206bca2441c096ab23e59db1b5f53fd78d5221",
+				"name": "",
+				"typeLine": "Chromatic Orb",
+				"baseType": "Chromatic Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"155/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Reforges the colour of sockets on an item"
+				],
+				"descrText": "Right click this item then left click a socketed item to apply it.",
+				"frameType": 5,
+				"x": 17,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9NYWdpYyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/130762c82d/CurrencyUpgradeToMagic.png",
+				"stackSize": 613,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "61e4396f94f052d5ccf2bf637cbd0411c2d3a944d0cea07005554fd52f05c309",
+				"name": "",
+				"typeLine": "Orb of Transmutation",
+				"baseType": "Orb of Transmutation",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"613/40",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Upgrades a normal item to a magic item"
+				],
+				"descrText": "Right click this item then left click a normal item to apply it.",
+				"frameType": 5,
+				"x": 8,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGFyYmluZ2VyU2hhcmQiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/9b8b1837d2/HarbingerShard.png",
+				"stackSize": 9,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "ca909b9d82e6a7dd5d09f16e7a464177930b69afcefe6cddcc0fef3a8687c609",
+				"name": "",
+				"typeLine": "Harbinger's Shard",
+				"baseType": "Harbinger's Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"9/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes a Harbinger's Orb.",
+				"frameType": 5,
+				"x": 64,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxNYWdpYyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/28212545fd/CurrencyRerollMagic.png",
+				"stackSize": 93,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "8be4cf40bfce5b425804dbb984bc690ed7e47e417365af4c34b039508f5ba2ae",
+				"name": "",
+				"typeLine": "Orb of Alteration",
+				"baseType": "Orb of Alteration",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"93/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Reforges a magic item with new random modifiers"
+				],
+				"descrText": "Right click this item then left click a magic item to apply it.",
+				"frameType": 5,
+				"x": 9,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBZGRNb2RUb01hZ2ljIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1a6cb2ad17/CurrencyAddModToMagic.png",
+				"stackSize": 283,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "5519127328027aa7a0f994548febb364fbcaac05647549da4ee25bb3ca8a7170",
+				"name": "",
+				"typeLine": "Orb of Augmentation",
+				"baseType": "Orb of Augmentation",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"283/30",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Augments a magic item with a new random modifier"
+				],
+				"descrText": "Right click this item then left click a magic item to apply it. Magic items can have up to two random modifiers.",
+				"frameType": 5,
+				"x": 13,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVGFuZ2xlT3JiUmFuazIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/37b581d6b1/TangleOrbRank2.png",
+				"stackSize": 21,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "27a87680420376a511fe5364be4665bfbbd8064dc7d40915324de8528d25214b",
+				"name": "",
+				"typeLine": "Greater Eldritch Ichor",
+				"baseType": "Greater Eldritch Ichor",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"21/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds a Greater Eater of Worlds implicit modifier to\r\na Body Armour, Boots, Gloves or Helmet\r\nThis replaces any existing implicit modifiers other than Searing Exarch implicit modifiers"
+				],
+				"descrText": "Right click this item then left click a normal, magic or rare item to apply it. Cannot be used on Shaper, Elder or Elderslayer influenced items.",
+				"frameType": 5,
+				"x": 82,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmluZGluZ09yYiIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/66ef64410c/BindingOrb.png",
+				"stackSize": 33,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "f3069a18db5591bb808925e0a8a472885bf05456d516c84e94227b0f059714f3",
+				"name": "",
+				"typeLine": "Orb of Binding",
+				"baseType": "Orb of Binding",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"33/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Upgrades a normal item to a rare item with up to four linked sockets"
+				],
+				"descrText": "Right click this item then left click a normal item to apply it.",
+				"frameType": 5,
+				"x": 59,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRW5naW5lZXJzT3JiIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/56b41a5ee5/EngineersOrb.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "1e9ac292d41e92c315d622fe4466101ebb46ce304e7a532fd8295587df706511",
+				"name": "",
+				"typeLine": "Engineer's Orb",
+				"baseType": "Engineer's Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Improves the quality of a Strongbox"
+				],
+				"descrText": "Right click this item then left click a Strongbox to apply it. Has greater effect on lower rarity Strongboxes. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 60,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSG9yaXpvblNoYXJkIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/396c5f134f/HorizonShard.png",
+				"stackSize": 4,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "697c50e08f448b90188dbd5f278a3c46d89cc298c8e400cdcbf00947fcb4580e",
+				"name": "",
+				"typeLine": "Horizon Shard",
+				"baseType": "Horizon Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"4/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes an Orb of Horizons.",
+				"frameType": 5,
+				"x": 56,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lXZWFwb25RdWFsaXR5IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/c874e03eb7/CurrencyWeaponQuality.png",
+				"stackSize": 461,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "5821c8faa7e2e122f19c2c748c3ced1ce53f8ff9645f519b8c87831da401078a",
+				"name": "",
+				"typeLine": "Blacksmith's Whetstone",
+				"baseType": "Blacksmith's Whetstone",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"461/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Improves the quality of a weapon"
+				],
+				"descrText": "Right click this item then left click a weapon to apply it. Has greater effect on lower-rarity weapons. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 0,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9NYWdpY1NoYXJkIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/769d3bfabd/CurrencyUpgradeToMagicShard.png",
+				"stackSize": 7,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "e40a94d1631e30db380f7294f9bbbc04fa75b45b36413d2520d6ae9c47d469af",
+				"name": "",
+				"typeLine": "Transmutation Shard",
+				"baseType": "Transmutation Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"7/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes an Orb of Transmutation.",
+				"frameType": 5,
+				"x": 24,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2hhb3NTaGFyZCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/fa09d6f7ba/ChaosShard.png",
+				"stackSize": 11,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "ee32e24df728fbaa17155fc086ce237c5eff0d0871f731cff82f19b65b2a541e",
+				"name": "",
+				"typeLine": "Chaos Shard",
+				"baseType": "Chaos Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"11/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes a Chaos Orb.",
+				"frameType": 5,
+				"x": 49,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUmVnYWxTaGFyZCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/972b7b232b/RegalShard.png",
+				"stackSize": 3,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "3a36609ddfeee7861bc4c095ed5a12cd1c1431deba5bdacbedb564fe10a1c9bb",
+				"name": "",
+				"typeLine": "Regal Shard",
+				"baseType": "Regal Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"3/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes a Regal Orb.",
+				"frameType": 5,
+				"x": 52,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lDb252ZXJ0VG9Ob3JtYWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/6953e90545/CurrencyConvertToNormal.png",
+				"stackSize": 49,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "a84db6a0f1911429885bcaf79ee6d53d89bfda837ab9c436ae72b540bae856d9",
+				"name": "",
+				"typeLine": "Orb of Scouring",
+				"baseType": "Orb of Scouring",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"49/30",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Removes all modifiers from an item"
+				],
+				"descrText": "Right click this item then left click on a magic or rare item to apply it.",
+				"frameType": 5,
+				"x": 10,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTWF2ZW5PcmIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/8396ed7d8d/MavenOrb.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "37467cada563c98287ee4abbbf5b87f230dd46745e6d4911fe631dd1d9aefeee",
+				"name": "",
+				"typeLine": "Orb of Dominance",
+				"baseType": "Orb of Dominance",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Removes one Influenced Modifier from an item with at least two Influenced\r\nModifiers and upgrades another Influenced Modifier\r\nUpgrading a modifier of the highest tier transforms the\r\nmodifier into an Elevated Modifier\r\nAttempting to upgrade an Elevated Modifier rerolls its values\r\nCan be used on Body Armours, Boots, Gloves and Helmets"
+				],
+				"descrText": "Right click this item then left click an item with at least two Influenced Modifiers to apply it.",
+				"frameType": 5,
+				"x": 71,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVHJhbnNmZXJPcmIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/6db384ea6e/TransferOrb.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "bdb8e9a12737bd03b3e6db42fb1727290837152733e62e2954edf6d79dd503c9",
+				"name": "",
+				"typeLine": "Awakener's Orb",
+				"baseType": "Awakener's Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Destroys an item, applying its influence to another of the same item class\r\nThe second item is reforged as a rare item with both influence types and new modifiers"
+				],
+				"descrText": "Right click this item, then left click the item you wish to take the influence from, then left click an item of the same item class you wish to apply it to.",
+				"frameType": 5,
+				"x": 61,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lWYWFsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/304f775089/CurrencyVaal.png",
+				"stackSize": 84,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "c6e5b807eee4d05c064c18475a04a3f3594c35de822ad602dad789847c257fbc",
+				"name": "",
+				"typeLine": "Vaal Orb",
+				"baseType": "Vaal Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"84/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Corrupts an item, modifying it unpredictably"
+				],
+				"descrText": "Right click this item then left click an item to corrupt it. Corrupted items cannot be modified again.",
+				"frameType": 5,
+				"x": 27,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlVG9SYXJlIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f0dc27cd7c/CurrencyUpgradeToRare.png",
+				"stackSize": 86,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "c1ae7af73a13ec3160c58256b6896cc5e66a238120aa06a0a92af285356a2d2b",
+				"name": "",
+				"typeLine": "Orb of Alchemy",
+				"baseType": "Orb of Alchemy",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"86/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Upgrades a normal item to a rare item"
+				],
+				"descrText": "Right click this item then left click a normal item to apply it.",
+				"frameType": 5,
+				"x": 5,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXhwZWRpdGlvbi9GbGFza1BsYXRlIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/c03aace282/FlaskPlate.png",
+				"stackSize": 14,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "febd3d1a6abc614a87a907551673c5e00750cbc7ac2a28320763039cfc3aa7d5",
+				"name": "",
+				"typeLine": "Enkindling Orb",
+				"baseType": "Enkindling Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"14/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds an enchantment to a utility flask that will improve it\r\nbut prevent it from gaining charges during its effect\r\nReplaces any existing enchantment"
+				],
+				"descrText": "Right click this item then left click a flask to apply it.",
+				"frameType": 5,
+				"x": 73,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxTb2NrZXRMaW5rcyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/f38529edfc/CurrencyRerollSocketLinks.png",
+				"stackSize": 768,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "5563f28027791c0155161264cef2d88d6db2f0f244d2b2e10a067a08c1aff741",
+				"name": "",
+				"typeLine": "Orb of Fusing",
+				"baseType": "Orb of Fusing",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"768/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Reforges the links between sockets on an item"
+				],
+				"descrText": "Right click this item then left click a socketed item to apply it. The item's quality increases the chances of obtaining more links.",
+				"frameType": 5,
+				"x": 18,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlTWFnaWNUb1JhcmUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/898378b439/CurrencyUpgradeMagicToRare.png",
+				"stackSize": 36,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "f4d3f46a87a134b8560b4eab1b0ad1a45ed785a304542838ec124f36a737afa5",
+				"name": "",
+				"typeLine": "Regal Orb",
+				"baseType": "Regal Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"36/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Upgrades a magic item to a rare item"
+				],
+				"descrText": "Right click this item then left click a magic item to apply it. Current modifiers are retained and a new one is added.",
+				"frameType": 5,
+				"x": 12,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ29uZmxpY3RPcmJSYW5rMSIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/e1919976c3/ConflictOrbRank1.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "fa163aca4ed0803e2b1640629a9330dcbc2ee7ec724904b6800c65407c1cbc40",
+				"name": "",
+				"typeLine": "Orb of Conflict",
+				"baseType": "Orb of Conflict",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Unpredictably raise the strength of one Searing Exarch or Eater of Worlds modifier on an item and lower the strength of another\r\nLesser modifiers that have their strength lowered will be removed"
+				],
+				"descrText": "Right click this item then left click a non-unique item to apply it. Can only be used on items that have both a Searing Exarch and an Eater of Worlds implicit modifier. The chance of raising or lowering a modifier depends on its relative strength.",
+				"frameType": 5,
+				"x": 85,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVGFuZ2xlT3JiUmFuazEiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/3135dab202/TangleOrbRank1.png",
+				"stackSize": 37,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "a151e9d32ef5db22dd3e312826e9ad2df42637f7cb00b9f2f6c65596e7988bda",
+				"name": "",
+				"typeLine": "Lesser Eldritch Ichor",
+				"baseType": "Lesser Eldritch Ichor",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"37/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds a Lesser Eater of Worlds implicit modifier to\r\na Body Armour, Boots, Gloves or Helmet\r\nThis replaces any existing implicit modifiers other than Searing Exarch implicit modifiers"
+				],
+				"descrText": "Right click this item then left click a normal, magic or rare item to apply it. Cannot be used on Shaper, Elder or Elderslayer influenced items.",
+				"frameType": 5,
+				"x": 81,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlUmFuZG9tbHkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/eaeece27be/CurrencyUpgradeRandomly.png",
+				"stackSize": 279,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "e7221ddec111f6ba91ee2c1bfc027f4a3302a65157c6ec57ab6e78bfb331ec36",
+				"name": "",
+				"typeLine": "Orb of Chance",
+				"baseType": "Orb of Chance",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"279/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Upgrades a normal item to a random rarity"
+				],
+				"descrText": "Right click this item then left click a normal item to apply it.",
+				"frameType": 5,
+				"x": 6,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBZGRNb2RUb1JhcmUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/b102771c23/CurrencyAddModToRare.png",
+				"stackSize": 31,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "c53636abaa01a8d0e90c4f7406e96506289c5c43e55f5a9bf9efe890cad97558",
+				"name": "",
+				"typeLine": "Exalted Orb",
+				"baseType": "Exalted Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"31/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Augments a rare item with a new random modifier"
+				],
+				"descrText": "Right click this item then left click a rare item to apply it. Rare items can have up to six random modifiers.",
+				"frameType": 5,
+				"x": 11,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2xlYW5zaW5nRmlyZU9yYlJhbms0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/920113641f/CleansingFireOrbRank4.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "a8f65565db4932df5afe303ab10b6057900ddd21a5f68397dfad97344d6ecea8",
+				"name": "",
+				"typeLine": "Exceptional Eldritch Ember",
+				"baseType": "Exceptional Eldritch Ember",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds an Exceptional Searing Exarch implicit modifier to\r\na Body Armour, Boots, Gloves or Helmet\r\nThis replaces any existing implicit modifiers other than Eater of Worlds implicit modifiers"
+				],
+				"descrText": "Right click this item then left click a normal, magic or rare item to apply it. Cannot be used on Shaper, Elder or Elderslayer influenced items.",
+				"frameType": 5,
+				"x": 80,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvUmVncmV0T3JiIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/a2ebb4b5a3/RegretOrb.png",
+				"stackSize": 58,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "8c48b977746ef54962c71b7c4b3b70c1f3debc42be42e03ddb93c16b68ce3be2",
+				"name": "",
+				"typeLine": "Orb of Unmaking",
+				"baseType": "Orb of Unmaking",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"58/40",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Grants an atlas passive skill refund point"
+				],
+				"descrText": "Right click on this item to use it.",
+				"frameType": 5,
+				"x": 70,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lQYXNzaXZlU2tpbGxSZWZ1bmQiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/6b8ab3ff07/CurrencyPassiveSkillRefund.png",
+				"stackSize": 146,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "19c00534ae4f408d2b5d3ee902c6f4aee98628796f7e87857d63ee1301d455d6",
+				"name": "",
+				"typeLine": "Orb of Regret",
+				"baseType": "Orb of Regret",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"146/40",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Grants a passive skill refund point"
+				],
+				"descrText": "Right click on this item to use it.",
+				"frameType": 5,
+				"x": 7,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lHZW1RdWFsaXR5IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/1be1273b91/CurrencyGemQuality.png",
+				"stackSize": 44,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "89ad4598d91ab69ebc01bff887f8b0a4d02844f6c7d6dd21fcfa660e68512551",
+				"name": "",
+				"typeLine": "Gemcutter's Prism",
+				"baseType": "Gemcutter's Prism",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"44/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Improves the quality of a gem"
+				],
+				"descrText": "Right click this item then left click a gem to apply it. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 16,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVGFuZ2xlT3JiUmFuazMiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/80772bd510/TangleOrbRank3.png",
+				"stackSize": 5,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "bb3da5d0ecb67ca57de7e539430d8808e43ee14cc19ceab84ea88614e1426920",
+				"name": "",
+				"typeLine": "Grand Eldritch Ichor",
+				"baseType": "Grand Eldritch Ichor",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds a Grand Eater of Worlds implicit modifier to\r\na Body Armour, Boots, Gloves or Helmet\r\nThis replaces any existing implicit modifiers other than Searing Exarch implicit modifiers"
+				],
+				"descrText": "Right click this item then left click a normal, magic or rare item to apply it. Cannot be used on Shaper, Elder or Elderslayer influenced items.",
+				"frameType": 5,
+				"x": 83,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVsbHNjYXBlL0hlbGxzY2FwZUNocm9tYXRpY09yYiIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/c0a50953c2/HellscapeChromaticOrb.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "e1cf453ee41afcf5965f927f8f18f8a6c38c758c81518eb07914dcc840d86ddd",
+				"name": "",
+				"typeLine": "Tainted Chromatic Orb",
+				"baseType": "Tainted Chromatic Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Unpredictably reforges the colour of sockets on a corrupted item"
+				],
+				"descrText": "Right click this item then left click a corrupted socketed item to apply it.",
+				"frameType": 5,
+				"x": 97,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lSZXJvbGxNYWdpY1NoYXJkIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/2dc121cb4e/CurrencyRerollMagicShard.png",
+				"stackSize": 12,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "70226f97539e2d68b6a062bb3da6741d7cdefba5ee0b2564bb0f9de1189a2283",
+				"name": "",
+				"typeLine": "Alteration Shard",
+				"baseType": "Alteration Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"12/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes an Orb of Alteration.",
+				"frameType": 5,
+				"x": 25,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lJZGVudGlmaWNhdGlvbkZyYWdtZW50IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/4f379102ee/CurrencyIdentificationFragment.png",
+				"stackSize": 1,
+				"maxStackSize": 5,
+				"league": "Necropolis",
+				"id": "bfe3182f5ba7e14271dc92b86007f09985ce555d5446f27e43d69f5fb339dafa",
+				"name": "",
+				"typeLine": "Scroll Fragment",
+				"baseType": "Scroll Fragment",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/5",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 5 fragments becomes a Scroll of Wisdom.",
+				"frameType": 5,
+				"x": 23,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQW5jaWVudFNoYXJkIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/bb214de034/AncientShard.png",
+				"stackSize": 2,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "1c950b6107460def0cb961f50b3a4f65d4165f59141d8ae9bf88f4a0bae4fa6d",
+				"name": "",
+				"typeLine": "Ancient Shard",
+				"baseType": "Ancient Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"2/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes an Ancient Orb.",
+				"frameType": 5,
+				"x": 62,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQW5udWxsT3JiIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/88cfdbe1e5/AnnullOrb.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "6f7e63bf2b320c53479d053393c33069cc079517ae41d5a5934f05e25f2cc9e8",
+				"name": "",
+				"typeLine": "Orb of Annulment",
+				"baseType": "Orb of Annulment",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Removes a random modifier from an item"
+				],
+				"descrText": "Right click this item then left click on a magic or rare item to apply it.",
+				"frameType": 5,
+				"x": 54,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQW5jaWVudE9yYiIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/08feb97abf/AncientOrb.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "b7499be47811a2c059e607f653bbbeb6fc177e795931281ef41ff18d54cdc397",
+				"name": "",
+				"typeLine": "Ancient Orb",
+				"baseType": "Ancient Orb",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Reforges a unique equipment as another of the same item class"
+				],
+				"descrText": "Right click this item then left click a unique item to apply it.",
+				"frameType": 5,
+				"x": 58,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQW5udWxsU2hhcmQiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/f7a8a838a6/AnnullShard.png",
+				"stackSize": 8,
+				"maxStackSize": 20,
+				"league": "Necropolis",
+				"id": "71ac91e55076ae457d5d3e340ddbd06512a928209555f61de796a2aeda9e8639",
+				"name": "",
+				"typeLine": "Annulment Shard",
+				"baseType": "Annulment Shard",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"8/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "A stack of 20 shards becomes an Orb of Annulment.",
+				"frameType": 5,
+				"x": 53,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2xlYW5zaW5nRmlyZU9yYlJhbmsxIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/62c98f8357/CleansingFireOrbRank1.png",
+				"stackSize": 3,
+				"maxStackSize": 5000,
+				"league": "Necropolis",
+				"id": "536de0e1868bb216ccd88ee66b91f43da90dae5945c0076d3d6b141b419de897",
+				"name": "",
+				"typeLine": "Lesser Eldritch Ember",
+				"baseType": "Lesser Eldritch Ember",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"3/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds a Lesser Searing Exarch implicit modifier to\r\na Body Armour, Boots, Gloves or Helmet\r\nThis replaces any existing implicit modifiers other than Eater of Worlds implicit modifiers"
+				],
+				"descrText": "Right click this item then left click a normal, magic or rare item to apply it. Cannot be used on Shaper, Elder or Elderslayer influenced items.",
+				"frameType": 5,
+				"x": 77,
+				"y": 0,
+				"inventoryId": "Stash1"
+			}
+		]
+	}
+}

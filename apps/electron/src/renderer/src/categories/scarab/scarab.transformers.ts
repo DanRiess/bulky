@@ -8,13 +8,13 @@ import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
 
 export const BULKY_SCARABS = {
-	generateScarabTypeFromBaseType,
+	generateTypeFromBaseType,
 	generateScarabTier,
 	generateScarabFromPoeItem,
 	generateScarabNameFromType,
 }
 
-function generateScarabTypeFromBaseType(baseType: string): ScarabType | undefined {
+function generateTypeFromBaseType(baseType: string): ScarabType | undefined {
 	if (baseType === 'Reliquary Scarab') return SCARAB_TYPE.RELIQUARY_SCARAB
 	if (baseType === 'Reliquary Scarab of Overlords') return SCARAB_TYPE.RELIQUARY_SCARAB_OF_OVERLORDS
 	if (baseType === 'Reliquary Scarab of Vision') return SCARAB_TYPE.RELIQUARY_SCARAB_OF_VISION
@@ -145,7 +145,7 @@ function generateScarabFromPoeItem(
 ): ShopScarab | undefined {
 	const configStore = useConfigStore()
 
-	const type = generateScarabTypeFromBaseType(poeItem.baseType)
+	const type = generateTypeFromBaseType(poeItem.baseType)
 	const tier = generateScarabTier()
 
 	if (!type || !tier || !poeItem.stackSize) return

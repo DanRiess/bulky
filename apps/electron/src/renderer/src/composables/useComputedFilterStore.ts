@@ -1,13 +1,13 @@
 import { computed } from 'vue'
-import { Uuid, getKeys } from '@shared/types/utility.types'
+import { Uuid } from '@shared/types/utility.types'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { BulkyFilter, BulkyFilterField, BulkyFilterStore, ComputedBulkyFilterStore } from '@shared/types/bulky.types'
+import { BulkyFilter, ComputedBulkyFilterStore } from '@shared/types/bulky.types'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.store'
-import { ESSENCE_TIER, ESSENCE_TYPE } from '@web/categories/essence/essence.const'
 import { useScarabFilterStore } from '@web/categories/scarab/scarabFilter.store'
-import { SCARAB_TYPE } from '@web/categories/scarab/scarab.const'
+import { BULKY_FACTORY } from '@web/utility/factory'
+import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumOrbFilter.store'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
@@ -16,33 +16,21 @@ export function useComputedFilterStore() {
 	const appStateStore = useAppStateStore()
 	const essenceFilterStore = useEssenceFilterStore()
 	const scarabFilterStore = useScarabFilterStore()
+	const deliriumOrbFilterStore = useDeliriumOrbFilterStore()
 
 	return computed<ComputedBulkyFilterStore | undefined>(() => {
-		let store: BulkyFilterStore | undefined
-		let filter: BulkyFilter | undefined
-		let filterFieldTypeOptions: BulkyFilterField['type'][] | undefined
-		let filterFieldTierOptions: BulkyFilterField['tier'][] | undefined
-
-		// Assign the state variables according to the selected category.
-		if (appStateStore.selectedCategory === 'ESSENCE') {
-			store = essenceFilterStore
-			filterFieldTypeOptions = getKeys(ESSENCE_TYPE)
-			filterFieldTierOptions = getKeys(ESSENCE_TIER)
-		} else if (appStateStore.selectedCategory === 'SCARAB') {
-			store = scarabFilterStore
-			filterFieldTypeOptions = getKeys(SCARAB_TYPE)
-			filterFieldTierOptions = ['0']
-		}
-
-		filter = store?.currentFilter
+		const store = BULKY_FACTORY.getFilterStore(appStateStore.selectedCategory)
+		const filterFieldTypeOptions = BULKY_FACTORY.getItemTypes(appStateStore.selectedCategory)
+		const filterFieldTierOptions = BULKY_FACTORY.getItemTiers(appStateStore.selectedCategory)
 
 		// Return if something went wrong with the variable assignments.
 		if (!store || !filterFieldTypeOptions || !filterFieldTierOptions) return
 
 		// If there is no filter yet, create one and use it.
+		let filter = store.currentFilter
 		if (!filter) {
 			const id = store.createNewFilter()
-			filter = essenceFilterStore.filters.get(id)
+			filter = store.filters.get(id)
 		}
 
 		// If something went wrong during filter creation, return.
@@ -53,8 +41,10 @@ export function useComputedFilterStore() {
 			if (!store) return
 
 			// Assert that store and uuid type are compatible.
+			// Only necessary because I suck at using ts generics. There must be a better way..
 			if (store === essenceFilterStore && BULKY_UUID.isEssenceFilterUuid(uuid)) store.addFilterField(uuid)
 			else if (store === scarabFilterStore && BULKY_UUID.isScarabFilterUuid(uuid)) store.addFilterField(uuid)
+			else if (store === deliriumOrbFilterStore && BULKY_UUID.isDeliriumOrbFilterUuid(uuid)) store.addFilterField(uuid)
 		}
 
 		/** Remove a filter field from the current filter */
@@ -62,8 +52,11 @@ export function useComputedFilterStore() {
 			if (!store) return
 
 			// Assert that store and uuid type are compatible.
+			// Only necessary because I suck at using ts generics. There must be a better way..
 			if (store === essenceFilterStore && BULKY_UUID.isEssenceFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 			else if (store === scarabFilterStore && BULKY_UUID.isScarabFilterUuid(uuid)) store.removeFilterField(uuid, idx)
+			else if (store === deliriumOrbFilterStore && BULKY_UUID.isDeliriumOrbFilterUuid(uuid))
+				store.removeFilterField(uuid, idx)
 		}
 
 		return {

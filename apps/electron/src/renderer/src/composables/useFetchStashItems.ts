@@ -26,18 +26,27 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		await Promise.allSettled(
 			toValue(stashTabs).map(async tab => {
 				// Block the request if the tab synchronized less than 30 seconds ago.
-				if (Date.now() - tab.lastSnapshot < 30000) return
+				if (Date.now() - tab.lastSnapshot < 30000) {
+					status.value = 'SUCCESS'
+					return
+				}
 
 				const request = useApi(`${tab.id}ItemRequest`, poeApi.getStashTabItems)
 				await request.exec(tab)
 
+				console.log('before handle')
+
 				if (request.error.value || !request.data.value) {
+					console.log('error')
 					status.value = 'ERROR'
 					error.value = request.error.value
 					return
 				}
 
+				console.log(status.value)
+
 				if (status.value !== 'ERROR') {
+					console.log('should change')
 					status.value = 'SUCCESS'
 				}
 

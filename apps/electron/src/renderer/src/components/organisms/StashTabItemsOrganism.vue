@@ -62,7 +62,7 @@ const { selectedStashTabs } = storeToRefs(stashStore)
 
 // COMPOSABLES
 const { filterItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
-const categoryFilteredItemsByStash = filterItemsByCategory(props.category)
+const categoryFilteredItemsByStash = filterItemsByCategory(() => props.category)
 const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides, () => props.category)

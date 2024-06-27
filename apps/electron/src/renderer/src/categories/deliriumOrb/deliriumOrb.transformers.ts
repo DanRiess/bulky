@@ -8,13 +8,13 @@ import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
 
 export const BULKY_DELIRIUM_ORBS = {
-	generateDeliriumOrbTypeFromBaseType,
+	generateTypeFromBaseType,
 	generateDeliriumOrbNameFromType,
 	generateDeliriumOrbTier,
 	generateDeliriumOrbFromPoeItem,
 }
 
-function generateDeliriumOrbTypeFromBaseType(baseType: string): DeliriumOrbType | undefined {
+function generateTypeFromBaseType(baseType: string): DeliriumOrbType | undefined {
 	if (baseType === 'Abyssal Delirium Orb') return DELI_ORB_TYPE.ABYSSAL
 	else if (baseType === "Armoursmith's Delirium Orb") return DELI_ORB_TYPE.ARMOURSMITHS
 	else if (baseType === "Blacksmith's Delirium Orb") return DELI_ORB_TYPE.BLACKSMITHS
@@ -46,7 +46,7 @@ function generateDeliriumOrbFromPoeItem(
 ): ShopDeliriumOrb | undefined {
 	const configStore = useConfigStore()
 
-	const type = generateDeliriumOrbTypeFromBaseType(poeItem.baseType)
+	const type = generateTypeFromBaseType(poeItem.baseType)
 	const tier = generateDeliriumOrbTier()
 
 	if (!type || !tier || !poeItem.stackSize) return

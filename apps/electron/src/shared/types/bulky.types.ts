@@ -15,7 +15,13 @@ import {
 	ShopScarab,
 } from '@web/categories/scarab/scarab.types'
 import { PoeStashTab } from './poe.types'
-import { BazaarDeliriumOrb, DeliriumOrbFilterField, ShopDeliriumOrb } from '@web/categories/deliriumOrb/deliriumOrb.types'
+import {
+	BazaarDeliriumOrb,
+	DeliriumOrbFilterField,
+	DeliriumOrbFilterStore,
+	DeliriumOrbOfferStore,
+	ShopDeliriumOrb,
+} from '@web/categories/deliriumOrb/deliriumOrb.types'
 
 // APP STATE TYPES
 
@@ -49,8 +55,8 @@ type BulkyItemOptions = {
 }
 
 // STORES
-export type BulkyFilterStore = EssenceFilterStore | ScarabFilterStore
-export type BulkyOfferStore = EssenceOfferStore | ScarabOfferStore
+export type BulkyOfferStore = EssenceOfferStore | ScarabOfferStore | DeliriumOrbOfferStore
+export type BulkyFilterStore = EssenceFilterStore | ScarabFilterStore | DeliriumOrbFilterStore
 
 // BULKY SHOP ITEM TYPES
 

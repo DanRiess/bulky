@@ -12,7 +12,7 @@ import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
 
 /** Type a returned ShopEssence type DTO and turn it into an ShopEssence type */
-function generateEssenceTypeFromBaseType(baseType: string): EssenceType | undefined {
+function generateTypeFromBaseType(baseType: string): EssenceType | undefined {
 	if (baseType.match(/essence of greed/i)) return ESSENCE_TYPE.GREED
 	if (baseType.match(/essence of contempt/i)) return ESSENCE_TYPE.CONTEMPT
 	if (baseType.match(/essence of hatred/i)) return ESSENCE_TYPE.HATRED
@@ -43,7 +43,7 @@ function generateEssenceTypeFromBaseType(baseType: string): EssenceType | undefi
 /**
  * Get the tier of an essence based on its name.
  */
-function generateEssenceTierFromBaseType(baseType: string): EssenceTier | undefined {
+function generateTierFromBaseType(baseType: string): EssenceTier | undefined {
 	// if (baseType.match(/whispering/i)) return ESSENCE_TIER.WHISPERING
 	// else if (baseType.match(/muttering/i)) return ESSENCE_TIER.MUTTERING
 	// else if (baseType.match(/weeping/i)) return ESSENCE_TIER.WEEPING
@@ -62,8 +62,8 @@ function generateEssenceFromPoeItem(
 ): ShopEssence | undefined {
 	const configStore = useConfigStore()
 
-	const type = generateEssenceTypeFromBaseType(poeItem.baseType)
-	const tier = generateEssenceTierFromBaseType(poeItem.baseType)
+	const type = generateTypeFromBaseType(poeItem.baseType)
+	const tier = generateTierFromBaseType(poeItem.baseType)
 
 	if (!type || !tier || !poeItem.stackSize) return
 
@@ -95,8 +95,8 @@ function generateEssenceNameFromTypeAndTier(type: EssenceType, tier: EssenceTier
 }
 
 export const BULKY_ESSENCES = {
-	generateEssenceTypeFromBaseType,
-	generateEssenceTierFromBaseType,
+	generateTypeFromBaseType,
+	generateTierFromBaseType,
 	generateEssenceFromPoeItem,
 	generateEssenceNameFromTypeAndTier,
 }
