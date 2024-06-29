@@ -6,7 +6,7 @@ import { BulkyShopItem, BulkyItemOverrideInstance, BulkyBazaarItemDto } from '@s
 import { UnwrapRef, toValue } from 'vue'
 import { BULKY_FACTORY } from './factory'
 
-export function transformToDisplayValue(string: string) {
+export function stringToDisplayValue(string: string) {
 	const arr = string.split('_')
 	const capitalizedArr = arr.map(word => capitalize(word.toLowerCase()))
 	return capitalizedArr.join(' ')
@@ -83,4 +83,5 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 export const BULKY_TRANSFORM = {
 	bulkyItemToOverrideItem,
 	bulkyItemToBazaarItemDto,
+	stringToDisplayValue,
 }

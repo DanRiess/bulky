@@ -1,6 +1,6 @@
 <template>
 	<div class="chaos-per-div no-select">
-		Ratio: 1
+		1
 		<img src="/src/assets/png-icons/currency-divine.png" height="24" width="24" decoding="async" loading="lazy" />
 		=
 		{{ chaosPerDiv }}

@@ -13,10 +13,15 @@ import { poeApi } from '@web/api/poeApi'
 import { useApi } from '@web/api/useApi'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useAuthStore = defineStore('authStore', () => {
-	const isLoggedIn = ref(false)
+	const isLoggedIn = computed(() => {
+		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') return true
+
+		const token = getTokenFromLocalStorage()
+		return profile.value && token && token.username === profile.value.name
+	})
 	const authorizationState = ref<ApiStatus>('IDLE')
 	const serializedError = ref<SerializedError>(new SerializedError())
 	const profile = ref<PoeProfile>()
@@ -38,7 +43,7 @@ export const useAuthStore = defineStore('authStore', () => {
 		const token = await getAccessToken()
 		if (!token) return
 
-		isLoggedIn.value = true
+		// isLoggedIn.value = true
 
 		// Get the profile if it is not initialized yet.
 		if (!profile.value) {
@@ -166,6 +171,7 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Get the PoE profile.
 	 */
 	function getProfileRequest() {
+		console.log('profile request called')
 		const request = useApi('profileRequest', poeApi.getProfile)
 
 		async function execute() {
@@ -176,6 +182,7 @@ export const useAuthStore = defineStore('authStore', () => {
 			}
 
 			window.localStorage.setItem('poeProfile', JSON.stringify(request.data.value))
+			profile.value = getProfileFromLocalStorage()
 			return true
 		}
 
@@ -224,7 +231,7 @@ export const useAuthStore = defineStore('authStore', () => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
 			return
 		}
-		isLoggedIn.value = false
+		// isLoggedIn.value = false
 		profile.value = undefined
 		window.localStorage.removeItem('tokenStructure')
 		window.localStorage.removeItem('poeProfile')

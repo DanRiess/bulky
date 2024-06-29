@@ -8,6 +8,7 @@
 
 import {
 	BulkyBazaarItem,
+	BulkyFilterField,
 	BulkyFilterStore,
 	BulkyItemOverrideRecord,
 	BulkyOfferStore,
@@ -50,7 +51,7 @@ export const BULKY_FACTORY = {
 	getTypeFromPoeItem,
 	getTierFromPoeItem,
 	generateBulkyItemFromPoeItem,
-	getNameFromBulkyItem,
+	getNameForFilterFieldTypeOption,
 }
 
 function getOfferStore(category: Category): BulkyOfferStore | undefined {
@@ -121,9 +122,9 @@ function generateBulkyItemFromPoeItem(
 	else return undefined
 }
 
-function getNameFromBulkyItem<T extends BulkyShopItem>(item: T): string | undefined {
-	if (item.category === 'ESSENCE') return BULKY_ESSENCES.generateEssenceNameFromTypeAndTier(item.type, item.tier)
-	else if (item.category === 'SCARAB') return BULKY_SCARABS.generateScarabNameFromType(item.type)
-	else if (item.category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbNameFromType(item.type)
+function getNameForFilterFieldTypeOption<T extends BulkyFilterField>(field: T): string | undefined {
+	if (field.category === 'ESSENCE') return BULKY_ESSENCES.generateEssenceNameFromTypeAndTier(field.type, field.tier)
+	else if (field.category === 'SCARAB') return BULKY_SCARABS.generateScarabNameFromType(field.type)
+	else if (field.category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbNameFromType(field.type)
 	else return undefined
 }

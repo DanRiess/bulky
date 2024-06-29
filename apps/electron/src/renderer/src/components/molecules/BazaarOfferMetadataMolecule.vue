@@ -1,9 +1,12 @@
 <template>
 	<div class="m-bazaar-offer-metadata flow">
 		<div class="ign">IGN: {{ offer.ign }}</div>
-		<ChaosPerDivAtom :chaos-per-div="offer.chaosPerDiv" />
+		<div class="ratio">
+			Ratio:
+			<ChaosPerDivAtom :chaos-per-div="offer.chaosPerDiv" />
+		</div>
 		<div class="multiplier no-select">Multiplier: {{ offer.multiplier * 100 }} %</div>
-		<PriceAtom label="Min Price:" :price="price" />
+		<PriceAtom v-if="offer.minimumBuyout > 0" label="Min Price:" :price="price" />
 	</div>
 </template>
 
@@ -30,5 +33,10 @@ const price = useChaosToDiv(props.offer.minimumBuyout, props.offer.chaosPerDiv)
 .ign {
 	text-wrap: nowrap;
 	overflow: hidden;
+}
+
+.ratio {
+	display: flex;
+	gap: 0.2rem;
 }
 </style>

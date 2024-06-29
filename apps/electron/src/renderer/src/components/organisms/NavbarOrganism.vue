@@ -7,11 +7,10 @@
 			Shop
 		</ButtonAtom>
 
-		<div class="current-price">
-			<ChaosPerDivAtom :chaos-per-div="chaosPerDiv" />
-		</div>
-
 		<div class="icon-buttons">
+			<div class="current-price">
+				<ChaosPerDivAtom :chaos-per-div="chaosPerDiv" />
+			</div>
 			<SettingsIconMolecule />
 			<UserIconMolecule />
 		</div>

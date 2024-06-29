@@ -15,23 +15,23 @@ export const BULKY_DELIRIUM_ORBS = {
 }
 
 function generateTypeFromBaseType(baseType: string): DeliriumOrbType | undefined {
-	if (baseType === 'Abyssal Delirium Orb') return DELI_ORB_TYPE.ABYSSAL
-	else if (baseType === "Armoursmith's Delirium Orb") return DELI_ORB_TYPE.ARMOURSMITHS
-	else if (baseType === "Blacksmith's Delirium Orb") return DELI_ORB_TYPE.BLACKSMITHS
-	else if (baseType === 'Blighted Delirium Orb') return DELI_ORB_TYPE.BLIGHTED
-	else if (baseType === "Cartographer's Delirium Orb") return DELI_ORB_TYPE.CARTOGRAPHERS
-	else if (baseType === "Diviner's Delirium Orb") return DELI_ORB_TYPE.DIVINERS
-	else if (baseType === 'Fine Delirium Orb') return DELI_ORB_TYPE.FINE
-	else if (baseType === 'Foreboding Delirium Orb') return DELI_ORB_TYPE.FOREBODING
-	else if (baseType === 'Fossilised Delirium Orb') return DELI_ORB_TYPE.FOSSILISED
-	else if (baseType === 'Fragmented Delirium Orb') return DELI_ORB_TYPE.FRAGMENTED
-	else if (baseType === "Jeweller's Delirium Orb") return DELI_ORB_TYPE.JEWELLERS
-	else if (baseType === 'Obscured Delirium Orb') return DELI_ORB_TYPE.OBSCURED
-	else if (baseType === 'Singular Delirium Orb') return DELI_ORB_TYPE.SINGULAR
-	else if (baseType === 'Skittering Delirium Orb') return DELI_ORB_TYPE.SKITTERING
-	else if (baseType === "Thaumaturge's Delirium Orb") return DELI_ORB_TYPE.THAUMATURGES
-	else if (baseType === 'Timeless Delirium Orb') return DELI_ORB_TYPE.TIMELESS
-	else if (baseType === 'Whispering Delirium Orb') return DELI_ORB_TYPE.WHISPERING
+	if (baseType === 'Abyssal Delirium Orb') return DELI_ORB_TYPE.ABYSSAL_DELIRIUM_ORB
+	else if (baseType === "Armoursmith's Delirium Orb") return DELI_ORB_TYPE["ARMOURSMITH'S_DELIRIUM_ORB"]
+	else if (baseType === "Blacksmith's Delirium Orb") return DELI_ORB_TYPE["BLACKSMITH'S_DELIRIUM_ORB"]
+	else if (baseType === 'Blighted Delirium Orb') return DELI_ORB_TYPE.BLIGHTED_DELIRIUM_ORB
+	else if (baseType === "Cartographer's Delirium Orb") return DELI_ORB_TYPE["CARTOGRAPHER'S_DELIRIUM_ORB"]
+	else if (baseType === "Diviner's Delirium Orb") return DELI_ORB_TYPE["DIVINER'S_DELIRIUM_ORB"]
+	else if (baseType === 'Fine Delirium Orb') return DELI_ORB_TYPE.FINE_DELIRIUM_ORB
+	else if (baseType === 'Foreboding Delirium Orb') return DELI_ORB_TYPE.FOREBODING_DELIRIUM_ORB
+	else if (baseType === 'Fossilised Delirium Orb') return DELI_ORB_TYPE.FOSSILISED_DELIRIUM_ORB
+	else if (baseType === 'Fragmented Delirium Orb') return DELI_ORB_TYPE.FRAGMENTED_DELIRIUM_ORB
+	else if (baseType === "Jeweller's Delirium Orb") return DELI_ORB_TYPE["JEWELLER'S_DELIRIUM_ORB"]
+	else if (baseType === 'Obscured Delirium Orb') return DELI_ORB_TYPE.OBSCURED_DELIRIUM_ORB
+	else if (baseType === 'Singular Delirium Orb') return DELI_ORB_TYPE.SINGULAR_DELIRIUM_ORB
+	else if (baseType === 'Skittering Delirium Orb') return DELI_ORB_TYPE.SKITTERING_DELIRIUM_ORB
+	else if (baseType === "Thaumaturge's Delirium Orb") return DELI_ORB_TYPE["THAUMATURGE'S_DELIRIUM_ORB"]
+	else if (baseType === 'Timeless Delirium Orb') return DELI_ORB_TYPE.TIMELESS_DELIRIUM_ORB
+	else if (baseType === 'Whispering Delirium Orb') return DELI_ORB_TYPE.WHISPERING_DELIRIUM_ORB
 	else return undefined
 }
 

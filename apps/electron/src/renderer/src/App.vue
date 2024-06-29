@@ -2,7 +2,6 @@
 	<div class="main-app-window" ref="mainAppWindow" v-if="active || attachmentPanelActive">
 		<NavbarOrganism />
 		<router-view v-slot="{ Component }">
-			<!-- some transition component here -->
 			<BaseTransition v-on="hooks" mode="out-in">
 				<component :is="Component"></component>
 			</BaseTransition>
@@ -12,7 +11,7 @@
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { BaseTransition, onMounted, ref } from 'vue'
+import { BaseTransition, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
@@ -49,7 +48,7 @@ router.push('Bazaar')
 // 	attachmentPanelActive.value = true
 // 	setTimeout(() => {
 // 		attachmentPanelActive.value = false
-// 		router.push({ name: 'Home' })
+// 		router.push({ name: 'Bazaar' })
 // 	}, value.time)
 // })
 
@@ -67,11 +66,11 @@ leagueStore.initialize()
 shopStore.initialize()
 
 // HOOKS
-onMounted(() => {
-	if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-		authStore.isLoggedIn = true
-	}
-})
+// onMounted(() => {
+// 	if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+// 		authStore.isLoggedIn = true
+// 	}
+// })
 </script>
 
 <style>

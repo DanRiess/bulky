@@ -29,10 +29,8 @@ import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import ListItemComboboxAtom, { SelectableListItem } from './ListItemComboboxAtom.vue'
 import InputTextAtom from './InputTextAtom.vue'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { transformToDisplayValue } from '@web/utility/transformers'
 import { ButtonBackgroundColorScheme, Uuid } from '@shared/types/utility.types'
-
-// TODO: replace transformtodisplayvalue as a bulky factory function
+import { BULKY_TRANSFORM } from '@web/utility/transformers'
 
 // MODEL
 
@@ -100,7 +98,7 @@ const queryRegex = computed(() => {
  */
 const computedOptionNames = computed(() => {
 	return props.options.map(option => {
-		return transformToDisplayValue(option)
+		return BULKY_TRANSFORM.stringToDisplayValue(option)
 	})
 })
 

@@ -15,18 +15,27 @@ const authStore = useAuthStore()
 
 // STATE
 const tokenRequest = authStore.tokenRequest()
+const profileRequest = authStore.getProfileRequest()
 
 // METHODS
 async function restartTokenRequest() {
 	authStore.authorizationState = 'IDLE'
-	await tokenRequest.execute()
+	const success = await tokenRequest.execute()
+
+	if (success) {
+		await profileRequest.execute()
+	}
 }
 
 // HOOKS
 onMounted(async () => {
 	// start oauth flow on mounted
 	if (authStore.authorizationState === 'IDLE') {
-		await tokenRequest.execute()
+		const success = await tokenRequest.execute()
+
+		if (success) {
+			await profileRequest.execute()
+		}
 	}
 })
 </script>

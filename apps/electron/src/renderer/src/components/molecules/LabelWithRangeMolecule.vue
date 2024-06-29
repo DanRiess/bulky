@@ -20,11 +20,14 @@ import { Uuid } from '@shared/types/utility.types'
 
 const model = defineModel<number>({ required: true })
 const textModel = computed(() => {
+	if (props.max === model.value) {
+		return `> ${Math.round(model.value * 100)}%`
+	}
 	return `${Math.round(model.value * 100)}%`
 })
 const uuid = BULKY_UUID.generateTypedUuid()
 
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		id?: Uuid
 		labelPosition?: 'left' | 'right'

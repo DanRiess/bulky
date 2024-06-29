@@ -4683,6 +4683,84 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9Db3Jyb3Npb24iLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTZ9XQ/b3ebe0116f/Corrosion.png",
+				"league": "Necropolis",
+				"id": "8033b576dbda2c729ee35a3d88ce147d0e1eb5a03cc28c50639ddaf374c07228",
+				"name": "Stormy Slag",
+				"typeLine": "Sulphur Vents Map",
+				"baseType": "Sulphur Vents Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"16",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+107%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+65%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+41%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players are Cursed with Elemental Weakness",
+					"Monsters fire 2 additional Projectiles",
+					"+40% Monster Physical Damage Reduction",
+					"Unique Boss has 35% increased Life",
+					"Unique Boss has 70% increased Area of Effect",
+					"Monsters have 50% increased Accuracy Rating",
+					"Monsters Blind on Hit",
+					"Monsters have a 20% chance to Ignite, Freeze and Shock on Hit",
+					"Players have 25% less Accuracy Rating",
+					"Players have -20% to amount of Suppressed Spell Damage Prevented"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 23,
+				"y": 15,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzMwLDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9Eb3VibGVTbGFzaCIsInciOjEsImgiOjEsInNjYWxlIjoxLCJnZCI6MTB9XQ/931e532347/DoubleSlash.png",
 				"support": false,
 				"league": "Necropolis",

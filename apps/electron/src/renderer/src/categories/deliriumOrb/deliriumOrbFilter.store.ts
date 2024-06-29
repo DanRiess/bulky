@@ -70,7 +70,7 @@ export const useDeliriumOrbFilterStore = defineStore('deliriumOrbFilterStore', (
 		const field: DeliriumOrbFilterField = {
 			uuid: BULKY_UUID.generateTypedUuid<DeliriumOrbFilterField>(),
 			category: 'DELIRIUM_ORB',
-			type: 'FINE',
+			type: 'FINE_DELIRIUM_ORB',
 			tier: '0',
 			quantity: 1,
 		}
