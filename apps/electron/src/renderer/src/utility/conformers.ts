@@ -1,5 +1,6 @@
 import { BulkyBazaarItem } from '@shared/types/bulky.types'
 import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
+import { BULKY_FACTORY } from './factory'
 
 /**
  * Transform items of one listing to Bulky standard object type.
@@ -33,13 +34,12 @@ import { decodeUrlSafeBase64ToArrayBuffer } from './arrayBufferBase64'
  * Transform a binary listing into the Bulky standard object type
  * Performance: ~0.1 - 0.2 ms per listing with 20 items
  */
-export function conformBinaryListingItems<T extends BulkyBazaarItem>(
-	items: string,
-	category: T['category'],
-	generateNameFromTypeAndTier: (type: T['type'], tier: T['tier']) => string,
-	idxToTypeMapper: Record<number, T['type']>,
-	idxToTierMapper: Record<number, T['tier']>
-): T[] | undefined {
+export function conformBinaryListingItems<T extends BulkyBazaarItem>(items: string, category: T['category']): T[] | undefined {
+	const idxToNameTypeMap = BULKY_FACTORY.getIdxToNameTypeMap(category)
+	const idxToNameTierMap = BULKY_FACTORY.getIdxToNameTierMap(category)
+
+	if (!idxToNameTypeMap || !idxToNameTierMap) return
+
 	const t0 = performance.now()
 	const itemBuffer = decodeUrlSafeBase64ToArrayBuffer(items)
 	const dv = new DataView(itemBuffer)
@@ -93,15 +93,19 @@ export function conformBinaryListingItems<T extends BulkyBazaarItem>(
 			}
 		}
 
-		const type = idxToTypeMapper[typeIdx]
-		const tier = idxToTierMapper[tierIdx]
+		const type = idxToNameTypeMap[typeIdx]
+		const tier = idxToNameTierMap[tierIdx]
+
+		if (!type || !tier) return
+
+		const name = BULKY_FACTORY.getNameFromTypeAndTier(category, { type, tier, quantity, price })
 
 		// TODO: conform icon
 		const icon = ''
 
 		const item = {
 			category,
-			name: generateNameFromTypeAndTier(type, tier),
+			name,
 			type,
 			tier,
 			quantity,

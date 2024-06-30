@@ -1,13 +1,13 @@
 <template>
 	<button class="a-icon-button gradient-border" :class="active && 'active'" data-b-override>
 		<img :src="imgSource" decoding="async" loading="lazy" />
-		<div class="name">{{ displayName }}</div>
+		<div ref="nameEl" class="name">{{ displayName }}</div>
 	</button>
 </template>
 
 <script setup lang="ts">
 import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 export type IconButtonProps = {
 	fileName: string
@@ -17,12 +17,17 @@ export type IconButtonProps = {
 	alt?: string
 }
 
+// PROPS
 const { fileName, displayName, backgroundColor } = withDefaults(defineProps<IconButtonProps>(), {
 	alt: '',
 	active: false,
 	backgroundColor: 'light',
 })
 
+// STATE
+const nameEl = ref<HTMLElement | null>(null)
+
+// GETTERS
 const backgroundColorButton = computed(() => {
 	return backgroundColor === 'light' ? 'var(--dr-background-color-button-light)' : 'var(--dr-background-color-button-dark)'
 })
@@ -31,9 +36,14 @@ const imgSource = computed(() => {
 	return `/src/assets/png-icons/${fileName}.png`
 })
 
+// TODO: check width calculation methods instead, as ch is very inconsistent
+
 /** calculate the necessary width according to displayName length */
 const gridColumnWidth = computed(() => {
-	return `${displayName.length}ch`
+	if (nameEl.value) {
+		console.log(nameEl.value.clientWidth, nameEl.value.offsetWidth)
+	}
+	return `${displayName.length + 1}ch`
 })
 </script>
 

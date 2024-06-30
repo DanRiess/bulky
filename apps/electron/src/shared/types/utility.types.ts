@@ -8,6 +8,14 @@ export type Uuid<T extends OptionalRecord = undefined> = string & { __uuidBrand:
 export type Id<T extends OptionalRecord = undefined> = string & { __idBrand: T }
 
 /**
+ * Get type information for one element from an array
+ * https://stackoverflow.com/questions/41253310/typescript-retrieve-element-type-information-from-array-type
+ */
+export type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[]
+	? ElementType
+	: never
+
+/**
  * type assertions for Object.keys
  * only use this if you know the object won't change its shape
  */

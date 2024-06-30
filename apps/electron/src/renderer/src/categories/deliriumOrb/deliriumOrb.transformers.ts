@@ -1,9 +1,9 @@
 import { PoeItem } from '@shared/types/poe.types'
-import { DELI_ORB_TYPE } from './deliriumOrb.const'
-import { DeliriumOrbTier, DeliriumOrbType, ShopDeliriumOrb } from './deliriumOrb.types'
+import { DELI_ORB_TYPE, DELI_ORB_TYPE_IDX_TO_NAME } from './deliriumOrb.const'
+import { BazaarDeliriumOrb, DeliriumOrbTier, DeliriumOrbType, ShopDeliriumOrb } from './deliriumOrb.types'
 import { Ref, computed } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
-import { BulkyItemOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
 
@@ -12,27 +12,12 @@ export const BULKY_DELIRIUM_ORBS = {
 	generateDeliriumOrbNameFromType,
 	generateDeliriumOrbTier,
 	generateDeliriumOrbFromPoeItem,
+	generateBazaarItemFromDto,
 }
 
 function generateTypeFromBaseType(baseType: string): DeliriumOrbType | undefined {
-	if (baseType === 'Abyssal Delirium Orb') return DELI_ORB_TYPE.ABYSSAL_DELIRIUM_ORB
-	else if (baseType === "Armoursmith's Delirium Orb") return DELI_ORB_TYPE["ARMOURSMITH'S_DELIRIUM_ORB"]
-	else if (baseType === "Blacksmith's Delirium Orb") return DELI_ORB_TYPE["BLACKSMITH'S_DELIRIUM_ORB"]
-	else if (baseType === 'Blighted Delirium Orb') return DELI_ORB_TYPE.BLIGHTED_DELIRIUM_ORB
-	else if (baseType === "Cartographer's Delirium Orb") return DELI_ORB_TYPE["CARTOGRAPHER'S_DELIRIUM_ORB"]
-	else if (baseType === "Diviner's Delirium Orb") return DELI_ORB_TYPE["DIVINER'S_DELIRIUM_ORB"]
-	else if (baseType === 'Fine Delirium Orb') return DELI_ORB_TYPE.FINE_DELIRIUM_ORB
-	else if (baseType === 'Foreboding Delirium Orb') return DELI_ORB_TYPE.FOREBODING_DELIRIUM_ORB
-	else if (baseType === 'Fossilised Delirium Orb') return DELI_ORB_TYPE.FOSSILISED_DELIRIUM_ORB
-	else if (baseType === 'Fragmented Delirium Orb') return DELI_ORB_TYPE.FRAGMENTED_DELIRIUM_ORB
-	else if (baseType === "Jeweller's Delirium Orb") return DELI_ORB_TYPE["JEWELLER'S_DELIRIUM_ORB"]
-	else if (baseType === 'Obscured Delirium Orb') return DELI_ORB_TYPE.OBSCURED_DELIRIUM_ORB
-	else if (baseType === 'Singular Delirium Orb') return DELI_ORB_TYPE.SINGULAR_DELIRIUM_ORB
-	else if (baseType === 'Skittering Delirium Orb') return DELI_ORB_TYPE.SKITTERING_DELIRIUM_ORB
-	else if (baseType === "Thaumaturge's Delirium Orb") return DELI_ORB_TYPE["THAUMATURGE'S_DELIRIUM_ORB"]
-	else if (baseType === 'Timeless Delirium Orb') return DELI_ORB_TYPE.TIMELESS_DELIRIUM_ORB
-	else if (baseType === 'Whispering Delirium Orb') return DELI_ORB_TYPE.WHISPERING_DELIRIUM_ORB
-	else return undefined
+	const transformedType = baseType.replace(/\s/g, '_').toUpperCase()
+	return DELI_ORB_TYPE[transformedType]
 }
 
 function generateDeliriumOrbTier(): DeliriumOrbTier {
@@ -68,6 +53,20 @@ function generateDeliriumOrbFromPoeItem(
 		selected: computed(() => {
 			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
+	}
+}
+
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDeliriumOrb {
+	const type = DELI_ORB_TYPE_IDX_TO_NAME[item.type]
+
+	return {
+		category: 'DELIRIUM_ORB',
+		type,
+		tier: '0',
+		name: generateDeliriumOrbNameFromType(type),
+		quantity: item.qnt,
+		price: item.prc,
+		icon: '',
 	}
 }
 

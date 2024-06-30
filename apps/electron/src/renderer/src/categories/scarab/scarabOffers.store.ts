@@ -9,11 +9,10 @@ import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
-import { conformBinaryListingItems } from '@web/utility/conformers'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BazaarScarab, BazaarScarabOffer } from './scarab.types'
-import { BULKY_SCARABS } from './scarab.transformers'
-import { SCARAB_TYPE, SCARAB_TYPE_IDX_TO_NAME } from './scarab.const'
+import { SCARAB_TYPE } from './scarab.const'
+import { BULKY_FACTORY } from '@web/utility/factory'
 
 export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 	const offers = ref<Map<BazaarScarabOffer['uuid'], BazaarScarabOffer>>(new Map())
@@ -32,13 +31,7 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice ?? 5400
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = conformBinaryListingItems<BazaarScarab>(
-			dto.items,
-			'SCARAB',
-			BULKY_SCARABS.generateScarabNameFromType,
-			SCARAB_TYPE_IDX_TO_NAME,
-			['0']
-		)
+		const items = dto.items.map(item => BULKY_FACTORY.generateTypedItemFromDto('MAP', item) as BazaarScarab).filter(Boolean)
 		if (!items) return
 
 		offers.value.set(uuid, {

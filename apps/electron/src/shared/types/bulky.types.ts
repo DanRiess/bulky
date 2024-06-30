@@ -22,6 +22,7 @@ import {
 	DeliriumOrbOfferStore,
 	ShopDeliriumOrb,
 } from '@web/categories/deliriumOrb/deliriumOrb.types'
+import { BazaarMap, MapFilterField, ShopMap } from '@web/categories/map/map.types'
 
 // APP STATE TYPES
 
@@ -39,6 +40,7 @@ export const CATEGORY = {
 	ESSENCE: 'ESSENCE',
 	SCARAB: 'SCARAB',
 	DELIRIUM_ORB: 'DELIRIUM_ORB',
+	MAP: 'MAP',
 } as const
 
 export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
@@ -86,7 +88,7 @@ export type BulkyShopItemBase<T extends Category> = {
  * A collection of every implementation of BulkyShopItemBase throughout the app.
  * This will be used as a generic type argument for every higher level type.
  */
-export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb
+export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb | ShopMap
 
 /** Type that bulky items will be saved as */
 export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
@@ -140,7 +142,7 @@ export type BulkyBazaarItemBase<T extends Category> = {
 	icon: string
 }
 
-export type BulkyBazaarItem = BazaarEssence | BazaarScarab | BazaarDeliriumOrb
+export type BulkyBazaarItem = BazaarEssence | BazaarScarab | BazaarDeliriumOrb | BazaarMap
 
 export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
 
@@ -190,7 +192,7 @@ export type BulkyFilterFieldBase<T extends Category> = {
 /**
  * A collection of every implementation of BulkyFilterFieldBase throughout the app.
  */
-export type BulkyFilterField = EssenceFilterField | ScarabFilterField | DeliriumOrbFilterField
+export type BulkyFilterField = EssenceFilterField | ScarabFilterField | DeliriumOrbFilterField | MapFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.

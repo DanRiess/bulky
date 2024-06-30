@@ -1,5 +1,5 @@
 /**
- * Handle all delirium orb offers through this store.
+ * Handle all essence offers through this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -10,30 +10,28 @@ import { BULKY_UUID } from '@web/utility/uuid'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
-import { BazaarDeliriumOrb, BazaarDeliriumOrbOffer } from './deliriumOrb.types'
-import { DELI_ORB_TYPE } from './deliriumOrb.const'
+import { BazaarMap, BazaarMapOffer } from './map.types'
+import { MAP_TIER, MAP_TYPE } from './map.const'
 import { BULKY_FACTORY } from '@web/utility/factory'
 
-export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () => {
-	const offers = ref<Map<BazaarDeliriumOrbOffer['uuid'], BazaarDeliriumOrbOffer>>(new Map())
+export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
+	const offers = ref<Map<BazaarMapOffer['uuid'], BazaarMapOffer>>(new Map())
 
 	/**
-	 * Consume an delirium orb offer dto, type and validate it and add it to the listings.
+	 * Consume an essence listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
-		if (category !== 'DELIRIUM_ORB') return
+		if (category !== 'MAP') return
 
-		const uuid = BULKY_UUID.generateTypedUuid<BazaarDeliriumOrbOffer>(dto.uuid)
+		const uuid = BULKY_UUID.generateTypedUuid<BazaarMapOffer>(dto.uuid)
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice ?? 5400
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = dto.items
-			.map(item => BULKY_FACTORY.generateTypedItemFromDto('MAP', item) as BazaarDeliriumOrb)
-			.filter(Boolean)
+		const items = dto.items.map(item => BULKY_FACTORY.generateTypedItemFromDto('MAP', item) as BazaarMap).filter(Boolean)
 		if (!items) return
 
 		offers.value.set(uuid, {
@@ -56,20 +54,20 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
-	function deleteOffer(uuid: BazaarDeliriumOrbOffer['uuid']) {
+	function deleteOffer(uuid: BazaarMapOffer['uuid']) {
 		offers.value.delete(uuid)
 	}
 
 	/**
-	 * Validate if an object is a BazaarScarab or not.
+	 * Validate if an object is a BazaarEssence or not.
 	 */
-	function isDeliriumOrb(obj: any): obj is BazaarDeliriumOrb {
+	function isNormalMap(obj: any): obj is BazaarMap {
 		return (
 			obj &&
 			'type' in obj &&
-			getKeys(DELI_ORB_TYPE).includes(obj.type) &&
+			getKeys(MAP_TYPE).includes(obj.type) &&
 			'tier' in obj &&
-			obj.tier === '0' &&
+			getKeys(MAP_TIER).includes(obj.tier) &&
 			'quantity' in obj &&
 			typeof obj.quantity === 'number' &&
 			'price' in obj &&
@@ -80,8 +78,8 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 	async function getTestData() {
 		// if (listings.value.size !== 0) return
 
-		const request = useApi('scarabPayload', getListing)
-		await request.exec('src/mocks/scarabCompressed.json')
+		const request = useApi('essencePayload', getListing)
+		await request.exec('src/mocks/essenceCompressed.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')
@@ -92,23 +90,23 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 	}
 
 	/**
-	 * Fetch all new scarab offers since the last fetch action.
+	 * Fetch all new essence offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch scarab offers')
+		console.log('Refetch map offers')
 	}
 
 	return {
 		offers,
 		putOffer,
 		deleteOffer,
-		isDeliriumOrb,
+		isNormalMap,
 		refetchOffers,
 		getTestData,
 	}
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useDeliriumOrbOfferStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useNormalMapOfferStore, import.meta.hot))
 }

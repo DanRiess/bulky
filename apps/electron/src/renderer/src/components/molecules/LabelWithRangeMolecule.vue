@@ -54,7 +54,7 @@ const props = withDefaults(
 
 .input-container {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 6ch;
+	grid-template-columns: minmax(0, 1fr) 6.5ch;
 	gap: 0.5rem;
 }
 </style>

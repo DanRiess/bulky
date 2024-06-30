@@ -10,10 +10,9 @@ import { BULKY_UUID } from '@web/utility/uuid'
 import { BazaarEssence, BazaarEssenceOffer } from './essence.types'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
-import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE, ESSENCE_TYPE_IDX_TO_NAME } from './essence.const'
-import { conformBinaryListingItems } from '@web/utility/conformers'
+import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
-import { BULKY_ESSENCES } from './essence.transformers'
+import { BULKY_FACTORY } from '@web/utility/factory'
 
 export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	const offers = ref<Map<BazaarEssenceOffer['uuid'], BazaarEssenceOffer>>(new Map())
@@ -32,13 +31,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice ?? 5400
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = conformBinaryListingItems<BazaarEssence>(
-			dto.items,
-			'ESSENCE',
-			BULKY_ESSENCES.generateEssenceNameFromTypeAndTier,
-			ESSENCE_TYPE_IDX_TO_NAME,
-			ESSENCE_TIER_IDX_TO_NAME
-		)
+		const items = dto.items.map(item => BULKY_FACTORY.generateTypedItemFromDto('MAP', item) as BazaarEssence).filter(Boolean)
 		if (!items) return
 
 		offers.value.set(uuid, {

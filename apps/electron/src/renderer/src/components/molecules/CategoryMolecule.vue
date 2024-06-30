@@ -1,4 +1,3 @@
-import IconButtonAtom from '../atoms/IconButtonAtom.vue';
 <template>
 	<div class="m-category">
 		<IconButtonAtom
@@ -24,6 +23,7 @@ const components = ref([
 	{ displayName: 'Essences', fileName: 'essence-woe-deafening', category: CATEGORY.ESSENCE },
 	{ displayName: 'Scarabs', fileName: 'scarab-breach-gilded', category: CATEGORY.SCARAB },
 	{ displayName: 'Delirium Orbs', fileName: 'deli-orb-scarab', category: CATEGORY.DELIRIUM_ORB },
+	{ displayName: 'Maps', fileName: 'underground-river-map', category: CATEGORY.MAP },
 ])
 
 // METHODS

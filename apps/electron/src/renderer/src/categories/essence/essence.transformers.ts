@@ -2,11 +2,11 @@
  * This component provides static functions in regards to essences.
  */
 
-import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
-import { ShopEssence, EssenceTier, EssenceType } from './essence.types'
+import { ESSENCE_TIER, ESSENCE_TIER_IDX_TO_NAME, ESSENCE_TYPE, ESSENCE_TYPE_IDX_TO_NAME } from './essence.const'
+import { ShopEssence, EssenceTier, EssenceType, BazaarEssence } from './essence.types'
 import { PoeItem } from '@shared/types/poe.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
-import { BulkyItemOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { Ref, computed } from 'vue'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
@@ -87,6 +87,21 @@ function generateEssenceFromPoeItem(
 	}
 }
 
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarEssence {
+	const type = ESSENCE_TYPE_IDX_TO_NAME[item.type]
+	const tier = ESSENCE_TIER_IDX_TO_NAME[item.tier]
+
+	return {
+		category: 'ESSENCE',
+		type,
+		tier,
+		name: generateEssenceNameFromTypeAndTier(type, tier),
+		quantity: item.qnt,
+		price: item.prc,
+		icon: '',
+	}
+}
+
 function generateEssenceNameFromTypeAndTier(type: EssenceType, tier: EssenceTier) {
 	if (type === 'HYSTERIA' || type === 'DELIRIUM' || type === 'INSANITY' || type === 'HORROR') {
 		return `Essence of ${capitalize(type)}`
@@ -99,4 +114,5 @@ export const BULKY_ESSENCES = {
 	generateTierFromBaseType,
 	generateEssenceFromPoeItem,
 	generateEssenceNameFromTypeAndTier,
+	generateBazaarItemFromDto,
 }

@@ -14,6 +14,8 @@ function generateCategoryFromDto(category: string): Category | undefined {
 		return CATEGORY.ESSENCE
 	} else if (category.match(/delirium_orb/i)) {
 		return CATEGORY.DELIRIUM_ORB
+	} else if (category.match(/map$/i)) {
+		return CATEGORY.MAP
 	}
 	return undefined
 }
@@ -25,6 +27,9 @@ function isBaseTypeInCategory(category: Category, baseType: string) {
 		return !!BULKY_SCARABS.generateTypeFromBaseType(baseType)
 	} else if (category === 'DELIRIUM_ORB') {
 		return !!BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(baseType)
+	} else if (category === 'MAP') {
+		console.log('todo: change fn in category.ts')
+		return false
 	}
 	return false
 }

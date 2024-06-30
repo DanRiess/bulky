@@ -60,3 +60,19 @@ export type PoeItem = Pick<
 export type PoeItemsByStash = {
 	[key: PoeStashTab['id']]: PoeItem[]
 }
+
+export type PoeMapStack = {
+	id: string
+	parent: string
+	name: string
+	type: 'MapStash'
+	metadata: {
+		items: number
+		map: {
+			section: string
+			name: string
+			image: string
+			tier: number
+		}
+	}
+}
