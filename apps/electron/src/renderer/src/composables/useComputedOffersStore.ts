@@ -13,13 +13,20 @@ export function useComputedOffersStore() {
 	const appStateStore = useAppStateStore()
 
 	let timeout: NodeJS.Timeout | undefined
+
+	// Clear the timeout whenever the parent component unmounts
 	onUnmounted(() => {
 		clearTimeout(timeout)
 	})
 
 	return computed<ComputedBulkyOfferStore>(() => {
-		const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
+		// Clear the timeout if it exists
+		if (timeout) {
+			clearTimeout(timeout)
+		}
 
+		// Get the correct store and its offers
+		const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
 		const offers: BulkyOfferStore['offers'] = store ? store.offers : new Map()
 
 		/**

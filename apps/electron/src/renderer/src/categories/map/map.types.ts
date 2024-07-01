@@ -8,8 +8,12 @@ import {
 	BulkyShopItemBase,
 	CATEGORY,
 } from '@shared/types/bulky.types'
+import { useNormalMapOfferStore } from './normalMapOffers.store'
+import { useNormalMapFilterStore } from './normalMapFilter.store'
 
 // STORE TYPES
+export type NormalMapOfferStore = ReturnType<typeof useNormalMapOfferStore>
+export type NormalMapFilterStore = ReturnType<typeof useNormalMapFilterStore>
 
 // ITEM TYPES
 

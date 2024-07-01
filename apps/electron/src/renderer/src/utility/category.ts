@@ -5,6 +5,7 @@
 import { CATEGORY, Category } from '@shared/types/bulky.types'
 import { BULKY_DELIRIUM_ORBS } from '@web/categories/deliriumOrb/deliriumOrb.transformers'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
+import { BULKY_MAPS } from '@web/categories/map/map.transformers'
 import { BULKY_SCARABS } from '@web/categories/scarab/scarab.transformers'
 
 function generateCategoryFromDto(category: string): Category | undefined {
@@ -28,8 +29,7 @@ function isBaseTypeInCategory(category: Category, baseType: string) {
 	} else if (category === 'DELIRIUM_ORB') {
 		return !!BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(baseType)
 	} else if (category === 'MAP') {
-		console.log('todo: change fn in category.ts')
-		return false
+		return !!BULKY_MAPS.generateTypeFromBaseType(baseType)
 	}
 	return false
 }

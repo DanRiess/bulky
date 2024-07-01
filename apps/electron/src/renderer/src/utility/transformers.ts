@@ -1,6 +1,6 @@
 import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
-import { PoeItemDto } from '@shared/types/dtoResponse.types'
+import { PoeItemDto, PoeStashTabDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { BulkyShopItem, BulkyItemOverrideInstance, BulkyBazaarItemDto } from '@shared/types/bulky.types'
 import { UnwrapRef, toValue } from 'vue'
@@ -15,7 +15,7 @@ export function stringToDisplayValue(string: string) {
 /**
  * Generate a PoeItem from its corresponding dto.
  */
-export function generatePoeItemFromDto(item: PoeItemDto, stashTab: PoeStashTab) {
+function itemDtoToPoeItem(item: PoeItemDto, stashTab: PoeStashTab) {
 	const poeItem: PoeItem = {
 		id: BULKY_ID.generateTypedId(item.id),
 		stashTabId: stashTab.id,
@@ -29,6 +29,7 @@ export function generatePoeItemFromDto(item: PoeItemDto, stashTab: PoeStashTab) 
 		explicitMods: item.explicitMods,
 		ultimatumMods: item.ultimatumMods,
 		enchantMods: item.enchantMods,
+		properties: item.properties,
 		w: item.w,
 		h: item.h,
 		x: item.x,
@@ -36,6 +37,29 @@ export function generatePoeItemFromDto(item: PoeItemDto, stashTab: PoeStashTab) 
 	}
 
 	return poeItem
+}
+
+function mapSubStashToPoeItem(dto: PoeStashTabDto): PoeItem | undefined {
+	if (!dto.metadata.items || !dto.metadata.map) return undefined
+
+	return {
+		id: BULKY_ID.generateTypedId(dto.id),
+		stashTabId: BULKY_ID.generateTypedId(dto.parent ?? ''),
+		name: dto.metadata.map.name,
+		baseType: dto.metadata.map.name,
+		icon: dto.metadata.map.image,
+		itemLevel: 0,
+		stackSize: dto.metadata.items,
+		maxStackSize: 65536,
+		properties: [
+			{
+				name: 'Map Tier',
+				values: [[dto.metadata.map.tier.toString(), 0]],
+			},
+		],
+		w: 1,
+		h: 1,
+	}
 }
 
 /**
@@ -84,4 +108,6 @@ export const BULKY_TRANSFORM = {
 	bulkyItemToOverrideItem,
 	bulkyItemToBazaarItemDto,
 	stringToDisplayValue,
+	itemDtoToPoeItem,
+	mapSubStashToPoeItem,
 }

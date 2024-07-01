@@ -3,7 +3,7 @@ import { poeApi } from '@web/api/poeApi'
 import { createNormalisedApiStatuses, useApi } from '@web/api/useApi'
 import { MaybeRefOrGetter, ref, toValue } from 'vue'
 import { useBulkyIdb } from './useBulkyIdb'
-import { generatePoeItemFromDto } from '@web/utility/transformers'
+import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { PoeItemsByStash, PoeStashTab } from '@shared/types/poe.types'
 
 /**
@@ -50,8 +50,17 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 					status.value = 'SUCCESS'
 				}
 
-				// Convert dto to PoeItem.
-				const poeItems = request.data.value.stash.items.map(poeItem => generatePoeItemFromDto(poeItem, tab))
+				// Map stashes return a different payload than other stash tabs.
+				// Instead of 'items', it has 'children'. Each child is a stash tab on its own,
+				// but it has enough metadata to turn it into a PoeItem without explicitly requesting its data.
+				const poeItems =
+					tab.type === 'MapStash'
+						? request.data.value.stash.children
+								?.map(mapSubStash => BULKY_TRANSFORM.mapSubStashToPoeItem(mapSubStash))
+								.filter(Boolean)
+						: request.data.value.stash.items.map(poeItem => BULKY_TRANSFORM.itemDtoToPoeItem(poeItem, tab))
+
+				if (!poeItems) return
 
 				// Save the transformed items to the data object.
 				data.value ? (data.value[tab.id] = poeItems) : (data.value = { [tab.id]: poeItems })

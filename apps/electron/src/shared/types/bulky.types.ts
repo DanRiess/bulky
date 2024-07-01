@@ -22,7 +22,7 @@ import {
 	DeliriumOrbOfferStore,
 	ShopDeliriumOrb,
 } from '@web/categories/deliriumOrb/deliriumOrb.types'
-import { BazaarMap, MapFilterField, ShopMap } from '@web/categories/map/map.types'
+import { BazaarMap, MapFilterField, NormalMapFilterStore, NormalMapOfferStore, ShopMap } from '@web/categories/map/map.types'
 
 // APP STATE TYPES
 
@@ -57,8 +57,8 @@ type BulkyItemOptions = {
 }
 
 // STORES
-export type BulkyOfferStore = EssenceOfferStore | ScarabOfferStore | DeliriumOrbOfferStore
-export type BulkyFilterStore = EssenceFilterStore | ScarabFilterStore | DeliriumOrbFilterStore
+export type BulkyOfferStore = EssenceOfferStore | ScarabOfferStore | DeliriumOrbOfferStore | NormalMapOfferStore
+export type BulkyFilterStore = EssenceFilterStore | ScarabFilterStore | DeliriumOrbFilterStore | NormalMapFilterStore
 
 // BULKY SHOP ITEM TYPES
 

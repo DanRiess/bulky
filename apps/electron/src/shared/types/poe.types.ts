@@ -48,6 +48,7 @@ export type PoeItem = Pick<
 	| 'explicitMods'
 	| 'ultimatumMods'
 	| 'enchantMods'
+	| 'properties'
 	| 'w'
 	| 'h'
 	| 'x'

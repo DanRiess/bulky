@@ -20,6 +20,13 @@ export type PoeStashTabDto = {
 		public?: true
 		folder?: true
 		colour?: string
+		items?: number
+		map?: {
+			section: string
+			name: string
+			image: string
+			tier: number
+		}
 	}
 	children?: PoeStashTabDto[]
 	items: PoeItemDto[]

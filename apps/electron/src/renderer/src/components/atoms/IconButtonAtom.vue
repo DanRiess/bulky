@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
+import { getTextWidth } from '@web/utility/getTextWidth'
 import { computed, ref } from 'vue'
 
 export type IconButtonProps = {
@@ -36,14 +37,10 @@ const imgSource = computed(() => {
 	return `/src/assets/png-icons/${fileName}.png`
 })
 
-// TODO: check width calculation methods instead, as ch is very inconsistent
-
 /** calculate the necessary width according to displayName length */
 const gridColumnWidth = computed(() => {
-	if (nameEl.value) {
-		console.log(nameEl.value.clientWidth, nameEl.value.offsetWidth)
-	}
-	return `${displayName.length + 1}ch`
+	const width = getTextWidth(displayName, 'bold 1rem Montserrat')
+	return `${width}px`
 })
 </script>
 
