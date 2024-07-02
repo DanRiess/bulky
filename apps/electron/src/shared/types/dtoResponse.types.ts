@@ -54,7 +54,7 @@ const enum PoeFrameType {
 	'Supporter Foil frame',
 }
 
-type PoeItemProperty = {
+export type PoeItemProperty = {
 	name: string
 	values: [string, number][]
 	displayMode?: PoeDisplayMode

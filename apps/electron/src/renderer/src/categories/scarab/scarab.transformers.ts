@@ -9,7 +9,7 @@ import { capitalize } from 'lodash'
 
 export const BULKY_SCARABS = {
 	generateTypeFromBaseType,
-	generateScarabTier,
+	generateTier,
 	generateScarabFromPoeItem,
 	generateScarabNameFromType,
 	generateBazaarItemFromDto,
@@ -20,19 +20,19 @@ function generateTypeFromBaseType(baseType: string): ScarabType | undefined {
 	return SCARAB_TYPE[transformedType]
 }
 
-function generateScarabTier(): ScarabTier {
+function generateTier(): ScarabTier {
 	return '0'
 }
 
 function generateScarabFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
-	priceOverrides: Ref<BulkyItemOverrideRecord>
+	itemOverrides: Ref<BulkyItemOverrideRecord>
 ): ShopScarab | undefined {
 	const configStore = useConfigStore()
 
 	const type = generateTypeFromBaseType(poeItem.baseType)
-	const tier = generateScarabTier()
+	const tier = generateTier()
 
 	if (!type || !tier || !poeItem.stackSize) return
 
@@ -48,10 +48,10 @@ function generateScarabFromPoeItem(
 		league: configStore.config.league,
 		category: 'SCARAB',
 		priceOverride: computed(() => {
-			return Math.round((priceOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
+			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
 		}),
 		selected: computed(() => {
-			return priceOverrides.value.get(`${type}_${tier}`)?.selected ?? true
+			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
 	}
 }

@@ -2,15 +2,16 @@ import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky
 import { BazaarMap, MapTier, MapType, ShopMap } from './map.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { Ref, computed } from 'vue'
-import { PoeMapStack } from '@shared/types/poe.types'
+import { PoeItem } from '@shared/types/poe.types'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
 import { MAP_TIER, MAP_TIER_IDX_TO_NAME, MAP_TYPE, MAP_TYPE_IDX_TO_NAME } from './map.const'
+import { PoeItemProperty } from '@shared/types/dtoResponse.types'
 
 export const BULKY_MAPS = {
 	generateTypeFromBaseType,
-	generateTierFromBaseTier,
-	generateMapFromPoeMapStack,
+	generateTierFromProperty,
+	generateMapFromPoeItem,
 	generateMapNameFromType,
 	generateBazaarItemFromDto,
 }
@@ -20,40 +21,42 @@ function generateTypeFromBaseType(baseType: string): MapType | undefined {
 	return MAP_TYPE[transformedType]
 }
 
-function generateTierFromBaseTier(tier: number): MapTier | undefined {
+function generateTierFromProperty(properties?: PoeItemProperty[]): MapTier | undefined {
+	const tierProperty = properties?.find(p => p.name === 'Map Tier')
+	if (!tierProperty) return MAP_TIER.TIER_16
+
+	const tier = tierProperty.values[0][0]
 	return MAP_TIER[`TIER_${tier}`]
 }
 
-function generateMapFromPoeMapStack(
-	poeMapStack: PoeMapStack,
+function generateMapFromPoeItem(
+	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
-	priceOverrides: Ref<BulkyItemOverrideRecord>
+	itemOverrides: Ref<BulkyItemOverrideRecord>
 ): ShopMap | undefined {
 	const configStore = useConfigStore()
 
-	const type = generateTypeFromBaseType(poeMapStack.metadata.map.name)
-	const tier = generateTierFromBaseTier(poeMapStack.metadata.map.tier)
+	const type = generateTypeFromBaseType(poeItem.baseType)
+	const tier = generateTierFromProperty(poeItem.properties)
 
-	if (!type || !tier || !poeMapStack.metadata.items) return
-
-	const map = poeMapStack.metadata.map
+	if (!type || !tier || !poeItem.stackSize) return
 
 	return {
 		type,
 		tier,
-		name: map.name,
-		icon: map.image,
-		quantity: poeMapStack.metadata.items,
+		name: poeItem.baseType,
+		icon: poeItem.icon,
+		quantity: poeItem.stackSize,
 		price: computed(() => {
 			return Math.round((prices.value.get(`${type}_${tier}`)?.chaos ?? 0) * 10) / 10
 		}),
 		league: configStore.config.league,
 		category: 'MAP',
 		priceOverride: computed(() => {
-			return Math.round((priceOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
+			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
 		}),
 		selected: computed(() => {
-			return priceOverrides.value.get(`${type}_${tier}`)?.selected ?? true
+			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
 	}
 }

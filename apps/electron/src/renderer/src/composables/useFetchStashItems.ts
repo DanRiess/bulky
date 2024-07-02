@@ -34,8 +34,6 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 				const request = useApi(`${tab.id}ItemRequest`, poeApi.getStashTabItems)
 				await request.exec(tab)
 
-				console.log('before handle')
-
 				if (request.error.value || !request.data.value) {
 					console.log('error')
 					status.value = 'ERROR'
@@ -43,12 +41,10 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 					return
 				}
 
-				console.log(status.value)
-
 				if (status.value !== 'ERROR') {
-					console.log('should change')
 					status.value = 'SUCCESS'
 				}
+				console.log(request.data.value)
 
 				// Map stashes return a different payload than other stash tabs.
 				// Instead of 'items', it has 'children'. Each child is a stash tab on its own,
@@ -60,12 +56,14 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 								.filter(Boolean)
 						: request.data.value.stash.items.map(poeItem => BULKY_TRANSFORM.itemDtoToPoeItem(poeItem, tab))
 
+				console.log({ poeItems })
+
 				if (!poeItems) return
 
 				// Save the transformed items to the data object.
 				data.value ? (data.value[tab.id] = poeItems) : (data.value = { [tab.id]: poeItems })
 
-				// update the snapshot time and save it to idb
+				// Update the snapshot time and save it to idb.
 				tab.lastSnapshot = Date.now()
 				await bulkyIdb.putStashTabs([tab])
 			})

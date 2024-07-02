@@ -10,7 +10,7 @@ import { capitalize } from 'lodash'
 export const BULKY_DELIRIUM_ORBS = {
 	generateTypeFromBaseType,
 	generateDeliriumOrbNameFromType,
-	generateDeliriumOrbTier,
+	generateTier,
 	generateDeliriumOrbFromPoeItem,
 	generateBazaarItemFromDto,
 }
@@ -20,7 +20,7 @@ function generateTypeFromBaseType(baseType: string): DeliriumOrbType | undefined
 	return DELI_ORB_TYPE[transformedType]
 }
 
-function generateDeliriumOrbTier(): DeliriumOrbTier {
+function generateTier(): DeliriumOrbTier {
 	return '0'
 }
 
@@ -32,7 +32,7 @@ function generateDeliriumOrbFromPoeItem(
 	const configStore = useConfigStore()
 
 	const type = generateTypeFromBaseType(poeItem.baseType)
-	const tier = generateDeliriumOrbTier()
+	const tier = generateTier()
 
 	if (!type || !tier || !poeItem.stackSize) return
 

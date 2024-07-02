@@ -167,20 +167,22 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 /**
  * Get the Bulky type from a PoeItem.
  */
-function getTypeFromPoeItem(item: PoeItem, category: Omit<Category, 'MAP'>): BulkyShopItem['type'] | undefined {
+function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['type'] | undefined {
 	if (category === 'ESSENCE') return BULKY_ESSENCES.generateTypeFromBaseType(item.baseType)
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(item.baseType)
+	else if (category === 'MAP') return BULKY_MAPS.generateTypeFromBaseType(item.baseType)
 	else return undefined
 }
 
 /**
  * Get the Bulky tier from a PoeItem.
  */
-function getTierFromPoeItem(item: PoeItem, category: Omit<Category, 'MAP'>): BulkyShopItem['tier'] | undefined {
+function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['tier'] | undefined {
 	if (category === 'ESSENCE') return BULKY_ESSENCES.generateTierFromBaseType(item.baseType)
-	else if (category === 'SCARAB') return BULKY_SCARABS.generateScarabTier()
-	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbTier()
+	else if (category === 'SCARAB') return BULKY_SCARABS.generateTier()
+	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateTier()
+	else if (category === 'MAP') return BULKY_MAPS.generateTierFromProperty(item.properties)
 	else return undefined
 }
 
@@ -189,13 +191,14 @@ function getTierFromPoeItem(item: PoeItem, category: Omit<Category, 'MAP'>): Bul
  */
 function generateBulkyItemFromPoeItem(
 	item: PoeItem,
-	category: Omit<Category, 'MAP'>,
+	category: Category,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
 ): BulkyShopItem | undefined {
 	if (category === 'ESSENCE') return BULKY_ESSENCES.generateEssenceFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateScarabFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'MAP') return BULKY_MAPS.generateMapFromPoeItem(item, prices, itemOverrides)
 	else return undefined
 }
 
@@ -223,7 +226,7 @@ function getNameFromTypeAndTier(
 // 	else return undefined
 // }
 
-function generateTypedItemFromDto<T extends Category>(category: T, item: BulkyBazaarItemDto) {
+function generateTypedItemFromDto(category: Category, item: BulkyBazaarItemDto) {
 	if (category === 'ESSENCE') return BULKY_ESSENCES.generateBazaarItemFromDto(item)
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateBazaarItemFromDto(item)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateBazaarItemFromDto(item)

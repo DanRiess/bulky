@@ -41,8 +41,6 @@ export function useBulkyItems(
 				return prev
 			}, {} as PoeItemsByStash)
 
-			console.log({ add, remove })
-
 			// Check if the category has changed.
 			// I did not want to create a dedicated watcher for this because I'm afraid of race conditions.
 			// Imagine user changes category. If this watcher triggers before the category watcher,
@@ -59,8 +57,6 @@ export function useBulkyItems(
 			getKeys(remove).forEach(stashTabId => {
 				remove[stashTabId].forEach(poeItem => deleteItem(poeItem))
 			})
-
-			console.log({ newItems }, items.value)
 		})
 	}
 

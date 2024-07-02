@@ -1,6 +1,6 @@
 import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
-import { PoeItemDto, PoeStashTabDto } from '@shared/types/dtoResponse.types'
+import { PoeItemDto, PoeItemProperty, PoeStashTabDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { BulkyShopItem, BulkyItemOverrideInstance, BulkyBazaarItemDto } from '@shared/types/bulky.types'
 import { UnwrapRef, toValue } from 'vue'
@@ -40,7 +40,20 @@ function itemDtoToPoeItem(item: PoeItemDto, stashTab: PoeStashTab) {
 }
 
 function mapSubStashToPoeItem(dto: PoeStashTabDto): PoeItem | undefined {
-	if (!dto.metadata.items || !dto.metadata.map) return undefined
+	if (!dto.metadata.items || !dto.metadata.map) {
+		console.log(dto)
+		return
+	}
+
+	const properties: PoeItemProperty[] =
+		dto.metadata.map.section === 'special'
+			? []
+			: [
+					{
+						name: 'Map Tier',
+						values: [[dto.metadata.map.tier.toString(), 0]],
+					},
+			  ]
 
 	return {
 		id: BULKY_ID.generateTypedId(dto.id),
@@ -51,12 +64,7 @@ function mapSubStashToPoeItem(dto: PoeStashTabDto): PoeItem | undefined {
 		itemLevel: 0,
 		stackSize: dto.metadata.items,
 		maxStackSize: 65536,
-		properties: [
-			{
-				name: 'Map Tier',
-				values: [[dto.metadata.map.tier.toString(), 0]],
-			},
-		],
+		properties,
 		w: 1,
 		h: 1,
 	}
