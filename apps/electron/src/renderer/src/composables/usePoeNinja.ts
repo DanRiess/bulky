@@ -97,11 +97,11 @@ async function getChaosPerDiv() {
  */
 async function getPricesByCategory(category: Category): Promise<NinjaPriceRecord> {
 	// Try to find the correct poe.ninja category.
-	const ninjaCategory = bulkyToNinjaCategory(category)
-	if (!ninjaCategory) return new Map()
+	const ninjaCategories = bulkyToNinjaCategory(category)
+	if (!ninjaCategories) return new Map()
 
 	// Get an existing or a new price collection for this category.
-	const priceCollections = await updateNinjaCategoryPrices(ninjaCategory)
+	const priceCollections = await updateNinjaCategoryPrices(ninjaCategories)
 
 	// Transform the price collection into the form expected by the state variable
 	return transformPriceCollectionToState(priceCollections)
@@ -110,11 +110,12 @@ async function getPricesByCategory(category: Category): Promise<NinjaPriceRecord
 /**
  * Map a bulky defined category into the corresponding poe.ninja category.
  */
-function bulkyToNinjaCategory(bulkyCategory: Category): NinjaCategory | undefined {
+function bulkyToNinjaCategory(bulkyCategory: Category): NinjaCategory[] | undefined {
 	// TODO: enhance with more categories
-	if (bulkyCategory === 'ESSENCE') return 'Essence'
-	else if (bulkyCategory === 'SCARAB') return 'Scarab'
-	else if (bulkyCategory === 'DELIRIUM_ORB') return 'DeliriumOrb'
+	if (bulkyCategory === 'ESSENCE') return ['Essence']
+	else if (bulkyCategory === 'SCARAB') return ['Scarab']
+	else if (bulkyCategory === 'DELIRIUM_ORB') return ['DeliriumOrb']
+	else if (bulkyCategory === 'MAP') return ['Map', 'UniqueMap']
 	return undefined
 }
 
@@ -176,6 +177,7 @@ function transformNinjaResponseToPriceCollection(
 		return {
 			id: BULKY_ID.generateTypedId<NinjaItem>(line.detailsId),
 			name: 'chaosEquivalent' in line ? line.currencyTypeName : line.name,
+			mapTier: !('chaosEquivalent' in line) && (category === 'Map' || category === 'UniqueMap') ? line.mapTier : undefined,
 			chaos: 'chaosEquivalent' in line ? line.chaosEquivalent : line.chaosValue,
 			tendency: 'chaosEquivalent' in line ? line.receiveSparkLine.totalChange : line.sparkline.totalChange,
 		}
@@ -204,9 +206,16 @@ function transformPriceCollectionToState(priceCollections: NinjaPriceCollection 
 	// Loop over every block / category and combine the results into one state variable
 	priceCollections.forEach(collection => {
 		collection.items.reduce((prevState, currItem) => {
+			// Save the tier into the key for map items.
+			const key =
+				collection.category === 'Map' || collection.category === 'UniqueMap'
+					? `${currItem.name}_${currItem.mapTier}`
+					: currItem.name
+
 			// Filter out maps below t16
-			if (collection.category === 'Map' && !(currItem.id.match(/t16/gi) || currItem.id.match(/t17/gi))) return prevState
-			prevState.set(currItem.name, currItem)
+			// if (collection.category === 'Map' && !(currItem.id.match(/t16/gi) || currItem.id.match(/t17/gi))) return prevState
+
+			prevState.set(key, currItem)
 			return prevState
 		}, state)
 	})

@@ -47,8 +47,12 @@ export const nodeApi = {
 				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
 			} else if (category === 'DeliriumOrb') {
 				url = 'http://localhost:5174/src/mocks/ninjaDelirium.json'
-			} else {
+			} else if (category === 'Map') {
 				url = 'http://localhost:5174/src/mocks/ninjaMaps.json'
+			} else if (category === 'UniqueMap') {
+				url = 'http://localhost:5174/src/mocks/ninjaUniqueMaps.json'
+			} else {
+				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
 			}
 			// The type cast is only here because return type of window.api functions
 			// is different than an axios response and it messes up other scripts.

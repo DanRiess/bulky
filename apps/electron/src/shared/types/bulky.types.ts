@@ -296,6 +296,6 @@ export type BulkyBazaarOfferDto = {
 // UTILITY TYPES
 
 export type BulkyItemSortOptions = {
-	key: 'NAME' | 'QUANT' | 'PRICE' | 'STACKPRICE'
+	key: 'NAME' | 'TIER' | 'QUANT' | 'PRICE' | 'STACKPRICE'
 	direction: 'ASC' | 'DESC'
 }

@@ -5,6 +5,7 @@
 			<img :src="item.icon" :alt="item.name" />
 		</div>
 		<div class="name">{{ item.name }}</div>
+		<div class="tier" v-if="showTier">{{ BULKY_TRANSFORM.stringToDisplayValue(item.tier) }}</div>
 		<div class="stack-size">{{ item.quantity }}</div>
 		<InputToggleAtom v-model="override" @update:model-value="updateOverrideUsage" />
 		<div class="price">
@@ -28,12 +29,14 @@ import { computed, nextTick, ref, toValue, watch } from 'vue'
 import InputCheckboxAtom from '../atoms/InputCheckboxAtom.vue'
 import InputToggleAtom from '../atoms/InputToggleAtom.vue'
 import InputNumberAtom from '../atoms/InputNumberAtom.vue'
+import { BULKY_TRANSFORM } from '@web/utility/transformers'
 
 // PROPS
 const props = defineProps<{
 	item: BulkyShopItem
 	overridePrices: BulkyItemOverrideRecord
 	offerMultiplier: number
+	showTier?: boolean
 }>()
 
 // EMITS
@@ -127,7 +130,7 @@ function updateOverrideValue() {
 .m-stash-item {
 	display: grid;
 	grid-template-columns: subgrid;
-	grid-column: span 7;
+	grid-column: span 8;
 	height: 2rem;
 	align-items: center;
 }

@@ -14,6 +14,9 @@ import { ScarabFilter, ShopScarab } from '@web/categories/scarab/scarab.types'
 import { DeliriumOrbFilter, ShopDeliriumOrb } from '@web/categories/deliriumOrb/deliriumOrb.types'
 import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOrbOffer.store'
 import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumOrbFilter.store'
+import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
+import { MapFilter, ShopMap } from '@web/categories/map/map.types'
+import { useNormalMapFilterStore } from '@web/categories/map/normalMapFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -68,9 +71,21 @@ function isDeliriumOrbOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopD
 	return !!store.offers.has(uuid)
 }
 
-/** Validate if a given string is a scarab filter uuid */
+/** Validate if a given string is a delirium orb filter uuid */
 function isDeliriumOrbFilterUuid(uuid: string): uuid is Uuid<DeliriumOrbFilter> {
 	const store = useDeliriumOrbFilterStore()
+	return !!store.filters.has(uuid)
+}
+
+/** Validate if a given string is a map offer uuid. */
+function isMapOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopMap>> {
+	const store = useNormalMapOfferStore()
+	return !!store.offers.has(uuid)
+}
+
+/** Validate if a given string is a map filter uuid */
+function isMapFilterUuid(uuid: string): uuid is Uuid<MapFilter> {
+	const store = useNormalMapFilterStore()
 	return !!store.filters.has(uuid)
 }
 
@@ -82,4 +97,6 @@ export const BULKY_UUID = {
 	isScarabFilterUuid,
 	isDeliriumOrbOfferUuid,
 	isDeliriumOrbFilterUuid,
+	isMapOfferUuid,
+	isMapFilterUuid,
 }

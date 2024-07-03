@@ -12,6 +12,7 @@ export type NinjaPriceCollection = {
 export type NinjaItem = {
 	id: Id<NinjaItem>
 	name: string
+	mapTier?: number
 	chaos: number
 	tendency: number // receiveSparkLine.totalChange (number in percent)
 }
@@ -33,6 +34,7 @@ export type NinjaItemDto = {
 	name: string
 	icon: string
 	baseType: string
+	mapTier?: number
 	stackSize: number
 	itemClass: number
 	sparkline: NinjaSparkLine

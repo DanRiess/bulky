@@ -8,6 +8,7 @@ import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.sto
 import { useScarabFilterStore } from '@web/categories/scarab/scarabFilter.store'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumOrbFilter.store'
+import { useNormalMapFilterStore } from '@web/categories/map/normalMapFilter.store'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
@@ -17,6 +18,7 @@ export function useComputedFilterStore() {
 	const essenceFilterStore = useEssenceFilterStore()
 	const scarabFilterStore = useScarabFilterStore()
 	const deliriumOrbFilterStore = useDeliriumOrbFilterStore()
+	const normalMapFilterStore = useNormalMapFilterStore()
 
 	return computed<ComputedBulkyFilterStore | undefined>(() => {
 		const store = BULKY_FACTORY.getFilterStore(appStateStore.selectedCategory)
@@ -45,6 +47,7 @@ export function useComputedFilterStore() {
 			if (store === essenceFilterStore && BULKY_UUID.isEssenceFilterUuid(uuid)) store.addFilterField(uuid)
 			else if (store === scarabFilterStore && BULKY_UUID.isScarabFilterUuid(uuid)) store.addFilterField(uuid)
 			else if (store === deliriumOrbFilterStore && BULKY_UUID.isDeliriumOrbFilterUuid(uuid)) store.addFilterField(uuid)
+			else if (store === normalMapFilterStore && BULKY_UUID.isMapFilterUuid(uuid)) store.addFilterField(uuid)
 		}
 
 		/** Remove a filter field from the current filter */
@@ -57,6 +60,7 @@ export function useComputedFilterStore() {
 			else if (store === scarabFilterStore && BULKY_UUID.isScarabFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 			else if (store === deliriumOrbFilterStore && BULKY_UUID.isDeliriumOrbFilterUuid(uuid))
 				store.removeFilterField(uuid, idx)
+			else if (store === normalMapFilterStore && BULKY_UUID.isMapFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 		}
 
 		return {

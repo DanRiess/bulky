@@ -139,6 +139,9 @@ export function useBulkyItems(
 		// Implement functions for the possible search keys.
 		if (key === 'NAME') {
 			items.value = new Map([...items.value.entries()].sort((a, b) => compareStrings(a[0], b[0]) * sortModifier))
+		} else if (key === 'TIER') {
+			console.log('sort tier')
+			items.value = new Map([...items.value.entries()].sort((a, b) => compareStrings(a[1].tier, b[1].tier) * sortModifier))
 		} else if (key === 'QUANT') {
 			items.value = new Map(
 				[...items.value.entries()].sort((a, b) => {

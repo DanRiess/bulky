@@ -1,12 +1,24 @@
 <template>
 	<div class="o-stash-tab-items flow animated-gradient-background" data-b-override>
 		<LoadStashTabsMolecule @sync-folders="syncSelectedFolders" />
-		<StashItemListMolecule
-			:items="items"
-			:override-prices="itemOverrides"
-			:sort-fn="sortItems"
-			:offer-multiplier="offerMultiplier"
-			@change-item-override="(item, options) => putItemOverride(item, options)" />
+
+		<template v-if="category === 'MAP'">
+			<StashItemListMapMolecule
+				:items="items"
+				:override-prices="itemOverrides"
+				:sort-fn="sortItems"
+				:offer-multiplier="offerMultiplier"
+				@change-item-override="(item, options) => putItemOverride(item, options)" />
+		</template>
+		<template v-else>
+			<StashItemListMolecule
+				:items="items"
+				:override-prices="itemOverrides"
+				:sort-fn="sortItems"
+				:offer-multiplier="offerMultiplier"
+				@change-item-override="(item, options) => putItemOverride(item, options)" />
+		</template>
+
 		<div class="total-value">
 			<PriceAtom :price="divValue" label="Total Value:" />
 			<template v-if="operation === 'create'">
@@ -39,6 +51,7 @@ import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
 import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 import { PoeItemsByStash } from '@shared/types/poe.types'
+import StashItemListMapMolecule from '../molecules/StashItemListMapMolecule.vue'
 
 // PROPS
 const props = defineProps<{
