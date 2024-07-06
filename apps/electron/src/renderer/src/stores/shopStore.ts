@@ -106,7 +106,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		let computedMultiplier = multiplier
 
 		itemRecord.forEach(item => {
-			if (!item.selected) return
+			if (!item.selected || (toValue(item.price) === 0 && toValue(item.priceOverride) === 0)) return
 			items.push(deepToRaw(item))
 
 			// calculate the multiplier for this item

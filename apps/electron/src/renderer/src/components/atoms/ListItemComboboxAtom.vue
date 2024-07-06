@@ -1,27 +1,38 @@
 <template>
-	<li class="a-list-item specular-glance-animation" :class="{ hovered }" data-b-override @click="emit('click', displayName)">
+	<li
+		class="a-list-item specular-glance-animation"
+		:class="{ hovered: hovered || active }"
+		data-b-override
+		@click="emit('update:modelValue', model)">
 		<div class="chevron">
 			<SvgIconAtom name="chevron-right" :use-gradient="true" :active="true" width="100%" />
 		</div>
-		<div class="content">{{ displayName }}</div>
+		<div class="content">{{ model.displayValue }}</div>
 	</li>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends string, V extends SelectOption<T>">
 import SvgIconAtom from './SvgIconAtom.vue'
 
-export type SelectableListItem = {
-	content: string
-	value: string | number
+export type SelectOption<Type> = {
+	optionValue: Type
+	displayValue: string
 }
 
-defineProps<{
-	displayName: string
-	hovered: boolean
-}>()
+const model = defineModel<V>({ required: true })
+
+withDefaults(
+	defineProps<{
+		hovered: boolean
+		active?: boolean
+	}>(),
+	{
+		active: false,
+	}
+)
 
 const emit = defineEmits<{
-	click: [value: string]
+	'update:modelValue': [value: V]
 }>()
 </script>
 

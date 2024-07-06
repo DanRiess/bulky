@@ -2,9 +2,15 @@
 	<div class="o-stash-tab-items flow animated-gradient-background" data-b-override>
 		<LoadStashTabsMolecule @sync-folders="syncSelectedFolders" />
 
+		<div class="maybe-filter">
+			<TransitionAtom v-on="transitionHooks">
+				<ShopCreateOfferFilter v-if="category === 'MAP'" v-model="filter" :category="category" />
+			</TransitionAtom>
+		</div>
+
 		<template v-if="category === 'MAP'">
 			<StashItemListMapMolecule
-				:items="items"
+				:items="filteredItemRecord"
 				:override-prices="itemOverrides"
 				:sort-fn="sortItems"
 				:offer-multiplier="offerMultiplier"
@@ -12,7 +18,7 @@
 		</template>
 		<template v-else>
 			<StashItemListMolecule
-				:items="items"
+				:items="filteredItemRecord"
 				:override-prices="itemOverrides"
 				:sort-fn="sortItems"
 				:offer-multiplier="offerMultiplier"
@@ -24,13 +30,13 @@
 			<template v-if="operation === 'create'">
 				<ButtonAtom
 					background-color="dark"
-					@click="emit('generateOffer', items)"
+					@click="emit('generateOffer', filteredItemRecord)"
 					:disabled="disableOfferGenerationButton">
 					Generate Offer
 				</ButtonAtom>
 			</template>
 			<template v-else-if="operation === 'edit'">
-				<ButtonAtom background-color="dark" @click="emit('syncChanges', items)">Sync Changes</ButtonAtom>
+				<ButtonAtom background-color="dark" @click="emit('syncChanges', filteredItemRecord)">Sync Changes</ButtonAtom>
 			</template>
 		</div>
 	</div>
@@ -45,13 +51,20 @@ import StashItemListMolecule from '../molecules/StashItemListMolecule.vue'
 import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useBulkyItems } from '@web/composables/useBulkyItems'
 import { useItemOverrides } from '@web/composables/useItemOverrides'
-import { BulkyShopItemRecord, Category } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord, Category, ShopFilter } from '@shared/types/bulky.types'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
 import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 import { PoeItemsByStash } from '@shared/types/poe.types'
 import StashItemListMapMolecule from '../molecules/StashItemListMapMolecule.vue'
+import { useFilterShopItems } from '@web/composables/useFilterShopItems'
+import ShopCreateOfferFilter from '../molecules/ShopCreateOfferFilter.vue'
+import { ref, watch } from 'vue'
+import { MAP_TIER } from '@web/categories/map/map.const'
+import { MapTier } from '@web/categories/map/map.types'
+import TransitionAtom from '../atoms/TransitionAtom.vue'
+import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 
 // PROPS
 const props = defineProps<{
@@ -72,16 +85,39 @@ const stashStore = useStashStore()
 
 // STATE
 const { selectedStashTabs } = storeToRefs(stashStore)
+const filter = ref<ShopFilter>({ selectedTiers: new Set() })
+
+// SET FILTERS
+// This would make more sense in the filter component, but performance-wise it is useful to do it before the first item filtering.
+watch(
+	() => props.category,
+	category => {
+		if (category === 'MAP') {
+			filter.value.selectedTiers = new Set<MapTier>()
+			filter.value.selectedTiers.add(MAP_TIER.TIER_16)
+			filter.value.selectedTiers.add(MAP_TIER.TIER_17)
+		} else {
+			filter.value.selectedTiers = undefined
+		}
+	},
+	{ immediate: true }
+)
 
 // COMPOSABLES
+const transitionHooks = useGenericTransitionHooks({
+	opacity: 0,
+	scale: 0.01,
+	duration: 0.25,
+})
 const { filterItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
 const categoryFilteredItemsByStash = filterItemsByCategory(() => props.category)
 const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides, () => props.category)
+const { filteredItemRecord } = useFilterShopItems(items, filter)
 
 // GETTERS
-const chaosValue = useAggregateItemPrice(items, () => props.offerMultiplier)
+const chaosValue = useAggregateItemPrice(filteredItemRecord, () => props.offerMultiplier)
 const divValue = useChaosToDiv(chaosValue, chaosPerDiv)
 
 // METHODS
@@ -99,8 +135,13 @@ async function syncSelectedFolders(items: PoeItemsByStash) {
 	border-radius: var(--border-radius-medium);
 	padding: 1rem;
 	display: grid;
-	grid-template-rows: auto 1fr auto;
+	grid-template-rows: auto auto 1fr auto;
 	overflow: hidden;
+	isolation: isolate;
+}
+
+.maybe-filter {
+	z-index: 1;
 }
 
 .total-value {

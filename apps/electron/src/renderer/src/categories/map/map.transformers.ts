@@ -48,7 +48,7 @@ function generateMapFromPoeItem(
 		icon: poeItem.icon,
 		quantity: poeItem.stackSize,
 		price: computed(() => {
-			return Math.round((prices.value.get(`${type}_${tier}`)?.chaos ?? 0) * 10) / 10
+			return Math.round((prices.value.get(`${poeItem.baseType}_${tier}`)?.chaos ?? 0) * 10) / 10
 		}),
 		league: configStore.config.league,
 		category: 'MAP',

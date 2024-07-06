@@ -227,6 +227,15 @@ export type ComputedBulkyFilterStore = {
 	removeFilterField: <T extends BulkyFilter['uuid']>(uuid: T, idx: number) => void
 }
 
+// SHOP FILTER
+
+/**
+ * A filter that can be used when creating / editing an offer for some categories (e. g. maps).
+ */
+export type ShopFilter<T extends BulkyShopItem = BulkyShopItem> = {
+	selectedTiers?: Set<T['tier']>
+}
+
 // PRICES
 
 /**

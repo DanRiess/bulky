@@ -8,6 +8,7 @@
 -   Add the store types to the type file and bulky.types
 -   Update functions in factory.ts
 -   Update functions in category.ts
+-   Add item in category and imgCategory components
 -   Update the category conversion function in usePoeNinja.ts
 -   Update the add and remove filter field functions in useComputedFilterStore.ts
 -   Add mock APIs to nodeApi and poeApi for browser testing

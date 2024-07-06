@@ -209,7 +209,7 @@ function transformPriceCollectionToState(priceCollections: NinjaPriceCollection 
 			// Save the tier into the key for map items.
 			const key =
 				collection.category === 'Map' || collection.category === 'UniqueMap'
-					? `${currItem.name}_${currItem.mapTier}`
+					? `${currItem.name}_TIER_${currItem.mapTier}`
 					: currItem.name
 
 			// Filter out maps below t16

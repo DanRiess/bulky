@@ -105,7 +105,7 @@ async function createOffer(itemRecord: BulkyShopItemRecord) {
 	}
 
 	// Generate a new offer.
-	const offer = await shopStore.generateOffer(
+	const offer = shopStore.generateOffer(
 		itemRecord,
 		ign.value,
 		chaosPerDiv.value,

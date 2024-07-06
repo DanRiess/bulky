@@ -2,7 +2,7 @@
 	<div class="m-shop-offer flow animated-gradient-background" data-b-override>
 		<section class="title-section">
 			<div class="offer-main-info">
-				<ImgCategoryAtom :category="offer.category" /> &ndash;
+				<ImgCategoryAtom :category="offer.category" /> |
 				<PriceAtom label="" :price="divPrice" />
 			</div>
 			<span>Posted: {{ timeAgo }}</span>
@@ -137,6 +137,11 @@ async function toggleAutoSync() {
 		showAutoSyncTooltip.value = false
 	}, 2000)
 }
+
+// TODO:
+// document this component
+// change offer type to include shop filters
+// apply shop filters on refreshOffer (and all other offer creation functions)
 
 function refreshOffer(uuid: BulkyShopOffer['uuid']) {
 	shopStore.refreshOffer(uuid, refreshState)

@@ -12,16 +12,14 @@
 			</li>
 		</BaseTransition>
 		<CssListTransition>
-			<template v-for="tier in itemsByTier">
-				<StashItemMolecule
-					v-for="item in tier"
-					:item="item"
-					:show-tier="true"
-					:key="item.icon"
-					:override-prices="overridePrices"
-					:offer-multiplier="offerMultiplier"
-					@change-item-override="(item, options) => emit('changeItemOverride', item, options)" />
-			</template>
+			<StashItemMolecule
+				v-for="item in items"
+				:key="item[0]"
+				:item="item[1]"
+				:show-tier="true"
+				:override-prices="overridePrices"
+				:offer-multiplier="offerMultiplier"
+				@change-item-override="(item, options) => emit('changeItemOverride', item, options)" />
 		</CssListTransition>
 	</ul>
 </template>
@@ -36,12 +34,11 @@ import {
 } from '@shared/types/bulky.types'
 import StashItemMolecule from './StashItemMolecule.vue'
 import CssListTransition from '@web/transitions/CssListTransition.vue'
-import { BaseTransition, computed, ref } from 'vue'
+import { BaseTransition, ref } from 'vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
-import { MAP_TIER_NAME_TO_IDX } from '@web/categories/map/map.const'
 
 // PROPS
-const props = defineProps<{
+defineProps<{
 	items: BulkyShopItemRecord
 	overridePrices: BulkyItemOverrideRecord
 	offerMultiplier: number
@@ -57,23 +54,19 @@ selectedTiers.value.add(17)
 // sorting will be done by the function, not necessary here
 
 // GETTERS
-const filteredItems = computed(() => {
-	const categorizedItems: Record<string, BulkyShopItem[]> = {}
+// const filteredItems = computed(() => {
+// 	const categorizedItems: BulkyShopItem[] = []
 
-	props.items.forEach(item => {
-		const tier = MAP_TIER_NAME_TO_IDX[item.tier]
-		if (typeof tier !== 'number') return
-		if (!selectedTiers.value.has(tier)) return
+// 	props.items.forEach(item => {
+// 		const tier = MAP_TIER_NAME_TO_IDX[item.tier]
+// 		if (typeof tier !== 'number') return
+// 		if (!selectedTiers.value.has(tier)) return
 
-		if (!categorizedItems[tier]) {
-			categorizedItems[tier] = []
-		}
+// 		categorizedItems.push(item)
+// 	})
 
-		categorizedItems[tier].push(item)
-	})
-
-	return categorizedItems
-})
+// 	return categorizedItems
+// })
 
 // EMITS
 const emit = defineEmits<{

@@ -3,34 +3,36 @@
 		<InputTextAtom
 			:id="id"
 			v-model="query"
-			:placeholder="filteredOptions[activeOptionIdx]?.displayValue"
+			:placeholder="model.size + ' selected'"
 			:max-width="maxWidth"
 			:background-color="backgroundColor"
 			@update:modelValue="activeOptionIdx = 0"
-			@focus="onInputFocus"
-			@keyup.enter="onInputKeydownEnter" />
-		<div class="transition-wrapper gradient-border" :class="inputActive && 'is-open'" data-b-override ref="wrapperEl">
+			@click="onInputFocus"
+			@keyup.enter="onInputKeyEnter" />
+		<div class="transition-wrapper gradient-border" :class="{ 'is-open': inputActive }" data-b-override ref="wrapperEl">
 			<ul class="combobox expandable-content">
 				<ListItemComboboxAtom
 					v-for="(listItem, idx) in filteredOptions"
 					:key="listItem.optionValue"
 					v-model="filteredOptions[idx]"
-					:hovered="idx === activeOptionIdx"
+					:hovered="false"
+					:active="model.has(listItem.optionValue)"
 					@mouseenter="activeOptionIdx = idx"
-					@update:model-value="(e: SelectOption<T>) => onListItemClick(e.optionValue)" />
+					@update:model-value="(e: SelectOption<T>) => setModelValue(e.optionValue)" />
 			</ul>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts" generic="T extends string">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import ListItemComboboxAtom, { SelectOption } from './ListItemComboboxAtom.vue'
 import InputTextAtom from './InputTextAtom.vue'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { ButtonBackgroundColorScheme, Uuid } from '@shared/types/utility.types'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
+import { Category } from '@shared/types/bulky.types'
 
 // MODEL
 
@@ -40,19 +42,13 @@ import { BULKY_TRANSFORM } from '@web/utility/transformers'
  * The reason for this is to avoid invalid values, since the input query can and should be literally any string.
  * This model however should only emit valid values.
  */
-const model = defineModel<T>({ required: true })
-
-// MODEL WATCHER
-
-/** Triggered when the parent changes the model. I. e. when removing a filter field */
-watch(model, model => {
-	query.value = BULKY_TRANSFORM.stringToDisplayValue(model)
-})
+const model = defineModel<Set<T>>({ required: true })
 
 // PROPS
 const props = withDefaults(
 	defineProps<{
 		id?: Uuid
+		category: Category
 		options: T[]
 		maxWidth?: number
 		backgroundColor?: ButtonBackgroundColorScheme
@@ -83,20 +79,13 @@ const backgroundColorButton = computed(() => {
 })
 
 /**
- * Turns the query into a regex that matches characters anywhere.
- * i. e. query 'mirrdeli' will be turned into a regex that matches 'Mirror of Delirium'
- */
-const queryRegex = computed(() => {
-	if (!query.value) return new RegExp('', 'gi')
-	const regexString = [...query.value].map(c => `${c}.*`).join('')
-	return new RegExp(regexString, 'gi')
-})
-
-/**
  * Sanitizes the prop option types into something displayable.
  * In this case, removes the uppercase and capitalizes the string.
  */
 const computedOptions = computed<SelectOption<T>[]>(() => {
+	// return props.options.map(option => {
+	// 	return BULKY_TRANSFORM.stringToDisplayValue(option)
+	// })
 	return props.options.map(option => {
 		return {
 			optionValue: option,
@@ -107,13 +96,15 @@ const computedOptions = computed<SelectOption<T>[]>(() => {
 
 /** Filters the available options by matching them against the current regex query. */
 const filteredOptions = computed(() => {
+	console.log(computedOptions.value)
 	return computedOptions.value
 		.map(option => {
-			if (option.displayValue === query.value) return undefined
-			if (option.displayValue.match(queryRegex.value)) {
-				return option
-			}
-			return undefined
+			// if (option.displayValue === query.value) return undefined
+			// if (option.displayValue.match(queryRegex.value)) {
+			// 	return option
+			// }
+			// return undefined
+			return option
 		})
 		.filter(Boolean)
 })
@@ -121,7 +112,9 @@ const filteredOptions = computed(() => {
 // EVENTS
 
 /** Clicking outside the combobox triggers the same action as pressing Enter. */
-onClickOutside(selectEl, onInputKeydownEnter)
+onClickOutside(selectEl, () => {
+	inputActive.value = false
+})
 
 /** Arrow up action for the combobox. Chooses the previous option. */
 onKeyStroke(
@@ -150,74 +143,49 @@ onKeyStroke(
 
 /** Activate the input and reset the current query. Do not change the model value here. */
 function onInputFocus() {
+	console.log('input foc')
 	// find the index of the current query value
-	activeOptionIdx.value = Math.max(
-		0,
-		computedOptions.value.findIndex(option => option.displayValue === query.value)
-	)
-	inputActive.value = true
-	query.value = ''
+	activeOptionIdx.value = computedOptions.value.findIndex(computedName => computedName.displayValue === query.value)
+
+	inputActive.value = !inputActive.value
+	// if (inputActive.value) {
+	// 	query.value = ''
+	// }
 }
 
 /**
  * Deactivate the input and select the entry from the options that matches the current query the most.
  * If the query doesn't match any entries, reset it to the first value. Change the model value here.
  */
-function onInputKeydownEnter() {
+function onInputKeyEnter() {
 	if (inputActive.value === false) return
 
-	inputActive.value = false
-	if (filteredOptions.value[activeOptionIdx.value]) {
-		query.value = filteredOptions.value[activeOptionIdx.value].displayValue
-	} else {
-		query.value = computedOptions.value[0].displayValue
+	const option = computedOptions.value.find(option => option.displayValue === query.value)
+	if (option) {
+		setModelValue(option.optionValue)
 	}
-
-	const idx = computedOptions.value.findIndex(o => o.displayValue === query.value)
-	if (idx > -1) {
-		setModelValue(idx)
-	}
-}
-
-/** Deactivate the input and select the currently hovered options entry. Change the model value here as well. */
-function onListItemClick(val: T) {
-	query.value = val.toString()
-	if (query.value !== '') {
-		setModelValue(activeOptionIdx.value)
-	}
-	inputActive.value = false
 }
 
 /**
  * Mini helper to not set the value manually in different functions.
  * props.options is an array of the actual type.
- * computedOptions is the sanitized value that is visible in the input (mostly no capslock).
+ * computedOptionNames is the sanitized value that is visible in the input (mostly no capslock).
  * The model should refer to the actual type though.
  */
-function setModelValue(idx: number) {
-	model.value = props.options[idx]
+function setModelValue(value: T) {
+	model.value.has(value) ? model.value.delete(value) : model.value.add(value)
+	setQueryValue()
 }
 
-// /** Given a typed variable, this function finds its corresponding display value in the computedNames array. */
-// function typeToDisplayName(type: T | undefined) {
-// 	if (!type) return ''
-
-// 	const transformedType = type.split('_').join(' ')
-
-// 	const regex = new RegExp(transformedType, 'gi')
-// 	return computedOptions.value.find(option => option.displayValue.match(regex)) ?? ''
-// }
+function setQueryValue() {
+	const arr: string[] = []
+	model.value.forEach(value => arr.push(BULKY_TRANSFORM.stringToDisplayValue(value)))
+	query.value = arr.sort().join(', ')
+}
 
 // HOOKS
 onMounted(() => {
-	// on mounted, the query value is set to the passed model value.
-	// if this value doesn't match any options entries, reset both of them.
-	if (!model.value || !props.options.includes(model.value)) {
-		query.value = computedOptions.value[0].displayValue
-		setModelValue(0)
-	}
-
-	query.value = BULKY_TRANSFORM.stringToDisplayValue(model.value)
+	setQueryValue()
 })
 </script>
 
