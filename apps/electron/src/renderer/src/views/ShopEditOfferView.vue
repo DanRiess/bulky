@@ -22,6 +22,7 @@
 		<template #rightColumn>
 			<div class="item-collection flow">
 				<StashTabItemsOrganism
+					v-model="filter"
 					operation="edit"
 					:category="offer.category"
 					:offer-multiplier="offer.multiplier"
@@ -32,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyShopItemRecord, BulkyShopOffer } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord, BulkyShopOffer, ShopFilter } from '@shared/types/bulky.types'
 import ImgCategoryAtom from '@web/components/atoms/ImgCategoryAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
@@ -55,7 +56,8 @@ const props = defineProps<{
 
 // STATE
 const router = useRouter()
-const offer = ref(shopStore.getOfferByUuid(props.uuid))
+const offer = ref<BulkyShopOffer | undefined>(shopStore.getOfferByUuid(props.uuid))
+const filter = ref<ShopFilter>(offer.value?.filter ?? {})
 
 // METHODS
 
@@ -68,7 +70,7 @@ function updateIgn(val: string) {
 }
 
 /**
- * Update the offer in the store and update it in the database and idb.
+ * Update the offer in the store and upload it to the database and idb.
  */
 async function syncChanges(itemRecord: BulkyShopItemRecord) {
 	if (offer.value) {

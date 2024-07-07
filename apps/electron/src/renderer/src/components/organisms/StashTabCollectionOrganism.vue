@@ -62,16 +62,6 @@ type StashTabHierarchy = {
 // STORES
 const stashStore = useStashStore()
 
-// PROPS
-// defineProps<{
-// 	showRefreshButton: boolean
-// }>()
-
-// // EMITS
-// const emit = defineEmits<{
-// 	startTimeout: []
-// }>()
-
 // STATE
 const stashListRequest = stashStore.getStashTabListRequest()
 const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())

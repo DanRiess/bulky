@@ -44,7 +44,6 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 				if (status.value !== 'ERROR') {
 					status.value = 'SUCCESS'
 				}
-				console.log(request.data.value)
 
 				// Map stashes return a different payload than other stash tabs.
 				// Instead of 'items', it has 'children'. Each child is a stash tab on its own,
@@ -55,8 +54,6 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 								?.map(mapSubStash => BULKY_TRANSFORM.mapSubStashToPoeItem(mapSubStash))
 								.filter(Boolean)
 						: request.data.value.stash.items.map(poeItem => BULKY_TRANSFORM.itemDtoToPoeItem(poeItem, tab))
-
-				console.log({ poeItems })
 
 				if (!poeItems) return
 

@@ -12,7 +12,7 @@
 		<section class="footer-section">
 			<div class="info-toggles">
 				<ActiveOrInactiveAtom :active="offer.active" />
-				<div>&ndash;</div>
+				<div>|</div>
 				<SvgIconAtom v-bind="autoSyncProps" @click="toggleAutoSync" />
 				<TransitionAtom v-on="transitionHooks">
 					<div class="auto-sync-tooltip" v-if="showAutoSyncTooltip">
@@ -89,7 +89,15 @@ const offer = defineModel<BulkyShopOffer>({ required: true })
 // STATE
 const bulkyIdb = useBulkyIdb()
 const showAutoSyncTooltip = ref(false)
+/** Used to show a visual indicator while refresh is in progress. */
 const refreshState = ref<ApiStatus>('IDLE')
+const autoSyncTimeout = ref<NodeJS.Timeout>()
+/** An abstraction, since multiple subcomponents need to consume a tooltip prop. */
+const tooltipProps: TooltipPropsWithoutActive = {
+	position: 'top',
+	transitionDirection: 'toTop',
+	popupAlignment: 'left',
+}
 
 // COMPOSABLES
 const router = useRouter()
@@ -102,21 +110,10 @@ const transitionHooks = useGenericTransitionHooks({
 })
 
 // GETTERS
-// const imgSource = computed(() => {
-// 	if (offer.value.category === 'ESSENCE') {
-// 		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXNzZW5jZS9IYXRyZWQ3Iiwic2NhbGUiOjF9XQ/a69c5c06cc/Hatred7.png'
-// 	} else if (offer.value.category === 'SCARAB') {
-// 		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9HcmVhdGVyU2NhcmFiQnJlYWNoIiwic2NhbGUiOjF9XQ/b129897f73/GreaterScarabBreach.png'
-// 	}
-// 	return ''
-// })
 
-const tooltipProps: TooltipPropsWithoutActive = {
-	position: 'top',
-	transitionDirection: 'toTop',
-	popupAlignment: 'left',
-}
-
+/**
+ * Properties for the svg icon that handles the visualization of 'offer.autoSync'
+ */
 const autoSyncProps = computed(() => {
 	return {
 		name: offer.value.autoSync ? 'sync' : 'syncDisabled',
@@ -126,32 +123,37 @@ const autoSyncProps = computed(() => {
 })
 
 // METHODS
+
+/**
+ * Toggles an offer's auto sync property.
+ * The function also handles toggling a timed tooltip as an indicator.
+ */
 async function toggleAutoSync() {
+	// Clear the previous timeout
+	clearTimeout(autoSyncTimeout.value)
+
 	offer.value.autoSync = !offer.value.autoSync
 	await bulkyIdb.putShopOffer(offer.value)
 
-	if (showAutoSyncTooltip.value === true) return
-
 	showAutoSyncTooltip.value = true
-	setTimeout(() => {
+	autoSyncTimeout.value = setTimeout(() => {
 		showAutoSyncTooltip.value = false
 	}, 2000)
 }
 
-// TODO:
-// document this component
-// change offer type to include shop filters
-// apply shop filters on refreshOffer (and all other offer creation functions)
-
+/**
+ * Refresh an offer manually.
+ */
 function refreshOffer(uuid: BulkyShopOffer['uuid']) {
-	shopStore.refreshOffer(uuid, refreshState)
+	shopStore.recomputeOffer(uuid, refreshState)
 }
 </script>
 
 <style scoped>
 .m-shop-offer {
 	display: grid;
-	width: max-content;
+	/* width: max-content; */
+	min-width: 25rem;
 	padding: 1rem;
 	border-radius: var(--border-radius-medium);
 }

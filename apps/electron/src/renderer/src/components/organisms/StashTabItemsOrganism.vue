@@ -4,7 +4,7 @@
 
 		<div class="maybe-filter">
 			<TransitionAtom v-on="transitionHooks">
-				<ShopCreateOfferFilter v-if="category === 'MAP'" v-model="filter" :category="category" />
+				<ShopCreateOfferFilter v-if="category === 'MAP'" v-model="filterModel" :category="category" />
 			</TransitionAtom>
 		</div>
 
@@ -30,7 +30,7 @@
 			<template v-if="operation === 'create'">
 				<ButtonAtom
 					background-color="dark"
-					@click="emit('generateOffer', filteredItemRecord)"
+					@click="emit('generateOffer', filteredItemRecord, filterModel)"
 					:disabled="disableOfferGenerationButton">
 					Generate Offer
 				</ButtonAtom>
@@ -60,11 +60,11 @@ import { PoeItemsByStash } from '@shared/types/poe.types'
 import StashItemListMapMolecule from '../molecules/StashItemListMapMolecule.vue'
 import { useFilterShopItems } from '@web/composables/useFilterShopItems'
 import ShopCreateOfferFilter from '../molecules/ShopCreateOfferFilter.vue'
-import { ref, watch } from 'vue'
-import { MAP_TIER } from '@web/categories/map/map.const'
-import { MapTier } from '@web/categories/map/map.types'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+
+// MODEL
+const filterModel = defineModel<ShopFilter>({ required: true })
 
 // PROPS
 const props = defineProps<{
@@ -76,7 +76,7 @@ const props = defineProps<{
 
 // EMITS
 const emit = defineEmits<{
-	generateOffer: [items: BulkyShopItemRecord]
+	generateOffer: [items: BulkyShopItemRecord, filter: ShopFilter]
 	syncChanges: [items: BulkyShopItemRecord]
 }>()
 
@@ -85,23 +85,7 @@ const stashStore = useStashStore()
 
 // STATE
 const { selectedStashTabs } = storeToRefs(stashStore)
-const filter = ref<ShopFilter>({ selectedTiers: new Set() })
-
-// SET FILTERS
-// This would make more sense in the filter component, but performance-wise it is useful to do it before the first item filtering.
-watch(
-	() => props.category,
-	category => {
-		if (category === 'MAP') {
-			filter.value.selectedTiers = new Set<MapTier>()
-			filter.value.selectedTiers.add(MAP_TIER.TIER_16)
-			filter.value.selectedTiers.add(MAP_TIER.TIER_17)
-		} else {
-			filter.value.selectedTiers = undefined
-		}
-	},
-	{ immediate: true }
-)
+// const filter = ref<ShopFilter>({ selectedTiers: new Set() })
 
 // COMPOSABLES
 const transitionHooks = useGenericTransitionHooks({
@@ -114,7 +98,7 @@ const categoryFilteredItemsByStash = filterItemsByCategory(() => props.category)
 const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides, () => props.category)
-const { filteredItemRecord } = useFilterShopItems(items, filter)
+const { filteredItemRecord } = useFilterShopItems(items, filterModel)
 
 // GETTERS
 const chaosValue = useAggregateItemPrice(filteredItemRecord, () => props.offerMultiplier)

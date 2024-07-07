@@ -25,6 +25,7 @@
 		<template #rightColumn>
 			<div class="item-collection flow">
 				<StashTabItemsOrganism
+					v-model="filter"
 					operation="create"
 					:offer-multiplier="multiplier"
 					:category="appStateStore.selectedCategory"
@@ -36,8 +37,10 @@
 </template>
 
 <script setup lang="ts">
-import { BulkyShopItemRecord, CATEGORY } from '@shared/types/bulky.types'
+import { BulkyShopItemRecord, CATEGORY, ShopFilter } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
+import { MAP_TIER } from '@web/categories/map/map.const'
+import { MapTier } from '@web/categories/map/map.types'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import LabelWithSelectMolecule from '@web/components/molecules/LabelWithSelectMolecule.vue'
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
@@ -46,7 +49,7 @@ import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrgani
 import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useShopStore } from '@web/stores/shopStore'
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed, onBeforeMount, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 // STORES
@@ -71,8 +74,27 @@ const minBuyout = ref({
 	chaos: 0,
 	divine: 0,
 })
-/** Offer full buyout model value */
+/** Offer full buyout model value. */
 const fullBuyout = ref(false)
+/** Offer filter. */
+const filter = ref<ShopFilter>({})
+
+// SET FILTERS
+// This would make more sense in the filter component, but performance-wise it is useful to do it before the first item filtering.
+// Otherwise, all items will get rendered and only be filtered afterwards. Makes the app flicker.
+watch(
+	() => appStateStore.selectedCategory,
+	category => {
+		if (category === 'MAP') {
+			filter.value.selectedTiers = new Set<MapTier>()
+			filter.value.selectedTiers.add(MAP_TIER.TIER_16)
+			filter.value.selectedTiers.add(MAP_TIER.TIER_17)
+		} else {
+			filter.value.selectedTiers = undefined
+		}
+	},
+	{ immediate: true }
+)
 
 // GETTERS
 const categories = computed(() => {
@@ -95,7 +117,7 @@ function updateIgn(val: string) {
 /**
  * Call the generateOffer function from the store and provide some visual UI feedback while the offer is being uploaded.
  */
-async function createOffer(itemRecord: BulkyShopItemRecord) {
+async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) {
 	disableOfferGenerationButton.value = true
 
 	if (!ign.value) {
@@ -111,7 +133,8 @@ async function createOffer(itemRecord: BulkyShopItemRecord) {
 		chaosPerDiv.value,
 		multiplier.value,
 		minBuyout.value,
-		fullBuyout.value
+		fullBuyout.value,
+		filter
 	)
 
 	if (!offer) {

@@ -117,11 +117,12 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 	 * Do not change this type to a number.
 	 * While more consistent, when the offer updates, chaosPerDiv updates as well.
 	 * However, the user would expect that his minimum buyout stays the same.
-	 * We'd have to watch for cpd changes and do unnecessarily complex recalculations.
+	 * 2 div should stay that regardless of whether the ratio is 1:100 or 1:150.
 	 */
 	minimumBuyout: TotalPrice
 	fullBuyout: boolean
 	items: UnwrapRef<T>[]
+	filter?: ShopFilter<T>
 	fullPrice: number
 	lastUploaded: number
 	active: boolean

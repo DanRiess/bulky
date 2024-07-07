@@ -1,7 +1,7 @@
 <template>
 	<div class="o-shop-offers">
 		<FallbackShopOfferMolecule v-if="shopStore.offers.length === 0" />
-		<ShopOfferMolecule v-for="(_, idx) in shopStore.offers" v-model="shopStore.offers[idx]" />
+		<ShopOfferMolecule v-for="(_, idx) in shopStore.offers" v-model="(shopStore.offers[idx] as BulkyShopOffer)" />
 	</div>
 </template>
 
@@ -9,6 +9,7 @@
 import FallbackShopOfferMolecule from '../molecules/fallbacks/FallbackShopOfferMolecule.vue'
 import { useShopStore } from '@web/stores/shopStore'
 import ShopOfferMolecule from '../molecules/ShopOfferMolecule.vue'
+import { BulkyShopOffer } from '@shared/types/bulky.types'
 
 // STORES
 const shopStore = useShopStore()

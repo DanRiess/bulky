@@ -1,4 +1,11 @@
-import { BulkyBazaarOfferDto, BulkyShopItem, BulkyShopItemRecord, BulkyShopOffer, TotalPrice } from '@shared/types/bulky.types'
+import {
+	BulkyBazaarOfferDto,
+	BulkyShopItem,
+	BulkyShopItemRecord,
+	BulkyShopOffer,
+	ShopFilter,
+	TotalPrice,
+} from '@shared/types/bulky.types'
 import { useBulkyIdb } from '@web/composables/useBulkyIdb'
 import { defineStore } from 'pinia'
 import { Ref, UnwrapRef, ref, toValue } from 'vue'
@@ -17,12 +24,13 @@ import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { useAppStateStore } from './appStateStore'
 import { useConfigStore } from './configStore'
+import { useFilterShopItems } from '@web/composables/useFilterShopItems'
 
 /** TTL of any given offer. Default to 15 minutes. */
-const offerTtl = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
+const OFFER_TTL = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
 
 /** Declare the interval for automatic offer resync. Default to 10 minutes. */
-const autoSyncInterval = parseInt(import.meta.env.VITE_OFFER_AUTOSYNC_INTERVAL ?? 600000)
+const AUTO_SYNC_INTERVAL = parseInt(import.meta.env.VITE_OFFER_AUTOSYNC_INTERVAL ?? 600000)
 
 export const useShopStore = defineStore('shopStore', () => {
 	const bulkyIdb = useBulkyIdb()
@@ -49,12 +57,12 @@ export const useShopStore = defineStore('shopStore', () => {
 			const timeSinceLastUpdate = Date.now() - offer.lastUploaded
 
 			// Check the active property.
-			offer.active = timeSinceLastUpdate < offerTtl
+			offer.active = timeSinceLastUpdate < OFFER_TTL
 
 			// Check if the project needs to be refreshed.
-			if (offer.autoSync && timeSinceLastUpdate > autoSyncInterval) {
+			if (offer.autoSync && timeSinceLastUpdate > AUTO_SYNC_INTERVAL) {
 				console.log(`auto sync triggered for offer ${offer.category}`)
-				await refreshOffer(offer.uuid)
+				await recomputeOffer(offer.uuid)
 			}
 
 			// Refreshing the offer already puts it into IDB, so this condition is only relevant otherwise.
@@ -94,7 +102,8 @@ export const useShopStore = defineStore('shopStore', () => {
 		chaosPerDiv: number,
 		multiplier: number,
 		minBuyout: TotalPrice,
-		fullBuyout: boolean
+		fullBuyout: boolean,
+		filter?: ShopFilter
 	) {
 		// TODO: Handle errors
 		if (!authStore.profile?.name) {
@@ -132,6 +141,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			category: appStateStore.selectedCategory,
 			league: configStore.config.league,
 			items,
+			filter,
 			lastUploaded: 0,
 			fullPrice: fullPrice.value,
 			active: false,
@@ -207,7 +217,14 @@ export const useShopStore = defineStore('shopStore', () => {
 		await bulkyIdb.putShopOffer(offer)
 	}
 
-	async function refreshOffer(uuid: BulkyShopOffer['uuid'], status?: Ref<ApiStatus>) {
+	/**
+	 * Completely recompute an offer.
+	 *
+	 * Refetch its stash tabs and update its items' prices with new Ninja values.
+	 * Reapply the used filters if any are present.
+	 * Reupload the offer and save it to IDB.
+	 */
+	async function recomputeOffer(uuid: BulkyShopOffer['uuid'], status?: Ref<ApiStatus>) {
 		status && (status.value = 'PENDING')
 
 		const offer = getOfferByUuid(uuid)
@@ -229,6 +246,9 @@ export const useShopStore = defineStore('shopStore', () => {
 		const { prices, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
 		const { itemOverrides } = useItemOverrides(offer.category)
 		const { items: itemRecord } = useBulkyItems(poeItems, prices, itemOverrides, offer.category)
+		const { filteredItemRecord } = useFilterShopItems(itemRecord, offer.filter)
+
+		console.log({ filter: offer.filter, filteredItemRecord })
 
 		// Resync the stash tabs
 		const stashTabRequest = useFetchStashItems(stashTabs)
@@ -245,18 +265,26 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		// Flatten the BulkyShopItemRecord into a non-reactive array.
 		const items: UnwrapRef<BulkyShopItem>[] = []
+		let computedMultiplier = offer.multiplier
 
-		itemRecord.value.forEach(item => {
-			if (!item.selected) return
+		filteredItemRecord.value.forEach(item => {
+			if (!item.selected || (toValue(item.price) === 0 && toValue(item.priceOverride) === 0)) return
 			items.push(deepToRaw(item))
+
+			// calculate the multiplier for this item
+			const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
+			if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
+				computedMultiplier = itemMultiplier
+			}
 		})
 
 		// Calculate the full price.
-		const fullPrice = useAggregateItemPrice(itemRecord, offer.multiplier)
+		const fullPrice = useAggregateItemPrice(filteredItemRecord, offer.multiplier)
 
 		// Edit and reupload the offer.
 		offer.fullPrice = fullPrice.value
 		offer.items = items
+		offer.computedMultiplier = computedMultiplier
 
 		await putOffer(offer)
 
@@ -316,7 +344,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		generateOffer,
 		updateOffer,
 		putOffer,
-		refreshOffer,
+		recomputeOffer,
 		deleteOffer,
 	}
 })
