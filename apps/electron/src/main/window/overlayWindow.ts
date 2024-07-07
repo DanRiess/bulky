@@ -10,11 +10,8 @@ import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
 import { mainToRendererEvents } from '../events/mainToRenderer'
 import activeWindow from 'active-win'
-import { focusedWindowOutsideGameBounds } from '../utility/focusedWindowCalculations'
 
-// @ts-ignore - tried to augment the ImportMetaEnv type to include [key: string]: string, but couldn't manage to do it
-// suggestions welcome!
-const noAttachMode = import.meta.env.VITE_NO_ATTACH_MODE === 'true' && is.dev
+// const noAttachMode = import.meta.env.VITE_NO_ATTACH_MODE === 'true' && is.dev
 
 export class OverlayWindow {
 	public enforceOverlay = false

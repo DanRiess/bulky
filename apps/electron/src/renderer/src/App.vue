@@ -39,18 +39,18 @@ const router = useRouter()
 router.push('Bazaar')
 
 // EVENTS
-// window.api.onToggleOverlayComponent(value => {
-// 	active.value = value.overlayWindowActive
-// })
+window.api.onToggleOverlayComponent(value => {
+	active.value = value.overlayWindowActive
+})
 
-// window.api.onShowAttachmentPanel(value => {
-// 	router.push({ name: 'AttachmentPanel' })
-// 	attachmentPanelActive.value = true
-// 	setTimeout(() => {
-// 		attachmentPanelActive.value = false
-// 		router.push({ name: 'Bazaar' })
-// 	}, value.time)
-// })
+window.api.onShowAttachmentPanel(value => {
+	router.push({ name: 'AttachmentPanel' })
+	attachmentPanelActive.value = true
+	setTimeout(() => {
+		attachmentPanelActive.value = false
+		router.push({ name: 'Bazaar' })
+	}, value.time)
+})
 
 // METHODS
 onClickOutside(mainAppWindow, () => {

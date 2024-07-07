@@ -9,16 +9,27 @@ import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 
 export const api = {
-	// example for bidirectional communication
-	// renderer uses it like this: const result = await window.api.hello()
+	/**
+	 * Example for bidirectional communication. Usage in Renderer:
+	 * @example
+	 * const result = await window.api.hello()
+	 */
 	hello: () => ipcRenderer.invoke('hello'),
 
-	// example for one-way main -> renderer communication.
-	// renderer uses it like this: window.api.onMainToRendererExample(console.log)
+	/**
+	 * Example for one-way main -> renderer communication. Usage in Renderer:
+	 * @example
+	 * window.api.onMainToRendererExample(console.log)
+	 */
 	onMainToRendererExample: (callback: Function) => ipcRenderer.on('test', (_event, value) => callback(value)),
 
 	// example for one-way renderer -> main communication
 	// renderer uses it like this: window.api.setTitle(title)
+	/**
+	 * Example for one-way renderer -> main communication. Usage in Renderer:
+	 * @example
+	 * window.api.setTitle(title)
+	 */
 	setTitle: (title: string) => ipcRenderer.send('set-title', title),
 
 	// -----------------------------------------------

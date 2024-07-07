@@ -1,13 +1,16 @@
-import { ComputedListingDisplayValues } from '@shared/types/bulky.types'
+import { BulkyBazaarOffer } from '@shared/types/bulky.types'
+import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 
-export function craftWhisperMessage(listing: ComputedListingDisplayValues) {
-	const comuputedItemText = listing.computedItems
+export function craftWhisperMessage(offer: BulkyBazaarOffer) {
+	const comuputedItemText = offer.items
 		.map(i => {
 			return `${i.quantity}x ${i.name} (${i.price}c each)`
 		})
 		.join(', ')
 
-	return `Hi ${listing.ign}, I'd like to buy your ${comuputedItemText} for ${
-		listing.totalPrice.divine > 0 ? listing.totalPrice.divine + ' div ' : ''
-	}${listing.totalPrice.chaos} chaos.`
+	const divPrice = useChaosToDiv(offer.fullPrice, offer.chaosPerDiv)
+
+	return `Hi ${offer.ign}, I'd like to buy your ${comuputedItemText} for ${
+		divPrice.value.divine > 0 ? divPrice.value.divine + ' div ' : ''
+	}${divPrice.value.chaos} chaos.`
 }

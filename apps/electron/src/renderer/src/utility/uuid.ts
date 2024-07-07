@@ -4,18 +4,23 @@
 
 import { OptionalRecord, Uuid } from '@shared/types/utility.types'
 import { v4 as uuidv4, validate } from 'uuid'
-import { EssenceFilter, ShopEssence } from '@web/categories/essence/essence.types'
+import { BazaarEssence, EssenceFilter, EssenceFilterField, ShopEssence } from '@web/categories/essence/essence.types'
 import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.store'
-import { BulkyShopOffer } from '@shared/types/bulky.types'
+import { BulkyBazaarOffer, BulkyFilter, BulkyShopOffer } from '@shared/types/bulky.types'
 import { useScarabFilterStore } from '@web/categories/scarab/scarabFilter.store'
 import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
-import { ScarabFilter, ShopScarab } from '@web/categories/scarab/scarab.types'
-import { DeliriumOrbFilter, ShopDeliriumOrb } from '@web/categories/deliriumOrb/deliriumOrb.types'
+import { BazaarScarab, ScarabFilter, ScarabFilterField, ShopScarab } from '@web/categories/scarab/scarab.types'
+import {
+	BazaarDeliriumOrb,
+	DeliriumOrbFilter,
+	DeliriumOrbFilterField,
+	ShopDeliriumOrb,
+} from '@web/categories/deliriumOrb/deliriumOrb.types'
 import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOrbOffer.store'
 import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumOrbFilter.store'
 import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
-import { MapFilter, ShopMap } from '@web/categories/map/map.types'
+import { BazaarMap, MapFilter, MapFilterField, ShopMap } from '@web/categories/map/map.types'
 import { useNormalMapFilterStore } from '@web/categories/map/normalMapFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
@@ -44,49 +49,57 @@ function generateTypedUuid<T extends OptionalRecord = undefined>(maybeUuid?: str
 /** Validate if a given string is a essence offer uuid. */
 function isEssenceOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopEssence>> {
 	const store = useEssenceOfferStore()
-	return !!store.offers.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarEssence>>(uuid)
+	return !!store.offers.has(typedUuid)
 }
 
 /** Validate if a given string is a essence filter uuid */
 function isEssenceFilterUuid(uuid: string): uuid is Uuid<EssenceFilter> {
 	const store = useEssenceFilterStore()
-	return !!store.filters.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyFilter<EssenceFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
 }
 
 /** Validate if a given string is a scarab offer uuid. */
 function isScarabOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopScarab>> {
 	const store = useScarabOfferStore()
-	return !!store.offers.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarScarab>>(uuid)
+	return !!store.offers.has(typedUuid)
 }
 
 /** Validate if a given string is a scarab filter uuid */
 function isScarabFilterUuid(uuid: string): uuid is Uuid<ScarabFilter> {
 	const store = useScarabFilterStore()
-	return !!store.filters.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyFilter<ScarabFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
 }
 
 /** Validate if a given string is a delirium orb offer uuid. */
 function isDeliriumOrbOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopDeliriumOrb>> {
 	const store = useDeliriumOrbOfferStore()
-	return !!store.offers.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarDeliriumOrb>>(uuid)
+	return !!store.offers.has(typedUuid)
 }
 
 /** Validate if a given string is a delirium orb filter uuid */
 function isDeliriumOrbFilterUuid(uuid: string): uuid is Uuid<DeliriumOrbFilter> {
 	const store = useDeliriumOrbFilterStore()
-	return !!store.filters.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyFilter<DeliriumOrbFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
 }
 
 /** Validate if a given string is a map offer uuid. */
 function isMapOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopMap>> {
 	const store = useNormalMapOfferStore()
-	return !!store.offers.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarMap>>(uuid)
+	return !!store.offers.has(typedUuid)
 }
 
 /** Validate if a given string is a map filter uuid */
 function isMapFilterUuid(uuid: string): uuid is Uuid<MapFilter> {
 	const store = useNormalMapFilterStore()
-	return !!store.filters.has(uuid)
+	const typedUuid = generateTypedUuid<BulkyFilter<MapFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
 }
 
 export const BULKY_UUID = {

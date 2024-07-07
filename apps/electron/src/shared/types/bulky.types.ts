@@ -4,7 +4,7 @@ import {
 	EssenceFilterField,
 	EssenceFilterStore,
 	EssenceOfferStore,
-} from '@web/categories/essence/essence.types'
+} from 'src/renderer/src/categories/essence/essence.types'
 import { MaybeComputedRef, ObjectValues, Uuid, getKeys } from './utility.types'
 import { ComputedRef, UnwrapRef } from 'vue'
 import {
@@ -13,7 +13,7 @@ import {
 	ScarabFilterStore,
 	ScarabOfferStore,
 	ShopScarab,
-} from '@web/categories/scarab/scarab.types'
+} from 'src/renderer/src/categories/scarab/scarab.types'
 import { PoeStashTab } from './poe.types'
 import {
 	BazaarDeliriumOrb,
@@ -21,8 +21,14 @@ import {
 	DeliriumOrbFilterStore,
 	DeliriumOrbOfferStore,
 	ShopDeliriumOrb,
-} from '@web/categories/deliriumOrb/deliriumOrb.types'
-import { BazaarMap, MapFilterField, NormalMapFilterStore, NormalMapOfferStore, ShopMap } from '@web/categories/map/map.types'
+} from 'src/renderer/src/categories/deliriumOrb/deliriumOrb.types'
+import {
+	BazaarMap,
+	MapFilterField,
+	NormalMapFilterStore,
+	NormalMapOfferStore,
+	ShopMap,
+} from 'src/renderer/src/categories/map/map.types'
 
 // APP STATE TYPES
 

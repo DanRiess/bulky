@@ -14,10 +14,12 @@
 			"@web/*": [
 				"src/renderer/src/*"
 			],
+			"@main/*": [
+				"src/main/*"
+			],
 			"@shared/*": [
 				"src/shared/*"
 			]
 		},
-		"noErrorTruncation": true
 	}
 }

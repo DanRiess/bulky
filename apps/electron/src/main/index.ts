@@ -135,7 +135,8 @@ app.whenReady().then(() => {
 
 			// A second instance is being requested.
 			// This happens for example during the oauth flow when the browser window attempts to redirect to the app.
-			app.on('second-instance', (_, argv) => {
+			// app.on('second-instance', (_, argv) => {
+			app.on('second-instance', () => {
 				if (process.platform === 'win32') {
 					// find the argument that is the custom protocol url and store it
 					// deeplinkingUrl = argv.find(arg => arg.startsWith('bulky://'))
@@ -162,7 +163,8 @@ app.on('window-all-closed', () => {
 })
 
 // deep linking open url
-app.on('open-url', (e, url) => {
+// app.on('open-url', (e, url) => {
+app.on('open-url', e => {
 	e.preventDefault()
 	// deeplinkingUrl = url
 })

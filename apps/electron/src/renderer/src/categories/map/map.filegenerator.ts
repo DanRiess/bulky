@@ -3,7 +3,7 @@
  * It grabs metadata from poedb.tw and generates the file from it.
  */
 
-import { capitalize } from 'lodash'
+// import { capitalize } from 'lodash'
 
 const fs = require('node:fs')
 
