@@ -86,7 +86,7 @@ export class OverlayWindow {
 	}
 
 	public getBounds() {
-		return this.window?.getBounds()
+		return this.window.getBounds()
 	}
 
 	/**
@@ -98,17 +98,17 @@ export class OverlayWindow {
 		const url =
 			is.dev && process.env['ELECTRON_RENDERER_URL']
 				? process.env['ELECTRON_RENDERER_URL']
-				: join(__dirname, '../../renderer/index.html')
+				: join(__dirname, '../renderer/index.html')
 
 		if (is.dev) {
-			console.log(process.env['ELECTRON_RENDERER_URL'])
 			this.window.loadURL(url)
 			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
-
-			this.poeWindow.attach(this, import.meta.env.VITE_GAME_TITLE)
 		} else {
-			this.window.loadURL(url)
+			this.window.loadFile(url)
+			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 		}
+
+		// this.poeWindow.attach(this, import.meta.env.VITE_GAME_TITLE)
 	}
 
 	/** activate the overlay. if the game is not currently focused, do nothing. */

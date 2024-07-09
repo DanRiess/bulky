@@ -34,7 +34,8 @@ const backgroundColorButton = computed(() => {
 })
 
 const imgSource = computed(() => {
-	return `/src/assets/png-icons/${fileName}.png`
+	return new URL(`/src/assets/png-icons/${fileName}.png`, import.meta.url).href
+	// return `/src/assets/png-icons/${fileName}.png`
 })
 
 /** calculate the necessary width according to displayName length */

@@ -7,6 +7,11 @@ const routes: RouteRecordRaw[] = [
 		component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue'),
 	},
 	{
+		path: '/app-update',
+		name: 'AppUpdate',
+		component: () => import(/* webpackChunkName: "app-update" */ '../views/AppUpdateView.vue'),
+	},
+	{
 		path: '/attachment-panel',
 		name: 'AttachmentPanel',
 		component: () => import(/* webpackChunkName: "attachment-panel" */ '../views/AttachmentPanelView.vue'),

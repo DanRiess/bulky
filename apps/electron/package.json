@@ -13,20 +13,36 @@
 		"typecheck": "pnpm typecheck:node && pnpm typecheck:web",
 		"start": "electron-vite preview",
 		"dev": "electron-vite dev --watch",
+		"debug": "electron-vite --inspect --sourcemap",
 		"build": "pnpm typecheck && electron-vite build",
 		"package:win": "pnpm build && electron-builder --win --config",
 		"package:mac": "pnpm build && electron-builder --mac --config",
 		"package:linux": "pnpm build && electron-builder --linux --config"
 	},
+	"build": {
+		"productName": "Bulky",
+		"publish": {
+			"provider": "generic",
+			"url": "http://localhost/release"
+		},
+		"win": {
+			"target": "nsis"
+		},
+		"nsis": {
+			"oneClick": false,
+			"perMachine": true,
+			"allowToChangeInstallationDirectory": true
+		}
+	},
 	"dependencies": {
-		"@electron-toolkit/preload": "^3.0.0",
+		"@electron-toolkit/preload": "^3.0.1",
 		"@electron-toolkit/utils": "^3.0.0",
 		"active-win": "^8.2.1",
-		"axios": "^1.6.7",
+		"axios": "^1.7.2",
 		"electron-overlay-window": "^3.3.0",
-		"electron-updater": "^6.1.7",
+		"electron-updater": "^6.2.1",
 		"express": "^4.19.2",
-		"uiohook-napi": "^1.5.3",
+		"uiohook-napi": "^1.5.4",
 		"uuid": "^9.0.1"
 	},
 	"devDependencies": {
@@ -34,22 +50,24 @@
 		"@electron-toolkit/tsconfig": "^1.0.1",
 		"@total-typescript/ts-reset": "^0.5.1",
 		"@types/express": "^4.17.21",
-		"@types/lodash": "^4.14.202",
-		"@types/node": "^18.19.5",
+		"@types/lodash": "^4.17.6",
+		"@types/node": "^18.19.39",
 		"@types/uuid": "^9.0.8",
-		"@vitejs/plugin-vue": "^5.0.2",
+		"@vitejs/plugin-vue": "^5.0.5",
 		"@vueuse/core": "^10.11.0",
-		"electron": "^28.1.1",
-		"electron-builder": "^24.9.1",
-		"electron-vite": "^2.0.0",
+		"debug": "^4.3.5",
+		"electron": "^31.1.0",
+		"electron-builder": "^24.13.3",
+		"electron-log": "^5.1.5",
+		"electron-vite": "^2.3.0",
 		"gsap": "^3.12.5",
 		"idb": "^8.0.0",
 		"lodash": "^4.17.21",
 		"pinia": "^2.1.7",
-		"typescript": "^5.3.3",
-		"vite": "^5.0.11",
-		"vue": "^3.4.5",
-		"vue-router": "^4.2.5",
-		"vue-tsc": "^1.8.27"
+		"typescript": "^5.5.3",
+		"vite": "^5.3.3",
+		"vue": "^3.4.31",
+		"vue-router": "^4.4.0",
+		"vue-tsc": "^2.0.26"
 	}
 }

@@ -1,4 +1,5 @@
 import { WebContents } from 'electron'
+import { UpdateInfo } from 'electron-updater'
 
 /**
  * Send a message to the renderer to display the attachment panel.
@@ -6,6 +7,14 @@ import { WebContents } from 'electron'
  */
 function showAttachmentPanel(webContents: WebContents, time: number = 2500) {
 	webContents.send('show-attachment-panel', { time })
+}
+
+/**
+ * Instruct the renderer to display the app update panel.
+ */
+function showAppUpdatePanel(webcContents: WebContents, info?: UpdateInfo) {
+	console.log('hello?')
+	webcContents.send('show-app-update-panel', info)
 }
 
 /**
@@ -24,6 +33,7 @@ function sendOauthAuthorizationCode(webContents: WebContents, code: string) {
 
 export const mainToRendererEvents = {
 	showAttachmentPanel,
+	showAppUpdatePanel,
 	toggleOverlayComponent,
 	sendOauthAuthorizationCode,
 }

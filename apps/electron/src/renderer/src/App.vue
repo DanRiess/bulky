@@ -36,14 +36,23 @@ const attachmentPanelActive = ref(false)
 // COMPOSABLES
 const hooks = useRouteTransitionHooks()
 const router = useRouter()
-router.push('Bazaar')
+// router.push('Bazaar')
 
 // EVENTS
 window.api.onToggleOverlayComponent(value => {
 	active.value = value.overlayWindowActive
 })
 
+// TODO: figure out why these events don't work if the app is not attached to game window
+
+window.api.onAppUpdate(info => {
+	console.log('Update info received!')
+	console.log({ info })
+	router.push('AppUpdate')
+})
+
 window.api.onShowAttachmentPanel(value => {
+	console.log('attachment panel')
 	router.push({ name: 'AttachmentPanel' })
 	attachmentPanelActive.value = true
 	setTimeout(() => {

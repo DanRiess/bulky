@@ -1,4 +1,4 @@
-import { app, ipcMain } from 'electron'
+import { app, ipcMain, session } from 'electron'
 import { electronApp } from '@electron-toolkit/utils'
 import { GameWindow } from './window/gameWindow'
 import { OverlayWindow } from './window/overlayWindow'
@@ -20,6 +20,27 @@ import { SerializedError } from '@shared/errors/serializedError'
 import axios from 'axios'
 import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
+import { updateApp } from './utility/appUpdater'
+
+// Handle auto update functionality
+
+// autoUpdater.logger = log
+// ;(autoUpdater.logger as typeof log).transports.file.level = 'info'
+
+// if (import.meta.env.DEV) {
+// 	autoUpdater.forceDevUpdateConfig = true
+// 	autoUpdater.updateConfigPath = join(__dirname, '../../dev-app-update.yml')
+// }
+// autoUpdater.on('checking-for-update', () => {
+// 	console.log('checking for update')
+// })
+
+// autoUpdater.on('update-not-available', info => {
+// 	console.log('not available')
+// 	console.log({ info })
+// })
+
+// autoUpdater.checkForUpdates()
 
 // Initialize the app.
 // This setup provides deep-linking and the option to open bulky from the browser during oauth flow.
@@ -28,7 +49,7 @@ import { PoeStashTab } from '@shared/types/poe.types'
 if (import.meta.env.DEV && process.platform === 'win32') {
 	// Set the path of electron.exe and your app.
 	// These two additional parameters are only available on windows.
-	// Setting this is required to get this working in dev mode.
+	// Setting this is required to get it working in dev mode.
 	app.setAsDefaultProtocolClient('bulky', process.execPath, [resolve(process.argv[1])])
 } else {
 	app.setAsDefaultProtocolClient('bulky')
@@ -102,7 +123,7 @@ app.whenReady().then(() => {
 	})
 
 	// register ipc handlers (one way, no return values)
-	ipcMain.on('bye', () => console.log('bye'))
+	// ipcMain.on('bye', () => console.log('bye'))
 
 	// fixes a transparency issue in linux
 	// https://github.com/electron/electron/issues/25153#issuecomment-871345288
@@ -111,14 +132,19 @@ app.whenReady().then(() => {
 	}
 
 	setTimeout(
-		() => {
+		async () => {
+			// Initialize instances.
 			const poeWindow = new GameWindow()
 			const overlayWindow = new OverlayWindow(poeWindow)
 			const chatbox = new Chatbox(overlayWindow)
+
+			// Load the app page.
 			overlayWindow.loadAppPage()
 
+			// Register input events.
 			registerInputs(overlayWindow)
 
+			// Register listeners
 			ipcMain.on('close-overlay', () => {
 				overlayWindow.assertGameActive()
 			})
@@ -148,6 +174,23 @@ app.whenReady().then(() => {
 					overlayWindow.assertOverlayActive()
 				}, 50)
 			})
+
+			// Set the CSP.
+			session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+				callback({
+					responseHeaders: {
+						...details.responseHeaders,
+						'Content-Security-Policy': [
+							"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src https://api.pathofexile.com ws://localhost:5173 http://localhost:5173 ws://localhost:5174 http://localhost:5174 https://poe.ninja; img-src 'self' http://localhost:5174 https://web.poecdn.com",
+						],
+					},
+				})
+			})
+
+			// Handle the update process
+			const test = await updateApp(overlayWindow.getWindow().webContents)
+
+			console.log('handled update? ' + test)
 		},
 		process.platform === 'linux' ? 1000 : 0
 	)

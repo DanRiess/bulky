@@ -8,7 +8,8 @@ export default defineConfig({
 		resolve: {
 			alias: {
 				'@shared': resolve('src/shared'),
-				'@web': resolve('src/shared'),
+				'@web': resolve('src/renderer/src'),
+				'@main': resolve('src/main'),
 			},
 		},
 	},
@@ -17,7 +18,7 @@ export default defineConfig({
 		resolve: {
 			alias: {
 				'@shared': resolve('src/shared'),
-				'@web': resolve('src/shared'),
+				'@web': resolve('src/renderer/src'),
 			},
 		},
 	},
