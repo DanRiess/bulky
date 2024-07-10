@@ -11,7 +11,8 @@
 				"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron-vite.cmd"
 			},
 			"runtimeArgs": [
-				"--remote-debugging-port=9223",
+				"--remote-debugging-port=9222",
+				"--sourcemap",
 				"."
 			],
 			// "env": {
@@ -20,14 +21,14 @@
 		},
 		{
 			"name": "Debug Renderer Process",
-			"port": 9223,
+			"port": 9222,
 			"request": "attach",
 			"type": "chrome",
 			"webRoot": "${workspaceFolder}/apps/electron/src/renderer",
 			"timeout": 30000,
-			"presentation": {
-				"hidden": true
-			}
+			// "presentation": {
+			// 	"hidden": true
+			// }
 		}
 	],
 	"compounds": [
@@ -37,9 +38,9 @@
 				"Debug Main Process",
 				"Debug Renderer Process"
 			],
-			"presentation": {
-				"order": 1
-			}
+			// "presentation": {
+			// 	"order": 1
+			// }
 		}
 	]
 }

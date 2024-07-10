@@ -44,7 +44,10 @@ export class GameWindow extends EventEmitter {
 
 		// Register blur and focus event listeners and attach the overlay window to this one.
 		if (!this._isTracking) {
-			// despite the name, this listener listens to the game window, not the overlay
+			// During development, don't register the listeners if you want to work on styles etc.
+			if (import.meta.env.VITE_NO_ATTACH_MODE === 'true') return
+
+			// Despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('focus', () => {
 				if (this.ignoreNextFocus) {
 					this.ignoreNextFocus = false
@@ -54,9 +57,9 @@ export class GameWindow extends EventEmitter {
 				this.emit('poe-window-active-change', this.isActive)
 			})
 
-			// despite the name, this listener listens to the game window, not the overlay
+			// Despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('blur', async () => {
-				// if the focused window overlaps the game window, hide everything
+				// If the focused window overlaps the game window, hide everything
 				if (focusedWindowInsideGameBounds(this)) {
 					overlayWindow.getWindow().hide()
 					this.isActive = false
@@ -73,11 +76,11 @@ export class GameWindow extends EventEmitter {
 			})
 
 			OverlayController.events.on('attach', (e: AttachEvent) => {
-				// listen to this in OverlayWindow class
+				// Listen to this in OverlayWindow class
 				this.emit('attach', e)
 			})
 
-			// attach the passed overlay window to the game window
+			// Attach the passed overlay window to the game window
 			OverlayController.attachByTitle(window, title, { hasTitleBarOnMac: true })
 			this._isTracking = true
 		}

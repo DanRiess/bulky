@@ -16,7 +16,7 @@ import activeWindow from 'active-win'
 export class OverlayWindow {
 	public enforceOverlay = false
 	public isInteractable = false
-	private window: BrowserWindow
+	public window: BrowserWindow
 	private ignoreNextFocus = false
 	private ignoreNextBlur = false
 
@@ -24,8 +24,8 @@ export class OverlayWindow {
 		this.window = new BrowserWindow({
 			...(process.platform === 'linux' && { icon }),
 			title: import.meta.env.VITE_APP_TITLE,
-			width: 800,
-			height: 600,
+			width: 350,
+			height: 400,
 			webPreferences: {
 				preload: join(__dirname, '../preload/index.js'),
 				allowRunningInsecureContent: false,
@@ -42,7 +42,11 @@ export class OverlayWindow {
 			alwaysOnTop: false,
 		})
 
-		this.window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
+		this.window.on('ready-to-show', () => {
+			this.window.show()
+		})
+
+		// this.window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
 
 		// spyOnPathofexileCookies(this.window.webContents, proxy.cookiesForPoe)
 
@@ -111,7 +115,7 @@ export class OverlayWindow {
 		// this.poeWindow.attach(this, import.meta.env.VITE_GAME_TITLE)
 	}
 
-	/** activate the overlay. if the game is not currently focused, do nothing. */
+	/** Activate the overlay. If the game is not currently focused, do nothing. */
 	public assertOverlayActive = () => {
 		if (!this.poeWindow.isActive) return
 
@@ -123,7 +127,7 @@ export class OverlayWindow {
 		this.handlePoeWindowActiveChange(false)
 	}
 
-	/** activate the game. if the overlay is not currently focused, do nothing */
+	/** Activate the game. If the overlay is not currently focused, do nothing */
 	public assertGameActive = () => {
 		if (!this.isInteractable) return
 

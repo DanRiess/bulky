@@ -1,5 +1,6 @@
 <template>
-	<div class="main-app-window" ref="mainAppWindow" v-if="active || attachmentPanelActive">
+	<!-- <div class="main-app-window" ref="mainAppWindow" v-if="active || attachmentPanelActive"> -->
+	<div class="main-app-window" ref="mainAppWindow">
 		<NavbarOrganism />
 		<router-view v-slot="{ Component }">
 			<BaseTransition v-on="hooks" mode="out-in">
@@ -43,12 +44,10 @@ window.api.onToggleOverlayComponent(value => {
 	active.value = value.overlayWindowActive
 })
 
-// TODO: figure out why these events don't work if the app is not attached to game window
-
-window.api.onAppUpdate(info => {
+window.api.onAppUpdate((status, info, error) => {
 	console.log('Update info received!')
-	console.log({ info })
-	router.push('AppUpdate')
+	console.log({ status, info, error })
+	router.push({ name: 'AppUpdate' })
 })
 
 window.api.onShowAttachmentPanel(value => {
@@ -73,13 +72,6 @@ stashStore.initialize()
 authStore.initialize()
 leagueStore.initialize()
 shopStore.initialize()
-
-// HOOKS
-// onMounted(() => {
-// 	if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-// 		authStore.isLoggedIn = true
-// 	}
-// })
 </script>
 
 <style>

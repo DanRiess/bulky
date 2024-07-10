@@ -22,30 +22,10 @@ import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 import { updateApp } from './utility/appUpdater'
 
-// Handle auto update functionality
-
-// autoUpdater.logger = log
-// ;(autoUpdater.logger as typeof log).transports.file.level = 'info'
-
-// if (import.meta.env.DEV) {
-// 	autoUpdater.forceDevUpdateConfig = true
-// 	autoUpdater.updateConfigPath = join(__dirname, '../../dev-app-update.yml')
-// }
-// autoUpdater.on('checking-for-update', () => {
-// 	console.log('checking for update')
-// })
-
-// autoUpdater.on('update-not-available', info => {
-// 	console.log('not available')
-// 	console.log({ info })
-// })
-
-// autoUpdater.checkForUpdates()
+// STATE
+let checkedForUpdate = false
 
 // Initialize the app.
-// This setup provides deep-linking and the option to open bulky from the browser during oauth flow.
-// let deeplinkingUrl: string | undefined
-
 if (import.meta.env.DEV && process.platform === 'win32') {
 	// Set the path of electron.exe and your app.
 	// These two additional parameters are only available on windows.
@@ -132,7 +112,7 @@ app.whenReady().then(() => {
 	}
 
 	setTimeout(
-		async () => {
+		() => {
 			// Initialize instances.
 			const poeWindow = new GameWindow()
 			const overlayWindow = new OverlayWindow(poeWindow)
@@ -188,9 +168,12 @@ app.whenReady().then(() => {
 			})
 
 			// Handle the update process
-			const test = await updateApp(overlayWindow.getWindow().webContents)
-
-			console.log('handled update? ' + test)
+			overlayWindow.window.webContents.on('did-finish-load', async () => {
+				if (checkedForUpdate) return
+				checkedForUpdate = true
+				const test = await updateApp(overlayWindow.getWindow().webContents)
+				console.log('handled update? ' + test)
+			})
 		},
 		process.platform === 'linux' ? 1000 : 0
 	)

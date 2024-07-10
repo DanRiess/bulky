@@ -1,5 +1,6 @@
+import { AppUpdateStatus } from '@shared/types/electron.types'
 import { WebContents } from 'electron'
-import { UpdateInfo } from 'electron-updater'
+import { ProgressInfo } from 'electron-updater'
 
 /**
  * Send a message to the renderer to display the attachment panel.
@@ -12,9 +13,8 @@ function showAttachmentPanel(webContents: WebContents, time: number = 2500) {
 /**
  * Instruct the renderer to display the app update panel.
  */
-function showAppUpdatePanel(webcContents: WebContents, info?: UpdateInfo) {
-	console.log('hello?')
-	webcContents.send('show-app-update-panel', info)
+function showAppUpdatePanel(webContents: WebContents, status: AppUpdateStatus, info?: ProgressInfo, error?: Error) {
+	webContents.send('show-app-update-panel', status, info, error)
 }
 
 /**

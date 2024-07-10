@@ -7,7 +7,8 @@ import { SerializedError } from '@shared/errors/serializedError'
 import { PoeLeagueRecordDtoResponse } from '@shared/types/dtoResponse.types'
 import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
-import { UpdateInfo } from 'electron-updater'
+import { ProgressInfo } from 'electron-updater'
+import { AppUpdateStatus } from '@shared/types/electron.types'
 
 export const api = {
 	/**
@@ -35,9 +36,9 @@ export const api = {
 
 	// -----------------------------------------------
 	// MAIN -> RENDERER ONE WAY
-	onAppUpdate: (callback: (info?: UpdateInfo) => void) => {
-		ipcRenderer.on('show-app-update-panel', (_event, info?: UpdateInfo) => {
-			callback(info)
+	onAppUpdate: (callback: (status: AppUpdateStatus, info?: ProgressInfo, error?: Error) => void) => {
+		ipcRenderer.on('show-app-update-panel', (_event, status: AppUpdateStatus, info?: ProgressInfo, error?: Error) => {
+			callback(status, info, error)
 		})
 	},
 
