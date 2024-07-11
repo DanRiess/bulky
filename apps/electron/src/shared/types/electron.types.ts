@@ -1,1 +1,7 @@
-export type AppUpdateStatus = 'CHECKING' | 'FOUND' | 'NOT_FOUND' | 'DOWNLOADING' | 'SUCCESS' | 'ERROR'
+export type AppUpdateStatus =
+	| 'CHECKING_FOR_UPDATE'
+	| 'UPDATE_FOUND'
+	| 'UPDATE_NOT_FOUND'
+	| 'DOWNLOADING_UPDATE'
+	| 'SUCCESS'
+	| 'ERROR'

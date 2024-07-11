@@ -171,8 +171,11 @@ app.whenReady().then(() => {
 			overlayWindow.window.webContents.on('did-finish-load', async () => {
 				if (checkedForUpdate) return
 				checkedForUpdate = true
-				const test = await updateApp(overlayWindow.getWindow().webContents)
-				console.log('handled update? ' + test)
+				await updateApp(overlayWindow.getWindow().webContents)
+				console.log('hello')
+
+				// Attach the controller now.
+				poeWindow.attach(overlayWindow, import.meta.env.VITE_GAME_TITLE)
 			})
 		},
 		process.platform === 'linux' ? 1000 : 0

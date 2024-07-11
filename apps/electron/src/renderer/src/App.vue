@@ -1,6 +1,6 @@
 <template>
-	<!-- <div class="main-app-window" ref="mainAppWindow" v-if="active || attachmentPanelActive"> -->
-	<div class="main-app-window" ref="mainAppWindow">
+	<!-- <div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive || attachmentPanelActive"> -->
+	<div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive">
 		<NavbarOrganism />
 		<router-view v-slot="{ Component }">
 			<BaseTransition v-on="hooks" mode="out-in">
@@ -8,11 +8,18 @@
 			</BaseTransition>
 		</router-view>
 	</div>
+	<div v-else-if="updatePanelActive" class="update-panel-window">
+		<router-view v-slot="{ Component }">
+			<BaseTransition v-on="hooks" mode="out-in">
+				<component :is="Component" v-bind="routerProps"></component>
+			</BaseTransition>
+		</router-view>
+	</div>
 </template>
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { BaseTransition, ref } from 'vue'
+import { BaseTransition, computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
@@ -21,6 +28,8 @@ import { useLeagueStore } from './stores/leagueStore'
 import NavbarOrganism from './components/organisms/NavbarOrganism.vue'
 import { useRouteTransitionHooks } from './transitions/routeTransitionHooks'
 import { useShopStore } from './stores/shopStore'
+import { AppUpdateStatus } from '@shared/types/electron.types'
+import { ProgressInfo } from 'electron-updater'
 
 // STORES
 const configStore = useConfigStore()
@@ -31,8 +40,11 @@ const shopStore = useShopStore()
 
 // STATE
 const mainAppWindow = ref<HTMLElement | null>(null)
-const active = ref(true)
+const mainWindowActive = ref(false)
+const updatePanelActive = ref(true)
 const attachmentPanelActive = ref(false)
+const appUpdateStatus = ref<AppUpdateStatus>('CHECKING_FOR_UPDATE')
+const appDownloadProgress = ref<ProgressInfo>()
 
 // COMPOSABLES
 const hooks = useRouteTransitionHooks()
@@ -41,18 +53,18 @@ const router = useRouter()
 
 // EVENTS
 window.api.onToggleOverlayComponent(value => {
-	active.value = value.overlayWindowActive
+	if (updatePanelActive.value || attachmentPanelActive.value) return
+	mainWindowActive.value = value.overlayWindowActive
 })
 
-window.api.onAppUpdate((status, info, error) => {
-	console.log('Update info received!')
-	console.log({ status, info, error })
+window.api.onAppUpdate((status, info) => {
+	updatePanelActive.value = true
+	appUpdateStatus.value = status
+	appDownloadProgress.value = info
 	router.push({ name: 'AppUpdate' })
 })
 
 window.api.onShowAttachmentPanel(value => {
-	console.log('attachment panel')
-	router.push({ name: 'AttachmentPanel' })
 	attachmentPanelActive.value = true
 	setTimeout(() => {
 		attachmentPanelActive.value = false
@@ -60,9 +72,19 @@ window.api.onShowAttachmentPanel(value => {
 	}, value.time)
 })
 
+const routerProps = computed(() => {
+	if (router.currentRoute.value.name === 'AppUpdate') {
+		return {
+			updateStatus: appUpdateStatus.value,
+			downloadProgress: appDownloadProgress.value,
+		}
+	}
+	return {}
+})
+
 // METHODS
 onClickOutside(mainAppWindow, () => {
-	active.value = false
+	mainWindowActive.value = false
 	window.api.closeOverlay()
 })
 
@@ -102,5 +124,10 @@ body {
 	border-radius: 1rem;
 	padding: 1rem;
 	background-color: var(--dr-background-color-app);
+}
+
+.update-panel-window {
+	width: 100%;
+	height: 100%;
 }
 </style>

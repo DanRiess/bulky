@@ -77,11 +77,18 @@ export class GameWindow extends EventEmitter {
 
 			OverlayController.events.on('attach', (e: AttachEvent) => {
 				// Listen to this in OverlayWindow class
+				console.log('emit attach')
 				this.emit('attach', e)
 			})
 
+			console.log({ window, title })
+
+			// TODO: event does not trigger. WHYYY?
+
 			// Attach the passed overlay window to the game window
 			OverlayController.attachByTitle(window, title, { hasTitleBarOnMac: true })
+
+			console.log({ init: OverlayController.isInitialized, win: OverlayController.electronWindow })
 			this._isTracking = true
 		}
 	}
