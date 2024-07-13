@@ -5,6 +5,7 @@ import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
 import { BulkyShopItem, BulkyItemOverrideInstance, BulkyBazaarItemDto } from '@shared/types/bulky.types'
 import { UnwrapRef, toValue } from 'vue'
 import { BULKY_FACTORY } from './factory'
+import { Map8ModPrices } from '@web/categories/map/map.types'
 
 function stringToDisplayValue(string: string) {
 	const arr = string.split('_')
@@ -76,12 +77,13 @@ function mapSubStashToPoeItem(dto: PoeStashTabDto): PoeItem | undefined {
  */
 function bulkyItemToOverrideItem(
 	item: BulkyShopItem,
-	overrides: { price?: number; selected?: boolean }
+	overrides: { price?: number; priceMap8Mod?: Map8ModPrices; selected?: boolean }
 ): BulkyItemOverrideInstance {
 	return {
 		type: item.type,
 		tier: item.tier,
 		priceOverride: overrides.price ?? toValue(item.priceOverride),
+		priceOverrideMap8Mod: overrides.priceMap8Mod ?? toValue(item.priceOverrideMap8Mod),
 		league: item.league,
 		category: item.category,
 		selected: overrides.selected ?? toValue(item.selected),

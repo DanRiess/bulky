@@ -1,4 +1,4 @@
-import { ObjectValues } from '@shared/types/utility.types'
+import { ObjectValues, Uuid } from '@shared/types/utility.types'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import {
 	BulkyBazaarItemBase,
@@ -10,10 +10,15 @@ import {
 } from '@shared/types/bulky.types'
 import { useNormalMapOfferStore } from './normalMapOffers.store'
 import { useNormalMapFilterStore } from './normalMapFilter.store'
+import { ComputedRef } from 'vue'
+import { useMap8ModOfferStore } from './map8ModOffers.store'
+import { useMap8ModFilterStore } from './map8ModFilter.store'
 
 // STORE TYPES
 export type NormalMapOfferStore = ReturnType<typeof useNormalMapOfferStore>
 export type NormalMapFilterStore = ReturnType<typeof useNormalMapFilterStore>
+export type Map8ModOfferStore = ReturnType<typeof useMap8ModOfferStore>
+export type Map8ModFilterStore = ReturnType<typeof useMap8ModFilterStore>
 
 // ITEM TYPES
 
@@ -29,14 +34,33 @@ export type ShopMap = BulkyShopItemBase<typeof CATEGORY.MAP> & {
 	tier: MapTier
 }
 
+/** BulkyShopItem implementation for the 8 mod map category */
+export type ShopMap8Mod = BulkyShopItemBase<typeof CATEGORY.MAP_8_MOD> & {
+	type: MapType
+	tier: MapTier
+	priceOverrideMap8Mod: ComputedRef<Map8ModPrices>
+}
+
 /** BulkyBazaarItem implementation for the map category */
 export type BazaarMap = BulkyBazaarItemBase<typeof CATEGORY.MAP> & {
 	type: MapType
 	tier: MapTier
 }
 
+/** BulkyBazaarItem implementation for the 8 mod map category */
+export type BazaarMap8Mod = BulkyBazaarItemBase<typeof CATEGORY.MAP_8_MOD> & {
+	type: MapType
+	tier: MapTier
+	priceMap8Mod: Map8ModPrices
+}
+
 /** BulkyBazaarOffer implementation for the map category */
 export type BazaarMapOffer = BulkyBazaarOffer<BazaarMap>
+
+/** BulkyBazaarOffer implementation for the map category */
+export type BazaarMap8ModOffer = Omit<BulkyBazaarOffer<BazaarMap8Mod>, 'fullPrice' | 'multiplier' | 'uuid'> & {
+	uuid: Uuid<BazaarMap8ModOffer>
+}
 
 // FILTER TYPES
 
@@ -46,5 +70,30 @@ export type MapFilterField = BulkyFilterFieldBase<typeof CATEGORY.MAP> & {
 	tier: MapTier
 }
 
+/** FilterField implementation for the 8 mod map category */
+export type Map8ModFilterField = BulkyFilterFieldBase<typeof CATEGORY.MAP_8_MOD> & {
+	type: MapType
+	tier: MapTier
+	options: {
+		regex: string
+	}
+}
+
 /** Filter implementation for the map category */
 export type MapFilter = BulkyFilter<MapFilterField>
+
+/** Filter implementation for the map category */
+export type Map8ModFilter = Omit<BulkyFilter<Map8ModFilterField>, 'multiplier' | 'fullBuyout' | 'uuid'> & {
+	uuid: Uuid<Map8ModFilter>
+}
+// export type Map8ModFilter = BulkyFilter<Map8ModFilterField>
+
+// UTILITY TYPES
+
+export type Map8ModPrices = {
+	base: number
+	quant110?: number
+	quant120?: number
+	avoidRegex?: number
+	addRegex?: number
+}

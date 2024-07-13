@@ -1,7 +1,7 @@
 import { computed, onUnmounted } from 'vue'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { BulkyOfferStore, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { BulkyBazaarOffer, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
@@ -27,7 +27,7 @@ export function useComputedOffersStore() {
 
 		// Get the correct store and its offers
 		const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
-		const offers: BulkyOfferStore['offers'] = store ? store.offers : new Map()
+		const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = store ? store.offers : new Map()
 
 		/**
 		 * Interval function. Call this every x seconds. Define the interval in the .env file.

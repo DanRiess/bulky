@@ -24,10 +24,16 @@ import {
 } from 'src/renderer/src/categories/deliriumOrb/deliriumOrb.types'
 import {
 	BazaarMap,
+	BazaarMap8Mod,
+	Map8ModFilterField,
+	Map8ModFilterStore,
+	Map8ModOfferStore,
+	Map8ModPrices,
 	MapFilterField,
 	NormalMapFilterStore,
 	NormalMapOfferStore,
 	ShopMap,
+	ShopMap8Mod,
 } from 'src/renderer/src/categories/map/map.types'
 
 // APP STATE TYPES
@@ -47,6 +53,7 @@ export const CATEGORY = {
 	SCARAB: 'SCARAB',
 	DELIRIUM_ORB: 'DELIRIUM_ORB',
 	MAP: 'MAP',
+	MAP_8_MOD: 'MAP_8_MOD',
 } as const
 
 export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
@@ -57,14 +64,25 @@ export const CATEGORY_NAME_TO_IDX = CATEGORY_IDX_TO_NAME.reduce((prev, curr, idx
 
 export type Category = ObjectValues<typeof CATEGORY>
 
-type BulkyItemOptions = {
+export type BulkyItemOptions = {
 	prefix: string[]
 	suffix: string[]
 }
 
 // STORES
-export type BulkyOfferStore = EssenceOfferStore | ScarabOfferStore | DeliriumOrbOfferStore | NormalMapOfferStore
-export type BulkyFilterStore = EssenceFilterStore | ScarabFilterStore | DeliriumOrbFilterStore | NormalMapFilterStore
+export type BulkyOfferStore =
+	| EssenceOfferStore
+	| ScarabOfferStore
+	| DeliriumOrbOfferStore
+	| NormalMapOfferStore
+	| Map8ModOfferStore
+
+export type BulkyFilterStore =
+	| EssenceFilterStore
+	| ScarabFilterStore
+	| DeliriumOrbFilterStore
+	| NormalMapFilterStore
+	| Map8ModFilterStore
 
 // BULKY SHOP ITEM TYPES
 
@@ -85,6 +103,7 @@ export type BulkyShopItemBase<T extends Category> = {
 	quantity: number
 	price: MaybeComputedRef<number>
 	priceOverride: ComputedRef<number>
+	priceOverrideMap8Mod?: ComputedRef<Map8ModPrices>
 	icon: string
 	league: string
 	selected: MaybeComputedRef<boolean>
@@ -94,7 +113,7 @@ export type BulkyShopItemBase<T extends Category> = {
  * A collection of every implementation of BulkyShopItemBase throughout the app.
  * This will be used as a generic type argument for every higher level type.
  */
-export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb | ShopMap
+export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb | ShopMap | ShopMap8Mod
 
 /** Type that bulky items will be saved as */
 export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
@@ -144,12 +163,13 @@ export type BulkyBazaarItemBase<T extends Category> = {
 	tier: string
 	options?: BulkyItemOptions
 	quantity: number
-	price: number
+	price?: number
+	priceMap8Mod?: Map8ModPrices
 	/** The actual url, not the /data/static id. */
 	icon: string
 }
 
-export type BulkyBazaarItem = BazaarEssence | BazaarScarab | BazaarDeliriumOrb | BazaarMap
+export type BulkyBazaarItem = BazaarEssence | BazaarScarab | BazaarDeliriumOrb | BazaarMap | BazaarMap8Mod
 
 export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
 
@@ -175,7 +195,8 @@ export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
  * it will choose a filter from the correct store and computed utility functions around it.
  */
 export type ComputedBulkyOfferStore = {
-	offers: BulkyOfferStore['offers']
+	// offers: BulkyOfferStore['offers']
+	offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>
 }
 
 // FILTER TYPES
@@ -194,12 +215,18 @@ export type BulkyFilterFieldBase<T extends Category> = {
 	category: T
 	type: string
 	quantity: number
+	options?: Record<string, unknown>
 }
 
 /**
  * A collection of every implementation of BulkyFilterFieldBase throughout the app.
  */
-export type BulkyFilterField = EssenceFilterField | ScarabFilterField | DeliriumOrbFilterField | MapFilterField
+export type BulkyFilterField =
+	| EssenceFilterField
+	| ScarabFilterField
+	| DeliriumOrbFilterField
+	| MapFilterField
+	| Map8ModFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.
@@ -215,8 +242,8 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
 	uuid: Uuid<BulkyFilter<T>>
 	category: T['category']
 	name: string
-	multiplier: number
-	fullBuyout: boolean
+	multiplier?: number
+	fullBuyout?: boolean
 	alwaysMaxQuantity: boolean
 	fields: T[]
 }
@@ -255,6 +282,7 @@ export type BulkyItemOverrideInstance<T extends BulkyShopItem = BulkyShopItem> =
 	tier: T['tier']
 	league: string
 	priceOverride: number
+	priceOverrideMap8Mod?: Map8ModPrices
 	selected: boolean
 }
 
@@ -295,6 +323,7 @@ export type BulkyBazaarItemDto = {
 
 export type BulkyBazaarOfferDto = {
 	uuid: string
+	version: number
 	timestamp: number
 	account: string
 	ign: string
@@ -305,8 +334,25 @@ export type BulkyBazaarOfferDto = {
 	fullPrice: number
 	minimumBuyout: number
 	fullBuyout: boolean
-	// items: string // base64 encoded binary
 	items: BulkyBazaarItemDto[]
+}
+
+export type BulkyBazaarMap8ModItemDto = Omit<BulkyBazaarItemDto, 'prc'> & {
+	prc: Map8ModPrices
+}
+
+export type BulkyBazaarMap8ModOfferDto = {
+	uuid: string
+	version: number
+	timestamp: number
+	account: string
+	ign: string
+	category: string
+	league: string
+	chaosPerDiv: number
+	minimumBuyout: number
+	fullBuyout: boolean
+	items: BulkyBazaarMap8ModItemDto[]
 }
 
 // UTILITY TYPES

@@ -8,7 +8,7 @@
 			</BaseTransition>
 		</router-view>
 	</div>
-	<div v-else-if="updatePanelActive" class="update-panel-window">
+	<div v-else-if="updatePanelActive || attachmentPanelActive" class="update-panel-window">
 		<router-view v-slot="{ Component }">
 			<BaseTransition v-on="hooks" mode="out-in">
 				<component :is="Component" v-bind="routerProps"></component>
@@ -41,7 +41,7 @@ const shopStore = useShopStore()
 // STATE
 const mainAppWindow = ref<HTMLElement | null>(null)
 const mainWindowActive = ref(false)
-const updatePanelActive = ref(true)
+const updatePanelActive = ref(false)
 const attachmentPanelActive = ref(false)
 const appUpdateStatus = ref<AppUpdateStatus>('CHECKING_FOR_UPDATE')
 const appDownloadProgress = ref<ProgressInfo>()
@@ -49,28 +49,34 @@ const appDownloadProgress = ref<ProgressInfo>()
 // COMPOSABLES
 const hooks = useRouteTransitionHooks()
 const router = useRouter()
-// router.push('Bazaar')
+
+console.log(import.meta.env.VITE_NO_ATTACH_MODE)
+if (import.meta.env.VITE_NO_ATTACH_MODE === 'true') {
+	mainWindowActive.value = true
+	router.push('Bazaar')
+}
 
 // EVENTS
-window.api.onToggleOverlayComponent(value => {
-	if (updatePanelActive.value || attachmentPanelActive.value) return
-	mainWindowActive.value = value.overlayWindowActive
-})
+// window.api.onToggleOverlayComponent(value => {
+// 	if (updatePanelActive.value || attachmentPanelActive.value) return
+// 	mainWindowActive.value = value.overlayWindowActive
+// })
 
-window.api.onAppUpdate((status, info) => {
-	updatePanelActive.value = true
-	appUpdateStatus.value = status
-	appDownloadProgress.value = info
-	router.push({ name: 'AppUpdate' })
-})
+// window.api.onAppUpdate((status, info) => {
+// 	updatePanelActive.value = true
+// 	appUpdateStatus.value = status
+// 	appDownloadProgress.value = info
+// 	router.push({ name: 'AppUpdate' })
+// })
 
-window.api.onShowAttachmentPanel(value => {
-	attachmentPanelActive.value = true
-	setTimeout(() => {
-		attachmentPanelActive.value = false
-		router.push({ name: 'Bazaar' })
-	}, value.time)
-})
+// window.api.onShowAttachmentPanel(value => {
+// 	attachmentPanelActive.value = true
+// 	router.push({ name: 'AttachmentPanel' })
+// 	setTimeout(() => {
+// 		attachmentPanelActive.value = false
+// 		router.push({ name: 'Bazaar' })
+// 	}, value.time)
+// })
 
 const routerProps = computed(() => {
 	if (router.currentRoute.value.name === 'AppUpdate') {
@@ -129,5 +135,8 @@ body {
 .update-panel-window {
 	width: 100%;
 	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 </style>

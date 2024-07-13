@@ -20,8 +20,18 @@ import {
 import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOrbOffer.store'
 import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumOrbFilter.store'
 import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
-import { BazaarMap, MapFilter, MapFilterField, ShopMap } from '@web/categories/map/map.types'
+import {
+	BazaarMap,
+	Map8ModFilter,
+	Map8ModFilterField,
+	MapFilter,
+	MapFilterField,
+	ShopMap,
+	ShopMap8Mod,
+} from '@web/categories/map/map.types'
 import { useNormalMapFilterStore } from '@web/categories/map/normalMapFilter.store'
+import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
+import { useMap8ModFilterStore } from '@web/categories/map/map8ModFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -102,6 +112,20 @@ function isMapFilterUuid(uuid: string): uuid is Uuid<MapFilter> {
 	return !!store.filters.has(typedUuid)
 }
 
+/** Validate if a given string is a map 8 mod offer uuid. */
+function isMap8ModOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopMap8Mod>> {
+	const store = useMap8ModOfferStore()
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarMap>>(uuid)
+	return !!store.offers.has(typedUuid)
+}
+
+/** Validate if a given string is a map 8 mod filter uuid */
+function isMap8ModFilterUuid(uuid: string): uuid is Uuid<Map8ModFilter> {
+	const store = useMap8ModFilterStore()
+	const typedUuid = generateTypedUuid<BulkyFilter<Map8ModFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
+}
+
 export const BULKY_UUID = {
 	generateTypedUuid,
 	isEssenceOfferUuid,
@@ -112,4 +136,6 @@ export const BULKY_UUID = {
 	isDeliriumOrbFilterUuid,
 	isMapOfferUuid,
 	isMapFilterUuid,
+	isMap8ModOfferUuid,
+	isMap8ModFilterUuid,
 }

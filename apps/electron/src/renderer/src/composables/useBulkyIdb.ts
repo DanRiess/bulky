@@ -311,8 +311,6 @@ export function useBulkyIdb() {
 	 */
 	async function putShopOffer(offer: BulkyShopOffer) {
 		let db: IDBPDatabase<BulkyDB> | undefined
-		console.log('IDB')
-		console.log({ offer, dtroffer: deepToRaw(offer) })
 
 		try {
 			db = await initDB()

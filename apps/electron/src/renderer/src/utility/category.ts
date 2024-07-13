@@ -15,8 +15,10 @@ function generateCategoryFromDto(category: string): Category | undefined {
 		return CATEGORY.ESSENCE
 	} else if (category.match(/delirium_orb/i)) {
 		return CATEGORY.DELIRIUM_ORB
-	} else if (category.match(/map$/i)) {
+	} else if (category === 'MAP') {
 		return CATEGORY.MAP
+	} else if (category.match(/8_mod/i)) {
+		return CATEGORY.MAP_8_MOD
 	}
 	return undefined
 }
@@ -28,7 +30,7 @@ function isBaseTypeInCategory(category: Category, baseType: string) {
 		return !!BULKY_SCARABS.generateTypeFromBaseType(baseType)
 	} else if (category === 'DELIRIUM_ORB') {
 		return !!BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(baseType)
-	} else if (category === 'MAP') {
+	} else if (category === 'MAP' || category === 'MAP_8_MOD') {
 		return !!BULKY_MAPS.generateTypeFromBaseType(baseType)
 	}
 	return false

@@ -1,9 +1,14 @@
 <template>
 	<div class="attachment-panel-view animated-gradient-background" data-b-override>
+		<SvgIconAtom name="bulky" width="48" :use-gradient="true" :active="true" />
 		<h1 class="header">Bulky is running in the background</h1>
 		<section class="info">Press Ctrl + Space to open the overlay</section>
 	</div>
 </template>
+
+<script setup lang="ts">
+import SvgIconAtom from '@web/components/atoms/SvgIconAtom.vue'
+</script>
 
 <style scoped>
 .attachment-panel-view {

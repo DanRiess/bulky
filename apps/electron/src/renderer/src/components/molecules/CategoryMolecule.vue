@@ -24,6 +24,7 @@ const components = ref([
 	{ displayName: 'Scarabs', fileName: 'scarab-breach-gilded', category: CATEGORY.SCARAB },
 	{ displayName: 'Delirium Orbs', fileName: 'deli-orb-scarab', category: CATEGORY.DELIRIUM_ORB },
 	{ displayName: 'Maps', fileName: 'underground-river-map', category: CATEGORY.MAP },
+	{ displayName: '8 Mod Maps', fileName: 'vaal-temple-map', category: CATEGORY.MAP_8_MOD },
 ])
 
 // METHODS

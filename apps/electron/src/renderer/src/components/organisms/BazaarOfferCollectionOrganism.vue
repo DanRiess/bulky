@@ -31,14 +31,13 @@ const hooks = useListTransition()
 
 // GETTERS
 const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>(() => {
-	const t0 = performance.now()
 	const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
 
-	props.store.offers.forEach(offer => {
+	props.store.offers.forEach((offer: BulkyBazaarOffer) => {
 		// Filter out all offers whose multipliers are too high.
 		// The maximum possible multiplier (2) should display all offers though.
 		// An offer can have a higher multiplier than 2 if contained items' prices were overwritter.
-		if (props.filter.multiplier < 2 && props.filter.multiplier < offer.multiplier) return
+		if (props.filter.multiplier && props.filter.multiplier < 2 && props.filter.multiplier < offer.multiplier) return
 
 		// If the user wants to buyout the full offer, return the offer.
 		if (props.filter.fullBuyout) offers.set(offer.uuid, offer)
@@ -61,7 +60,12 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 			const field = computedFilterFields[i]
 			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
 			if (item) {
-				price += props.filter.alwaysMaxQuantity ? item.price * item.quantity : item.price * field.quantity
+				if (item.price) {
+					price += props.filter.alwaysMaxQuantity ? item.price * item.quantity : item.price * field.quantity
+				} else if (item.priceMap8Mod) {
+					// TODO: something with 8mod pricing
+					console.log(error)
+				}
 			} else {
 				itemsMissingInOffer = true
 				break
@@ -77,8 +81,6 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 		// If all checks have passed, add the offer to the map.
 		offers.set(offer.uuid, offer)
 	})
-
-	console.log(`Filtering Offers Performance: ${performance.now() - t0}`)
 
 	return offers
 })

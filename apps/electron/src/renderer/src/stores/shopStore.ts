@@ -195,7 +195,6 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		// Upload offer to the public db
 		const offerDto = generateDto(offer)
-		console.log({ offerDto })
 
 		if (!offerDto) {
 			// TODO: handle error
@@ -247,8 +246,6 @@ export const useShopStore = defineStore('shopStore', () => {
 		const { itemOverrides } = useItemOverrides(offer.category)
 		const { items: itemRecord } = useBulkyItems(poeItems, prices, itemOverrides, offer.category)
 		const { filteredItemRecord } = useFilterShopItems(itemRecord, offer.filter)
-
-		console.log({ filter: offer.filter, filteredItemRecord })
 
 		// Resync the stash tabs
 		const stashTabRequest = useFetchStashItems(stashTabs)
@@ -322,6 +319,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		const minimumBuyout = offer.minimumBuyout.divine * offer.chaosPerDiv + offer.minimumBuyout.chaos
 
 		return {
+			version: parseInt(import.meta.env.VITE_OFFER_VERSION ?? '1'),
 			uuid: offer.uuid,
 			timestamp: Date.now(),
 			account,

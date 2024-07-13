@@ -60,7 +60,12 @@ const filteredPrice = computed<TotalPrice>(() => {
 		: filteredItems.value.reduce((prev, curr) => {
 				// If 'alwaysMaxQuantity' is picked, just return the items price * quantity.
 				if (props.filter.alwaysMaxQuantity) {
-					return (prev += curr.price * curr.quantity)
+					if (curr.price) {
+						return (prev += curr.price * curr.quantity)
+					} else if (curr.priceMap8Mod) {
+						// TODO: something with 8mod pricing
+						console.log(error)
+					}
 				}
 
 				// Find the filter field that corresponds to the item and return its quantity * the items price.
@@ -69,7 +74,14 @@ const filteredPrice = computed<TotalPrice>(() => {
 					return prev
 				}
 
-				return (prev += curr.price * field.quantity)
+				if (curr.price) {
+					return (prev += curr.price * field.quantity)
+				} else if (curr.priceMap8Mod) {
+					// TODO: something with 8mod pricing
+					console.log(error)
+				}
+
+				return prev
 		  }, 0)
 
 	console.log(`Compute filtered price performance: ${performance.now() - t0}`)

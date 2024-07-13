@@ -47,6 +47,8 @@ import {
 	MAP_TYPE_NAME_TO_IDX,
 } from '@web/categories/map/map.const'
 import { BULKY_MAPS } from '@web/categories/map/map.transformers'
+import { useMap8ModFilterStore } from '@web/categories/map/map8ModFilter.store'
+import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 import { useNormalMapFilterStore } from '@web/categories/map/normalMapFilter.store'
 import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
 import { SCARAB_TYPE, SCARAB_TYPE_IDX_TO_NAME, SCARAB_TYPE_NAME_TO_IDX } from '@web/categories/scarab/scarab.const'
@@ -80,6 +82,7 @@ function getOfferStore(category: Category): BulkyOfferStore | undefined {
 	else if (category === 'SCARAB') return useScarabOfferStore()
 	else if (category === 'DELIRIUM_ORB') return useDeliriumOrbOfferStore()
 	else if (category === 'MAP') return useNormalMapOfferStore()
+	else if (category === 'MAP_8_MOD') return useMap8ModOfferStore()
 	return undefined
 }
 
@@ -91,6 +94,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 	else if (category === 'SCARAB') return useScarabFilterStore()
 	else if (category === 'DELIRIUM_ORB') return useDeliriumOrbFilterStore()
 	else if (category === 'MAP') return useNormalMapFilterStore()
+	else if (category === 'MAP_8_MOD') return useMap8ModFilterStore()
 	return undefined
 }
 
@@ -103,7 +107,7 @@ function getNameToIdxTypeMap(category: Category) {
 	if (category === 'ESSENCE') return ESSENCE_TYPE_NAME_TO_IDX
 	else if (category === 'SCARAB') return SCARAB_TYPE_NAME_TO_IDX
 	else if (category === 'DELIRIUM_ORB') return DELI_ORB_TYPE_NAME_TO_IDX
-	else if (category === 'MAP') return MAP_TYPE_NAME_TO_IDX
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TYPE_NAME_TO_IDX
 	return undefined
 }
 
@@ -114,7 +118,7 @@ function getNameToIdxTierMap(category: Category) {
 	if (category === 'ESSENCE') return ESSENCE_TIER_NAME_TO_IDX
 	else if (category === 'SCARAB') return { '0': 0 }
 	else if (category === 'DELIRIUM_ORB') return { '0': 0 }
-	else if (category === 'MAP') return MAP_TIER_NAME_TO_IDX
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TIER_NAME_TO_IDX
 	return undefined
 }
 
@@ -127,7 +131,7 @@ function getIdxToNameTypeMap(category: Category) {
 	if (category === 'ESSENCE') return ESSENCE_TYPE_IDX_TO_NAME
 	else if (category === 'SCARAB') return SCARAB_TYPE_IDX_TO_NAME
 	else if (category === 'DELIRIUM_ORB') return DELI_ORB_TYPE_IDX_TO_NAME
-	else if (category === 'MAP') return MAP_TYPE_IDX_TO_NAME
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TYPE_IDX_TO_NAME
 	return undefined
 }
 
@@ -138,7 +142,7 @@ function getIdxToNameTierMap(category: Category) {
 	if (category === 'ESSENCE') return ESSENCE_TIER_IDX_TO_NAME
 	else if (category === 'SCARAB') return ['0'] as ScarabTier[]
 	else if (category === 'DELIRIUM_ORB') return ['0'] as DeliriumOrbTier[]
-	else if (category === 'MAP') return MAP_TIER_IDX_TO_NAME
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TIER_IDX_TO_NAME
 	return undefined
 }
 
@@ -149,7 +153,7 @@ function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined
 	if (category === 'ESSENCE') return getKeys(ESSENCE_TYPE)
 	else if (category === 'SCARAB') return getKeys(SCARAB_TYPE)
 	else if (category === 'DELIRIUM_ORB') return getKeys(DELI_ORB_TYPE)
-	else if (category === 'MAP') return getKeys(MAP_TYPE)
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return getKeys(MAP_TYPE)
 	else return undefined
 }
 
@@ -160,7 +164,7 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 	if (category === 'ESSENCE') return getKeys(ESSENCE_TIER)
 	else if (category === 'SCARAB') return ['0']
 	else if (category === 'DELIRIUM_ORB') return ['0']
-	else if (category === 'MAP') return getKeys(MAP_TIER)
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return getKeys(MAP_TIER)
 	else return undefined
 }
 
@@ -171,7 +175,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	if (category === 'ESSENCE') return BULKY_ESSENCES.generateTypeFromBaseType(item.baseType)
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(item.baseType)
-	else if (category === 'MAP') return BULKY_MAPS.generateTypeFromBaseType(item.baseType)
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return BULKY_MAPS.generateTypeFromBaseType(item.baseType)
 	else return undefined
 }
 
@@ -182,7 +186,7 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	if (category === 'ESSENCE') return BULKY_ESSENCES.generateTierFromBaseType(item.baseType)
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateTier()
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateTier()
-	else if (category === 'MAP') return BULKY_MAPS.generateTierFromProperty(item.properties)
+	else if (category === 'MAP' || category === 'MAP_8_MOD') return BULKY_MAPS.generateTierFromProperty(item.properties)
 	else return undefined
 }
 
@@ -199,6 +203,7 @@ function generateBulkyItemFromPoeItem(
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateScarabFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'MAP') return BULKY_MAPS.generateMapFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, prices, itemOverrides)
 	else return undefined
 }
 
@@ -217,6 +222,8 @@ function getNameFromTypeAndTier(
 		return BULKY_DELIRIUM_ORBS.generateDeliriumOrbNameFromType(item.type)
 	else if (category === 'MAP' && useNormalMapOfferStore().isNormalMap(item))
 		return BULKY_MAPS.generateMapNameFromType(item.type)
+	else if (category === 'MAP_8_MOD' && useMap8ModOfferStore().isMap8Mod(item))
+		return BULKY_MAPS.generateMapNameFromType(item.type)
 	else return undefined
 }
 // function getNameForFilterFieldTypeOption<T extends BulkyFilterField>(field: T): string | undefined {
@@ -231,5 +238,6 @@ function generateTypedItemFromDto(category: Category, item: BulkyBazaarItemDto) 
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateBazaarItemFromDto(item)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateBazaarItemFromDto(item)
 	else if (category === 'MAP') return BULKY_MAPS.generateBazaarItemFromDto(item)
+	// does not need a Map_8_MOD implementation because the dto is different
 	else return undefined
 }

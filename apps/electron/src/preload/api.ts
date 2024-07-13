@@ -44,7 +44,7 @@ export const api = {
 
 	onShowAttachmentPanel: (callback: (value: ShowAttachmentPanelDto) => void) => {
 		ipcRenderer.on('show-attachment-panel', (_event, value: ShowAttachmentPanelDto) => {
-			value.time = import.meta.env.DEV ? 10 : value.time
+			value.time = import.meta.env.VITE_NO_ATTACH_MODE === 'true' ? 10 : value.time
 			callback(value)
 		})
 	},

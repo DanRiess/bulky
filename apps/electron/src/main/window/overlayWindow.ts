@@ -42,9 +42,9 @@ export class OverlayWindow {
 			alwaysOnTop: false,
 		})
 
-		this.window.on('ready-to-show', () => {
-			this.window.show()
-		})
+		// this.window.on('ready-to-show', () => {
+		// 	this.window.show()
+		// })
 
 		this.window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
 
@@ -109,8 +109,10 @@ export class OverlayWindow {
 			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 		} else {
 			this.window.loadFile(url)
-			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
+			// this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 		}
+
+		console.log('would call here')
 
 		// this.poeWindow.attach(this, import.meta.env.VITE_GAME_TITLE)
 	}
@@ -174,7 +176,6 @@ export class OverlayWindow {
 	 * The event then uses this function as callback and errors if the game is started in admin mode.
 	 */
 	private handleOverlayAttached = (event: AttachEvent) => {
-		console.log('handle attached in OVERLAYWINDOW')
 		if (event.hasAccess === false) {
 			// this.logger.write('error [Overlay] PoE is running with administrator rights')
 
