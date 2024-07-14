@@ -45,6 +45,7 @@ export type ShopMap8Mod = BulkyShopItemBase<typeof CATEGORY.MAP_8_MOD> & {
 export type BazaarMap = BulkyBazaarItemBase<typeof CATEGORY.MAP> & {
 	type: MapType
 	tier: MapTier
+	price: number
 }
 
 /** BulkyBazaarItem implementation for the 8 mod map category */
@@ -74,17 +75,14 @@ export type MapFilterField = BulkyFilterFieldBase<typeof CATEGORY.MAP> & {
 export type Map8ModFilterField = BulkyFilterFieldBase<typeof CATEGORY.MAP_8_MOD> & {
 	type: MapType
 	tier: MapTier
-	options: {
-		regex: string
-	}
 }
 
 /** Filter implementation for the map category */
 export type MapFilter = BulkyFilter<MapFilterField>
 
 /** Filter implementation for the map category */
-export type Map8ModFilter = Omit<BulkyFilter<Map8ModFilterField>, 'multiplier' | 'fullBuyout' | 'uuid'> & {
-	uuid: Uuid<Map8ModFilter>
+export type Map8ModFilter = Omit<BulkyFilter<Map8ModFilterField>, 'multiplier' | 'fullBuyout'> & {
+	regex: string
 }
 // export type Map8ModFilter = BulkyFilter<Map8ModFilterField>
 

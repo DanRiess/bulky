@@ -195,8 +195,8 @@ export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
  * it will choose a filter from the correct store and computed utility functions around it.
  */
 export type ComputedBulkyOfferStore = {
-	// offers: BulkyOfferStore['offers']
 	offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>
+	calculateItemBasePrice: (item: BulkyBazaarItem, filter: BulkyFilter) => number
 }
 
 // FILTER TYPES
@@ -244,6 +244,7 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
 	name: string
 	multiplier?: number
 	fullBuyout?: boolean
+	regex?: string
 	alwaysMaxQuantity: boolean
 	fields: T[]
 }

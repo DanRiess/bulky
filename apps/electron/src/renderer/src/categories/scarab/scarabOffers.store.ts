@@ -59,6 +59,14 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 	}
 
 	/**
+	 * Prices are being calculated differently for some categories.
+	 * This implementation enables generically calling store.calculateBaseItemPrice.
+	 */
+	function calculateBaseItemPrice(item: BazaarScarab) {
+		return item.price
+	}
+
+	/**
 	 * Validate if an object is a BazaarScarab or not.
 	 */
 	function isScarab(obj: any): obj is BazaarScarab {
@@ -101,6 +109,7 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 		offers,
 		putOffer,
 		deleteOffer,
+		calculateBaseItemPrice,
 		isScarab,
 		refetchOffers,
 		getTestData,

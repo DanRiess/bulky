@@ -41,7 +41,7 @@ export function useComputedFilterStore() {
 		if (!filter) return
 
 		/** Add a new filter field to the current filter */
-		function addFilterField<T extends BulkyFilter>(uuid: Uuid<T>) {
+		function addFilterField(uuid: Uuid<BulkyFilter>) {
 			if (!store) return
 
 			// Assert that store and uuid type are compatible.
@@ -54,7 +54,7 @@ export function useComputedFilterStore() {
 		}
 
 		/** Remove a filter field from the current filter */
-		function removeFilterField<T extends BulkyFilter>(uuid: Uuid<T>, idx: number) {
+		function removeFilterField(uuid: Uuid<BulkyFilter>, idx: number) {
 			if (!store) return
 
 			// Assert that store and uuid type are compatible.

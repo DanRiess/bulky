@@ -8,6 +8,7 @@
 			:id="id"
 			:disabled="disabled"
 			:placeholder="placeholder"
+			:maxlength="maxLength"
 			v-model="model"
 			@focus="emit('focus')"
 			@blur="emit('blur')" />
@@ -30,6 +31,7 @@ const props = withDefaults(
 		disabled?: boolean
 		placeholder?: string
 		suggestion?: string
+		maxLength?: string
 		backgroundColor?: ButtonBackgroundColorScheme
 	}>(),
 	{

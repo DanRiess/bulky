@@ -33,6 +33,7 @@ export type ShopDeliriumOrb = BulkyShopItemBase<typeof CATEGORY.DELIRIUM_ORB> & 
 export type BazaarDeliriumOrb = BulkyBazaarItemBase<typeof CATEGORY.DELIRIUM_ORB> & {
 	type: DeliriumOrbType
 	tier: DeliriumOrbTier
+	price: number
 }
 
 /** BulkyBazaarOffer implementation for the delirium orb category */

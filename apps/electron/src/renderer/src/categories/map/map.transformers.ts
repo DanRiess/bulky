@@ -72,15 +72,16 @@ function generateMap8ModFromPoeItem(
 
 	const type = generateTypeFromBaseType(poeItem.baseType)
 	const tier = generateTierFromProperty(poeItem.properties)
+	console.log({ poeItem })
 
-	if (!type || !tier || !poeItem.stackSize) return
+	if (!type || !tier) return
 
 	return {
 		type,
 		tier,
 		name: poeItem.baseType,
 		icon: poeItem.icon,
-		quantity: poeItem.stackSize,
+		quantity: 1,
 		price: 0,
 		league: configStore.config.league,
 		category: 'MAP_8_MOD',

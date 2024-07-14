@@ -59,6 +59,14 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 	}
 
 	/**
+	 * Prices are being calculated differently for some categories.
+	 * This implementation enables generically calling store.calculateBaseItemPrice.
+	 */
+	function calculateBaseItemPrice(item: BazaarMap) {
+		return item.price
+	}
+
+	/**
 	 * Validate if an object is a BazaarEssence or not.
 	 */
 	function isNormalMap(obj: any): obj is BazaarMap {
@@ -101,6 +109,7 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 		offers,
 		putOffer,
 		deleteOffer,
+		calculateBaseItemPrice,
 		isNormalMap,
 		refetchOffers,
 		getTestData,

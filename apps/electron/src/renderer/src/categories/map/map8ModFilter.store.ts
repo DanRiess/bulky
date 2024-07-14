@@ -21,12 +21,14 @@ export const useMap8ModFilterStore = defineStore('Map8ModFilterStore', () => {
 		const category = 'MAP_8_MOD'
 		const name = `Default_${filters.value.size}`
 		const alwaysMaxQuantity = false
+		const regex = ''
 
 		filters.value.set(uuid, {
 			uuid,
 			category,
 			name,
 			alwaysMaxQuantity,
+			regex,
 			fields: [generateDefaultFilterField()],
 		})
 

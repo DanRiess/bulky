@@ -35,6 +35,7 @@ export type ShopEssence = BulkyShopItemBase<typeof CATEGORY.ESSENCE> & {
 export type BazaarEssence = BulkyBazaarItemBase<typeof CATEGORY.ESSENCE> & {
 	type: EssenceType
 	tier: EssenceTier
+	price: number
 }
 
 /** BulkyBazaarOffer implementation for the essence category */

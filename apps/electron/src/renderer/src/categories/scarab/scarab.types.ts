@@ -33,6 +33,7 @@ export type ShopScarab = BulkyShopItemBase<typeof CATEGORY.SCARAB> & {
 export type BazaarScarab = BulkyBazaarItemBase<typeof CATEGORY.SCARAB> & {
 	type: ScarabType
 	tier: ScarabTier
+	price: number
 }
 
 /** BulkyBazaarOffer implementation for the scarab category */

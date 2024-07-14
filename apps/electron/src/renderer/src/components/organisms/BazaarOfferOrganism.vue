@@ -29,11 +29,13 @@ import ButtonAtom from '../atoms/ButtonAtom.vue'
 import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed } from 'vue'
+import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 
 // PROPS
 const props = defineProps<{
 	offer: BulkyBazaarOffer
 	filter: BulkyFilter
+	priceComputeFn: ComputedBulkyOfferStore['calculateItemBasePrice']
 }>()
 
 // GETTERS
@@ -58,30 +60,24 @@ const filteredPrice = computed<TotalPrice>(() => {
 	const chaosValue = props.filter.fullBuyout
 		? props.offer.fullPrice
 		: filteredItems.value.reduce((prev, curr) => {
-				// If 'alwaysMaxQuantity' is picked, just return the items price * quantity.
-				if (props.filter.alwaysMaxQuantity) {
-					if (curr.price) {
-						return (prev += curr.price * curr.quantity)
-					} else if (curr.priceMap8Mod) {
-						// TODO: something with 8mod pricing
-						console.log(error)
-					}
-				}
+				try {
+					const basePrice = props.priceComputeFn(curr, props.filter)
 
-				// Find the filter field that corresponds to the item and return its quantity * the items price.
-				const field = props.filter.fields.find(field => field.type === curr.type && field.tier === curr.tier)
-				if (!field) {
+					// If 'alwaysMaxQuantity' is picked, just return the items price * quantity.
+					if (props.filter.alwaysMaxQuantity) {
+						return (prev += basePrice * curr.quantity)
+					}
+
+					// Find the filter field that corresponds to the item and return its quantity * the items price.
+					const field = props.filter.fields.find(field => field.type === curr.type && field.tier === curr.tier)
+					if (!field) {
+						return prev
+					}
+
+					return (prev += basePrice * field.quantity)
+				} catch (e) {
 					return prev
 				}
-
-				if (curr.price) {
-					return (prev += curr.price * field.quantity)
-				} else if (curr.priceMap8Mod) {
-					// TODO: something with 8mod pricing
-					console.log(error)
-				}
-
-				return prev
 		  }, 0)
 
 	console.log(`Compute filtered price performance: ${performance.now() - t0}`)

@@ -1,7 +1,9 @@
 import { RendererError } from '@shared/errors/rendererError'
 import { BulkyBazaarItem } from '@shared/types/bulky.types'
+import { findIndicesInString } from './stringManipulation'
 
 export const BULKY_REGEX = {
+	computeRegexesFromString,
 	calculateMapPriceFromRegex,
 }
 
@@ -14,9 +16,11 @@ export const BULKY_REGEX = {
  *
  * @throws {RendererError} The regex has to be valid and supported by the offer.
  */
-function calculateMapPriceFromRegex(item: BulkyBazaarItem, rawRegex: string) {
+function calculateMapPriceFromRegex(item: BulkyBazaarItem, regexes: RegExp[]) {
 	if (item.priceMap8Mod) {
-		const regexes = computeRegexes(rawRegex)
+		if (regexes.length === 0) {
+			return item.priceMap8Mod.base
+		}
 
 		const quantityRegexes = regexes.filter(regex => regex.toString().match(/m q.*/i))
 		const packSizeRegexes = regexes.filter(regex => regex.toString().match(/iz.*([1-9]).*%/i))
@@ -73,30 +77,13 @@ function calculateMapPriceFromRegex(item: BulkyBazaarItem, rawRegex: string) {
 
 			price += item.priceMap8Mod.addRegex
 		}
+
+		return price
 	} else if (item.price) {
 		return item.price
 	}
 
 	return 0
-}
-
-function getIndicesOf(searchStr: string, str: string, offset = 0) {
-	const searchStrLen = searchStr.length
-	if (searchStrLen === 0) {
-		return []
-	}
-
-	const indices: number[] = []
-	let index = offset
-
-	str = str.toLowerCase()
-	searchStr = searchStr.toLowerCase()
-
-	while ((index = str.indexOf(searchStr, offset)) > -1) {
-		indices.push(index)
-		offset = index + searchStrLen
-	}
-	return indices
 }
 
 /**
@@ -105,12 +92,12 @@ function getIndicesOf(searchStr: string, str: string, offset = 0) {
  * Exception: substrings in quotation marks ("") count as one part.
  * Each obtained part is its own regex and will be returned.
  */
-function computeRegexes(rawRegex: string) {
+function computeRegexesFromString(rawRegex: string) {
 	const regexStringArray: string[] = []
 
 	// Extract all quoted substrings from the raw regex
 	// Find all quotation mark indices
-	const indices = getIndicesOf('"', rawRegex).reverse()
+	const indices = findIndicesInString('"', rawRegex).reverse()
 	if (indices.length % 2 !== 0) return []
 
 	// Indices are listed from highest to lowest

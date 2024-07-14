@@ -22,6 +22,7 @@
 			<template v-for="stash in stashTabHierarchy.root" :key="stash.id">
 				<LabelWithCheckboxMolecule
 					v-if="stash.type !== 'Folder'"
+					:disabled="excludedStashTypes.includes(stash.type)"
 					label-position="right"
 					v-model="stash.selected"
 					@update:model-value="selected => updateStashPropSelected(stash, selected)">
@@ -31,10 +32,15 @@
 					<li>{{ stash.name }} Folder</li>
 					<LabelWithCheckboxMolecule
 						v-for="child in stashTabHierarchy[stash.id]"
+						:disabled="excludedStashTypes.includes(child.type)"
+						:has-info-panel="excludedStashTypes.includes(child.type)"
 						label-position="right"
 						v-model="child.selected"
 						@update:model-value="selected => updateStashPropSelected(child, selected)">
 						{{ child.name }}
+						<template #infoSlot>
+							<InfoPanelStashTabTemplateAtom />
+						</template>
 					</LabelWithCheckboxMolecule>
 				</ul>
 			</template>
@@ -43,14 +49,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vue'
 import SvgButtonWithPopupMolecule from '../molecules/SvgButtonWithPopupMolecule.vue'
 import { useStashStore } from '@web/stores/stashStore'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
-import { PoeStashTab } from '@shared/types/poe.types'
+import { PoeStashTab, PoeStashType } from '@shared/types/poe.types'
 import { useBulkyIdb } from '@web/composables/useBulkyIdb'
+import { useAppStateStore } from '@web/stores/appStateStore'
+import { getKeys } from '@shared/types/utility.types'
+import InfoPanelStashTabTemplateAtom from '../atoms/InfoPanelStashTabTemplateAtom.vue'
 
 // LOCAL TYPES
 type StashTabHierarchy = {
@@ -61,6 +70,7 @@ type StashTabHierarchy = {
 
 // STORES
 const stashStore = useStashStore()
+const appStateStore = useAppStateStore()
 
 // STATE
 const stashListRequest = stashStore.getStashTabListRequest()
@@ -90,6 +100,32 @@ const svgIconProps = computed(() => {
 		rotate: stashListRequest.request.statusPending.value,
 		useGradient: stashListRequest.request.statusPending.value,
 		width: '100%',
+	}
+})
+
+/**
+ * Stash types that should be disabled when conditions are fulfilled.
+ */
+const excludedStashTypes = computed<PoeStashType[]>(() => {
+	if (appStateStore.selectedCategory === 'MAP_8_MOD') {
+		return ['MapStash']
+	}
+	return []
+})
+
+/**
+ * When the excluded stash types change, unselect stash tabs that should be excluded.
+ */
+watch(excludedStashTypes, excludedTypes => {
+	if (excludedTypes.length === 0) return
+
+	const stashTabKeys = getKeys(stashTabHierarchy.value)
+	for (const key of stashTabKeys) {
+		stashTabHierarchy.value[key].forEach(tab => {
+			if (excludedTypes.includes(tab.type)) {
+				tab.selected = false
+			}
+		})
 	}
 })
 

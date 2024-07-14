@@ -7,10 +7,12 @@ import { ref } from 'vue'
 import { getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { BulkyBazaarMap8ModOfferDto } from '@shared/types/bulky.types'
+import { BulkyBazaarMap8ModOfferDto, BulkyFilter } from '@shared/types/bulky.types'
 import { BazaarMap8Mod, BazaarMap8ModOffer } from './map.types'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import { BULKY_MAPS } from './map.transformers'
+import { RendererError } from '@shared/errors/rendererError'
+import { BULKY_REGEX } from '@web/utility/regex'
 
 export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
@@ -53,7 +55,82 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	}
 
 	/**
-	 * Validate if an object is a BazaarEssence or not.
+	 * Prices are being calculated differently for some categories.
+	 * This implementation enables generically calling store.calculateBaseItemPrice.
+	 *
+	 * @throws { RendererError } Will throw if the regex and the offer don't match for any reason.
+	 */
+	function calculateBaseItemPrice(item: BazaarMap8Mod, filter: BulkyFilter) {
+		// Compute the provided regexes.
+		const regexes = filter.regex ? BULKY_REGEX.computeRegexesFromString(filter.regex) : []
+
+		// If no regex was provided, just return the base price.
+		if (regexes.length === 0) {
+			return item.priceMap8Mod.base
+		}
+
+		// Assign the computed regexes to predefined categories.
+		const quantityRegexes = regexes.filter(regex => regex.toString().match(/m q.*/i))
+		const packSizeRegexes = regexes.filter(regex => regex.toString().match(/iz.*([1-9]).*%/i))
+		const rarityRegexes = regexes.filter(regex => regex.toString().match(/y: \([(n|m|r)]*\)/i))
+		const avoidRegexes = regexes.filter(regex => regex.toString().startsWith('/!'))
+		const addRegexes = regexes.filter(
+			regex =>
+				!(
+					avoidRegexes.includes(regex) ||
+					quantityRegexes.includes(regex) ||
+					packSizeRegexes.includes(regex) ||
+					rarityRegexes.includes(regex)
+				)
+		)
+
+		let price = item.priceMap8Mod.base
+
+		// Use the first found quantity regex and check if it matches 120+ / 110+ quantity.
+		// If the offer has that respective price defined, add it.
+		if (quantityRegexes.length > 1) {
+			if ('m q:120%'.match(quantityRegexes[0]) && item.priceMap8Mod.quant120) {
+				price += item.priceMap8Mod.quant120
+			} else if ('m q:110%'.match(quantityRegexes[0]) && item.priceMap8Mod.quant110) {
+				price += item.priceMap8Mod.quant110
+			} else {
+				throw new RendererError({
+					code: 'regex_unsupported',
+					message:
+						'This item either does not support a quantity regex or your quantity value is to low (has to be at least 110%).',
+				})
+			}
+		}
+
+		// Check if the regex has modifiers to avoid
+		if (avoidRegexes.length > 0) {
+			if (!item.priceMap8Mod.avoidRegex) {
+				throw new RendererError({
+					code: 'regex_unsupported',
+					message: 'This item does not support regexes with modifiers to avoid.',
+				})
+			}
+
+			price += item.priceMap8Mod.avoidRegex
+		}
+
+		// Check if the regex has modifiers the user wants
+		if (addRegexes.length > 0) {
+			if (!item.priceMap8Mod.addRegex) {
+				throw new RendererError({
+					code: 'regex_unsupported',
+					message: 'This item does not support regexes with wanted modifiers.',
+				})
+			}
+
+			price += item.priceMap8Mod.addRegex
+		}
+
+		return price
+	}
+
+	/**
+	 * Validate if an object is a BazaarMap8Mod or not.
 	 */
 	function isMap8Mod(obj: any): obj is BazaarMap8Mod {
 		return (
@@ -96,6 +173,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		offers,
 		putOffer,
 		deleteOffer,
+		calculateBaseItemPrice,
 		isMap8Mod,
 		refetchOffers,
 	}

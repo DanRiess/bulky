@@ -16,5 +16,6 @@ defineProps<{
 .a-label {
 	cursor: pointer;
 	word-break: break-word;
+	align-self: center;
 }
 </style>

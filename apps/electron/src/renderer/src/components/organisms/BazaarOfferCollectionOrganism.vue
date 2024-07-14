@@ -6,6 +6,7 @@
 				v-for="([_, offer], idx) in filteredOffers"
 				:key="offer.uuid"
 				:offer="offer"
+				:price-compute-fn="store.calculateItemBasePrice"
 				:filter="filter"
 				:data-index="idx" />
 		</TransitionAtom>
@@ -60,11 +61,12 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 			const field = computedFilterFields[i]
 			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
 			if (item) {
-				if (item.price) {
-					price += props.filter.alwaysMaxQuantity ? item.price * item.quantity : item.price * field.quantity
-				} else if (item.priceMap8Mod) {
-					// TODO: something with 8mod pricing
-					console.log(error)
+				try {
+					const basePrice = props.store.calculateItemBasePrice(item, props.filter)
+
+					price += props.filter.alwaysMaxQuantity ? basePrice * item.quantity : basePrice * field.quantity
+				} catch (e) {
+					itemsMissingInOffer = true
 				}
 			} else {
 				itemsMissingInOffer = true

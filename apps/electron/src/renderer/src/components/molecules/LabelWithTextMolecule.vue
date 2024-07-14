@@ -4,7 +4,7 @@
 			<slot />
 		</LabelAtom>
 		<!-- <InputCheckboxAtom v-model="model" :id="uuid" :disabled="disabled" /> -->
-		<InputTextAtom v-model="model" :placeholder="placeholder" />
+		<InputTextAtom v-model="model" :placeholder="placeholder" :max-length="maxLength" />
 	</div>
 </template>
 
@@ -23,6 +23,7 @@ const props = withDefaults(
 		labelPosition?: 'left' | 'right'
 		disabled?: boolean
 		placeholder?: string
+		maxLength?: string
 	}>(),
 	{
 		labelPosition: 'left',

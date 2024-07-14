@@ -25,12 +25,14 @@ const props = withDefaults(
 		transitionDirection?: 'toTop' | 'toBottom' | 'toRight'
 		popupAlignment?: 'left' | 'right'
 		backgroundColor?: ButtonBackgroundColorScheme
+		maxWidth?: number
 	}>(),
 	{
 		position: 'right',
 		transitionDirection: 'toRight',
 		popupAlignment: 'left',
 		backgroundColor: 'dark',
+		maxWidth: undefined, // will result in invalid css property and be ignored
 	}
 )
 
@@ -50,7 +52,7 @@ const style = computed(() => {
 		style.top = '100%'
 		if (props.popupAlignment === 'left') {
 			style.left = '0'
-		} else {
+		} else if (props.popupAlignment === 'right') {
 			style.right = '0'
 			style.left = 'unset'
 		}
@@ -97,7 +99,8 @@ const hooks = useGenericTransitionHooks({
 	transform-origin: left;
 	user-select: none;
 	width: max-content;
-	height: 100%;
+	max-width: v-bind(maxWidth + 'px');
+	min-height: 100%;
 	z-index: 15000;
 	position: absolute;
 }

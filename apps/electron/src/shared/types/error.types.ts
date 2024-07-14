@@ -50,6 +50,7 @@ export interface OauthErrorParameters extends BulkyErrorParameters {
 
 export const RENDERER_ERROR_CODE = {
 	regex_unsupported: 'regex_unsupported',
+	unknown_item: 'unknown_item',
 	unknown_error: 'unknown_error',
 } as const
 

@@ -99,6 +99,7 @@ const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides, () => props.category)
 const { filteredItemRecord } = useFilterShopItems(items, filterModel)
+console.log({ categoryFilteredItemsByStash, items })
 
 // GETTERS
 const chaosValue = useAggregateItemPrice(filteredItemRecord, () => props.offerMultiplier)

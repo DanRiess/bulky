@@ -1,8 +1,14 @@
 import { computed, onUnmounted } from 'vue'
 
 import { useAppStateStore } from '@web/stores/appStateStore'
-import { BulkyBazaarOffer, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
+import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
+import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
+import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOrbOffer.store'
+import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
+import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
+import { RendererError } from '@shared/errors/rendererError'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
 
@@ -11,6 +17,11 @@ const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?
  */
 export function useComputedOffersStore() {
 	const appStateStore = useAppStateStore()
+	const essenceOfferStore = useEssenceOfferStore()
+	const scarabOfferStore = useScarabOfferStore()
+	const deliriumOrbOfferStore = useDeliriumOrbOfferStore()
+	const normalMapOfferStore = useNormalMapOfferStore()
+	const map8ModOfferStore = useMap8ModOfferStore()
 
 	let timeout: NodeJS.Timeout | undefined
 
@@ -40,11 +51,30 @@ export function useComputedOffersStore() {
 			// Call this function again after x seconds.
 			timeout = setTimeout(refetchOffers, REFETCH_INTERVAL)
 		}
-
 		refetchOffers()
+
+		/**
+		 * Calculates the base item price depending on category and optional filter.
+		 * Uses a store function implementation.
+		 *
+		 * @throws {RendererError} When the item does not fit the store or the store implementation errors.
+		 */
+		function calculateItemBasePrice(item: BulkyBazaarItem, filter: BulkyFilter) {
+			if (store === essenceOfferStore && store.isEssence(item)) return store.calculateBaseItemPrice(item)
+			else if (store === scarabOfferStore && store.isScarab(item)) return store.calculateBaseItemPrice(item)
+			else if (store === deliriumOrbOfferStore && store.isDeliriumOrb(item)) return store.calculateBaseItemPrice(item)
+			else if (store === normalMapOfferStore && store.isNormalMap(item)) return store.calculateBaseItemPrice(item)
+			else if (store === map8ModOfferStore && store.isMap8Mod(item)) return store.calculateBaseItemPrice(item, filter)
+
+			throw new RendererError({
+				code: 'unknown_item',
+				message: 'The item does not belong to the current store.',
+			})
+		}
 
 		return {
 			offers,
+			calculateItemBasePrice,
 		}
 	})
 }

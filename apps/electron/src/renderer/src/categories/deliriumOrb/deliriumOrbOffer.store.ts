@@ -61,6 +61,14 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 	}
 
 	/**
+	 * Prices are being calculated differently for some categories.
+	 * This implementation enables generically calling store.calculateBaseItemPrice.
+	 */
+	function calculateBaseItemPrice(item: BazaarDeliriumOrb) {
+		return item.price
+	}
+
+	/**
 	 * Validate if an object is a BazaarScarab or not.
 	 */
 	function isDeliriumOrb(obj: any): obj is BazaarDeliriumOrb {
@@ -103,6 +111,7 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 		offers,
 		putOffer,
 		deleteOffer,
+		calculateBaseItemPrice,
 		isDeliriumOrb,
 		refetchOffers,
 		getTestData,

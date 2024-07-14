@@ -59,6 +59,14 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	}
 
 	/**
+	 * Prices are being calculated differently for some categories.
+	 * This implementation enables generically calling store.calculateBaseItemPrice.
+	 */
+	function calculateBaseItemPrice(item: BazaarEssence) {
+		return item.price
+	}
+
+	/**
 	 * Validate if an object is a BazaarEssence or not.
 	 */
 	function isEssence(obj: any): obj is BazaarEssence {
@@ -101,6 +109,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		offers,
 		putOffer,
 		deleteOffer,
+		calculateBaseItemPrice,
 		isEssence,
 		refetchOffers,
 		getTestData,

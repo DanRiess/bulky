@@ -49,6 +49,8 @@ export function useBulkyItems(
 				items.value = new Map()
 			}
 
+			console.log({ add, remove })
+
 			// loop over the items, remove the old ones, add the new ones
 			getKeys(add).forEach(stashTabId => {
 				add[stashTabId].forEach(poeItem => putItem(poeItem))
@@ -74,18 +76,20 @@ export function useBulkyItems(
 	function putItem(poeItem: PoeItem) {
 		const type = BULKY_FACTORY.getTypeFromPoeItem(poeItem, toValue(category))
 		const tier = BULKY_FACTORY.getTierFromPoeItem(poeItem, toValue(category))
+		console.log({ type, tier })
 		if (!type || !tier) return
 
 		const itemInMap = items.value.get(`${type}_${tier}`)
 
 		// If this item exists already, only adjust the quantity...
 		if (itemInMap) {
-			itemInMap.quantity += poeItem.stackSize ?? 0
+			itemInMap.quantity += poeItem.stackSize ?? 1
 		}
 
 		// ...otherwise, create a new BulkyShopItem and add it to the map
 		else {
 			const bulkyItem = BULKY_FACTORY.generateBulkyItemFromPoeItem(poeItem, toValue(category), prices, priceOverrides)
+			console.log({ bulkyItem })
 			if (!bulkyItem) return
 			items.value.set(`${bulkyItem.type}_${bulkyItem.tier}`, bulkyItem)
 		}

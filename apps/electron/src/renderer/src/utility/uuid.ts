@@ -22,6 +22,7 @@ import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumO
 import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
 import {
 	BazaarMap,
+	BazaarMap8Mod,
 	Map8ModFilter,
 	Map8ModFilterField,
 	MapFilter,
@@ -115,7 +116,7 @@ function isMapFilterUuid(uuid: string): uuid is Uuid<MapFilter> {
 /** Validate if a given string is a map 8 mod offer uuid. */
 function isMap8ModOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopMap8Mod>> {
 	const store = useMap8ModOfferStore()
-	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarMap>>(uuid)
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarMap8Mod>>(uuid)
 	return !!store.offers.has(typedUuid)
 }
 
