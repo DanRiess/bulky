@@ -107,6 +107,10 @@ export type BulkyShopItemBase<T extends Category> = {
 	icon: string
 	league: string
 	selected: MaybeComputedRef<boolean>
+	perItemAttributes?: {
+		properties: Record<string, number>
+		modifiers: number[]
+	}[]
 }
 
 /**

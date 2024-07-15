@@ -1,11 +1,20 @@
 import { BulkyBazaarItemDto, BulkyBazaarMap8ModItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
-import { BazaarMap, BazaarMap8Mod, Map8ModPrices, MapTier, MapType, ShopMap, ShopMap8Mod } from './map.types'
+import {
+	BazaarMap,
+	BazaarMap8Mod,
+	Map8ModPerItemAttributes,
+	Map8ModPrices,
+	MapTier,
+	MapType,
+	ShopMap,
+	ShopMap8Mod,
+} from './map.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { Ref, computed, toValue } from 'vue'
 import { PoeItem } from '@shared/types/poe.types'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
-import { MAP_TIER, MAP_TIER_IDX_TO_NAME, MAP_TYPE, MAP_TYPE_IDX_TO_NAME } from './map.const'
+import { MAP_MODIFIER_REGEX, MAP_TIER, MAP_TIER_IDX_TO_NAME, MAP_TYPE, MAP_TYPE_IDX_TO_NAME } from './map.const'
 import { PoeItemProperty } from '@shared/types/dtoResponse.types'
 
 export const BULKY_MAPS = {
@@ -16,6 +25,7 @@ export const BULKY_MAPS = {
 	generateMapNameFromType,
 	generateBazaarItemFromDto,
 	generateBazaarMap8ModItemFromDto,
+	getPerItemAttributes,
 }
 
 function generateTypeFromBaseType(baseType: string): MapType | undefined {
@@ -100,6 +110,7 @@ function generateMap8ModFromPoeItem(
 		selected: computed(() => {
 			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
+		perItemAttributes: [],
 	}
 }
 
@@ -140,4 +151,35 @@ function generateMapNameFromType(type: MapType) {
 			.map(t => capitalize(t))
 			.join(' ') + ' Map'
 	)
+}
+
+function getModifiersFromItem(item: PoeItem) {
+	const modifiers: number[] = []
+
+	item.explicitMods?.forEach(modifier => {
+		const idx = MAP_MODIFIER_REGEX.findIndex(regex => modifier.match(regex))
+		if (idx > -1 && !modifiers.includes(idx)) {
+			modifiers.push(idx)
+		}
+	})
+
+	return modifiers
+}
+
+function getPerItemAttributes(item: PoeItem): Map8ModPerItemAttributes | undefined {
+	const quant = item.properties?.find(p => p.name === 'Item Quantity')?.values[0][0].replace(/[\+%]/g, '')
+	const rarity = item.properties?.find(p => p.name === 'Item Rarity')?.values[0][0].replace(/[\+%]/g, '')
+	const packSize = item.properties?.find(p => p.name === 'Monster Pack Size')?.values[0][0].replace(/[\+%]/g, '')
+	const modifiers = getModifiersFromItem(item)
+
+	if (!quant || !rarity || !packSize) return
+
+	return {
+		properties: {
+			itemQuantity: parseInt(quant),
+			itemRarity: parseInt(rarity),
+			packSize: parseInt(packSize),
+		},
+		modifiers,
+	}
 }

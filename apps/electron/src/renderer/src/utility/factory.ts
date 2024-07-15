@@ -71,7 +71,8 @@ export const BULKY_FACTORY = {
 	getTierFromPoeItem,
 	generateBulkyItemFromPoeItem,
 	getNameFromTypeAndTier,
-	generateTypedItemFromDto,
+	generateBazaarItemFromDto,
+	getPerItemAttributes,
 }
 
 /**
@@ -191,23 +192,6 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 }
 
 /**
- * Generate a BulkyItem from a PoeItem (and its prices and overrides).
- */
-function generateBulkyItemFromPoeItem(
-	item: PoeItem,
-	category: Category,
-	prices: Ref<NinjaPriceRecord>,
-	itemOverrides: Ref<BulkyItemOverrideRecord>
-): BulkyShopItem | undefined {
-	if (category === 'ESSENCE') return BULKY_ESSENCES.generateEssenceFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'SCARAB') return BULKY_SCARABS.generateScarabFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'MAP') return BULKY_MAPS.generateMapFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, prices, itemOverrides)
-	else return undefined
-}
-
-/**
  * Get the name that will be displayed in the filter 'type' field.
  */
 function getNameFromTypeAndTier(
@@ -226,18 +210,42 @@ function getNameFromTypeAndTier(
 		return BULKY_MAPS.generateMapNameFromType(item.type)
 	else return undefined
 }
-// function getNameForFilterFieldTypeOption<T extends BulkyFilterField>(field: T): string | undefined {
-// 	if (field.category === 'ESSENCE') return BULKY_ESSENCES.generateEssenceNameFromTypeAndTier(field.type, field.tier)
-// 	else if (field.category === 'SCARAB') return BULKY_SCARABS.generateScarabNameFromType(field.type)
-// 	else if (field.category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbNameFromType(field.type)
-// 	else return undefined
-// }
 
-function generateTypedItemFromDto(category: Category, item: BulkyBazaarItemDto) {
+/**
+ * Generate a BazaarItem from a Bulky Offer DTO.
+ */
+function generateBazaarItemFromDto(category: Category, item: BulkyBazaarItemDto) {
 	if (category === 'ESSENCE') return BULKY_ESSENCES.generateBazaarItemFromDto(item)
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateBazaarItemFromDto(item)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateBazaarItemFromDto(item)
 	else if (category === 'MAP') return BULKY_MAPS.generateBazaarItemFromDto(item)
 	// does not need a Map_8_MOD implementation because the dto is different
 	else return undefined
+}
+
+/**
+ * Generate a BulkyItem from a PoeItem (and its prices and overrides).
+ */
+function generateBulkyItemFromPoeItem(
+	item: PoeItem,
+	category: Category,
+	prices: Ref<NinjaPriceRecord>,
+	itemOverrides: Ref<BulkyItemOverrideRecord>
+): BulkyShopItem | undefined {
+	if (category === 'ESSENCE') return BULKY_ESSENCES.generateEssenceFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'SCARAB') return BULKY_SCARABS.generateScarabFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'MAP') return BULKY_MAPS.generateMapFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, prices, itemOverrides)
+	else return undefined
+}
+
+/**
+ * Get an item's attributes.
+ * Properties will be transformed to key/value pairs, modifiers will be mapped to a number[].
+ * E. g. attributes for the Map8Mod category.
+ */
+function getPerItemAttributes(category: Category, item: PoeItem) {
+	if (category === 'MAP_8_MOD') return BULKY_MAPS.getPerItemAttributes(item)
+	return undefined
 }

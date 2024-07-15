@@ -1,5 +1,4 @@
 import { getKeys, isWatchable } from '@shared/types/utility.types'
-import { isEqual } from 'lodash'
 import { useBulkyIdb } from './useBulkyIdb'
 import { compareObjectsByBaseType } from '@web/utility/compareFunctions'
 import { MaybeRefOrGetter, computed, ref, toValue, watch } from 'vue'
@@ -72,7 +71,13 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 			.map(key => {
 				return itemsByStash.value[key]
 					.map((oldItem, idx) => {
-						if (!downloadedItems[key].some(newItem => isEqual(newItem, oldItem))) {
+						// if (!downloadedItems[key].some(newItem => isEqual(newItem, oldItem))) {
+						// 	return { id: oldItem.id, idx, stashTabId: key }
+						// }
+
+						// Is it enough to compare the id?
+						// If not, this calculation has to be done by a worker, isEqual is very slow (double loop).
+						if (!downloadedItems[key].some(newItem => newItem.id === oldItem.id)) {
 							return { id: oldItem.id, idx, stashTabId: key }
 						}
 						return null
@@ -86,7 +91,11 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		const add = getKeys(downloadedItems)
 			.map(key => {
 				return downloadedItems[key].filter(
-					downloadedItem => !itemsByStash.value[key].some(oldItem => isEqual(oldItem, downloadedItem))
+					// downloadedItem => !itemsByStash.value[key].some(oldItem => isEqual(oldItem, downloadedItem))
+
+					// Is it enough to compare the id?
+					// If not, this calculation has to be done by a worker, isEqual is very slow (double loop).
+					downloadedItem => !itemsByStash.value[key].some(oldItem => oldItem.id === downloadedItem.id)
 				)
 			})
 			.flat()

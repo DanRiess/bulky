@@ -289,90 +289,6 @@
 			},
 			{
 				"verified": false,
-				"w": 2,
-				"h": 2,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9IZWxtZXRzL0hlbG1ldFN0ckRleDkiLCJ3IjoyLCJoIjoyLCJzY2FsZSI6MX1d/f0313fc805/HelmetStrDex9.png",
-				"league": "Necropolis",
-				"id": "fdf90ea056e94071dda06e69fdb6a9fbe29fdaba8db5ffc3ce78cd47504f9dd8",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 0,
-						"attr": "I",
-						"sColour": "B"
-					}
-				],
-				"name": "",
-				"typeLine": "Pig-Faced Bascinet",
-				"baseType": "Pig-Faced Bascinet",
-				"rarity": "Rare",
-				"ilvl": 77,
-				"identified": false,
-				"properties": [
-					{
-						"name": "Armour",
-						"values": [
-							[
-								"250",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 16
-					},
-					{
-						"name": "Evasion Rating",
-						"values": [
-							[
-								"174",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 17
-					}
-				],
-				"requirements": [
-					{
-						"name": "Str",
-						"values": [
-							[
-								"85",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 63
-					},
-					{
-						"name": "Dex",
-						"values": [
-							[
-								"62",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 64
-					}
-				],
-				"frameType": 2,
-				"x": 9,
-				"y": 21,
-				"inventoryId": "Stash1",
-				"socketedItems": []
-			},
-			{
-				"verified": false,
 				"w": 1,
 				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2NhcmFicy9Ob3JtYWxTY2FyYWJFeHBlZGl0aW9uIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/a1f5997c7d/NormalScarabExpedition.png",
@@ -668,6 +584,82 @@
 				"frameType": 4,
 				"x": 1,
 				"y": 9,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXNpbGljYSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/a6855713fd/Basilica.png",
+				"league": "Necropolis",
+				"id": "fdead5298fe016719a7a9430f8966bd9d5641d11e7ae1106300d0d07b95cc751",
+				"name": "Pain Crest",
+				"typeLine": "Basilica Map",
+				"baseType": "Basilica Map",
+				"rarity": "Rare",
+				"ilvl": 82,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+95%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+57%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+37%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Area contains many Totems",
+					"Area is inhabited by ranged monsters",
+					"Monsters reflect 18% of Elemental Damage",
+					"Monsters deal 107% extra Physical Damage as Lightning",
+					"Monsters gain an Endurance Charge on Hit",
+					"Monsters Blind on Hit",
+					"Players have 25% less Accuracy Rating",
+					"Buffs on Players expire 70% faster"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 7,
+				"y": 5,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -5363,6 +5355,83 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXNpbGljYSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/a6855713fd/Basilica.png",
+				"league": "Necropolis",
+				"id": "7264e76213f443815d5e5f85a049c8a7b42b8f486bbe00b2648269f8ae6c097a",
+				"name": "Dream Quarters",
+				"typeLine": "Basilica Map",
+				"baseType": "Basilica Map",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+122%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+71%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+46%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"28% increased number of Rare Monsters",
+					"Monsters have 388% increased Critical Strike Chance",
+					"+41% to Monster Critical Strike Multiplier",
+					"Monsters cannot be Leeched from",
+					"Monsters fire 2 additional Projectiles",
+					"Monsters deal 95% extra Physical Damage as Fire",
+					"Monsters' skills Chain 2 additional times",
+					"Players have 25% less Accuracy Rating",
+					"Players have 25% less Area of Effect"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 6,
+				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzMwLDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9TaGllbGRDaGFyZ2UiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/6d2723f822/ShieldCharge.png",
 				"support": false,
 				"league": "Necropolis",
@@ -7034,6 +7103,82 @@
 				"frameType": 2,
 				"x": 5,
 				"y": 18,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaG9yZSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/f5a871974b/Shore.png",
+				"league": "Necropolis",
+				"id": "014a23a48d9871868fa92c899d57eee0241facbc8b2da096ba3858f9411732d6",
+				"name": "Open Panorama",
+				"typeLine": "Shore Map",
+				"baseType": "Shore Map",
+				"rarity": "Rare",
+				"ilvl": 82,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+49%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+30%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+19%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"implicitMods": [
+					"Unique Monsters drop Corrupted Items"
+				],
+				"explicitMods": [
+					"Players are Cursed with Enfeeble",
+					"40% more Monster Life",
+					"+25% Monster Chaos Resistance",
+					"+40% Monster Elemental Resistances",
+					"Monsters Blind on Hit"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 6,
+				"y": 4,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -9192,131 +9337,6 @@
 			{
 				"verified": false,
 				"w": 1,
-				"h": 3,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9PbmVIYW5kV2VhcG9ucy9EYWdnZXJzL0RhZ2dlcjMiLCJ3IjoxLCJoIjozLCJzY2FsZSI6MX1d/fbc18a1b4f/Dagger3.png",
-				"league": "Necropolis",
-				"id": "278589ed9980c501ef4307177ba1dff8261ed9577deb50b6567320bf949de073",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					}
-				],
-				"name": "",
-				"typeLine": "Slaughter Knife",
-				"baseType": "Slaughter Knife",
-				"rarity": "Normal",
-				"ilvl": 79,
-				"identified": true,
-				"properties": [
-					{
-						"name": "Rune Dagger",
-						"values": [],
-						"displayMode": 0
-					},
-					{
-						"name": "Physical Damage",
-						"values": [
-							[
-								"10-86",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 9
-					},
-					{
-						"name": "Critical Strike Chance",
-						"values": [
-							[
-								"6.30%",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 12
-					},
-					{
-						"name": "Attacks per Second",
-						"values": [
-							[
-								"1.40",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 13
-					},
-					{
-						"name": "Weapon Range: {0} metre",
-						"values": [
-							[
-								"1",
-								0
-							]
-						],
-						"displayMode": 3,
-						"type": 14
-					}
-				],
-				"requirements": [
-					{
-						"name": "Level",
-						"values": [
-							[
-								"58",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 62
-					},
-					{
-						"name": "Dex",
-						"values": [
-							[
-								"81",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 64
-					},
-					{
-						"name": "Int",
-						"values": [
-							[
-								"117",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 65
-					}
-				],
-				"implicitMods": [
-					"30% increased Global Critical Strike Chance"
-				],
-				"frameType": 0,
-				"x": 11,
-				"y": 7,
-				"inventoryId": "Stash1",
-				"socketedItems": []
-			},
-			{
-				"verified": false,
-				"w": 1,
 				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzMwLDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9GcmVuenkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwiZ2QiOjl9XQ/c087dc0ba2/Frenzy.png",
 				"support": false,
@@ -10158,6 +10178,78 @@
 				"frameType": 2,
 				"x": 8,
 				"y": 17,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXNpbGljYSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/a6855713fd/Basilica.png",
+				"league": "Necropolis",
+				"id": "005ef7071c88f7a782fc941e854d6e80f5e4c5b1faf65ba6194052efe5904406",
+				"name": "Raging Cramp",
+				"typeLine": "Basilica Map",
+				"baseType": "Basilica Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+55%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+32%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+21%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"20% more Magic Monsters",
+					"Players are Cursed with Elemental Weakness",
+					"Monsters Poison on Hit",
+					"Monsters deal 105% extra Physical Damage as Lightning"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 8,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -12762,27 +12854,6 @@
 			},
 			{
 				"verified": false,
-				"w": 2,
-				"h": 3,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvUXVpdmVycy9TZWFtdXNHaWZ0IiwidyI6MiwiaCI6Mywic2NhbGUiOjF9XQ/7da61eeb8e/SeamusGift.png",
-				"league": "Necropolis",
-				"id": "736efe73abfc6593b9c1af78a87ac31e0a7b710a4e830f8a0f78a1e59554f68b",
-				"name": "",
-				"typeLine": "Feathered Arrow Quiver",
-				"baseType": "Feathered Arrow Quiver",
-				"rarity": "Unique",
-				"ilvl": 70,
-				"identified": false,
-				"implicitMods": [
-					"20% increased Projectile Speed"
-				],
-				"frameType": 3,
-				"x": 6,
-				"y": 3,
-				"inventoryId": "Stash1"
-			},
-			{
-				"verified": false,
 				"w": 1,
 				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzMwLDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9TbmlwZXJTa2lsbEdlbSIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/dc97482a93/SniperSkillGem.png",
@@ -12933,6 +13004,78 @@
 					],
 					"secDescrText": "Supports bow attack skills. Cannot support channelled skills, instant skills, Vaal skills, or skills used by totems, traps, or mines."
 				}
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EZWZpbGVkQ2F0aGVkcmFsIiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoyMCwibXQiOjE0fV0/c9b5cfaea3/DefiledCathedral.png",
+				"league": "Necropolis",
+				"id": "2afcedeb95090591964da4b825cc2023c1979f83e7181ff1007959611a4ae341",
+				"name": "Noxious Filth",
+				"typeLine": "Defiled Cathedral Map",
+				"baseType": "Defiled Cathedral Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"14",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+43%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+26%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+17%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"23% more Magic Monsters",
+					"Monsters take 38% reduced Extra Damage from Critical Strikes",
+					"Monsters Maim on Hit with Attacks",
+					"Monsters have a 20% chance to Ignite, Freeze and Shock on Hit"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 2,
+				"inventoryId": "Stash1"
 			},
 			{
 				"verified": false,
@@ -13258,104 +13401,6 @@
 				"frameType": 3,
 				"x": 4,
 				"y": 4,
-				"inventoryId": "Stash1",
-				"socketedItems": []
-			},
-			{
-				"verified": false,
-				"w": 2,
-				"h": 3,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9Cb2R5QXJtb3Vycy9JbGx1bWluYXRpcyIsInciOjIsImgiOjMsInNjYWxlIjoxfV0/da0dbbc10a/Illuminatis.png",
-				"league": "Necropolis",
-				"id": "04648e4139a0385102e19b996a6a66c66a8a39824f4c67b6548b3bcbad473515",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "I",
-						"sColour": "B"
-					}
-				],
-				"name": "Incandescent Heart",
-				"typeLine": "Saintly Chainmail",
-				"baseType": "Saintly Chainmail",
-				"rarity": "Unique",
-				"ilvl": 75,
-				"identified": true,
-				"properties": [
-					{
-						"name": "Armour",
-						"values": [
-							[
-								"1439",
-								1
-							]
-						],
-						"displayMode": 0,
-						"type": 16
-					},
-					{
-						"name": "Energy Shield",
-						"values": [
-							[
-								"345",
-								1
-							]
-						],
-						"displayMode": 0,
-						"type": 18
-					}
-				],
-				"requirements": [
-					{
-						"name": "Level",
-						"values": [
-							[
-								"70",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 62
-					},
-					{
-						"name": "Str",
-						"values": [
-							[
-								"99",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 63
-					},
-					{
-						"name": "Int",
-						"values": [
-							[
-								"115",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 65
-					}
-				],
-				"explicitMods": [
-					"222% increased Armour and Energy Shield",
-					"+80 to maximum Life",
-					"1% of Attack Damage Leeched as Life",
-					"Gain 12% of Elemental Damage as Extra Chaos Damage",
-					"25% of Elemental Damage from Hits taken as Chaos Damage",
-					"22% increased Light Radius",
-					"Light Radius is based on Energy Shield instead of Life"
-				],
-				"flavourText": [
-					"Only light may banish the shadows from this land\r",
-					"And the black lies wrapped around your heart"
-				],
-				"frameType": 3,
-				"x": 9,
-				"y": 12,
 				"inventoryId": "Stash1",
 				"socketedItems": []
 			},
@@ -14273,6 +14318,81 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTV9XQ/77cce0e985/JungleValley.png",
+				"league": "Necropolis",
+				"id": "1ac1325eed867a68ee01fc8091942ebb1b56b6d06bd5a61d02557b60273ff535",
+				"name": "Insane Refuse",
+				"typeLine": "Jungle Valley Map",
+				"baseType": "Jungle Valley Map",
+				"rarity": "Rare",
+				"ilvl": 82,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"15",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+46%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+18%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"implicitMods": [
+					"Players' Vaal Skills do not apply Soul Gain Prevention"
+				],
+				"explicitMods": [
+					"28% more Magic Monsters",
+					"Monsters Maim on Hit with Attacks",
+					"Area is inhabited by Lunaris fanatics",
+					"Players have 25% less Accuracy Rating"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 7,
+				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTmVjcm9wb2xpcy9BbGxmbGFtZUVtYmVyc0Jhc2VBem1lcmkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/8960cc9f5b/AllflameEmbersBaseAzmeri.png",
 				"league": "Necropolis",
 				"id": "13f6d42292feb654571b553c993d1af917db0d2651396226840c67b7df0e8827",
@@ -14312,93 +14432,6 @@
 				"x": 18,
 				"y": 11,
 				"inventoryId": "Stash1"
-			},
-			{
-				"verified": false,
-				"w": 2,
-				"h": 4,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9Cb3dzL0JvdzV1bmlxdWUiLCJ3IjoyLCJoIjo0LCJzY2FsZSI6MX1d/199f28ea8d/Bow5unique.png",
-				"league": "Necropolis",
-				"id": "af76585735a0590261187c48ac11260eb88c00d9fb2bdb82420ed06257564fbc",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					}
-				],
-				"name": "",
-				"typeLine": "Assassin Bow",
-				"baseType": "Assassin Bow",
-				"rarity": "Unique",
-				"ilvl": 79,
-				"identified": false,
-				"properties": [
-					{
-						"name": "Bow",
-						"values": [],
-						"displayMode": 0
-					},
-					{
-						"name": "Physical Damage",
-						"values": [
-							[
-								"43-130",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 9
-					},
-					{
-						"name": "Critical Strike Chance",
-						"values": [
-							[
-								"6.70%",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 12
-					},
-					{
-						"name": "Attacks per Second",
-						"values": [
-							[
-								"1.25",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 13
-					}
-				],
-				"requirements": [
-					{
-						"name": "Dexterity",
-						"values": [
-							[
-								"212",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 64
-					}
-				],
-				"implicitMods": [
-					"+16% to Global Critical Strike Multiplier"
-				],
-				"frameType": 3,
-				"x": 12,
-				"y": 5,
-				"inventoryId": "Stash1",
-				"socketedItems": []
 			},
 			{
 				"verified": false,
@@ -14842,83 +14875,6 @@
 			},
 			{
 				"verified": false,
-				"w": 2,
-				"h": 3,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9Cb2R5QXJtb3Vycy9Cb2R5SW50MUIiLCJ3IjoyLCJoIjozLCJzY2FsZSI6MX1d/906a100c16/BodyInt1B.png",
-				"league": "Necropolis",
-				"id": "6daebbeff979f4ab6a014bf24ae54d7fe36fdf5312cd35691edd47d53f5dc251",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 1,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 2,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 2,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 3,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 3,
-						"attr": "I",
-						"sColour": "B"
-					}
-				],
-				"name": "",
-				"typeLine": "Savant's Robe",
-				"baseType": "Savant's Robe",
-				"rarity": "Rare",
-				"ilvl": 85,
-				"identified": false,
-				"properties": [
-					{
-						"name": "Energy Shield",
-						"values": [
-							[
-								"122",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 18
-					}
-				],
-				"requirements": [
-					{
-						"name": "Intelligence",
-						"values": [
-							[
-								"152",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 65
-					}
-				],
-				"frameType": 2,
-				"x": 9,
-				"y": 8,
-				"inventoryId": "Stash1",
-				"socketedItems": []
-			},
-			{
-				"verified": false,
 				"w": 1,
 				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTmVjcm9wb2xpcy9BbGxmbGFtZUVtYmVyc0Jhc2VTeW50aGVzaXMiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/0acf49992a/AllflameEmbersBaseSynthesis.png",
@@ -14959,6 +14915,81 @@
 				"frameType": 11,
 				"x": 18,
 				"y": 13,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXNpbGljYSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/a6855713fd/Basilica.png",
+				"league": "Necropolis",
+				"id": "4377a9bf1619c2701e0aaa8868c14e17578993ea3cd72f36b50ea0358425fc1a",
+				"name": "Agony Mire",
+				"typeLine": "Basilica Map",
+				"baseType": "Basilica Map",
+				"rarity": "Rare",
+				"ilvl": 85,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+64%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+37%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"20% more Magic Monsters",
+					"Monsters have 373% increased Critical Strike Chance",
+					"+43% to Monster Critical Strike Multiplier",
+					"25% increased Monster Movement Speed",
+					"45% increased Monster Attack Speed",
+					"35% increased Monster Cast Speed",
+					"Monsters fire 2 additional Projectiles"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 14,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -15130,113 +15161,6 @@
 				"x": 2,
 				"y": 12,
 				"inventoryId": "Stash1"
-			},
-			{
-				"verified": false,
-				"w": 2,
-				"h": 4,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9Cb3dzL0JvdzciLCJ3IjoyLCJoIjo0LCJzY2FsZSI6MX1d/1e6a3da9aa/Bow7.png",
-				"league": "Necropolis",
-				"id": "63f88a3c09d61d0ea44bc0ba39daf217cd3f94a8a91b413a5cb5eef593515874",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 1,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 1,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 2,
-						"attr": "D",
-						"sColour": "G"
-					}
-				],
-				"name": "",
-				"typeLine": "Imperial Bow",
-				"baseType": "Imperial Bow",
-				"rarity": "Magic",
-				"ilvl": 83,
-				"identified": false,
-				"properties": [
-					{
-						"name": "Bow",
-						"values": [],
-						"displayMode": 0
-					},
-					{
-						"name": "Physical Damage",
-						"values": [
-							[
-								"29-117",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 9
-					},
-					{
-						"name": "Critical Strike Chance",
-						"values": [
-							[
-								"5.00%",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 12
-					},
-					{
-						"name": "Attacks per Second",
-						"values": [
-							[
-								"1.45",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 13
-					}
-				],
-				"requirements": [
-					{
-						"name": "Dexterity",
-						"values": [
-							[
-								"212",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 64
-					}
-				],
-				"implicitMods": [
-					"24% increased Elemental Damage with Attack Skills"
-				],
-				"frameType": 1,
-				"x": 9,
-				"y": 15,
-				"inventoryId": "Stash1",
-				"socketedItems": []
 			},
 			{
 				"verified": false,
@@ -16070,6 +15994,78 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTV9XQ/77cce0e985/JungleValley.png",
+				"league": "Necropolis",
+				"id": "83f05e50045ff2432dfc83995751266f8d0580dda95490752c35014d657925ba",
+				"name": "Evil Sanctuary",
+				"typeLine": "Jungle Valley Map",
+				"baseType": "Jungle Valley Map",
+				"rarity": "Rare",
+				"ilvl": 85,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"15",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+58%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+34%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+22%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"+40% Monster Physical Damage Reduction",
+					"Monsters deal 97% extra Physical Damage as Lightning",
+					"Players have 60% less Recovery Rate of Life and Energy Shield",
+					"Players have 25% less Area of Effect"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 18,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQW5jZXN0b3JzL0NvbW1vbkludFRhdHR0b29FcXVpcG1lbnQiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/bae0258602/CommonIntTatttooEquipment.png",
 				"stackSize": 1,
 				"maxStackSize": 10,
@@ -16160,122 +16156,76 @@
 			},
 			{
 				"verified": false,
-				"w": 2,
-				"h": 4,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9TdGF2ZXMvU3RhZmY2dW5pcXVlIiwidyI6MiwiaCI6NCwic2NhbGUiOjF9XQ/8b60f5a033/Staff6unique.png",
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UaGlja2V0IiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoyMCwibXQiOjE2fV0/62531156a7/Thicket.png",
 				"league": "Necropolis",
-				"id": "ff5922242771e9e64cfbee9566c281b39848e2cd9f43dce2d07fc48c74f4b66a",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 1,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 1,
-						"attr": "I",
-						"sColour": "B"
-					}
-				],
-				"name": "",
-				"typeLine": "Imperial Staff",
-				"baseType": "Imperial Staff",
-				"rarity": "Unique",
+				"id": "b55151ce3e8a84a51099b92eed52e41db3284415d2f16e4d98962eaf19dc5127",
+				"name": "Anguish Estate",
+				"typeLine": "Thicket Map",
+				"baseType": "Thicket Map",
+				"rarity": "Rare",
 				"ilvl": 85,
-				"identified": false,
+				"identified": true,
+				"corrupted": true,
 				"properties": [
 					{
-						"name": "Staff",
-						"values": [],
-						"displayMode": 0
-					},
-					{
-						"name": "Physical Damage",
+						"name": "Map Tier",
 						"values": [
 							[
-								"57-171",
+								"16",
 								0
 							]
 						],
 						"displayMode": 0,
-						"type": 9
+						"type": 1
 					},
 					{
-						"name": "Critical Strike Chance",
+						"name": "Item Quantity",
 						"values": [
 							[
-								"7.00%",
-								0
+								"+65%",
+								1
 							]
 						],
 						"displayMode": 0,
-						"type": 12
+						"type": 2
 					},
 					{
-						"name": "Attacks per Second",
+						"name": "Item Rarity",
 						"values": [
 							[
-								"1.15",
-								0
+								"+39%",
+								1
 							]
 						],
 						"displayMode": 0,
-						"type": 13
+						"type": 3
 					},
 					{
-						"name": "Weapon Range: {0} metres",
+						"name": "Monster Pack Size",
 						"values": [
 							[
-								"1.3",
-								0
+								"+25%",
+								1
 							]
 						],
-						"displayMode": 3,
-						"type": 14
+						"displayMode": 0,
+						"type": 4
 					}
 				],
-				"requirements": [
-					{
-						"name": "Str",
-						"values": [
-							[
-								"113",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 63
-					},
-					{
-						"name": "Int",
-						"values": [
-							[
-								"113",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 65
-					}
+				"explicitMods": [
+					"25% increased number of Rare Monsters",
+					"Players are Cursed with Temporal Chains",
+					"Monsters are Hexproof",
+					"Monsters have a 50% chance to avoid Poison, Impale, and Bleeding",
+					"Players have 40% less Cooldown Recovery Rate"
 				],
-				"implicitMods": [
-					"+18% Chance to Block Attack Damage while wielding a Staff"
-				],
-				"frameType": 3,
-				"x": 13,
-				"y": 9,
-				"inventoryId": "Stash1",
-				"socketedItems": []
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 13,
+				"inventoryId": "Stash1"
 			},
 			{
 				"verified": false,
@@ -16355,6 +16305,79 @@
 				"frameType": 11,
 				"x": 19,
 				"y": 23,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9NYXplIiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoyMCwibXQiOjE0fV0/3048b714fc/Maze.png",
+				"league": "Necropolis",
+				"id": "c332d3d3453757e933d83d465af1d51994ebe4d8853c4daf02be66e908bd85b1",
+				"name": "Cruel Crate",
+				"typeLine": "Maze Map",
+				"baseType": "Maze Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"14",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+64%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+38%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players have -9% to all maximum Resistances",
+					"22% increased Monster Damage",
+					"+25% Monster Chaos Resistance",
+					"+40% Monster Elemental Resistances",
+					"Monsters have +60% chance to Suppress Spell Damage"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 15,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -16945,6 +16968,82 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTV9XQ/77cce0e985/JungleValley.png",
+				"league": "Necropolis",
+				"id": "e0de172bece01120e2686c610e302213112267ac055ddfdf6f6eb26f45e82f07",
+				"name": "Tempting Haven",
+				"typeLine": "Jungle Valley Map",
+				"baseType": "Jungle Valley Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"15",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+72%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+44%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Area has increased monster variety",
+					"44% more Monster Life",
+					"Monsters have 70% chance to Avoid Elemental Ailments",
+					"Unique Boss has 35% increased Life",
+					"Unique Boss has 70% increased Area of Effect",
+					"Monsters have 50% increased Accuracy Rating",
+					"Players have 25% less Accuracy Rating",
+					"Players have -20% to amount of Suppressed Spell Damage Prevented"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 21,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzMwLDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9GbGFtZXRocm93ZXIiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/8266e1aebc/Flamethrower.png",
 				"support": false,
 				"league": "Necropolis",
@@ -17126,6 +17225,79 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9EZWZpbGVkQ2F0aGVkcmFsIiwidyI6MSwiaCI6MSwic2NhbGUiOjEsIm1uIjoyMCwibXQiOjE0fV0/c9b5cfaea3/DefiledCathedral.png",
+				"league": "Necropolis",
+				"id": "f72f444b1a24da9aeae8fa7ff12b3a9b417cd46c887a81157ca5f522b29956df",
+				"name": "Lost Rubble",
+				"typeLine": "Defiled Cathedral Map",
+				"baseType": "Defiled Cathedral Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"14",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+49%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+30%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+19%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"+40% Monster Physical Damage Reduction",
+					"Monsters Blind on Hit",
+					"Players have 60% reduced effect of Non-Curse Auras from Skills",
+					"Players have 30% less Armour",
+					"Players have 40% reduced Chance to Block"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 17,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvTmVjcm9wb2xpcy9BbGxmbGFtZUVtYmVyc0Jhc2VPdGhlciIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/1fb8d76ae2/AllflameEmbersBaseOther.png",
 				"league": "Necropolis",
 				"id": "37b8a6878e0134f93ea7fa571dd15c48b2b612684da8b415ccb06b847b9f7889",
@@ -17154,6 +17326,83 @@
 				"frameType": 11,
 				"x": 17,
 				"y": 16,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9CYXNpbGljYSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/a6855713fd/Basilica.png",
+				"league": "Necropolis",
+				"id": "305443ae4b89eb65e198af76b9e44d7aeb13fc704940bfd9b489e8f9d6e2c9d8",
+				"name": "Rotting Abyss",
+				"typeLine": "Basilica Map",
+				"baseType": "Basilica Map",
+				"rarity": "Rare",
+				"ilvl": 85,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+104%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+62%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+40%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Area has increased monster variety",
+					"Area contains many Totems",
+					"22% more Magic Monsters",
+					"Players have -12% to all maximum Resistances",
+					"Monsters cannot be Leeched from",
+					"Unique Boss has 35% increased Life",
+					"Unique Boss has 70% increased Area of Effect",
+					"60% less effect of Curses on Monsters",
+					"Players have 25% less Accuracy Rating"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 9,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -17225,6 +17474,83 @@
 				"frameType": 0,
 				"x": 11,
 				"y": 21,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaG9yZSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/f5a871974b/Shore.png",
+				"league": "Necropolis",
+				"id": "8ceee2728c50d32c67ed198da25606ece6f034c9bde4a3b9aea1066c8eb5b9ef",
+				"name": "Demon Sands",
+				"typeLine": "Shore Map",
+				"baseType": "Shore Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+116%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+69%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+44%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"28% increased number of Rare Monsters",
+					"Monsters have 100% increased Area of Effect",
+					"24% increased Monster Damage",
+					"Monsters Poison on Hit",
+					"Area contains two Unique Bosses",
+					"60% less effect of Curses on Monsters",
+					"Monsters Maim on Hit with Attacks",
+					"Players have 30% less Armour",
+					"Players have 40% reduced Chance to Block"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 6,
+				"y": 3,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -17491,105 +17817,6 @@
 				"x": 5,
 				"y": 13,
 				"inventoryId": "Stash1"
-			},
-			{
-				"verified": false,
-				"w": 2,
-				"h": 3,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQXJtb3Vycy9Cb2R5QXJtb3Vycy9Cb2R5U3RyNEEiLCJ3IjoyLCJoIjozLCJzY2FsZSI6MX1d/7e1c29aacf/BodyStr4A.png",
-				"league": "Necropolis",
-				"id": "b2b974b0973d85c7f7d7a339fd9ba0045f053d897d9cc5107427fc942ba54848",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 1,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 2,
-						"attr": "S",
-						"sColour": "R"
-					}
-				],
-				"name": "",
-				"typeLine": "Battle Lamellar",
-				"baseType": "Battle Lamellar",
-				"rarity": "Rare",
-				"ilvl": 85,
-				"identified": false,
-				"properties": [
-					{
-						"name": "Armour",
-						"values": [
-							[
-								"314",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 16
-					},
-					{
-						"name": "Evasion Rating",
-						"values": [
-							[
-								"314",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 17
-					}
-				],
-				"requirements": [
-					{
-						"name": "Str",
-						"values": [
-							[
-								"79",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 63
-					},
-					{
-						"name": "Dex",
-						"values": [
-							[
-								"79",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 64
-					}
-				],
-				"frameType": 2,
-				"x": 9,
-				"y": 0,
-				"inventoryId": "Stash1",
-				"socketedItems": []
 			},
 			{
 				"verified": false,
@@ -17958,124 +18185,6 @@
 				"x": 18,
 				"y": 6,
 				"inventoryId": "Stash1"
-			},
-			{
-				"verified": false,
-				"w": 2,
-				"h": 4,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9Ud29IYW5kTWFjZXMvVHdvSGFuZE1hY2U0IiwidyI6MiwiaCI6NCwic2NhbGUiOjF9XQ/8c1f2059d0/TwoHandMace4.png",
-				"league": "Necropolis",
-				"id": "85779d663a17310c70a87d2d4d636ba78f863dc5eeb8658d432064801736149d",
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 1,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 2,
-						"attr": "S",
-						"sColour": "R"
-					}
-				],
-				"name": "",
-				"typeLine": "Piledriver",
-				"baseType": "Piledriver",
-				"rarity": "Rare",
-				"ilvl": 85,
-				"identified": false,
-				"properties": [
-					{
-						"name": "Two Handed Mace",
-						"values": [],
-						"displayMode": 0
-					},
-					{
-						"name": "Physical Damage",
-						"values": [
-							[
-								"77-115",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 9
-					},
-					{
-						"name": "Critical Strike Chance",
-						"values": [
-							[
-								"5.00%",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 12
-					},
-					{
-						"name": "Attacks per Second",
-						"values": [
-							[
-								"1.35",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 13
-					},
-					{
-						"name": "Weapon Range: {0} metres",
-						"values": [
-							[
-								"1.3",
-								0
-							]
-						],
-						"displayMode": 3,
-						"type": 14
-					}
-				],
-				"requirements": [
-					{
-						"name": "Strength",
-						"values": [
-							[
-								"212",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 63
-					}
-				],
-				"implicitMods": [
-					"20% reduced Enemy Stun Threshold"
-				],
-				"frameType": 2,
-				"x": 11,
-				"y": 1,
-				"inventoryId": "Stash1",
-				"socketedItems": []
 			},
 			{
 				"verified": false,
@@ -18503,6 +18612,83 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTV9XQ/77cce0e985/JungleValley.png",
+				"league": "Necropolis",
+				"id": "1a9516df37f68f3f1e579c722761c910f8e8f0f02794eb1a859a799cbe5c11c3",
+				"name": "Forsaken Swathe",
+				"typeLine": "Jungle Valley Map",
+				"baseType": "Jungle Valley Map",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"15",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+101%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+62%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+39%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Area is inhabited by Demons",
+					"Players are Cursed with Temporal Chains",
+					"Players are Cursed with Elemental Weakness",
+					"42% more Monster Life",
+					"Monsters have 100% increased Area of Effect",
+					"Monsters have 70% chance to Avoid Elemental Ailments",
+					"Unique Boss has 35% increased Life",
+					"Unique Boss has 70% increased Area of Effect",
+					"Monsters gain 41% of Maximum Life as Extra Maximum Energy Shield"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 12,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL0doYXN0bHlFeWUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/ed72511412/GhastlyEye.png",
 				"league": "Necropolis",
 				"id": "7dba5b272bde57a557ae83e4f6214c13776f0b935f083621266996a80c677aef",
@@ -18644,6 +18830,79 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9UZW1wbGUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTR9XQ/e0f42a1f2f/Temple.png",
+				"league": "Necropolis",
+				"id": "5f9fb472d583e71913ad5d1b411dbfcb766df1470fb08f5c1d0c85cbc156aece",
+				"name": "Whispering Alcove",
+				"typeLine": "Temple Map",
+				"baseType": "Temple Map",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"14",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+58%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+34%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+22%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Area has increased monster variety",
+					"Players have -9% to all maximum Resistances",
+					"Unique Boss deals 25% increased Damage",
+					"Unique Boss has 30% increased Attack and Cast Speed",
+					"Monsters gain 41% of Maximum Life as Extra Maximum Energy Shield"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 16,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvUmluZ3MvQnJlYWNoUmluZyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/c21b912df7/BreachRing.png",
 				"league": "Necropolis",
 				"id": "61e246a2eb2d21bea054271e055c9c45a60f9b2822e2b096412f67762c499f1a",
@@ -18679,6 +18938,158 @@
 				"frameType": 2,
 				"x": 18,
 				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTV9XQ/77cce0e985/JungleValley.png",
+				"league": "Necropolis",
+				"id": "4f8a7ad1dcb21ccbd39e107954a7e7ad229557d4cfa43361abd7b6f255a70041",
+				"name": "Timeworn Territory",
+				"typeLine": "Jungle Valley Map",
+				"baseType": "Jungle Valley Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"15",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+59%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+35%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+23%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players cannot inflict Exposure",
+					"Monsters have 70% chance to Avoid Elemental Ailments",
+					"Area contains two Unique Bosses",
+					"Monsters cannot be Taunted",
+					"Monsters Blind on Hit",
+					"Monsters' Action Speed cannot be modified to below Base Value\nMonsters' Movement Speed cannot be modified to below Base Value"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 10,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaG9yZSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/f5a871974b/Shore.png",
+				"league": "Necropolis",
+				"id": "12077da3f4c5cf5761f82d85819c654bc9db6b2a97949805e9e33864c28aa6be",
+				"name": "Dream Sands",
+				"typeLine": "Shore Map",
+				"baseType": "Shore Map",
+				"rarity": "Rare",
+				"ilvl": 85,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+116%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+68%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+44%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players have -10% to all maximum Resistances",
+					"Monsters cannot be Leeched from",
+					"26% increased Monster Movement Speed",
+					"35% increased Monster Attack Speed",
+					"36% increased Monster Cast Speed",
+					"Monsters reflect 18% of Elemental Damage",
+					"Monsters deal 94% extra Physical Damage as Cold",
+					"Monsters have a 20% chance to Ignite, Freeze and Shock on Hit",
+					"Buffs on Players expire 70% faster",
+					"Players gain 50% reduced Flask Charges"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 1,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -18807,137 +19218,6 @@
 			},
 			{
 				"verified": false,
-				"w": 2,
-				"h": 4,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvV2VhcG9ucy9Ud29IYW5kV2VhcG9ucy9Ud29IYW5kQXhlcy9Ud29IYW5kQXhlMyIsInciOjIsImgiOjQsInNjYWxlIjoxLCJmcmFjdHVyZWQiOnRydWV9XQ/9b7cb9861e/TwoHandAxe3.png",
-				"league": "Necropolis",
-				"id": "813cac09364030cea2e37cdc7922ce47009a1e3b09c1019b807bf29e31ce0262",
-				"fractured": true,
-				"sockets": [
-					{
-						"group": 0,
-						"attr": "S",
-						"sColour": "R"
-					},
-					{
-						"group": 0,
-						"attr": "D",
-						"sColour": "G"
-					},
-					{
-						"group": 0,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 1,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 2,
-						"attr": "I",
-						"sColour": "B"
-					},
-					{
-						"group": 2,
-						"attr": "D",
-						"sColour": "G"
-					}
-				],
-				"name": "",
-				"typeLine": "Sundering Axe",
-				"baseType": "Sundering Axe",
-				"rarity": "Rare",
-				"ilvl": 85,
-				"identified": false,
-				"corrupted": true,
-				"properties": [
-					{
-						"name": "Two Handed Axe",
-						"values": [],
-						"displayMode": 0
-					},
-					{
-						"name": "Physical Damage",
-						"values": [
-							[
-								"74-155",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 9
-					},
-					{
-						"name": "Critical Strike Chance",
-						"values": [
-							[
-								"5.00%",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 12
-					},
-					{
-						"name": "Attacks per Second",
-						"values": [
-							[
-								"1.30",
-								0
-							]
-						],
-						"displayMode": 0,
-						"type": 13
-					},
-					{
-						"name": "Weapon Range: {0} metres",
-						"values": [
-							[
-								"1.3",
-								0
-							]
-						],
-						"displayMode": 3,
-						"type": 14
-					}
-				],
-				"requirements": [
-					{
-						"name": "Str",
-						"values": [
-							[
-								"149",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 63
-					},
-					{
-						"name": "Dex",
-						"values": [
-							[
-								"76",
-								0
-							]
-						],
-						"displayMode": 1,
-						"type": 64
-					}
-				],
-				"implicitMods": [
-					"+20% to Damage over Time Multiplier for Bleeding"
-				],
-				"frameType": 2,
-				"x": 11,
-				"y": 13,
-				"inventoryId": "Stash1",
-				"socketedItems": []
-			},
-			{
-				"verified": false,
 				"w": 1,
 				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvSmV3ZWxzL2Jhc2ljaW50IiwidyI6MSwiaCI6MSwic2NhbGUiOjEsImZyYWN0dXJlZCI6dHJ1ZX1d/b470123709/basicint.png",
@@ -18954,6 +19234,82 @@
 				"frameType": 2,
 				"x": 3,
 				"y": 11,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9KdW5nbGVWYWxsZXkiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MSwibW4iOjIwLCJtdCI6MTV9XQ/77cce0e985/JungleValley.png",
+				"league": "Necropolis",
+				"id": "f25d90660652864e41a415c7b36abde7c316159303d698c320b7f68186957bed",
+				"name": "Menacing Vine",
+				"typeLine": "Jungle Valley Map",
+				"baseType": "Jungle Valley Map",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"15",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+65%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+33%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+21%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"implicitMods": [
+					"+10% Item Quantity"
+				],
+				"explicitMods": [
+					"Monsters deal 101% extra Physical Damage as Cold",
+					"Monsters gain a Frenzy Charge on Hit",
+					"Monsters gain a Power Charge on Hit",
+					"+25% Monster Chaos Resistance",
+					"+40% Monster Elemental Resistances"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 7,
+				"y": 3,
 				"inventoryId": "Stash1"
 			},
 			{
@@ -19399,6 +19755,78 @@
 				"frameType": 2,
 				"x": 10,
 				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI4LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9BdGxhczJNYXBzL05ldy9TaG9yZSIsInciOjEsImgiOjEsInNjYWxlIjoxLCJtbiI6MjAsIm10IjoxM31d/f5a871974b/Shore.png",
+				"league": "Necropolis",
+				"id": "fb8434c388a6ba84fb01a95741a58c346fd03fc7db995810fecdbd1c403b460a",
+				"name": "Warped Realm",
+				"typeLine": "Shore Map",
+				"baseType": "Shore Map",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Map Tier",
+						"values": [
+							[
+								"13",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 1
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+58%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+35%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+22%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players are Cursed with Vulnerability",
+					"Area contains two Unique Bosses",
+					"Monsters gain 45% of Maximum Life as Extra Maximum Energy Shield",
+					"Players have 25% less Area of Effect"
+				],
+				"descrText": "Travel to this Map by using it in a personal Map Device. Maps can only be used once.",
+				"frameType": 2,
+				"x": 9,
+				"y": 0,
 				"inventoryId": "Stash1"
 			},
 			{

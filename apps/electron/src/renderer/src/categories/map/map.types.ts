@@ -35,10 +35,11 @@ export type ShopMap = BulkyShopItemBase<typeof CATEGORY.MAP> & {
 }
 
 /** BulkyShopItem implementation for the 8 mod map category */
-export type ShopMap8Mod = BulkyShopItemBase<typeof CATEGORY.MAP_8_MOD> & {
+export type ShopMap8Mod = Omit<BulkyShopItemBase<typeof CATEGORY.MAP_8_MOD>, 'perItemAttributes'> & {
 	type: MapType
 	tier: MapTier
 	priceOverrideMap8Mod: ComputedRef<Map8ModPrices>
+	perItemAttributes: Map8ModPerItemAttributes[]
 }
 
 /** BulkyBazaarItem implementation for the map category */
@@ -94,4 +95,13 @@ export type Map8ModPrices = {
 	quant120?: number
 	avoidRegex?: number
 	addRegex?: number
+}
+
+export type Map8ModPerItemAttributes = {
+	properties: {
+		itemQuantity: number
+		itemRarity: number
+		packSize: number
+	}
+	modifiers: number[]
 }

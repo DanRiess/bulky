@@ -32,7 +32,7 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 		const fullPrice = dto.fullPrice ?? 5400
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const items = dto.items
-			.map(item => BULKY_FACTORY.generateTypedItemFromDto('MAP', item) as BazaarDeliriumOrb)
+			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarDeliriumOrb)
 			.filter(Boolean)
 		if (!items) return
 

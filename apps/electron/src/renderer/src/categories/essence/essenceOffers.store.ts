@@ -31,7 +31,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice ?? 5400
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = dto.items.map(item => BULKY_FACTORY.generateTypedItemFromDto('MAP', item) as BazaarEssence).filter(Boolean)
+		const items = dto.items.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarEssence).filter(Boolean)
 		if (!items) return
 
 		offers.value.set(uuid, {
