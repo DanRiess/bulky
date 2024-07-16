@@ -14,7 +14,7 @@
 							position: 'bottom',
 							transitionDirection: 'toBottom',
 							popupAlignment: 'right',
-							maxWidth: 550,
+							maxWidth: 350,
 						}">
 						<InfoPanelRegexTemplateAtom />
 					</InfoPanelMolecule>
@@ -71,7 +71,7 @@ const headerHooks = useGenericTransitionHooks({
 .m-stash-item-list {
 	display: grid;
 	grid-template-columns: 1rem 1.5rem 1fr max-content 8ch max-content;
-	grid-auto-rows: 2rem;
+	grid-auto-rows: max-content;
 	column-gap: 0.5rem;
 	row-gap: 0.1rem;
 	overflow: auto;

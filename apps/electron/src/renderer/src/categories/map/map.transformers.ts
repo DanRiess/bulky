@@ -96,10 +96,10 @@ function generateMap8ModFromPoeItem(poeItem: PoeItem, itemOverrides: Ref<BulkyIt
 			return (
 				itemOverrides.value.get(`${type}_${tier}`)?.priceOverrideMap8Mod ?? {
 					base: 0,
-					quant110: 0,
-					quant120: 0,
-					avoidRegex: 0,
-					addRegex: 0,
+					avoidRegex: undefined,
+					wantedRegex: undefined,
+					quantityRegex: [],
+					packsizeRegex: [],
 				}
 			)
 		}),
@@ -107,7 +107,7 @@ function generateMap8ModFromPoeItem(poeItem: PoeItem, itemOverrides: Ref<BulkyIt
 			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
 		allowRegexFilter: computed(() => {
-			return itemOverrides.value.get(`${type}_${tier}`)?.allowRegexFilter ?? true
+			return itemOverrides.value.get(`${type}_${tier}`)?.allowRegexFilter ?? false
 		}),
 		perItemAttributes: [],
 	}

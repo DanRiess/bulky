@@ -8,16 +8,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import ButtonTooltipAtom from '../atoms/ButtonTooltipAtom.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 
 // PROPS
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		popupProps?: Omit<InstanceType<typeof ButtonTooltipAtom>['$props'], 'active'>
 		iconWidth?: number
-		tooltipWidth?: number
 	}>(),
 	{
 		popupProps: () => ({
@@ -26,12 +25,16 @@ withDefaults(
 			popupAlignment: 'left',
 		}),
 		iconWidth: 24,
-		tooltipWidth: 250,
 	}
 )
 
 // STATE
 const hovered = ref(false)
+
+// GETTERS
+const tooltipWidth = computed(() => {
+	return props.popupProps.maxWidth ?? 250
+})
 </script>
 
 <style scoped>

@@ -1,16 +1,14 @@
 <template>
 	<div class="a-info-panel-regex-template flow" style="--flow-space: 0.3em">
-		<h5>What does this do?</h5>
-		<p>Enable users to filter your maps with a regex. The regex will be limited by the options you choose below.</p>
-		<p>Each part of the regex will incur an additional price charge that you can set.</p>
-		<p>Example: Enable regexes that filter out mods your customers don't want (and nothing else).</p>
+		<p>Enable users to filter your maps with a regex.</p>
+		<p>Typically, a map regex consists of any combination of modifiers to avoid, wanted modifiers, quantity or pack size.</p>
 		<p>
-			Set the price for 'avoid modifiers' to any number, e. g. 5c. If someone uses a regex with modifiers to avoid, they
-			will see your maps that respect that filter. The price per map will be the base price + the additional 5c.
+			For each of these parts, you can charge an additional fee on top of the base fee. These fees accumulate. E. g. a regex
+			with modifiers to avoid and quantity will result in a per-map price of baseFee + avoidFee + quantFee.
 		</p>
 		<p>
-			If someone uses a regex with modifiers to avoid and another option, like item quantity, their search will not list
-			your maps in this case.
+			If you don't specify a part (e. g. because you don't want users to be able to search for quantity), people using such
+			a regex won't be able to see your offer.
 		</p>
 	</div>
 </template>

@@ -91,6 +91,7 @@ const hooks = useGenericTransitionHooks({
 <style scoped>
 .a-button-tooltip {
 	padding-inline: 0.5rem;
+	padding-block: 0.25rem;
 	background-image: v-bind(backgroundColorButton);
 	display: flex;
 	align-items: center;

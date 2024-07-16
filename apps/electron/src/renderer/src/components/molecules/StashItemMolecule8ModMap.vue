@@ -1,25 +1,42 @@
 <template>
 	<li class="m-stash-item" :style="style">
-		<InputCheckboxAtom v-model="selected" @update:model-value="emit('changeItemOverride', item, { selected })" />
-		<div class="icon">
-			<img :src="item.icon" :alt="item.name" />
+		<div class="metadata">
+			<InputCheckboxAtom v-model="selected" @update:model-value="emit('changeItemOverride', item, { selected })" />
+			<div class="icon">
+				<img :src="item.icon" :alt="item.name" />
+			</div>
+			<div class="name">{{ item.name }} | {{ BULKY_TRANSFORM.stringToDisplayValue(item.tier) }}</div>
+			<div class="stack-size">{{ item.quantity }}</div>
+			<div class="center-content">
+				<InputNumberAtom
+					v-model="overridePrice.base"
+					:step="1"
+					:num-digits="1"
+					@update:model-value="updateOverrideValue"
+					ref="inputEl" />
+			</div>
+			<div class="center-content">
+				<InputCheckboxAtom
+					v-model="allowRegexFilter"
+					@update:model-value="emit('changeItemOverride', item, { allowRegexFilter })" />
+			</div>
 		</div>
-		<div class="name">{{ item.name }}</div>
-		<div class="tier" v-if="showTier">{{ BULKY_TRANSFORM.stringToDisplayValue(item.tier) }}</div>
-		<div class="stack-size">{{ item.quantity }}</div>
-		<div class="center-content">
-			<InputNumberAtom
-				v-model="overridePrice"
-				:step="1"
-				:num-digits="1"
-				@update:model-value="updateOverrideValue"
-				ref="inputEl" />
-		</div>
-		<div class="center-content">
-			<InputCheckboxAtom
-				v-model="allowRegexFilter"
-				@update:model-value="emit('changeItemOverride', item, { allowRegexFilter })" />
-		</div>
+		<AccordionTransitionWrapperAtom class="grid-column-3-8" :expanded="toValue(item.allowRegexFilter)">
+			<ul class="regex-options">
+				<RegexOptionAtom :regex-price="overridePrice.avoidRegex" regex-type="avoidRegex">
+					For modifiers to avoid
+				</RegexOptionAtom>
+				<RegexOptionAtom :regex-price="overridePrice.wantedRegex" regex-type="wantedRegex">
+					For wanted modifiers
+				</RegexOptionAtom>
+				<RegexOptionAtom :regex-price="overridePrice.quantityRegex" regex-type="quantityRegex">
+					For quantity over
+				</RegexOptionAtom>
+				<RegexOptionAtom :regex-price="overridePrice.packsizeRegex" regex-type="packsizeRegex">
+					For pack size over
+				</RegexOptionAtom>
+			</ul>
+		</AccordionTransitionWrapperAtom>
 	</li>
 </template>
 
@@ -30,6 +47,8 @@ import InputCheckboxAtom from '../atoms/InputCheckboxAtom.vue'
 import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { ShopMap8Mod } from '@web/categories/map/map.types'
+import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
+import RegexOptionAtom from '../atoms/RegexOptionAtom.vue'
 
 // PROPS
 const props = defineProps<{
@@ -48,14 +67,17 @@ const inputEl = ref<InstanceType<typeof InputNumberAtom>>()
 const selected = ref(props.item.selected)
 const allowRegexFilter = ref(props.item.allowRegexFilter)
 const prices = ref(props.item.priceOverrideMap8Mod)
-const overridePrice = ref(props.overridePrices.get(`${props.item.type}_${props.item.tier}`)?.priceOverride ?? props.item.price)
+const overridePrice = ref(
+	props.overridePrices.get(`${props.item.type}_${props.item.tier}`)?.priceOverrideMap8Mod ??
+		toValue(props.item.priceOverrideMap8Mod)
+)
 
 // WATCHERS
 
 // On load, the override prices are still being fetched from idb.
 // Update the state variables once they change.
 watch(
-	() => props.item.priceOverride,
+	() => props.item.priceOverrideMap8Mod,
 	price => {
 		overridePrice.value = toValue(price)
 	}
@@ -94,19 +116,37 @@ const style = computed(() => {
  * Update the override value if it has changed.
  */
 function updateOverrideValue() {
-	if (overridePrice.value === toValue(props.item.priceOverride)) return
+	if (overridePrice.value.base === toValue(props.item.priceOverrideMap8Mod).base) return
 
-	emit('changeItemOverride', props.item, { price: overridePrice.value })
+	emit('changeItemOverride', props.item, { price: overridePrice.value.base })
 }
 </script>
 
 <style scoped>
-.m-stash-item {
+.m-stash-item,
+.metadata {
 	display: grid;
 	grid-template-columns: subgrid;
 	grid-column: span 7;
-	height: 2rem;
 	align-items: center;
+}
+
+.metadata {
+	height: 2rem;
+}
+
+.grid-column-3-8 {
+	grid-column: 3/8;
+}
+
+.regex-options {
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 3.5rem max-content 6rem max-content 6ch 1.5rem 1.5rem;
+	grid-auto-rows: 2rem;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1.5rem;
 }
 
 .name {
