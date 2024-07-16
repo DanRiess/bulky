@@ -1,5 +1,5 @@
 <template>
-	<div class="a-total-price no-select" :style="style">
+	<div class="a-total-price no-select" :style="style" v-if="price">
 		<div class="label" v-if="label">{{ props.label }}</div>
 		<div class="currency-section" :class="{ hide: price.divine === 0 }">
 			{{ price.divine }}
@@ -19,7 +19,7 @@ import { computed } from 'vue'
 // PROPS
 const props = withDefaults(
 	defineProps<{
-		price: TotalPrice
+		price?: TotalPrice
 		label?: string
 	}>(),
 	{
@@ -30,9 +30,9 @@ const props = withDefaults(
 // GETTERS
 const templateColumns = computed(() => {
 	const labelArea = props.label !== '' ? 'auto' : ''
-	if (props.price.divine === 0) {
+	if (props.price?.divine === 0) {
 		return `${labelArea} 0fr 1fr`
-	} else if (props.price.chaos === 0) {
+	} else if (props.price?.chaos === 0) {
 		return `${labelArea} 1fr fit-content(0px)`
 	}
 	return `${labelArea} 1fr fit-content(50px)`
@@ -40,9 +40,9 @@ const templateColumns = computed(() => {
 
 const gap = computed(() => {
 	// No gap if there is only one value displayed.
-	if (!props.label && (props.price.divine === 0 || props.price.chaos === 0)) return '0'
+	if (!props.label && (props.price?.divine === 0 || props.price?.chaos === 0)) return '0'
 	// Half the gap if divine is 0, because the column is still there, so we get 2 gaps between label and chaos
-	else if (props.label && props.price.divine === 0) return '0.25rem'
+	else if (props.label && props.price?.divine === 0) return '0.25rem'
 	else return '0.5rem'
 })
 

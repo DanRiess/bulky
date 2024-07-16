@@ -58,7 +58,7 @@ function generateTierFromBaseType(baseType: string): EssenceTier | undefined {
 function generateEssenceFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
-	priceOverrides: Ref<BulkyItemOverrideRecord>
+	itemOverrides: Ref<BulkyItemOverrideRecord>
 ): ShopEssence | undefined {
 	const configStore = useConfigStore()
 
@@ -79,10 +79,10 @@ function generateEssenceFromPoeItem(
 		league: configStore.config.league,
 		category: 'ESSENCE',
 		priceOverride: computed(() => {
-			return Math.round((priceOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
+			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
 		}),
 		selected: computed(() => {
-			return priceOverrides.value.get(`${type}_${tier}`)?.selected ?? true
+			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
 		}),
 	}
 }

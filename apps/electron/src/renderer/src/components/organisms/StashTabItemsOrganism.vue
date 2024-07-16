@@ -9,11 +9,18 @@
 		</div>
 
 		<template v-if="category === 'MAP'">
-			<StashItemListMapMolecule
+			<StashItemListMoleculeMap
 				:items="filteredItemRecord"
 				:override-prices="itemOverrides"
 				:sort-fn="sortItems"
 				:offer-multiplier="offerMultiplier"
+				@change-item-override="(item, options) => putItemOverride(item, options)" />
+		</template>
+		<template v-else-if="category === 'MAP_8_MOD'">
+			<StashItemListMolecule8ModMap
+				:items="filteredItemRecord as BulkyShopItemRecord<ShopMap8Mod>"
+				:override-prices="itemOverrides"
+				:sort-fn="sortItems"
 				@change-item-override="(item, options) => putItemOverride(item, options)" />
 		</template>
 		<template v-else>
@@ -57,11 +64,13 @@ import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
 import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 import { PoeItemsByStash } from '@shared/types/poe.types'
-import StashItemListMapMolecule from '../molecules/StashItemListMapMolecule.vue'
 import { useFilterShopItems } from '@web/composables/useFilterShopItems'
 import ShopCreateOfferFilter from '../molecules/ShopCreateOfferFilter.vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+import StashItemListMoleculeMap from '../molecules/StashItemListMoleculeMap.vue'
+import StashItemListMolecule8ModMap from '../molecules/StashItemListMolecule8ModMap.vue'
+import { ShopMap8Mod } from '@web/categories/map/map.types'
 
 // MODEL
 const filterModel = defineModel<ShopFilter>({ required: true })
@@ -69,7 +78,7 @@ const filterModel = defineModel<ShopFilter>({ required: true })
 // PROPS
 const props = defineProps<{
 	operation: 'create' | 'edit'
-	offerMultiplier: number
+	offerMultiplier: number | undefined
 	category: Category
 	disableOfferGenerationButton?: boolean
 }>()
@@ -99,9 +108,10 @@ const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides, () => props.category)
 const { filteredItemRecord } = useFilterShopItems(items, filterModel)
+console.log({ categoryFilteredItemsByStash, itemOverrides, items, filteredItemRecord })
 
 // GETTERS
-const chaosValue = useAggregateItemPrice(filteredItemRecord, () => props.offerMultiplier)
+const chaosValue = useAggregateItemPrice(filteredItemRecord, () => props.offerMultiplier ?? 1)
 const divValue = useChaosToDiv(chaosValue, chaosPerDiv)
 
 // METHODS

@@ -7,7 +7,7 @@
 
 		<AccordionTransitionWrapperAtom :expanded="expanded">
 			<div class="config">
-				<div class="config-option multiplier">
+				<div class="config-option multiplier" v-if="offer.computedMultiplier">
 					<label>Price Multiplier:</label>
 					<div>{{ Math.round(offer.computedMultiplier * 100) }} %</div>
 				</div>

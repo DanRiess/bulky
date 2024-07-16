@@ -95,6 +95,10 @@ const filteredPrice = computed<TotalPrice>(() => {
  */
 async function sendMessage() {
 	const message = craftWhisperMessage(props.offer)
+	if (!message) {
+		// TODO - IMPORTANT: Handle error here
+		return
+	}
 
 	const request = useApi('typeInChat', nodeApi.typeInChat)
 	await request.exec(message)

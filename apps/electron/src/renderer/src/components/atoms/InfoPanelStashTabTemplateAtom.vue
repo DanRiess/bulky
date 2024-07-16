@@ -2,8 +2,8 @@
 	<div class="a-info-panel-stash-tab-template flow">
 		<h5>Why is this stash tab unselectable?</h5>
 		<template v-if="appStateStore.selectedCategory === 'MAP_8_MOD'">
-			<p>The map stash tab return value does not contain the necessary item data to identify 8 mod maps.</p>
-			<p>For now, please put your 8 mod maps into any other stash tab type and select that one instead.</p>
+			<p>Necessary item data to identify 8 mod maps is not available for this stash type.</p>
+			<p>Please put your 8 mod maps into a normal, premium or quad stash tab instead.</p>
 		</template>
 	</div>
 </template>

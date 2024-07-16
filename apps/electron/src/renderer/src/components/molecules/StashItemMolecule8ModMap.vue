@@ -7,35 +7,34 @@
 		<div class="name">{{ item.name }}</div>
 		<div class="tier" v-if="showTier">{{ BULKY_TRANSFORM.stringToDisplayValue(item.tier) }}</div>
 		<div class="stack-size">{{ item.quantity }}</div>
-		<InputToggleAtom v-model="override" @update:model-value="updateOverrideUsage" />
-		<div class="price">
-			<template v-if="override">
-				<InputNumberAtom
-					v-model="overridePrice"
-					:step="1"
-					:num-digits="1"
-					@update:model-value="updateOverrideValue"
-					ref="inputEl" />
-			</template>
-			<template v-else>{{ Math.round(toValue(item.price) * (offerMultiplier ?? 1) * 10) / 10 }}</template>
+		<div class="center-content">
+			<InputNumberAtom
+				v-model="overridePrice"
+				:step="1"
+				:num-digits="1"
+				@update:model-value="updateOverrideValue"
+				ref="inputEl" />
 		</div>
-		<div class="stack-price">{{ stackPrice }}</div>
+		<div class="center-content">
+			<InputCheckboxAtom
+				v-model="allowRegexFilter"
+				@update:model-value="emit('changeItemOverride', item, { allowRegexFilter })" />
+		</div>
 	</li>
 </template>
 
 <script setup lang="ts">
 import { BulkyShopItem, BulkyItemOverrideOptions, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
-import { computed, nextTick, ref, toValue, watch } from 'vue'
+import { computed, ref, toValue, watch } from 'vue'
 import InputCheckboxAtom from '../atoms/InputCheckboxAtom.vue'
-import InputToggleAtom from '../atoms/InputToggleAtom.vue'
 import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
+import { ShopMap8Mod } from '@web/categories/map/map.types'
 
 // PROPS
 const props = defineProps<{
-	item: BulkyShopItem
+	item: ShopMap8Mod
 	overridePrices: BulkyItemOverrideRecord
-	offerMultiplier: number | undefined
 	showTier?: boolean
 }>()
 
@@ -47,7 +46,8 @@ const emit = defineEmits<{
 // STATE
 const inputEl = ref<InstanceType<typeof InputNumberAtom>>()
 const selected = ref(props.item.selected)
-const override = ref(toValue(props.item.priceOverride) > 0)
+const allowRegexFilter = ref(props.item.allowRegexFilter)
+const prices = ref(props.item.priceOverrideMap8Mod)
 const overridePrice = ref(props.overridePrices.get(`${props.item.type}_${props.item.tier}`)?.priceOverride ?? props.item.price)
 
 // WATCHERS
@@ -58,29 +58,22 @@ watch(
 	() => props.item.priceOverride,
 	price => {
 		overridePrice.value = toValue(price)
-		override.value = toValue(price) > 0
 	}
 )
 
 // On load, the override prices are still being fetched from idb.
 // Update the state variables once they change.
 watch(
-	() => props.item.selected,
-	bool => (selected.value = toValue(bool))
+	() => props.item,
+	item => {
+		selected.value = toValue(item.selected)
+		allowRegexFilter.value = toValue(item.allowRegexFilter)
+		prices.value = toValue(item.priceOverrideMap8Mod)
+	},
+	{ deep: true }
 )
 
 // GETTERS
-
-/**
- * Compute the price of the entire stack.
- */
-const stackPrice = computed(() => {
-	const price =
-		toValue(props.item.priceOverride) > 0
-			? props.item.priceOverride
-			: toValue(props.item.price) * (props.offerMultiplier ?? 1)
-	return Math.round(toValue(price) * props.item.quantity * 10) / 10
-})
 
 /**
  * Defines styles in case this item is unselected.
@@ -98,27 +91,6 @@ const style = computed(() => {
 // METHODS
 
 /**
- * Toggle between a positive or negative override value.
- * A negative override price means the override won't be used.
- * This way, it can still be saved locally for later use without needing an extra boolean toggle property.
- */
-function updateOverrideUsage(bool: boolean) {
-	// focus the number input
-	if (bool) {
-		nextTick(() => {
-			inputEl.value?.focus()
-		})
-	}
-
-	if (overridePrice.value === props.item.price) return
-
-	if ((bool && overridePrice.value < 0) || (!bool && overridePrice.value > 0)) {
-		overridePrice.value *= -1
-		emit('changeItemOverride', props.item, { price: overridePrice.value })
-	}
-}
-
-/**
  * Update the override value if it has changed.
  */
 function updateOverrideValue() {
@@ -132,7 +104,7 @@ function updateOverrideValue() {
 .m-stash-item {
 	display: grid;
 	grid-template-columns: subgrid;
-	grid-column: span 8;
+	grid-column: span 7;
 	height: 2rem;
 	align-items: center;
 }
@@ -140,6 +112,11 @@ function updateOverrideValue() {
 .name {
 	text-wrap: nowrap;
 	overflow: auto;
+}
+
+.center-content {
+	display: flex;
+	justify-content: center;
 }
 
 .stack-size {
@@ -156,7 +133,7 @@ This takes the element out of the layout flow and therefore nullifies the subgri
 This is an estimate of the average column layout.
 */
 .list-leave-active {
-	grid-template-columns: 1rem 1.5rem 1fr 3ch 3ch 3ch 4.15ch;
+	grid-template-columns: 1rem 1.5rem 1fr 3ch 8ch 2.7rem;
 	gap: 0.5rem;
 	width: calc(100% - 1rem);
 }

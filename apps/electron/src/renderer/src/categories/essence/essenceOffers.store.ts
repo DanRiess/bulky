@@ -29,10 +29,10 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
-		const fullPrice = dto.fullPrice ?? 5400
+		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const items = dto.items.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarEssence).filter(Boolean)
-		if (!items) return
+		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
 		offers.value.set(uuid, {
 			category,

@@ -45,6 +45,11 @@ export function useItemOverrides(category: MaybeRefOrGetter<Category>) {
 		// Generate the new override item.
 		const newItem = BULKY_TRANSFORM.bulkyItemToOverrideItem(item, overrides)
 
+		// Unset properties that should not be active if the item is unselected.
+		if (newItem.selected === false) {
+			newItem.allowRegexFilter !== undefined && (newItem.allowRegexFilter = false)
+		}
+
 		// Set the new item in the map.
 		itemOverrides.value.set(`${newItem.type}_${newItem.tier}`, newItem)
 
@@ -65,6 +70,8 @@ async function updateStateVariable(category: Category) {
 
 	// Get overrides for this category from idb.
 	const overrides = await bulkyIdb.getItemOverrideByCategory(category)
+	console.log('FETCH OVERRIDES')
+	console.log(overrides)
 
 	// Transform the overrides into the form expected by the state variable
 	return transformOverridesToState(overrides)

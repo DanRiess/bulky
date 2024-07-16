@@ -41,7 +41,7 @@ import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHoo
 defineProps<{
 	items: BulkyShopItemRecord
 	overridePrices: BulkyItemOverrideRecord
-	offerMultiplier: number
+	offerMultiplier: number | undefined
 	sortFn: (sortOption: BulkyItemSortOptions['key']) => void
 }>()
 

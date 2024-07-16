@@ -95,6 +95,6 @@ async function syncSelectedFolders() {
 	align-items: center;
 
 	/* Make sure that this component is on top the element below it (because of popup) */
-	z-index: 1;
+	z-index: 10;
 }
 </style>

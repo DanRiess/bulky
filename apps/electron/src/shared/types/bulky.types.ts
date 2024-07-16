@@ -107,6 +107,7 @@ export type BulkyShopItemBase<T extends Category> = {
 	icon: string
 	league: string
 	selected: MaybeComputedRef<boolean>
+	allowRegexFilter?: MaybeComputedRef<boolean>
 	perItemAttributes?: {
 		properties: Record<string, number>
 		modifiers: number[]
@@ -140,8 +141,8 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 	category: T['category']
 	stashTabIds: PoeStashTab['id'][]
 	chaosPerDiv: number
-	multiplier: number
-	computedMultiplier: number
+	multiplier?: number
+	computedMultiplier?: number
 	/**
 	 * Do not change this type to a number.
 	 * While more consistent, when the offer updates, chaosPerDiv updates as well.
@@ -149,10 +150,10 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 	 * 2 div should stay that regardless of whether the ratio is 1:100 or 1:150.
 	 */
 	minimumBuyout: TotalPrice
-	fullBuyout: boolean
+	fullBuyout?: boolean
 	items: UnwrapRef<T>[]
 	filter?: ShopFilter<T>
-	fullPrice: number
+	fullPrice?: number
 	lastUploaded: number
 	active: boolean
 	autoSync: boolean
@@ -289,6 +290,7 @@ export type BulkyItemOverrideInstance<T extends BulkyShopItem = BulkyShopItem> =
 	priceOverride: number
 	priceOverrideMap8Mod?: Map8ModPrices
 	selected: boolean
+	allowRegexFilter?: boolean
 }
 
 /**
@@ -311,7 +313,9 @@ export type BulkyItemOverrideRecord<T extends BulkyShopItem = BulkyShopItem> = M
  */
 export type BulkyItemOverrideOptions = {
 	price?: number
+	priceMap8Mod?: Map8ModPrices
 	selected?: boolean
+	allowRegexFilter?: boolean
 }
 
 export type TotalPrice = { chaos: number; divine: number }
@@ -335,10 +339,10 @@ export type BulkyBazaarOfferDto = {
 	category: string
 	league: string
 	chaosPerDiv: number
-	multiplier: number
-	fullPrice: number
+	multiplier?: number
+	fullPrice?: number
 	minimumBuyout: number
-	fullBuyout: boolean
+	fullBuyout?: boolean
 	items: BulkyBazaarItemDto[]
 }
 

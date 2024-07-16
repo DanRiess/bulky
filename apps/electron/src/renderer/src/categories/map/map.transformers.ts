@@ -10,7 +10,7 @@ import {
 	ShopMap8Mod,
 } from './map.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
-import { Ref, computed, toValue } from 'vue'
+import { Ref, computed } from 'vue'
 import { PoeItem } from '@shared/types/poe.types'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
@@ -73,18 +73,14 @@ function generateMapFromPoeItem(
 	}
 }
 
-function generateMap8ModFromPoeItem(
-	poeItem: PoeItem,
-	_: Ref<NinjaPriceRecord>,
-	itemOverrides: Ref<BulkyItemOverrideRecord>
-): ShopMap8Mod | undefined {
+function generateMap8ModFromPoeItem(poeItem: PoeItem, itemOverrides: Ref<BulkyItemOverrideRecord>): ShopMap8Mod | undefined {
 	const configStore = useConfigStore()
 
 	const type = generateTypeFromBaseType(poeItem.baseType)
 	const tier = generateTierFromProperty(poeItem.properties)
-	console.log({ poeItem })
 
 	if (!type || !tier) return
+	// console.log({ itemOverrides, type, tier })
 
 	return {
 		type,
@@ -98,7 +94,7 @@ function generateMap8ModFromPoeItem(
 		priceOverride: computed(() => 0),
 		priceOverrideMap8Mod: computed<Map8ModPrices>(() => {
 			return (
-				toValue(itemOverrides.value.get(`${type}_${tier}`)?.priceOverrideMap8Mod) ?? {
+				itemOverrides.value.get(`${type}_${tier}`)?.priceOverrideMap8Mod ?? {
 					base: 0,
 					quant110: 0,
 					quant120: 0,
@@ -109,6 +105,9 @@ function generateMap8ModFromPoeItem(
 		}),
 		selected: computed(() => {
 			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
+		}),
+		allowRegexFilter: computed(() => {
+			return itemOverrides.value.get(`${type}_${tier}`)?.allowRegexFilter ?? true
 		}),
 		perItemAttributes: [],
 	}

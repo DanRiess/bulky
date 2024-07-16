@@ -236,7 +236,7 @@ function generateBulkyItemFromPoeItem(
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateScarabFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'MAP') return BULKY_MAPS.generateMapFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, itemOverrides)
 	else return undefined
 }
 

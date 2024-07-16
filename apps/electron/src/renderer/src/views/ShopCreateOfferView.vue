@@ -66,7 +66,7 @@ const router = useRouter()
 // MODEL VALUES
 
 /** Offer multiplier model value. */
-const multiplier = ref(1)
+const multiplier = ref<number | undefined>(1)
 /** Offer ign model value. Fetch from localstorage if available. */
 const ign = ref(window.localStorage.getItem('ign') ?? '')
 /** Offer minimum buyout model value. */
@@ -75,7 +75,7 @@ const minBuyout = ref({
 	divine: 0,
 })
 /** Offer full buyout model value. */
-const fullBuyout = ref(false)
+const fullBuyout = ref<boolean | undefined>(false)
 /** Offer filter. */
 const filter = ref<ShopFilter>({})
 
@@ -91,6 +91,15 @@ watch(
 			filter.value.selectedTiers.add(MAP_TIER.TIER_17)
 		} else {
 			filter.value.selectedTiers = undefined
+		}
+
+		// Change state variables
+		if (category === 'MAP_8_MOD') {
+			fullBuyout.value = undefined
+			multiplier.value = undefined
+		} else {
+			fullBuyout.value = false
+			multiplier.value = 1
 		}
 	},
 	{ immediate: true }
@@ -127,15 +136,15 @@ async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) 
 	}
 
 	// Generate a new offer.
-	const offer = shopStore.generateOffer(
+	const offer = shopStore.generateOffer({
 		itemRecord,
-		ign.value,
-		chaosPerDiv.value,
-		multiplier.value,
-		minBuyout.value,
-		fullBuyout.value,
-		filter
-	)
+		ign: ign.value,
+		chaosPerDiv: chaosPerDiv.value,
+		multiplier: multiplier.value,
+		minBuyout: minBuyout.value,
+		fullBuyout: fullBuyout.value,
+		filter,
+	})
 
 	if (!offer) {
 		// TODO: handle error

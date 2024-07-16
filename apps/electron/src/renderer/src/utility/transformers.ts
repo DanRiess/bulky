@@ -2,10 +2,9 @@ import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
 import { PoeItemDto, PoeItemProperty, PoeStashTabDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
-import { BulkyShopItem, BulkyItemOverrideInstance, BulkyBazaarItemDto } from '@shared/types/bulky.types'
+import { BulkyShopItem, BulkyItemOverrideInstance, BulkyBazaarItemDto, BulkyItemOverrideOptions } from '@shared/types/bulky.types'
 import { UnwrapRef, toValue } from 'vue'
 import { BULKY_FACTORY } from './factory'
-import { Map8ModPrices } from '@web/categories/map/map.types'
 
 function stringToDisplayValue(string: string) {
 	const arr = string.split('_')
@@ -75,10 +74,9 @@ function mapSubStashToPoeItem(dto: PoeStashTabDto): PoeItem | undefined {
  * Extract overridable properties from a BulkyItem.
  * Generates an object that can be used in the item override store in idb.
  */
-function bulkyItemToOverrideItem(
-	item: BulkyShopItem,
-	overrides: { price?: number; priceMap8Mod?: Map8ModPrices; selected?: boolean }
-): BulkyItemOverrideInstance {
+function bulkyItemToOverrideItem(item: BulkyShopItem, overrides: BulkyItemOverrideOptions): BulkyItemOverrideInstance {
+	console.log('hello')
+	console.log({ item, overrides })
 	return {
 		type: item.type,
 		tier: item.tier,
@@ -87,6 +85,7 @@ function bulkyItemToOverrideItem(
 		league: item.league,
 		category: item.category,
 		selected: overrides.selected ?? toValue(item.selected),
+		allowRegexFilter: overrides.allowRegexFilter ?? toValue(item.allowRegexFilter),
 	}
 }
 

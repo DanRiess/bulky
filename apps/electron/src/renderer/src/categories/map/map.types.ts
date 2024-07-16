@@ -1,4 +1,4 @@
-import { ObjectValues, Uuid } from '@shared/types/utility.types'
+import { MaybeComputedRef, ObjectValues, Uuid } from '@shared/types/utility.types'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import {
 	BulkyBazaarItemBase,
@@ -35,11 +35,12 @@ export type ShopMap = BulkyShopItemBase<typeof CATEGORY.MAP> & {
 }
 
 /** BulkyShopItem implementation for the 8 mod map category */
-export type ShopMap8Mod = Omit<BulkyShopItemBase<typeof CATEGORY.MAP_8_MOD>, 'perItemAttributes'> & {
+export type ShopMap8Mod = Omit<BulkyShopItemBase<typeof CATEGORY.MAP_8_MOD>, 'perItemAttributes' | 'allowRegexFilter'> & {
 	type: MapType
 	tier: MapTier
 	priceOverrideMap8Mod: ComputedRef<Map8ModPrices>
 	perItemAttributes: Map8ModPerItemAttributes[]
+	allowRegexFilter: MaybeComputedRef<boolean>
 }
 
 /** BulkyBazaarItem implementation for the map category */

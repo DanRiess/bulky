@@ -1,8 +1,12 @@
 <template>
 	<div class="m-shop-offer-config animated-gradient-background" data-b-override>
 		<LabelWithTextMolecule v-model="ignModel" placeholder="Enter your IGN">IGN</LabelWithTextMolecule>
-		<LabelWithRangeMolecule v-model="multiplierModel" :max="2" :step="0.05">Price Multiplier</LabelWithRangeMolecule>
-		<LabelWithCheckboxMolecule v-model="fullBuyoutModel">Only Full Buyout</LabelWithCheckboxMolecule>
+		<LabelWithRangeMolecule v-if="multiplierModel" v-model="multiplierModel" :max="2" :step="0.05">
+			Price Multiplier
+		</LabelWithRangeMolecule>
+		<LabelWithCheckboxMolecule v-if="fullBuyoutModel !== undefined" v-model="fullBuyoutModel">
+			Only Full Buyout
+		</LabelWithCheckboxMolecule>
 		<MinBuyoutAtom v-model:chaos="minBuyoutModel.chaos" v-model:divine="minBuyoutModel.divine" :disabled="fullBuyoutModel">
 			Min. Buyout
 		</MinBuyoutAtom>
@@ -17,8 +21,8 @@ import MinBuyoutAtom from '../atoms/MinBuyoutAtom.vue'
 
 // MODELS
 const ignModel = defineModel<string>('ign', { required: true })
-const multiplierModel = defineModel<number>('multiplier', { required: true })
-const fullBuyoutModel = defineModel<boolean>('fullBuyout', { required: true })
+const multiplierModel = defineModel<number>('multiplier')
+const fullBuyoutModel = defineModel<boolean>('fullBuyout')
 const minBuyoutModel = defineModel<{ chaos: number; divine: number }>('minBuyout', { required: true })
 </script>
 

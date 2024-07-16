@@ -96,15 +96,15 @@ export const useShopStore = defineStore('shopStore', () => {
 	/**
 	 * Generate a new offer.
 	 */
-	function generateOffer(
-		itemRecord: BulkyShopItemRecord,
-		ign: string,
-		chaosPerDiv: number,
-		multiplier: number,
-		minBuyout: TotalPrice,
-		fullBuyout: boolean,
+	function generateOffer(options: {
+		itemRecord: BulkyShopItemRecord
+		ign: string
+		chaosPerDiv: number
+		minBuyout: TotalPrice
+		multiplier?: number
+		fullBuyout?: boolean
 		filter?: ShopFilter
-	) {
+	}) {
 		// TODO: Handle errors
 		if (!authStore.profile?.name) {
 			console.log('You have to sign in before creating a new offer')
@@ -112,38 +112,40 @@ export const useShopStore = defineStore('shopStore', () => {
 		}
 
 		const items: UnwrapRef<BulkyShopItem>[] = []
-		let computedMultiplier = multiplier
+		let computedMultiplier = options.multiplier
 
-		itemRecord.forEach(item => {
+		options.itemRecord.forEach(item => {
 			if (!item.selected || (toValue(item.price) === 0 && toValue(item.priceOverride) === 0)) return
 			items.push(deepToRaw(item))
 
 			// calculate the multiplier for this item
-			const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
-			if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
-				computedMultiplier = itemMultiplier
+			if (computedMultiplier) {
+				const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
+				if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
+					computedMultiplier = itemMultiplier
+				}
 			}
 		})
 
-		const fullPrice = useAggregateItemPrice(itemRecord, multiplier)
+		const fullPrice = options.multiplier ? useAggregateItemPrice(options.itemRecord, options.multiplier) : undefined
 		const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
 
 		const offer: BulkyShopOffer = {
 			uuid: BULKY_UUID.generateTypedUuid<BulkyShopOffer>(),
 			user: authStore.profile.name,
-			ign: ign,
+			ign: options.ign,
 			stashTabIds,
-			multiplier: multiplier,
+			multiplier: options.multiplier,
 			computedMultiplier,
-			minimumBuyout: minBuyout,
-			fullBuyout: fullBuyout,
-			chaosPerDiv: chaosPerDiv,
+			minimumBuyout: options.minBuyout,
+			fullBuyout: options.fullBuyout,
+			chaosPerDiv: options.chaosPerDiv,
 			category: appStateStore.selectedCategory,
 			league: configStore.config.league,
 			items,
-			filter,
+			filter: options.filter,
 			lastUploaded: 0,
-			fullPrice: fullPrice.value,
+			fullPrice: fullPrice?.value,
 			active: false,
 			autoSync: true,
 		}
@@ -163,18 +165,20 @@ export const useShopStore = defineStore('shopStore', () => {
 			items.push(deepToRaw(item))
 
 			// calculate the multiplier for this item
-			const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
-			if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
-				computedMultiplier = itemMultiplier
+			if (computedMultiplier) {
+				const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
+				if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
+					computedMultiplier = itemMultiplier
+				}
 			}
 		})
 
-		const fullPrice = useAggregateItemPrice(itemRecord, offer.multiplier)
+		const fullPrice = offer.multiplier ? useAggregateItemPrice(itemRecord, offer.multiplier) : undefined
 		const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
 
 		offer.stashTabIds = stashTabIds
 		offer.items = items
-		offer.fullPrice = fullPrice.value
+		offer.fullPrice = fullPrice?.value
 		offer.computedMultiplier = computedMultiplier
 
 		return offer
@@ -269,17 +273,19 @@ export const useShopStore = defineStore('shopStore', () => {
 			items.push(deepToRaw(item))
 
 			// calculate the multiplier for this item
-			const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
-			if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
-				computedMultiplier = itemMultiplier
+			if (computedMultiplier) {
+				const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)
+				if (toValue(item.price) !== 0 && itemMultiplier > computedMultiplier) {
+					computedMultiplier = itemMultiplier
+				}
 			}
 		})
 
 		// Calculate the full price.
-		const fullPrice = useAggregateItemPrice(filteredItemRecord, offer.multiplier)
+		const fullPrice = offer.multiplier ? useAggregateItemPrice(filteredItemRecord, offer.multiplier) : undefined
 
 		// Edit and reupload the offer.
-		offer.fullPrice = fullPrice.value
+		offer.fullPrice = fullPrice?.value
 		offer.items = items
 		offer.computedMultiplier = computedMultiplier
 
@@ -328,7 +334,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			league: offer.league,
 			chaosPerDiv: offer.chaosPerDiv,
 			multiplier: offer.computedMultiplier,
-			fullPrice: Math.round(offer.fullPrice),
+			fullPrice: offer.fullPrice ? Math.round(offer.fullPrice) : undefined,
 			minimumBuyout,
 			fullBuyout: offer.fullBuyout,
 			items: offer.items.map(item => BULKY_TRANSFORM.bulkyItemToBazaarItemDto(item)).filter(Boolean),

@@ -22,7 +22,7 @@ interface BulkyDB extends DBSchema {
 		value: NinjaPriceCollection
 	}
 	item_override: {
-		key: [BulkyItemOverrideInstance['type'], BulkyItemOverrideInstance['tier'], BulkyItemOverrideInstance['league']]
+		key: [BulkyItemOverrideInstance['type'], BulkyItemOverrideInstance['tier'], BulkyItemOverrideInstance['league'], Category]
 		value: BulkyItemOverrideInstance
 		indexes: { 'by-category': [Category, BulkyItemOverrideInstance['league']] }
 	}
