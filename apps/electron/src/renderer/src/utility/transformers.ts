@@ -75,8 +75,6 @@ function mapSubStashToPoeItem(dto: PoeStashTabDto): PoeItem | undefined {
  * Generates an object that can be used in the item override store in idb.
  */
 function bulkyItemToOverrideItem(item: BulkyShopItem, overrides: BulkyItemOverrideOptions): BulkyItemOverrideInstance {
-	console.log('hello')
-	console.log({ item, overrides })
 	return {
 		type: item.type,
 		tier: item.tier,

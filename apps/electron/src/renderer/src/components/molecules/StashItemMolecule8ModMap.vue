@@ -2,12 +2,14 @@
 	<li class="m-stash-item" :style="style">
 		<div class="metadata">
 			<InputCheckboxAtom v-model="selected" @update:model-value="emit('changeItemOverride', item, { selected })" />
-			<div class="icon">
+			<div class="icon" :class="{ disabled: !selected }">
 				<img :src="item.icon" :alt="item.name" />
 			</div>
-			<div class="name">{{ item.name }} | {{ BULKY_TRANSFORM.stringToDisplayValue(item.tier) }}</div>
-			<div class="stack-size">{{ item.quantity }}</div>
-			<div class="center-content">
+			<div class="name" :class="{ disabled: !selected }">
+				{{ item.name }} | {{ BULKY_TRANSFORM.stringToDisplayValue(item.tier) }}
+			</div>
+			<div class="stack-size" :class="{ disabled: !selected }">{{ item.quantity }}</div>
+			<div class="center-content" :class="{ disabled: !selected }">
 				<InputNumberAtom
 					v-model="overridePrice.base"
 					:step="1"
@@ -15,26 +17,48 @@
 					@update:model-value="updateOverrideValue"
 					ref="inputEl" />
 			</div>
-			<div class="center-content">
+			<div class="center-content" :class="{ disabled: !selected }">
 				<InputCheckboxAtom
 					v-model="allowRegexFilter"
-					@update:model-value="emit('changeItemOverride', item, { allowRegexFilter })" />
+					@update:model-value="emit('changeItemOverride', item, { allowRegexFilter })"
+					:disabled="!selected" />
 			</div>
 		</div>
 		<AccordionTransitionWrapperAtom class="grid-column-3-8" :expanded="toValue(item.allowRegexFilter)">
 			<ul class="regex-options">
-				<RegexOptionAtom :regex-price="overridePrice.avoidRegex" regex-type="avoidRegex">
+				<!-- MODIFIERS TO AVOID REGEX -->
+				<RegexSimpleOptionAtom v-model="overridePrice.avoidRegex" @update-override-value="updateOverrideValue">
 					For modifiers to avoid
-				</RegexOptionAtom>
-				<RegexOptionAtom :regex-price="overridePrice.wantedRegex" regex-type="wantedRegex">
+				</RegexSimpleOptionAtom>
+
+				<!-- WANTED MODIFIERS REGEX -->
+				<RegexSimpleOptionAtom v-model="overridePrice.wantedRegex" @update-override-value="updateOverrideValue">
 					For wanted modifiers
-				</RegexOptionAtom>
-				<RegexOptionAtom :regex-price="overridePrice.quantityRegex" regex-type="quantityRegex">
+				</RegexSimpleOptionAtom>
+
+				<!-- QUANTITY REGEXES -->
+				<RegexComplexOptionAtom
+					v-for="(_, idx) in overridePrice.quantityRegex"
+					:key="idx"
+					v-model="overridePrice.quantityRegex[idx]"
+					:regex-type-array-length="overridePrice.quantityRegex.length"
+					@add-price-fragment="addPriceFragment('quantityRegex')"
+					@remove-price-fragment="removePriceFragment('quantityRegex', idx)"
+					@update-override-value="updateOverrideValue">
 					For quantity over
-				</RegexOptionAtom>
-				<RegexOptionAtom :regex-price="overridePrice.packsizeRegex" regex-type="packsizeRegex">
+				</RegexComplexOptionAtom>
+
+				<!-- PACKSIZE REGEXES -->
+				<RegexComplexOptionAtom
+					v-for="(_, idx) in overridePrice.packsizeRegex"
+					:key="idx"
+					v-model="overridePrice.packsizeRegex[idx]"
+					:regex-type-array-length="overridePrice.packsizeRegex.length"
+					@add-price-fragment="addPriceFragment('packsizeRegex')"
+					@remove-price-fragment="removePriceFragment('packsizeRegex', idx)"
+					@update-override-value="updateOverrideValue">
 					For pack size over
-				</RegexOptionAtom>
+				</RegexComplexOptionAtom>
 			</ul>
 		</AccordionTransitionWrapperAtom>
 	</li>
@@ -48,7 +72,8 @@ import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { ShopMap8Mod } from '@web/categories/map/map.types'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
-import RegexOptionAtom from '../atoms/RegexOptionAtom.vue'
+import RegexSimpleOptionAtom from '../atoms/RegexSimpleOptionAtom.vue'
+import RegexComplexOptionAtom from '../atoms/RegexComplexOptionAtom.vue'
 
 // PROPS
 const props = defineProps<{
@@ -66,7 +91,6 @@ const emit = defineEmits<{
 const inputEl = ref<InstanceType<typeof InputNumberAtom>>()
 const selected = ref(props.item.selected)
 const allowRegexFilter = ref(props.item.allowRegexFilter)
-const prices = ref(props.item.priceOverrideMap8Mod)
 const overridePrice = ref(
 	props.overridePrices.get(`${props.item.type}_${props.item.tier}`)?.priceOverrideMap8Mod ??
 		toValue(props.item.priceOverrideMap8Mod)
@@ -76,12 +100,12 @@ const overridePrice = ref(
 
 // On load, the override prices are still being fetched from idb.
 // Update the state variables once they change.
-watch(
-	() => props.item.priceOverrideMap8Mod,
-	price => {
-		overridePrice.value = toValue(price)
-	}
-)
+// watch(
+// 	() => props.item.priceOverrideMap8Mod,
+// 	price => {
+// 		overridePrice.value = toValue(price)
+// 	}
+// )
 
 // On load, the override prices are still being fetched from idb.
 // Update the state variables once they change.
@@ -90,7 +114,7 @@ watch(
 	item => {
 		selected.value = toValue(item.selected)
 		allowRegexFilter.value = toValue(item.allowRegexFilter)
-		prices.value = toValue(item.priceOverrideMap8Mod)
+		overridePrice.value = toValue(item.priceOverrideMap8Mod)
 	},
 	{ deep: true }
 )
@@ -104,7 +128,6 @@ const style = computed(() => {
 	if (!selected.value) {
 		return {
 			'text-decoration': 'line-through',
-			opacity: 0.5,
 		}
 	}
 	return {}
@@ -116,9 +139,21 @@ const style = computed(() => {
  * Update the override value if it has changed.
  */
 function updateOverrideValue() {
-	if (overridePrice.value.base === toValue(props.item.priceOverrideMap8Mod).base) return
+	emit('changeItemOverride', props.item, { priceMap8Mod: overridePrice.value })
+}
 
-	emit('changeItemOverride', props.item, { price: overridePrice.value.base })
+function addPriceFragment(type: 'quantityRegex' | 'packsizeRegex') {
+	const defaultPercentageValue = type === 'quantityRegex' ? 110 : 35
+	overridePrice.value[type].push({
+		available: true,
+		addedPrice: [defaultPercentageValue, 0],
+	})
+	updateOverrideValue()
+}
+
+function removePriceFragment(type: 'quantityRegex' | 'packsizeRegex', idx: number) {
+	overridePrice.value[type].splice(idx, 1)
+	updateOverrideValue()
 }
 </script>
 

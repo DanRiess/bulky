@@ -90,12 +90,22 @@ export type Map8ModFilter = Omit<BulkyFilter<Map8ModFilterField>, 'multiplier' |
 
 // UTILITY TYPES
 
+export type RegexSimplePriceFragment = {
+	available: boolean
+	addedPrice: number
+}
+
+export type RegexComplexPriceFragment = {
+	available: boolean
+	addedPrice: [number, number]
+}
+
 export type Map8ModPrices = {
 	base: number
-	quantityRegex: Record<number, number>[]
-	packsizeRegex: Record<number, number>[]
-	avoidRegex?: number
-	wantedRegex?: number
+	quantityRegex: RegexComplexPriceFragment[]
+	packsizeRegex: RegexComplexPriceFragment[]
+	avoidRegex: RegexSimplePriceFragment
+	wantedRegex: RegexSimplePriceFragment
 }
 
 export type Map8ModPerItemAttributes = {

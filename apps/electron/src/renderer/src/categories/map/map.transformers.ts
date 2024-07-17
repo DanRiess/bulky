@@ -96,10 +96,26 @@ function generateMap8ModFromPoeItem(poeItem: PoeItem, itemOverrides: Ref<BulkyIt
 			return (
 				itemOverrides.value.get(`${type}_${tier}`)?.priceOverrideMap8Mod ?? {
 					base: 0,
-					avoidRegex: undefined,
-					wantedRegex: undefined,
-					quantityRegex: [],
-					packsizeRegex: [],
+					avoidRegex: {
+						available: false,
+						addedPrice: 0,
+					},
+					wantedRegex: {
+						available: false,
+						addedPrice: 0,
+					},
+					quantityRegex: [
+						{
+							available: false,
+							addedPrice: [110, 0],
+						},
+					],
+					packsizeRegex: [
+						{
+							available: false,
+							addedPrice: [35, 0],
+						},
+					],
 				}
 			)
 		}),

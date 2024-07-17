@@ -146,6 +146,8 @@ async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) 
 		filter,
 	})
 
+	console.log({ offer })
+
 	if (!offer) {
 		// TODO: handle error
 		console.log('did not generate offer')

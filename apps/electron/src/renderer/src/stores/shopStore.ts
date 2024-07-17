@@ -115,8 +115,18 @@ export const useShopStore = defineStore('shopStore', () => {
 		let computedMultiplier = options.multiplier
 
 		options.itemRecord.forEach(item => {
-			if (!item.selected || (toValue(item.price) === 0 && toValue(item.priceOverride) === 0)) return
-			items.push(deepToRaw(item))
+			if (!item.selected) return
+
+			// Push the item to the array if it fulfills the respective category's checks.
+			if (appStateStore.selectedCategory === 'MAP_8_MOD') {
+				if (!item.priceOverrideMap8Mod) return
+				items.push(deepToRaw(item))
+			} else {
+				if (toValue(item.price) === 0 && toValue(item.priceOverride) === 0) return
+				items.push(deepToRaw(item))
+			}
+
+			// items.push(deepToRaw(item))
 
 			// calculate the multiplier for this item
 			if (computedMultiplier) {
@@ -126,6 +136,11 @@ export const useShopStore = defineStore('shopStore', () => {
 				}
 			}
 		})
+
+		if (items.length === 0) {
+			console.log('There are no valid items in your offer')
+			return
+		}
 
 		const fullPrice = options.multiplier ? useAggregateItemPrice(options.itemRecord, options.multiplier) : undefined
 		const stashTabIds = stashStore.selectedStashTabs.map(t => t.id)
