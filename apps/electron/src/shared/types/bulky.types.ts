@@ -153,7 +153,7 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 	fullBuyout?: boolean
 	items: UnwrapRef<T>[]
 	filter?: ShopFilter<T>
-	fullPrice?: number
+	fullPrice: number
 	lastUploaded: number
 	active: boolean
 	autoSync: boolean

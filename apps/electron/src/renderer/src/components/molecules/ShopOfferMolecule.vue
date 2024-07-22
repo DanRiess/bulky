@@ -7,7 +7,7 @@
 			</div>
 			<span>Posted: {{ timeAgo }}</span>
 		</section>
-		<ShopOfferItemCollectionMolecule :items="offer.items" />
+		<ShopOfferItemCollectionMolecule :items="offer.items" :category="offer.category" />
 		<ShopOfferConfigMolecule :offer="offer" />
 		<section class="footer-section">
 			<div class="info-toggles">

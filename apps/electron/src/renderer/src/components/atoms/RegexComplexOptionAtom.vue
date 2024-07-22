@@ -86,8 +86,4 @@ defineProps<{
 	display: flex;
 	justify-content: center;
 }
-
-.disabled {
-	text-decoration: line-through;
-}
 </style>

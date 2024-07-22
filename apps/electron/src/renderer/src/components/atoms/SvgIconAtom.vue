@@ -89,7 +89,8 @@ const iconComponent = computed(() => {
 <style scoped>
 .svg-container {
 	position: relative;
-	height: 100%;
+	/* height: 100%; */
+	display: flex;
 }
 
 .a-svg-icon {
@@ -101,6 +102,7 @@ const iconComponent = computed(() => {
 	/* width: var(--dr-button-width);
 	height: var(--dr-button-height); */
 	fill: v-bind(color);
+	stroke: v-bind(color);
 	transform: v-bind(transform);
 	cursor: v-bind(cursor);
 }

@@ -27,7 +27,7 @@ const price = computed(() => {
 .a-bazaar-offer-item {
 	display: grid;
 	grid-template-columns: subgrid;
-	grid-column: span 7;
+	grid-column: span 4;
 	align-items: center;
 	user-select: none;
 	transition: all 0.25s ease;

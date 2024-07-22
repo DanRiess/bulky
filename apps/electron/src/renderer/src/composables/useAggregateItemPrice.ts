@@ -7,7 +7,10 @@ export function useAggregateItemPrice(items: MaybeRef<BulkyShopItemRecord>, mult
 
 		toValue(items).forEach(item => {
 			if (!item.selected) return
-			if (toValue(item.priceOverride) > 0) {
+			if (item.priceOverrideMap8Mod) {
+				price += toValue(item.priceOverrideMap8Mod).base * item.quantity
+				return
+			} else if (toValue(item.priceOverride) > 0) {
 				price += toValue(item.priceOverride) * item.quantity
 				return
 			}

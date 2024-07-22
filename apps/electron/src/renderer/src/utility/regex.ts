@@ -4,7 +4,6 @@ import { findIndicesInString } from './stringManipulation'
 
 export const BULKY_REGEX = {
 	computeRegexesFromString,
-	calculateMapPriceFromRegex,
 }
 
 /**

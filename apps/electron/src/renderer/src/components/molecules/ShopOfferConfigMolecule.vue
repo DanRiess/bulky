@@ -11,7 +11,7 @@
 					<label>Price Multiplier:</label>
 					<div>{{ Math.round(offer.computedMultiplier * 100) }} %</div>
 				</div>
-				<div class="config-option full-buyout">
+				<div class="config-option full-buyout" v-if="offer.fullBuyout">
 					<label>FullBuyout:</label>
 					<SvgIconAtom :name="offer.fullBuyout ? 'done' : 'close'" />
 				</div>

@@ -5,7 +5,8 @@
 			:use-gradient="true"
 			cursor="pointer"
 			:active="router.currentRoute.value.name === 'Settings'"
-			width="100%"></SvgIconAtom>
+			width="32"
+			height="32"></SvgIconAtom>
 	</div>
 </template>
 

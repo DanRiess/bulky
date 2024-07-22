@@ -1,5 +1,5 @@
 <template>
-	<li class="m-stash-item" :style="style">
+	<li class="m-stash-item">
 		<div class="metadata">
 			<InputCheckboxAtom v-model="selected" @update:model-value="emit('changeItemOverride', item, { selected })" />
 			<div class="icon" :class="{ disabled: !selected }">
@@ -66,7 +66,7 @@
 
 <script setup lang="ts">
 import { BulkyShopItem, BulkyItemOverrideOptions, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
-import { computed, ref, toValue, watch } from 'vue'
+import { ref, toValue, watch } from 'vue'
 import InputCheckboxAtom from '../atoms/InputCheckboxAtom.vue'
 import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
@@ -118,20 +118,6 @@ watch(
 	},
 	{ deep: true }
 )
-
-// GETTERS
-
-/**
- * Defines styles in case this item is unselected.
- */
-const style = computed(() => {
-	if (!selected.value) {
-		return {
-			'text-decoration': 'line-through',
-		}
-	}
-	return {}
-})
 
 // METHODS
 
