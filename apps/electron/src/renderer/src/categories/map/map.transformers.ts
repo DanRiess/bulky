@@ -1,4 +1,4 @@
-import { BulkyBazaarItemDto, BulkyBazaarMap8ModItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import {
 	BazaarMap,
 	BazaarMap8Mod,
@@ -144,9 +144,27 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarMap {
 	}
 }
 
-function generateBazaarMap8ModItemFromDto(item: BulkyBazaarMap8ModItemDto): BazaarMap8Mod {
+function generateBazaarMap8ModItemFromDto(item: BulkyBazaarItemDto): BazaarMap8Mod | undefined {
 	const type = MAP_TYPE_IDX_TO_NAME[item.type]
 	const tier = MAP_TIER_IDX_TO_NAME[item.tier]
+
+	const perItemAttributes = item.pia
+		?.map(attrs => {
+			if (!attrs.mods || !attrs.props || !attrs.props.iQnt || !attrs.props.iRar || !attrs.props.pckSz) return
+
+			return {
+				modifiers: attrs.mods,
+				properties: {
+					itemQuantity: attrs.props.iQnt,
+					itemRarity: attrs.props.iRar,
+					packSize: attrs.props.pckSz,
+				},
+			}
+		})
+		.filter(Boolean)
+
+	// Return if the perItemAttributes could not correctly be extracted.
+	if (!perItemAttributes || perItemAttributes.length !== item.pia?.length) return
 
 	return {
 		category: 'MAP_8_MOD',
@@ -154,8 +172,15 @@ function generateBazaarMap8ModItemFromDto(item: BulkyBazaarMap8ModItemDto): Baza
 		tier,
 		name: generateMapNameFromType(type),
 		quantity: item.qnt,
-		priceMap8Mod: item.prc,
+		price: item.prc,
+		regex: {
+			avoidRegex: item.rgx?.avd,
+			wantedRegex: item.rgx?.wnt,
+			quantityRegex: item.rgx?.qnt,
+			packsizeRegex: item.rgx?.pckSz,
+		},
 		icon: '',
+		perItemAttributes,
 	}
 }
 

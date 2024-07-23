@@ -2,7 +2,13 @@ import { capitalize } from 'lodash'
 import { BULKY_ID } from './typedId'
 import { PoeItemDto, PoeItemProperty, PoeStashTabDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
-import { BulkyShopItem, BulkyItemOverrideInstance, BulkyBazaarItemDto, BulkyItemOverrideOptions } from '@shared/types/bulky.types'
+import {
+	BulkyShopItem,
+	BulkyItemOverrideInstance,
+	BulkyBazaarItemDto,
+	BulkyItemOverrideOptions,
+	PerItemAttributes,
+} from '@shared/types/bulky.types'
 import { UnwrapRef, toValue } from 'vue'
 import { BULKY_FACTORY } from './factory'
 
@@ -93,7 +99,18 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 
 	if (nameToIdxTypeMap === undefined || nameToIdxTierMap === undefined) return
 
-	const price = toValue(item.priceOverride) > 0 ? toValue(item.priceOverride) : toValue(item.price)
+	// Calculate the price.
+	let price: number
+
+	if (item.priceOverrideMap8Mod) {
+		price = toValue(item.priceOverrideMap8Mod).base
+	} else {
+		price = toValue(item.priceOverride) > 0 ? toValue(item.priceOverride) : toValue(item.price)
+	}
+
+	// If the item has no price, it should be filtered out.
+	if (price === 0) return
+
 	console.log(item)
 
 	const itemDto: BulkyBazaarItemDto = {
@@ -103,11 +120,44 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 		prc: price,
 	}
 
-	if (item.options) {
-		// TODO: apply options
-		const options = undefined
-		itemDto.opt = options
+	// Extract perItemAttributes and convert them into the dto type.
+	if (item.perItemAttributes) {
+		const perItemAttributes: typeof itemDto.pia = item.perItemAttributes.map((attrs: PerItemAttributes) => {
+			return {
+				...(attrs.modifiers && { mods: attrs.modifiers }),
+				...(attrs.properties && {
+					props: {
+						...(attrs.properties.itemQuantity && { iQnt: attrs.properties.itemQuantity }),
+						...(attrs.properties.itemRarity && { iRar: attrs.properties.itemRarity }),
+						...(attrs.properties.packSize && { pckSz: attrs.properties.packSize }),
+					},
+				}),
+			}
+		})
+		itemDto.pia = perItemAttributes
 	}
+
+	// Extract regexes and convert them into the dto type.
+	if (item.priceOverrideMap8Mod) {
+		const override = toValue(item.priceOverrideMap8Mod)
+		const quantityRegex = override.quantityRegex
+			.map(regex => (regex.available ? regex.addedPrice : undefined))
+			.filter(Boolean)
+		const packsizeRegex = override.packsizeRegex
+			.map(regex => (regex.available ? regex.addedPrice : undefined))
+			.filter(Boolean)
+
+		const regexes: typeof itemDto.rgx = {
+			...(override.avoidRegex.available && { avd: override.avoidRegex.addedPrice }),
+			...(override.wantedRegex.available && { wnt: override.wantedRegex.addedPrice }),
+			...(quantityRegex.length > 0 && { qnt: quantityRegex }),
+			...(packsizeRegex.length > 0 && { pckSz: packsizeRegex }),
+		}
+
+		itemDto.rgx = regexes
+	}
+
+	console.log({ itemDto })
 
 	return itemDto
 }

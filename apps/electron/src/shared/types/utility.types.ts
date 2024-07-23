@@ -80,3 +80,21 @@ type PickByValue<OBJ_T, VALUE_T> = // From https://stackoverflow.com/a/55153000
 	Pick<OBJ_T, { [K in keyof OBJ_T]: OBJ_T[K] extends VALUE_T ? K : never }[keyof OBJ_T]>
 type ObjectEntries<OBJ_T> = // From https://stackoverflow.com/a/60142095
 	{ [K in keyof OBJ_T]: [keyof PickByValue<OBJ_T, OBJ_T[K]>, OBJ_T[K]] }[keyof OBJ_T][]
+
+/**
+ * ---------------------------------------------------
+ * Deep Required types
+ * ---------------------------------------------------
+ */
+
+/** Usage: DeepRequired<object, ['path', 'to', 'prop'] | ['path', 'to', 'another', 'prop']> */
+export type DeepRequired<T, P extends string[]> = T extends object
+	? Omit<T, Extract<keyof T, P[0]>> &
+			Required<{
+				[K in Extract<keyof T, P[0]>]: NonNullable<DeepRequired<T[K], ShiftUnion<K, P>>>
+			}>
+	: T
+
+type Shift<T extends any[]> = ((...t: T) => any) extends (first: any, ...rest: infer Rest) => any ? Rest : never
+
+type ShiftUnion<P extends PropertyKey, T extends any[]> = T extends any[] ? (T[0] extends P ? Shift<T> : never) : never

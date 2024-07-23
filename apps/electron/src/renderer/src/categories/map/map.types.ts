@@ -1,4 +1,4 @@
-import { MaybeComputedRef, ObjectValues, Uuid } from '@shared/types/utility.types'
+import { DeepRequired, MaybeComputedRef, ObjectValues, Uuid } from '@shared/types/utility.types'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import {
 	BulkyBazaarItemBase,
@@ -7,6 +7,7 @@ import {
 	BulkyFilterFieldBase,
 	BulkyShopItemBase,
 	CATEGORY,
+	PerItemAttributes,
 } from '@shared/types/bulky.types'
 import { useNormalMapOfferStore } from './normalMapOffers.store'
 import { useNormalMapFilterStore } from './normalMapFilter.store'
@@ -51,10 +52,11 @@ export type BazaarMap = BulkyBazaarItemBase<typeof CATEGORY.MAP> & {
 }
 
 /** BulkyBazaarItem implementation for the 8 mod map category */
-export type BazaarMap8Mod = BulkyBazaarItemBase<typeof CATEGORY.MAP_8_MOD> & {
+export type BazaarMap8Mod = Omit<BulkyBazaarItemBase<typeof CATEGORY.MAP_8_MOD>, 'regex' | 'perItemAttributes'> & {
 	type: MapType
 	tier: MapTier
-	priceMap8Mod: Map8ModPrices
+	regex: NonNullable<BulkyBazaarItemBase<typeof CATEGORY.MAP_8_MOD>['regex']>
+	perItemAttributes: Map8ModPerItemAttributes[]
 }
 
 /** BulkyBazaarOffer implementation for the map category */
@@ -108,11 +110,15 @@ export type Map8ModPrices = {
 	wantedRegex: RegexSimplePriceFragment
 }
 
-export type Map8ModPerItemAttributes = {
-	properties: {
-		itemQuantity: number
-		itemRarity: number
-		packSize: number
-	}
-	modifiers: number[]
-}
+// export type Map8ModPerItemAttributes = {
+// 	properties: {
+// 		itemQuantity: number
+// 		itemRarity: number
+// 		packSize: number
+// 	}
+// 	modifiers: number[]
+// }
+export type Map8ModPerItemAttributes = DeepRequired<
+	PerItemAttributes,
+	['modifiers'] | ['properties'] | ['properties', 'itemQuantity'] | ['properties', 'itemRarity'] | ['properties', 'packSize']
+>

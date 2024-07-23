@@ -86,6 +86,15 @@ export type BulkyFilterStore =
 
 // BULKY SHOP ITEM TYPES
 
+export type PerItemAttributes = {
+	modifiers?: number[]
+	properties?: {
+		itemQuantity?: number
+		itemRarity?: number
+		packSize?: number
+	}
+}
+
 /**
  * Generic type that needs to be extended to make sense. This is done in the categories' type files.
  *
@@ -99,7 +108,6 @@ export type BulkyShopItemBase<T extends Category> = {
 	category: T
 	name: string
 	type: string // will be overridden
-	options?: BulkyItemOptions
 	quantity: number
 	price: MaybeComputedRef<number>
 	priceOverride: ComputedRef<number>
@@ -108,10 +116,7 @@ export type BulkyShopItemBase<T extends Category> = {
 	league: string
 	selected: MaybeComputedRef<boolean>
 	allowRegexFilter?: MaybeComputedRef<boolean>
-	perItemAttributes?: {
-		properties: Record<string, number>
-		modifiers: number[]
-	}[]
+	perItemAttributes?: PerItemAttributes[]
 }
 
 /**
@@ -168,10 +173,16 @@ export type BulkyBazaarItemBase<T extends Category> = {
 	tier: string
 	options?: BulkyItemOptions
 	quantity: number
-	price?: number
-	priceMap8Mod?: Map8ModPrices
+	price: number
+	regex?: {
+		avoidRegex?: number // only the added price, undefined if not available
+		wantedRegex?: number
+		quantityRegex?: [number, number][] // [[quantity, addedPrice], ...] or undefined if not available
+		packsizeRegex?: [number, number][]
+	}
 	/** The actual url, not the /data/static id. */
 	icon: string
+	perItemAttributes?: PerItemAttributes[]
 }
 
 export type BulkyBazaarItem = BazaarEssence | BazaarScarab | BazaarDeliriumOrb | BazaarMap | BazaarMap8Mod
@@ -322,12 +333,27 @@ export type TotalPrice = { chaos: number; divine: number }
 
 // DTO TYPES
 
+type PerItemAttributesDto = {
+	mods?: number[]
+	props?: {
+		iQnt?: number
+		iRar?: number
+		pckSz?: number
+	}
+}
+
 export type BulkyBazaarItemDto = {
 	type: number
 	tier: number
-	opt?: Record<string, number[]>
 	qnt: number
 	prc: number
+	pia?: PerItemAttributesDto[]
+	rgx?: {
+		avd?: number // only the added price, undefined if not available
+		wnt?: number
+		qnt?: [number, number][] // [[quantity, addedPrice], ...] or undefined if not available
+		pckSz?: [number, number][]
+	}
 }
 
 export type BulkyBazaarOfferDto = {
@@ -344,24 +370,6 @@ export type BulkyBazaarOfferDto = {
 	minimumBuyout: number
 	fullBuyout?: boolean
 	items: BulkyBazaarItemDto[]
-}
-
-export type BulkyBazaarMap8ModItemDto = Omit<BulkyBazaarItemDto, 'prc'> & {
-	prc: Map8ModPrices
-}
-
-export type BulkyBazaarMap8ModOfferDto = {
-	uuid: string
-	version: number
-	timestamp: number
-	account: string
-	ign: string
-	category: string
-	league: string
-	chaosPerDiv: number
-	minimumBuyout: number
-	fullBuyout: boolean
-	items: BulkyBazaarMap8ModItemDto[]
 }
 
 // UTILITY TYPES

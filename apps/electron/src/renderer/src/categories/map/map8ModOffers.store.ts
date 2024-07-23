@@ -7,12 +7,14 @@ import { ref } from 'vue'
 import { getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
-import { BulkyBazaarMap8ModOfferDto, BulkyFilter } from '@shared/types/bulky.types'
+import { BulkyBazaarOfferDto, BulkyFilter } from '@shared/types/bulky.types'
 import { BazaarMap8Mod, BazaarMap8ModOffer } from './map.types'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import { BULKY_MAPS } from './map.transformers'
-import { RendererError } from '@shared/errors/rendererError'
 import { BULKY_REGEX } from '@web/utility/regex'
+import { UserError } from '@shared/errors/userError'
+import { useApi } from '@web/api/useApi'
+import { getListing } from '@web/api/bulkyApi'
 
 export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
@@ -20,7 +22,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	/**
 	 * Consume an essence listing dto, type and validate it and add it to the listings.
 	 */
-	function putOffer(dto: BulkyBazaarMap8ModOfferDto) {
+	function putOffer(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'MAP_8_MOD') return
 
@@ -30,6 +32,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		const chaosPerDiv = dto.chaosPerDiv
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const items = dto.items.map(item => BULKY_MAPS.generateBazaarMap8ModItemFromDto(item)).filter(Boolean)
+		console.log({ items })
 		if (!items) return
 
 		offers.value.set(uuid, {
@@ -66,7 +69,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 
 		// If no regex was provided, just return the base price.
 		if (regexes.length === 0) {
-			return item.priceMap8Mod.base
+			return item.price
 		}
 
 		// Assign the computed regexes to predefined categories.
@@ -84,46 +87,104 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 				)
 		)
 
-		let price = item.priceMap8Mod.base
+		let price = item.price
 
-		// Use the first found quantity regex and check if it matches 120+ / 110+ quantity.
-		// If the offer has that respective price defined, add it.
-		if (quantityRegexes.length > 1) {
-			if ('m q:120%'.match(quantityRegexes[0]) && item.priceMap8Mod.quant120) {
-				price += item.priceMap8Mod.quant120
-			} else if ('m q:110%'.match(quantityRegexes[0]) && item.priceMap8Mod.quant110) {
-				price += item.priceMap8Mod.quant110
-			} else {
-				throw new RendererError({
+		// Use the first found quantity regex and check if it matches any of the items provided quantity values.
+		if (quantityRegexes.length > 0 && item.regex.quantityRegex) {
+			// Sort the item's quant prices by quantity
+			const sortedItemQuantPricing = item.regex.quantityRegex.toSorted((a, b) => a[0] - b[0])
+			console.log('Are the sorteditemQuantPricing in descending order by quantity?')
+			console.log({ sortedItemQuantPricing })
+
+			// Will be set to true if user provided quant regex matches any of the quantities the item offers.
+			let quantRegexMatches = false
+
+			// Test the user provided quant regex against the quantities the item offers.
+			for (const quantPricing of sortedItemQuantPricing) {
+				// Create a string that uses the quantPricings quantity.
+				const str = `m q:${quantPricing[0]}`
+
+				// Test that string against the FIRST user provided regex. Skip the others.
+				const match = str.match(quantityRegexes[0])
+
+				// Add the price in case of a match and break the loop
+				if (match) {
+					price += quantPricing[1]
+					quantRegexMatches = true
+					break
+				}
+			}
+
+			// If the user provided regex didn't match any of the offered quantities, throw an error.
+			if (!quantRegexMatches) {
+				throw new UserError({
 					code: 'regex_unsupported',
-					message:
-						'This item either does not support a quantity regex or your quantity value is to low (has to be at least 110%).',
+					message: `This item does not support a quantity regex below ${
+						sortedItemQuantPricing[sortedItemQuantPricing.length - 1][0]
+					} %.`,
+				})
+			}
+		}
+
+		// Use the first found quantity regex and check if it matches any of the items provided quantity values.
+		if (packSizeRegexes.length > 0 && item.regex.packsizeRegex) {
+			// Sort the item's quant prices by quantity
+			const sortedItemPacksizePricing = item.regex.packsizeRegex.toSorted((a, b) => a[0] - b[0])
+			console.log('Are the sortedItemPacksizePricing in descending order by quantity?')
+			console.log({ sortedItemPacksizePricing })
+
+			// Will be set to true if user provided quant regex matches any of the quantities the item offers.
+			let quantRegexMatches = false
+
+			// Test the user provided quant regex against the quantities the item offers.
+			for (const packsizePricing of sortedItemPacksizePricing) {
+				// Create a string that uses the packsizePricings packsize.
+				const str = `m q:${packsizePricing[0]}`
+
+				// Test that string against the FIRST user provided regex. Skip the others.
+				const match = str.match(packSizeRegexes[0])
+
+				// Add the price in case of a match and break the loop
+				if (match) {
+					price += packsizePricing[1]
+					quantRegexMatches = true
+					break
+				}
+			}
+
+			// If the user provided regex didn't match any of the offered quantities, throw an error.
+			if (!quantRegexMatches) {
+				throw new UserError({
+					code: 'regex_unsupported',
+					message: `This item does not support a quantity regex below ${
+						sortedItemPacksizePricing[sortedItemPacksizePricing.length - 1][0]
+					} %.`,
 				})
 			}
 		}
 
 		// Check if the regex has modifiers to avoid
 		if (avoidRegexes.length > 0) {
-			if (!item.priceMap8Mod.avoidRegex) {
-				throw new RendererError({
+			if (!item.regex.avoidRegex) {
+				throw new UserError({
 					code: 'regex_unsupported',
 					message: 'This item does not support regexes with modifiers to avoid.',
 				})
 			}
 
-			price += item.priceMap8Mod.avoidRegex
+			price += item.regex.avoidRegex
 		}
 
 		// Check if the regex has modifiers the user wants
 		if (addRegexes.length > 0) {
-			if (!item.priceMap8Mod.addRegex) {
-				throw new RendererError({
+			if (!item.regex.wantedRegex) {
+				throw new UserError({
 					code: 'regex_unsupported',
 					message: 'This item does not support regexes with wanted modifiers.',
 				})
 			}
 
-			price += item.priceMap8Mod.addRegex
+			price += item.regex.wantedRegex
 		}
 
 		return price
@@ -147,19 +208,19 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		)
 	}
 
-	// async function getTestData() {
-	// 	// if (listings.value.size !== 0) return
+	async function getTestData() {
+		// if (listings.value.size !== 0) return
 
-	// 	const request = useApi('essencePayload', getListing)
-	// 	await request.exec('src/mocks/essenceCompressed.json')
+		const request = useApi('map8modpayload', getListing)
+		await request.exec('src/mocks/offersMap8Mod.json')
 
-	// 	if (request.error.value || !request.data.value) {
-	// 		console.log('no way jose')
-	// 		return
-	// 	}
+		if (request.error.value || !request.data.value) {
+			console.log('no way jose')
+			return
+		}
 
-	// 	request.data.value.forEach(listingDto => putOffer(listingDto))
-	// }
+		request.data.value.forEach(offerDto => putOffer(offerDto))
+	}
 
 	/**
 	 * Fetch all new essence offers since the last fetch action.
@@ -176,6 +237,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		calculateBaseItemPrice,
 		isMap8Mod,
 		refetchOffers,
+		getTestData,
 	}
 })
 

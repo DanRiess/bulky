@@ -10,7 +10,7 @@ export class RendererError extends BulkyError {
 	constructor(params: RendererErrorParameters) {
 		super(params)
 
-		this.name = 'OauthError'
+		this.name = 'RendererError'
 		this.code = params.code
 		this.message = params.message
 		this.status = params.status

@@ -31,10 +31,10 @@ import { useComputedOffersStore } from '@web/composables/useComputedOffersStore'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import { watch } from 'vue'
+import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 
 // STORES
 const appStateStore = useAppStateStore()
-const essenceListingStore = useEssenceOfferStore()
 
 // COMPOSABLES
 const computedOfferStore = useComputedOffersStore()
@@ -50,11 +50,15 @@ watch(
 	() => appStateStore.selectedCategory,
 	cat => {
 		if (cat === 'ESSENCE') {
-			essenceListingStore.getTestData()
+			useEssenceOfferStore().getTestData()
 		} else if (cat === 'SCARAB') {
 			console.log('scarab category')
 		} else if (cat === 'DELIRIUM_ORB') {
 			console.log('deli orb category')
+		} else if (cat === 'MAP') {
+			console.log('get map listings here')
+		} else if (cat === 'MAP_8_MOD') {
+			useMap8ModOfferStore().getTestData()
 		}
 
 		// makeBinTestData()

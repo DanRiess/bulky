@@ -48,8 +48,9 @@ export interface OauthErrorParameters extends BulkyErrorParameters {
 	errorUri?: string
 }
 
+// RENDERER ERRORS
+
 export const RENDERER_ERROR_CODE = {
-	regex_unsupported: 'regex_unsupported',
 	unknown_item: 'unknown_item',
 	unknown_error: 'unknown_error',
 } as const
@@ -58,6 +59,18 @@ export type RendererErrorCode = ObjectValues<typeof RENDERER_ERROR_CODE>
 
 export interface RendererErrorParameters extends BulkyErrorParameters {
 	code: RendererErrorCode
+}
+
+// USER ERRORS
+
+export const USER_ERROR_CODE = {
+	regex_unsupported: 'regex_unsupported',
+} as const
+
+export type UserErrorCode = ObjectValues<typeof USER_ERROR_CODE>
+
+export interface UserErrorParameters extends BulkyErrorParameters {
+	code: UserErrorCode
 }
 
 export type SerializedErrorObject = {
