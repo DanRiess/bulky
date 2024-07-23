@@ -70,8 +70,6 @@ async function updateStateVariable(category: Category) {
 
 	// Get overrides for this category from idb.
 	const overrides = await bulkyIdb.getItemOverrideByCategory(category)
-	console.log('FETCH OVERRIDES')
-	console.log(overrides)
 
 	// Transform the overrides into the form expected by the state variable
 	return transformOverridesToState(overrides)

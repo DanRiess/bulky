@@ -222,6 +222,7 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		// Upload offer to the public db
 		const offerDto = generateDto(offer)
+		console.log({ offerDto })
 
 		if (!offerDto) {
 			// TODO: handle error

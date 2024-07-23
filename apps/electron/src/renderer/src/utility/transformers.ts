@@ -94,6 +94,7 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 	if (nameToIdxTypeMap === undefined || nameToIdxTierMap === undefined) return
 
 	const price = toValue(item.priceOverride) > 0 ? toValue(item.priceOverride) : toValue(item.price)
+	console.log(item)
 
 	const itemDto: BulkyBazaarItemDto = {
 		type: nameToIdxTypeMap[item.type],
