@@ -6,6 +6,7 @@
 				v-for="([_, offer], idx) in filteredOffers"
 				:key="offer.uuid"
 				:offer="offer"
+				:idx="idx"
 				:price-compute-fn="store.calculateItemBasePrice"
 				:filter="filter"
 				:data-index="idx" />
@@ -63,14 +64,11 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 		for (let i = 0; i < computedFilterFields.length; ++i) {
 			const field = computedFilterFields[i]
 			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
-			console.log({ field, item, offer })
 			if (item) {
 				try {
 					const basePrice = props.store.calculateItemBasePrice(item, props.filter)
-
 					price += props.filter.alwaysMaxQuantity ? basePrice * item.quantity : basePrice * field.quantity
 				} catch (e) {
-					console.log(e)
 					itemsMissingInOffer = true
 				}
 			} else {

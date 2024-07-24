@@ -7,46 +7,47 @@
 				{{ filter.alwaysMaxQuantity || filter.fullBuyout ? item.quantity : filterField?.quantity }}
 			</div>
 			<div>*</div>
-			<div class="price">{{ item.price }}</div>
+			<div class="price">{{ priceComputeFunction(item, filter) }}</div>
 			<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 		</div>
-		<div class="special-item-data" v-if="item.category === 'MAP_8_MOD'">
-			<div class="regex-option avoid-regex" v-if="item.regex.avoidRegex">
-				<SvgIconAtom name="listRemove" color="var(--color-success)" />
-				<div class="regex-price">: {{ item.regex.avoidRegex }}c</div>
-			</div>
-			<div class="regex-option wanted-regex" v-if="item.regex.wantedRegex">
-				<SvgIconAtom name="listAdd" color="var(--color-success)" />
-				<div class="regex-price">: {{ item.regex.wantedRegex }}c</div>
-			</div>
-			<div class="regex-option quantity-regex" v-for="quantOffer in item.regex.quantityRegex">
-				<SvgIconAtom name="quantity" color="var(--color-success)" />
-				<div class="regex-price">{{ quantOffer[0] }}%: {{ quantOffer[1] }}c</div>
-			</div>
-			<div class="regex-option quantity-regex" v-for="packsizeOffer in item.regex.packsizeRegex">
-				<SvgIconAtom name="packsize" color="var(--color-success)" />
-				<div class="regex-price">{{ packsizeOffer[0] }}%: {{ packsizeOffer[1] }}c</div>
-			</div>
+		<div
+			class="special-item-data"
+			ref="tooltipParentElement"
+			v-if="item.category === 'MAP_8_MOD'"
+			@mouseenter="showTooltip = true"
+			@mouseleave="showTooltip = false">
+			<SvgIconAtom name="listRemove" :color="item.regex.avoidRegex ? 'var(--color-success)' : 'var(--color-error)'" />
+			<SvgIconAtom name="listAdd" :color="item.regex.wantedRegex ? 'var(--color-success)' : 'var(--color-error)'" />
+			<SvgIconAtom name="quantity" :color="item.regex.quantityRegex ? 'var(--color-success)' : 'var(--color-error)'" />
+			<SvgIconAtom name="packsize" :color="item.regex.packsizeRegex ? 'var(--color-success)' : 'var(--color-error)'" />
 		</div>
+		<TooltipAtom :show="showTooltip" :parent="tooltipParentElement" :max-width="300">
+			<RegexTooltipTemplate :prices="item.regex" />
+		</TooltipAtom>
 	</li>
 </template>
 
 <script setup lang="ts">
-import { BulkyBazaarItem, BulkyFilter } from '@shared/types/bulky.types'
-import { computed } from 'vue'
+import { BulkyBazaarItem, BulkyFilter, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { computed, ref } from 'vue'
 import SvgIconAtom from './SvgIconAtom.vue'
+import RegexTooltipTemplate from '../implementations/RegexTooltipTemplate.vue'
+import TooltipAtom from './TooltipAtom.vue'
 
 // PROPS
 const props = withDefaults(
 	defineProps<{
 		item: BulkyBazaarItem
 		filter: BulkyFilter
+		priceComputeFunction: ComputedBulkyOfferStore['calculateItemBasePrice']
 	}>(),
 	{}
 )
 
 // STATE
 const filterField = props.filter.fields.find(field => field.type === props.item.type && field.tier === props.item.tier)
+const showTooltip = ref(false)
+const tooltipParentElement = ref<HTMLElement>()
 
 // GETTERS
 const gridColumn = computed(() => (props.filter.fullBuyout ? 'span 5' : 'span 6'))
@@ -95,12 +96,13 @@ const gridColumn = computed(() => (props.filter.fullBuyout ? 'span 5' : 'span 6'
 
 .special-item-data {
 	display: flex;
-	gap: 0.5rem;
+	gap: 0.25rem;
 	grid-column: v-bind(gridColumn);
 	flex-wrap: wrap;
 	margin-top: 0.25rem;
 	margin-left: 2rem;
 	position: relative;
+	max-width: max-content;
 }
 
 .special-item-data::before {
@@ -112,13 +114,5 @@ const gridColumn = computed(() => (props.filter.fullBuyout ? 'span 5' : 'span 6'
 	height: 60%;
 	border-left: 1px solid;
 	border-bottom: 1px solid;
-}
-
-.regex-option {
-	display: flex;
-}
-
-.regex-price {
-	white-space: nowrap;
 }
 </style>

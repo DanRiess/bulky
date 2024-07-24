@@ -1,5 +1,5 @@
 <template>
-	<div class="o-bazaar-offer animated-gradient-background" data-b-override>
+	<div class="o-bazaar-offer animated-gradient-background" :style="{ zIndex: 10000 - idx }" data-b-override>
 		<div class="metadata-and-whisper flow">
 			<BazaarOfferMetadataMolecule :offer="offer" />
 			<ButtonAtom background-color="dark" @click="sendMessage">
@@ -14,7 +14,11 @@
 		</div>
 
 		<div class="items-and-price">
-			<BazaarOfferItemsMolecule :filter="filter" :items="filteredItems" :price="filteredPrice" />
+			<BazaarOfferItemsMolecule
+				:filter="filter"
+				:items="filteredItems"
+				:price="filteredPrice"
+				:price-compute-function="priceComputeFn" />
 		</div>
 	</div>
 </template>
@@ -33,6 +37,7 @@ import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 
 // PROPS
 const props = defineProps<{
+	idx: number
 	offer: BulkyBazaarOffer
 	filter: BulkyFilter
 	priceComputeFn: ComputedBulkyOfferStore['calculateItemBasePrice']
@@ -114,6 +119,7 @@ async function sendMessage() {
 
 <style scoped>
 .o-bazaar-offer {
+	position: relative;
 	display: grid;
 	grid-template-columns: 17ch 1fr;
 	gap: 1.5rem;

@@ -11,7 +11,11 @@
 		<AccordionTransitionWrapperAtom :expanded="expanded">
 			<ul class="item-list">
 				<TransitionAtom :group="true" v-on="hooks">
-					<BazaarOfferItemAtom v-for="item in items" :filter="filter" :item="item" />
+					<BazaarOfferItemAtom
+						v-for="item in items"
+						:filter="filter"
+						:item="item"
+						:price-compute-function="priceComputeFunction" />
 				</TransitionAtom>
 			</ul>
 		</AccordionTransitionWrapperAtom>
@@ -24,7 +28,7 @@ import { useListTransition } from '@web/transitions/listTransition'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
-import { BulkyBazaarItem, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
+import { BulkyBazaarItem, BulkyFilter, ComputedBulkyOfferStore, TotalPrice } from '@shared/types/bulky.types'
 import BazaarOfferItemAtom from '../atoms/BazaarOfferItemAtom.vue'
 import PriceAtom from '../atoms/PriceAtom.vue'
 
@@ -33,6 +37,7 @@ const props = defineProps<{
 	items: BulkyBazaarItem[]
 	filter: BulkyFilter
 	price: TotalPrice
+	priceComputeFunction: ComputedBulkyOfferStore['calculateItemBasePrice']
 }>()
 
 // STATE

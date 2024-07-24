@@ -65,6 +65,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	 * @throws { RendererError } Will throw if the regex and the offer don't match for any reason.
 	 */
 	function calculateBaseItemPrice(item: BazaarMap8Mod, filter: BulkyFilter) {
+		const t0 = performance.now()
 		// Compute the provided regexes.
 		const regexes = filter.regex ? BULKY_REGEX.computeRegexesFromString(filter.regex) : []
 
@@ -94,8 +95,6 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		if (quantityRegexes.length > 0 && item.regex.quantityRegex) {
 			// Sort the item's quant prices by quantity
 			const sortedItemQuantPricing = item.regex.quantityRegex.toSorted((a, b) => a[0] - b[0])
-			console.log('Are the sorteditemQuantPricing in descending order by quantity?')
-			console.log({ sortedItemQuantPricing })
 
 			// Will be set to true if user provided quant regex matches any of the quantities the item offers.
 			let quantRegexMatches = false
@@ -103,7 +102,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 			// Test the user provided quant regex against the quantities the item offers.
 			for (const quantPricing of sortedItemQuantPricing) {
 				// Create a string that uses the quantPricings quantity.
-				const str = `m q:${quantPricing[0]}`
+				const str = `m q:${quantPricing[0]}%`
 
 				// Test that string against the FIRST user provided regex. Skip the others.
 				const match = str.match(quantityRegexes[0])
@@ -120,7 +119,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 			if (!quantRegexMatches) {
 				throw new UserError({
 					code: 'regex_unsupported',
-					message: `This item does not support a quantity regex below ${
+					message: `This item does not support a quantity regex above ${
 						sortedItemQuantPricing[sortedItemQuantPricing.length - 1][0]
 					} %.`,
 				})
@@ -131,33 +130,35 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		if (packSizeRegexes.length > 0 && item.regex.packsizeRegex) {
 			// Sort the item's quant prices by quantity
 			const sortedItemPacksizePricing = item.regex.packsizeRegex.toSorted((a, b) => a[0] - b[0])
-			console.log('Are the sortedItemPacksizePricing in descending order by quantity?')
-			console.log({ sortedItemPacksizePricing })
 
 			// Will be set to true if user provided quant regex matches any of the quantities the item offers.
-			let quantRegexMatches = false
+			let packsizeRegexMatches = false
 
 			// Test the user provided quant regex against the quantities the item offers.
 			for (const packsizePricing of sortedItemPacksizePricing) {
 				// Create a string that uses the packsizePricings packsize.
-				const str = `m q:${packsizePricing[0]}`
+				const str = `size:${packsizePricing[0]}%`
 
 				// Test that string against the FIRST user provided regex. Skip the others.
 				const match = str.match(packSizeRegexes[0])
 
+				// TODO: check why offer passes even though should be filtered here
+				console.log({ item, str, regex: packSizeRegexes[0], match })
+
 				// Add the price in case of a match and break the loop
 				if (match) {
 					price += packsizePricing[1]
-					quantRegexMatches = true
+					packsizeRegexMatches = true
 					break
 				}
 			}
 
 			// If the user provided regex didn't match any of the offered quantities, throw an error.
-			if (!quantRegexMatches) {
+			if (!packsizeRegexMatches) {
+				console.log('here?')
 				throw new UserError({
 					code: 'regex_unsupported',
-					message: `This item does not support a quantity regex below ${
+					message: `This item does not support a pack size regex above ${
 						sortedItemPacksizePricing[sortedItemPacksizePricing.length - 1][0]
 					} %.`,
 				})
@@ -187,6 +188,8 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 
 			price += item.regex.wantedRegex
 		}
+
+		console.log(`Price computed in ${performance.now() - t0} ms`)
 
 		return price
 	}
