@@ -32,7 +32,6 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		const chaosPerDiv = dto.chaosPerDiv
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const items = dto.items.map(item => BULKY_MAPS.generateBazaarMap8ModItemFromDto(item)).filter(Boolean)
-		console.log({ items })
 		if (!items) return
 
 		offers.value.set(uuid, {
@@ -48,6 +47,8 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 				timestamp: 0,
 			},
 		})
+
+		console.log(offers.value)
 	}
 
 	/**
@@ -203,8 +204,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 			'quantity' in obj &&
 			typeof obj.quantity === 'number' &&
 			'price' in obj &&
-			'base' in obj.price &&
-			typeof obj.price.base === 'number'
+			typeof obj.price === 'number'
 		)
 	}
 

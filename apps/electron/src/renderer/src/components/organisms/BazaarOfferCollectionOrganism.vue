@@ -37,11 +37,14 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 	props.store.offers.forEach((offer: BulkyBazaarOffer) => {
 		// Filter out all offers whose multipliers are too high.
 		// The maximum possible multiplier (2) should display all offers though.
-		// An offer can have a higher multiplier than 2 if contained items' prices were overwritter.
+		// An offer can have a higher multiplier than 2 if some of its items were overridden with higher prices.
 		if (props.filter.multiplier && props.filter.multiplier < 2 && props.filter.multiplier < offer.multiplier) return
 
 		// If the user wants to buyout the full offer, return the offer.
-		if (props.filter.fullBuyout) offers.set(offer.uuid, offer)
+		if (props.filter.fullBuyout) {
+			offers.set(offer.uuid, offer)
+			return
+		}
 
 		// Since we have to loop over the filter fields anyway, calculate their price.
 		let price = 0
@@ -60,12 +63,14 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 		for (let i = 0; i < computedFilterFields.length; ++i) {
 			const field = computedFilterFields[i]
 			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
+			console.log({ field, item, offer })
 			if (item) {
 				try {
 					const basePrice = props.store.calculateItemBasePrice(item, props.filter)
 
 					price += props.filter.alwaysMaxQuantity ? basePrice * item.quantity : basePrice * field.quantity
 				} catch (e) {
+					console.log(e)
 					itemsMissingInOffer = true
 				}
 			} else {

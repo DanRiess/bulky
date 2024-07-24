@@ -58,8 +58,8 @@ export const useMap8ModFilterStore = defineStore('Map8ModFilterStore', () => {
 		const field: Map8ModFilterField = {
 			uuid: BULKY_UUID.generateTypedUuid<Map8ModFilterField>(),
 			category: 'MAP_8_MOD',
-			type: 'JUNGLE_VALLEY',
-			tier: 'TIER_16',
+			type: 'BASILICA',
+			tier: 'TIER_14',
 			quantity: 1,
 			options: {
 				regex: '',
