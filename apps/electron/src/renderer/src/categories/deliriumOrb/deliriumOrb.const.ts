@@ -1,4 +1,4 @@
-import { getKeys } from '@shared/types/utility.types'
+import { getKeys, typedFromEntries } from '@shared/types/utility.types'
 
 // DO NOT CHANGE THE ORDER
 export const DELI_ORB_TYPE = {
@@ -23,7 +23,6 @@ export const DELI_ORB_TYPE = {
 
 export const DELI_ORB_TYPE_IDX_TO_NAME = getKeys(DELI_ORB_TYPE)
 
-export const DELI_ORB_TYPE_NAME_TO_IDX = DELI_ORB_TYPE_IDX_TO_NAME.reduce((prev, curr, idx) => {
-	prev[curr] = idx
-	return prev
-}, {} as Record<keyof typeof DELI_ORB_TYPE, number>)
+export const DELI_ORB_TYPE_NAME_TO_IDX = typedFromEntries(
+	Object.entries(DELI_ORB_TYPE_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)])
+)

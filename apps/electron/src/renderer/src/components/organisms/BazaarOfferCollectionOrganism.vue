@@ -3,7 +3,7 @@
 		<TransitionAtom group v-on="hooks">
 			<FallbackBazaarOfferMolecule v-if="filteredOffers.size === 0" />
 			<BazaarOfferOrganism
-				v-for="([_, offer], idx) in filteredOffers"
+				v-for="([_, offer], idx) in offersToDisplay"
 				:key="offer.uuid"
 				:offer="offer"
 				:idx="idx"
@@ -89,13 +89,28 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 
 	return offers
 })
+
+const offersToDisplay = computed(() => {
+	const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
+
+	const keys = Array.from(filteredOffers.value.keys()).filter((_, idx) => idx < 6)
+
+	keys.forEach(key => {
+		const value = filteredOffers.value.get(key)
+		if (value) {
+			offers.set(key, value)
+		}
+	})
+
+	return offers
+})
 </script>
 
 <style scoped>
 .o-listing {
 	overflow: auto;
 	border-radius: var(--border-radius-small);
-	padding-right: 0.2rem;
+	padding-right: 0.5rem;
 }
 
 .o-listing > .m-listing-item:not(:first-child) {

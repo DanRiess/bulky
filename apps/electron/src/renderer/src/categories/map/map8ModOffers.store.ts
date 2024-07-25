@@ -92,26 +92,28 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		let price = item.price
 
 		// Use the first found quantity regex and check if it matches any of the items provided quantity values.
-		if (quantityRegexes.length > 0 && item.regex.quantityRegex) {
+		if (quantityRegexes.length > 0) {
 			// Sort the item's quant prices by quantity
-			const sortedItemQuantPricing = item.regex.quantityRegex.toSorted((a, b) => a[0] - b[0])
+			const sortedItemQuantPricing = item.regex.quantityRegex?.toSorted((a, b) => a[0] - b[0])
 
 			// Will be set to true if user provided quant regex matches any of the quantities the item offers.
 			let quantRegexMatches = false
 
 			// Test the user provided quant regex against the quantities the item offers.
-			for (const quantPricing of sortedItemQuantPricing) {
-				// Create a string that uses the quantPricings quantity.
-				const str = `m q:${quantPricing[0]}%`
+			if (sortedItemQuantPricing) {
+				for (const quantPricing of sortedItemQuantPricing) {
+					// Create a string that uses the quantPricings quantity.
+					const str = `m q:${quantPricing[0]}%`
 
-				// Test that string against the FIRST user provided regex. Skip the others.
-				const match = str.match(quantityRegexes[0])
+					// Test that string against the FIRST user provided regex. Skip the others.
+					const match = str.match(quantityRegexes[0])
 
-				// Add the price in case of a match and break the loop
-				if (match) {
-					price += quantPricing[1]
-					quantRegexMatches = true
-					break
+					// Add the price in case of a match and break the loop
+					if (match) {
+						price += quantPricing[1]
+						quantRegexMatches = true
+						break
+					}
 				}
 			}
 
@@ -119,37 +121,34 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 			if (!quantRegexMatches) {
 				throw new UserError({
 					code: 'regex_unsupported',
-					message: `This item does not support a quantity regex above ${
-						sortedItemQuantPricing[sortedItemQuantPricing.length - 1][0]
-					} %.`,
+					message: `This item does not support your provided quantity regex.`,
 				})
 			}
 		}
 
 		// Use the first found quantity regex and check if it matches any of the items provided quantity values.
-		if (packSizeRegexes.length > 0 && item.regex.packsizeRegex) {
+		if (packSizeRegexes.length > 0) {
 			// Sort the item's quant prices by quantity
-			const sortedItemPacksizePricing = item.regex.packsizeRegex.toSorted((a, b) => a[0] - b[0])
+			const sortedItemPacksizePricing = item.regex.packsizeRegex?.toSorted((a, b) => a[0] - b[0])
 
 			// Will be set to true if user provided quant regex matches any of the quantities the item offers.
 			let packsizeRegexMatches = false
 
 			// Test the user provided quant regex against the quantities the item offers.
-			for (const packsizePricing of sortedItemPacksizePricing) {
-				// Create a string that uses the packsizePricings packsize.
-				const str = `size:${packsizePricing[0]}%`
+			if (sortedItemPacksizePricing) {
+				for (const packsizePricing of sortedItemPacksizePricing) {
+					// Create a string that uses the packsizePricings packsize.
+					const str = `size:${packsizePricing[0]}%`
 
-				// Test that string against the FIRST user provided regex. Skip the others.
-				const match = str.match(packSizeRegexes[0])
+					// Test that string against the FIRST user provided regex. Skip the others.
+					const match = str.match(packSizeRegexes[0])
 
-				// TODO: check why offer passes even though should be filtered here
-				console.log({ item, str, regex: packSizeRegexes[0], match })
-
-				// Add the price in case of a match and break the loop
-				if (match) {
-					price += packsizePricing[1]
-					packsizeRegexMatches = true
-					break
+					// Add the price in case of a match and break the loop
+					if (match) {
+						price += packsizePricing[1]
+						packsizeRegexMatches = true
+						break
+					}
 				}
 			}
 
@@ -158,9 +157,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 				console.log('here?')
 				throw new UserError({
 					code: 'regex_unsupported',
-					message: `This item does not support a pack size regex above ${
-						sortedItemPacksizePricing[sortedItemPacksizePricing.length - 1][0]
-					} %.`,
+					message: 'This item does not support your provided pack size regex.',
 				})
 			}
 		}

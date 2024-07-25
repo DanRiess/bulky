@@ -1,4 +1,4 @@
-import { getKeys } from '@shared/types/utility.types'
+import { getKeys, typedFromEntries } from '@shared/types/utility.types'
 
 // DO NOT CHANGE THE ORDER
 export const SCARAB_TYPE = {
@@ -122,7 +122,6 @@ export const SCARAB_TYPE = {
 
 export const SCARAB_TYPE_IDX_TO_NAME = getKeys(SCARAB_TYPE)
 
-export const SCARAB_TYPE_NAME_TO_IDX = SCARAB_TYPE_IDX_TO_NAME.reduce((prev, curr, idx) => {
-	prev[curr] = idx
-	return prev
-}, {} as Record<keyof typeof SCARAB_TYPE, number>)
+export const SCARAB_TYPE_NAME_TO_IDX = typedFromEntries(
+	Object.entries(SCARAB_TYPE_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)])
+)

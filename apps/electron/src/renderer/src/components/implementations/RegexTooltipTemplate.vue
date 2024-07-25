@@ -28,14 +28,21 @@
 					loading="lazy" />
 			</div>
 		</div>
-		<div class="regex-option quantity" v-for="option in conformedPrices.quantity">
-			<SvgIconAtom name="quantity" :color="option ? 'var(--color-success)' : 'var(--color-error)'" />
-			<span>{{ option[0] }}% Quantity: </span>
-			<div class="price">
-				<span>{{ option[1] }}</span>
-				<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
+		<template v-if="conformedPrices.quantity">
+			<div class="regex-option quantity" v-for="option in conformedPrices.quantity">
+				<SvgIconAtom name="quantity" :color="option ? 'var(--color-success)' : 'var(--color-error)'" />
+				<span>{{ option[0] }}% Quantity: </span>
+				<div class="price">
+					<span>{{ option[1] }}</span>
+					<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
+				</div>
 			</div>
-		</div>
+		</template>
+		<template v-else>
+			<SvgIconAtom name="quantity" color="var(--color-error)" />
+			<span>Quantity:</span>
+			<span>n/a</span>
+		</template>
 		<template v-if="conformedPrices.packsize">
 			<div class="regex-option packsize" v-for="option in conformedPrices.packsize">
 				<SvgIconAtom name="packsize" color="var(--color-success)" />
@@ -87,6 +94,7 @@ const conformedPrices = computed(() => {
 	if (props.prices.quantityRegex) {
 		for (const maybeFragment of props.prices.quantityRegex) {
 			if ('available' in maybeFragment) {
+				if (maybeFragment.available === false) continue
 				quantity !== undefined ? quantity.push(maybeFragment.addedPrice) : (quantity = [maybeFragment.addedPrice])
 			} else {
 				quantity !== undefined ? quantity.push(maybeFragment) : (quantity = [maybeFragment])
@@ -97,6 +105,7 @@ const conformedPrices = computed(() => {
 	if (props.prices.packsizeRegex) {
 		for (const maybeFragment of props.prices.packsizeRegex) {
 			if ('available' in maybeFragment) {
+				if (maybeFragment.available === false) continue
 				packsize !== undefined ? packsize.push(maybeFragment.addedPrice) : (packsize = [maybeFragment.addedPrice])
 			} else {
 				packsize !== undefined ? packsize.push(maybeFragment) : (packsize = [maybeFragment])

@@ -224,7 +224,7 @@ export const MAP_TIER = {
 export const MAP_TIER_IDX_TO_NAME = getKeys(MAP_TIER)
 
 export const MAP_TIER_NAME_TO_IDX = typedFromEntries(
-	Object.entries(MAP_TIER_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key) + 1])
+	Object.entries(MAP_TIER_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)])
 )
 
 // MAP MODS

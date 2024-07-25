@@ -71,5 +71,7 @@ watch(
 .offer-collection-container {
 	display: grid;
 	grid-template-rows: auto 1fr;
+	overflow-y: auto;
+	scrollbar-gutter: stable;
 }
 </style>

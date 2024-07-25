@@ -7,7 +7,7 @@
 				{{ filter.alwaysMaxQuantity || filter.fullBuyout ? item.quantity : filterField?.quantity }}
 			</div>
 			<div>*</div>
-			<div class="price">{{ priceComputeFunction(item, filter) }}</div>
+			<div class="price">{{ computedPrice }}</div>
 			<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 		</div>
 		<div
@@ -51,6 +51,10 @@ const tooltipParentElement = ref<HTMLElement>()
 
 // GETTERS
 const gridColumn = computed(() => (props.filter.fullBuyout ? 'span 5' : 'span 6'))
+
+const computedPrice = computed(() => {
+	props.priceComputeFunction(props.item, props.filter)
+})
 </script>
 
 <style scoped>

@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts" generic="T extends string">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import ListItemComboboxAtom, { SelectOption } from './ListItemComboboxAtom.vue'
 import InputTextAtom from './InputTextAtom.vue'
@@ -41,13 +41,6 @@ import { BULKY_TRANSFORM } from '@web/utility/transformers'
  * This model however should only emit valid values.
  */
 const model = defineModel<T>({ required: true })
-
-// MODEL WATCHER
-
-/** Triggered when the parent changes the model. I. e. when removing a filter field */
-watch(model, model => {
-	query.value = BULKY_TRANSFORM.stringToDisplayValue(model)
-})
 
 // PROPS
 const props = withDefaults(
@@ -181,7 +174,7 @@ function onInputKeydownEnter() {
 
 /** Deactivate the input and select the currently hovered options entry. Change the model value here as well. */
 function onListItemClick(val: T) {
-	query.value = val.toString()
+	query.value = BULKY_TRANSFORM.stringToDisplayValue(val.toString())
 	if (query.value !== '') {
 		setModelValue(activeOptionIdx.value)
 	}
@@ -197,16 +190,6 @@ function onListItemClick(val: T) {
 function setModelValue(idx: number) {
 	model.value = props.options[idx]
 }
-
-// /** Given a typed variable, this function finds its corresponding display value in the computedNames array. */
-// function typeToDisplayName(type: T | undefined) {
-// 	if (!type) return ''
-
-// 	const transformedType = type.split('_').join(' ')
-
-// 	const regex = new RegExp(transformedType, 'gi')
-// 	return computedOptions.value.find(option => option.displayValue.match(regex)) ?? ''
-// }
 
 // HOOKS
 onMounted(() => {

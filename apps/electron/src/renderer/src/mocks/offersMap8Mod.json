@@ -1,125 +1,8 @@
 [
 	{
 		"version": 1,
-		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467924d",
-		"timestamp": 1721748040465,
-		"account": "Chavincar",
-		"ign": "myign323",
-		"category": "MAP_8_MOD",
-		"league": "Standard",
-		"chaosPerDiv": 123.48,
-		"fullPrice": 35,
-		"minimumBuyout": 0,
-		"items": [
-			{
-				"type": 20,
-				"tier": 13,
-				"qnt": 3,
-				"prc": 10,
-				"pia": [
-					{
-						"mods": [
-							17,
-							3,
-							0,
-							71,
-							73,
-							48,
-							43,
-							33
-						],
-						"props": {
-							"iQnt": 104,
-							"iRar": 62,
-							"pckSz": 40
-						}
-					},
-					{
-						"mods": [
-							1,
-							64,
-							73,
-							29,
-							60,
-							30,
-							33,
-							35
-						],
-						"props": {
-							"iQnt": 122,
-							"iRar": 71,
-							"pckSz": 46
-						}
-					},
-					{
-						"mods": [
-							3,
-							12,
-							76,
-							59,
-							27,
-							24,
-							33,
-							37
-						],
-						"props": {
-							"iQnt": 95,
-							"iRar": 57,
-							"pckSz": 37
-						}
-					}
-				],
-				"rgx": {
-					"avd": 3,
-					"wnt": 4,
-					"qnt": [
-						[
-							110,
-							5
-						]
-					]
-				}
-			},
-			{
-				"type": 156,
-				"tier": 16,
-				"qnt": 1,
-				"prc": 5,
-				"pia": [
-					{
-						"mods": [
-							31,
-							29,
-							45,
-							48,
-							24,
-							77,
-							33,
-							40
-						],
-						"props": {
-							"iQnt": 107,
-							"iRar": 65,
-							"pckSz": 41
-						}
-					}
-				],
-				"rgx": {
-					"wnt": 2,
-					"pckSz": [
-						[
-							35,
-							4
-						]
-					]
-				}
-			}
-		]
-	},
-	{
-		"version": 1,
 		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467924e",
-		"timestamp": 1721827061999,
+		"timestamp": 1721917430328,
 		"account": "Chavincar",
 		"ign": "myign323",
 		"category": "MAP_8_MOD",
@@ -130,7 +13,7 @@
 		"items": [
 			{
 				"type": 20,
-				"tier": 13,
+				"tier": 12,
 				"qnt": 3,
 				"prc": 10,
 				"pia": [
@@ -213,7 +96,6426 @@
 			},
 			{
 				"type": 156,
-				"tier": 16,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467924f",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467924c",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467924b",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467924a",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc074679249",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc074679248",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc074679247",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc074679246",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc074679245",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467925e",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467926f",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467927c",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467928b",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc07467929a",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc0746792a9",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc0746792b8",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc0746792c7",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc0746792d6",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-fdc0746792e5",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-0dc07467925e",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-1dc07467926f",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-2dc07467927c",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-3dc07467928b",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-4dc07467929a",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-5dc0746792a9",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-6dc0746792b8",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-7dc0746792c7",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-8dc0746792d6",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "2bbedefb-610b-4dde-8c62-9dc0746792e5",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "1bbedefb-610b-4dde-8c62-0dc07467925e",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "0bbedefb-610b-4dde-8c62-1dc07467926f",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "3bbedefb-610b-4dde-8c62-2dc07467927c",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "4bbedefb-610b-4dde-8c62-3dc07467928b",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "5bbedefb-610b-4dde-8c62-4dc07467929a",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "6bbedefb-610b-4dde-8c62-5dc0746792a9",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "7bbedefb-610b-4dde-8c62-6dc0746792b8",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "8bbedefb-610b-4dde-8c62-7dc0746792c7",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "9bbedefb-610b-4dde-8c62-8dc0746792d6",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "abbedefb-610b-4dde-8c62-9dc0746792e5",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "1bbedefb-010b-4dde-8c62-0dc07467925e",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "0bbedefb-110b-4dde-8c62-1dc07467926f",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "3bbedefb-210b-4dde-8c62-2dc07467927c",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "4bbedefb-310b-4dde-8c62-3dc07467928b",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "5bbedefb-410b-4dde-8c62-4dc07467929a",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "6bbedefb-510b-4dde-8c62-5dc0746792a9",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "7bbedefb-710b-4dde-8c62-6dc0746792b8",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "8bbedefb-810b-4dde-8c62-7dc0746792c7",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "9bbedefb-b10b-4dde-8c62-8dc0746792d6",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
+				"qnt": 1,
+				"prc": 5,
+				"pia": [
+					{
+						"mods": [
+							31,
+							29,
+							45,
+							48,
+							24,
+							77,
+							33,
+							40
+						],
+						"props": {
+							"iQnt": 107,
+							"iRar": 65,
+							"pckSz": 41
+						}
+					}
+				],
+				"rgx": {
+					"wnt": 2,
+					"pckSz": [
+						[
+							35,
+							4
+						]
+					]
+				}
+			}
+		]
+	},
+	{
+		"version": 1,
+		"uuid": "abbedefb-c10b-4dde-8c62-9dc0746792e5",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 20,
+				"tier": 12,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							17,
+							3,
+							0,
+							71,
+							73,
+							48,
+							43,
+							33
+						],
+						"props": {
+							"iQnt": 104,
+							"iRar": 62,
+							"pckSz": 40
+						}
+					},
+					{
+						"mods": [
+							1,
+							64,
+							73,
+							29,
+							60,
+							30,
+							33,
+							35
+						],
+						"props": {
+							"iQnt": 122,
+							"iRar": 71,
+							"pckSz": 46
+						}
+					},
+					{
+						"mods": [
+							3,
+							12,
+							76,
+							59,
+							27,
+							24,
+							33,
+							37
+						],
+						"props": {
+							"iQnt": 95,
+							"iRar": 57,
+							"pckSz": 37
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			},
+			{
+				"type": 156,
+				"tier": 15,
 				"qnt": 1,
 				"prc": 5,
 				"pia": [

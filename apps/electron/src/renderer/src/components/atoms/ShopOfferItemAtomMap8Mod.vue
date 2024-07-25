@@ -8,30 +8,30 @@
 				<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 			</div>
 			<div class="regex" ref="tooltipParentElement" @mouseenter="showTooltip = true" @mouseleave="showTooltip = false">
-				<div>
-					<SvgIconAtom
-						name="listRemove"
-						:color="
-							toValue(item.priceOverrideMap8Mod).avoidRegex.available
-								? 'var(--color-success)'
-								: 'var(--color-error)'
-						" />
-				</div>
-				<div>
-					<SvgIconAtom
-						name="listAdd"
-						:color="
-							toValue(item.priceOverrideMap8Mod).wantedRegex.available
-								? 'var(--color-success)'
-								: 'var(--color-error)'
-						" />
-				</div>
-				<div v-for="option in toValue(item.priceOverrideMap8Mod).quantityRegex">
-					<SvgIconAtom name="quantity" :color="option.available ? 'var(--color-success)' : 'var(--color-error)'" />
-				</div>
-				<div v-for="option in toValue(item.priceOverrideMap8Mod).packsizeRegex">
-					<SvgIconAtom name="packsize" :color="option.available ? 'var(--color-success)' : 'var(--color-error)'" />
-				</div>
+				<SvgIconAtom
+					name="listRemove"
+					:color="
+						toValue(item.priceOverrideMap8Mod).avoidRegex.available ? 'var(--color-success)' : 'var(--color-error)'
+					" />
+				<SvgIconAtom
+					name="listAdd"
+					:color="
+						toValue(item.priceOverrideMap8Mod).wantedRegex.available ? 'var(--color-success)' : 'var(--color-error)'
+					" />
+				<SvgIconAtom
+					name="quantity"
+					:color="
+						toValue(item.priceOverrideMap8Mod).quantityRegex[0].available
+							? 'var(--color-success)'
+							: 'var(--color-error)'
+					" />
+				<SvgIconAtom
+					name="packsize"
+					:color="
+						toValue(item.priceOverrideMap8Mod).packsizeRegex[0].available
+							? 'var(--color-success)'
+							: 'var(--color-error)'
+					" />
 			</div>
 			<TooltipAtom :show="showTooltip" :parent="tooltipParentElement" :max-width="300">
 				<RegexTooltipTemplate :prices="toValue(item.priceOverrideMap8Mod)" />

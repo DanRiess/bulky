@@ -111,8 +111,6 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 	// If the item has no price, it should be filtered out.
 	if (price === 0) return
 
-	console.log(item)
-
 	const itemDto: BulkyBazaarItemDto = {
 		type: nameToIdxTypeMap[item.type],
 		tier: nameToIdxTierMap[item.tier],
