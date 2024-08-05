@@ -42,7 +42,7 @@ const imgSource = computed(() => {
 const gridColumnWidth = computed(() => {
 	const width = getTextWidth(displayName, getCanvasFont(nameEl.value))
 	// const width = getTextWidth(displayName, 'bold 1rem Montserrat')
-	return `${width}px`
+	return width ? `${width + 4}px` : '0px'
 })
 </script>
 

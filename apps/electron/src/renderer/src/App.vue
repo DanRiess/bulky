@@ -1,5 +1,7 @@
 <template>
 	<!-- <div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive || attachmentPanelActive"> -->
+
+	<!-- The main bulky window -->
 	<div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive">
 		<NavbarOrganism />
 		<router-view v-slot="{ Component }">
@@ -8,12 +10,19 @@
 			</BaseTransition>
 		</router-view>
 	</div>
+
+	<!-- Update / attachment window shown on app startup -->
 	<div v-else-if="updatePanelActive || attachmentPanelActive" class="update-panel-window">
 		<router-view v-slot="{ Component }">
 			<BaseTransition v-on="hooks" mode="out-in">
 				<component :is="Component" v-bind="routerProps"></component>
 			</BaseTransition>
 		</router-view>
+	</div>
+
+	<!-- Notifications element. Only shown when there are any notifications -->
+	<div class="notifications-panel">
+		<NotificationOrganism />
 	</div>
 </template>
 
@@ -30,6 +39,8 @@ import { useRouteTransitionHooks } from './transitions/routeTransitionHooks'
 import { useShopStore } from './stores/shopStore'
 import { AppUpdateStatus } from '@shared/types/electron.types'
 import { ProgressInfo } from 'electron-updater'
+import NotificationButtonAtom from './components/atoms/NotificationButtonAtom.vue'
+import NotificationOrganism from './components/organisms/NotificationOrganism.vue'
 
 // STORES
 const configStore = useConfigStore()
@@ -138,5 +149,16 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.notifications-panel {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	background: yellow;
+	width: 350px;
+	height: 100%;
+	opacity: 0.4;
+	pointer-events: none;
 }
 </style>
