@@ -1,4 +1,4 @@
-/* 
+/*
 Gradient border with animation definition. Purposely doesn't show the border or run the animation at this stage to give more control.
 
 Transition: fades in the border from top left to bottom right
@@ -76,7 +76,7 @@ body .gradient-border[data-b-override]::before {
 }
 
 
-/* 
+/*
 Specular glance animation definition. Purposely doesn't add the animation at this stage to give more control.
 Important: the element needs to have a data attribute for css class specificity due to how Vue CSS scoping works
 Usage example to activate the animation on hover:
@@ -126,7 +126,7 @@ body .specular-glance-animation.active[data-b-override]::after {
 	}
 }
 
-/* 
+/*
 Animated gradient background definition
 */
 @property --gradient-percentage-x {
@@ -141,7 +141,7 @@ Animated gradient background definition
 }
 
 body .animated-gradient-background[data-b-override] {
-	background-image: 
+	background-image:
 		radial-gradient(circle at var(--gradient-percentage-x) var(--gradient-percentage-y), transparent, rgb(255 255 255 / 0.1)),
 		linear-gradient(45deg, var(--color-stop-1, var(--dr-gradient-from-dark, #241442)), var(--color-stop-2, var(--dr-gradient-to-dark, #051e32)));
 	animation: animated-gradient-rotation 5s linear infinite;

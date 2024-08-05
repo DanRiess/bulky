@@ -1,5 +1,5 @@
 <template>
-	<ul class="o-listing flow">
+	<ul class="o-listing flow" ref="listElement">
 		<TransitionAtom group v-on="hooks">
 			<FallbackBazaarOfferMolecule v-if="filteredOffers.size === 0" />
 			<BazaarOfferOrganism
@@ -20,7 +20,9 @@ import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useListTransition } from '@web/transitions/listTransition'
 import { BulkyBazaarOffer, BulkyFilter, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import BazaarOfferOrganism from './BazaarOfferOrganism.vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { useEventListener } from '@web/composables/useEventListener'
+import { debounce } from 'lodash'
 
 //PROPS
 const props = defineProps<{
@@ -28,8 +30,13 @@ const props = defineProps<{
 	filter: BulkyFilter
 }>()
 
+// STATE
+const listElement = ref<HTMLElement>()
+const amountRendered = ref(6)
+
 // COMPOSABLES
 const hooks = useListTransition()
+useEventListener(listElement, 'scroll', debounce(onScroll, 50))
 
 // GETTERS
 const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>(() => {
@@ -93,7 +100,7 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 const offersToDisplay = computed(() => {
 	const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
 
-	const keys = Array.from(filteredOffers.value.keys()).filter((_, idx) => idx < 6)
+	const keys = Array.from(filteredOffers.value.keys()).filter((_, idx) => idx < amountRendered.value)
 
 	keys.forEach(key => {
 		const value = filteredOffers.value.get(key)
@@ -104,6 +111,20 @@ const offersToDisplay = computed(() => {
 
 	return offers
 })
+
+// METHODS
+function onScroll() {
+	if (!listElement.value) return
+
+	const scrollHeight = listElement.value.scrollHeight
+	const offset = listElement.value.scrollTop
+	const renderedHeight = listElement.value.offsetHeight
+
+	// Load more content if scrolled to the bottom
+	if (renderedHeight + offset >= scrollHeight * 0.8) {
+		amountRendered.value += 6
+	}
+}
 </script>
 
 <style scoped>

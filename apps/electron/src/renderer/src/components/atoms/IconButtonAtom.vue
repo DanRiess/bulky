@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
-import { getTextWidth } from '@web/utility/getTextWidth'
+import { getCanvasFont, getTextWidth } from '@web/utility/getTextWidth'
 import { computed, ref } from 'vue'
 
 export type IconButtonProps = {
@@ -26,7 +26,7 @@ const { fileName, displayName, backgroundColor } = withDefaults(defineProps<Icon
 })
 
 // STATE
-const nameEl = ref<HTMLElement | null>(null)
+const nameEl = ref<HTMLElement | undefined>()
 
 // GETTERS
 const backgroundColorButton = computed(() => {
@@ -40,7 +40,8 @@ const imgSource = computed(() => {
 
 /** calculate the necessary width according to displayName length */
 const gridColumnWidth = computed(() => {
-	const width = getTextWidth(displayName, 'bold 1rem Montserrat')
+	const width = getTextWidth(displayName, getCanvasFont(nameEl.value))
+	// const width = getTextWidth(displayName, 'bold 1rem Montserrat')
 	return `${width}px`
 })
 </script>
