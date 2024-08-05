@@ -5,21 +5,28 @@
 </template>
 
 <script setup lang="ts">
+import { useConfigStore } from '@web/stores/configStore'
 import SvgIconAtom from './SvgIconAtom.vue'
+import { computed } from 'vue'
+
+// STORES
+const configStore = useConfigStore()
+
+// GETTERS
+const offsetRight = computed(() => configStore.config.notifications.offsetRight)
 </script>
 
 <style scoped>
 .a-notification-button {
-	position: absolute !important;
-	bottom: 1rem;
-	right: 1rem;
+	--border-width: 2px;
+
 	background-color: black;
 	width: 3rem;
 	height: 3rem;
 	border-radius: var(--border-radius-small);
 	pointer-events: all;
-	border-width: 2px;
 	cursor: pointer;
+	margin-right: v-bind(offsetRight);
 }
 
 .a-notification-button:hover {

@@ -9,5 +9,6 @@
 	min-height: 2rem;
 	width: 100%;
 	border-radius: var(--border-radius-small);
+	pointer-events: all;
 }
 </style>

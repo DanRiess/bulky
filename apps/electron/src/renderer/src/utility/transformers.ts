@@ -13,6 +13,9 @@ import { UnwrapRef, toValue } from 'vue'
 import { BULKY_FACTORY } from './factory'
 
 function stringToDisplayValue(string: string) {
+	if (string === 'MAP_8_MOD') {
+		return '8 Mod Maps'
+	}
 	const arr = string.split('_')
 	const capitalizedArr = arr.map(word => capitalize(word.toLowerCase()))
 	return capitalizedArr.join(' ')

@@ -4,4 +4,8 @@ export type BulkyConfig = {
 	overlayKey: string
 	gameWindowTitle: string
 	ign: string
+	notifications: {
+		offsetBottom: string
+		offsetRight: string
+	}
 }

@@ -13,6 +13,10 @@ export const useConfigStore = defineStore('configStore', () => {
 		overlayKey: 'CTRL + SPACE',
 		gameWindowTitle: 'Path of Exile',
 		ign: '',
+		notifications: {
+			offsetBottom: '90px',
+			offsetRight: '1rem',
+		},
 	})
 
 	async function getUserConfig() {

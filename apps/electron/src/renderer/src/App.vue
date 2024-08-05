@@ -21,7 +21,7 @@
 	</div>
 
 	<!-- Notifications element. Only shown when there are any notifications -->
-	<div class="notifications-panel">
+	<div class="notifications-panel" ref="notificationPanelElement">
 		<NotificationOrganism />
 	</div>
 </template>
@@ -39,7 +39,6 @@ import { useRouteTransitionHooks } from './transitions/routeTransitionHooks'
 import { useShopStore } from './stores/shopStore'
 import { AppUpdateStatus } from '@shared/types/electron.types'
 import { ProgressInfo } from 'electron-updater'
-import NotificationButtonAtom from './components/atoms/NotificationButtonAtom.vue'
 import NotificationOrganism from './components/organisms/NotificationOrganism.vue'
 
 // STORES
@@ -51,6 +50,7 @@ const shopStore = useShopStore()
 
 // STATE
 const mainAppWindow = ref<HTMLElement | null>(null)
+const notificationPanelElement = ref<HTMLElement>()
 const mainWindowActive = ref(false)
 const updatePanelActive = ref(false)
 const attachmentPanelActive = ref(false)
@@ -100,10 +100,14 @@ const routerProps = computed(() => {
 })
 
 // METHODS
-onClickOutside(mainAppWindow, () => {
-	mainWindowActive.value = false
-	window.api.closeOverlay()
-})
+onClickOutside(
+	mainAppWindow,
+	() => {
+		mainWindowActive.value = false
+		window.api.closeOverlay()
+	},
+	{ ignore: [notificationPanelElement] }
+)
 
 // INITIALIZE NECESSARY STORES
 configStore.getUserConfig()
@@ -155,10 +159,8 @@ body {
 	position: fixed;
 	right: 0;
 	bottom: 0;
-	background: yellow;
 	width: 350px;
 	height: 100%;
-	opacity: 0.4;
 	pointer-events: none;
 }
 </style>
