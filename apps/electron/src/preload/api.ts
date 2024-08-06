@@ -61,6 +61,8 @@ export const api = {
 
 	writeStashTabs: (stashTabs: PoeStashTab[]) => ipcRenderer.send('write-stash-tabs', stashTabs),
 
+	pasteSearch: (message: string) => ipcRenderer.send('paste-search', message),
+
 	// ------------------------------------------------
 	// RENDERER -> MAIN BIDIRECTIONAL
 	typeInChat: (message: string) => ipcRenderer.invoke('type', message),

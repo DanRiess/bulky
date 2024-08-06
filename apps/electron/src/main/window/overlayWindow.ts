@@ -106,7 +106,7 @@ export class OverlayWindow {
 
 		if (is.dev) {
 			this.window.loadURL(url)
-			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
+			// this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 		} else {
 			this.window.loadFile(url)
 			// this.window.webContents.openDevTools({ mode: 'detach', activate: true })

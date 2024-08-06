@@ -1,9 +1,22 @@
 <template>
 	<div class="o-notification">
 		<NotificationCollectionMolecule />
-		<div class="buttons">
-			<NotificationButtonAtom />
-		</div>
+		<TransitionAtom v-on="transitionHooks">
+			<div
+				class="buttons"
+				v-if="!notificationStore.forceHideTradeNotifications && notificationStore.notifications.trades.length > 0">
+				<TransitionAtom v-on="transitionHooks">
+					<div
+						class="conditional-buttons"
+						v-if="!notificationStore.forceHideTradeNotifications && notificationStore.forceShowTradeNotifications">
+						<ButtonSvgAtom width="3rem" background-color="dark">
+							<SvgIconAtom name="refresh" width="48" />
+						</ButtonSvgAtom>
+					</div>
+				</TransitionAtom>
+				<NotificationButtonAtom @click="notificationStore.toggleTradeNotifications()" />
+			</div>
+		</TransitionAtom>
 	</div>
 </template>
 
@@ -12,9 +25,23 @@ import { useConfigStore } from '@web/stores/configStore'
 import NotificationButtonAtom from '../atoms/NotificationButtonAtom.vue'
 import NotificationCollectionMolecule from '../molecules/NotificationCollectionMolecule.vue'
 import { computed } from 'vue'
+import ButtonSvgAtom from '../atoms/ButtonSvgAtom.vue'
+import SvgIconAtom from '../atoms/SvgIconAtom.vue'
+import TransitionAtom from '../atoms/TransitionAtom.vue'
+import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+import { useNotificationStore } from '@web/stores/notificationStore'
 
 // STORES
 const configStore = useConfigStore()
+const notificationStore = useNotificationStore()
+
+// COMPOSABLES
+const transitionHooks = useGenericTransitionHooks({
+	duration: 0.25,
+	opacity: 0,
+	translateX: '3rem',
+	scaleX: 0.01,
+})
 
 // GETTER
 const offsetBottom = computed(() => configStore.config.notifications.offsetBottom)
@@ -27,9 +54,12 @@ const offsetBottom = computed(() => configStore.config.notifications.offsetBotto
 	bottom: v-bind(offsetBottom);
 	display: grid;
 	gap: 1rem;
+	pointer-events: all;
 }
 
 .buttons {
+	display: flex;
+	gap: 1rem;
 	justify-self: end;
 }
 </style>

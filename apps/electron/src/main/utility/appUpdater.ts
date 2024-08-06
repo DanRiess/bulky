@@ -52,6 +52,7 @@ export function updateApp(webContents: WebContents) {
 		})
 
 		autoUpdater.on('error', () => {
+			console.log('error during update')
 			// mainToRendererEvents.showAppUpdatePanel(webContents, 'ERROR', undefined, error)
 
 			// This looks counter-intuitive.

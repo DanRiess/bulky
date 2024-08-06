@@ -4,7 +4,6 @@ import { GameWindow } from './window/gameWindow'
 import { OverlayWindow } from './window/overlayWindow'
 import { registerInputs } from './inputs/registerInputs'
 import { Chatbox } from './inputs/chatbox'
-import { typeInChat } from './ipcCallbacks/typeInChat'
 import { readConfig, writeConfig } from './ipcCallbacks/configActions'
 import { BulkyConfig } from '@shared/types/config.types'
 import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
@@ -129,7 +128,8 @@ app.whenReady().then(() => {
 				overlayWindow.assertGameActive()
 			})
 
-			ipcMain.handle('type', (_, message: string) => typeInChat(message, chatbox))
+			ipcMain.handle('type', (_, message: string) => chatbox.type(message))
+			ipcMain.on('paste-search', (_, message: string) => chatbox.search(message))
 
 			ipcMain.on('write-config', (_, config: BulkyConfig) => writeConfig(app, config))
 			ipcMain.handle('read-config', () => readConfig(app))
@@ -171,8 +171,7 @@ app.whenReady().then(() => {
 			overlayWindow.window.webContents.on('did-finish-load', async () => {
 				if (checkedForUpdate) return
 				checkedForUpdate = true
-				await updateApp(overlayWindow.getWindow().webContents)
-				console.log('hello')
+				// await updateApp(overlayWindow.getWindow().webContents)
 
 				// Attach the controller now.
 				poeWindow.attach(overlayWindow, import.meta.env.VITE_GAME_TITLE)

@@ -68,26 +68,28 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'true') {
 }
 
 // EVENTS
-// window.api.onToggleOverlayComponent(value => {
-// 	if (updatePanelActive.value || attachmentPanelActive.value) return
-// 	mainWindowActive.value = value.overlayWindowActive
-// })
+if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
+	window.api.onToggleOverlayComponent(value => {
+		if (updatePanelActive.value || attachmentPanelActive.value) return
+		mainWindowActive.value = value.overlayWindowActive
+	})
 
-// window.api.onAppUpdate((status, info) => {
-// 	updatePanelActive.value = true
-// 	appUpdateStatus.value = status
-// 	appDownloadProgress.value = info
-// 	router.push({ name: 'AppUpdate' })
-// })
+	window.api.onAppUpdate((status, info) => {
+		updatePanelActive.value = true
+		appUpdateStatus.value = status
+		appDownloadProgress.value = info
+		router.push({ name: 'AppUpdate' })
+	})
 
-// window.api.onShowAttachmentPanel(value => {
-// 	attachmentPanelActive.value = true
-// 	router.push({ name: 'AttachmentPanel' })
-// 	setTimeout(() => {
-// 		attachmentPanelActive.value = false
-// 		router.push({ name: 'Bazaar' })
-// 	}, value.time)
-// })
+	window.api.onShowAttachmentPanel(value => {
+		attachmentPanelActive.value = true
+		router.push({ name: 'AttachmentPanel' })
+		setTimeout(() => {
+			attachmentPanelActive.value = false
+			router.push({ name: 'Bazaar' })
+		}, value.time)
+	})
+}
 
 const routerProps = computed(() => {
 	if (router.currentRoute.value.name === 'AppUpdate') {

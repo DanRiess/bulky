@@ -17,6 +17,8 @@ const props = withDefaults(
 		active?: boolean
 		backgroundColor?: ButtonBackgroundColorScheme
 		disabled?: boolean
+		height?: string
+		width?: string
 	}>(),
 	{
 		active: false,
@@ -30,6 +32,9 @@ const backgroundColorButton = computed(() => {
 		? 'var(--dr-background-color-button-light)'
 		: 'var(--dr-background-color-button-dark)'
 })
+
+const height = props.height ?? props.width ?? '2rem'
+const width = props.width ?? props.height ?? '2rem'
 </script>
 
 <style scoped>
@@ -37,8 +42,8 @@ const backgroundColorButton = computed(() => {
 	--border-width: 2px;
 
 	/* height: max-content; */
-	height: 2rem;
-	width: 2rem;
+	height: v-bind(height);
+	width: v-bind(width);
 	background-image: v-bind(backgroundColorButton);
 	color: inherit;
 	cursor: pointer;

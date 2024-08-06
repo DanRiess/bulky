@@ -36,6 +36,7 @@ const backgroundColorButton = computed(() => {
 	background-image: v-bind(backgroundColorButton);
 	color: inherit;
 	cursor: pointer;
+	user-select: none;
 }
 
 /* displays the border and runs the animation */

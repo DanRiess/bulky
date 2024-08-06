@@ -18,38 +18,75 @@ export class Chatbox {
 	 * Type the provided message into the chatbox.
 	 */
 	async type(message: string) {
-		// prevent multiple fast invocations of this function
+		// Prevent multiple fast invocations of this function.
 		if (performance.now() < this.debounce) return
 		this.debounce = performance.now() + debounceDuration
 
-		// prevent visual switching to the game window while typing the message
+		// Prevent visual switching to the game window while typing the message.
 		this.overlayWindow.enforceOverlay = true
 		const modifierKey = process.platform === 'darwin' ? [Key.Meta] : [Key.Ctrl]
 
 		this.clipboard.write(message)
 		this.overlayWindow.assertGameActive()
 
-		// without awaiting, the overlay window will still be active while trying to paste the clipboard.
-		// this magic number seems to work ok. tried it with 0 to execute the next step at the end of
-		// the next cycle, but that was not enough.
-		await sleepTimer(16)
+		// Without awaiting, the overlay window will still be active while trying to paste the clipboard.
+		// 10ms and up worked on my machine. 50ms should still feel instant to the user but is safer.
+		// I tried it with 0 to execute the next step at the end of the next cycle, but that was not enough.
+		// TODO: find better solution without a magic number.
+		await sleepTimer(50)
 
-		// bring forth the chatbox
+		// Bring forth the chatbox
 		uIOhook.keyTap(Key.Enter)
-		// paste message and send
+		// Paste message and send
 		uIOhook.keyTap(Key.V, modifierKey)
 		uIOhook.keyTap(Key.Enter)
-		// restore previous chat
+		// Restore previous chat
 		uIOhook.keyTap(Key.Enter)
 		uIOhook.keyTap(Key.ArrowUp)
 		uIOhook.keyTap(Key.ArrowUp)
 		uIOhook.keyTap(Key.Escape)
 
-		await sleepTimer(16)
+		await sleepTimer(50)
 
-		// restore the clipboard after being done with the pasting
+		// Restore the clipboard after being done with the pasting.
 		this.clipboard.restore()
 		this.overlayWindow.assertOverlayActive()
 		this.overlayWindow.enforceOverlay = false
+	}
+
+	/**
+	 * Uses CTRL + F to paste a string into an available search bar (stash, vendor).
+	 * Since this is currently only done from the notifications panel, some checks from the 'type' function can be skipped.
+	 */
+	async search(message: string) {
+		// Prevent multiple fast invocations of this function.
+		if (performance.now() < this.debounce) return
+		this.debounce = performance.now() + debounceDuration
+
+		// Prevent visual switching to the game window while typing the message.
+		// this.overlayWindow.enforceOverlay = true
+		const modifierKey = process.platform === 'darwin' ? [Key.Meta] : [Key.Ctrl]
+
+		this.clipboard.write(message)
+		// this.overlayWindow.assertGameActive()
+
+		// Without awaiting, the overlay window will still be active while trying to paste the clipboard.
+		// 10ms and up worked on my machine. 50ms should still feel instant to the user but is safer.
+		// I tried it with 0 to execute the next step at the end of the next cycle, but that was not enough.
+		// TODO: find better solution without a magic number.
+		await sleepTimer(50)
+
+		// Navigate into the search bar.
+		uIOhook.keyTap(Key.F, modifierKey)
+		// Paste message and send
+		uIOhook.keyTap(Key.V, modifierKey)
+		uIOhook.keyTap(Key.Enter)
+
+		await sleepTimer(50)
+
+		// Restore the clipboard after being done with the pasting.
+		this.clipboard.restore()
+		// this.overlayWindow.assertOverlayActive()
+		// this.overlayWindow.enforceOverlay = false
 	}
 }

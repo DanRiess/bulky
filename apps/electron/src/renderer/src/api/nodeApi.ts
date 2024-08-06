@@ -12,6 +12,10 @@ export const nodeApi = {
 		return window.api.typeInChat(message)
 	},
 
+	pasteSearch: (message: string) => {
+		window.api.pasteSearch(message)
+	},
+
 	openAuthorizationCodeUrl: async () => {
 		return window.api.openAuthorizationCodeUrl()
 	},
@@ -65,6 +69,7 @@ export const nodeApi = {
 		const overview = category === 'Currency' || category === 'Fragment' ? 'currency' : 'item'
 		const url = `https://poe.ninja/api/data/${overview}overview?league=${configStore.config.league}&type=${category}`
 
+		// Fetch in node main to avoid Cors errors.
 		return window.api.getNinjaCategory(url)
 	},
 }

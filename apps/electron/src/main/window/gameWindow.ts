@@ -36,6 +36,7 @@ export class GameWindow extends EventEmitter {
 	 * @param {string} title Title of the game window.
 	 */
 	public attach(overlayWindow: OverlayWindow, title: string) {
+		console.log('attach to ' + title)
 		const window = overlayWindow.getWindow()
 		if (!window) {
 			dialog.showErrorBox('Developer Error', 'No window to attach to.')

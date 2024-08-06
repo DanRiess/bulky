@@ -2,21 +2,40 @@
 	<div class="m-notification-regex animated-gradient-background" data-b-override>
 		<div class="message">
 			<p>
-				Trade request from <span class="highlight">{{ ign }}</span>
+				Trade request from <span class="highlight">{{ notification.ign }}</span>
 			</p>
-			<p>Category: {{ data.category }}</p>
-			<p>{{ data.quantity }} x {{ data.type }} {{ data.tier }} for {{ data.price }}c</p>
+			<p>Category: {{ trade.category }}</p>
+			<p>{{ trade.quantity }} x {{ trade.type }} {{ trade.tier }} for {{ trade.price }}c</p>
 		</div>
 		<div class="buttons">
+			<div class="button-group">
+				<SvgButtonWithPopupMolecule
+					:svg-props="{ name: 'addPerson' }"
+					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }">
+					Invite {{ notification.ign }} to your party
+				</SvgButtonWithPopupMolecule>
+				<SvgButtonWithPopupMolecule
+					:svg-props="{ name: 'exchange' }"
+					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }">
+					Trade with {{ notification.ign }}
+				</SvgButtonWithPopupMolecule>
+				<SvgButtonWithPopupMolecule
+					:svg-props="{ name: 'done' }"
+					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }">
+					Trade complete
+				</SvgButtonWithPopupMolecule>
+			</div>
 			<SvgButtonWithPopupMolecule
+				v-if="trade.regex"
 				:svg-props="{ name: 'regex' }"
 				:tooltip-props="{ position: 'bottom', popupAlignment: 'right', transitionDirection: 'toBottom' }">
 				Copy Regex
 			</SvgButtonWithPopupMolecule>
 			<SvgButtonWithPopupMolecule
 				:svg-props="{ name: 'trash' }"
-				:tooltip-props="{ position: 'bottom', popupAlignment: 'right', transitionDirection: 'toBottom' }">
-				Remove permanently
+				:tooltip-props="{ position: 'bottom', popupAlignment: 'right', transitionDirection: 'toBottom' }"
+				@click="notificationStore.remove(props.notification)">
+				Remove trade request
 			</SvgButtonWithPopupMolecule>
 		</div>
 	</div>
@@ -28,11 +47,16 @@ import SvgButtonWithPopupMolecule from './SvgButtonWithPopupMolecule.vue'
 import { CATEGORY_IDX_TO_NAME } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
+import { TradeNotification } from '@shared/types/general.types'
+import { useNotificationStore } from '@web/stores/notificationStore'
+
+// STORES
+const notificationStore = useNotificationStore()
 
 // PROPS
 const props = defineProps<{
-	ign: string
-	encodedMessage: string
+	notification: TradeNotification
+	idx: number
 }>()
 
 // GETTERS
@@ -42,12 +66,9 @@ const props = defineProps<{
  * Format: Number 1, 2: category; Number 3, 4, 5: ItemType; Number 6, 7, 8: ItemTier; Number 9, 10, 11: Price;
  * 			Numbers until the separator %RX%: Amount; Separator: %RX%; Rest: Regex
  */
-const data = computed(() => {
+const trade = computed(() => {
 	try {
-		const parts = atob(props.encodedMessage).split('%RX%')
-		if (parts.length !== 2) {
-			throw new Error()
-		}
+		const parts = props.notification.tradeData.split('%RX%')
 
 		const numberPart = parts[0]
 		const category = CATEGORY_IDX_TO_NAME[parseInt(numberPart.slice(0, 2))]
@@ -66,7 +87,9 @@ const data = computed(() => {
 		const quantity = parseInt(numberPart.slice(11))
 		const regex = parts[1]
 
-		return { category: BULKY_TRANSFORM.stringToDisplayValue(category), type, tier, price, quantity, regex }
+		const categoryAddendum = category === 'MAP_8_MOD' ? (regex ? ' with Regex' : ' without Regex') : ''
+
+		return { category: BULKY_TRANSFORM.stringToDisplayValue(category) + categoryAddendum, type, tier, price, quantity, regex }
 	} catch (e) {
 		return {
 			category: 'Unknown',
@@ -74,7 +97,7 @@ const data = computed(() => {
 			tier: '',
 			price: NaN,
 			quantity: NaN,
-			regex: '',
+			regex: undefined,
 		}
 	}
 })
@@ -85,8 +108,6 @@ const data = computed(() => {
 	min-height: 2rem;
 	width: 100%;
 	border-radius: var(--border-radius-small);
-	display: grid;
-	grid-template-columns: 1fr max-content;
 	gap: 0.5rem;
 	font-size: 0.85rem;
 	pointer-events: all;
@@ -99,7 +120,14 @@ const data = computed(() => {
 
 .buttons {
 	display: flex;
-	gap: 0.25rem;
+	gap: 1rem;
 	align-items: center;
+	justify-content: space-between;
+	margin-top: 0.25rem;
+}
+
+.button-group {
+	display: flex;
+	gap: 0.25rem;
 }
 </style>
