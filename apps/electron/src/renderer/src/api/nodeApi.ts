@@ -8,6 +8,10 @@ import { useConfigStore } from '@web/stores/configStore'
 import api from './api.wrapper'
 
 export const nodeApi = {
+	setIgnoreMouseEvents: async (ignore: boolean) => {
+		return window.api.setIgnoreMouseEvents(ignore)
+	},
+
 	typeInChat: async (message: string) => {
 		return window.api.typeInChat(message)
 	},

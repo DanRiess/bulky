@@ -9,16 +9,14 @@ import type { GameWindow } from './gameWindow'
 import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
 import { mainToRendererEvents } from '../events/mainToRenderer'
-import activeWindow from 'active-win'
 
 // const noAttachMode = import.meta.env.VITE_NO_ATTACH_MODE === 'true' && is.dev
 
 export class OverlayWindow {
-	public enforceOverlay = false
-	public isInteractable = false
-	public window: BrowserWindow
-	private ignoreNextFocus = false
-	private ignoreNextBlur = false
+	private window: BrowserWindow
+
+	// private _focusedWindow: 'game' | 'overlay' | undefined = undefined
+	private _showOverlay = false
 
 	constructor(private poeWindow: GameWindow) {
 		this.window = new BrowserWindow({
@@ -33,7 +31,8 @@ export class OverlayWindow {
 				spellcheck: false,
 			},
 			fullscreenable: true,
-			skipTaskbar: false,
+			focusable: false,
+			skipTaskbar: true,
 			frame: false,
 			show: false,
 			transparent: true,
@@ -42,55 +41,26 @@ export class OverlayWindow {
 			alwaysOnTop: false,
 		})
 
-		// this.window.on('ready-to-show', () => {
-		// 	this.window.show()
-		// })
-
 		this.window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
-
-		// spyOnPathofexileCookies(this.window.webContents, proxy.cookiesForPoe)
 
 		this.window.webContents.setWindowOpenHandler(details => {
 			shell.openExternal(details.url)
 			return { action: 'deny' }
 		})
 
-		// overlay window event listeners
-		this.window.on('blur', () => {
-			// if the focused window lies outside the game's bounds, just return
-			// DOES NOT WORK and results in infinite blur/focus loop. don't know why.
-			// if (focusedWindowOutsideGameBounds(poeWindow)) {
-			// 	this.window.show()
-			// 	return
-			// }
+		this.window
 
-			if (this.ignoreNextBlur) {
-				this.ignoreNextBlur = false
-				return
-			}
-			this.isInteractable = false
-			this.handlePoeWindowActiveChange(this.poeWindow.isActive)
-		})
-		this.window.on('focus', () => {
-			if (this.ignoreNextFocus) {
-				this.ignoreNextFocus = false
-				return
-			}
-			this.isInteractable = true
-			this.handlePoeWindowActiveChange(this.poeWindow.isActive)
-		})
-
-		// poe window event listeners
 		this.poeWindow.on('attach', this.handleOverlayAttached)
-		this.poeWindow.on('poe-window-active-change', this.handlePoeWindowActiveChange)
+		this.poeWindow.on('game-window-focused', (focus: boolean) => {
+			if (focus === true) {
+				this.focusOverlayWindow()
+				this.ignoreMouseEvents(!this._showOverlay)
+			}
+		})
 	}
 
 	public getWindow() {
 		return this.window
-	}
-
-	public getBounds() {
-		return this.window.getBounds()
 	}
 
 	/**
@@ -106,7 +76,7 @@ export class OverlayWindow {
 
 		if (is.dev) {
 			this.window.loadURL(url)
-			// this.window.webContents.openDevTools({ mode: 'detach', activate: true })
+			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 		} else {
 			this.window.loadFile(url)
 			// this.window.webContents.openDevTools({ mode: 'detach', activate: true })
@@ -117,57 +87,41 @@ export class OverlayWindow {
 		// this.poeWindow.attach(this, import.meta.env.VITE_GAME_TITLE)
 	}
 
-	/** Activate the overlay. If the game is not currently focused, do nothing. */
-	public assertOverlayActive = () => {
-		if (!this.poeWindow.isActive) return
-
-		this.ignoreNextFocus = true
-		this.poeWindow.ignoreNextBlur = true
-		this.isInteractable = true
-		OverlayController.activateOverlay()
-		this.poeWindow.isActive = false
-		this.handlePoeWindowActiveChange(false)
-	}
-
-	/** Activate the game. If the overlay is not currently focused, do nothing */
-	public assertGameActive = () => {
-		if (!this.isInteractable) return
-
-		this.ignoreNextBlur = true
-		this.poeWindow.ignoreNextFocus = true
-		this.isInteractable = false
-		OverlayController.focusTarget()
-		this.poeWindow.isActive = true
-		this.handlePoeWindowActiveChange(true)
-	}
-
-	public assertAllInactive = () => {
-		this.isInteractable = false
-		this.poeWindow.isActive = false
-		this.handlePoeWindowActiveChange(false)
-	}
-
-	/** toggle between the game and the overlay */
-	public toggleActiveState = () => {
-		if (this.isInteractable) {
-			this.assertGameActive()
-		} else {
-			// only allow toggling the overlay if PoE is the focused window
-			const activeWin = activeWindow.sync()
-			if (activeWin?.title.match(import.meta.env.VITE_GAME_TITLE)) {
-				this.assertOverlayActive()
-			}
+	public ignoreMouseEvents(ignore: boolean) {
+		// Never ignore mouse events if the overlay window is shown.
+		if (this._showOverlay) {
+			this.window.setIgnoreMouseEvents(false)
+			return
 		}
+		this.window.setIgnoreMouseEvents(ignore, { forward: true })
 	}
 
-	/**
-	 * this function in PoeAT gets called from an event that fires in onMounted in the vue overlay component.
-	 * depending on how we implement the config and where we load it from, this might not be necessary.
-	 */
-	public updateOpts(overlayKey: string, windowTitle: string) {
-		// this.overlayKey = overlayKey
-		console.log(overlayKey)
-		this.poeWindow.attach(this, windowTitle)
+	public showOverlay() {
+		this._showOverlay = true
+		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true)
+		this.ignoreMouseEvents(false)
+	}
+
+	public hideOverlay() {
+		this._showOverlay = false
+		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, false)
+		this.ignoreMouseEvents(true)
+	}
+
+	public focusOverlayWindow() {
+		OverlayController.activateOverlay()
+	}
+
+	public focusGameWindow() {
+		OverlayController.focusTarget()
+	}
+
+	public toggleActiveState() {
+		if (this._showOverlay) {
+			this.hideOverlay()
+		} else {
+			this.showOverlay()
+		}
 	}
 
 	/**
@@ -188,64 +142,9 @@ export class OverlayWindow {
 			)
 		} else {
 			if (!this.window) return
-			mainToRendererEvents.showAttachmentPanel(this.window.webContents, 2500)
+			// mainToRendererEvents.showAttachmentPanel(this.window.webContents, 2500)
+			this._showOverlay = true
+			mainToRendererEvents.toggleOverlayComponent(this.window.webContents, this._showOverlay)
 		}
-	}
-
-	/**
-	 * Pipe function that asserts that the POE window and the overlay are never active at the same time.
-	 * Used as a callback for focus / blur events from both overlay and POE window.
-	 * Dispatches a toggle event to the renderer.
-	 */
-	private handlePoeWindowActiveChange = (poeWindowActive: boolean) => {
-		// console.log('active state changed')
-		// console.log({
-		// 	enforcedOverlay: this.enforceOverlay,
-		// 	poeWindowActive,
-		// 	overlayInteract: this.isInteractable,
-		// })
-		// check if overlay should stay visible no matter what
-		if (this.enforceOverlay) {
-			mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true, false)
-			return
-		}
-
-		// handle case where PoeWindow and Overlay are active at the same time
-		if (poeWindowActive && this.isInteractable) {
-			this.isInteractable = false
-		}
-
-		// this.window.webContents.send('active-change', { gameActive: isActive, overlayActive: this.isInteractable })
-		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, this.isInteractable, poeWindowActive)
 	}
 }
-
-// function spyOnPathofexileCookies(webContents: WebContents, map: Map<string, string>) {
-// 	const urls = PROXY_HOSTS.filter(({ official }) => official).map(({ host }) => `https://${host}/*`)
-
-// 	webContents.session.webRequest.onHeadersReceived({ urls }, (details, next) => {
-// 		for (const key in details.responseHeaders) {
-// 			if (key.toLowerCase() === 'set-cookie') {
-// 				for (const cookie of details.responseHeaders[key]) {
-// 					const [key, value] = cookie.split(';', 1)[0].split('=', 2)
-// 					map.set(key, value)
-// 				}
-// 				break
-// 			}
-// 		}
-// 		next({ responseHeaders: details?.responseHeaders })
-// 	})
-
-// 	webContents.session.webRequest.onBeforeSendHeaders({ urls }, (details, next) => {
-// 		for (const key in details.requestHeaders) {
-// 			if (key.toLowerCase() === 'cookie') {
-// 				for (const part of details.requestHeaders[key].split(';')) {
-// 					const [key, value] = part.trim().split('=', 2)
-// 					map.set(key, value)
-// 				}
-// 				break
-// 			}
-// 		}
-// 		next({ requestHeaders: details.requestHeaders })
-// 	})
-// }

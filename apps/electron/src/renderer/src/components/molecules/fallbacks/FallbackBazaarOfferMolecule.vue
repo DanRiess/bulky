@@ -13,7 +13,7 @@ const notificationStore = useNotificationStore()
 function addnote() {
 	const n = notificationStore.createTradeNotification({
 		ign: 'Chavvv',
-		tradeData: '040560160128989',
+		tradeData: '040560160128989%RX%12345',
 	})
 
 	notificationStore.addTrade(n)

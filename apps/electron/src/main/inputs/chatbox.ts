@@ -2,6 +2,7 @@ import { Clipboard } from './clipboard'
 import { uIOhook, UiohookKey as Key } from 'uiohook-napi'
 import { OverlayWindow } from '../window/overlayWindow'
 import { sleepTimer } from '../utility/sleepTimer'
+import { GameWindow } from '@main/window/gameWindow'
 
 const debounceDuration = 200
 
@@ -9,7 +10,7 @@ export class Chatbox {
 	private clipboard: Clipboard
 	private debounce: number
 
-	constructor(private overlayWindow: OverlayWindow) {
+	constructor(private overlayWindow: OverlayWindow, private gameWindow: GameWindow) {
 		this.clipboard = new Clipboard()
 		this.debounce = 0
 	}
@@ -18,16 +19,17 @@ export class Chatbox {
 	 * Type the provided message into the chatbox.
 	 */
 	async type(message: string) {
+		console.log(message)
 		// Prevent multiple fast invocations of this function.
 		if (performance.now() < this.debounce) return
 		this.debounce = performance.now() + debounceDuration
 
 		// Prevent visual switching to the game window while typing the message.
-		this.overlayWindow.enforceOverlay = true
+		// this.overlayWindow.enforceOverlay = true
 		const modifierKey = process.platform === 'darwin' ? [Key.Meta] : [Key.Ctrl]
 
 		this.clipboard.write(message)
-		this.overlayWindow.assertGameActive()
+		this.overlayWindow.focusGameWindow()
 
 		// Without awaiting, the overlay window will still be active while trying to paste the clipboard.
 		// 10ms and up worked on my machine. 50ms should still feel instant to the user but is safer.
@@ -35,23 +37,34 @@ export class Chatbox {
 		// TODO: find better solution without a magic number.
 		await sleepTimer(50)
 
+		// The mini timeouts after enter seem to be absolutely mandatory.
+		// Without them, commands after Enter won't be executed anymore.
+		// Timeouts after other keys also seem to give more consistent results.
+
 		// Bring forth the chatbox
 		uIOhook.keyTap(Key.Enter)
+		await sleepTimer(10)
 		// Paste message and send
 		uIOhook.keyTap(Key.V, modifierKey)
+		await sleepTimer(10)
 		uIOhook.keyTap(Key.Enter)
+		await sleepTimer(10)
 		// Restore previous chat
 		uIOhook.keyTap(Key.Enter)
+		await sleepTimer(10)
 		uIOhook.keyTap(Key.ArrowUp)
+		await sleepTimer(10)
 		uIOhook.keyTap(Key.ArrowUp)
+		await sleepTimer(10)
+
 		uIOhook.keyTap(Key.Escape)
 
-		await sleepTimer(50)
+		await sleepTimer(10)
 
 		// Restore the clipboard after being done with the pasting.
 		this.clipboard.restore()
-		this.overlayWindow.assertOverlayActive()
-		this.overlayWindow.enforceOverlay = false
+		this.overlayWindow.focusOverlayWindow()
+		// this.overlayWindow.enforceOverlay = false
 	}
 
 	/**

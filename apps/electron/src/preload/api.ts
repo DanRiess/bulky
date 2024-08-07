@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron'
-import { ShowAttachmentPanelDto, ToggleOverlayComponentDto } from '@shared/types/dtoOneway.types'
+import { ShowAttachmentPanelDto } from '@shared/types/dtoOneway.types'
 import { BulkyConfig } from '@shared/types/config.types'
 import { OauthTokenResponse } from '@shared/types/auth.types'
 import ipcRendererWrapper from './ipcRendererWrapper'
@@ -49,13 +49,15 @@ export const api = {
 		})
 	},
 
-	onToggleOverlayComponent: (callback: (value: ToggleOverlayComponentDto) => void) => {
-		ipcRenderer.on('toggle-overlay-component', (_event, value: ToggleOverlayComponentDto) => callback(value))
+	onToggleOverlayComponent: (callback: (value: boolean) => void) => {
+		ipcRenderer.on('toggle-overlay-component', (_event, value: boolean) => callback(value))
 	},
 
 	// -----------------------------------------------
 	// RENDERER -> MAIN ONE WAY
 	closeOverlay: () => ipcRenderer.send('close-overlay'),
+
+	setIgnoreMouseEvents: (ignore: boolean) => ipcRenderer.send('set-ignore-mouse-events', ignore),
 
 	writeConfig: (config: BulkyConfig) => ipcRenderer.send('write-config', config),
 

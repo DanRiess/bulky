@@ -4,7 +4,9 @@
 		<TransitionAtom v-on="transitionHooks">
 			<div
 				class="buttons"
-				v-if="!notificationStore.forceHideTradeNotifications && notificationStore.notifications.trades.length > 0">
+				v-if="!notificationStore.forceHideTradeNotifications && notificationStore.notifications.trades.length > 0"
+				@mouseenter="setIgnoreMouseEvents(false)"
+				@mouseleave="setIgnoreMouseEvents(true)">
 				<TransitionAtom v-on="transitionHooks">
 					<div
 						class="conditional-buttons"
@@ -30,6 +32,7 @@ import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import { useNotificationStore } from '@web/stores/notificationStore'
+import { setIgnoreMouseEvents } from '@web/utility/setIgnoreMouseEvents'
 
 // STORES
 const configStore = useConfigStore()

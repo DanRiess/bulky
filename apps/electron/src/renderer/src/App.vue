@@ -71,7 +71,8 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'true') {
 if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 	window.api.onToggleOverlayComponent(value => {
 		if (updatePanelActive.value || attachmentPanelActive.value) return
-		mainWindowActive.value = value.overlayWindowActive
+		mainWindowActive.value = value
+		console.log(value)
 	})
 
 	window.api.onAppUpdate((status, info) => {
@@ -90,6 +91,7 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 		}, value.time)
 	})
 }
+router.push('Bazaar')
 
 const routerProps = computed(() => {
 	if (router.currentRoute.value.name === 'AppUpdate') {

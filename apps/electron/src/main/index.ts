@@ -1,4 +1,4 @@
-import { app, ipcMain, session } from 'electron'
+import { BrowserWindow, app, ipcMain, session } from 'electron'
 import { electronApp } from '@electron-toolkit/utils'
 import { GameWindow } from './window/gameWindow'
 import { OverlayWindow } from './window/overlayWindow'
@@ -115,7 +115,7 @@ app.whenReady().then(() => {
 			// Initialize instances.
 			const poeWindow = new GameWindow()
 			const overlayWindow = new OverlayWindow(poeWindow)
-			const chatbox = new Chatbox(overlayWindow)
+			const chatbox = new Chatbox(overlayWindow, poeWindow)
 
 			// Load the app page.
 			overlayWindow.loadAppPage()
@@ -125,7 +125,7 @@ app.whenReady().then(() => {
 
 			// Register listeners
 			ipcMain.on('close-overlay', () => {
-				overlayWindow.assertGameActive()
+				overlayWindow.hideOverlay()
 			})
 
 			ipcMain.handle('type', (_, message: string) => chatbox.type(message))
@@ -139,6 +139,8 @@ app.whenReady().then(() => {
 
 			ipcMain.handle('redeem-refresh-token', (_, refreshToken: string) => redeemRefreshToken(refreshToken))
 
+			ipcMain.on('set-ignore-mouse-events', (_, ignore) => overlayWindow.ignoreMouseEvents(ignore))
+
 			// A second instance is being requested.
 			// This happens for example during the oauth flow when the browser window attempts to redirect to the app.
 			// app.on('second-instance', (_, argv) => {
@@ -151,7 +153,8 @@ app.whenReady().then(() => {
 				// focus the game, give the focus controller time to trigger, then focus the overlay
 				OverlayController.focusTarget()
 				setTimeout(() => {
-					overlayWindow.assertOverlayActive()
+					overlayWindow.focusOverlayWindow()
+					overlayWindow.showOverlay()
 				}, 50)
 			})
 
@@ -168,7 +171,7 @@ app.whenReady().then(() => {
 			})
 
 			// Handle the update process
-			overlayWindow.window.webContents.on('did-finish-load', async () => {
+			overlayWindow.getWindow().webContents.on('did-finish-load', async () => {
 				if (checkedForUpdate) return
 				checkedForUpdate = true
 				// await updateApp(overlayWindow.getWindow().webContents)

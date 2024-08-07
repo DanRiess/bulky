@@ -11,17 +11,20 @@
 			<div class="button-group">
 				<SvgButtonWithPopupMolecule
 					:svg-props="{ name: 'addPerson' }"
-					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }">
+					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }"
+					@click="chatBoxAction('invite')">
 					Invite {{ notification.ign }} to your party
 				</SvgButtonWithPopupMolecule>
 				<SvgButtonWithPopupMolecule
 					:svg-props="{ name: 'exchange' }"
-					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }">
+					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }"
+					@click="chatBoxAction('tradewith')">
 					Trade with {{ notification.ign }}
 				</SvgButtonWithPopupMolecule>
 				<SvgButtonWithPopupMolecule
 					:svg-props="{ name: 'done' }"
-					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }">
+					:tooltip-props="{ position: 'bottom', popupAlignment: 'left', transitionDirection: 'toBottom' }"
+					@click="chatBoxAction('kick')">
 					Trade complete
 				</SvgButtonWithPopupMolecule>
 			</div>
@@ -49,6 +52,9 @@ import { BULKY_FACTORY } from '@web/utility/factory'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { TradeNotification } from '@shared/types/general.types'
 import { useNotificationStore } from '@web/stores/notificationStore'
+import { useApi } from '@web/api/useApi'
+import { nodeApi } from '@web/api/nodeApi'
+import { sleepTimer } from '@web/utility/sleep'
 
 // STORES
 const notificationStore = useNotificationStore()
@@ -101,17 +107,29 @@ const trade = computed(() => {
 		}
 	}
 })
+
+// METHODS
+async function chatBoxAction(command: 'invite' | 'tradewith' | 'kick') {
+	const request = useApi('chatBoxAction', nodeApi.typeInChat)
+	await request.exec(`/${command} ${props.notification.ign}`)
+
+	if (command === 'kick') {
+		await sleepTimer(100)
+		await request.exec(`@${props.notification.ign} Thank you for the trade. Have a nice day!`)
+		notificationStore.remove(props.notification)
+	}
+}
 </script>
 
 <style scoped>
 .m-notification-regex {
-	min-height: 2rem;
 	width: 100%;
 	border-radius: var(--border-radius-small);
 	gap: 0.5rem;
 	font-size: 0.85rem;
 	pointer-events: all;
 	padding: 0.25rem 0.5rem;
+	z-index: v-bind('100' - idx);
 }
 
 .highlight {

@@ -20,8 +20,8 @@ function showAppUpdatePanel(webContents: WebContents, status: AppUpdateStatus, i
 /**
  * Toggle the overlay vue component on or off
  */
-function toggleOverlayComponent(webContents: WebContents, overlayWindowActive: boolean, gameWindowActive: boolean) {
-	webContents.send('toggle-overlay-component', { overlayWindowActive, gameWindowActive })
+function toggleOverlayComponent(webContents: WebContents, showOverlay: boolean) {
+	webContents.send('toggle-overlay-component', showOverlay)
 }
 
 /**

@@ -5,7 +5,10 @@ import { OverlayWindow } from './overlayWindow'
 import { focusedWindowInsideGameBounds } from '../utility/focusedWindowCalculations'
 
 export class GameWindow extends EventEmitter {
+	private _isActive = false
 	private _isTracking = false
+	public ignoreNextFocus = false
+	public ignoreNextBlur = false
 
 	constructor() {
 		super()
@@ -17,6 +20,14 @@ export class GameWindow extends EventEmitter {
 
 	get hasFocus() {
 		return OverlayController.targetHasFocus
+	}
+
+	get isActive() {
+		return this._isActive
+	}
+
+	set isActive(active: boolean) {
+		this._isActive = active
 	}
 
 	/**
@@ -39,26 +50,38 @@ export class GameWindow extends EventEmitter {
 
 			// Despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('focus', () => {
-				this.emit('game-window-focused', true)
+				if (this.ignoreNextFocus) {
+					this.ignoreNextFocus = false
+					return
+				}
+				this.isActive = true
+				this.emit('poe-window-active-change', this.isActive)
 			})
 
 			// Despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('blur', async () => {
-				console.log('blur')
 				// If the focused window overlaps the game window, hide everything
-				if (await focusedWindowInsideGameBounds(this)) {
+				if (focusedWindowInsideGameBounds(this)) {
 					overlayWindow.getWindow().hide()
-					overlayWindow.hideOverlay()
+					this.isActive = false
+					overlayWindow.assertAllInactive()
 					return
 				}
 
-				this.emit('game-window-focused', false)
+				if (this.ignoreNextBlur) {
+					this.ignoreNextBlur = false
+					return
+				}
+				this.isActive = false
+				this.emit('poe-window-active-change', this.isActive)
 			})
 
 			OverlayController.events.on('attach', (e: AttachEvent) => {
 				// Listen to this in OverlayWindow class
 				this.emit('attach', e)
 			})
+
+			// TODO: event does not trigger. WHYYY?
 
 			// Attach the passed overlay window to the game window
 			OverlayController.attachByTitle(window, title, { hasTitleBarOnMac: true })
