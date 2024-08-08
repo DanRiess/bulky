@@ -3,6 +3,7 @@ import { uIOhook, UiohookKey as Key } from 'uiohook-napi'
 import { OverlayWindow } from '../window/overlayWindow'
 import { sleepTimer } from '../utility/sleepTimer'
 import { GameWindow } from '@main/window/gameWindow'
+import { nextTick } from 'process'
 
 const debounceDuration = 200
 
@@ -36,30 +37,26 @@ export class Chatbox {
 		// I tried it with 0 to execute the next step at the end of the next cycle, but that was not enough.
 		// TODO: find better solution without a magic number.
 		await sleepTimer(50)
+		console.log(this.gameWindow.hasFocus)
 
-		// The mini timeouts after enter seem to be absolutely mandatory.
+		// The timeouts after enter seem to be absolutely mandatory.
 		// Without them, commands after Enter won't be executed anymore.
-		// Timeouts after other keys also seem to give more consistent results.
+		// Maybe that's just a Notepad issue? Need to test ingame.
 
 		// Bring forth the chatbox
 		uIOhook.keyTap(Key.Enter)
-		await sleepTimer(10)
+		await sleepTimer(50)
 		// Paste message and send
 		uIOhook.keyTap(Key.V, modifierKey)
-		await sleepTimer(10)
 		uIOhook.keyTap(Key.Enter)
-		await sleepTimer(10)
+		await sleepTimer(50)
 		// Restore previous chat
 		uIOhook.keyTap(Key.Enter)
-		await sleepTimer(10)
+		await sleepTimer(50)
 		uIOhook.keyTap(Key.ArrowUp)
-		await sleepTimer(10)
 		uIOhook.keyTap(Key.ArrowUp)
-		await sleepTimer(10)
 
 		uIOhook.keyTap(Key.Escape)
-
-		await sleepTimer(10)
 
 		// Restore the clipboard after being done with the pasting.
 		this.clipboard.restore()
