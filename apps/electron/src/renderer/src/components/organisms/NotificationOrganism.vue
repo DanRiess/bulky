@@ -7,7 +7,7 @@
 				v-if="!notificationStore.forceHideTradeNotifications && notificationStore.notifications.trades.length > 0"
 				@mouseenter="setIgnoreMouseEvents(false)"
 				@mouseleave="setIgnoreMouseEvents(true)">
-				<TransitionAtom v-on="transitionHooks">
+				<!-- <TransitionAtom v-on="transitionHooks">
 					<div
 						class="conditional-buttons"
 						v-if="!notificationStore.forceHideTradeNotifications && notificationStore.forceShowTradeNotifications">
@@ -15,8 +15,10 @@
 							<SvgIconAtom name="refresh" width="48" />
 						</ButtonSvgAtom>
 					</div>
-				</TransitionAtom>
-				<NotificationButtonAtom @click="notificationStore.toggleTradeNotifications()" />
+				</TransitionAtom> -->
+				<NotificationButtonAtom
+					:notification-count="notificationStore.notifications.trades.length"
+					@click="notificationStore.toggleTradeNotifications()" />
 			</div>
 		</TransitionAtom>
 	</div>
@@ -27,8 +29,6 @@ import { useConfigStore } from '@web/stores/configStore'
 import NotificationButtonAtom from '../atoms/NotificationButtonAtom.vue'
 import NotificationCollectionMolecule from '../molecules/NotificationCollectionMolecule.vue'
 import { computed } from 'vue'
-import ButtonSvgAtom from '../atoms/ButtonSvgAtom.vue'
-import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import { useNotificationStore } from '@web/stores/notificationStore'

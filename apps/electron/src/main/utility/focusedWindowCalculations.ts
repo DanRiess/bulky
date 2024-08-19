@@ -3,7 +3,7 @@ import activeWindow from 'active-win'
 import { sleepTimer } from './sleepTimer'
 
 /**
- * Determine if the currently focused app lies inside of the game's bounds.
+ * Determine if the currently focused app lies inside the game's bounds.
  * Use this in app window and game window blur events to determine if Bulky should be closed or stay open.
  */
 export async function focusedWindowInsideGameBounds(poeWindow: GameWindow) {
@@ -51,8 +51,8 @@ export async function focusedWindowOutsideGameBounds(poeWindow: GameWindow) {
 	if (activeWin && activeWin.title !== import.meta.env.VITE_APP_TITLE) {
 		const activeWindowBounds = activeWin.bounds
 
-		console.log(activeWindowBounds)
-		console.log(poeWindow.bounds)
+		// console.log(activeWindowBounds)
+		// console.log(poeWindow.bounds)
 
 		// allow a 16px overlap, as some apps seem to calculate their bounding boxes with additional padding
 		// Chrome / FF: 8px

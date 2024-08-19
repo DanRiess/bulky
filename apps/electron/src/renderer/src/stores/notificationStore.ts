@@ -1,6 +1,6 @@
 import { TradeNotification } from '@shared/types/general.types'
 import { defineStore } from 'pinia'
-import { Ref, ref } from 'vue'
+import { MaybeRef, Ref, ref, toValue } from 'vue'
 
 export const useNotificationStore = defineStore('notificationStore', () => {
 	const forceShowTradeNotifications = ref(false)
@@ -14,7 +14,7 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 	 */
 	function createTradeNotification(options: { ign: string; tradeData: string }) {
 		return ref<TradeNotification>({
-			notificationType: 'trades',
+			notificationType: 'trade',
 			ign: options.ign,
 			tradeData: options.tradeData,
 			timestamp: Date.now(),
@@ -28,6 +28,9 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 	 * Add a trade notification to the array.
 	 */
 	function addTrade(notification: Ref<TradeNotification>) {
+		// Don't add trade if it already exists
+		if (notificationExists(notification)) return
+
 		notifications.value.trades.push(notification.value)
 
 		// If notifications are not toggled, new notifications should vanish after 5s.
@@ -93,6 +96,12 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 		if (notifications.value.trades.length === 0) {
 			forceShowTradeNotifications.value = false
 		}
+	}
+
+	function notificationExists(notification: MaybeRef<TradeNotification>) {
+		return !!notifications.value.trades.find(
+			n => n.ign === toValue(notification).ign && n.tradeData === toValue(notification).tradeData
+		)
 	}
 
 	return {

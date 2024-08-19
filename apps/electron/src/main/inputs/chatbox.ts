@@ -3,7 +3,6 @@ import { uIOhook, UiohookKey as Key } from 'uiohook-napi'
 import { OverlayWindow } from '../window/overlayWindow'
 import { sleepTimer } from '../utility/sleepTimer'
 import { GameWindow } from '@main/window/gameWindow'
-import { nextTick } from 'process'
 
 const debounceDuration = 200
 

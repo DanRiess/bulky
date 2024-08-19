@@ -34,6 +34,7 @@ import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
 import { useAuthStore } from './stores/authStore'
 import { useLeagueStore } from './stores/leagueStore'
+import { useNotificationStore } from './stores/notificationStore'
 import NavbarOrganism from './components/organisms/NavbarOrganism.vue'
 import { useRouteTransitionHooks } from './transitions/routeTransitionHooks'
 import { useShopStore } from './stores/shopStore'
@@ -47,6 +48,7 @@ const stashStore = useStashStore()
 const authStore = useAuthStore()
 const leagueStore = useLeagueStore()
 const shopStore = useShopStore()
+const notificationStore = useNotificationStore()
 
 // STATE
 const mainAppWindow = ref<HTMLElement | null>(null)
@@ -89,6 +91,13 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 			attachmentPanelActive.value = false
 			router.push({ name: 'Bazaar' })
 		}, value.time)
+	})
+
+	window.api.onSendNotification(dto => {
+		if (dto.type === 'trade') {
+			const notification = notificationStore.createTradeNotification({ ign: dto.ign, tradeData: dto.message })
+			notificationStore.addTrade(notification)
+		}
 	})
 }
 router.push('Bazaar')

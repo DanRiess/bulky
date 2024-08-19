@@ -53,6 +53,12 @@ export const api = {
 		ipcRenderer.on('toggle-overlay-component', (_event, value: boolean) => callback(value))
 	},
 
+	onSendNotification: (callback: (notification: { type: 'trade'; ign: string; message: string }) => void) => {
+		ipcRenderer.on('send-notification', (_, notification: { type: 'trade'; ign: string; message: string }) =>
+			callback(notification)
+		)
+	},
+
 	// -----------------------------------------------
 	// RENDERER -> MAIN ONE WAY
 	closeOverlay: () => ipcRenderer.send('close-overlay'),

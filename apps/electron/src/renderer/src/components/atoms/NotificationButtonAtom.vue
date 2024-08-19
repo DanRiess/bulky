@@ -1,6 +1,7 @@
 <template>
 	<div class="a-notification-button gradient-border" data-b-override>
 		<SvgIconAtom name="notifications" width="48" />
+		<div class="notification-count">{{ notificationCount }}</div>
 	</div>
 </template>
 
@@ -12,6 +13,11 @@ import { computed } from 'vue'
 // STORES
 const configStore = useConfigStore()
 
+// PROPS
+defineProps<{
+	notificationCount: number
+}>()
+
 // GETTERS
 const offsetRight = computed(() => configStore.config.notifications.offsetRight)
 </script>
@@ -20,6 +26,7 @@ const offsetRight = computed(() => configStore.config.notifications.offsetRight)
 .a-notification-button {
 	--border-width: 2px;
 
+	position: relative;
 	background-color: black;
 	width: 3rem;
 	height: 3rem;
@@ -27,6 +34,20 @@ const offsetRight = computed(() => configStore.config.notifications.offsetRight)
 	pointer-events: all;
 	cursor: pointer;
 	margin-right: v-bind(offsetRight);
+}
+
+.notification-count {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	background-color: var(--color-info);
+	width: 1.2rem;
+	height: 1.2rem;
+	text-align: center;
+	border-radius: 50%;
+	font-weight: 600;
+	font-size: 0.8rem;
+	color: var(--color-purple-dark);
 }
 
 .a-notification-button:hover {

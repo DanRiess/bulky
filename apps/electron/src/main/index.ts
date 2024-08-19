@@ -7,7 +7,7 @@ import { Chatbox } from './inputs/chatbox'
 import { readConfig, writeConfig } from './ipcCallbacks/configActions'
 import { BulkyConfig } from '@shared/types/config.types'
 import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 import { OverlayController } from 'electron-overlay-window'
 import {
 	computeAuthorizationCodeUrl,
@@ -20,6 +20,7 @@ import axios from 'axios'
 import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 import { updateApp } from './utility/appUpdater'
+import { ClientDotTxt } from './utility/clientDotTxt'
 
 // STATE
 let checkedForUpdate = false
@@ -122,6 +123,12 @@ app.whenReady().then(() => {
 
 			// Register input events.
 			registerInputs(overlayWindow)
+
+			// Start the client.txt watcher
+			new ClientDotTxt(
+				path.join(path.normalize('/Program Files (x86)/Grinding Gear Games/Path of Exile'), 'logs', 'Client.txt'),
+				overlayWindow.getWindow().webContents
+			)
 
 			// Register listeners
 			ipcMain.on('close-overlay', () => {

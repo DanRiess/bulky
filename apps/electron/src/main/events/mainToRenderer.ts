@@ -4,7 +4,7 @@ import { ProgressInfo } from 'electron-updater'
 
 /**
  * Send a message to the renderer to display the attachment panel.
- * @param {number} time Time in ms. Default is 2500
+ * @param {number} time Time in ms. Default is 2500.
  */
 function showAttachmentPanel(webContents: WebContents, time: number = 2500) {
 	webContents.send('show-attachment-panel', { time })
@@ -18,17 +18,24 @@ function showAppUpdatePanel(webContents: WebContents, status: AppUpdateStatus, i
 }
 
 /**
- * Toggle the overlay vue component on or off
+ * Toggle the overlay vue component on or off.
  */
 function toggleOverlayComponent(webContents: WebContents, showOverlay: boolean) {
 	webContents.send('toggle-overlay-component', showOverlay)
 }
 
 /**
- * Send an oauth authorization code to the renderer
+ * Send an oauth authorization code to the renderer.
  */
 function sendOauthAuthorizationCode(webContents: WebContents, code: string) {
 	webContents.send('send-oauth-authorization-code', { code })
+}
+
+/**
+ * Send a trade message to add to the notifications panel.
+ */
+function sendNotification(webContents: WebContents, notification: { type: 'trade'; ign: string; message: string }) {
+	webContents.send('send-notification', notification)
 }
 
 export const mainToRendererEvents = {
@@ -36,4 +43,5 @@ export const mainToRendererEvents = {
 	showAppUpdatePanel,
 	toggleOverlayComponent,
 	sendOauthAuthorizationCode,
+	sendNotification,
 }
