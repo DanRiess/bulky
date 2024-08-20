@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { craftWhisperMessage } from '@web/utility/whisper'
+import { generateWhisperMessage } from '@web/utility/whisper'
 import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
 import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
@@ -99,7 +99,7 @@ const filteredPrice = computed<TotalPrice>(() => {
  * Create a whisper message and instruct Node to send it ingame.
  */
 async function sendMessage() {
-	const message = craftWhisperMessage(props.offer)
+	const message = generateWhisperMessage(props.offer)
 	if (!message) {
 		// TODO - IMPORTANT: Handle error here
 		return

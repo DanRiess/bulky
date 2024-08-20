@@ -97,6 +97,10 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 	return offers
 })
 
+/**
+ * This is inefficient, since every time the user scrolls to the bottom, the entire map is getting recalculated.
+ * If performance issues appear, change this into a ref and work with a watcher that observes 'amountRendered'.
+ */
 const offersToDisplay = computed(() => {
 	const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
 
