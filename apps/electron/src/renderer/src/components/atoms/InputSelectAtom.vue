@@ -14,6 +14,7 @@
 				<ListItemComboboxAtom
 					v-for="(listItem, idx) in filteredOptions"
 					:key="listItem.optionValue"
+					:id="id + listItem.optionValue"
 					v-model="filteredOptions[idx]"
 					:hovered="idx === activeOptionIdx"
 					@mouseenter="activeOptionIdx = idx"
@@ -24,7 +25,7 @@
 </template>
 
 <script setup lang="ts" generic="T extends string">
-import { computed, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import ListItemComboboxAtom, { SelectOption } from './ListItemComboboxAtom.vue'
 import InputTextAtom from './InputTextAtom.vue'
@@ -62,6 +63,7 @@ const selectEl = ref<HTMLElement | null>(null)
 const wrapperEl = ref<HTMLElement | null>(null)
 
 // STATE
+const previousQuery = ref('')
 const query = ref('')
 const inputActive = ref(false)
 const comboboxActive = computed(() => inputActive.value && filteredOptions.value.length > 0)
@@ -114,7 +116,12 @@ const filteredOptions = computed(() => {
 // EVENTS
 
 /** Clicking outside the combobox triggers the same action as pressing Enter. */
-onClickOutside(selectEl, onInputKeydownEnter)
+onClickOutside(selectEl, () => {
+	if (!inputActive.value) return
+
+	inputActive.value = false
+	query.value = previousQuery.value
+})
 
 /** Arrow up action for the combobox. Chooses the previous option. */
 onKeyStroke(
@@ -146,10 +153,18 @@ function onInputFocus() {
 	// find the index of the current query value
 	activeOptionIdx.value = Math.max(
 		0,
-		computedOptions.value.findIndex(option => option.displayValue === query.value)
+		computedOptions.value.findIndex(option => option.displayValue === (query.value || previousQuery.value))
 	)
 	inputActive.value = true
+	if (query.value) {
+		previousQuery.value = query.value
+	}
 	query.value = ''
+
+	// Scroll the selected option into view.
+	nextTick(() => {
+		document.getElementById(props.id + computedOptions.value[activeOptionIdx.value]?.optionValue)?.scrollIntoView()
+	})
 }
 
 /**
@@ -196,7 +211,7 @@ onMounted(() => {
 	// on mounted, the query value is set to the passed model value.
 	// if this value doesn't match any options entries, reset both of them.
 	if (!model.value || !props.options.includes(model.value)) {
-		query.value = computedOptions.value[0].displayValue
+		query.value = computedOptions.value[0]?.displayValue ?? ''
 		setModelValue(0)
 	}
 
@@ -207,6 +222,8 @@ onMounted(() => {
 <style scoped>
 .a-input-select {
 	position: relative;
+	pointer-events: all;
+	user-select: all;
 }
 
 .a-input-select.combo-active .transition-wrapper::before,

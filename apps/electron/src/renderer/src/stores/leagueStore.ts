@@ -18,7 +18,8 @@ export const useLeagueStore = defineStore('leagueStore', () => {
 			return
 		}
 
-		leagues.value = filterLeagues(leagueRequest.data.value.leagues)
+		leagues.value = filterLeagues(leagueRequest.data.value)
+		console.log(leagues.value)
 	}
 
 	/**

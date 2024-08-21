@@ -84,8 +84,9 @@ app.whenReady().then(() => {
 	/** return the league static json file */
 	ipcMain.handle('get-leagues', async () => {
 		try {
-			return await import('../../resources/leagues.json')
+			return (await import('../../resources/leagues.json')).default
 		} catch (e) {
+			console.log(e)
 			return new SerializedError(e)
 		}
 	})
@@ -171,7 +172,7 @@ app.whenReady().then(() => {
 					responseHeaders: {
 						...details.responseHeaders,
 						'Content-Security-Policy': [
-							"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src https://api.pathofexile.com ws://localhost:5173 http://localhost:5173 ws://localhost:5174 http://localhost:5174 https://poe.ninja; img-src 'self' http://localhost:5174 https://web.poecdn.com",
+							"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src https://www.pathofexile.com https://api.pathofexile.com ws://localhost:5173 http://localhost:5173 ws://localhost:5174 http://localhost:5174 https://poe.ninja; img-src 'self' http://localhost:5174 https://web.poecdn.com",
 						],
 					},
 				})

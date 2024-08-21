@@ -1,6 +1,4 @@
-export type PoeLeagueRecordDtoResponse = {
-	leagues: PoeLeagueRecordDto[]
-}
+export type PoeLeagueRecordDtoResponse = PoeLeagueRecordDto[]
 
 export type PoeStashTabCollectionResponse = {
 	stashes: Omit<PoeStashTabDto, 'items'>[]

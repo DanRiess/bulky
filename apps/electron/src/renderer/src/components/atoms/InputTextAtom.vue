@@ -10,8 +10,7 @@
 			:placeholder="placeholder"
 			:maxlength="maxLength"
 			v-model="model"
-			@focus="emit('focus')"
-			@blur="emit('blur')" />
+			@click="emitEvents" />
 	</div>
 </template>
 
@@ -22,6 +21,12 @@ import { computed } from 'vue'
 
 // MODEL
 const model = defineModel<string>({ required: true })
+
+// EMITS
+const emit = defineEmits<{
+	blur: []
+	focus: []
+}>()
 
 // PROPS
 const props = withDefaults(
@@ -55,11 +60,10 @@ const backgroundColorButton = computed(() => {
 		: 'var(--dr-background-color-button-dark)'
 })
 
-// EMITS
-const emit = defineEmits<{
-	blur: []
-	focus: []
-}>()
+// METHODS
+function emitEvents() {
+	emit('focus')
+}
 </script>
 
 <style scoped>
@@ -69,6 +73,8 @@ const emit = defineEmits<{
 	--transition-duration: 0.1s;
 
 	position: relative;
+	pointer-events: all;
+	user-select: all;
 }
 
 /* Show the animated border on hover or focus-visible */
@@ -87,9 +93,12 @@ const emit = defineEmits<{
 	cursor: pointer;
 	max-width: 100%;
 	width: 100%;
+	pointer-events: all;
+	user-select: all;
 }
 
-.input-text:focus {
+.input-text:focus,
+.input-text:focus-visible {
 	border: none;
 	outline: none;
 }

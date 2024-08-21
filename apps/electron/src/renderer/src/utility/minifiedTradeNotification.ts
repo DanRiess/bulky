@@ -1,24 +1,32 @@
-import { BulkyBazaarOffer, BulkyFilter, CATEGORY_IDX_TO_NAME, CATEGORY_NAME_TO_IDX, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import {
+	BulkyBazaarOffer,
+	BulkyFilter,
+	CATEGORY_IDX_TO_NAME,
+	CATEGORY_NAME_TO_IDX,
+	ComputedBulkyOfferStore,
+} from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from './factory'
 import { BULKY_TRANSFORM } from './transformers'
+import { DecodedMTN } from '@shared/types/general.types'
 
 /**
- * In the app, this abbreviates to B_MTN (Bulky_MinifiedTradeNotification).
- * It uses Bulky's name_to_idx functions to minify item names into a byte array.
- * The string has to start with the MTN version and the Separator %.
- * Then the blocks follow. They are b64 encoded arraybuffers.
+ * Generate a minified trade notification (MTN).
+ * This works by converting all item names to numbers (using name_to_idx maps) and saving them as b64 encoded byte arrays.
+ *
+ * The finished MTN is a string consisting of four parts separated by a % character as follows:
+ * 'MTNVersion' % 'Category Idx as string' % 'itemblock : itemblock : ...' % 'Regex'
+ *
+ * - The 'regex' part is optional
+ * - The item blocks are byte arrays encoded as b64 strings.
  *
  * Bytes:
- * 0: Category (Uint8)
- * 1-2: Item type (Uint16)
- * 3: Item tier (Uint8)
+ * 0-1: Item type (Uint16)
+ * 2-3: Item tier (Uint16)
  * 4-7: Quantity (Uint32)
  * 8-12: Price (Uint32)
  *
  * There can be multiple blocks like this. The separator is a colon.
  * If the offer has a regex to be transmitted, it will come after the blocks. The separator is %.
- *
- * Full string template: Version%block:block:...%Regex
  */
 export function generateMinifiedTradeNotification(
 	offer: BulkyBazaarOffer,
@@ -51,19 +59,18 @@ export function generateMinifiedTradeNotification(
 		const ab = new ArrayBuffer(12)
 		const dv = new DataView(ab)
 
-		dv.setUint8(0, categoryIdx)
-		dv.setUint16(1, typeIdx)
-		dv.setUint8(3, tierIdx)
+		dv.setUint16(0, typeIdx)
+		dv.setUint16(2, tierIdx)
 		dv.setUint32(4, quantity)
 		dv.setUint32(8, price)
 
 		return btoa(String.fromCharCode(...new Uint8Array(ab)))
 	})
 
-	let minifiedTradeNotification = `${mtnVersion}:${b64ItemStrings.join(':')}`
+	let minifiedTradeNotification = `${mtnVersion}%${categoryIdx}%${b64ItemStrings.join(':')}`
 
 	if (filter.regex) {
-		minifiedTradeNotification += `%RX%${filter.regex}`
+		minifiedTradeNotification += `%${filter.regex}`
 	}
 
 	return minifiedTradeNotification
@@ -71,56 +78,73 @@ export function generateMinifiedTradeNotification(
 
 /**
  * Consumes a B_MTN b64 encoded string and decodes it.
- * The string has to start with the MTN version and the Separator %.
+ * The string consists of four parts separated by a % character as follows:
+ * 'MTNVersion' % 'Category Idx as string' % 'itemblock : itemblock : ...' % 'Regex'
  *
- * After that
- * Then the blocks follow. They are b64 encoded arraybuffers.
+ * - The 'regex' part is optional
+ * - The item blocks are byte arrays encoded as b64 strings.
  *
  * Bytes:
- * 0: Category (Uint8)
- * 1-2: Item type (Uint16)
- * 3: Item tier (Uint8)
+ * 0-1: Item type (Uint16)
+ * 2-3: Item tier (Uint16)
  * 4-7: Quantity (Uint32)
  * 8-12: Price (Uint32)
  *
  * There can be multiple blocks like this. The separator is a colon.
  * If the offer has a regex to be transmitted, it will come after the blocks. The separator is %.
- *
- * Full string template: Version%block:block:...%Regex
  */
-export function decodeMinifiedTradeNotification(mtn: string) {
-	const [version, blockString, regex] = mtn.split('%')
+export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
+	const [version, categoryIdxString, blockString, regex] = mtn.split('%')
 
 	if (version !== import.meta.env.VITE_MTN_VERSION) {
 		throw new Error('MTN Version not supported.')
 	}
 
+	if (!categoryIdxString || typeof parseInt(categoryIdxString) !== 'number' || !blockString) {
+		throw new Error('Malformed MTN String')
+	}
+
+	const categoryIdx = parseInt(categoryIdxString)
+	const category = CATEGORY_IDX_TO_NAME[categoryIdx]
+	const categoryAddendum = regex ? ' with Regex' : ' without Regex'
+	const categoryDisplayValue = BULKY_TRANSFORM.stringToDisplayValue(category + categoryAddendum)
+
 	// Get the nameToIdx maps here.
+	const idxToTypeMap = BULKY_FACTORY.getIdxToNameTypeMap(category)
+	const idxToTierMap = BULKY_FACTORY.getIdxToNameTierMap(category)
 
-	let categoryIdx: number	= 0
+	if (!idxToTypeMap || !idxToTierMap) {
+		throw new Error('No idx to name maps')
+	}
 
-	const trades = blockString.split(':').map((block, idx) => {
+	let fullPrice = 0
+
+	const trades = blockString.split(':').map(block => {
 		try {
 			// Convert the block to an arraybuffer and create a data view on it.
 			const buffer = Uint8Array.from(atob(block), c => c.charCodeAt(0)).buffer
 			const dv = new DataView(buffer)
 
-			idx === 0 && (categoryIdx = dv.getUint8(0))
-			const typeIdx = dv.getUint16(1)
-			const tierIdx = dv.getUint8(3)
+			const typeIdx = dv.getUint16(0)
+			const tierIdx = dv.getUint16(2)
 			const quantity = dv.getUint32(4)
 			const price = dv.getUint32(8)
 
-			return `${quantity} x ${}`
+			// Also calculate the full price for later.
+			fullPrice += price
+
+			return `${quantity} x ${BULKY_TRANSFORM.stringToDisplayValue(
+				idxToTypeMap[typeIdx]
+			)} ${BULKY_TRANSFORM.stringToDisplayValue(idxToTierMap[tierIdx])} for ${price}c`
 		} catch (e) {
 			throw new Error('could not analyze block')
 		}
 	})
 
-	const category = CATEGORY_IDX_TO_NAME[categoryIdx]
-	const categoryAddendum = regex ? ' with Regex' : ' without Regex'
-	const categoryDisplayValue = BULKY_TRANSFORM.stringToDisplayValue(category + categoryAddendum)
+	return {
+		category: categoryDisplayValue,
+		trades,
+		fullPrice,
+		regex,
+	}
 }
-
-// TODO: change category to not appear in the blocks, but instead after the version as a number string (e. g. '4').
-// Has to be done to be able to get the category and therefore the name_to_idx maps before decoding the trades.

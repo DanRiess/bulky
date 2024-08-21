@@ -34,6 +34,7 @@ import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed } from 'vue'
 import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { generateMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
 
 // PROPS
 const props = defineProps<{
@@ -100,13 +101,15 @@ const filteredPrice = computed<TotalPrice>(() => {
  */
 async function sendMessage() {
 	const message = generateWhisperMessage(props.offer)
-	if (!message) {
+	const mtn = generateMinifiedTradeNotification(props.offer, props.filter, props.priceComputeFn)
+
+	if (!message || !mtn) {
 		// TODO - IMPORTANT: Handle error here
 		return
 	}
 
 	const request = useApi('typeInChat', nodeApi.typeInChat)
-	await request.exec(message)
+	await request.exec(`${message} B-MTN: ${mtn}`)
 
 	if (request.data.value) {
 		props.offer.contact.messageSent = true

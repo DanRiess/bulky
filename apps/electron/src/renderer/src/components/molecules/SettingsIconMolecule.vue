@@ -1,5 +1,5 @@
 <template>
-	<div class="settings-icon" @click="router.push('Settings')">
+	<div class="settings-icon" @click="router.push({ name: 'Settings' })">
 		<SvgIconAtom
 			name="settings"
 			:use-gradient="true"

@@ -4,8 +4,9 @@
 			<p>
 				Trade request from <span class="highlight">{{ notification.ign }}</span>
 			</p>
-			<p>Category: {{ trade.category }}</p>
-			<p>{{ trade.quantity }} x {{ trade.type }} {{ trade.tier }} for {{ trade.price }}c</p>
+			<p>Category: {{ mtn.category }}</p>
+			<p v-for="trade in mtn.trades" :key="trade">{{ trade }}</p>
+			<PriceAtom :price="totalPrice" v-if="mtn.trades.length > 1" />
 		</div>
 		<div class="buttons">
 			<div class="button-group">
@@ -29,7 +30,7 @@
 				</SvgButtonWithPopupMolecule>
 			</div>
 			<SvgButtonWithPopupMolecule
-				v-if="trade.regex"
+				v-if="mtn.regex"
 				:svg-props="{ name: 'regex' }"
 				:tooltip-props="{ position: 'bottom', popupAlignment: 'right', transitionDirection: 'toBottom' }">
 				Copy Regex
@@ -45,16 +46,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import SvgButtonWithPopupMolecule from './SvgButtonWithPopupMolecule.vue'
-import { CATEGORY_IDX_TO_NAME } from '@shared/types/bulky.types'
-import { BULKY_FACTORY } from '@web/utility/factory'
-import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { TradeNotification } from '@shared/types/general.types'
 import { useNotificationStore } from '@web/stores/notificationStore'
 import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
 import { sleepTimer } from '@web/utility/sleep'
+import { useChaosToDiv } from '@web/composables/useChaosToDiv'
+import { usePoeNinja } from '@web/composables/usePoeNinja'
+import PriceAtom from '../atoms/PriceAtom.vue'
+import { decodeMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
 
 // STORES
 const notificationStore = useNotificationStore()
@@ -65,48 +66,12 @@ const props = defineProps<{
 	idx: number
 }>()
 
-// GETTERS
+// STATE
+const mtn = decodeMinifiedTradeNotification(props.notification.tradeData)
 
-/**
- * Decode and translate the provided message.
- * Format: Number 1, 2: category; Number 3, 4, 5: ItemType; Number 6, 7, 8: ItemTier; Number 9, 10, 11: Price;
- * 			Numbers until the separator %RX%: Amount; Separator: %RX%; Rest: Regex
- */
-const trade = computed(() => {
-	try {
-		const parts = props.notification.tradeData.split('%RX%')
-
-		const numberPart = parts[0]
-		const category = CATEGORY_IDX_TO_NAME[parseInt(numberPart.slice(0, 2))]
-		const idxToTypeMap = BULKY_FACTORY.getIdxToNameTypeMap(category)
-		const idxToTierMap = BULKY_FACTORY.getIdxToNameTierMap(category)
-		if (!idxToTypeMap || !idxToTierMap) {
-			throw new Error()
-		}
-
-		const type = BULKY_TRANSFORM.stringToDisplayValue(idxToTypeMap[parseInt(numberPart.slice(2, 5))])
-		const tier =
-			category === 'MAP_8_MOD'
-				? idxToTierMap[parseInt(numberPart.slice(5, 8))].split('IER_').join('')
-				: BULKY_TRANSFORM.stringToDisplayValue(idxToTierMap[parseInt(numberPart.slice(5, 8))])
-		const price = parseInt(numberPart.slice(8, 11))
-		const quantity = parseInt(numberPart.slice(11))
-		const regex = parts[1]
-
-		const categoryAddendum = category === 'MAP_8_MOD' ? (regex ? ' with Regex' : ' without Regex') : ''
-
-		return { category: BULKY_TRANSFORM.stringToDisplayValue(category) + categoryAddendum, type, tier, price, quantity, regex }
-	} catch (e) {
-		return {
-			category: 'Unknown',
-			type: '',
-			tier: '',
-			price: NaN,
-			quantity: NaN,
-			regex: undefined,
-		}
-	}
-})
+// COMPOSABLES
+const { chaosPerDiv } = usePoeNinja('ESSENCE')
+const totalPrice = useChaosToDiv(mtn.fullPrice, chaosPerDiv)
 
 // METHODS
 async function chatBoxAction(command: 'invite' | 'tradewith' | 'kick') {

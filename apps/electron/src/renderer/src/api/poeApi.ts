@@ -4,7 +4,7 @@
  */
 
 import api from './api.wrapper'
-import { AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { useAuthStore } from '@web/stores/authStore'
 import { RequestError } from '@shared/errors/requestError'
 import { PoeProfileResponse } from '@shared/types/auth.types'
@@ -66,7 +66,9 @@ export const poeApi = {
 	 * the static folder and retrieved from there.
 	 */
 	getLeagues: async () => {
-		return window.api.getLeagues()
+		const req = await window.api.getLeagues()
+		console.log({ req })
+		return req
 	},
 }
 
