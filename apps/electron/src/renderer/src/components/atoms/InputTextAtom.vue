@@ -10,7 +10,8 @@
 			:placeholder="placeholder"
 			:maxlength="maxLength"
 			v-model="model"
-			@click="emitEvents" />
+			@focus="emit('focus')"
+			@blur="emit('blur')" />
 	</div>
 </template>
 
@@ -19,14 +20,14 @@ import { ButtonBackgroundColorScheme, Uuid } from '@shared/types/utility.types'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { computed } from 'vue'
 
-// MODEL
-const model = defineModel<string>({ required: true })
-
 // EMITS
 const emit = defineEmits<{
 	blur: []
 	focus: []
 }>()
+
+// MODEL
+const model = defineModel<string>({ required: true })
 
 // PROPS
 const props = withDefaults(
@@ -59,11 +60,6 @@ const backgroundColorButton = computed(() => {
 		? 'var(--dr-background-color-button-light)'
 		: 'var(--dr-background-color-button-dark)'
 })
-
-// METHODS
-function emitEvents() {
-	emit('focus')
-}
 </script>
 
 <style scoped>
@@ -73,8 +69,6 @@ function emitEvents() {
 	--transition-duration: 0.1s;
 
 	position: relative;
-	pointer-events: all;
-	user-select: all;
 }
 
 /* Show the animated border on hover or focus-visible */
@@ -93,12 +87,9 @@ function emitEvents() {
 	cursor: pointer;
 	max-width: 100%;
 	width: 100%;
-	pointer-events: all;
-	user-select: all;
 }
 
-.input-text:focus,
-.input-text:focus-visible {
+.input-text:focus {
 	border: none;
 	outline: none;
 }

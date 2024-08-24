@@ -1,12 +1,15 @@
 import { GameWindow } from '@main/window/gameWindow'
 import activeWindow from 'active-win'
 import { sleepTimer } from './sleepTimer'
+import { OverlayWindow } from '@main/window/overlayWindow'
+
+let timeout: NodeJS.Timeout | undefined = undefined
 
 /**
  * Determine if the currently focused app lies inside the game's bounds.
  * Use this in app window and game window blur events to determine if Bulky should be closed or stay open.
  */
-export async function focusedWindowInsideGameBounds(poeWindow: GameWindow) {
+export async function focusedWindowInsideGameBounds(poeWindow: GameWindow, overlayWindow: OverlayWindow) {
 	// Wait shortly before calculating the active window bounds.
 	// Otherwise they can (and will) be completely off (x: -32000 for example).
 	await sleepTimer(100)
@@ -23,18 +26,32 @@ export async function focusedWindowInsideGameBounds(poeWindow: GameWindow) {
 		// console.log({
 		// 	poeBounds: { x: poeWindow.bounds.x, width: poeWindow.bounds.width },
 		// 	actWin: { x: activeWindowBounds.x, width: activeWindowBounds.width },
+		// 	visible: overlayWindow.overlayVisible,
 		// })
 
 		// allow a 16px overlap, as some apps seem to calculate their bounding boxes with additional padding
 		// Chrome / FF: 8px
 		// Notepad: 2px
-		return (
+		const insideBounds =
 			Math.max(activeWindowBounds.x, poeWindow.bounds.x) + 16 <=
 			Math.min(activeWindowBounds.x + activeWindowBounds.width, poeWindow.bounds.x + poeWindow.bounds.width)
-		)
+
+		if (!insideBounds && overlayWindow.overlayVisible) {
+			timeout = setTimeout(async () => {
+				console.log('timeout')
+				if (await focusedWindowInsideGameBounds(poeWindow, overlayWindow)) {
+					overlayWindow.getWindow().hide()
+					overlayWindow.hideOverlay()
+				}
+			}, 250)
+		} else {
+			clearTimeout(timeout)
+		}
+
+		return insideBounds
 	}
 
-	return false
+	return true
 }
 
 /**
