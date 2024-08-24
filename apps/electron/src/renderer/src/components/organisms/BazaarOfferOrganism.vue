@@ -34,7 +34,7 @@ import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
 import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed } from 'vue'
 import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
-import { generateMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
+import { decodeMinifiedTradeNotification, generateMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
 
 // PROPS
 const props = defineProps<{
@@ -60,7 +60,6 @@ const filteredItems = computed<BulkyBazaarItem[]>(() => {
 
 /** Calculate the price of the filtered items. */
 const filteredPrice = computed<TotalPrice>(() => {
-	const t0 = performance.now()
 	// If 'fullBuyout' is chosen, return the offer's full price.
 	// Else, calculate the filtered items price.
 	const chaosValue = props.filter.fullBuyout
@@ -86,8 +85,6 @@ const filteredPrice = computed<TotalPrice>(() => {
 				}
 		  }, 0)
 
-	console.log(`Compute filtered price performance: ${performance.now() - t0}`)
-
 	return {
 		divine: Math.floor(chaosValue / props.offer.chaosPerDiv),
 		chaos: chaosValue % props.offer.chaosPerDiv,
@@ -100,23 +97,33 @@ const filteredPrice = computed<TotalPrice>(() => {
  * Create a whisper message and instruct Node to send it ingame.
  */
 async function sendMessage() {
-	const message = generateWhisperMessage(props.offer)
-	const mtn = generateMinifiedTradeNotification(props.offer, props.filter, props.priceComputeFn)
+	const message = generateWhisperMessage(props.offer.category, props.filter, filteredItems, filteredPrice)
+
+	const fullPriceInChaos = filteredPrice.value.divine * props.offer.chaosPerDiv + filteredPrice.value.chaos
+	const mtn = generateMinifiedTradeNotification(
+		props.offer.category,
+		filteredItems,
+		fullPriceInChaos,
+		props.filter,
+		props.priceComputeFn
+	)
 
 	if (!message || !mtn) {
 		// TODO - IMPORTANT: Handle error here
 		return
 	}
 
-	const request = useApi('typeInChat', nodeApi.typeInChat)
-	await request.exec(`${message} B-MTN: ${mtn}`)
+	// const request = useApi('typeInChat', nodeApi.typeInChat)
+	// await request.exec(`${message} B-MTN ${mtn}`)
 
-	if (request.data.value) {
-		props.offer.contact.messageSent = true
-		setTimeout(() => {
-			props.offer.contact.messageSent = false
-		}, 60000)
-	}
+	// if (request.data.value) {
+	// 	props.offer.contact.messageSent = true
+	// 	setTimeout(() => {
+	// 		props.offer.contact.messageSent = false
+	// 	}, 60000)
+	// }
+	console.log(`${message} B-MTN ${mtn}`)
+	console.log(decodeMinifiedTradeNotification(mtn))
 }
 </script>
 

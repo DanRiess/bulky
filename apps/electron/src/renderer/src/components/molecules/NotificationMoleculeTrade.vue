@@ -6,7 +6,7 @@
 			</p>
 			<p>Category: {{ mtn.category }}</p>
 			<p v-for="trade in mtn.trades" :key="trade">{{ trade }}</p>
-			<PriceAtom :price="totalPrice" v-if="mtn.trades.length > 1" />
+			<PriceAtom :price="totalPrice" v-if="mtn.trades.length > 1 || mtn.trades[0] === 'Full Offer'" />
 		</div>
 		<div class="buttons">
 			<div class="button-group">
@@ -32,7 +32,8 @@
 			<SvgButtonWithPopupMolecule
 				v-if="mtn.regex"
 				:svg-props="{ name: 'regex' }"
-				:tooltip-props="{ position: 'bottom', popupAlignment: 'right', transitionDirection: 'toBottom' }">
+				:tooltip-props="{ position: 'bottom', popupAlignment: 'right', transitionDirection: 'toBottom' }"
+				@click="copyAndUseRegex">
 				Copy Regex
 			</SvgButtonWithPopupMolecule>
 			<SvgButtonWithPopupMolecule
@@ -68,6 +69,7 @@ const props = defineProps<{
 
 // STATE
 const mtn = decodeMinifiedTradeNotification(props.notification.tradeData)
+console.log(mtn)
 
 // COMPOSABLES
 const { chaosPerDiv } = usePoeNinja('ESSENCE')
@@ -83,6 +85,15 @@ async function chatBoxAction(command: 'invite' | 'tradewith' | 'kick') {
 		await request.exec(`@${props.notification.ign} Thank you for the trade. Have a nice day!`)
 		notificationStore.remove(props.notification)
 	}
+}
+
+async function copyAndUseRegex() {
+	if (!mtn.regex) return
+
+	navigator.clipboard.writeText(mtn.regex)
+
+	const request = useApi('pasteSearch', nodeApi.pasteSearch)
+	await request.exec(mtn.regex)
 }
 </script>
 

@@ -72,6 +72,13 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 			const field = computedFilterFields[i]
 			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
 			if (item) {
+				// Filter out the offer if the requested quantity is larger than the available stock.
+				if (field.quantity > item.quantity) {
+					itemsMissingInOffer = true
+					break
+				}
+
+				// Try to calculate the price. If it fails (should only happen with regex offers), filter out the offer.
 				try {
 					const basePrice = props.store.calculateItemBasePrice(item, props.filter)
 					price += props.filter.alwaysMaxQuantity ? basePrice * item.quantity : basePrice * field.quantity

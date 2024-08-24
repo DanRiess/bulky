@@ -159,8 +159,6 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 		itemDto.rgx = regexes
 	}
 
-	console.log({ itemDto })
-
 	return itemDto
 }
 

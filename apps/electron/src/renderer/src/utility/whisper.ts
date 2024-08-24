@@ -1,18 +1,32 @@
-import { BulkyBazaarOffer } from '@shared/types/bulky.types'
-import { useChaosToDiv } from '@web/composables/useChaosToDiv'
+import { BulkyBazaarItem, BulkyFilter, Category, TotalPrice } from '@shared/types/bulky.types'
+import { BULKY_TRANSFORM } from './transformers'
+import { MaybeComputedRef } from '@shared/types/utility.types'
+import { toValue } from 'vue'
 
-export function generateWhisperMessage(offer: BulkyBazaarOffer) {
-	const comuputedItemText = offer.items
-		.map(i => {
-			return `${i.quantity}x ${i.name} (${i.price}c each)`
-		})
-		.join(', ')
+export function generateWhisperMessage(
+	category: Category,
+	filter: BulkyFilter,
+	items: MaybeComputedRef<BulkyBazaarItem[]>,
+	price: MaybeComputedRef<TotalPrice>
+) {
+	let itemText = ''
 
-	const divPrice = useChaosToDiv(offer.fullPrice, offer.chaosPerDiv)
+	if (filter.fullBuyout) {
+		itemText = `full ${BULKY_TRANSFORM.stringToDisplayValue(category)} listing`
+	} else {
+		itemText = toValue(items)
+			.map(item => {
+				// Calculate the quantity.
+				const filterField = filter.fields.find(field => field.type === item.type && field.tier === item.tier)
+				const quantity = filter.alwaysMaxQuantity || filter.fullBuyout ? item.quantity : filterField?.quantity ?? 0
 
-	if (!divPrice.value) return
+				// Return the string
+				return `${quantity}x ${item.name} (${item.price}c each)`
+			})
+			.join(', ')
+	}
 
-	return `Hi ${offer.ign}, I'd like to buy your ${comuputedItemText} for ${
-		divPrice.value.divine > 0 ? divPrice.value.divine + ' div ' : ''
-	}${divPrice.value.chaos} chaos.`
+	return `Hi, I'd like to buy your ${itemText} for ${
+		toValue(price).divine > 0 ? Math.round(toValue(price).divine) + ' div ' : ''
+	}${Math.round(toValue(price).chaos)} chaos.`
 }

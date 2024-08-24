@@ -2,11 +2,11 @@
 	<div class="a-total-price no-select" :style="style" v-if="price">
 		<div class="label" v-if="label">{{ props.label }}</div>
 		<div class="currency-section" :class="{ hide: price.divine === 0 }">
-			{{ price.divine }}
+			{{ Math.round(price.divine) }}
 			<img src="/src/assets/png-icons/currency-divine.png" height="24" width="24" decoding="async" loading="lazy" />
 		</div>
 		<div class="currency-section" :class="{ hide: price.chaos === 0 }">
-			{{ price.chaos }}
+			{{ Math.round(price.chaos) }}
 			<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 		</div>
 	</div>

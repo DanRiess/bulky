@@ -16,8 +16,8 @@ export const nodeApi = {
 		return window.api.typeInChat(message)
 	},
 
-	pasteSearch: (message: string) => {
-		window.api.pasteSearch(message)
+	pasteSearch: async (message: string) => {
+		return window.api.pasteSearch(message)
 	},
 
 	openAuthorizationCodeUrl: async () => {

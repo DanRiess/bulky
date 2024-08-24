@@ -21,6 +21,7 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 	 * Consume an scarab listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
+		console.log({ dto })
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'SCARAB') return
 
@@ -31,7 +32,9 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = dto.items.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarScarab).filter(Boolean)
+		const items = dto.items
+			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('SCARAB', item) as BazaarScarab)
+			.filter(Boolean)
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
 		offers.value.set(uuid, {

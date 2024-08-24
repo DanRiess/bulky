@@ -61,13 +61,12 @@ export class ClientDotTxt {
 			if (!splitLine) continue
 
 			const shouldSend = this.shouldSendLineToRenderer(splitLine)
-			console.log(shouldSend)
 
 			if (shouldSend) {
 				mainToRendererEvents.sendNotification(webContents, {
 					type: 'trade',
 					ign: splitLine.sender,
-					message: splitLine.message.split('B_ID ')[1],
+					message: splitLine.message.split('B-MTN ')[1],
 				})
 			}
 		}
@@ -105,6 +104,8 @@ export class ClientDotTxt {
 		// The Array can't be empty, so this assertion is ok.
 		const sender = unsanitizedSender.split(' ').pop()!
 
+		// console.log({ date, time, code, senderAndMessage, unsanitizedSender, message, sender })
+
 		return { date, time, code, sender, message }
 	}
 
@@ -112,7 +113,7 @@ export class ClientDotTxt {
 	 * Determine if a line is something that Bulky should display in its notification bar.
 	 */
 	private shouldSendLineToRenderer(line: SplitClientTxtLine) {
-		if (line.message.match(/B_ID /)) return true
+		if (line.message.match(/B-MTN /)) return true
 		return false
 	}
 }

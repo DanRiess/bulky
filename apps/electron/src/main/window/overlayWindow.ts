@@ -97,17 +97,27 @@ export class OverlayWindow {
 	}
 
 	public showOverlay() {
-		console.log('showoverlay')
 		this._showOverlay = true
+		this.window.focus()
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true)
 		this.ignoreMouseEvents(false)
+		console.log('showoverlay', {
+			hidden: this.window.isVisible(),
+			focusable: this.window.isFocusable(),
+			focused: this.window.isFocused(),
+		})
 	}
 
 	public hideOverlay() {
-		console.log('hideoverlay')
 		this._showOverlay = false
+		this.window.focus()
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, false)
 		this.ignoreMouseEvents(true)
+		console.log('hide overlay', {
+			hidden: this.window.isVisible(),
+			focusable: this.window.isFocusable(),
+			focused: this.window.isFocused(),
+		})
 	}
 
 	public focusOverlayWindow() {
@@ -121,8 +131,10 @@ export class OverlayWindow {
 	public toggleActiveState() {
 		console.log('toggling active state')
 		if (this._showOverlay) {
+			this.focusGameWindow()
 			this.hideOverlay()
 		} else {
+			this.focusOverlayWindow()
 			this.showOverlay()
 		}
 	}

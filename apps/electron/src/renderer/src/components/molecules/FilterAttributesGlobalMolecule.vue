@@ -1,13 +1,21 @@
 <template>
 	<div class="m-global-filters">
 		<div class="default-filters">
-			<LabelWithCheckboxMolecule v-if="filter.fullBuyout" v-model="filter.fullBuyout" :disabled="filter.alwaysMaxQuantity">
+			<LabelWithCheckboxMolecule
+				v-if="filter.fullBuyout !== undefined"
+				v-model="filter.fullBuyout"
+				:disabled="filter.alwaysMaxQuantity">
 				Buyout full listing
 			</LabelWithCheckboxMolecule>
 			<LabelWithCheckboxMolecule v-model="filter.alwaysMaxQuantity" :disabled="filter.fullBuyout">
 				Always Max Quantity
 			</LabelWithCheckboxMolecule>
-			<LabelWithRangeMolecule v-if="filter.multiplier" v-model="filter.multiplier" :max="2" :step="0.05">
+			<LabelWithRangeMolecule
+				v-if="filter.multiplier !== undefined"
+				v-model="filter.multiplier"
+				:min="0.05"
+				:max="2"
+				:step="0.05">
 				Max. Multiplier
 			</LabelWithRangeMolecule>
 		</div>

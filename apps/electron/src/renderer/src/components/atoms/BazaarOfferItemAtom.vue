@@ -53,7 +53,7 @@ const tooltipParentElement = ref<HTMLElement>()
 const gridColumn = computed(() => (props.filter.fullBuyout ? 'span 5' : 'span 6'))
 
 const computedPrice = computed(() => {
-	props.priceComputeFunction(props.item, props.filter)
+	return props.priceComputeFunction(props.item, props.filter)
 })
 </script>
 

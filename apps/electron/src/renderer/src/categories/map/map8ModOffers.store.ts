@@ -47,8 +47,6 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 				timestamp: 0,
 			},
 		})
-
-		console.log(offers.value)
 	}
 
 	/**

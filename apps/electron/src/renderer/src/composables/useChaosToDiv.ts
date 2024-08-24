@@ -8,7 +8,7 @@ export function useChaosToDiv(chaosValue: MaybeRefOrGetter<number | undefined>, 
 
 		return {
 			divine: Math.floor(cVal / toValue(chaosPerDiv)),
-			chaos: Math.floor(cVal % toValue(chaosPerDiv)),
+			chaos: Math.round(cVal % toValue(chaosPerDiv)),
 		}
 	})
 }

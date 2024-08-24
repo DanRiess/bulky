@@ -21,6 +21,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	 * Consume an essence listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
+		console.log({ dto })
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'ESSENCE') return
 
@@ -31,8 +32,10 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		console.log(dto.items)
-		const items = dto.items.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarEssence).filter(Boolean)
+		const items = dto.items
+			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('ESSENCE', item) as BazaarEssence)
+			.filter(Boolean)
+		console.log({ items })
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
 		offers.value.set(uuid, {

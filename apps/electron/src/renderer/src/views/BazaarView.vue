@@ -32,6 +32,7 @@ import { useAppStateStore } from '@web/stores/appStateStore'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import { watch } from 'vue'
 import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
+import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -52,7 +53,7 @@ watch(
 		if (cat === 'ESSENCE') {
 			useEssenceOfferStore().getTestData()
 		} else if (cat === 'SCARAB') {
-			console.log('scarab category')
+			useScarabOfferStore().getTestData()
 		} else if (cat === 'DELIRIUM_ORB') {
 			console.log('deli orb category')
 		} else if (cat === 'MAP') {

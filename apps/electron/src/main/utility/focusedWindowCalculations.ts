@@ -17,19 +17,11 @@ export async function focusedWindowInsideGameBounds(poeWindow: GameWindow, overl
 	// Detect the currently active window
 	const activeWin = await activeWindow()
 
-	console.log(activeWin, import.meta.env.VITE_APP_TITLE)
-
 	// If the active window is not bulky, it means the user focused another system app.
 	// In this case, check if that system app's bounds overlaps the PoE window
 	// If so, force bulky to hide, otherwise it will still be on top of that window.
 	if (activeWin && activeWin.title !== import.meta.env.VITE_APP_TITLE) {
 		const activeWindowBounds = activeWin.bounds
-
-		// console.log({
-		// 	poeBounds: { x: poeWindow.bounds.x, width: poeWindow.bounds.width },
-		// 	actWin: { x: activeWindowBounds.x, width: activeWindowBounds.width },
-		// 	visible: overlayWindow.overlayVisible,
-		// })
 
 		// allow a 16px overlap, as some apps seem to calculate their bounding boxes with additional padding
 		// Chrome / FF: 8px
@@ -38,9 +30,16 @@ export async function focusedWindowInsideGameBounds(poeWindow: GameWindow, overl
 			Math.max(activeWindowBounds.x, poeWindow.bounds.x) + 16 <=
 			Math.min(activeWindowBounds.x + activeWindowBounds.width, poeWindow.bounds.x + poeWindow.bounds.width)
 
+		// console.log({
+		// 	poeBounds: { x: poeWindow.bounds.x, width: poeWindow.bounds.width },
+		// 	actWin: { x: activeWindowBounds.x, width: activeWindowBounds.width },
+		// 	visible: overlayWindow.overlayVisible,
+		// 	insideBounds,
+		// 	title: activeWin.title,
+		// })
+
 		if (!insideBounds && overlayWindow.overlayVisible) {
 			timeout = setTimeout(async () => {
-				console.log('timeout')
 				if (await focusedWindowInsideGameBounds(poeWindow, overlayWindow)) {
 					overlayWindow.getWindow().hide()
 					overlayWindow.hideOverlay()
@@ -52,7 +51,6 @@ export async function focusedWindowInsideGameBounds(poeWindow: GameWindow, overl
 
 		return insideBounds
 	} else if (activeWin && activeWin.title === import.meta.env.VITE_APP_TITLE) {
-		console.log('here')
 		return false
 	}
 
