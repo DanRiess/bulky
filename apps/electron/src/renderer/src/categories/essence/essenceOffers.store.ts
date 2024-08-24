@@ -88,7 +88,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		// if (listings.value.size !== 0) return
 
 		const request = useApi('essencePayload', getListing)
-		await request.exec('src/mocks/essenceCompressed.json')
+		await request.exec('src/mocks/offersEssence.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')

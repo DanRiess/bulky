@@ -87,7 +87,7 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 		// if (listings.value.size !== 0) return
 
 		const request = useApi('scarabPayload', getListing)
-		await request.exec('src/mocks/scarabCompressed.json')
+		await request.exec('src/mocks/offersScarab.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')

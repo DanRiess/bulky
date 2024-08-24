@@ -44,9 +44,9 @@ export class GameWindow extends EventEmitter {
 
 			// Despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('blur', async () => {
-				console.log('blur')
 				// If the focused window overlaps the game window, hide everything
-				if (await focusedWindowInsideGameBounds(this)) {
+				if (await focusedWindowInsideGameBounds(this, overlayWindow)) {
+					console.log('blur')
 					overlayWindow.getWindow().hide()
 					overlayWindow.hideOverlay()
 					return

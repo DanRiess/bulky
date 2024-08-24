@@ -31,7 +31,7 @@ export class OverlayWindow {
 				spellcheck: false,
 			},
 			fullscreenable: true,
-			focusable: false,
+			// focusable: false,
 			skipTaskbar: true,
 			frame: false,
 			show: false,
@@ -59,6 +59,10 @@ export class OverlayWindow {
 		})
 	}
 
+	get overlayVisible() {
+		return this._showOverlay
+	}
+
 	public getWindow() {
 		return this.window
 	}
@@ -81,10 +85,6 @@ export class OverlayWindow {
 			this.window.loadFile(url)
 			// this.window.webContents.openDevTools({ mode: 'detach', activate: true })
 		}
-
-		console.log('would call here')
-
-		// this.poeWindow.attach(this, import.meta.env.VITE_GAME_TITLE)
 	}
 
 	public ignoreMouseEvents(ignore: boolean) {
@@ -97,12 +97,14 @@ export class OverlayWindow {
 	}
 
 	public showOverlay() {
+		console.log('showoverlay')
 		this._showOverlay = true
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true)
 		this.ignoreMouseEvents(false)
 	}
 
 	public hideOverlay() {
+		console.log('hideoverlay')
 		this._showOverlay = false
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, false)
 		this.ignoreMouseEvents(true)
@@ -117,6 +119,7 @@ export class OverlayWindow {
 	}
 
 	public toggleActiveState() {
+		console.log('toggling active state')
 		if (this._showOverlay) {
 			this.hideOverlay()
 		} else {
