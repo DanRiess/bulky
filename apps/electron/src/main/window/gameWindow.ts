@@ -46,7 +46,6 @@ export class GameWindow extends EventEmitter {
 			OverlayController.events.on('blur', async () => {
 				// If the focused window overlaps the game window, hide everything
 				if (await focusedWindowInsideGameBounds(this, overlayWindow)) {
-					console.log('blur')
 					overlayWindow.getWindow().hide()
 					overlayWindow.hideOverlay()
 					return
