@@ -96,12 +96,12 @@ export class Chatbox {
 		uIOhook.keyTap(Key.V, modifierKey)
 		uIOhook.keyTap(Key.Enter)
 		await sleepTimer(50)
-		uIOhook.keyTap(Key.Escape)
 
 		// Restore the clipboard after being done with the pasting.
 		this.clipboard.restore()
 
 		this.overlayWindow.getWindow().setFocusable(true)
+		await sleepTimer(50)
 		this.overlayWindow.focusOverlayWindow()
 	}
 }

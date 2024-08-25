@@ -52,10 +52,10 @@ export class OverlayWindow {
 
 		this.poeWindow.on('attach', this.handleOverlayAttached)
 		this.poeWindow.on('game-window-focused', (focus: boolean) => {
-			if (focus === true) {
-				this.focusOverlayWindow()
-				this.ignoreMouseEvents(!this._showOverlay)
-			}
+			// if (focus === false) {
+			// 	this.focusOverlayWindow()
+			// 	// this.ignoreMouseEvents(!this._showOverlay)
+			// }
 		})
 	}
 
@@ -99,18 +99,26 @@ export class OverlayWindow {
 	public showOverlay() {
 		this._showOverlay = true
 		this.window.focus()
+		this.window.focusOnWebView()
+		this.window.moveAbove(this.window.getMediaSourceId())
+		this.window.moveTop()
+		// this.window.maximize()
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true)
 		this.ignoreMouseEvents(false)
 		console.log('showoverlay', {
-			hidden: this.window.isVisible(),
+			visible: this.window.isVisible(),
 			focusable: this.window.isFocusable(),
 			focused: this.window.isFocused(),
+			enabled: this.window.isEnabled(),
+			// missioncontrol: this.window.isHiddenInMissionControl(),
+			normal: this.window.isNormal(),
+			// visibleWorkspaces: this.window.isVisibleOnAllWorkspaces(),
 		})
 	}
 
 	public hideOverlay() {
 		this._showOverlay = false
-		this.window.focus()
+		// this.window.focus()
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, false)
 		this.ignoreMouseEvents(true)
 		console.log('hide overlay', {
@@ -122,10 +130,12 @@ export class OverlayWindow {
 
 	public focusOverlayWindow() {
 		OverlayController.activateOverlay()
+		this.ignoreMouseEvents(false)
 	}
 
 	public focusGameWindow() {
 		OverlayController.focusTarget()
+		this.ignoreMouseEvents(true)
 	}
 
 	public toggleActiveState() {
