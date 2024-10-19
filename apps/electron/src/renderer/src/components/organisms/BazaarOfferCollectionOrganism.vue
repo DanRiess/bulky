@@ -73,7 +73,7 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
 			if (item) {
 				// Filter out the offer if the requested quantity is larger than the available stock.
-				if (field.quantity > item.quantity) {
+				if (field.quantity > item.computedQuantity) {
 					itemsMissingInOffer = true
 					break
 				}

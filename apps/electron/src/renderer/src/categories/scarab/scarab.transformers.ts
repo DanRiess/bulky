@@ -65,6 +65,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarScarab {
 		tier: '0',
 		name: generateScarabNameFromType(type),
 		quantity: item.qnt,
+		computedQuantity: item.qnt,
 		price: item.prc,
 		icon: '',
 	}

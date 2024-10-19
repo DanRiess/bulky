@@ -2,9 +2,9 @@
 	<li class="a-bazaar-offer-item">
 		<div class="generic-item-data">
 			<div class="name">{{ item.name }}</div>
-			<div class="stock" v-if="!filter.fullBuyout">x{{ item.quantity }}</div>
+			<div class="stock" v-if="!filter.fullBuyout">x{{ item.computedQuantity }}</div>
 			<div class="quantity">
-				{{ filter.alwaysMaxQuantity || filter.fullBuyout ? item.quantity : filterField?.quantity }}
+				{{ filter.alwaysMaxQuantity || filter.fullBuyout ? item.computedQuantity : filterField?.quantity }}
 			</div>
 			<div>*</div>
 			<div class="price">{{ computedPrice }}</div>

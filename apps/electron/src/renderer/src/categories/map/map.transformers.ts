@@ -139,6 +139,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarMap {
 		tier,
 		name: generateMapNameFromType(type),
 		quantity: item.qnt,
+		computedQuantity: item.qnt,
 		price: item.prc,
 		icon: '',
 	}
@@ -172,6 +173,7 @@ function generateBazaarMap8ModItemFromDto(item: BulkyBazaarItemDto): BazaarMap8M
 		tier,
 		name: generateMapNameFromType(type),
 		quantity: item.qnt,
+		computedQuantity: item.qnt,
 		price: item.prc,
 		regex: {
 			avoidRegex: item.rgx?.avd,

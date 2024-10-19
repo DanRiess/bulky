@@ -65,6 +65,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDeliriumOrb 
 		tier: '0',
 		name: generateDeliriumOrbNameFromType(type),
 		quantity: item.qnt,
+		computedQuantity: item.qnt,
 		price: item.prc,
 		icon: '',
 	}

@@ -35,12 +35,6 @@ defineProps<{
 	store: ComputedBulkyFilterStore
 }>()
 
-// // EMITS
-// const emit = defineEmits<{
-// 	addFilterField: [uuid: Uuid<BulkyFilter>]
-// 	removeFilterField: [uuid: Uuid<BulkyFilter>, idx: number]
-// }>()
-
 // HOOKS
 const hooks = useListTransition({
 	marginTop: '0.5rem',

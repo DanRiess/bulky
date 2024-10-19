@@ -97,6 +97,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarEssence {
 		tier,
 		name: generateEssenceNameFromTypeAndTier(type, tier),
 		quantity: item.qnt,
+		computedQuantity: item.qnt,
 		price: item.prc,
 		icon: '',
 	}

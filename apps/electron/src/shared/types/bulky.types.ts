@@ -173,6 +173,7 @@ export type BulkyBazaarItemBase<T extends Category> = {
 	tier: string
 	options?: BulkyItemOptions
 	quantity: number
+	computedQuantity: number
 	price: number
 	regex?: {
 		avoidRegex?: number // only the added price, undefined if not available

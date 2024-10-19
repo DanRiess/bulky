@@ -26,8 +26,6 @@
 <script setup lang="ts">
 import { generateWhisperMessage } from '@web/utility/whisper'
 import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
-import { useApi } from '@web/api/useApi'
-import { nodeApi } from '@web/api/nodeApi'
 import BazaarOfferMetadataMolecule from '../molecules/BazaarOfferMetadataMolecule.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
@@ -35,6 +33,7 @@ import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed } from 'vue'
 import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import { decodeMinifiedTradeNotification, generateMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
+import { useFilterOfferWithRegex } from '@web/composables/useFilterOfferWithRegex'
 
 // PROPS
 const props = defineProps<{
@@ -46,14 +45,19 @@ const props = defineProps<{
 
 // GETTERS
 
+/**
+ * Use a regex filter on the offer's items
+ */
+const prefilteredItems = useFilterOfferWithRegex(props.offer, props.filter)
+
 /** Filter the offer's items based on the filter */
 const filteredItems = computed<BulkyBazaarItem[]>(() => {
 	// If the user wants to buy the full offer, return all items
 	if (props.filter.fullBuyout) {
-		return props.offer.items
+		return prefilteredItems.value
 	}
 
-	return props.offer.items.filter(item => {
+	return prefilteredItems.value.filter(item => {
 		return props.filter.fields.find(field => field.type === item.type && field.tier === item.tier)
 	})
 })
