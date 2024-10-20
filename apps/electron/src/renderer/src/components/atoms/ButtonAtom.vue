@@ -8,7 +8,7 @@
 import { ButtonBackgroundColorScheme } from '@shared/types/utility.types'
 import { computed } from 'vue'
 
-const { backgroundColor } = withDefaults(
+const { backgroundColor = 'light' } = withDefaults(
 	defineProps<{
 		active?: boolean
 		backgroundColor?: ButtonBackgroundColorScheme
@@ -16,7 +16,6 @@ const { backgroundColor } = withDefaults(
 	}>(),
 	{
 		active: false,
-		backgroundColor: 'light',
 		disabled: false,
 	}
 )

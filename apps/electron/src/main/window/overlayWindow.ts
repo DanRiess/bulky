@@ -51,12 +51,12 @@ export class OverlayWindow {
 		this.window
 
 		this.poeWindow.on('attach', this.handleOverlayAttached)
-		this.poeWindow.on('game-window-focused', (focus: boolean) => {
-			// if (focus === false) {
-			// 	this.focusOverlayWindow()
-			// 	// this.ignoreMouseEvents(!this._showOverlay)
-			// }
-		})
+		// this.poeWindow.on('game-window-focused', (focus: boolean) => {
+		// 	// if (focus === false) {
+		// 	// 	this.focusOverlayWindow()
+		// 	// 	// this.ignoreMouseEvents(!this._showOverlay)
+		// 	// }
+		// })
 	}
 
 	get overlayVisible() {

@@ -15,6 +15,7 @@ import { BULKY_REGEX } from '@web/utility/regex'
 import { UserError } from '@shared/errors/userError'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
+import { notEmpty } from '@web/utility/notEmpty'
 
 export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
@@ -31,7 +32,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = dto.items.map(item => BULKY_MAPS.generateBazaarMap8ModItemFromDto(item)).filter(Boolean)
+		const items = dto.items.map(item => BULKY_MAPS.generateBazaarMap8ModItemFromDto(item)).filter(notEmpty)
 		if (!items) return
 
 		offers.value.set(uuid, {

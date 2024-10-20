@@ -16,6 +16,7 @@ import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
 import { MAP_MODIFIER_REGEX, MAP_TIER, MAP_TIER_IDX_TO_NAME, MAP_TYPE, MAP_TYPE_IDX_TO_NAME } from './map.const'
 import { PoeItemProperty } from '@shared/types/dtoResponse.types'
+import { notEmpty } from '@web/utility/notEmpty'
 
 export const BULKY_MAPS = {
 	generateTypeFromBaseType,
@@ -162,10 +163,10 @@ function generateBazaarMap8ModItemFromDto(item: BulkyBazaarItemDto): BazaarMap8M
 				},
 			}
 		})
-		.filter(Boolean)
+		.filter(notEmpty)
 
 	// Return if the perItemAttributes could not correctly be extracted.
-	if (!perItemAttributes || perItemAttributes.length !== item.pia?.length) return
+	if (perItemAttributes === undefined || perItemAttributes.length !== item.pia?.length) return
 
 	return {
 		category: 'MAP_8_MOD',

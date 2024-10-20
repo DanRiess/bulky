@@ -19,10 +19,13 @@ export type IconButtonProps = {
 }
 
 // PROPS
-const { fileName, displayName, backgroundColor } = withDefaults(defineProps<IconButtonProps>(), {
+const {
+	fileName,
+	displayName,
+	backgroundColor = 'light',
+} = withDefaults(defineProps<IconButtonProps>(), {
 	alt: '',
 	active: false,
-	backgroundColor: 'light',
 })
 
 // STATE
