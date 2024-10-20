@@ -379,3 +379,11 @@ export type BulkyItemSortOptions = {
 	key: 'NAME' | 'TIER' | 'QUANT' | 'PRICE' | 'STACKPRICE'
 	direction: 'ASC' | 'DESC'
 }
+
+export type BulkyRegexes = {
+	quantity: RegExp[]
+	packSize: RegExp[]
+	rarity: RegExp[]
+	avoid: RegExp[]
+	wanted: RegExp[]
+}

@@ -23,6 +23,8 @@ import BazaarOfferOrganism from './BazaarOfferOrganism.vue'
 import { computed, ref } from 'vue'
 import { useEventListener } from '@web/composables/useEventListener'
 import { debounce } from 'lodash'
+import { BULKY_REGEX } from '@web/utility/regex'
+import { applyRegexToBulkyItem } from '@web/utility/applyRegexToBulkyItem'
 
 //PROPS
 const props = defineProps<{
@@ -41,6 +43,10 @@ useEventListener(listElement, 'scroll', debounce(onScroll, 50))
 // GETTERS
 const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>(() => {
 	const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
+
+	// Compute and categorize the regexes.
+	const regexArray = props.filter.regex ? BULKY_REGEX.computeRegexesFromString(props.filter.regex) : []
+	const regexes = BULKY_REGEX.categorizeRegexes(regexArray)
 
 	props.store.offers.forEach((offer: BulkyBazaarOffer) => {
 		// Filter out all offers whose multipliers are too high.
@@ -72,6 +78,13 @@ const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>
 			const field = computedFilterFields[i]
 			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
 			if (item) {
+				// Apply the regex to this item, if it is available
+				// This will change the item's computedQuantity property and potentially filter it out in the next step.
+				if (regexArray.length > 0) {
+					item.computedQuantity = applyRegexToBulkyItem(item, regexes)
+					console.log(item.computedQuantity)
+				}
+
 				// Filter out the offer if the requested quantity is larger than the available stock.
 				if (field.quantity > item.computedQuantity) {
 					itemsMissingInOffer = true
