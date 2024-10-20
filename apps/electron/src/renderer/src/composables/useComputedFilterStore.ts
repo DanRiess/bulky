@@ -34,7 +34,12 @@ export function useComputedFilterStore() {
 		let filter = store.currentFilter
 		if (!filter) {
 			const id = store.createNewFilter()
-			filter = store.filters.get(id)
+
+			if (store === essenceFilterStore && BULKY_UUID.isEssenceFilterUuid(id)) filter = store.filters.get(id)
+			else if (store === scarabFilterStore && BULKY_UUID.isScarabFilterUuid(id)) filter = store.filters.get(id)
+			else if (store === deliriumOrbFilterStore && BULKY_UUID.isDeliriumOrbFilterUuid(id)) filter = store.filters.get(id)
+			else if (store === normalMapFilterStore && BULKY_UUID.isMapFilterUuid(id)) filter = store.filters.get(id)
+			else if (store === map8ModFilterStore && BULKY_UUID.isMap8ModFilterUuid(id)) filter = store.filters.get(id)
 		}
 
 		// If something went wrong during filter creation, return.

@@ -1,6 +1,6 @@
 <template>
 	<ul class="m-stash-item-list">
-		<BaseTransition v-on="headerHooks">
+		<TransitionAtom v-on="headerHooks">
 			<li class="header" v-if="items.size > 0">
 				<div class="header-option selected">Select</div>
 				<div class="header-option name" @click="sortFn('NAME')">Name</div>
@@ -20,7 +20,7 @@
 					</InfoPanelMolecule>
 				</div>
 			</li>
-		</BaseTransition>
+		</TransitionAtom>
 		<CssListTransition>
 			<StashItemMolecule8ModMap
 				v-for="item in items"
@@ -41,12 +41,12 @@ import {
 	BulkyItemOverrideOptions,
 } from '@shared/types/bulky.types'
 import CssListTransition from '@web/transitions/CssListTransition.vue'
-import { BaseTransition } from 'vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import StashItemMolecule8ModMap from './StashItemMolecule8ModMap.vue'
 import { ShopMap8Mod } from '@web/categories/map/map.types'
 import InfoPanelMolecule from './InfoPanelMolecule.vue'
 import InfoPanelRegexTemplateAtom from '../atoms/InfoPanelRegexTemplateAtom.vue'
+import TransitionAtom from '../atoms/TransitionAtom.vue'
 
 // PROPS
 defineProps<{

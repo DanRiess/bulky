@@ -28,7 +28,7 @@
 					@update:model-value="selected => updateStashPropSelected(stash, selected)">
 					{{ stash.name }}
 				</LabelWithCheckboxMolecule>
-				<ul v-else class="stash-folder-list" :style="{ borderColor: '#' + stash.color ?? 'transparent' }">
+				<ul v-else class="stash-folder-list" :style="{ borderColor: '#' + stash.color }">
 					<li>{{ stash.name }} Folder</li>
 					<LabelWithCheckboxMolecule
 						v-for="child in stashTabHierarchy[stash.id]"

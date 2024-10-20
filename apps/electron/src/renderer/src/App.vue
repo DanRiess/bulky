@@ -5,18 +5,18 @@
 	<div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive">
 		<NavbarOrganism />
 		<router-view v-slot="{ Component }">
-			<BaseTransition v-on="hooks" mode="out-in">
+			<TransitionAtom v-on="hooks" mode="out-in">
 				<component :is="Component"></component>
-			</BaseTransition>
+			</TransitionAtom>
 		</router-view>
 	</div>
 
 	<!-- Update / attachment window shown on app startup -->
 	<div v-else-if="updatePanelActive || attachmentPanelActive" class="update-panel-window">
 		<router-view v-slot="{ Component }">
-			<BaseTransition v-on="hooks" mode="out-in">
+			<TransitionAtom v-on="hooks" mode="out-in">
 				<component :is="Component" v-bind="routerProps"></component>
-			</BaseTransition>
+			</TransitionAtom>
 		</router-view>
 	</div>
 
@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { BaseTransition, computed, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
@@ -41,6 +41,7 @@ import { useShopStore } from './stores/shopStore'
 import { AppUpdateStatus } from '@shared/types/electron.types'
 import { ProgressInfo } from 'electron-updater'
 import NotificationOrganism from './components/organisms/NotificationOrganism.vue'
+import TransitionAtom from './components/atoms/TransitionAtom.vue'
 
 // STORES
 const configStore = useConfigStore()

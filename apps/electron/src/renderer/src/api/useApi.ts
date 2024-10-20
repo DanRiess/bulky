@@ -5,11 +5,11 @@ import { AxiosProgressEvent, AxiosResponse } from 'axios'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { SerializedError } from '@shared/errors/serializedError'
 import { deserializeError } from '@web/utility/deserializeError'
-import { useRateLimitStore } from '@web/stores/rateLimitStore'
 import { isPoeApiFunction } from './poeApi'
 import { isBulkyApiFunction } from './bulkyApi'
 import { isNodeApiFunction } from './nodeApi'
 import { RequestError } from '@shared/errors/requestError'
+import { useRateLimitStore } from '@web/stores/rateLimitStore'
 
 /**
  * Create an object of computed statuses

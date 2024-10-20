@@ -1,4 +1,4 @@
-import { DeepRequired, MaybeComputedRef, ObjectValues, Uuid } from '@shared/types/utility.types'
+import { DeepRequired, MaybeComputedRef, ObjectValues } from '@shared/types/utility.types'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import {
 	BulkyBazaarItemBase,
@@ -63,9 +63,7 @@ export type BazaarMap8Mod = Omit<BulkyBazaarItemBase<typeof CATEGORY.MAP_8_MOD>,
 export type BazaarMapOffer = BulkyBazaarOffer<BazaarMap>
 
 /** BulkyBazaarOffer implementation for the map category */
-export type BazaarMap8ModOffer = Omit<BulkyBazaarOffer<BazaarMap8Mod>, 'fullPrice' | 'multiplier' | 'uuid'> & {
-	uuid: Uuid<BazaarMap8ModOffer>
-}
+export type BazaarMap8ModOffer = BulkyBazaarOffer<BazaarMap8Mod>
 
 // FILTER TYPES
 

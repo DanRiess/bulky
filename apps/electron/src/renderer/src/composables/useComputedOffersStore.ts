@@ -59,7 +59,7 @@ export function useComputedOffersStore() {
 		 *
 		 * @throws {RendererError} When the item does not fit the store or the store implementation errors.
 		 */
-		function calculateItemBasePrice(item: BulkyBazaarItem, filter: BulkyFilter) {
+		function calculateBaseItemPrice(item: BulkyBazaarItem, filter: BulkyFilter) {
 			if (store === essenceOfferStore && store.isEssence(item)) return store.calculateBaseItemPrice(item)
 			else if (store === scarabOfferStore && store.isScarab(item)) return store.calculateBaseItemPrice(item)
 			else if (store === deliriumOrbOfferStore && store.isDeliriumOrb(item)) return store.calculateBaseItemPrice(item)
@@ -74,7 +74,7 @@ export function useComputedOffersStore() {
 
 		return {
 			offers,
-			calculateItemBasePrice,
+			calculateBaseItemPrice,
 		}
 	})
 }

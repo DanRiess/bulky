@@ -7,7 +7,7 @@
 				:key="offer.uuid"
 				:offer="offer"
 				:idx="idx"
-				:price-compute-fn="store.calculateItemBasePrice"
+				:price-compute-fn="store.calculateBaseItemPrice"
 				:filter="filter"
 				:data-index="idx" />
 		</TransitionAtom>
@@ -20,11 +20,10 @@ import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useListTransition } from '@web/transitions/listTransition'
 import { BulkyBazaarOffer, BulkyFilter, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import BazaarOfferOrganism from './BazaarOfferOrganism.vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useEventListener } from '@web/composables/useEventListener'
 import { debounce } from 'lodash'
-import { BULKY_REGEX } from '@web/utility/regex'
-import { applyRegexToBulkyItem } from '@web/utility/applyRegexToBulkyItem'
+import { useApplyFilterToOffers } from '@web/composables/useApplyFilterToOffers'
 
 //PROPS
 const props = defineProps<{
@@ -41,83 +40,18 @@ const hooks = useListTransition()
 useEventListener(listElement, 'scroll', debounce(onScroll, 50))
 
 // GETTERS
-const filteredOffers = computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>(() => {
-	const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
-
-	// Compute and categorize the regexes.
-	const regexArray = props.filter.regex ? BULKY_REGEX.computeRegexesFromString(props.filter.regex) : []
-	const regexes = BULKY_REGEX.categorizeRegexes(regexArray)
-
-	props.store.offers.forEach((offer: BulkyBazaarOffer) => {
-		// Filter out all offers whose multipliers are too high.
-		// The maximum possible multiplier (2) should display all offers though.
-		// An offer can have a higher multiplier than 2 if some of its items were overridden with higher prices.
-		if (props.filter.multiplier && props.filter.multiplier < 2 && props.filter.multiplier < offer.multiplier) return
-
-		// If the user wants to buyout the full offer, return the offer.
-		if (props.filter.fullBuyout) {
-			offers.set(offer.uuid, offer)
-			return
-		}
-
-		// Since we have to loop over the filter fields anyway, calculate their price.
-		let price = 0
-
-		// If an offer does not contain the necessary items, set this variable to true and return.
-		let itemsMissingInOffer = false
-
-		// Remove duplicate filter fields
-		const seen = {} as Record<string, boolean>
-		const computedFilterFields = props.filter.fields.filter(field => {
-			const name = `${field.type}-${field.tier}`
-			return seen.hasOwnProperty(name) ? false : (seen[name] = true)
-		})
-
-		// Filter out offers that have a higher 'minimumBuyout' than what the filter provides.
-		for (let i = 0; i < computedFilterFields.length; ++i) {
-			const field = computedFilterFields[i]
-			const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
-			if (item) {
-				// Apply the regex to this item, if it is available
-				// This will change the item's computedQuantity property and potentially filter it out in the next step.
-				if (regexArray.length > 0) {
-					item.computedQuantity = applyRegexToBulkyItem(item, regexes)
-					console.log(item.computedQuantity)
-				}
-
-				// Filter out the offer if the requested quantity is larger than the available stock.
-				if (field.quantity > item.computedQuantity) {
-					itemsMissingInOffer = true
-					break
-				}
-
-				// Try to calculate the price. If it fails (should only happen with regex offers), filter out the offer.
-				try {
-					const basePrice = props.store.calculateItemBasePrice(item, props.filter)
-					price += props.filter.alwaysMaxQuantity ? basePrice * item.quantity : basePrice * field.quantity
-				} catch (e) {
-					itemsMissingInOffer = true
-				}
-			} else {
-				itemsMissingInOffer = true
-				break
-			}
-		}
-
-		// If at least one item does not exist in the offer, return.
-		if (itemsMissingInOffer) return
-
-		// If the calculated price is smaller than the minimum buyout, return.
-		if (price < offer.minimumBuyout) return
-
-		// If all checks have passed, add the offer to the map.
-		offers.set(offer.uuid, offer)
-	})
-
-	return offers
-})
+/**
+ * Apply the filter to offers to filter out non-applicable ones.
+ */
+const filteredOffers = useApplyFilterToOffers(
+	() => props.store,
+	() => props.filter
+)
 
 /**
+ * Creates a sub-map of filtered offers that only contains elements that should be rendered.
+ * Maps unfortunately don't support index getters, so cannot just loop over amountRendered.
+ *
  * This is inefficient, since every time the user scrolls to the bottom, the entire map is getting recalculated.
  * If performance issues appear, change this into a ref and work with a watcher that observes 'amountRendered'.
  */
@@ -135,6 +69,12 @@ const offersToDisplay = computed(() => {
 
 	return offers
 })
+
+// WATCHERS
+/**
+ * Watch variables that should reset the amountRendered variable
+ */
+watch([() => props.store], () => (amountRendered.value = 6))
 
 // METHODS
 function onScroll() {

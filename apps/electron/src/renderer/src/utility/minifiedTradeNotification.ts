@@ -37,7 +37,7 @@ export function generateMinifiedTradeNotification(
 	items: MaybeComputedRef<BulkyBazaarItem[]>,
 	fullPrice: number,
 	filter: BulkyFilter,
-	priceComputeFunction: ComputedBulkyOfferStore['calculateItemBasePrice']
+	priceComputeFunction: ComputedBulkyOfferStore['calculateBaseItemPrice']
 ) {
 	const mtnVersion = import.meta.env.VITE_MTN_VERSION ?? '1'
 	const categoryIdx = CATEGORY_NAME_TO_IDX[category]

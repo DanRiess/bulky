@@ -47,6 +47,8 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 				messageSent: false,
 				timestamp: 0,
 			},
+			multiplier: 1,
+			fullPrice: 0,
 		})
 	}
 

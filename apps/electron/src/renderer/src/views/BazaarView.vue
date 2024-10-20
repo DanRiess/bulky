@@ -46,6 +46,10 @@ const hooks = useGenericTransitionHooks({
 	duration: 0.35,
 })
 
+setInterval(() => {
+	console.log('jo')
+}, 1000)
+
 // WATCHERS
 watch(
 	() => appStateStore.selectedCategory,

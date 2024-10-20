@@ -35,7 +35,6 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		const items = dto.items
 			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('ESSENCE', item) as BazaarEssence)
 			.filter(Boolean)
-		console.log({ items })
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
 		offers.value.set(uuid, {

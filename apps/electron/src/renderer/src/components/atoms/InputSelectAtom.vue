@@ -18,7 +18,7 @@
 					v-model="filteredOptions[idx]"
 					:hovered="idx === activeOptionIdx"
 					@mouseenter="activeOptionIdx = idx"
-					@update:model-value="(e: SelectOption<T>) => onListItemClick(e.optionValue)" />
+					@update:model-value="e => onListItemClick(e.optionValue)" />
 			</ul>
 		</div>
 	</div>
@@ -57,6 +57,11 @@ const props = withDefaults(
 		backgroundColor: 'dark',
 	}
 )
+
+// EMITS
+const emit = defineEmits<{
+	'update:model-value': [SelectOption<T>]
+}>()
 
 // HTML REF ELEMENTS
 const selectEl = ref<HTMLElement | null>(null)
@@ -187,7 +192,9 @@ function onInputKeydownEnter() {
 	}
 }
 
-/** Deactivate the input and select the currently hovered options entry. Change the model value here as well. */
+/**
+ * Deactivate the input and select the currently hovered options entry. Change the model value here as well.
+ */
 function onListItemClick(val: T) {
 	query.value = BULKY_TRANSFORM.stringToDisplayValue(val.toString())
 	if (query.value !== '') {

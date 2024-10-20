@@ -1,6 +1,6 @@
 <template>
 	<button class="a-icon-button gradient-border" :class="active && 'active'" data-b-override>
-		<img :src="imgSource" decoding="async" loading="lazy" />
+		<img :src="imgSource" decoding="async" loading="lazy" :alt="alt" />
 		<div ref="nameEl" class="name">{{ displayName }}</div>
 	</button>
 </template>
@@ -19,14 +19,7 @@ export type IconButtonProps = {
 }
 
 // PROPS
-const {
-	fileName,
-	displayName,
-	backgroundColor = 'light',
-} = withDefaults(defineProps<IconButtonProps>(), {
-	alt: '',
-	active: false,
-})
+const { fileName, displayName, backgroundColor = 'light', alt = '', active = false } = defineProps<IconButtonProps>()
 
 // STATE
 const nameEl = ref<HTMLElement | undefined>()

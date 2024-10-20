@@ -213,7 +213,7 @@ export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
  */
 export type ComputedBulkyOfferStore = {
 	offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>
-	calculateItemBasePrice: (item: BulkyBazaarItem, filter: BulkyFilter) => number
+	calculateBaseItemPrice: (item: BulkyBazaarItem, filter: BulkyFilter) => number
 }
 
 // FILTER TYPES

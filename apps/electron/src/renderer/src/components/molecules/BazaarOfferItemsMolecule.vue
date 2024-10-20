@@ -37,7 +37,7 @@ const props = defineProps<{
 	items: BulkyBazaarItem[]
 	filter: BulkyFilter
 	price: TotalPrice
-	priceComputeFunction: ComputedBulkyOfferStore['calculateItemBasePrice']
+	priceComputeFunction: ComputedBulkyOfferStore['calculateBaseItemPrice']
 }>()
 
 // STATE

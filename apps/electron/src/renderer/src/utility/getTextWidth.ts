@@ -15,7 +15,6 @@ export function getTextWidth(text: string, font: string) {
 
 	context.font = font
 	const metrics = context.measureText(text)
-	console.log(metrics)
 	return metrics.width
 }
 

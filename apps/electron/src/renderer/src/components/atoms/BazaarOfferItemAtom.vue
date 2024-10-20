@@ -39,7 +39,7 @@ const props = withDefaults(
 	defineProps<{
 		item: BulkyBazaarItem
 		filter: BulkyFilter
-		priceComputeFunction: ComputedBulkyOfferStore['calculateItemBasePrice']
+		priceComputeFunction: ComputedBulkyOfferStore['calculateBaseItemPrice']
 	}>(),
 	{}
 )

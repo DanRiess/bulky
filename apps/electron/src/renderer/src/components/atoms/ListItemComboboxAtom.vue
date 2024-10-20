@@ -3,7 +3,7 @@
 		class="a-list-item specular-glance-animation"
 		:class="{ hovered: hovered || active }"
 		data-b-override
-		@click="emit('update:modelValue', model)">
+		@click="emit('update:model-value', model)">
 		<div class="chevron">
 			<SvgIconAtom name="chevron-right" :use-gradient="true" :active="true" width="100%" />
 		</div>
@@ -32,7 +32,7 @@ withDefaults(
 )
 
 const emit = defineEmits<{
-	'update:modelValue': [value: V]
+	'update:model-value': [value: V]
 }>()
 </script>
 

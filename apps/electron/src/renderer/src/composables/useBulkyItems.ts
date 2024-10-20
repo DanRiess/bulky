@@ -21,7 +21,7 @@ export function useBulkyItems(
 	 * 	['GREED_DEAFENING', EssenceItem]
 	 * ])
 	 */
-	const items = ref(new Map()) as Ref<BulkyShopItemRecord>
+	const items = ref(new Map()) as unknown as Ref<BulkyShopItemRecord>
 	const sortOptions = ref<BulkyItemSortOptions>({
 		key: 'STACKPRICE',
 		direction: 'DESC',
