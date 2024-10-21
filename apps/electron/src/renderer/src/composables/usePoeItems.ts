@@ -50,7 +50,7 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 
 	// METHODS
 
-	function filterItemsByCategory(category: MaybeRefOrGetter<Category>) {
+	function filteredItemsByCategory(category: MaybeRefOrGetter<Category>) {
 		return computed(() => {
 			return getKeys(itemsByStash.value).reduce((prev, curr) => {
 				prev[curr] = itemsByStash.value[curr].filter(item =>
@@ -124,5 +124,5 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		await bulkyIdb.putItems(add)
 	}
 
-	return { itemsByStash, updateItemsByStash, filterItemsByCategory }
+	return { itemsByStash, updateItemsByStash, filteredItemsByCategory }
 }

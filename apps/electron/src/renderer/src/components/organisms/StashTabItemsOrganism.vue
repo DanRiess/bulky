@@ -102,8 +102,8 @@ const transitionHooks = useGenericTransitionHooks({
 	scale: 0.01,
 	duration: 0.25,
 })
-const { filterItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
-const categoryFilteredItemsByStash = filterItemsByCategory(() => props.category)
+const { filteredItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
+const categoryFilteredItemsByStash = filteredItemsByCategory(() => props.category)
 const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides, () => props.category)
@@ -119,6 +119,7 @@ const divValue = useChaosToDiv(chaosValue, chaosPerDiv)
  * Synchronize the items in the selected folders.
  */
 async function syncSelectedFolders(items: PoeItemsByStash) {
+	console.log({ items })
 	await updateItemsByStash(items)
 }
 </script>

@@ -33,6 +33,9 @@ import {
 import { useNormalMapFilterStore } from '@web/categories/map/normalMapFilter.store'
 import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 import { useMap8ModFilterStore } from '@web/categories/map/map8ModFilter.store'
+import { BazaarBeast, BestiaryFilter, BestiaryFilterField, ShopBeast } from '@web/categories/beastiary/bestiary.type'
+import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
+import { useBestiaryFilterStore } from '@web/categories/beastiary/bestiaryFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -127,6 +130,20 @@ function isMap8ModFilterUuid(uuid: string): uuid is Uuid<Map8ModFilter> {
 	return !!store.filters.has(typedUuid)
 }
 
+/** Validate if a given string is a bestiary offer uuid. */
+function isBestiaryOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopBeast>> {
+	const store = useBestiaryOfferStore()
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarBeast>>(uuid)
+	return !!store.offers.has(typedUuid)
+}
+
+/** Validate if a given string is a bestiary filter uuid */
+function isBestiaryFilterUuid(uuid: string): uuid is Uuid<BestiaryFilter> {
+	const store = useBestiaryFilterStore()
+	const typedUuid = generateTypedUuid<BulkyFilter<BestiaryFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
+}
+
 export const BULKY_UUID = {
 	generateTypedUuid,
 	isEssenceOfferUuid,
@@ -139,4 +156,6 @@ export const BULKY_UUID = {
 	isMapFilterUuid,
 	isMap8ModOfferUuid,
 	isMap8ModFilterUuid,
+	isBestiaryOfferUuid,
+	isBestiaryFilterUuid,
 }

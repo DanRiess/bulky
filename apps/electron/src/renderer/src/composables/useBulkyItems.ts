@@ -96,6 +96,7 @@ export function useBulkyItems(
 		// ...otherwise, create a new BulkyShopItem and add it to the map
 		else {
 			const bulkyItem = BULKY_FACTORY.generateBulkyItemFromPoeItem(poeItem, toValue(category), prices, priceOverrides)
+			console.log({ bulkyItem })
 			if (!bulkyItem) return
 
 			// Get the per item attributes

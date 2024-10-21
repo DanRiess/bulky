@@ -9,6 +9,7 @@
 -   Update functions in factory.ts
 -   Update functions in category.ts
 -   Update function in uuid.ts
--   Update the category conversion function in usePoeNinja.ts
+-   Update the category conversion function in usePoeNinja.ts (function bulkyToNinjaCategory)
 -   Update the add and remove filter field functions in useComputedFilterStore.ts
+-   Update the calculateBaseItemPrice function in useComputedOffersStore.ts
 -   Add mock APIs to nodeApi and poeApi for browser testing

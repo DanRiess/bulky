@@ -18,6 +18,11 @@ import {
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem } from '@shared/types/poe.types'
 import { getKeys } from '@shared/types/utility.types'
+import { BEAST_TYPE, BEAST_TYPE_IDX_TO_NAME, BEAST_TYPE_NAME_TO_IDX } from '@web/categories/beastiary/bestiary.const'
+import { BULKY_BESTIARY } from '@web/categories/beastiary/bestiary.transformers'
+import { BeastTier } from '@web/categories/beastiary/bestiary.type'
+import { useBestiaryFilterStore } from '@web/categories/beastiary/bestiaryFilter.store'
+import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
 import {
 	DELI_ORB_TYPE,
 	DELI_ORB_TYPE_IDX_TO_NAME,
@@ -84,6 +89,7 @@ function getOfferStore(category: Category): BulkyOfferStore | undefined {
 	else if (category === 'DELIRIUM_ORB') return useDeliriumOrbOfferStore()
 	else if (category === 'MAP') return useNormalMapOfferStore()
 	else if (category === 'MAP_8_MOD') return useMap8ModOfferStore()
+	else if (category === 'BESTIARY') return useBestiaryOfferStore()
 	return undefined
 }
 
@@ -96,6 +102,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 	else if (category === 'DELIRIUM_ORB') return useDeliriumOrbFilterStore()
 	else if (category === 'MAP') return useNormalMapFilterStore()
 	else if (category === 'MAP_8_MOD') return useMap8ModFilterStore()
+	else if (category === 'BESTIARY') return useBestiaryFilterStore()
 	return undefined
 }
 
@@ -109,6 +116,7 @@ function getNameToIdxTypeMap(category: Category) {
 	else if (category === 'SCARAB') return SCARAB_TYPE_NAME_TO_IDX
 	else if (category === 'DELIRIUM_ORB') return DELI_ORB_TYPE_NAME_TO_IDX
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TYPE_NAME_TO_IDX
+	else if (category === 'BESTIARY') return BEAST_TYPE_NAME_TO_IDX
 	return undefined
 }
 
@@ -120,6 +128,7 @@ function getNameToIdxTierMap(category: Category) {
 	else if (category === 'SCARAB') return { '0': 0 }
 	else if (category === 'DELIRIUM_ORB') return { '0': 0 }
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TIER_NAME_TO_IDX
+	else if (category === 'BESTIARY') return { '0': 0 }
 	return undefined
 }
 
@@ -133,6 +142,7 @@ function getIdxToNameTypeMap(category: Category) {
 	else if (category === 'SCARAB') return SCARAB_TYPE_IDX_TO_NAME
 	else if (category === 'DELIRIUM_ORB') return DELI_ORB_TYPE_IDX_TO_NAME
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TYPE_IDX_TO_NAME
+	else if (category === 'BESTIARY') return BEAST_TYPE_IDX_TO_NAME
 	return undefined
 }
 
@@ -144,6 +154,7 @@ function getIdxToNameTierMap(category: Category) {
 	else if (category === 'SCARAB') return ['0'] as ScarabTier[]
 	else if (category === 'DELIRIUM_ORB') return ['0'] as DeliriumOrbTier[]
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TIER_IDX_TO_NAME
+	else if (category === 'BESTIARY') return ['0'] as BeastTier[]
 	return undefined
 }
 
@@ -155,6 +166,7 @@ function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined
 	else if (category === 'SCARAB') return getKeys(SCARAB_TYPE)
 	else if (category === 'DELIRIUM_ORB') return getKeys(DELI_ORB_TYPE)
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return getKeys(MAP_TYPE)
+	else if (category === 'BESTIARY') return getKeys(BEAST_TYPE)
 	else return undefined
 }
 
@@ -166,6 +178,7 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 	else if (category === 'SCARAB') return ['0']
 	else if (category === 'DELIRIUM_ORB') return ['0']
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return getKeys(MAP_TIER)
+	else if (category === 'BESTIARY') return ['0']
 	else return undefined
 }
 
@@ -177,6 +190,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return BULKY_MAPS.generateTypeFromBaseType(item.baseType)
+	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTypeFromBaseType(item.baseType)
 	else return undefined
 }
 
@@ -188,6 +202,7 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateTier()
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateTier()
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return BULKY_MAPS.generateTierFromProperty(item.properties)
+	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTier()
 	else return undefined
 }
 
@@ -208,6 +223,8 @@ function getNameFromTypeAndTier(
 		return BULKY_MAPS.generateMapNameFromType(item.type)
 	else if (category === 'MAP_8_MOD' && useMap8ModOfferStore().isMap8Mod(item))
 		return BULKY_MAPS.generateMapNameFromType(item.type)
+	else if (category === 'BESTIARY' && useBestiaryOfferStore().isBeast(item))
+		return BULKY_BESTIARY.generateBeastNameFromType(item.type)
 	else return undefined
 }
 
@@ -220,6 +237,7 @@ function generateBazaarItemFromDto(category: Category, item: BulkyBazaarItemDto)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateBazaarItemFromDto(item)
 	else if (category === 'MAP') return BULKY_MAPS.generateBazaarItemFromDto(item)
 	// does not need a Map_8_MOD implementation because the dto is different
+	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateBazaarItemFromDto(item)
 	else return undefined
 }
 
@@ -237,6 +255,7 @@ function generateBulkyItemFromPoeItem(
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'MAP') return BULKY_MAPS.generateMapFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, itemOverrides)
+	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateBeastFromPoeItem(item, prices, itemOverrides)
 	else return undefined
 }
 

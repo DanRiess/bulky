@@ -59,6 +59,8 @@ export const nodeApi = {
 				url = 'http://localhost:5174/src/mocks/ninjaMaps.json'
 			} else if (category === 'UniqueMap') {
 				url = 'http://localhost:5174/src/mocks/ninjaUniqueMaps.json'
+			} else if (category === 'Beast') {
+				url = 'http://localhost:5174/src/mocks/ninjaBeasts.json'
 			} else {
 				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
 			}

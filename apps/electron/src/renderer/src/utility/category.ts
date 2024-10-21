@@ -3,6 +3,7 @@
  */
 
 import { CATEGORY, Category } from '@shared/types/bulky.types'
+import { BULKY_BESTIARY } from '@web/categories/beastiary/bestiary.transformers'
 import { BULKY_DELIRIUM_ORBS } from '@web/categories/deliriumOrb/deliriumOrb.transformers'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
 import { BULKY_MAPS } from '@web/categories/map/map.transformers'
@@ -19,6 +20,8 @@ function generateCategoryFromDto(category: string): Category | undefined {
 		return CATEGORY.MAP
 	} else if (category.match(/8_mod/i)) {
 		return CATEGORY.MAP_8_MOD
+	} else if (category.match(/bestiary/i)) {
+		return CATEGORY.BESTIARY
 	}
 	return undefined
 }
@@ -32,6 +35,8 @@ function isBaseTypeInCategory(category: Category, baseType: string) {
 		return !!BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(baseType)
 	} else if (category === 'MAP' || category === 'MAP_8_MOD') {
 		return !!BULKY_MAPS.generateTypeFromBaseType(baseType)
+	} else if (category === 'BESTIARY') {
+		return !!BULKY_BESTIARY.generateTypeFromBaseType(baseType)
 	}
 	return false
 }

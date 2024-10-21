@@ -1,0 +1,784 @@
+{
+	"stash": {
+		"id": "4d8a6d060f",
+		"name": "Beasts",
+		"type": "PremiumStash",
+		"index": 18,
+		"metadata": {
+			"colour": "638000"
+		},
+		"items": [
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzMwLDE0LHsiZiI6IjJESXRlbXMvR2Vtcy9QZW5hbmNlQnJhbmRHZW0iLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/644fc3d6eb/PenanceBrandGem.png",
+				"support": false,
+				"league": "Settlers",
+				"id": "a43edd9fbb92bfdad9c9a070514430c0dc36154b03511bfeb81399aa33091290",
+				"name": "",
+				"typeLine": "Penance Brand",
+				"baseType": "Penance Brand",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Spell, AoE, Physical, Lightning, Duration, Brand",
+						"values": [],
+						"displayMode": 0
+					},
+					{
+						"name": "Level",
+						"values": [
+							[
+								"18",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 5
+					},
+					{
+						"name": "Cost",
+						"values": [
+							[
+								"26 Mana",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Cast Time",
+						"values": [
+							[
+								"0.75 sec",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Critical Strike Chance",
+						"values": [
+							[
+								"6.00%",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Effectiveness of Added Damage",
+						"values": [
+							[
+								"560%",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Quality",
+						"values": [
+							[
+								"+20%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 6
+					}
+				],
+				"requirements": [
+					{
+						"name": "Level",
+						"values": [
+							[
+								"66",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 62
+					},
+					{
+						"name": "Str",
+						"values": [
+							[
+								"64",
+								0
+							]
+						],
+						"displayMode": 1,
+						"type": 63
+					},
+					{
+						"name": "Int",
+						"values": [
+							[
+								"92",
+								0
+							]
+						],
+						"displayMode": 1,
+						"type": 65
+					}
+				],
+				"additionalProperties": [
+					{
+						"name": "Experience",
+						"values": [
+							[
+								"33675405/62620247",
+								0
+							]
+						],
+						"displayMode": 2,
+						"progress": 0.54,
+						"type": 20
+					}
+				],
+				"secDescrText": "Creates a magical brand which can attach to a nearby enemy. It periodically activates while attached, adding energy to the branded enemy. When the branded enemy reaches 20 energy, a large explosion occurs and the brand is removed. All energy is removed from the enemy when the brand is detached.",
+				"explicitMods": [
+					"Deals 2010 to 3016 Physical Damage",
+					"50% of Physical Damage Converted to Lightning Damage",
+					"Activates every 0.1 seconds while Attached",
+					"Increases and Reductions to Cast Speed also apply to this Skill's Activation frequency",
+					"30% less Damage with Ailments",
+					"Can be Detached for a total Duration of 6.00 seconds",
+					"Deals 10% more Damage with Hits against Branded Enemy"
+				],
+				"descrText": "Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.",
+				"frameType": 4,
+				"x": 11,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "4edf19ceb1475d17f1fb9cd37dc9862edd25ca44ec1fa225374771edc97cd512",
+				"name": "Sharpfangs the Toxic",
+				"typeLine": "Craicic Chimeral",
+				"baseType": "Craicic Chimeral",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Gem Frogs",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Amphibians",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Deep",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Extra Chaos Damage",
+					"Extra Projectiles",
+					"Hadal Dive",
+					"Craicic Presence",
+					"Deep One's Presence"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "7660ae16b21cbb9e2ead345988edf3189447b5337641daf5d35855d6cccf70ca",
+				"name": "Razorthirst",
+				"typeLine": "Craicic Chimeral",
+				"baseType": "Craicic Chimeral",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Gem Frogs",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Amphibians",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Deep",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Minions Cold Explode on Death",
+					"Cold, Chill and Freeze Resistant",
+					"Shocked Ground on Death",
+					"Craicic Presence",
+					"Crushing Claws",
+					"Winter Bloom",
+					"30% chance not to be consumed when sacrificed at the Blood Altar"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "b7aa532d25275363fb07f7f689e6deec0718514de8b11e9d9e74a326dfcbb8be",
+				"name": "Bloodhiss the Toxic",
+				"typeLine": "Craicic Chimeral",
+				"baseType": "Craicic Chimeral",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Gem Frogs",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Amphibians",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Deep",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Frenzy Charge on Hit",
+					"Snow Bolt when Hit",
+					"Churning Claws",
+					"Deep One's Presence",
+					"Hadal Dive"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 6,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "8eae5dc09225746c3626fda4d7507cdc8a92aa84f033b2c64779c911cbf2b2b3",
+				"name": "Goldgrowl the Throatslitter",
+				"typeLine": "Black Mórrigan",
+				"baseType": "Black Mórrigan",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Goliaths",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Unnaturals",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Wilds",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Soul Eater",
+					"Physical Resistant",
+					"Burning Ground on Death",
+					"Chaos and Wither Resistant",
+					"Fertile Presence",
+					"Farric Presence",
+					"Satyr Storm"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "ec0de3631e7e28eaeb239fcd8d6b475a5de8f6be561fba75b4f195b43c6e1315",
+				"name": "Gristlefangs",
+				"typeLine": "Black Mórrigan",
+				"baseType": "Black Mórrigan",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Goliaths",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Unnaturals",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Wilds",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Crit Resistant",
+					"Bleeds",
+					"Tiger Prey",
+					"Aspect of the Hellion",
+					"Fertile Presence",
+					"10% chance not to be consumed when sacrificed at the Blood Altar"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "3bcde60dd6fc7fa8cfe1a5f1ad2fd219dd638aa21dad0eb390ac499c0f56b678",
+				"name": "Gristlefangs",
+				"typeLine": "Black Mórrigan",
+				"baseType": "Black Mórrigan",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Goliaths",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Unnaturals",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Wilds",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Crit Resistant",
+					"Bleeds",
+					"Tiger Prey",
+					"Aspect of the Hellion",
+					"Fertile Presence",
+					"10% chance not to be consumed when sacrificed at the Blood Altar"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "cb0459cdd19f51a4e63ba582be308aa8e9f62416f3aeb57272f890561502f9a8",
+				"name": "Furytongue the Devourer",
+				"typeLine": "Dune Hellion",
+				"baseType": "Dune Hellion",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Hellions",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Felines",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Wilds",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Burning Ground on Death",
+					"Cold, Chill and Freeze Resistant",
+					"Extra Cold Damage and Exposure",
+					"Crush on Hit",
+					"Aspect of the Hellion"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 7,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "b18fe9425a78852419a23cab51fe66ed79c035e4d61f05509c573f1c2f3e52c6",
+				"name": "Ragejowls",
+				"typeLine": "Flame Hellion",
+				"baseType": "Flame Hellion",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Hellions",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Felines",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Wilds",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Always Crits",
+					"Haste Aura",
+					"Fertile Presence"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 8,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "694bd36fda90f4536be6f10c37bc6a60658b988476c67c891b124acf773ed27a",
+				"name": "Dreadtusks the Furry",
+				"typeLine": "Shackled Hellion",
+				"baseType": "Shackled Hellion",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Hellions",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Felines",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Wilds",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Energy Shield Aura",
+					"Burning Ground on Death",
+					"Satyr Storm",
+					"Burns Ground on Death"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 9,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png",
+				"league": "Settlers",
+				"id": "a859e257da85452998b53700ee61c073f9afd573dd09ff289b0cf91cecf88a5c",
+				"name": "Stonebrute the Ravager",
+				"typeLine": "Farric Lynx Alpha",
+				"baseType": "Farric Lynx Alpha",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"itemLevel": 83,
+				"properties": [
+					{
+						"name": "Genus",
+						"values": [
+							[
+								"Lynxes",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 21
+					},
+					{
+						"name": "Group",
+						"values": [
+							[
+								"Felines",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 22
+					},
+					{
+						"name": "Family",
+						"values": [
+							[
+								"The Wilds",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 23
+					}
+				],
+				"explicitMods": [
+					"Extra Fire Damage and Exposure",
+					"Chaos and Wither Resistant",
+					"Enrages as Life Lost",
+					"Aspect of the Hellion",
+					"Satyr Storm",
+					"Spectral Swipe"
+				],
+				"descrText": "Right-click to add this to your bestiary.",
+				"frameType": 2,
+				"x": 0,
+				"y": 0,
+				"inventoryId": "Stash1"
+			}
+		]
+	}
+}

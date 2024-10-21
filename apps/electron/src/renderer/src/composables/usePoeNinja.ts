@@ -116,6 +116,7 @@ function bulkyToNinjaCategory(bulkyCategory: Category): NinjaCategory[] | undefi
 	else if (bulkyCategory === 'SCARAB') return ['Scarab']
 	else if (bulkyCategory === 'DELIRIUM_ORB') return ['DeliriumOrb']
 	else if (bulkyCategory === 'MAP' || bulkyCategory === 'MAP_8_MOD') return ['Map', 'UniqueMap']
+	else if (bulkyCategory === 'BESTIARY') return ['Beast']
 	return undefined
 }
 

@@ -9,6 +9,7 @@ import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOr
 import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
 import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 import { RendererError } from '@shared/errors/rendererError'
+import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
 
@@ -22,6 +23,7 @@ export function useComputedOffersStore() {
 	const deliriumOrbOfferStore = useDeliriumOrbOfferStore()
 	const normalMapOfferStore = useNormalMapOfferStore()
 	const map8ModOfferStore = useMap8ModOfferStore()
+	const bestiaryOfferStore = useBestiaryOfferStore()
 
 	let timeout: NodeJS.Timeout | undefined
 
@@ -45,7 +47,10 @@ export function useComputedOffersStore() {
 		 * Refetch offers from the currently selected store.
 		 */
 		function refetchOffers() {
-			// Fetch new offers
+			// If the app is inactive, don't refetch.
+			if (!appStateStore.appActive) return
+
+			// Fetch new offers.
 			if (store) store.refetchOffers()
 
 			// Call this function again after x seconds.
@@ -65,6 +70,7 @@ export function useComputedOffersStore() {
 			else if (store === deliriumOrbOfferStore && store.isDeliriumOrb(item)) return store.calculateBaseItemPrice(item)
 			else if (store === normalMapOfferStore && store.isNormalMap(item)) return store.calculateBaseItemPrice(item)
 			else if (store === map8ModOfferStore && store.isMap8Mod(item)) return store.calculateBaseItemPrice(item, filter)
+			else if (store === bestiaryOfferStore && store.isBeast(item)) return store.calculateBaseItemPrice(item)
 
 			throw new RendererError({
 				code: 'unknown_item',

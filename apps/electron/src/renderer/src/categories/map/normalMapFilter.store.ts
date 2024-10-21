@@ -1,5 +1,5 @@
 /**
- * Handle essence filter logic in this store.
+ * Handle map filter logic in this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'

@@ -10,28 +10,32 @@ import { BULKY_UUID } from '@web/utility/uuid'
 import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
-import { BazaarMap, BazaarMapOffer } from './map.types'
-import { MAP_TIER, MAP_TYPE } from './map.const'
 import { BULKY_FACTORY } from '@web/utility/factory'
+import { BazaarBeast, BazaarBestiaryOffer } from './bestiary.type'
+import { notEmpty } from '@web/utility/notEmpty'
+import { BEAST_TYPE } from './bestiary.const'
 
-export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
-	const offers = ref<Map<BazaarMapOffer['uuid'], BazaarMapOffer>>(new Map())
+export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
+	const offers = ref<Map<BazaarBestiaryOffer['uuid'], BazaarBestiaryOffer>>(new Map())
 
 	/**
-	 * Consume an map listing dto, type and validate it and add it to the listings.
+	 * Consume an bestiary listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
-		if (category !== 'MAP') return
+		if (category !== 'BESTIARY') return
 
-		const uuid = BULKY_UUID.generateTypedUuid<BazaarMapOffer>(dto.uuid)
+		const uuid = BULKY_UUID.generateTypedUuid<BazaarBestiaryOffer>(dto.uuid)
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
-		const items = dto.items.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarMap).filter(Boolean)
+		const items = dto.items
+			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('BESTIARY', item) as BazaarBeast)
+			.filter(notEmpty)
+
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
 		offers.value.set(uuid, {
@@ -54,7 +58,7 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
-	function deleteOffer(uuid: BazaarMapOffer['uuid']) {
+	function deleteOffer(uuid: BazaarBestiaryOffer['uuid']) {
 		offers.value.delete(uuid)
 	}
 
@@ -62,20 +66,20 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 	 * Prices are being calculated differently for some categories.
 	 * This implementation enables generically calling store.calculateBaseItemPrice.
 	 */
-	function calculateBaseItemPrice(item: BazaarMap) {
+	function calculateBaseItemPrice(item: BazaarBeast) {
 		return item.price
 	}
 
 	/**
-	 * Validate if an object is a BazaarMap or not.
+	 * Validate if an object is a BazaarBeast or not.
 	 */
-	function isNormalMap(obj: any): obj is BazaarMap {
+	function isBeast(obj: any): obj is BazaarBeast {
 		return (
 			obj &&
 			'type' in obj &&
-			getKeys(MAP_TYPE).includes(obj.type) &&
+			getKeys(BEAST_TYPE).includes(obj.type) &&
 			'tier' in obj &&
-			getKeys(MAP_TIER).includes(obj.tier) &&
+			obj.tier === '0' &&
 			'quantity' in obj &&
 			typeof obj.quantity === 'number' &&
 			'price' in obj &&
@@ -84,10 +88,11 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 	}
 
 	async function getTestData() {
+		console.log('getting beast test data')
 		// if (listings.value.size !== 0) return
 
-		const request = useApi('mapPayload', getListing)
-		await request.exec('src/mocks/maps.json')
+		const request = useApi('beastsPayload', getListing)
+		await request.exec('src/mocks/offersBeasts.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')
@@ -98,11 +103,11 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 	}
 
 	/**
-	 * Fetch all new map offers since the last fetch action.
+	 * Fetch all new bestiary offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch map offers')
+		console.log('Refetch beast offers')
 	}
 
 	return {
@@ -110,12 +115,12 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
-		isNormalMap,
+		isBeast,
 		refetchOffers,
 		getTestData,
 	}
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useNormalMapOfferStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useBestiaryOfferStore, import.meta.hot))
 }

@@ -2,7 +2,7 @@
 	<!-- <div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive || attachmentPanelActive"> -->
 
 	<!-- The main bulky window -->
-	<div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive">
+	<div class="main-app-window" ref="mainAppWindow" v-if="appStateStore.appActive">
 		<NavbarOrganism />
 		<router-view v-slot="{ Component }">
 			<TransitionAtom v-on="hooks" mode="out-in">
@@ -42,8 +42,10 @@ import { AppUpdateStatus } from '@shared/types/electron.types'
 import { ProgressInfo } from 'electron-updater'
 import NotificationOrganism from './components/organisms/NotificationOrganism.vue'
 import TransitionAtom from './components/atoms/TransitionAtom.vue'
+import { useAppStateStore } from './stores/appStateStore'
 
 // STORES
+const appStateStore = useAppStateStore()
 const configStore = useConfigStore()
 const stashStore = useStashStore()
 const authStore = useAuthStore()
@@ -54,7 +56,6 @@ const notificationStore = useNotificationStore()
 // STATE
 const mainAppWindow = ref<HTMLElement | null>(null)
 const notificationPanelElement = ref<HTMLElement>()
-const mainWindowActive = ref(false)
 const updatePanelActive = ref(false)
 const attachmentPanelActive = ref(false)
 const appUpdateStatus = ref<AppUpdateStatus>('CHECKING_FOR_UPDATE')
@@ -64,9 +65,9 @@ const appDownloadProgress = ref<ProgressInfo>()
 const hooks = useRouteTransitionHooks()
 const router = useRouter()
 
-console.log(import.meta.env.VITE_NO_ATTACH_MODE)
+console.log({ noAttachMode: import.meta.env.VITE_NO_ATTACH_MODE })
 if (import.meta.env.VITE_NO_ATTACH_MODE === 'true') {
-	mainWindowActive.value = true
+	appStateStore.appActive = true
 	router.push('Bazaar')
 }
 
@@ -74,7 +75,7 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'true') {
 if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 	window.api.onToggleOverlayComponent(value => {
 		if (updatePanelActive.value || attachmentPanelActive.value) return
-		mainWindowActive.value = value
+		appStateStore.appActive = value
 		console.log(value)
 	})
 
@@ -118,7 +119,7 @@ const routerProps = computed(() => {
 onClickOutside(
 	mainAppWindow,
 	() => {
-		mainWindowActive.value = false
+		appStateStore.appActive = false
 		window.api.closeOverlay()
 	},
 	{ ignore: [notificationPanelElement] }

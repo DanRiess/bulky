@@ -33,6 +33,7 @@ import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHoo
 import { watch } from 'vue'
 import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
+import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -45,10 +46,6 @@ const hooks = useGenericTransitionHooks({
 	transform: 'scaleX(0.01)',
 	duration: 0.35,
 })
-
-setInterval(() => {
-	console.log('jo')
-}, 1000)
 
 // WATCHERS
 watch(
@@ -64,6 +61,8 @@ watch(
 			console.log('get map listings here')
 		} else if (cat === 'MAP_8_MOD') {
 			useMap8ModOfferStore().getTestData()
+		} else if (cat === 'BESTIARY') {
+			useBestiaryOfferStore().getTestData()
 		}
 
 		// makeBinTestData()

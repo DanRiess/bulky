@@ -266,8 +266,8 @@ export const useShopStore = defineStore('shopStore', () => {
 		const stashTabs = offer.stashTabIds.map(id => stashStore.getStashTabById(id)).filter(Boolean)
 
 		// Get the PoeItems from Idb and filter by the offer's category.
-		const { filterItemsByCategory, updateItemsByStash } = usePoeItems(stashTabs)
-		const poeItems = filterItemsByCategory(offer.category)
+		const { filteredItemsByCategory, updateItemsByStash } = usePoeItems(stashTabs)
+		const poeItems = filteredItemsByCategory(offer.category)
 
 		// Generate BulkyItems from the PoeItems with prices and overrides.
 		const { prices, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)

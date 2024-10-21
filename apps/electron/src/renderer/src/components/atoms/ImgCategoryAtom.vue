@@ -22,6 +22,8 @@ const imgSource = computed(() => {
 		return '/src/assets/png-icons/underground-river-map.png'
 	} else if (props.category === 'MAP_8_MOD') {
 		return '/src/assets/png-icons/vaal-temple-map.png'
+	} else if (props.category === 'BESTIARY') {
+		return 'https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQmVzdGlhcnlPcmJGdWxsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/3214b44360/BestiaryOrbFull.png'
 	}
 	return ''
 })

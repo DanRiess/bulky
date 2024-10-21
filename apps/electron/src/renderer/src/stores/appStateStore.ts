@@ -8,10 +8,12 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useAppStateStore = defineStore('appStateStore', () => {
+	const appActive = ref(true)
 	const selectedCategory = ref<Category>('ESSENCE')
 
 	return {
 		selectedCategory,
+		appActive,
 	}
 })
 

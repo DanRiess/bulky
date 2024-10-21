@@ -1,5 +1,5 @@
 /**
- * Handle all essence offers through this store.
+ * Handle all map offers through this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -21,7 +21,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
 
 	/**
-	 * Consume an essence listing dto, type and validate it and add it to the listings.
+	 * Consume an map listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
@@ -224,7 +224,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	}
 
 	/**
-	 * Fetch all new essence offers since the last fetch action.
+	 * Fetch all new map offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
