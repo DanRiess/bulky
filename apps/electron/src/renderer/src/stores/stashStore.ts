@@ -51,7 +51,7 @@ export const useStashStore = defineStore('stashStore', () => {
 			const tabs = await bulkyIdb.getStashTabsByLeague(league)
 			const sortedTabs = tabs.toSorted((a, b) => a.index - b.index)
 
-			// If tabs are empty array, push the entire read array.
+			// If the stashTabs state variable is an empty array, push the entire new array.
 			// Otherwise, replace old stashes and push the ones that don't exist yet.
 			if (stashTabs.value.length === 0) {
 				stashTabs.value.push(...sortedTabs)

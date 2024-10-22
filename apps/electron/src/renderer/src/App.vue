@@ -126,11 +126,12 @@ onClickOutside(
 )
 
 // INITIALIZE NECESSARY STORES
-configStore.getUserConfig()
-stashStore.initialize()
-authStore.initialize()
-leagueStore.initialize()
-shopStore.initialize()
+configStore.getUserConfig().then(() => {
+	stashStore.initialize()
+	authStore.initialize()
+	leagueStore.initialize()
+	shopStore.initialize()
+})
 </script>
 
 <style>
