@@ -32,5 +32,45 @@
 				"prc": 3
 			}
 		]
+	},
+	{
+		"version": 1,
+		"uuid": "016c0750-8890-4156-85a7-4af57a3b3b9a",
+		"timestamp": 1729567206959,
+		"account": "Chavincar",
+		"ign": "Chavi",
+		"category": "BESTIARY",
+		"league": "Settlers",
+		"chaosPerDiv": 154.51,
+		"multiplier": 1,
+		"fullPrice": 1546,
+		"minimumBuyout": 0,
+		"fullBuyout": false,
+		"items": [
+			{
+				"type": 2,
+				"tier": 0,
+				"qnt": 3,
+				"prc": 278.1
+			},
+			{
+				"type": 0,
+				"tier": 0,
+				"qnt": 3,
+				"prc": 231.8
+			},
+			{
+				"type": 51,
+				"tier": 0,
+				"qnt": 3,
+				"prc": 4.5
+			},
+			{
+				"type": 18,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 3
+			}
+		]
 	}
 ]

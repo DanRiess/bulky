@@ -190,7 +190,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'SCARAB') return BULKY_SCARABS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return BULKY_MAPS.generateTypeFromBaseType(item.baseType)
-	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTypeFromBaseType(item.baseType)
+	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTypeFromPoeItem(item)
 	else return undefined
 }
 

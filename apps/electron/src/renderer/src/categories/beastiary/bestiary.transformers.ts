@@ -8,16 +8,31 @@ import { BazaarBeast, BeastTier, BeastType, ShopBeast } from './bestiary.type'
 import { BEAST_TYPE, BEAST_TYPE_IDX_TO_NAME } from './bestiary.const'
 
 export const BULKY_BESTIARY = {
-	generateTypeFromBaseType,
+	generateTypeFromPoeItem,
 	generateBeastNameFromType,
 	generateTier,
 	generateBeastFromPoeItem,
 	generateBazaarItemFromDto,
 }
 
-function generateTypeFromBaseType(baseType: string): BeastType | undefined {
+function generateTypeFromPoeItem(item: PoeItem): BeastType | undefined {
+	const baseType = item.baseType
 	const transformedType = baseType.replace(/\s/g, '_').toUpperCase()
-	return BEAST_TYPE[transformedType]
+
+	// This is a red beast.
+	if (BEAST_TYPE[transformedType]) return BEAST_TYPE[transformedType]
+
+	// Check if item is a yellow beast instead.
+	// Yellow beasts must have 3 properties named Genus, Group and Family
+	const necessaryProperties = ['Genus', 'Group', 'Family']
+	const itemProperties = item.properties?.map(prop => prop.name)
+
+	// Check if itemProperties has every necessary property.
+	if (itemProperties && necessaryProperties.every(necessaryProp => itemProperties.includes(necessaryProp))) {
+		return BEAST_TYPE['YELLOW_BEAST']
+	}
+
+	return undefined
 }
 
 function generateTier(): BeastTier {
@@ -31,7 +46,7 @@ function generateBeastFromPoeItem(
 ): ShopBeast | undefined {
 	const configStore = useConfigStore()
 
-	const type = generateTypeFromBaseType(poeItem.baseType)
+	const type = generateTypeFromPoeItem(poeItem)
 	const tier = generateTier()
 
 	if (!type || !tier) return
@@ -39,10 +54,13 @@ function generateBeastFromPoeItem(
 	return {
 		type: type,
 		tier: tier,
-		name: poeItem.baseType,
+		name: type === 'YELLOW_BEAST' ? 'Yellow Beast' : poeItem.baseType,
 		icon: poeItem.icon,
 		quantity: 1,
 		price: computed(() => {
+			if (type === 'YELLOW_BEAST') {
+				return 0
+			}
 			return Math.round((prices.value.get(poeItem.baseType)?.chaos ?? 0) * 10) / 10
 		}),
 		league: configStore.config.league,
