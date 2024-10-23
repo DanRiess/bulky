@@ -6,6 +6,7 @@ import { CATEGORY, Category } from '@shared/types/bulky.types'
 import { PoeItem } from '@shared/types/poe.types'
 import { BULKY_BESTIARY } from '@web/categories/beastiary/bestiary.transformers'
 import { BULKY_DELIRIUM_ORBS } from '@web/categories/deliriumOrb/deliriumOrb.transformers'
+import { BULKY_DELVE } from '@web/categories/delve/delve.transformers'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
 import { BULKY_MAPS } from '@web/categories/map/map.transformers'
 import { BULKY_SCARABS } from '@web/categories/scarab/scarab.transformers'
@@ -23,6 +24,8 @@ function generateCategoryFromDto(category: string): Category | undefined {
 		return CATEGORY.MAP_8_MOD
 	} else if (category.match(/bestiary/i)) {
 		return CATEGORY.BESTIARY
+	} else if (category.match(/delve/i)) {
+		return CATEGORY.DELVE
 	}
 	return undefined
 }
@@ -40,6 +43,8 @@ function isBaseTypeInCategory(category: Category, item: PoeItem) {
 		return !!BULKY_MAPS.generateTypeFromBaseType(baseType)
 	} else if (category === 'BESTIARY') {
 		return !!BULKY_BESTIARY.generateTypeFromPoeItem(item)
+	} else if (category === 'DELVE') {
+		return !!BULKY_DELVE.generateTypeFromBaseType(baseType)
 	}
 	return false
 }

@@ -14,12 +14,13 @@ import { UnwrapRef, computed, toValue } from 'vue'
 // PROPS
 const props = defineProps<{
 	item: BulkyShopItem | UnwrapRef<BulkyShopItem>
+	priceMultiplier: number
 }>()
 
 // GETTERS
 const price = computed(() => {
-	const p = toValue(props.item.priceOverride) > 0 ? props.item.priceOverride : props.item.price
-	return toValue(p)
+	const p = toValue(props.item.priceOverride) > 0 ? props.item.priceOverride : toValue(props.item.price) * props.priceMultiplier
+	return Math.round(toValue(p) * 10) / 10
 })
 </script>
 

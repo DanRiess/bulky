@@ -49,8 +49,6 @@ export function useBulkyItems(
 				items.value = new Map()
 			}
 
-			console.log({ add, remove, poeItems })
-
 			// loop over the items, remove the old ones, add the new ones
 			getKeys(add).forEach(stashTabId => {
 				add[stashTabId].forEach(poeItem => putItem(poeItem))
@@ -98,7 +96,6 @@ export function useBulkyItems(
 		// ...otherwise, create a new BulkyShopItem and add it to the map
 		else {
 			const bulkyItem = BULKY_FACTORY.generateBulkyItemFromPoeItem(poeItem, toValue(category), prices, priceOverrides)
-			console.log({ bulkyItem })
 			if (!bulkyItem) return
 
 			// Get the per item attributes

@@ -36,6 +36,9 @@ import { useMap8ModFilterStore } from '@web/categories/map/map8ModFilter.store'
 import { BazaarBeast, BestiaryFilter, BestiaryFilterField, ShopBeast } from '@web/categories/beastiary/bestiary.type'
 import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
 import { useBestiaryFilterStore } from '@web/categories/beastiary/bestiaryFilter.store'
+import { BazaarDelveItem, DelveFilter, DelveFilterField, ShopDelveItem } from '@web/categories/delve/delve.types'
+import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
+import { useDelveFilterStore } from '@web/categories/delve/delveFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -144,6 +147,20 @@ function isBestiaryFilterUuid(uuid: string): uuid is Uuid<BestiaryFilter> {
 	return !!store.filters.has(typedUuid)
 }
 
+/** Validate if a given string is a delve offer uuid. */
+function isDelveOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopDelveItem>> {
+	const store = useDelveOfferStore()
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarDelveItem>>(uuid)
+	return !!store.offers.has(typedUuid)
+}
+
+/** Validate if a given string is a delve filter uuid */
+function isDelveFilterUuid(uuid: string): uuid is Uuid<DelveFilter> {
+	const store = useDelveFilterStore()
+	const typedUuid = generateTypedUuid<BulkyFilter<DelveFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
+}
+
 export const BULKY_UUID = {
 	generateTypedUuid,
 	isEssenceOfferUuid,
@@ -158,4 +175,6 @@ export const BULKY_UUID = {
 	isMap8ModFilterUuid,
 	isBestiaryOfferUuid,
 	isBestiaryFilterUuid,
+	isDelveOfferUuid,
+	isDelveFilterUuid,
 }

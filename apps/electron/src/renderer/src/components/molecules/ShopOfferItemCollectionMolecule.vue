@@ -8,7 +8,7 @@
 		<AccordionTransitionWrapperAtom :expanded="expanded">
 			<ul class="item-list">
 				<TransitionAtom :group="true" v-on="hooks">
-					<component :is="itemComponent" v-for="item in items" :item="item" />
+					<component :is="itemComponent" v-for="item in items" :item="item" :price-multiplier="priceMultiplier" />
 				</TransitionAtom>
 			</ul>
 		</AccordionTransitionWrapperAtom>
@@ -29,6 +29,7 @@ import ShopOfferItemAtomMap8Mod from '../atoms/ShopOfferItemAtomMap8Mod.vue'
 const props = defineProps<{
 	items: BulkyShopItem[] | UnwrapRef<BulkyShopItem>[]
 	category: Category
+	priceMultiplier: number
 }>()
 
 // STATE
@@ -63,8 +64,8 @@ const hooks = useListTransition({
 	margin-top: 0.5rem;
 	max-height: 8rem;
 	overflow-x: hidden;
-	overflow-y: clip;
-	padding-left: 0.5rem;
+	overflow-y: auto;
+	padding-inline: 0.5rem;
 	scrollbar-gutter: stable;
 }
 

@@ -42,6 +42,13 @@ import {
 	BestiaryOfferStore,
 	ShopBeast,
 } from '@web/categories/beastiary/bestiary.type'
+import {
+	BazaarDelveItem,
+	DelveFilterField,
+	DelveFilterStore,
+	DelveOfferStore,
+	ShopDelveItem,
+} from '@web/categories/delve/delve.types'
 
 // APP STATE TYPES
 
@@ -53,6 +60,7 @@ export const CATEGORY = {
 	MAP: 'MAP',
 	MAP_8_MOD: 'MAP_8_MOD',
 	BESTIARY: 'BESTIARY',
+	DELVE: 'DELVE',
 } as const
 
 export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
@@ -76,6 +84,7 @@ export type BulkyOfferStore =
 	| NormalMapOfferStore
 	| Map8ModOfferStore
 	| BestiaryOfferStore
+	| DelveOfferStore
 
 export type BulkyFilterStore =
 	| EssenceFilterStore
@@ -84,6 +93,7 @@ export type BulkyFilterStore =
 	| NormalMapFilterStore
 	| Map8ModFilterStore
 	| BestiaryFilterStore
+	| DelveFilterStore
 
 // BULKY SHOP ITEM TYPES
 
@@ -124,7 +134,7 @@ export type BulkyShopItemBase<T extends Category> = {
  * A collection of every implementation of BulkyShopItemBase throughout the app.
  * This will be used as a generic type argument for every higher level type.
  */
-export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb | ShopMap | ShopMap8Mod | ShopBeast
+export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb | ShopMap | ShopMap8Mod | ShopBeast | ShopDelveItem
 
 /** Type that bulky items will be saved as */
 export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
@@ -187,7 +197,14 @@ export type BulkyBazaarItemBase<T extends Category> = {
 	perItemAttributes?: PerItemAttributes[]
 }
 
-export type BulkyBazaarItem = BazaarEssence | BazaarScarab | BazaarDeliriumOrb | BazaarMap | BazaarMap8Mod | BazaarBeast
+export type BulkyBazaarItem =
+	| BazaarEssence
+	| BazaarScarab
+	| BazaarDeliriumOrb
+	| BazaarMap
+	| BazaarMap8Mod
+	| BazaarBeast
+	| BazaarDelveItem
 
 export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
 
@@ -246,6 +263,7 @@ export type BulkyFilterField =
 	| MapFilterField
 	| Map8ModFilterField
 	| BestiaryFilterField
+	| DelveFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.

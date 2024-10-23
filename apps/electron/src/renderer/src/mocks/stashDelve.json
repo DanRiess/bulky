@@ -1,10 +1,10 @@
 {
 	"stash": {
-		"id": "3fb14d602a",
-		"folder": "656b5c647a",
+		"id": "e3fd5844f3",
+		"folder": "d854a10ed9",
 		"name": "Del",
 		"type": "DelveStash",
-		"index": 8,
+		"index": 7,
 		"metadata": {
 			"colour": "638000"
 		},
@@ -13,14 +13,14 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvTWV0YWxsaWNGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/c26857827c/MetallicFossil.png",
-				"stackSize": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvUHJpc21hdGljRm9zc2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/ebaea2a708/PrismaticFossil.png",
+				"stackSize": 6,
 				"maxStackSize": 5000,
-				"league": "Necropolis",
-				"id": "a81067b7808e934c136a5bfd568a5dcfefea9f6e7752e86f01eacdabf817292a",
+				"league": "Settlers",
+				"id": "4a8005493e743a5a8145edf7fdead542c019502c3a205d9027016cea20475564",
 				"name": "",
-				"typeLine": "Metallic Fossil",
-				"baseType": "Metallic Fossil",
+				"typeLine": "Prismatic Fossil",
+				"baseType": "Prismatic Fossil",
 				"ilvl": 0,
 				"identified": true,
 				"properties": [
@@ -28,7 +28,7 @@
 						"name": "Stack Size",
 						"values": [
 							[
-								"1/20",
+								"6/20",
 								0
 							]
 						],
@@ -37,11 +37,119 @@
 					}
 				],
 				"explicitMods": [
-					"More Lightning modifiers\r\nNo Physical modifiers"
+					"More Elemental modifiers\r\nNo Physical Ailment or Chaos Ailment modifiers"
 				],
 				"descrText": "Place in a Resonator to influence item crafting.",
 				"frameType": 5,
-				"x": 2,
+				"x": 8,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvRW5jaGFudGVkRm9zc2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/314cfdc367/EnchantedFossil.png",
+				"stackSize": 5,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "d9c983764f55479c79e97d70bdbcf6d4e2b175adb97cc3388ea98af5a11bbf60",
+				"name": "",
+				"typeLine": "Deft Fossil",
+				"baseType": "Deft Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Critical modifiers\r\nNo Attribute modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 15,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvTHVjZW50Rm9zc2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/633b40a6b0/LucentFossil.png",
+				"stackSize": 7,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "13c637372b7ee5a83644577ab56c4004d7868f999b7c3b54e49cd76c246e7ac1",
+				"name": "",
+				"typeLine": "Lucent Fossil",
+				"baseType": "Lucent Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"7/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Mana modifiers\r\nNo Speed modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 11,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvSmFnZ2VkRm9zc2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/054b08865e/JaggedFossil.png",
+				"stackSize": 43,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "09c3fac1b647fc10cf6d2f90a4b137630530ba19650bd92ae6b50884e4579326",
+				"name": "",
+				"typeLine": "Jagged Fossil",
+				"baseType": "Jagged Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"43/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Physical modifiers\r\nNo Chaos modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 3,
 				"y": 0,
 				"inventoryId": "Stash1"
 			},
@@ -50,10 +158,10 @@
 				"w": 1,
 				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvUHJpc3RpbmVGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/e9dda92a19/PristineFossil.png",
-				"stackSize": 2,
+				"stackSize": 58,
 				"maxStackSize": 5000,
-				"league": "Necropolis",
-				"id": "7124c2c8e0226996a5107b21ac2e845e41a137046635566f5fa1fd7cc6bcf53e",
+				"league": "Settlers",
+				"id": "8233412b2cc221de34974c90f40a836f80dad6b9529fb53eaedb6229f3651b9b",
 				"name": "",
 				"typeLine": "Pristine Fossil",
 				"baseType": "Pristine Fossil",
@@ -64,7 +172,7 @@
 						"name": "Stack Size",
 						"values": [
 							[
-								"2/20",
+								"58/20",
 								0
 							]
 						],
@@ -85,11 +193,578 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvQW1iZXJGYW5nIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/559d8ae855/AmberFang.png",
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvQW1iZXJGaXJlRmx5IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/cf1a077c8d/AmberFireFly.png",
+				"stackSize": 44,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "c2bad6870a7f36c5babd950f23d0b2200c917903e35d0b7714881b0b0e003bef",
+				"name": "",
+				"typeLine": "Scorched Fossil",
+				"baseType": "Scorched Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"44/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Fire modifiers\r\nNo Cold modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 0,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 2,
+				"h": 2,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvUmVyb2xsMngyQSIsInciOjIsImgiOjIsInNjYWxlIjoxfV0/b5be7d519f/Reroll2x2A.png",
 				"stackSize": 1,
 				"maxStackSize": 5000,
-				"league": "Necropolis",
-				"id": "c9db15b3f8294fbba619b59b3ea388181a993a142029f4267feeef3a4c3009ae",
+				"league": "Settlers",
+				"id": "653e4d346e4f0268c86af2186507bb53a55a2427de39bf3b965ba74c76c845cf",
+				"delve": true,
+				"sockets": [
+					{
+						"group": 0,
+						"attr": "DV",
+						"sColour": "DV"
+					},
+					{
+						"group": 1,
+						"attr": "DV",
+						"sColour": "DV"
+					},
+					{
+						"group": 2,
+						"attr": "DV",
+						"sColour": "DV"
+					}
+				],
+				"name": "",
+				"typeLine": "Powerful Chaotic Resonator",
+				"baseType": "Powerful Chaotic Resonator",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Requires {0} Socketed Fossils",
+						"values": [
+							[
+								"3",
+								2
+							]
+						],
+						"displayMode": 3
+					}
+				],
+				"explicitMods": [
+					"Reforges a rare item with new random modifiers"
+				],
+				"descrText": "All sockets must be filled with Fossils before this item can be used.",
+				"frameType": 5,
+				"x": 33,
+				"y": 0,
+				"inventoryId": "Stash1",
+				"socketedItems": []
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvRGVuc2VGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/e51b8071e7/DenseFossil.png",
+				"stackSize": 90,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "3e698a257d9d1331d594921b94652bba7a75a5259d5727159d1a4d220d734ee5",
+				"name": "",
+				"typeLine": "Dense Fossil",
+				"baseType": "Dense Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"90/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Defence modifiers\r\nNo Life Modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 6,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvUmVzb25hdGluZ0Zvc3NpbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/836925ced6/ResonatingFossil.png",
+				"stackSize": 5,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "c03af3640c6022c9ad8c9b4e38ae3a784ce73fd7c152bab9babfe4de6ca2e5a2",
+				"name": "",
+				"typeLine": "Bound Fossil",
+				"baseType": "Bound Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Minion, Aura or Curse modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 13,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvR2lsZGVkRm9zc2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8a8b6de108/GildedFossil.png",
+				"stackSize": 4,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "061e517d062bed873facee937e848843ac675e3c8f61b55b1c647561509b88e9",
+				"name": "",
+				"typeLine": "Sanctified Fossil",
+				"baseType": "Sanctified Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"4/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Numeric modifier values are lucky\r\nHigh Level modifiers are more common"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 23,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvU2FuY3RpZmllZEZvc3NpbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/3c8e7553b5/SanctifiedFossil.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "e4b1934a9788e848f0e6f195dbbfcbd218884c9b1167bef4d4f45774fe4762b3",
+				"name": "",
+				"typeLine": "Gilded Fossil",
+				"baseType": "Gilded Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Item is overvalued by vendors"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 24,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvU2h1ZGRlcmluZ0Zvc3NpbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/7ea7926999/ShudderingFossil.png",
+				"stackSize": 5,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "d1f9eb0d8628f165bbf9a15aaf3f799d2e832eab30f9e32620e85890a6f6c122",
+				"name": "",
+				"typeLine": "Shuddering Fossil",
+				"baseType": "Shuddering Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Speed modifiers\r\nNo Mana modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 12,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvU2VycmF0ZWRGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/42d7279694/SerratedFossil.png",
+				"stackSize": 5,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "fd8308213e27b21820b24bf8f5608b4d355c4b7be15b6f6a5e5b9e1852537ea4",
+				"name": "",
+				"typeLine": "Serrated Fossil",
+				"baseType": "Serrated Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Attack modifiers\r\nFewer Caster modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 10,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvQWV0aGVyaWNGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/fb38994bc8/AethericFossil.png",
+				"stackSize": 6,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "7468020f3c5dde72204a38ebdd363dd971426c2a9e463aea80b17a691606e444",
+				"name": "",
+				"typeLine": "Aetheric Fossil",
+				"baseType": "Aetheric Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"6/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Caster modifiers\r\nFewer Attack modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 9,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvRW5jcnVzdGVkRm9zc2lsIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/4f7e7cc55d/EncrustedFossil.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "5dded4c37daefe36c60ff55fd0281460e2b5b3a9bb28afeb545cd90f25ddfed7",
+				"name": "",
+				"typeLine": "Fundamental Fossil",
+				"baseType": "Fundamental Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Attribute modifiers\r\nNo Critical modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 16,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvQ29ycm9kZWRGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/e934508b43/CorrodedFossil.png",
+				"stackSize": 4,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "b32f611e3dc883422037cf9eab861cc090ed727b84e3463aeafe8be2f79f0921",
+				"name": "",
+				"typeLine": "Corroded Fossil",
+				"baseType": "Corroded Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"4/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Physical Ailment or Chaos Ailment modifiers\r\nNo Elemental modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 7,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 2,
+				"h": 2,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvUmVyb2xsMngyQyIsInciOjIsImgiOjIsInNjYWxlIjoxfV0/584267701b/Reroll2x2C.png",
+				"stackSize": 3,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "1b9f58c5227b21d1393600dc782d9fcac646dafdc8b117a3cc39a059a60edd68",
+				"delve": true,
+				"sockets": [
+					{
+						"group": 0,
+						"attr": "DV",
+						"sColour": "DV"
+					},
+					{
+						"group": 1,
+						"attr": "DV",
+						"sColour": "DV"
+					},
+					{
+						"group": 2,
+						"attr": "DV",
+						"sColour": "DV"
+					},
+					{
+						"group": 3,
+						"attr": "DV",
+						"sColour": "DV"
+					}
+				],
+				"name": "",
+				"typeLine": "Prime Chaotic Resonator",
+				"baseType": "Prime Chaotic Resonator",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"3/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					},
+					{
+						"name": "Requires {0} Socketed Fossils",
+						"values": [
+							[
+								"4",
+								2
+							]
+						],
+						"displayMode": 3
+					}
+				],
+				"explicitMods": [
+					"Reforges a rare item with new random modifiers"
+				],
+				"descrText": "All sockets must be filled with Fossils before this item can be used.",
+				"frameType": 5,
+				"x": 35,
+				"y": 0,
+				"inventoryId": "Stash1",
+				"socketedItems": []
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvUGVyZmVjdEZvc3NpbCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/7a87694b3c/PerfectFossil.png",
+				"stackSize": 5,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "2d76faebb95ab0b39319889098634ae7f0e5d5c4da64776dea4fc1d11bb62dd9",
+				"name": "",
+				"typeLine": "Opulent Fossil",
+				"baseType": "Opulent Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"5/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Drop modifiers\r\nNo Tagless modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 14,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvTWV0YWxsaWNGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/c26857827c/MetallicFossil.png",
+				"stackSize": 38,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "24736b05e1b53cf80bb53bbd7dc15c944294041a340083cc09e27a7d00981a41",
+				"name": "",
+				"typeLine": "Metallic Fossil",
+				"baseType": "Metallic Fossil",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"38/20",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"More Lightning modifiers\r\nNo Physical modifiers"
+				],
+				"descrText": "Place in a Resonator to influence item crafting.",
+				"frameType": 5,
+				"x": 2,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvQW1iZXJGYW5nIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/559d8ae855/AmberFang.png",
+				"stackSize": 61,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "0005eecec7c5f417b20e792192d57a89c20097ee58531cc32c03a7a40138c6e2",
 				"name": "",
 				"typeLine": "Frigid Fossil",
 				"baseType": "Frigid Fossil",
@@ -100,7 +775,7 @@
 						"name": "Stack Size",
 						"values": [
 							[
-								"1/20",
+								"61/20",
 								0
 							]
 						],
@@ -121,14 +796,14 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
-				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvRGVuc2VGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/e51b8071e7/DenseFossil.png",
-				"stackSize": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRGVsdmUvQWJiZXJhbnRGb3NzaWwiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/426882fe76/AbberantFossil.png",
+				"stackSize": 69,
 				"maxStackSize": 5000,
-				"league": "Necropolis",
-				"id": "879c0ca83997368b7e648937aa41f5c138ef5d2779254e840aabc87f5447737a",
+				"league": "Settlers",
+				"id": "26d3b61a5f3fba4d2905278dcfcfd375c30da04f65c0e49f2e8252a739688adc",
 				"name": "",
-				"typeLine": "Dense Fossil",
-				"baseType": "Dense Fossil",
+				"typeLine": "Aberrant Fossil",
+				"baseType": "Aberrant Fossil",
 				"ilvl": 0,
 				"identified": true,
 				"properties": [
@@ -136,7 +811,7 @@
 						"name": "Stack Size",
 						"values": [
 							[
-								"1/20",
+								"69/20",
 								0
 							]
 						],
@@ -145,11 +820,11 @@
 					}
 				],
 				"explicitMods": [
-					"More Defence modifiers\r\nNo Life Modifiers"
+					"More Chaos modifiers\r\nNo Lightning modifiers"
 				],
 				"descrText": "Place in a Resonator to influence item crafting.",
 				"frameType": 5,
-				"x": 6,
+				"x": 4,
 				"y": 0,
 				"inventoryId": "Stash1"
 			}

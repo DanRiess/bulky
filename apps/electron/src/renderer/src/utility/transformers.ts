@@ -12,6 +12,18 @@ import {
 import { UnwrapRef, toValue } from 'vue'
 import { BULKY_FACTORY } from './factory'
 
+export const BULKY_TRANSFORM = {
+	bulkyItemToOverrideItem,
+	bulkyItemToBazaarItemDto,
+	stringToDisplayValue,
+	itemDtoToPoeItem,
+	mapSubStashToPoeItem,
+}
+
+/**
+ * Transform a given string into a value that can be displayed.
+ * Remove underscores, capitalize words, etc.
+ */
 function stringToDisplayValue(string: string) {
 	if (string === 'MAP_8_MOD') {
 		return '8 Mod Maps'
@@ -97,7 +109,10 @@ function bulkyItemToOverrideItem(item: BulkyShopItem, overrides: BulkyItemOverri
 	}
 }
 
-function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>): BulkyBazaarItemDto | undefined {
+function bulkyItemToBazaarItemDto(
+	item: BulkyShopItem | UnwrapRef<BulkyShopItem>,
+	priceMultiplier: number
+): BulkyBazaarItemDto | undefined {
 	const nameToIdxTypeMap = BULKY_FACTORY.getNameToIdxTypeMap(item.category)
 	const nameToIdxTierMap = BULKY_FACTORY.getNameToIdxTierMap(item.category)
 
@@ -109,7 +124,7 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 	if (item.priceOverrideMap8Mod) {
 		price = toValue(item.priceOverrideMap8Mod).base
 	} else {
-		price = toValue(item.priceOverride) > 0 ? toValue(item.priceOverride) : toValue(item.price)
+		price = toValue(item.priceOverride) > 0 ? toValue(item.priceOverride) : toValue(item.price) * priceMultiplier
 	}
 
 	// If the item has no price, it should be filtered out.
@@ -119,7 +134,7 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 		type: nameToIdxTypeMap[item.type],
 		tier: nameToIdxTierMap[item.tier],
 		qnt: item.quantity,
-		prc: price,
+		prc: Math.round(price * 10) / 10,
 	}
 
 	// Extract perItemAttributes and convert them into the dto type.
@@ -160,12 +175,4 @@ function bulkyItemToBazaarItemDto(item: BulkyShopItem | UnwrapRef<BulkyShopItem>
 	}
 
 	return itemDto
-}
-
-export const BULKY_TRANSFORM = {
-	bulkyItemToOverrideItem,
-	bulkyItemToBazaarItemDto,
-	stringToDisplayValue,
-	itemDtoToPoeItem,
-	mapSubStashToPoeItem,
 }

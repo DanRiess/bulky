@@ -11,6 +11,7 @@ import { useDeliriumOrbFilterStore } from '@web/categories/deliriumOrb/deliriumO
 import { useNormalMapFilterStore } from '@web/categories/map/normalMapFilter.store'
 import { useMap8ModFilterStore } from '@web/categories/map/map8ModFilter.store'
 import { useBestiaryFilterStore } from '@web/categories/beastiary/bestiaryFilter.store'
+import { useDelveFilterStore } from '@web/categories/delve/delveFilter.store'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
@@ -23,6 +24,7 @@ export function useComputedFilterStore() {
 	const normalMapFilterStore = useNormalMapFilterStore()
 	const map8ModFilterStore = useMap8ModFilterStore()
 	const bestiaryFilterStore = useBestiaryFilterStore()
+	const delveFilterStore = useDelveFilterStore()
 
 	return computed<ComputedBulkyFilterStore | undefined>(() => {
 		const store = BULKY_FACTORY.getFilterStore(appStateStore.selectedCategory)
@@ -43,6 +45,7 @@ export function useComputedFilterStore() {
 			else if (store === normalMapFilterStore && BULKY_UUID.isMapFilterUuid(id)) filter = store.filters.get(id)
 			else if (store === map8ModFilterStore && BULKY_UUID.isMap8ModFilterUuid(id)) filter = store.filters.get(id)
 			else if (store === bestiaryFilterStore && BULKY_UUID.isBestiaryFilterUuid(id)) filter = store.filters.get(id)
+			else if (store === delveFilterStore && BULKY_UUID.isDelveFilterUuid(id)) filter = store.filters.get(id)
 		}
 
 		// If something went wrong during filter creation, return.
@@ -60,6 +63,7 @@ export function useComputedFilterStore() {
 			else if (store === normalMapFilterStore && BULKY_UUID.isMapFilterUuid(uuid)) store.addFilterField(uuid)
 			else if (store === map8ModFilterStore && BULKY_UUID.isMap8ModFilterUuid(uuid)) store.addFilterField(uuid)
 			else if (store === bestiaryFilterStore && BULKY_UUID.isBestiaryFilterUuid(uuid)) store.addFilterField(uuid)
+			else if (store === delveFilterStore && BULKY_UUID.isDelveFilterUuid(uuid)) store.addFilterField(uuid)
 		}
 
 		/** Remove a filter field from the current filter */
@@ -75,6 +79,7 @@ export function useComputedFilterStore() {
 			else if (store === normalMapFilterStore && BULKY_UUID.isMapFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 			else if (store === map8ModFilterStore && BULKY_UUID.isMap8ModFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 			else if (store === bestiaryFilterStore && BULKY_UUID.isBestiaryFilterUuid(uuid)) store.removeFilterField(uuid, idx)
+			else if (store === delveFilterStore && BULKY_UUID.isDelveFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 		}
 
 		return {

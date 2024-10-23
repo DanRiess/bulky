@@ -369,7 +369,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			fullPrice: Math.round(offer.fullPrice),
 			minimumBuyout,
 			fullBuyout: offer.fullBuyout,
-			items: offer.items.map(item => BULKY_TRANSFORM.bulkyItemToBazaarItemDto(item)).filter(Boolean),
+			items: offer.items.map(item => BULKY_TRANSFORM.bulkyItemToBazaarItemDto(item, offer.multiplier ?? 1)).filter(Boolean),
 		}
 	}
 

@@ -7,7 +7,10 @@
 			</div>
 			<span>Posted: {{ timeAgo }}</span>
 		</section>
-		<ShopOfferItemCollectionMolecule :items="offer.items" :category="offer.category" />
+		<ShopOfferItemCollectionMolecule
+			:items="offer.items"
+			:category="offer.category"
+			:price-multiplier="offer.multiplier ?? 1" />
 		<ShopOfferConfigMolecule :offer="offer" />
 		<section class="footer-section">
 			<div class="info-toggles">
