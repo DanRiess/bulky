@@ -1,11 +1,12 @@
 /**
- * This script can generate the map.const.ts file.
+ * This script can generate the catalyst.const.ts file.
  * It grabs metadata from poedb.tw and generates the file from it.
+ *
+ * Technically, it could also generate the transformer and type files,
+ * but that was more work than doing it manually. The const file is also the only
+ * one that might need to be updated in the future.
  */
-
-// import { capitalize } from 'lodash'
-
-const fs = require('node:fs')
+import { writeFile, writeFileSync } from 'node:fs'
 
 async function getPoeDbItemData() {
 	const response = await fetch(
@@ -13,28 +14,25 @@ async function getPoeDbItemData() {
 	)
 	const data = (await response.json()) as { label: string; value: string; desc: string; class: string }[]
 
-	const fossils = data.filter(item => item.value.match(/_Fossil$/g) && item.desc === 'Stackable Currency')
-	const resonators = data.filter(
-		item => item.desc === 'Delve Stackable Socketable Currency' && !item.value.includes('Alchemical')
-	)
+	const catalysts = data.filter(item => item.value.match(/_Catalyst$/g) && item.desc === 'Stackable Currency')
 
 	// return maps.map(item => item.value.replace(/_map/i, '').toUpperCase())
-	return [...fossils.map(fossil => fossil.value.toUpperCase()), ...resonators.map(resonator => resonator.value.toUpperCase())]
+	return catalysts.map(catalyst => catalyst.value.toUpperCase())
 }
 
 getPoeDbItemData().then(items => {
 	console.log({ items })
-	// DELVE.CONST.TS
-	console.log('Generate the delve.const.ts content')
+	// CATALYST.CONST.TS
+	console.log('Generate the catalyst.const.ts content')
 
 	// Imports
 	const imports = "import { typedFromEntries, getKeys } from '@shared/types/utility.types'"
 
 	// Delve Types
-	const types = `export const DELVE_TYPE = {\n${items.map(m => `${m}: '${m}',`).join('\n')}\n} as const`
-	const typeIdxToName = 'export const DELVE_TYPE_IDX_TO_NAME = getKeys(DELVE_TYPE)'
+	const types = `export const CATALYST_TYPE = {\n${items.map(m => `${m}: '${m}',`).join('\n')}\n} as const`
+	const typeIdxToName = 'export const CATALYST_TYPE_IDX_TO_NAME = getKeys(CATALYST_TYPE)'
 	const typeNameToIdx =
-		'export const DELVE_TYPE_NAME_TO_IDX = typedFromEntries(Object.entries(DELVE_TYPE_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)]))'
+		'export const CATALYST_TYPE_NAME_TO_IDX = typedFromEntries(Object.entries(CATALYST_TYPE_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)]))'
 
 	// Delve Tiers
 	// const tiers = `export const DELVE_TIER = {\n${new Array(17)
@@ -49,14 +47,8 @@ getPoeDbItemData().then(items => {
 	const fullFile = `${imports} \n\n ${types} \n\n ${typeIdxToName} \n\n ${typeNameToIdx}`
 
 	console.log('Writing to file map.const.ts')
-	fs.writeFile('./delve.const.ts', fullFile, err => {
-		if (err) {
-			console.log(err)
-			return
-		}
-
-		console.log('Written file successfully. Please check, format and save it.')
-	})
+	writeFileSync('./catalyst.const.ts', fullFile)
+	console.log('Written file successfully. Check and format it.')
 })
 
 export default {}

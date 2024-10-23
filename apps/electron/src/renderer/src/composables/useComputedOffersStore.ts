@@ -11,6 +11,7 @@ import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 import { RendererError } from '@shared/errors/rendererError'
 import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
 import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
+import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
 
@@ -26,6 +27,7 @@ export function useComputedOffersStore() {
 	const map8ModOfferStore = useMap8ModOfferStore()
 	const bestiaryOfferStore = useBestiaryOfferStore()
 	const delveOfferStore = useDelveOfferStore()
+	const catalystOfferStore = useCatalystOfferStore()
 
 	let timeout: NodeJS.Timeout | undefined
 
@@ -74,6 +76,7 @@ export function useComputedOffersStore() {
 			else if (store === map8ModOfferStore && store.isMap8Mod(item)) return store.calculateBaseItemPrice(item, filter)
 			else if (store === bestiaryOfferStore && store.isBeast(item)) return store.calculateBaseItemPrice(item)
 			else if (store === delveOfferStore && store.isDelveItem(item)) return store.calculateBaseItemPrice(item)
+			else if (store === catalystOfferStore && store.isCatalyst(item)) return store.calculateBaseItemPrice(item)
 
 			throw new RendererError({
 				code: 'unknown_item',

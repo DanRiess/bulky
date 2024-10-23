@@ -27,6 +27,7 @@ const components = ref([
 	{ displayName: '8 Mod Maps', fileName: 'vaal-temple-map', category: CATEGORY.MAP_8_MOD },
 	{ displayName: 'Beasts', fileName: 'bestiary-orb', category: CATEGORY.BESTIARY },
 	{ displayName: 'Delve', fileName: 'fossil-sanctified', category: CATEGORY.DELVE },
+	{ displayName: 'Catalysts', fileName: 'catalyst-unstable', category: CATEGORY.CATALYST },
 ])
 
 // METHODS

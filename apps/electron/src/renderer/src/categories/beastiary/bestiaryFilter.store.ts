@@ -6,7 +6,7 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BulkyFilter } from '@shared/types/bulky.types'
-import { BestiaryFilter, BestiaryFilterField } from './bestiary.type'
+import { BestiaryFilter, BestiaryFilterField } from './bestiary.types'
 
 export const useBestiaryFilterStore = defineStore('bestiaryFilterStore', () => {
 	const filters = ref<Map<BestiaryFilter['uuid'], BestiaryFilter>>(new Map())
@@ -15,7 +15,9 @@ export const useBestiaryFilterStore = defineStore('bestiaryFilterStore', () => {
 		return currentFilterId.value ? filters.value.get(currentFilterId.value) : undefined
 	})
 
-	/** create a new filter */
+	/**
+	 * Create a new filter.
+	 */
 	function createNewFilter() {
 		const uuid = BULKY_UUID.generateTypedUuid<BulkyFilter<BestiaryFilterField>>()
 		const category = 'BESTIARY'
@@ -39,7 +41,9 @@ export const useBestiaryFilterStore = defineStore('bestiaryFilterStore', () => {
 		return uuid
 	}
 
-	/** add a filter field */
+	/**
+	 * Add a filter field.
+	 */
 	function addFilterField(uuid: BestiaryFilter['uuid']) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
@@ -47,7 +51,9 @@ export const useBestiaryFilterStore = defineStore('bestiaryFilterStore', () => {
 		filter.fields.push(generateDefaultFilterField())
 	}
 
-	/** remove a filter field */
+	/**
+	 * Remove a filter field.
+	 */
 	function removeFilterField(uuid: BestiaryFilter['uuid'], idx: number) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
@@ -55,7 +61,11 @@ export const useBestiaryFilterStore = defineStore('bestiaryFilterStore', () => {
 		filter.fields.splice(idx, 1)
 	}
 
-	/** Private function. Generate a default filter field */
+	/**
+	 * Private function. Generate a default filter field.
+	 *
+	 * @private
+	 */
 	function generateDefaultFilterField() {
 		const field: BestiaryFilterField = {
 			uuid: BULKY_UUID.generateTypedUuid<BestiaryFilterField>(),

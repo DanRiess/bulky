@@ -20,9 +20,13 @@ import { PoeItem } from '@shared/types/poe.types'
 import { getKeys } from '@shared/types/utility.types'
 import { BEAST_TYPE, BEAST_TYPE_IDX_TO_NAME, BEAST_TYPE_NAME_TO_IDX } from '@web/categories/beastiary/bestiary.const'
 import { BULKY_BESTIARY } from '@web/categories/beastiary/bestiary.transformers'
-import { BeastTier } from '@web/categories/beastiary/bestiary.type'
+import { BeastTier } from '@web/categories/beastiary/bestiary.types'
 import { useBestiaryFilterStore } from '@web/categories/beastiary/bestiaryFilter.store'
 import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
+import { CATALYST_TYPE, CATALYST_TYPE_IDX_TO_NAME, CATALYST_TYPE_NAME_TO_IDX } from '@web/categories/catalyst/catalyst.const'
+import { BULKY_CATALYSTS } from '@web/categories/catalyst/catalyst.transformers'
+import { useCatalystFilterStore } from '@web/categories/catalyst/catalystFilter.store'
+import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
 import {
 	DELI_ORB_TYPE,
 	DELI_ORB_TYPE_IDX_TO_NAME,
@@ -96,6 +100,7 @@ function getOfferStore(category: Category): BulkyOfferStore | undefined {
 	else if (category === 'MAP_8_MOD') return useMap8ModOfferStore()
 	else if (category === 'BESTIARY') return useBestiaryOfferStore()
 	else if (category === 'DELVE') return useDelveOfferStore()
+	else if (category === 'CATALYST') return useCatalystOfferStore()
 	return undefined
 }
 
@@ -110,6 +115,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 	else if (category === 'MAP_8_MOD') return useMap8ModFilterStore()
 	else if (category === 'BESTIARY') return useBestiaryFilterStore()
 	else if (category === 'DELVE') return useDelveFilterStore()
+	else if (category === 'CATALYST') return useCatalystFilterStore()
 	return undefined
 }
 
@@ -125,6 +131,7 @@ function getNameToIdxTypeMap(category: Category) {
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TYPE_NAME_TO_IDX
 	else if (category === 'BESTIARY') return BEAST_TYPE_NAME_TO_IDX
 	else if (category === 'DELVE') return DELVE_TYPE_NAME_TO_IDX
+	else if (category === 'CATALYST') return CATALYST_TYPE_NAME_TO_IDX
 	return undefined
 }
 
@@ -138,6 +145,7 @@ function getNameToIdxTierMap(category: Category) {
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TIER_NAME_TO_IDX
 	else if (category === 'BESTIARY') return { '0': 0 }
 	else if (category === 'DELVE') return { '0': 0 }
+	else if (category === 'CATALYST') return { '0': 0 }
 	return undefined
 }
 
@@ -153,6 +161,7 @@ function getIdxToNameTypeMap(category: Category) {
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TYPE_IDX_TO_NAME
 	else if (category === 'BESTIARY') return BEAST_TYPE_IDX_TO_NAME
 	else if (category === 'DELVE') return DELVE_TYPE_IDX_TO_NAME
+	else if (category === 'CATALYST') return CATALYST_TYPE_IDX_TO_NAME
 	return undefined
 }
 
@@ -166,6 +175,7 @@ function getIdxToNameTierMap(category: Category) {
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TIER_IDX_TO_NAME
 	else if (category === 'BESTIARY') return ['0'] as BeastTier[]
 	else if (category === 'DELVE') return ['0'] as DelveTier[]
+	else if (category === 'CATALYST') return ['0'] as DelveTier[]
 	return undefined
 }
 
@@ -179,6 +189,7 @@ function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return getKeys(MAP_TYPE)
 	else if (category === 'BESTIARY') return getKeys(BEAST_TYPE)
 	else if (category === 'DELVE') return getKeys(DELVE_TYPE)
+	else if (category === 'CATALYST') return getKeys(CATALYST_TYPE)
 	else return undefined
 }
 
@@ -192,6 +203,7 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return getKeys(MAP_TIER)
 	else if (category === 'BESTIARY') return ['0']
 	else if (category === 'DELVE') return ['0']
+	else if (category === 'CATALYST') return ['0']
 	else return undefined
 }
 
@@ -205,6 +217,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return BULKY_MAPS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTypeFromPoeItem(item)
 	else if (category === 'DELVE') return BULKY_DELVE.generateTypeFromBaseType(item.baseType)
+	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTypeFromBaseType(item.baseType)
 	else return undefined
 }
 
@@ -218,6 +231,7 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return BULKY_MAPS.generateTierFromProperty(item.properties)
 	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTier()
 	else if (category === 'DELVE') return BULKY_DELVE.generateTier()
+	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTier()
 	else return undefined
 }
 
@@ -242,6 +256,8 @@ function getNameFromTypeAndTier(
 		return BULKY_BESTIARY.generateBeastNameFromType(item.type)
 	else if (category === 'DELVE' && useDelveOfferStore().isDelveItem(item))
 		return BULKY_DELVE.generateDelveItemNameFromType(item.type)
+	else if (category === 'CATALYST' && useCatalystOfferStore().isCatalyst(item))
+		return BULKY_CATALYSTS.generateCatalystNameFromType(item.type)
 	else return undefined
 }
 
@@ -256,6 +272,7 @@ function generateBazaarItemFromDto(category: Category, item: BulkyBazaarItemDto)
 	// does not need a Map_8_MOD implementation because the dto is different
 	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateBazaarItemFromDto(item)
 	else if (category === 'DELVE') return BULKY_DELVE.generateBazaarItemFromDto(item)
+	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateBazaarItemFromDto(item)
 	else return undefined
 }
 
@@ -275,6 +292,7 @@ function generateBulkyItemFromPoeItem(
 	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, itemOverrides)
 	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateBeastFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'DELVE') return BULKY_DELVE.generateDelveItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateCatalystFromPoeItem(item, prices, itemOverrides)
 	else return undefined
 }
 

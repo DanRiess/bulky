@@ -1,0 +1,78 @@
+[
+	{
+		"version": 1,
+		"uuid": "8c23602a-b369-4213-9e5d-4d1f5b94cc96",
+		"timestamp": 1729691553060,
+		"account": "Chavincar",
+		"ign": "Chavi",
+		"category": "CATALYST",
+		"league": "Settlers",
+		"chaosPerDiv": 155.9,
+		"multiplier": 1,
+		"fullPrice": 208,
+		"minimumBuyout": 0,
+		"fullBuyout": false,
+		"items": [
+			{
+				"type": 6,
+				"tier": 0,
+				"qnt": 4,
+				"prc": 20
+			},
+			{
+				"type": 2,
+				"tier": 0,
+				"qnt": 6,
+				"prc": 10
+			},
+			{
+				"type": 4,
+				"tier": 0,
+				"qnt": 34,
+				"prc": 1
+			},
+			{
+				"type": 5,
+				"tier": 0,
+				"qnt": 20,
+				"prc": 0.5
+			},
+			{
+				"type": 9,
+				"tier": 0,
+				"qnt": 11,
+				"prc": 0.7
+			},
+			{
+				"type": 0,
+				"tier": 0,
+				"qnt": 13,
+				"prc": 0.5
+			},
+			{
+				"type": 8,
+				"tier": 0,
+				"qnt": 2,
+				"prc": 2
+			},
+			{
+				"type": 3,
+				"tier": 0,
+				"qnt": 6,
+				"prc": 0.5
+			},
+			{
+				"type": 1,
+				"tier": 0,
+				"qnt": 2,
+				"prc": 1
+			},
+			{
+				"type": 10,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 1
+			}
+		]
+	}
+]

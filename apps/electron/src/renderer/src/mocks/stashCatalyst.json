@@ -1,0 +1,374 @@
+{
+	"stash": {
+		"id": "bd037ae196",
+		"folder": "d854a10ed9",
+		"name": "Mta",
+		"type": "UltimatumStash",
+		"index": 10,
+		"metadata": {
+			"colour": "638000"
+		},
+		"items": [
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL1ByaXNtYXRpY0NhdGFseXN0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/5e51d41a0e/PrismaticCatalyst.png",
+				"stackSize": 4,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "568fc20732103e4f33b346b0c064171be15098168c6cee6c3e384a85576f60af",
+				"name": "",
+				"typeLine": "Prismatic Catalyst",
+				"baseType": "Prismatic Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"4/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Resistance modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 5,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0NoYW9zUGh5c2ljYWxDYXRhbHlzdCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/bbdf8917e4/ChaosPhysicalCatalyst.png",
+				"stackSize": 20,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "fa0a790e0bccc3b1ee7b245fef3987c9a4a4fc2f79e16dcf9edfea227b9c5ed7",
+				"name": "",
+				"typeLine": "Noxious Catalyst",
+				"baseType": "Noxious Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"20/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Physical and Chaos Damage modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 61,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0ZlcnRpbGVDYXRhbHlzdCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/4b4ca5d929/FertileCatalyst.png",
+				"stackSize": 6,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "99d2b0d5c0dd04af9a9d561bbf1e5ddb5333440adba99be675069247428656f2",
+				"name": "",
+				"typeLine": "Fertile Catalyst",
+				"baseType": "Fertile Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"6/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Life and Mana modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 2,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL1NwZWVkTW9kaWZpZXJDYXRhbHlzdCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/592075333a/SpeedModifierCatalyst.png",
+				"stackSize": 2,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "c64ee5121d8d23398d9d14b5d9d5d354407a9ecdcf2cb38b95eb021f08e90332",
+				"name": "",
+				"typeLine": "Accelerating Catalyst",
+				"baseType": "Accelerating Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"2/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Speed modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 60,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL1R1cmJ1bGVudENhdGFseXN0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/fc41fe8950/TurbulentCatalyst.png",
+				"stackSize": 11,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "838f95c32861fbac41b8e6073253587b880c4a526ca45d155eecca0ed4fefb08",
+				"name": "",
+				"typeLine": "Turbulent Catalyst",
+				"baseType": "Turbulent Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"11/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Elemental Damage modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 3,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0ludHJpbnNpY0NhdGFseXN0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/107ffb799e/IntrinsicCatalyst.png",
+				"stackSize": 34,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "d77fe6d302b8d7e2015de8405c76ec51a6a7f81c83daed2537055594997c29e3",
+				"name": "",
+				"typeLine": "Intrinsic Catalyst",
+				"baseType": "Intrinsic Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"34/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Attribute modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 6,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL1RlbXBlcmluZ0NhdGFseXN0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/7b6277022e/TemperingCatalyst.png",
+				"stackSize": 2,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "945a76ea46d9b39d3f520c83d40786adc3a0fd871b4496b3e6d5b634d70dbc2c",
+				"name": "",
+				"typeLine": "Tempering Catalyst",
+				"baseType": "Tempering Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"2/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Defence modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 1,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0ltYnVlZENhdGFseXN0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/9053293cf6/ImbuedCatalyst.png",
+				"stackSize": 6,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "b184ef069fa4f100e23012096845c103fff524a3a57c1ffa2482941a87024731",
+				"name": "",
+				"typeLine": "Imbued Catalyst",
+				"baseType": "Imbued Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"6/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Caster modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 4,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0FicmFzaXZlQ2F0YWx5c3QiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/c4e7f7f379/AbrasiveCatalyst.png",
+				"stackSize": 13,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "f3f6a3137d4c7ddf8b23b885ec85d15c089c94469d4e82c99440f303d3db3dfb",
+				"name": "",
+				"typeLine": "Abrasive Catalyst",
+				"baseType": "Abrasive Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"13/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Attack modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 0,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0NyaXRpY2FsTW9kaWZpZXJDYXRhbHlzdCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/18e5522c0e/CriticalModifierCatalyst.png",
+				"stackSize": 1,
+				"maxStackSize": 5000,
+				"league": "Settlers",
+				"id": "98e43e41dd7f83d4be2869e64cd2336b6588af66d7f63f2b39e8007dad8dadb7",
+				"name": "",
+				"typeLine": "Unstable Catalyst",
+				"baseType": "Unstable Catalyst",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"1/10",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Adds quality that enhances Critical modifiers on a ring, amulet or belt\r\nReplaces other quality types"
+				],
+				"descrText": "Right click this item then left click a ring, amulet or belt to apply it. Has greater effect on lower item level, non-unique jewellery. The maximum quality is 20%.",
+				"frameType": 5,
+				"x": 59,
+				"y": 0,
+				"inventoryId": "Stash1"
+			}
+		]
+	}
+}

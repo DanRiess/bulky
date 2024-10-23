@@ -32,7 +32,7 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const items = dto.items
-			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarDelveItem)
+			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('DELVE', item) as BazaarDelveItem)
 			.filter(Boolean)
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
@@ -88,8 +88,8 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 	async function getTestData() {
 		// if (listings.value.size !== 0) return
 
-		const request = useApi('scarabPayload', getListing)
-		await request.exec('src/mocks/scarabCompressed.json')
+		const request = useApi('delvePayload', getListing)
+		await request.exec('src/mocks/offersDelve.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')

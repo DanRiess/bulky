@@ -1,0 +1,144 @@
+[
+	{
+		"version": 1,
+		"uuid": "92659305-d8ee-486d-8978-4ae0ffa2101f",
+		"timestamp": 1729691974761,
+		"account": "Chavincar",
+		"ign": "Chavi",
+		"category": "DELVE",
+		"league": "Settlers",
+		"chaosPerDiv": 155.9,
+		"multiplier": 0.95,
+		"fullPrice": 717,
+		"minimumBuyout": 0,
+		"fullBuyout": false,
+		"items": [
+			{
+				"type": 6,
+				"tier": 0,
+				"qnt": 90,
+				"prc": 1.9
+			},
+			{
+				"type": 27,
+				"tier": 0,
+				"qnt": 3,
+				"prc": 38
+			},
+			{
+				"type": 0,
+				"tier": 0,
+				"qnt": 69,
+				"prc": 1
+			},
+			{
+				"type": 9,
+				"tier": 0,
+				"qnt": 61,
+				"prc": 1
+			},
+			{
+				"type": 19,
+				"tier": 0,
+				"qnt": 58,
+				"prc": 1
+			},
+			{
+				"type": 21,
+				"tier": 0,
+				"qnt": 44,
+				"prc": 1
+			},
+			{
+				"type": 14,
+				"tier": 0,
+				"qnt": 43,
+				"prc": 1
+			},
+			{
+				"type": 20,
+				"tier": 0,
+				"qnt": 4,
+				"prc": 9.5
+			},
+			{
+				"type": 16,
+				"tier": 0,
+				"qnt": 38,
+				"prc": 1
+			},
+			{
+				"type": 23,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 6.7
+			},
+			{
+				"type": 3,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 1.9
+			},
+			{
+				"type": 22,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 1.9
+			},
+			{
+				"type": 26,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 7.6
+			},
+			{
+				"type": 4,
+				"tier": 0,
+				"qnt": 4,
+				"prc": 1.9
+			},
+			{
+				"type": 15,
+				"tier": 0,
+				"qnt": 7,
+				"prc": 1
+			},
+			{
+				"type": 18,
+				"tier": 0,
+				"qnt": 6,
+				"prc": 1
+			},
+			{
+				"type": 1,
+				"tier": 0,
+				"qnt": 6,
+				"prc": 1
+			},
+			{
+				"type": 17,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 1
+			},
+			{
+				"type": 5,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 1
+			},
+			{
+				"type": 10,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 1
+			},
+			{
+				"type": 11,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 1
+			}
+		]
+	}
+]

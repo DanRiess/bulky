@@ -34,6 +34,8 @@ import { watch } from 'vue'
 import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
 import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
+import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
+import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -63,6 +65,10 @@ watch(
 			useMap8ModOfferStore().getTestData()
 		} else if (cat === 'BESTIARY') {
 			useBestiaryOfferStore().getTestData()
+		} else if (cat === 'DELVE') {
+			useDelveOfferStore().getTestData()
+		} else if (cat === 'CATALYST') {
+			useCatalystOfferStore().getTestData()
 		}
 
 		// makeBinTestData()

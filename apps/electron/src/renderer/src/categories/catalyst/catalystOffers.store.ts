@@ -1,5 +1,5 @@
 /**
- * Handle all bestiary offers through this store.
+ * Handle all catalyst offers through this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -11,21 +11,21 @@ import { useApi } from '@web/api/useApi'
 import { getListing } from '@web/api/bulkyApi'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
-import { BazaarBeast, BazaarBestiaryOffer } from './bestiary.types'
 import { notEmpty } from '@web/utility/notEmpty'
-import { BEAST_TYPE } from './bestiary.const'
+import { BazaarCatalyst, BazaarCatalystOffer } from './catalyst.types'
+import { CATALYST_TYPE } from './catalyst.const'
 
-export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
-	const offers = ref<Map<BazaarBestiaryOffer['uuid'], BazaarBestiaryOffer>>(new Map())
+export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
+	const offers = ref<Map<BazaarCatalystOffer['uuid'], BazaarCatalystOffer>>(new Map())
 
 	/**
-	 * Consume an bestiary listing dto, type and validate it and add it to the listings.
+	 * Consume a catalyst listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
-		if (category !== 'BESTIARY') return
+		if (category !== 'CATALYST') return
 
-		const uuid = BULKY_UUID.generateTypedUuid<BazaarBestiaryOffer>(dto.uuid)
+		const uuid = BULKY_UUID.generateTypedUuid<BazaarCatalystOffer>(dto.uuid)
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
@@ -33,7 +33,7 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const items = dto.items
-			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('BESTIARY', item) as BazaarBeast)
+			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('CATALYST', item) as BazaarCatalyst)
 			.filter(notEmpty)
 
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
@@ -58,7 +58,7 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
-	function deleteOffer(uuid: BazaarBestiaryOffer['uuid']) {
+	function deleteOffer(uuid: BazaarCatalystOffer['uuid']) {
 		offers.value.delete(uuid)
 	}
 
@@ -66,18 +66,18 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 	 * Prices are being calculated differently for some categories.
 	 * This implementation enables generically calling store.calculateBaseItemPrice.
 	 */
-	function calculateBaseItemPrice(item: BazaarBeast) {
+	function calculateBaseItemPrice(item: BazaarCatalyst) {
 		return item.price
 	}
 
 	/**
-	 * Validate if an object is a BazaarBeast or not.
+	 * Validate if an object is a BazaarCatalyst or not.
 	 */
-	function isBeast(obj: any): obj is BazaarBeast {
+	function isCatalyst(obj: any): obj is BazaarCatalyst {
 		return (
 			obj &&
 			'type' in obj &&
-			getKeys(BEAST_TYPE).includes(obj.type) &&
+			getKeys(CATALYST_TYPE).includes(obj.type) &&
 			'tier' in obj &&
 			obj.tier === '0' &&
 			'quantity' in obj &&
@@ -88,11 +88,11 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 	}
 
 	async function getTestData() {
-		console.log('getting beast test data')
+		console.log('getting catalyst test data')
 		// if (listings.value.size !== 0) return
 
-		const request = useApi('beastsPayload', getListing)
-		await request.exec('src/mocks/offersBeasts.json')
+		const request = useApi('catalystPayload', getListing)
+		await request.exec('src/mocks/offersCatalyst.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')
@@ -103,11 +103,11 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 	}
 
 	/**
-	 * Fetch all new bestiary offers since the last fetch action.
+	 * Fetch all new catalyst offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch beast offers')
+		console.log('Refetch catalyst offers')
 	}
 
 	return {
@@ -115,12 +115,12 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
-		isBeast,
+		isCatalyst,
 		refetchOffers,
 		getTestData,
 	}
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useBestiaryOfferStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useCatalystOfferStore, import.meta.hot))
 }

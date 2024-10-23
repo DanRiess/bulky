@@ -15,7 +15,9 @@ export const useNormalMapFilterStore = defineStore('normalMapFilterStore', () =>
 		return currentFilterId.value ? filters.value.get(currentFilterId.value) : undefined
 	})
 
-	/** create a new filter */
+	/**
+	 * Create a new filter.
+	 */
 	function createNewFilter() {
 		const uuid = BULKY_UUID.generateTypedUuid<BulkyFilter<MapFilterField>>()
 		const category = 'MAP'
@@ -39,7 +41,9 @@ export const useNormalMapFilterStore = defineStore('normalMapFilterStore', () =>
 		return uuid
 	}
 
-	/** add a filter field */
+	/**
+	 * Add a filter field.
+	 */
 	function addFilterField(uuid: MapFilter['uuid']) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
@@ -47,7 +51,9 @@ export const useNormalMapFilterStore = defineStore('normalMapFilterStore', () =>
 		filter.fields.push(generateDefaultFilterField())
 	}
 
-	/** remove a filter field */
+	/**
+	 * Remove a filter field.
+	 */
 	function removeFilterField(uuid: MapFilter['uuid'], idx: number) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
@@ -55,7 +61,11 @@ export const useNormalMapFilterStore = defineStore('normalMapFilterStore', () =>
 		filter.fields.splice(idx, 1)
 	}
 
-	/** Private function. Generate a default filter field */
+	/**
+	 * Private function. Generate a default filter field.
+	 *
+	 * @private
+	 */
 	function generateDefaultFilterField() {
 		const field: MapFilterField = {
 			uuid: BULKY_UUID.generateTypedUuid<MapFilterField>(),

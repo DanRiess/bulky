@@ -41,7 +41,7 @@ import {
 	BestiaryFilterStore,
 	BestiaryOfferStore,
 	ShopBeast,
-} from '@web/categories/beastiary/bestiary.type'
+} from '@web/categories/beastiary/bestiary.types'
 import {
 	BazaarDelveItem,
 	DelveFilterField,
@@ -49,6 +49,13 @@ import {
 	DelveOfferStore,
 	ShopDelveItem,
 } from '@web/categories/delve/delve.types'
+import {
+	BazaarCatalyst,
+	CatalystFilterField,
+	CatalystFilterStore,
+	CatalystOfferStore,
+	ShopCatalyst,
+} from '@web/categories/catalyst/catalyst.types'
 
 // APP STATE TYPES
 
@@ -61,6 +68,7 @@ export const CATEGORY = {
 	MAP_8_MOD: 'MAP_8_MOD',
 	BESTIARY: 'BESTIARY',
 	DELVE: 'DELVE',
+	CATALYST: 'CATALYST',
 } as const
 
 export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
@@ -85,6 +93,7 @@ export type BulkyOfferStore =
 	| Map8ModOfferStore
 	| BestiaryOfferStore
 	| DelveOfferStore
+	| CatalystOfferStore
 
 export type BulkyFilterStore =
 	| EssenceFilterStore
@@ -94,6 +103,7 @@ export type BulkyFilterStore =
 	| Map8ModFilterStore
 	| BestiaryFilterStore
 	| DelveFilterStore
+	| CatalystFilterStore
 
 // BULKY SHOP ITEM TYPES
 
@@ -134,7 +144,15 @@ export type BulkyShopItemBase<T extends Category> = {
  * A collection of every implementation of BulkyShopItemBase throughout the app.
  * This will be used as a generic type argument for every higher level type.
  */
-export type BulkyShopItem = ShopEssence | ShopScarab | ShopDeliriumOrb | ShopMap | ShopMap8Mod | ShopBeast | ShopDelveItem
+export type BulkyShopItem =
+	| ShopEssence
+	| ShopScarab
+	| ShopDeliriumOrb
+	| ShopMap
+	| ShopMap8Mod
+	| ShopBeast
+	| ShopDelveItem
+	| ShopCatalyst
 
 /** Type that bulky items will be saved as */
 export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
@@ -205,6 +223,7 @@ export type BulkyBazaarItem =
 	| BazaarMap8Mod
 	| BazaarBeast
 	| BazaarDelveItem
+	| BazaarCatalyst
 
 export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
 
@@ -264,6 +283,7 @@ export type BulkyFilterField =
 	| Map8ModFilterField
 	| BestiaryFilterField
 	| DelveFilterField
+	| CatalystFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.

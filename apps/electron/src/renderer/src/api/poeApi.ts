@@ -42,10 +42,9 @@ export const poeApi = {
 			else if (stashTab.name === 'Deli') return api.get<PoeStashTabResponse>(mockBase + '/stashDelirium.json', config)
 			else if (stashTab.name === 'D') return api.get<PoeStashTabResponse>(mockBase + '/stashDivinationCards.json', config)
 			else if (stashTab.name === 'Del') return api.get<PoeStashTabResponse>(mockBase + '/stashDelve.json', config)
-			else if (stashTab.name === 'Mta') return api.get<PoeStashTabResponse>(mockBase + '/stashUltimatum.json', config)
 			else if (stashTab.name === 'M') return api.get<PoeStashTabResponse>(mockBase + '/stashMaps.json', config)
 			else if (stashTab.name === 'Beasts') return api.get<PoeStashTabResponse>(mockBase + '/stashBeastiary.json', config)
-			else if (stashTab.name === 'Del') return api.get<PoeStashTabResponse>(mockBase + '/stashDelve.json', config)
+			else if (stashTab.name === 'Mta') return api.get<PoeStashTabResponse>(mockBase + '/stashCatalyst.json', config)
 			else return api.get<PoeStashTabResponse>(mockBase + '/stashDump.json', config)
 		}
 

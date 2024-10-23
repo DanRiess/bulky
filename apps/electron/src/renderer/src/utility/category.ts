@@ -5,6 +5,7 @@
 import { CATEGORY, Category } from '@shared/types/bulky.types'
 import { PoeItem } from '@shared/types/poe.types'
 import { BULKY_BESTIARY } from '@web/categories/beastiary/bestiary.transformers'
+import { BULKY_CATALYSTS } from '@web/categories/catalyst/catalyst.transformers'
 import { BULKY_DELIRIUM_ORBS } from '@web/categories/deliriumOrb/deliriumOrb.transformers'
 import { BULKY_DELVE } from '@web/categories/delve/delve.transformers'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
@@ -26,6 +27,8 @@ function generateCategoryFromDto(category: string): Category | undefined {
 		return CATEGORY.BESTIARY
 	} else if (category.match(/delve/i)) {
 		return CATEGORY.DELVE
+	} else if (category.match(/catalyst/i)) {
+		return CATEGORY.CATALYST
 	}
 	return undefined
 }
@@ -45,6 +48,8 @@ function isBaseTypeInCategory(category: Category, item: PoeItem) {
 		return !!BULKY_BESTIARY.generateTypeFromPoeItem(item)
 	} else if (category === 'DELVE') {
 		return !!BULKY_DELVE.generateTypeFromBaseType(baseType)
+	} else if (category === 'CATALYST') {
+		return !!BULKY_CATALYSTS.generateTypeFromBaseType(baseType)
 	}
 	return false
 }

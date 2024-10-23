@@ -138,7 +138,7 @@ configStore.getUserConfig().then(() => {
 @import './assets/css/reset.css';
 @import './assets/css/variables.css';
 @import './assets/css/common.css';
-@import './assets//css/animations.css';
+@import './assets/css/animations.css';
 
 body {
 	font-family: Montserrat, Helvetica, sans-serif;
