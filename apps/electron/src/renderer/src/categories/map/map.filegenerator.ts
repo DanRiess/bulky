@@ -1,11 +1,14 @@
 /**
  * This script can generate the map.const.ts file.
  * It grabs metadata from poedb.tw and generates the file from it.
+ * Consider using pathofexile.com/api/trade/data/static instead if necessary.
+ *
+ * Technically, it could also generate the transformer and type files,
+ * but that was more work than doing it manually. The const file is also the only
+ * one that might need to be updated in the future.
  */
 
-// import { capitalize } from 'lodash'
-
-const fs = require('node:fs')
+import { writeFileSync } from 'node:fs'
 
 async function getPoeDbItemData() {
 	const response = await fetch(
@@ -15,18 +18,21 @@ async function getPoeDbItemData() {
 
 	const maps = data.filter(item => item.desc === 'Maps')
 
-	return maps.map(item => item.value.replace(/_map/i, '').toUpperCase())
+	return maps
+		.map(item => item.value.replace(/_map/i, '').toUpperCase())
+		.filter(Boolean)
+		.sort()
 }
 
-getPoeDbItemData().then(maps => {
-	// MAP.CONST.TS
+getPoeDbItemData().then(items => {
+	console.log({ items })
 	console.log('Generate the map.const.ts content')
 
 	// Imports
 	const imports = "import { typedFromEntries, getKeys } from '@shared/types/utility.types'"
 
 	// Map Types
-	const mapTypes = `export const MAP_TYPE = {\n${maps.map(m => `${m}: '${m}',`).join('\n')}\n} as const`
+	const mapTypes = `export const MAP_TYPE = {\n${items.map(item => `"${item}": "${item}",`).join('\n')}\n} as const`
 	const mapTypeIdxToName = 'export const MAP_TYPE_IDX_TO_NAME = getKeys(MAP_TYPE)'
 	const mapTypeNameToIdx =
 		'export const MAP_TYPE_NAME_TO_IDX = typedFromEntries(Object.entries(MAP_TYPE_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)]))'
@@ -44,14 +50,8 @@ getPoeDbItemData().then(maps => {
 	const fullFile = `${imports} \n\n ${mapTypes} \n\n ${mapTypeIdxToName} \n\n ${mapTypeNameToIdx} \n\n ${mapTiers} \n\n ${mapTierIdxToName} \n\n ${mapTierNameToIdx}`
 
 	console.log('Writing to file map.const.ts')
-	fs.writeFile('./map.const.ts', fullFile, err => {
-		if (err) {
-			console.log(err)
-			return
-		}
-
-		console.log('Written file successfully. Please check, format and save it.')
-	})
+	writeFileSync('./map.const.ts', fullFile)
+	console.log('Written file successfully. Please check, format and save it.')
 
 	// // MAP.TRANSFORMERS.TS
 	// console.log('Generating map.transformers.ts')
@@ -154,5 +154,3 @@ getPoeDbItemData().then(maps => {
 
 	// require('child_process').spawn('clip').stdin.end(maps.join('\n'))
 })
-
-export default {}

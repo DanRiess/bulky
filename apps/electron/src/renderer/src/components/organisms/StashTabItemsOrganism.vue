@@ -102,7 +102,7 @@ const transitionHooks = useGenericTransitionHooks({
 	scale: 0.01,
 	duration: 0.25,
 })
-const { itemsByStash, filteredItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
+const { filteredItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
 const categoryFilteredItemsByStash = filteredItemsByCategory(() => props.category)
 const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
