@@ -40,6 +40,11 @@ import { BazaarDelveItem, DelveFilter, DelveFilterField, ShopDelveItem } from '@
 import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
 import { useDelveFilterStore } from '@web/categories/delve/delveFilter.store'
 import { BazaarCatalyst, CatalystFilter, CatalystFilterField, ShopCatalyst } from '@web/categories/catalyst/catalyst.types'
+import { BazaarCurrency, CurrencyFilter, CurrencyFilterField, ShopCurrency } from '@web/categories/currency/currency.types'
+import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
+import { useCatalystFilterStore } from '@web/categories/catalyst/catalystFilter.store'
+import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
+import { useCurrencyFilterStore } from '@web/categories/currency/currencyFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -164,15 +169,29 @@ function isDelveFilterUuid(uuid: string): uuid is Uuid<DelveFilter> {
 
 /** Validate if a given string is a catalyst offer uuid. */
 function isCatalystOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopCatalyst>> {
-	const store = useDelveOfferStore()
+	const store = useCatalystOfferStore()
 	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarCatalyst>>(uuid)
 	return !!store.offers.has(typedUuid)
 }
 
 /** Validate if a given string is a catalyst filter uuid */
 function isCatalystFilterUuid(uuid: string): uuid is Uuid<CatalystFilter> {
-	const store = useDelveFilterStore()
+	const store = useCatalystFilterStore()
 	const typedUuid = generateTypedUuid<BulkyFilter<CatalystFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
+}
+
+/** Validate if a given string is a currency offer uuid. */
+function isCurrencyOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopCurrency>> {
+	const store = useCurrencyOfferStore()
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarCurrency>>(uuid)
+	return !!store.offers.has(typedUuid)
+}
+
+/** Validate if a given string is a currency filter uuid */
+function isCurrencyFilterUuid(uuid: string): uuid is Uuid<CurrencyFilter> {
+	const store = useCurrencyFilterStore()
+	const typedUuid = generateTypedUuid<BulkyFilter<CurrencyFilterField>>(uuid)
 	return !!store.filters.has(typedUuid)
 }
 
@@ -194,4 +213,6 @@ export const BULKY_UUID = {
 	isDelveFilterUuid,
 	isCatalystOfferUuid,
 	isCatalystFilterUuid,
+	isCurrencyOfferUuid,
+	isCurrencyFilterUuid,
 }

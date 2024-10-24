@@ -9,9 +9,9 @@ import { BEAST_TYPE, BEAST_TYPE_IDX_TO_NAME } from './bestiary.const'
 
 export const BULKY_BESTIARY = {
 	generateTypeFromPoeItem,
-	generateBeastNameFromType,
+	generateNameFromType,
 	generateTier,
-	generateBeastFromPoeItem,
+	generateShopItemFromPoeItem,
 	generateBazaarItemFromDto,
 }
 
@@ -39,7 +39,7 @@ function generateTier(): BeastTier {
 	return '0'
 }
 
-function generateBeastFromPoeItem(
+function generateShopItemFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
@@ -81,7 +81,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarBeast {
 		category: 'BESTIARY',
 		type,
 		tier: '0',
-		name: generateBeastNameFromType(type),
+		name: generateNameFromType(type),
 		quantity: item.qnt,
 		computedQuantity: item.qnt,
 		price: item.prc,
@@ -92,7 +92,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarBeast {
 /**
  * Generate the display name from the type.
  */
-function generateBeastNameFromType(type: BeastType) {
+function generateNameFromType(type: BeastType) {
 	return type
 		.split('_')
 		.map(t => capitalize(t))

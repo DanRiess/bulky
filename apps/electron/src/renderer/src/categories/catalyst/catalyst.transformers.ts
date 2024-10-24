@@ -10,8 +10,8 @@ import { CATALYST_TYPE, CATALYST_TYPE_IDX_TO_NAME } from './catalyst.const'
 export const BULKY_CATALYSTS = {
 	generateTypeFromBaseType,
 	generateTier,
-	generateCatalystFromPoeItem,
-	generateCatalystNameFromType,
+	generateShopItemFromPoeItem,
+	generateNameFromType,
 	generateBazaarItemFromDto,
 }
 
@@ -24,7 +24,7 @@ function generateTier(): CatalystTier {
 	return '0'
 }
 
-function generateCatalystFromPoeItem(
+function generateShopItemFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
@@ -63,7 +63,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCatalyst {
 		category: 'CATALYST',
 		type,
 		tier: '0',
-		name: generateCatalystNameFromType(type),
+		name: generateNameFromType(type),
 		quantity: item.qnt,
 		computedQuantity: item.qnt,
 		price: item.prc,
@@ -75,7 +75,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCatalyst {
  * Generate the display name from the type
  * E. g. SCARAB_OF_WISPS -> Scarab Of Wisps
  */
-function generateCatalystNameFromType(type: CatalystType) {
+function generateNameFromType(type: CatalystType) {
 	return type
 		.split('_')
 		.map(t => capitalize(t))

@@ -36,6 +36,7 @@ import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
 import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
 import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
 import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
+import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -69,6 +70,8 @@ watch(
 			useDelveOfferStore().getTestData()
 		} else if (cat === 'CATALYST') {
 			useCatalystOfferStore().getTestData()
+		} else if (cat === 'CURRENCY') {
+			useCurrencyOfferStore().getTestData()
 		}
 
 		// makeBinTestData()

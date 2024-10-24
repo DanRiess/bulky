@@ -63,7 +63,7 @@ const props = withDefaults(
 		intervalFiringTimer: 50,
 		numDigits: 0,
 		min: 0,
-		max: 999,
+		max: 9999,
 		backgroundColor: 'dark',
 	}
 )

@@ -134,7 +134,7 @@ function bulkyItemToBazaarItemDto(
 		type: nameToIdxTypeMap[item.type],
 		tier: nameToIdxTierMap[item.tier],
 		qnt: item.quantity,
-		prc: Math.round(price * 10) / 10,
+		prc: Math.round(price * 10) / 10 === 0 ? price : Math.round(price * 10) / 10,
 	}
 
 	// Extract perItemAttributes and convert them into the dto type.

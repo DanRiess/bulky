@@ -9,9 +9,9 @@ import { capitalize } from 'lodash'
 
 export const BULKY_DELIRIUM_ORBS = {
 	generateTypeFromBaseType,
-	generateDeliriumOrbNameFromType,
+	generateNameFromType,
 	generateTier,
-	generateDeliriumOrbFromPoeItem,
+	generateShopItemFromPoeItem,
 	generateBazaarItemFromDto,
 }
 
@@ -24,7 +24,7 @@ function generateTier(): DeliriumOrbTier {
 	return '0'
 }
 
-function generateDeliriumOrbFromPoeItem(
+function generateShopItemFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
@@ -63,7 +63,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDeliriumOrb 
 		category: 'DELIRIUM_ORB',
 		type,
 		tier: '0',
-		name: generateDeliriumOrbNameFromType(type),
+		name: generateNameFromType(type),
 		quantity: item.qnt,
 		computedQuantity: item.qnt,
 		price: item.prc,
@@ -75,6 +75,6 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDeliriumOrb 
  * Generate the display name from the type
  * E. g. BLACKSMITHS -> Blacksmith's Delirium Orb
  */
-function generateDeliriumOrbNameFromType(type: DeliriumOrbType) {
+function generateNameFromType(type: DeliriumOrbType) {
 	return capitalize(type).replace(/s$/, "'s").concat(' Delirium Orb')
 }

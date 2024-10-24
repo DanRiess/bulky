@@ -28,6 +28,7 @@ const components = ref([
 	{ displayName: 'Beasts', fileName: 'bestiary-orb', category: CATEGORY.BESTIARY },
 	{ displayName: 'Delve', fileName: 'fossil-sanctified', category: CATEGORY.DELVE },
 	{ displayName: 'Catalysts', fileName: 'catalyst-unstable', category: CATEGORY.CATALYST },
+	{ displayName: 'Currency', fileName: 'currency-divine', category: CATEGORY.CURRENCY },
 ])
 
 // METHODS

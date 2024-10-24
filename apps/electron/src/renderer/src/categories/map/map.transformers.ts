@@ -21,9 +21,9 @@ import { notEmpty } from '@web/utility/notEmpty'
 export const BULKY_MAPS = {
 	generateTypeFromBaseType,
 	generateTierFromProperty,
-	generateMapFromPoeItem,
-	generateMap8ModFromPoeItem,
-	generateMapNameFromType,
+	generateShopItemFromPoeItem,
+	generateShopMap8ModItemFromPoeItem,
+	generateNameFromType,
 	generateBazaarItemFromDto,
 	generateBazaarMap8ModItemFromDto,
 	getPerItemAttributes,
@@ -42,7 +42,7 @@ function generateTierFromProperty(properties?: PoeItemProperty[]): MapTier | und
 	return MAP_TIER[`TIER_${tier}`]
 }
 
-function generateMapFromPoeItem(
+function generateShopItemFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
@@ -74,7 +74,10 @@ function generateMapFromPoeItem(
 	}
 }
 
-function generateMap8ModFromPoeItem(poeItem: PoeItem, itemOverrides: Ref<BulkyItemOverrideRecord>): ShopMap8Mod | undefined {
+function generateShopMap8ModItemFromPoeItem(
+	poeItem: PoeItem,
+	itemOverrides: Ref<BulkyItemOverrideRecord>
+): ShopMap8Mod | undefined {
 	const configStore = useConfigStore()
 
 	const type = generateTypeFromBaseType(poeItem.baseType)
@@ -138,7 +141,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarMap {
 		category: 'MAP',
 		type,
 		tier,
-		name: generateMapNameFromType(type),
+		name: generateNameFromType(type),
 		quantity: item.qnt,
 		computedQuantity: item.qnt,
 		price: item.prc,
@@ -172,7 +175,7 @@ function generateBazaarMap8ModItemFromDto(item: BulkyBazaarItemDto): BazaarMap8M
 		category: 'MAP_8_MOD',
 		type,
 		tier,
-		name: generateMapNameFromType(type),
+		name: generateNameFromType(type),
 		quantity: item.qnt,
 		computedQuantity: item.qnt,
 		price: item.prc,
@@ -187,7 +190,7 @@ function generateBazaarMap8ModItemFromDto(item: BulkyBazaarItemDto): BazaarMap8M
 	}
 }
 
-function generateMapNameFromType(type: MapType) {
+function generateNameFromType(type: MapType) {
 	return (
 		type
 			.split('_')

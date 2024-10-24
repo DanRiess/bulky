@@ -11,6 +11,14 @@ import { Ref, computed } from 'vue'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
 
+export const BULKY_ESSENCES = {
+	generateTypeFromBaseType,
+	generateTierFromBaseType,
+	generateNameFromTypeAndTier,
+	generateBazaarItemFromDto,
+	generateShopItemFromPoeItem,
+}
+
 /** Type a returned ShopEssence type DTO and turn it into an ShopEssence type */
 function generateTypeFromBaseType(baseType: string): EssenceType | undefined {
 	if (baseType.match(/essence of greed/i)) return ESSENCE_TYPE.GREED
@@ -55,7 +63,7 @@ function generateTierFromBaseType(baseType: string): EssenceTier | undefined {
 	else return undefined
 }
 
-function generateEssenceFromPoeItem(
+function generateShopItemFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
@@ -95,7 +103,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarEssence {
 		category: 'ESSENCE',
 		type,
 		tier,
-		name: generateEssenceNameFromTypeAndTier(type, tier),
+		name: generateNameFromTypeAndTier(type, tier),
 		quantity: item.qnt,
 		computedQuantity: item.qnt,
 		price: item.prc,
@@ -103,17 +111,9 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarEssence {
 	}
 }
 
-function generateEssenceNameFromTypeAndTier(type: EssenceType, tier: EssenceTier) {
+function generateNameFromTypeAndTier(type: EssenceType, tier: EssenceTier) {
 	if (type === 'HYSTERIA' || type === 'DELIRIUM' || type === 'INSANITY' || type === 'HORROR') {
 		return `Essence of ${capitalize(type)}`
 	}
 	return `${capitalize(tier)} E. of ${capitalize(type)}`
-}
-
-export const BULKY_ESSENCES = {
-	generateTypeFromBaseType,
-	generateTierFromBaseType,
-	generateEssenceFromPoeItem,
-	generateEssenceNameFromTypeAndTier,
-	generateBazaarItemFromDto,
 }

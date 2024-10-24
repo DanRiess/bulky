@@ -4,23 +4,23 @@ import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
-import { BazaarDelveItem, DelveTier, DelveType, ShopDelveItem } from './delve.types'
-import { DELVE_TYPE, DELVE_TYPE_IDX_TO_NAME } from './delve.const'
+import { BazaarCurrency, CurrencyTier, CurrencyType, ShopCurrency } from './currency.types'
+import { CURRENCY_TYPE, CURRENCY_TYPE_IDX_TO_NAME } from './currency.const'
 
-export const BULKY_DELVE = {
+export const BULKY_CURRENCY = {
 	generateTypeFromBaseType,
 	generateTier,
-	generateBazaarItemFromDto,
 	generateShopItemFromPoeItem,
 	generateNameFromType,
+	generateBazaarItemFromDto,
 }
 
-function generateTypeFromBaseType(baseType: string): DelveType | undefined {
+function generateTypeFromBaseType(baseType: string): CurrencyType | undefined {
 	const transformedType = baseType.replace(/\s/g, '_').toUpperCase()
-	return DELVE_TYPE[transformedType]
+	return CURRENCY_TYPE[transformedType]
 }
 
-function generateTier(): DelveTier {
+function generateTier(): CurrencyTier {
 	return '0'
 }
 
@@ -28,7 +28,7 @@ function generateShopItemFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
-): ShopDelveItem | undefined {
+): ShopCurrency | undefined {
 	const configStore = useConfigStore()
 
 	const type = generateTypeFromBaseType(poeItem.baseType)
@@ -43,10 +43,12 @@ function generateShopItemFromPoeItem(
 		icon: poeItem.icon,
 		quantity: poeItem.stackSize,
 		price: computed(() => {
-			return Math.round((prices.value.get(poeItem.baseType)?.chaos ?? 0) * 10) / 10
+			if (type === 'CHAOS_ORB') return 1
+			// return Math.round((prices.value.get(poeItem.baseType)?.chaos ?? 0) * 10) / 10
+			return prices.value.get(poeItem.baseType)?.chaos ?? 0
 		}),
 		league: configStore.config.league,
-		category: 'DELVE',
+		category: 'CURRENCY',
 		priceOverride: computed(() => {
 			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
 		}),
@@ -56,11 +58,11 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDelveItem {
-	const type = DELVE_TYPE_IDX_TO_NAME[item.type]
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCurrency {
+	const type = CURRENCY_TYPE_IDX_TO_NAME[item.type]
 
 	return {
-		category: 'DELVE',
+		category: 'CURRENCY',
 		type,
 		tier: '0',
 		name: generateNameFromType(type),
@@ -72,9 +74,10 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDelveItem {
 }
 
 /**
- * Generate the display name from the type.
+ * Generate the display name from the type
+ * E. g. DIVINE_ORB -> Divine Orb
  */
-function generateNameFromType(type: DelveType) {
+function generateNameFromType(type: CurrencyType) {
 	return type
 		.split('_')
 		.map(t => capitalize(t))

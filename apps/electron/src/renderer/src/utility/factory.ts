@@ -25,8 +25,14 @@ import { useBestiaryFilterStore } from '@web/categories/beastiary/bestiaryFilter
 import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
 import { CATALYST_TYPE, CATALYST_TYPE_IDX_TO_NAME, CATALYST_TYPE_NAME_TO_IDX } from '@web/categories/catalyst/catalyst.const'
 import { BULKY_CATALYSTS } from '@web/categories/catalyst/catalyst.transformers'
+import { CatalystTier } from '@web/categories/catalyst/catalyst.types'
 import { useCatalystFilterStore } from '@web/categories/catalyst/catalystFilter.store'
 import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
+import { CURRENCY_TYPE, CURRENCY_TYPE_IDX_TO_NAME, CURRENCY_TYPE_NAME_TO_IDX } from '@web/categories/currency/currency.const'
+import { BULKY_CURRENCY } from '@web/categories/currency/currency.transformers'
+import { CurrencyTier } from '@web/categories/currency/currency.types'
+import { useCurrencyFilterStore } from '@web/categories/currency/currencyFilter.store'
+import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
 import {
 	DELI_ORB_TYPE,
 	DELI_ORB_TYPE_IDX_TO_NAME,
@@ -101,6 +107,7 @@ function getOfferStore(category: Category): BulkyOfferStore | undefined {
 	else if (category === 'BESTIARY') return useBestiaryOfferStore()
 	else if (category === 'DELVE') return useDelveOfferStore()
 	else if (category === 'CATALYST') return useCatalystOfferStore()
+	else if (category === 'CURRENCY') return useCurrencyOfferStore()
 	return undefined
 }
 
@@ -116,6 +123,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 	else if (category === 'BESTIARY') return useBestiaryFilterStore()
 	else if (category === 'DELVE') return useDelveFilterStore()
 	else if (category === 'CATALYST') return useCatalystFilterStore()
+	else if (category === 'CURRENCY') return useCurrencyFilterStore()
 	return undefined
 }
 
@@ -132,6 +140,7 @@ function getNameToIdxTypeMap(category: Category) {
 	else if (category === 'BESTIARY') return BEAST_TYPE_NAME_TO_IDX
 	else if (category === 'DELVE') return DELVE_TYPE_NAME_TO_IDX
 	else if (category === 'CATALYST') return CATALYST_TYPE_NAME_TO_IDX
+	else if (category === 'CURRENCY') return CURRENCY_TYPE_NAME_TO_IDX
 	return undefined
 }
 
@@ -146,6 +155,7 @@ function getNameToIdxTierMap(category: Category) {
 	else if (category === 'BESTIARY') return { '0': 0 }
 	else if (category === 'DELVE') return { '0': 0 }
 	else if (category === 'CATALYST') return { '0': 0 }
+	else if (category === 'CURRENCY') return { '0': 0 }
 	return undefined
 }
 
@@ -162,6 +172,7 @@ function getIdxToNameTypeMap(category: Category) {
 	else if (category === 'BESTIARY') return BEAST_TYPE_IDX_TO_NAME
 	else if (category === 'DELVE') return DELVE_TYPE_IDX_TO_NAME
 	else if (category === 'CATALYST') return CATALYST_TYPE_IDX_TO_NAME
+	else if (category === 'CURRENCY') return CURRENCY_TYPE_IDX_TO_NAME
 	return undefined
 }
 
@@ -175,7 +186,8 @@ function getIdxToNameTierMap(category: Category) {
 	else if (category === 'MAP' || category === 'MAP_8_MOD') return MAP_TIER_IDX_TO_NAME
 	else if (category === 'BESTIARY') return ['0'] as BeastTier[]
 	else if (category === 'DELVE') return ['0'] as DelveTier[]
-	else if (category === 'CATALYST') return ['0'] as DelveTier[]
+	else if (category === 'CATALYST') return ['0'] as CatalystTier[]
+	else if (category === 'CURRENCY') return ['0'] as CurrencyTier[]
 	return undefined
 }
 
@@ -190,6 +202,7 @@ function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined
 	else if (category === 'BESTIARY') return getKeys(BEAST_TYPE)
 	else if (category === 'DELVE') return getKeys(DELVE_TYPE)
 	else if (category === 'CATALYST') return getKeys(CATALYST_TYPE)
+	else if (category === 'CURRENCY') return getKeys(CURRENCY_TYPE)
 	else return undefined
 }
 
@@ -204,6 +217,7 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 	else if (category === 'BESTIARY') return ['0']
 	else if (category === 'DELVE') return ['0']
 	else if (category === 'CATALYST') return ['0']
+	else if (category === 'CURRENCY') return ['0']
 	else return undefined
 }
 
@@ -218,6 +232,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTypeFromPoeItem(item)
 	else if (category === 'DELVE') return BULKY_DELVE.generateTypeFromBaseType(item.baseType)
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTypeFromBaseType(item.baseType)
+	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTypeFromBaseType(item.baseType)
 	else return undefined
 }
 
@@ -232,6 +247,7 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateTier()
 	else if (category === 'DELVE') return BULKY_DELVE.generateTier()
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTier()
+	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTier()
 	else return undefined
 }
 
@@ -243,21 +259,19 @@ function getNameFromTypeAndTier(
 	item: { type: string; tier: string; quantity: number; price: number }
 ): string | undefined {
 	if (category === 'ESSENCE' && useEssenceOfferStore().isEssence(item))
-		return BULKY_ESSENCES.generateEssenceNameFromTypeAndTier(item.type, item.tier)
-	else if (category === 'SCARAB' && useScarabOfferStore().isScarab(item))
-		return BULKY_SCARABS.generateScarabNameFromType(item.type)
+		return BULKY_ESSENCES.generateNameFromTypeAndTier(item.type, item.tier)
+	else if (category === 'SCARAB' && useScarabOfferStore().isScarab(item)) return BULKY_SCARABS.generateNameFromType(item.type)
 	else if (category === 'DELIRIUM_ORB' && useDeliriumOrbOfferStore().isDeliriumOrb(item))
-		return BULKY_DELIRIUM_ORBS.generateDeliriumOrbNameFromType(item.type)
-	else if (category === 'MAP' && useNormalMapOfferStore().isNormalMap(item))
-		return BULKY_MAPS.generateMapNameFromType(item.type)
-	else if (category === 'MAP_8_MOD' && useMap8ModOfferStore().isMap8Mod(item))
-		return BULKY_MAPS.generateMapNameFromType(item.type)
+		return BULKY_DELIRIUM_ORBS.generateNameFromType(item.type)
+	else if (category === 'MAP' && useNormalMapOfferStore().isNormalMap(item)) return BULKY_MAPS.generateNameFromType(item.type)
+	else if (category === 'MAP_8_MOD' && useMap8ModOfferStore().isMap8Mod(item)) return BULKY_MAPS.generateNameFromType(item.type)
 	else if (category === 'BESTIARY' && useBestiaryOfferStore().isBeast(item))
-		return BULKY_BESTIARY.generateBeastNameFromType(item.type)
-	else if (category === 'DELVE' && useDelveOfferStore().isDelveItem(item))
-		return BULKY_DELVE.generateDelveItemNameFromType(item.type)
+		return BULKY_BESTIARY.generateNameFromType(item.type)
+	else if (category === 'DELVE' && useDelveOfferStore().isDelveItem(item)) return BULKY_DELVE.generateNameFromType(item.type)
 	else if (category === 'CATALYST' && useCatalystOfferStore().isCatalyst(item))
-		return BULKY_CATALYSTS.generateCatalystNameFromType(item.type)
+		return BULKY_CATALYSTS.generateNameFromType(item.type)
+	else if (category === 'CURRENCY' && useCurrencyOfferStore().isCurrencyItem(item))
+		return BULKY_CURRENCY.generateNameFromType(item.type)
 	else return undefined
 }
 
@@ -273,6 +287,7 @@ function generateBazaarItemFromDto(category: Category, item: BulkyBazaarItemDto)
 	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateBazaarItemFromDto(item)
 	else if (category === 'DELVE') return BULKY_DELVE.generateBazaarItemFromDto(item)
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateBazaarItemFromDto(item)
+	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateBazaarItemFromDto(item)
 	else return undefined
 }
 
@@ -285,14 +300,15 @@ function generateBulkyItemFromPoeItem(
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
 ): BulkyShopItem | undefined {
-	if (category === 'ESSENCE') return BULKY_ESSENCES.generateEssenceFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'SCARAB') return BULKY_SCARABS.generateScarabFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateDeliriumOrbFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'MAP') return BULKY_MAPS.generateMapFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateMap8ModFromPoeItem(item, itemOverrides)
-	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateBeastFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'DELVE') return BULKY_DELVE.generateDelveItemFromPoeItem(item, prices, itemOverrides)
-	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateCatalystFromPoeItem(item, prices, itemOverrides)
+	if (category === 'ESSENCE') return BULKY_ESSENCES.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'SCARAB') return BULKY_SCARABS.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'DELIRIUM_ORB') return BULKY_DELIRIUM_ORBS.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'MAP') return BULKY_MAPS.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'MAP_8_MOD') return BULKY_MAPS.generateShopMap8ModItemFromPoeItem(item, itemOverrides)
+	else if (category === 'BESTIARY') return BULKY_BESTIARY.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'DELVE') return BULKY_DELVE.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else return undefined
 }
 

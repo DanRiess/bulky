@@ -13,6 +13,7 @@ import { useMap8ModFilterStore } from '@web/categories/map/map8ModFilter.store'
 import { useBestiaryFilterStore } from '@web/categories/beastiary/bestiaryFilter.store'
 import { useDelveFilterStore } from '@web/categories/delve/delveFilter.store'
 import { useCatalystFilterStore } from '@web/categories/catalyst/catalystFilter.store'
+import { useCurrencyFilterStore } from '@web/categories/currency/currencyFilter.store'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
@@ -27,6 +28,7 @@ export function useComputedFilterStore() {
 	const bestiaryFilterStore = useBestiaryFilterStore()
 	const delveFilterStore = useDelveFilterStore()
 	const catalystFilterStore = useCatalystFilterStore()
+	const currencyFilterStore = useCurrencyFilterStore()
 
 	return computed<ComputedBulkyFilterStore | undefined>(() => {
 		const store = BULKY_FACTORY.getFilterStore(appStateStore.selectedCategory)
@@ -49,6 +51,7 @@ export function useComputedFilterStore() {
 			else if (store === bestiaryFilterStore && BULKY_UUID.isBestiaryFilterUuid(id)) filter = store.filters.get(id)
 			else if (store === delveFilterStore && BULKY_UUID.isDelveFilterUuid(id)) filter = store.filters.get(id)
 			else if (store === catalystFilterStore && BULKY_UUID.isCatalystFilterUuid(id)) filter = store.filters.get(id)
+			else if (store === currencyFilterStore && BULKY_UUID.isCurrencyFilterUuid(id)) filter = store.filters.get(id)
 		}
 
 		// If something went wrong during filter creation, return.
@@ -68,6 +71,7 @@ export function useComputedFilterStore() {
 			else if (store === bestiaryFilterStore && BULKY_UUID.isBestiaryFilterUuid(uuid)) store.addFilterField(uuid)
 			else if (store === delveFilterStore && BULKY_UUID.isDelveFilterUuid(uuid)) store.addFilterField(uuid)
 			else if (store === catalystFilterStore && BULKY_UUID.isCatalystFilterUuid(uuid)) store.addFilterField(uuid)
+			else if (store === currencyFilterStore && BULKY_UUID.isCurrencyFilterUuid(uuid)) store.addFilterField(uuid)
 		}
 
 		/** Remove a filter field from the current filter */
@@ -85,6 +89,7 @@ export function useComputedFilterStore() {
 			else if (store === bestiaryFilterStore && BULKY_UUID.isBestiaryFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 			else if (store === delveFilterStore && BULKY_UUID.isDelveFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 			else if (store === catalystFilterStore && BULKY_UUID.isCatalystFilterUuid(uuid)) store.removeFilterField(uuid, idx)
+			else if (store === currencyFilterStore && BULKY_UUID.isCurrencyFilterUuid(uuid)) store.removeFilterField(uuid, idx)
 		}
 
 		return {

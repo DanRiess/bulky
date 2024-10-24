@@ -10,8 +10,8 @@ import { capitalize } from 'lodash'
 export const BULKY_SCARABS = {
 	generateTypeFromBaseType,
 	generateTier,
-	generateScarabFromPoeItem,
-	generateScarabNameFromType,
+	generateShopItemFromPoeItem,
+	generateNameFromType,
 	generateBazaarItemFromDto,
 }
 
@@ -24,7 +24,7 @@ function generateTier(): ScarabTier {
 	return '0'
 }
 
-function generateScarabFromPoeItem(
+function generateShopItemFromPoeItem(
 	poeItem: PoeItem,
 	prices: Ref<NinjaPriceRecord>,
 	itemOverrides: Ref<BulkyItemOverrideRecord>
@@ -63,7 +63,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarScarab {
 		category: 'SCARAB',
 		type,
 		tier: '0',
-		name: generateScarabNameFromType(type),
+		name: generateNameFromType(type),
 		quantity: item.qnt,
 		computedQuantity: item.qnt,
 		price: item.prc,
@@ -75,7 +75,7 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarScarab {
  * Generate the display name from the type
  * E. g. SCARAB_OF_WISPS -> Scarab Of Wisps
  */
-function generateScarabNameFromType(type: ScarabType) {
+function generateNameFromType(type: ScarabType) {
 	return type
 		.split('_')
 		.map(t => capitalize(t))
