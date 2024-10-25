@@ -88,7 +88,7 @@ const backgroundColorButton = computed(() => {
  */
 const queryRegex = computed(() => {
 	if (!query.value) return new RegExp('', 'gi')
-	const regexString = [...query.value].map(c => `${c}.*`).join('')
+	const regexString = [...query.value].map(c => `\\${c}.*`).join('')
 	return new RegExp(regexString, 'gi')
 })
 

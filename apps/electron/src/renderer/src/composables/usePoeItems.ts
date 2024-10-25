@@ -5,6 +5,7 @@ import { MaybeRefOrGetter, computed, ref, toValue, watch } from 'vue'
 import { PoeItemsByStash, PoeStashTab } from '@shared/types/poe.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { Category } from '@shared/types/bulky.types'
+import { BULKY_FACTORY } from '@web/utility/factory'
 
 /**
  * Compose a ref of items from currently selected stash tabs.
@@ -53,9 +54,9 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 	function filteredItemsByCategory(category: MaybeRefOrGetter<Category>) {
 		return computed(() => {
 			return getKeys(itemsByStash.value).reduce((prev, curr) => {
-				prev[curr] = itemsByStash.value[curr].filter(item =>
-					BULKY_CATEGORIES.isBaseTypeInCategory(toValue(category), item)
-				)
+				prev[curr] = itemsByStash.value[curr].filter(item => {
+					return !!BULKY_FACTORY.getTypeFromPoeItem(item, toValue(category))
+				})
 				return prev
 			}, {} as PoeItemsByStash)
 		})

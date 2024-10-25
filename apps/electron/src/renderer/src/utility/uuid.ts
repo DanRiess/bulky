@@ -45,6 +45,9 @@ import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.s
 import { useCatalystFilterStore } from '@web/categories/catalyst/catalystFilter.store'
 import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
 import { useCurrencyFilterStore } from '@web/categories/currency/currencyFilter.store'
+import { BazaarHeistItem, HeistFilter, HeistFilterField, ShopHeistItem } from '@web/categories/heist/heist.types'
+import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
+import { useHeistFilterStore } from '@web/categories/heist/heistFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -195,6 +198,20 @@ function isCurrencyFilterUuid(uuid: string): uuid is Uuid<CurrencyFilter> {
 	return !!store.filters.has(typedUuid)
 }
 
+/** Validate if a given string is a heist offer uuid. */
+function isHeistOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopHeistItem>> {
+	const store = useHeistOfferStore()
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarHeistItem>>(uuid)
+	return !!store.offers.has(typedUuid)
+}
+
+/** Validate if a given string is a heist filter uuid */
+function isHeistFilterUuid(uuid: string): uuid is Uuid<HeistFilter> {
+	const store = useHeistFilterStore()
+	const typedUuid = generateTypedUuid<BulkyFilter<HeistFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
+}
+
 export const BULKY_UUID = {
 	generateTypedUuid,
 	isEssenceOfferUuid,
@@ -215,4 +232,6 @@ export const BULKY_UUID = {
 	isCatalystFilterUuid,
 	isCurrencyOfferUuid,
 	isCurrencyFilterUuid,
+	isHeistOfferUuid,
+	isHeistFilterUuid,
 }

@@ -63,6 +63,13 @@ import {
 	CurrencyOfferStore,
 	ShopCurrency,
 } from '@web/categories/currency/currency.types'
+import {
+	BazaarHeistItem,
+	HeistFilterField,
+	HeistFilterStore,
+	HeistOfferStore,
+	ShopHeistItem,
+} from '@web/categories/heist/heist.types'
 
 // APP STATE TYPES
 
@@ -77,6 +84,7 @@ export const CATEGORY = {
 	DELVE: 'DELVE',
 	CATALYST: 'CATALYST',
 	CURRENCY: 'CURRENCY',
+	HEIST: 'HEIST',
 } as const
 
 export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
@@ -103,6 +111,7 @@ export type BulkyOfferStore =
 	| DelveOfferStore
 	| CatalystOfferStore
 	| CurrencyOfferStore
+	| HeistOfferStore
 
 export type BulkyFilterStore =
 	| EssenceFilterStore
@@ -114,6 +123,7 @@ export type BulkyFilterStore =
 	| DelveFilterStore
 	| CatalystFilterStore
 	| CurrencyFilterStore
+	| HeistFilterStore
 
 // BULKY SHOP ITEM TYPES
 
@@ -164,6 +174,7 @@ export type BulkyShopItem =
 	| ShopDelveItem
 	| ShopCatalyst
 	| ShopCurrency
+	| ShopHeistItem
 
 /** Type that bulky items will be saved as */
 export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
@@ -236,6 +247,7 @@ export type BulkyBazaarItem =
 	| BazaarDelveItem
 	| BazaarCatalyst
 	| BazaarCurrency
+	| BazaarHeistItem
 
 export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
 
@@ -297,6 +309,7 @@ export type BulkyFilterField =
 	| DelveFilterField
 	| CatalystFilterField
 	| CurrencyFilterField
+	| HeistFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.

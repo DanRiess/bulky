@@ -32,22 +32,22 @@ getPoeDbItemData().then(items => {
 	const imports = "import { typedFromEntries, getKeys } from '@shared/types/utility.types'"
 
 	// Map Types
-	const mapTypes = `export const MAP_TYPE = {\n${items.map(item => `"${item}": "${item}",`).join('\n')}\n} as const`
-	const mapTypeIdxToName = 'export const MAP_TYPE_IDX_TO_NAME = getKeys(MAP_TYPE)'
-	const mapTypeNameToIdx =
+	const types = `export const MAP_TYPE = {\n${items.map(item => `"${item}": "${item}",`).join('\n')}\n} as const`
+	const typeIdxToName = 'export const MAP_TYPE_IDX_TO_NAME = getKeys(MAP_TYPE)'
+	const typeNameToIdx =
 		'export const MAP_TYPE_NAME_TO_IDX = typedFromEntries(Object.entries(MAP_TYPE_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)]))'
 
 	// Map Tiers
-	const mapTiers = `export const MAP_TIER = {\n${new Array(17)
+	const tiers = `export const MAP_TIER = {\n${new Array(17)
 		.fill(0)
 		.map((_, idx) => `TIER_${idx + 1}: 'TIER_${idx + 1}',`)
 		.join('\n')}\n} as const`
-	const mapTierIdxToName = 'export const MAP_TIER_IDX_TO_NAME = getKeys(MAP_TIER)'
-	const mapTierNameToIdx =
+	const tierIdxToName = 'export const MAP_TIER_IDX_TO_NAME = getKeys(MAP_TIER)'
+	const tierNameToIdx =
 		'export const MAP_TIER_NAME_TO_IDX = typedFromEntries(Object.entries(MAP_TIER_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)]))'
 
 	// Combine the parts into the full file
-	const fullFile = `${imports} \n\n ${mapTypes} \n\n ${mapTypeIdxToName} \n\n ${mapTypeNameToIdx} \n\n ${mapTiers} \n\n ${mapTierIdxToName} \n\n ${mapTierNameToIdx}`
+	const fullFile = `${imports} \n\n ${types} \n\n ${typeIdxToName} \n\n ${typeNameToIdx} \n\n ${tiers} \n\n ${tierIdxToName} \n\n ${tierNameToIdx}`
 
 	console.log('Writing to file map.const.ts')
 	writeFileSync('./map.const.ts', fullFile)

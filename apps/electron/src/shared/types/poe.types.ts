@@ -42,6 +42,7 @@ export type PoeItem = Pick<
 	| 'baseType'
 	| 'icon'
 	| 'itemLevel'
+	| 'ilvl' // deprecated, but used for heist contracts
 	| 'stackSize'
 	| 'maxStackSize'
 	| 'implicitMods'

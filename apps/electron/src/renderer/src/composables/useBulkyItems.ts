@@ -74,6 +74,7 @@ export function useBulkyItems(
 	function putItem(poeItem: PoeItem) {
 		const type = BULKY_FACTORY.getTypeFromPoeItem(poeItem, toValue(category))
 		const tier = BULKY_FACTORY.getTierFromPoeItem(poeItem, toValue(category))
+		console.log({ type, tier })
 		if (!type || !tier) return
 
 		const perItemAttributes = BULKY_FACTORY.getPerItemAttributes(toValue(category), poeItem)
@@ -96,6 +97,7 @@ export function useBulkyItems(
 		// ...otherwise, create a new BulkyShopItem and add it to the map
 		else {
 			const bulkyItem = BULKY_FACTORY.generateBulkyItemFromPoeItem(poeItem, toValue(category), prices, priceOverrides)
+			console.log({ bulkyItem })
 			if (!bulkyItem) return
 
 			// Get the per item attributes

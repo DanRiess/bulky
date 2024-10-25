@@ -1,16 +1,16 @@
 /**
- * Handle scarab filter logic in this store.
+ * Handle heist filter logic in this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BulkyFilter } from '@shared/types/bulky.types'
-import { ScarabFilter, ScarabFilterField } from './scarab.types'
+import { HeistFilter, HeistFilterField } from './heist.types'
 
-export const useScarabFilterStore = defineStore('scarabFilterStore', () => {
-	const filters = ref<Map<ScarabFilter['uuid'], ScarabFilter>>(new Map())
-	const currentFilterId = ref<ScarabFilter['uuid']>()
+export const useHeistFilterStore = defineStore('heistFilterStore', () => {
+	const filters = ref<Map<HeistFilter['uuid'], HeistFilter>>(new Map())
+	const currentFilterId = ref<HeistFilter['uuid']>()
 	const currentFilter = computed(() => {
 		return currentFilterId.value ? filters.value.get(currentFilterId.value) : undefined
 	})
@@ -19,8 +19,8 @@ export const useScarabFilterStore = defineStore('scarabFilterStore', () => {
 	 * Create a new filter.
 	 */
 	function createNewFilter() {
-		const uuid = BULKY_UUID.generateTypedUuid<BulkyFilter<ScarabFilterField>>()
-		const category = 'SCARAB'
+		const uuid = BULKY_UUID.generateTypedUuid<BulkyFilter<HeistFilterField>>()
+		const category = 'HEIST'
 		const name = `Default_${filters.value.size}`
 		const fullBuyout = false
 		const alwaysMaxQuantity = false
@@ -44,7 +44,7 @@ export const useScarabFilterStore = defineStore('scarabFilterStore', () => {
 	/**
 	 * Add a filter field.
 	 */
-	function addFilterField(uuid: ScarabFilter['uuid']) {
+	function addFilterField(uuid: HeistFilter['uuid']) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
 
@@ -54,7 +54,7 @@ export const useScarabFilterStore = defineStore('scarabFilterStore', () => {
 	/**
 	 * Remove a filter field.
 	 */
-	function removeFilterField(uuid: ScarabFilter['uuid'], idx: number) {
+	function removeFilterField(uuid: HeistFilter['uuid'], idx: number) {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
 
@@ -67,11 +67,11 @@ export const useScarabFilterStore = defineStore('scarabFilterStore', () => {
 	 * @private
 	 */
 	function generateDefaultFilterField() {
-		const field: ScarabFilterField = {
-			uuid: BULKY_UUID.generateTypedUuid<ScarabFilterField>(),
-			category: 'SCARAB',
-			type: 'ABYSS_SCARAB',
-			tier: '0',
+		const field: HeistFilterField = {
+			uuid: BULKY_UUID.generateTypedUuid<HeistFilterField>(),
+			category: 'HEIST',
+			type: 'BLUEPRINT',
+			tier: 'ILVL_83+',
 			quantity: 1,
 		}
 		return field
@@ -87,5 +87,5 @@ export const useScarabFilterStore = defineStore('scarabFilterStore', () => {
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useScarabFilterStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useHeistFilterStore, import.meta.hot))
 }

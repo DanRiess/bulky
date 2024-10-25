@@ -1,0 +1,1333 @@
+{
+	"stash": {
+		"id": "84e138ac14",
+		"name": "2",
+		"type": "PremiumStash",
+		"index": 19,
+		"metadata": {
+			"colour": "638000"
+		},
+		"items": [
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "9153e05e43aa9264400e35ec923a84fc66d4e52f680487a659f315ef552cfb8c",
+				"name": "Rage Vow",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Rare",
+				"ilvl": 85,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Bazira",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Flask of Welakath",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+64%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+37%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters fire 2 additional Projectiles",
+					"Monsters' skills Chain 2 additional times",
+					"Guards deal 27% increased Damage",
+					"Players have 40% less Cooldown Recovery Rate"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Long ago, a traitor was promised this mythical elixir. We consider her a fool for\r",
+					"believing it exists, but if it does... I would certainly like to take a sip and find out.\""
+				],
+				"frameType": 2,
+				"x": 0,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "64a7f4afeea569d51a2bbff1cc0c37b4635bfbf698325d80752d0dc940592492",
+				"name": "",
+				"typeLine": "Freezing Contract: Bunker of Temporal Chains",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Bazira",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Flask of Welakath",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Agility",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 44
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+29%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+17%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players are Cursed with Temporal Chains",
+					"Monsters deal 94% extra Physical Damage as Cold"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Long ago, a traitor was promised this mythical elixir. We consider her a fool for\r",
+					"believing it exists, but if it does... I would certainly like to take a sip and find out.\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "0a412e07f9fdf15dcae856988f221ad97d4e75dffc8c6c26ec3d297e4585446b",
+				"name": "",
+				"typeLine": "Contract: Bunker of Exposure",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 85,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Castor Pollinius III",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Golden Xoplotli Idol",
+								0
+							],
+							[
+								"Priceless",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+19%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players have -9% to all maximum Resistances"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Heard if you put a drop of blood in its mouth,\r",
+					"it'll whisper the secrets of immortality.\r",
+					"Doesn't have to be your own blood, does it?\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 6,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "248a33101ea297a96e50d866814fa03db06a3d7015c935f4dfdf11efdb8a1e1c",
+				"name": "Damnation Scripture",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"The Crimson Scribe",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"The Golden Ibis",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Agility",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 44
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+74%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+42%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters take 38% reduced Extra Damage from Critical Strikes",
+					"Reward Room Monsters deal 29% increased Damage",
+					"-5% Player Cold Resistance per 25% Alert Level",
+					"Reinforcements have 13% increased Attack Speed",
+					"Reinforcements have 12% increased Cast Speed",
+					"Reinforcements have 6% increased Movement Speed",
+					"Monsters gain 32% of their Physical Damage as Extra Chaos Damage",
+					"Monsters Inflict Withered for 2 seconds on Hit"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"It is said that the Golden Ibis was forged before time itself, before writing, or even\r",
+					"oral history. That's nonsense, of course, but it's still very old, and therefore noteworthy.\""
+				],
+				"frameType": 2,
+				"x": 0,
+				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQmx1ZXByaW50Tm90QXBwcm92ZWQzIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/fd4cd3685e/BlueprintNotApproved3.png",
+				"league": "Settlers",
+				"id": "c39d0a3b08a264fe7d23a40bc99faa075c1eb40aa4989feb42a1624c5bb24995",
+				"name": "",
+				"typeLine": "Stoic Blueprint: Laboratory of Frenzy",
+				"baseType": "Blueprint: Laboratory",
+				"rarity": "Magic",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Wings Revealed",
+						"values": [
+							[
+								"3/3",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 35
+					},
+					{
+						"name": "Escape Routes Revealed",
+						"values": [
+							[
+								"3/6",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 36
+					},
+					{
+						"name": "Reward Rooms Revealed",
+						"values": [
+							[
+								"9/21",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 37
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"5",
+								0
+							],
+							[
+								"Perception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 40
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"5",
+								0
+							],
+							[
+								"Counter-Thaumaturgy",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 42
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Deception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 45
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Engineering",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 46
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+29%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+17%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters gain a Frenzy Charge on Hit",
+					"Guards take 28% reduced Damage"
+				],
+				"descrText": "Use Intelligence to Reveal additional Wings and Rooms by talking to certain NPCs in the Rogue Harbour. Give this Blueprint to Adiyah to embark on the Grand Heist.",
+				"frameType": 1,
+				"x": 0,
+				"y": 8,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "bde22c5b0da8c4af971ecc0f12439239af32919f5d3d0d1680eb69661aaced05",
+				"name": "",
+				"typeLine": "Contract: Bunker of Vulnerability",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"The Crimson Scribe",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Seal of Solaris",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"5",
+								0
+							],
+							[
+								"Lockpicking",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 38
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+13%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+8%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+5%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+5%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+5%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players are Cursed with Vulnerability"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"It is my belief that Solerai, from the Maraketh legend, is Solaris herself in another system of\r",
+					"myths. If I can prove that, I can begin piecing together a true history of the Winter of the World.\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "c212c0ec667c36b8df300e66929eb1be88b81e44673ccff42d588307ebb757f5",
+				"name": "",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Grond Ironeye",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Golden Hetzapal Idol",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Counter-Thaumaturgy",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 42
+					}
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"I found the tomb in the first place, and they had the nerve to empty it without me! \r",
+					"Reckon it'll make a fine trophy for my efforts.\""
+				],
+				"frameType": 0,
+				"x": 0,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "f14d7c9b695c8893cbf2f2ca079bccd1cdecf8f1525be3225aa153df4c49c0af",
+				"name": "",
+				"typeLine": "Splitting Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Nishem",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Tusked Hominid Skull",
+								0
+							],
+							[
+								"Moderate Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+19%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters fire 2 additional Projectiles"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"If the skull is real, and not a forgery, then it may show that my people are not the\r",
+					"abominations others believe us to be. The word 'human' may have a broader meaning.\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "16629dc73b323cbe8740ccef851f7c2314aee7f718db9115af409d7610815b8f",
+				"name": "",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Normal",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Bazira",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Incense of Keth",
+								0
+							],
+							[
+								"Moderate Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					}
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Sap of the Aturi tree, known only to grow at the meeting point of the seven waters.\r",
+					"Nothing since its disappearance has smelled as wondrous.\""
+				],
+				"frameType": 0,
+				"x": 0,
+				"y": 7,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQmx1ZXByaW50Tm90QXBwcm92ZWQzIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/fd4cd3685e/BlueprintNotApproved3.png",
+				"league": "Settlers",
+				"id": "ee9d10263ca4a3b89e98a0756095b4cc4687084b6a26a71ba989cf9c4e1300fe",
+				"name": "",
+				"typeLine": "Indifferent Blueprint: Laboratory of Dehydration",
+				"baseType": "Blueprint: Laboratory",
+				"rarity": "Magic",
+				"ilvl": 85,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Wings Revealed",
+						"values": [
+							[
+								"2/4",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 35
+					},
+					{
+						"name": "Escape Routes Revealed",
+						"values": [
+							[
+								"2/8",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 36
+					},
+					{
+						"name": "Reward Rooms Revealed",
+						"values": [
+							[
+								"6/28",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 37
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Perception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 40
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Counter-Thaumaturgy",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 42
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Deception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 45
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+29%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+17%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Guards deal 29% increased Damage",
+					"Players gain 12% reduced Flask Charges per 25% Alert Level"
+				],
+				"descrText": "Use Intelligence to Reveal additional Wings and Rooms by talking to certain NPCs in the Rogue Harbour. Give this Blueprint to Adiyah to embark on the Grand Heist.",
+				"frameType": 1,
+				"x": 0,
+				"y": 9,
+				"inventoryId": "Stash1"
+			}
+		]
+	}
+}

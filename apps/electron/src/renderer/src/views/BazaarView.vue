@@ -37,6 +37,7 @@ import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.
 import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
 import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
 import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
+import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -72,6 +73,8 @@ watch(
 			useCatalystOfferStore().getTestData()
 		} else if (cat === 'CURRENCY') {
 			useCurrencyOfferStore().getTestData()
+		} else if (cat === 'HEIST') {
+			useHeistOfferStore().getTestData()
 		}
 
 		// makeBinTestData()

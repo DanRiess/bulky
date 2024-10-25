@@ -29,6 +29,7 @@ const components = ref([
 	{ displayName: 'Delve', fileName: 'fossil-sanctified', category: CATEGORY.DELVE },
 	{ displayName: 'Catalysts', fileName: 'catalyst-unstable', category: CATEGORY.CATALYST },
 	{ displayName: 'Currency', fileName: 'currency-divine', category: CATEGORY.CURRENCY },
+	{ displayName: 'Heist', fileName: 'heist-blueprint', category: CATEGORY.HEIST },
 ])
 
 // METHODS

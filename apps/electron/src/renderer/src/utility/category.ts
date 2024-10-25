@@ -10,6 +10,7 @@ import { BULKY_CURRENCY } from '@web/categories/currency/currency.transformers'
 import { BULKY_DELIRIUM_ORBS } from '@web/categories/deliriumOrb/deliriumOrb.transformers'
 import { BULKY_DELVE } from '@web/categories/delve/delve.transformers'
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
+import { BULKY_HEIST } from '@web/categories/heist/heist.transformers'
 import { BULKY_MAPS } from '@web/categories/map/map.transformers'
 import { BULKY_SCARABS } from '@web/categories/scarab/scarab.transformers'
 
@@ -32,10 +33,13 @@ function generateCategoryFromDto(category: string): Category | undefined {
 		return CATEGORY.CATALYST
 	} else if (category.match(/currency/i)) {
 		return CATEGORY.CURRENCY
+	} else if (category.match(/heist/i)) {
+		return CATEGORY.HEIST
 	}
 	return undefined
 }
 
+/** Deprecated. Remove soon. */
 function isBaseTypeInCategory(category: Category, item: PoeItem) {
 	const baseType = item.baseType
 
@@ -55,6 +59,8 @@ function isBaseTypeInCategory(category: Category, item: PoeItem) {
 		return !!BULKY_CATALYSTS.generateTypeFromBaseType(baseType)
 	} else if (category === 'CURRENCY') {
 		return !!BULKY_CURRENCY.generateTypeFromBaseType(baseType)
+	} else if (category === 'HEIST') {
+		return !!BULKY_HEIST.generateTypeFromPoeItem(item)
 	}
 	return false
 }

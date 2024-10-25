@@ -1,0 +1,48 @@
+[
+	{
+		"version": 1,
+		"uuid": "0b168d34-3ff5-4e17-9227-9d039efb1732",
+		"timestamp": 1729842929080,
+		"account": "Chavincar",
+		"ign": "Chavi",
+		"category": "HEIST",
+		"league": "Settlers",
+		"chaosPerDiv": 161.02,
+		"multiplier": 1,
+		"fullPrice": 50,
+		"minimumBuyout": 0,
+		"fullBuyout": false,
+		"items": [
+			{
+				"type": 0,
+				"tier": 3,
+				"qnt": 2,
+				"prc": 20
+			},
+			{
+				"type": 7,
+				"tier": 3,
+				"qnt": 4,
+				"prc": 1
+			},
+			{
+				"type": 3,
+				"tier": 3,
+				"qnt": 2,
+				"prc": 2
+			},
+			{
+				"type": 9,
+				"tier": 3,
+				"qnt": 1,
+				"prc": 1
+			},
+			{
+				"type": 5,
+				"tier": 3,
+				"qnt": 1,
+				"prc": 1
+			}
+		]
+	}
+]

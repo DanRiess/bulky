@@ -59,6 +59,17 @@ import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
 import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.store'
 import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import {
+	HEIST_TIER,
+	HEIST_TIER_IDX_TO_NAME,
+	HEIST_TIER_NAME_TO_IDX,
+	HEIST_TYPE,
+	HEIST_TYPE_IDX_TO_NAME,
+	HEIST_TYPE_NAME_TO_IDX,
+} from '@web/categories/heist/heist.const'
+import { BULKY_HEIST } from '@web/categories/heist/heist.transformers'
+import { useHeistFilterStore } from '@web/categories/heist/heistFilter.store'
+import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
+import {
 	MAP_TIER,
 	MAP_TIER_IDX_TO_NAME,
 	MAP_TIER_NAME_TO_IDX,
@@ -108,6 +119,7 @@ function getOfferStore(category: Category): BulkyOfferStore | undefined {
 	else if (category === 'DELVE') return useDelveOfferStore()
 	else if (category === 'CATALYST') return useCatalystOfferStore()
 	else if (category === 'CURRENCY') return useCurrencyOfferStore()
+	else if (category === 'HEIST') return useHeistOfferStore()
 	return undefined
 }
 
@@ -124,6 +136,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 	else if (category === 'DELVE') return useDelveFilterStore()
 	else if (category === 'CATALYST') return useCatalystFilterStore()
 	else if (category === 'CURRENCY') return useCurrencyFilterStore()
+	else if (category === 'HEIST') return useHeistFilterStore()
 	return undefined
 }
 
@@ -141,6 +154,7 @@ function getNameToIdxTypeMap(category: Category) {
 	else if (category === 'DELVE') return DELVE_TYPE_NAME_TO_IDX
 	else if (category === 'CATALYST') return CATALYST_TYPE_NAME_TO_IDX
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_NAME_TO_IDX
+	else if (category === 'HEIST') return HEIST_TYPE_NAME_TO_IDX
 	return undefined
 }
 
@@ -156,6 +170,7 @@ function getNameToIdxTierMap(category: Category) {
 	else if (category === 'DELVE') return { '0': 0 }
 	else if (category === 'CATALYST') return { '0': 0 }
 	else if (category === 'CURRENCY') return { '0': 0 }
+	else if (category === 'HEIST') return HEIST_TIER_NAME_TO_IDX
 	return undefined
 }
 
@@ -173,6 +188,7 @@ function getIdxToNameTypeMap(category: Category) {
 	else if (category === 'DELVE') return DELVE_TYPE_IDX_TO_NAME
 	else if (category === 'CATALYST') return CATALYST_TYPE_IDX_TO_NAME
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_IDX_TO_NAME
+	else if (category === 'HEIST') return HEIST_TYPE_IDX_TO_NAME
 	return undefined
 }
 
@@ -188,6 +204,7 @@ function getIdxToNameTierMap(category: Category) {
 	else if (category === 'DELVE') return ['0'] as DelveTier[]
 	else if (category === 'CATALYST') return ['0'] as CatalystTier[]
 	else if (category === 'CURRENCY') return ['0'] as CurrencyTier[]
+	else if (category === 'HEIST') return HEIST_TIER_IDX_TO_NAME
 	return undefined
 }
 
@@ -203,6 +220,7 @@ function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined
 	else if (category === 'DELVE') return getKeys(DELVE_TYPE)
 	else if (category === 'CATALYST') return getKeys(CATALYST_TYPE)
 	else if (category === 'CURRENCY') return getKeys(CURRENCY_TYPE)
+	else if (category === 'HEIST') return getKeys(HEIST_TYPE)
 	else return undefined
 }
 
@@ -218,6 +236,7 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 	else if (category === 'DELVE') return ['0']
 	else if (category === 'CATALYST') return ['0']
 	else if (category === 'CURRENCY') return ['0']
+	else if (category === 'HEIST') return getKeys(HEIST_TIER)
 	else return undefined
 }
 
@@ -233,6 +252,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'DELVE') return BULKY_DELVE.generateTypeFromBaseType(item.baseType)
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTypeFromBaseType(item.baseType)
+	else if (category === 'HEIST') return BULKY_HEIST.generateTypeFromPoeItem(item)
 	else return undefined
 }
 
@@ -248,6 +268,7 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'DELVE') return BULKY_DELVE.generateTier()
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTier()
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTier()
+	else if (category === 'HEIST') return BULKY_HEIST.generateTierFromItemLevel(item.ilvl)
 	else return undefined
 }
 
@@ -272,6 +293,7 @@ function getNameFromTypeAndTier(
 		return BULKY_CATALYSTS.generateNameFromType(item.type)
 	else if (category === 'CURRENCY' && useCurrencyOfferStore().isCurrencyItem(item))
 		return BULKY_CURRENCY.generateNameFromType(item.type)
+	else if (category === 'HEIST' && useHeistOfferStore().isHeistItem(item)) return BULKY_HEIST.generateNameFromType(item.type)
 	else return undefined
 }
 
@@ -288,6 +310,7 @@ function generateBazaarItemFromDto(category: Category, item: BulkyBazaarItemDto)
 	else if (category === 'DELVE') return BULKY_DELVE.generateBazaarItemFromDto(item)
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateBazaarItemFromDto(item)
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateBazaarItemFromDto(item)
+	else if (category === 'HEIST') return BULKY_HEIST.generateBazaarItemFromDto(item)
 	else return undefined
 }
 
@@ -309,6 +332,7 @@ function generateBulkyItemFromPoeItem(
 	else if (category === 'DELVE') return BULKY_DELVE.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'HEIST') return BULKY_HEIST.generateShopItemFromPoeItem(item, itemOverrides)
 	else return undefined
 }
 
