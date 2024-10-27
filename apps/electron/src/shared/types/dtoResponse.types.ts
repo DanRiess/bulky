@@ -154,7 +154,7 @@ export type PoeItemDto = {
 			name: string
 		}
 		mods: string[]
-	}
+	}[]
 	enchantMods?: string[]
 	scourgeMods?: string[]
 	implicitMods?: string[]

@@ -46,7 +46,7 @@ export const poeApi = {
 			else if (stashTab.name === 'Beasts') return api.get<PoeStashTabResponse>(mockBase + '/stashBeastiary.json', config)
 			else if (stashTab.name === 'Mta') return api.get<PoeStashTabResponse>(mockBase + '/stashCatalyst.json', config)
 			else if (stashTab.name === 'C') return api.get<PoeStashTabResponse>(mockBase + '/stashCurrency.json', config)
-			else if (stashTab.name === '2') return api.get<PoeStashTabResponse>(mockBase + '/stashHeist.json', config)
+			else if (stashTab.name === '2') return api.get<PoeStashTabResponse>(mockBase + '/stashExpedition.json', config)
 			else return api.get<PoeStashTabResponse>(mockBase + '/stashDump.json', config)
 		}
 

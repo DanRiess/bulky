@@ -21,5 +21,6 @@
 				"src/shared/*"
 			]
 		},
+		// "noErrorTruncation": true
 	}
 }

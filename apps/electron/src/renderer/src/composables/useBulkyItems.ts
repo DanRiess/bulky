@@ -2,6 +2,7 @@ import { BulkyShopItemRecord, BulkyItemSortOptions, BulkyItemOverrideRecord, Cat
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem, PoeItemsByStash } from '@shared/types/poe.types'
 import { RefOrGetter, getKeys, isWatchable } from '@shared/types/utility.types'
+import { isShopMap8Mod } from '@web/categories/map/map.types'
 import { compareStrings } from '@web/utility/compareFunctions'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { MaybeRefOrGetter, Ref, ref, toValue, watch } from 'vue'
@@ -80,7 +81,8 @@ export function useBulkyItems(
 		const perItemAttributes = BULKY_FACTORY.getPerItemAttributes(toValue(category), poeItem)
 
 		// Filter out items with perItemAttributes here
-		if (toValue(category) === 'MAP_8_MOD' && (!perItemAttributes || perItemAttributes.modifiers.length < 8)) return
+		if (toValue(category) === 'MAP_8_MOD' && (!perItemAttributes || perItemAttributes.modifiers?.length < 8)) return
+		if (toValue(category) === 'EXPEDITION' && type === 'LOGBOOK' && !perItemAttributes) return
 
 		const itemInMap = items.value.get(`${type}_${tier}`)
 
@@ -90,19 +92,18 @@ export function useBulkyItems(
 
 			// Get the per item attributes
 			if (perItemAttributes && itemInMap.perItemAttributes) {
-				itemInMap.perItemAttributes.push(perItemAttributes)
+				if (isShopMap8Mod(itemInMap)) itemInMap.perItemAttributes.push(perItemAttributes)
 			}
 		}
 
 		// ...otherwise, create a new BulkyShopItem and add it to the map
 		else {
 			const bulkyItem = BULKY_FACTORY.generateBulkyItemFromPoeItem(poeItem, toValue(category), prices, priceOverrides)
-			console.log({ bulkyItem })
 			if (!bulkyItem) return
 
 			// Get the per item attributes
 			if (perItemAttributes && bulkyItem.perItemAttributes) {
-				bulkyItem.perItemAttributes.push(perItemAttributes)
+				if (isShopMap8Mod(bulkyItem)) bulkyItem.perItemAttributes.push(perItemAttributes)
 			}
 
 			items.value.set(`${bulkyItem.type}_${bulkyItem.tier}`, bulkyItem)

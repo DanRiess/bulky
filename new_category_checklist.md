@@ -15,3 +15,10 @@
 -   Add mock APIs to nodeApi and poeApi for browser testing
 -   Generate an offer, create a new file (mocks/offersCategory.json) and copy it in there.
 -   Update the getTestData function in the offer store and call it in BazaarView.vue
+
+Next steps
+create expedition offer page, separate by currencies and logbooks
+logbooks need a list entry for each tier (e.g. ilvl_73-77) with pricing options for each faction
+when listing, choose the highest priced faction and recast the logbook to that type
+
+same has still to be done for heist things. rogue markers have to be added as well

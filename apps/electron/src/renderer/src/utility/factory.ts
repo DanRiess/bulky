@@ -14,6 +14,7 @@ import {
 	BulkyOfferStore,
 	BulkyShopItem,
 	Category,
+	PerItemAttributes,
 } from '@shared/types/bulky.types'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem } from '@shared/types/poe.types'
@@ -58,6 +59,17 @@ import {
 import { BULKY_ESSENCES } from '@web/categories/essence/essence.transformers'
 import { useEssenceFilterStore } from '@web/categories/essence/essenceFilter.store'
 import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
+import {
+	EXPEDITION_TIER,
+	EXPEDITION_TIER_IDX_TO_NAME,
+	EXPEDITION_TIER_NAME_TO_IDX,
+	EXPEDITION_TYPE,
+	EXPEDITION_TYPE_IDX_TO_NAME,
+	EXPEDITION_TYPE_NAME_TO_IDX,
+} from '@web/categories/expedition/expedition.const'
+import { BULKY_EXPEDITION } from '@web/categories/expedition/expedition.transformers'
+import { useExpeditionFilterStore } from '@web/categories/expedition/expeditionFilter.store'
+import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
 import {
 	HEIST_TIER,
 	HEIST_TIER_IDX_TO_NAME,
@@ -120,6 +132,7 @@ function getOfferStore(category: Category): BulkyOfferStore | undefined {
 	else if (category === 'CATALYST') return useCatalystOfferStore()
 	else if (category === 'CURRENCY') return useCurrencyOfferStore()
 	else if (category === 'HEIST') return useHeistOfferStore()
+	else if (category === 'EXPEDITION') return useExpeditionOfferStore()
 	return undefined
 }
 
@@ -137,6 +150,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 	else if (category === 'CATALYST') return useCatalystFilterStore()
 	else if (category === 'CURRENCY') return useCurrencyFilterStore()
 	else if (category === 'HEIST') return useHeistFilterStore()
+	else if (category === 'EXPEDITION') return useExpeditionFilterStore()
 	return undefined
 }
 
@@ -155,6 +169,7 @@ function getNameToIdxTypeMap(category: Category) {
 	else if (category === 'CATALYST') return CATALYST_TYPE_NAME_TO_IDX
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_NAME_TO_IDX
 	else if (category === 'HEIST') return HEIST_TYPE_NAME_TO_IDX
+	else if (category === 'EXPEDITION') return EXPEDITION_TYPE_NAME_TO_IDX
 	return undefined
 }
 
@@ -171,6 +186,7 @@ function getNameToIdxTierMap(category: Category) {
 	else if (category === 'CATALYST') return { '0': 0 }
 	else if (category === 'CURRENCY') return { '0': 0 }
 	else if (category === 'HEIST') return HEIST_TIER_NAME_TO_IDX
+	else if (category === 'EXPEDITION') return EXPEDITION_TIER_NAME_TO_IDX
 	return undefined
 }
 
@@ -189,6 +205,7 @@ function getIdxToNameTypeMap(category: Category) {
 	else if (category === 'CATALYST') return CATALYST_TYPE_IDX_TO_NAME
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_IDX_TO_NAME
 	else if (category === 'HEIST') return HEIST_TYPE_IDX_TO_NAME
+	else if (category === 'EXPEDITION') return EXPEDITION_TYPE_IDX_TO_NAME
 	return undefined
 }
 
@@ -205,6 +222,7 @@ function getIdxToNameTierMap(category: Category) {
 	else if (category === 'CATALYST') return ['0'] as CatalystTier[]
 	else if (category === 'CURRENCY') return ['0'] as CurrencyTier[]
 	else if (category === 'HEIST') return HEIST_TIER_IDX_TO_NAME
+	else if (category === 'EXPEDITION') return EXPEDITION_TIER_IDX_TO_NAME
 	return undefined
 }
 
@@ -221,6 +239,7 @@ function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined
 	else if (category === 'CATALYST') return getKeys(CATALYST_TYPE)
 	else if (category === 'CURRENCY') return getKeys(CURRENCY_TYPE)
 	else if (category === 'HEIST') return getKeys(HEIST_TYPE)
+	else if (category === 'EXPEDITION') return getKeys(EXPEDITION_TYPE)
 	else return undefined
 }
 
@@ -237,6 +256,7 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 	else if (category === 'CATALYST') return ['0']
 	else if (category === 'CURRENCY') return ['0']
 	else if (category === 'HEIST') return getKeys(HEIST_TIER)
+	else if (category === 'EXPEDITION') return getKeys(EXPEDITION_TIER)
 	else return undefined
 }
 
@@ -253,6 +273,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTypeFromBaseType(item.baseType)
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTypeFromBaseType(item.baseType)
 	else if (category === 'HEIST') return BULKY_HEIST.generateTypeFromPoeItem(item)
+	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateTypeFromBaseType(item.baseType)
 	else return undefined
 }
 
@@ -269,6 +290,7 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateTier()
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTier()
 	else if (category === 'HEIST') return BULKY_HEIST.generateTierFromItemLevel(item.ilvl)
+	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateTierFromProperty(item.ilvl)
 	else return undefined
 }
 
@@ -294,6 +316,8 @@ function getNameFromTypeAndTier(
 	else if (category === 'CURRENCY' && useCurrencyOfferStore().isCurrencyItem(item))
 		return BULKY_CURRENCY.generateNameFromType(item.type)
 	else if (category === 'HEIST' && useHeistOfferStore().isHeistItem(item)) return BULKY_HEIST.generateNameFromType(item.type)
+	else if (category === 'EXPEDITION' && useExpeditionOfferStore().isExpeditionItem(item))
+		return BULKY_EXPEDITION.generateNameFromType(item.type)
 	else return undefined
 }
 
@@ -311,6 +335,7 @@ function generateBazaarItemFromDto(category: Category, item: BulkyBazaarItemDto)
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateBazaarItemFromDto(item)
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateBazaarItemFromDto(item)
 	else if (category === 'HEIST') return BULKY_HEIST.generateBazaarItemFromDto(item)
+	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateBazaarItemFromDto(item)
 	else return undefined
 }
 
@@ -333,6 +358,7 @@ function generateBulkyItemFromPoeItem(
 	else if (category === 'CATALYST') return BULKY_CATALYSTS.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'HEIST') return BULKY_HEIST.generateShopItemFromPoeItem(item, itemOverrides)
+	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else return undefined
 }
 
@@ -341,7 +367,8 @@ function generateBulkyItemFromPoeItem(
  * Properties will be transformed to key/value pairs, modifiers will be mapped to a number[].
  * E. g. attributes for the Map8Mod category.
  */
-function getPerItemAttributes(category: Category, item: PoeItem) {
+function getPerItemAttributes(category: Category, item: PoeItem): PerItemAttributes | undefined {
 	if (category === 'MAP_8_MOD') return BULKY_MAPS.getPerItemAttributes(item)
+	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.getPerItemAttributes(item)
 	return undefined
 }

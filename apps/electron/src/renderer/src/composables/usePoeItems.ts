@@ -3,7 +3,6 @@ import { useBulkyIdb } from './useBulkyIdb'
 import { compareObjectsByBaseType } from '@web/utility/compareFunctions'
 import { MaybeRefOrGetter, computed, ref, toValue, watch } from 'vue'
 import { PoeItemsByStash, PoeStashTab } from '@shared/types/poe.types'
-import { BULKY_CATEGORIES } from '@web/utility/category'
 import { Category } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 
@@ -55,6 +54,7 @@ export function usePoeItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 		return computed(() => {
 			return getKeys(itemsByStash.value).reduce((prev, curr) => {
 				prev[curr] = itemsByStash.value[curr].filter(item => {
+					console.log(BULKY_FACTORY.getTypeFromPoeItem(item, toValue(category)), { item })
 					return !!BULKY_FACTORY.getTypeFromPoeItem(item, toValue(category))
 				})
 				return prev

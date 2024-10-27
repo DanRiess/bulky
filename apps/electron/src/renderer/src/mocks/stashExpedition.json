@@ -1,0 +1,3710 @@
+{
+	"stash": {
+		"id": "84e138ac14",
+		"name": "2",
+		"type": "PremiumStash",
+		"index": 19,
+		"metadata": {
+			"colour": "638000"
+		},
+		"items": [
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXhwZWRpdGlvbi9CYXJ0ZXJSZWZyZXNoQ3VycmVuY3kiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/bf3e6fbe8f/BarterRefreshCurrency.png",
+				"stackSize": 161,
+				"maxStackSize": 1000,
+				"league": "Settlers",
+				"id": "53660fa0795f11c757f0f1fad4db7736def82eec45152e7d2edb6eaab32805af",
+				"name": "",
+				"typeLine": "Exotic Coinage",
+				"baseType": "Exotic Coinage",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"161/1000",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "These can be brought to Tujen to refresh his vendor inventory.",
+				"frameType": 5,
+				"x": 3,
+				"y": 10,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXhwZWRpdGlvbi9EYW5uaWdSZXJvbGxDdXJyZW5jeSIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/62d38b9f1d/DannigRerollCurrency.png",
+				"stackSize": 53,
+				"maxStackSize": 1000,
+				"league": "Settlers",
+				"id": "5c06913ff90d13e9a51738a9653d01dfde5adf1d25fd79c5f5393e9c3373d640",
+				"name": "",
+				"typeLine": "Burial Medallion",
+				"baseType": "Burial Medallion",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"53/1000",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "These can be brought to Dannig to refresh his vendor inventory.",
+				"frameType": 5,
+				"x": 3,
+				"y": 8,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "ccd2c5f89a4a3eed079ed390c3671a44062724bbfcb159f76abda3a43419c367",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 78,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"78",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Bluffs",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"36% increased Explosive Radius",
+							"15% increased number of Explosives"
+						]
+					},
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"20% increased number of Explosives",
+							"Area contains 26% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Desert Ruins",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"24% increased quantity of Artifacts dropped by Monsters",
+							"34% increased Explosive Placement Range"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 3,
+				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXhwZWRpdGlvbi9EZWFsZXJSZWZyZXNoQ3VycmVuY3kiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/f4db789e4b/DealerRefreshCurrency.png",
+				"stackSize": 107,
+				"maxStackSize": 1000,
+				"league": "Settlers",
+				"id": "c890dee8a21582c796303c26374b1fba261f4e92d4ad984b99deaeb2f9d1c71c",
+				"name": "",
+				"typeLine": "Scrap Metal",
+				"baseType": "Scrap Metal",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"107/1000",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "These can be brought to Rog to refresh his vendor inventory.",
+				"frameType": 5,
+				"x": 3,
+				"y": 9,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRXhwZWRpdGlvbi9HYW1ibGVyUmVmcmVzaEN1cnJlbmN5IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/f878f8fc1a/GamblerRefreshCurrency.png",
+				"stackSize": 177,
+				"maxStackSize": 1000,
+				"league": "Settlers",
+				"id": "ce7fdd56b3207b1d7520634b4749e3d43828f4ae12419fe29e5926139f856f56",
+				"name": "",
+				"typeLine": "Astragali",
+				"baseType": "Astragali",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"177/1000",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"descrText": "These can be brought to Gwennen to refresh her vendor inventory.",
+				"frameType": 5,
+				"x": 3,
+				"y": 11,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "3afc1edf20f622ce5f4f4895be05196287e2dab411cebab1d13d9b230cd4f0f6",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 73,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"73",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Mountainside",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"30% increased Explosive Radius",
+							"Area contains an additional Underground Area"
+						]
+					},
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Remnants have 19% chance to have an additional Suffix Modifier",
+							"48% increased Explosive Placement Range"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 3,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "7c1e2145e60ac1cfcca5a38dc34e59efe4531f408d07d9600a8372ecb8565626",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 79,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"79",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Cemetery",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 9 additional Chest Markers",
+							"30% increased Explosive Radius",
+							"30% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Sarn Slums",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"26% increased Explosive Placement Range",
+							"Area contains 19% increased number of Monster Markers",
+							"Area contains 15% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 1,
+				"y": 9,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "78bbf9594588012aeef2dc13cc2f7a98aa7f37c09dc249faeeffa9856ed8ddb9",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 75,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"75",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Volcanic Island",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"39% increased quantity of Artifacts dropped by Monsters",
+							"24% increased Explosive Radius",
+							"Area contains 25% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Desert Ruins",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"31% increased number of Explosives",
+							"Remnants have 12% chance to have an additional Suffix Modifier",
+							"Area contains 38% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 1,
+				"y": 6,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "53cf397aad9d1c73e85fa23078ab7ad06e0194dc4a445aee61599ffe12c82947",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 81,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"81",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Bluffs",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Remnants have 32% chance to have an additional Suffix Modifier",
+							"Area contains 22% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"26% increased Explosive Placement Range",
+							"Area contains 16% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Desert Ruins",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"17% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 19% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 1,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "d84cdfe96f083cf19d65c9e015d63ebdabd88b7649d6511d698c23ba486128f0",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 82,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"82",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Volcanic Island",
+						"faction": {
+							"id": "Faction4",
+							"name": "Knights of the Sun"
+						},
+						"mods": [
+							"Area contains 32% increased number of Runic Monster Markers",
+							"34% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"Area contains 12 additional Chest Markers",
+							"Area contains 26% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 1,
+				"y": 7,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "64dc7c772f4ca36b880c7de5993b89d1062f62778962ca93db5d9d67a2f414c5",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 73,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"73",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Dried Riverbed",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"37% increased quantity of Artifacts dropped by Monsters",
+							"37% increased Explosive Radius"
+						]
+					},
+					{
+						"name": "Forest Ruins",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 33% increased number of Runic Monster Markers",
+							"Area contains 32% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 3,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "4df57ab23155e4ea3978c793880fe7ef11172c4717dddf0bd02b37a013fd302d",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 83,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Mountainside",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"22% increased quantity of Artifacts dropped by Monsters",
+							"39% increased Explosive Placement Range",
+							"Area contains 15% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction4",
+							"name": "Knights of the Sun"
+						},
+						"mods": [
+							"28% increased quantity of Artifacts dropped by Monsters",
+							"10% increased number of Explosives",
+							"Remnants have 27% chance to have an additional Suffix Modifier"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 1,
+				"y": 11,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "85663bcc3c6b59d3c70ba4261f0f5d3b7f493049094b28da2a8adff5552daf58",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 75,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"75",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Cemetery",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 28% increased number of Runic Monster Markers",
+							"20% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Shipwreck Reef",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"10% increased quantity of Artifacts dropped by Monsters",
+							"44% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Bluffs",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"31% increased number of Explosives",
+							"Area contains 10% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 7,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "04c1713c165fc5649b20ca83c62c568d247849fed650760289adde7dd6e55543",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 71,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"71",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Desert Ruins",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"26% increased quantity of Artifacts dropped by Monsters",
+							"19% increased number of Explosives"
+						]
+					},
+					{
+						"name": "Battleground Graves",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"27% increased Explosive Radius",
+							"23% increased number of Explosives"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 1,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "cc1bb4eda337af4fec6b54540747449198d2efc0a809d1981c6b28e2a81d07e5",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 74,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"74",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Sarn Slums",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"25% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 22% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Shipwreck Reef",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 20% increased number of Monster Markers",
+							"Area contains 24% increased number of Remnants"
+						]
+					},
+					{
+						"name": "Mountainside",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"42% increased Explosive Placement Range",
+							"Area contains 21% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 6,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "dbf5e40072682063aa924cbaca6065d10a4c52e7472d73bd11b701c295604e5f",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 80,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"80",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 28% increased number of Monster Markers",
+							"Area contains an additional Underground Area"
+						]
+					},
+					{
+						"name": "Sarn Slums",
+						"faction": {
+							"id": "Faction4",
+							"name": "Knights of the Sun"
+						},
+						"mods": [
+							"Area contains 26% increased number of Monster Markers",
+							"Area contains 35% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 11,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "2cf9a835d85d6c609ea5aa2d8e6355c15484d1600d2c1e182dd6eb375b71b373",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 76,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"76",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"14% increased quantity of Artifacts dropped by Monsters",
+							"30% increased number of Explosives",
+							"Area contains 24% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Rotting Temple",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"12% increased quantity of Artifacts dropped by Monsters",
+							"Remnants have 40% chance to have an additional Suffix Modifier",
+							"23% increased Explosive Placement Range"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 1,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "46b60375d4afa101ec214ca29099b39fdc84908300c250a81ff09f553d0282d3",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 77,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"77",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Dried Riverbed",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 22% increased number of Runic Monster Markers",
+							"Area contains 16% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Battleground Graves",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"12% increased quantity of Artifacts dropped by Monsters",
+							"26% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Sarn Slums",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"40% increased Explosive Radius",
+							"Area contains an additional Underground Area"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "740a73e6e12886aa7d55d7b0792108cec901a987fc22f8b53a204346e21c4ed9",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Sarn Slums",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"34% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 26% increased number of Runic Monster Markers",
+							"17% increased number of Explosives"
+						]
+					},
+					{
+						"name": "Desert Ruins",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 21% increased number of Runic Monster Markers",
+							"31% increased Explosive Radius",
+							"Area contains 23% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 2,
+				"y": 9,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "9153e05e43aa9264400e35ec923a84fc66d4e52f680487a659f315ef552cfb8c",
+				"name": "Rage Vow",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Rare",
+				"ilvl": 85,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Bazira",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Flask of Welakath",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+64%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+37%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+24%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters fire 2 additional Projectiles",
+					"Monsters' skills Chain 2 additional times",
+					"Guards deal 27% increased Damage",
+					"Players have 40% less Cooldown Recovery Rate"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Long ago, a traitor was promised this mythical elixir. We consider her a fool for\r",
+					"believing it exists, but if it does... I would certainly like to take a sip and find out.\""
+				],
+				"frameType": 2,
+				"x": 0,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "64a7f4afeea569d51a2bbff1cc0c37b4635bfbf698325d80752d0dc940592492",
+				"name": "",
+				"typeLine": "Freezing Contract: Bunker of Temporal Chains",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Bazira",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Flask of Welakath",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Agility",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 44
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+29%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+17%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players are Cursed with Temporal Chains",
+					"Monsters deal 94% extra Physical Damage as Cold"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Long ago, a traitor was promised this mythical elixir. We consider her a fool for\r",
+					"believing it exists, but if it does... I would certainly like to take a sip and find out.\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvSGVpc3RDb2luQ3VycmVuY3kiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/987a8953f9/HeistCoinCurrency.png",
+				"stackSize": 50000,
+				"maxStackSize": 50000,
+				"stackSizeText": "50K",
+				"league": "Settlers",
+				"id": "5402e64af63b8f8b39008b5ccd5d460d4193635f3e5a7102887a6c7859975a71",
+				"name": "",
+				"typeLine": "Rogue's Marker",
+				"baseType": "Rogue's Marker",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"50000/50000",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Creates a portal to the Rogue Harbour from a Town or Hideout\nUsed as Currency for services in the Rogue Harbour"
+				],
+				"descrText": "Right click on this item while in a Town or Hideout to use it.",
+				"frameType": 5,
+				"x": 4,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "0a412e07f9fdf15dcae856988f221ad97d4e75dffc8c6c26ec3d297e4585446b",
+				"name": "",
+				"typeLine": "Contract: Bunker of Exposure",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 85,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Castor Pollinius III",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Golden Xoplotli Idol",
+								0
+							],
+							[
+								"Priceless",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+19%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players have -9% to all maximum Resistances"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Heard if you put a drop of blood in its mouth,\r",
+					"it'll whisper the secrets of immortality.\r",
+					"Doesn't have to be your own blood, does it?\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 6,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "248a33101ea297a96e50d866814fa03db06a3d7015c935f4dfdf11efdb8a1e1c",
+				"name": "Damnation Scripture",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"The Crimson Scribe",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"The Golden Ibis",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Agility",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 44
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+74%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+42%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+28%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters take 38% reduced Extra Damage from Critical Strikes",
+					"Reward Room Monsters deal 29% increased Damage",
+					"-5% Player Cold Resistance per 25% Alert Level",
+					"Reinforcements have 13% increased Attack Speed",
+					"Reinforcements have 12% increased Cast Speed",
+					"Reinforcements have 6% increased Movement Speed",
+					"Monsters gain 32% of their Physical Damage as Extra Chaos Damage",
+					"Monsters Inflict Withered for 2 seconds on Hit"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"It is said that the Golden Ibis was forged before time itself, before writing, or even\r",
+					"oral history. That's nonsense, of course, but it's still very old, and therefore noteworthy.\""
+				],
+				"frameType": 2,
+				"x": 0,
+				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQmx1ZXByaW50Tm90QXBwcm92ZWQzIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/fd4cd3685e/BlueprintNotApproved3.png",
+				"league": "Settlers",
+				"id": "c39d0a3b08a264fe7d23a40bc99faa075c1eb40aa4989feb42a1624c5bb24995",
+				"name": "",
+				"typeLine": "Stoic Blueprint: Laboratory of Frenzy",
+				"baseType": "Blueprint: Laboratory",
+				"rarity": "Magic",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Wings Revealed",
+						"values": [
+							[
+								"3/3",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 35
+					},
+					{
+						"name": "Escape Routes Revealed",
+						"values": [
+							[
+								"3/6",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 36
+					},
+					{
+						"name": "Reward Rooms Revealed",
+						"values": [
+							[
+								"9/21",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 37
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"5",
+								0
+							],
+							[
+								"Perception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 40
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"5",
+								0
+							],
+							[
+								"Counter-Thaumaturgy",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 42
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Deception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 45
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Engineering",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 46
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+29%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+17%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters gain a Frenzy Charge on Hit",
+					"Guards take 28% reduced Damage"
+				],
+				"descrText": "Use Intelligence to Reveal additional Wings and Rooms by talking to certain NPCs in the Rogue Harbour. Give this Blueprint to Adiyah to embark on the Grand Heist.",
+				"frameType": 1,
+				"x": 0,
+				"y": 8,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "bde22c5b0da8c4af971ecc0f12439239af32919f5d3d0d1680eb69661aaced05",
+				"name": "",
+				"typeLine": "Contract: Bunker of Vulnerability",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"The Crimson Scribe",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Seal of Solaris",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"5",
+								0
+							],
+							[
+								"Lockpicking",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 38
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+13%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+8%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+5%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+5%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+5%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Players are Cursed with Vulnerability"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"It is my belief that Solerai, from the Maraketh legend, is Solaris herself in another system of\r",
+					"myths. If I can prove that, I can begin piecing together a true history of the Winter of the World.\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "57c38862d7fe616568122ac067edd91863090e6b27cab678997105882671eb59",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Scrublands",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"22% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 15% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"50% increased Explosive Placement Range",
+							"Area contains 16% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Shipwreck Reef",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"44% increased Explosive Placement Range",
+							"Area contains an additional Underground Area"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "c212c0ec667c36b8df300e66929eb1be88b81e44673ccff42d588307ebb757f5",
+				"name": "",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Grond Ironeye",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Golden Hetzapal Idol",
+								0
+							],
+							[
+								"High Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"1",
+								0
+							],
+							[
+								"Counter-Thaumaturgy",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 42
+					}
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"I found the tomb in the first place, and they had the nerve to empty it without me! \r",
+					"Reckon it'll make a fine trophy for my efforts.\""
+				],
+				"frameType": 0,
+				"x": 0,
+				"y": 3,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "f14d7c9b695c8893cbf2f2ca079bccd1cdecf8f1525be3225aa153df4c49c0af",
+				"name": "",
+				"typeLine": "Splitting Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Nishem",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Tusked Hominid Skull",
+								0
+							],
+							[
+								"Moderate Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+19%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+7%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Monsters fire 2 additional Projectiles"
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"If the skull is real, and not a forgery, then it may show that my people are not the\r",
+					"abominations others believe us to be. The word 'human' may have a broader meaning.\""
+				],
+				"frameType": 1,
+				"x": 0,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
+				"league": "Settlers",
+				"id": "16629dc73b323cbe8740ccef851f7c2314aee7f718db9115af409d7610815b8f",
+				"name": "",
+				"typeLine": "Contract: Bunker",
+				"baseType": "Contract: Bunker",
+				"rarity": "Normal",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Client",
+						"values": [
+							[
+								"Bazira",
+								0
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Heist Target: {0} ({1})",
+						"values": [
+							[
+								"Incense of Keth",
+								0
+							],
+							[
+								"Moderate Value",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 47
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Demolition",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 41
+					}
+				],
+				"descrText": "Give this Contract to Adiyah in the Rogue Harbour to embark on the Heist.",
+				"flavourText": [
+					"\"Sap of the Aturi tree, known only to grow at the meeting point of the seven waters.\r",
+					"Nothing since its disappearance has smelled as wondrous.\""
+				],
+				"frameType": 0,
+				"x": 0,
+				"y": 7,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "d475dea7000fa3ab280d30774293d2d017a8922d7a6c419a459aaf0d99cac364",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Cemetery",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 19% increased number of Runic Monster Markers",
+							"42% increased Explosive Placement Range",
+							"Area contains 37% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Mountainside",
+						"faction": {
+							"id": "Faction4",
+							"name": "Knights of the Sun"
+						},
+						"mods": [
+							"19% increased quantity of Artifacts dropped by Monsters",
+							"28% increased Explosive Placement Range",
+							"Area contains 21% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 3,
+				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "223cf2ff8c229b06f64106a7c567361447a9ea16c7a6ad4a956dde308f7bb6d7",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"25% increased quantity of Artifacts dropped by Monsters",
+							"37% increased number of Explosives"
+						]
+					},
+					{
+						"name": "Bluffs",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 8 additional Chest Markers",
+							"Area contains 10% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Battleground Graves",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"22% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 12 additional Chest Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 1,
+				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "f577dc1922e28fa654478d757b898443551094837ca6d0ab2900d9db87bee647",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"16% increased Explosive Radius",
+							"44% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Cemetery",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"38% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 18% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 8,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "371a7df28cc12178af1d509067ecd686a0b2c982a49c788a572e042aa9e568f8",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Battleground Graves",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"14% increased Explosive Radius",
+							"Area contains 23% increased number of Monster Markers",
+							"Area contains 39% increased number of Remnants"
+						]
+					},
+					{
+						"name": "Mountainside",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 13 additional Chest Markers",
+							"17% increased number of Explosives",
+							"Remnants have 40% chance to have an additional Suffix Modifier"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 3,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "0e92884814a4182400c2e7fd162f2086cd4e5f42aa3dd029cea6a174f5c43e95",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Forest Ruins",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"20% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 28% increased number of Runic Monster Markers"
+						]
+					},
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 16 additional Chest Markers",
+							"Area contains 26% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 1,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQmx1ZXByaW50Tm90QXBwcm92ZWQzIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/fd4cd3685e/BlueprintNotApproved3.png",
+				"league": "Settlers",
+				"id": "ee9d10263ca4a3b89e98a0756095b4cc4687084b6a26a71ba989cf9c4e1300fe",
+				"name": "",
+				"typeLine": "Indifferent Blueprint: Laboratory of Dehydration",
+				"baseType": "Blueprint: Laboratory",
+				"rarity": "Magic",
+				"ilvl": 85,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					},
+					{
+						"name": "Wings Revealed",
+						"values": [
+							[
+								"2/4",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 35
+					},
+					{
+						"name": "Escape Routes Revealed",
+						"values": [
+							[
+								"2/8",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 36
+					},
+					{
+						"name": "Reward Rooms Revealed",
+						"values": [
+							[
+								"6/28",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 37
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Perception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 40
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"4",
+								0
+							],
+							[
+								"Counter-Thaumaturgy",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 42
+					},
+					{
+						"name": "Requires {1} (Level {0})",
+						"values": [
+							[
+								"3",
+								0
+							],
+							[
+								"Deception",
+								0
+							]
+						],
+						"displayMode": 3,
+						"type": 45
+					},
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+29%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+17%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Alert Level Reduction",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Time Before Lockdown",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0
+					},
+					{
+						"name": "Maximum Alive Reinforcements",
+						"values": [
+							[
+								"+11%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					}
+				],
+				"explicitMods": [
+					"Guards deal 29% increased Damage",
+					"Players gain 12% reduced Flask Charges per 25% Alert Level"
+				],
+				"descrText": "Use Intelligence to Reveal additional Wings and Rooms by talking to certain NPCs in the Rogue Harbour. Give this Blueprint to Adiyah to embark on the Grand Heist.",
+				"frameType": 1,
+				"x": 0,
+				"y": 9,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "a76ed8a6a2ec27f3e1ef888d63458e2eb15a4d6747c4661d6eecc0c49ea6a1c5",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Dried Riverbed",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"34% increased Explosive Radius",
+							"Area contains an additional Underground Area"
+						]
+					},
+					{
+						"name": "Utzaal Outskirts",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 15 additional Chest Markers",
+							"Area contains an additional Underground Area"
+						]
+					},
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"33% increased Explosive Radius",
+							"Area contains 31% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "54aa18104da47c0acf74d2d77f78fb254b602cfacd0c227b906d77d32911a104",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 84,
+				"identified": false,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"39% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 34% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Bluffs",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 19% increased number of Monster Markers",
+							"Area contains 18% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 1,
+				"y": 10,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "2283463c1f211773ec3b7218c858df1fddce1e2031995f1b03bb1fbe928cd404",
+				"name": "",
+				"typeLine": "Freezing Expedition Logbook of Impedance",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 83,
+				"identified": true,
+				"split": true,
+				"properties": [
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+26%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+15%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+10%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Shipwreck Reef",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"22% increased number of Explosives",
+							"35% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Utzaal Outskirts",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"19% increased Explosive Radius",
+							"Area contains 37% increased number of Remnants"
+						]
+					}
+				],
+				"explicitMods": [
+					"Monsters deal 100% extra Physical Damage as Cold",
+					"Monsters Hinder on Hit with Spells"
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 3,
+				"y": 6,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "4578f3c2d2aa71dac7b3bef92c18dc302b2d843edbc4364c369ecf1100cd4983",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Utzaal Outskirts",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Excavated Chests have a 7% chance to contain twice as many Items",
+							"33% increased Explosive Placement Range",
+							"Area contains 13% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Battleground Graves",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"36% increased quantity of Artifacts dropped by Monsters",
+							"27% increased Explosive Placement Range",
+							"Area contains 25% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 1,
+				"y": 4,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "5a4d97154c88b20f4b035a8d53846501af09b065f4abe48bf422b998fa07b4c7",
+				"name": "Remote Undertaking",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"split": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+81%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+49%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+31%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Shipwreck Reef",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"22% increased number of Explosives",
+							"35% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Utzaal Outskirts",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"19% increased Explosive Radius",
+							"Area contains 37% increased number of Remnants"
+						]
+					}
+				],
+				"explicitMods": [
+					"Players are Cursed with Vulnerability",
+					"48% more Monster Life",
+					"+25% Monster Chaos Resistance",
+					"+40% Monster Elemental Resistances",
+					"Monsters have a 20% chance to Ignite, Freeze and Shock on Hit",
+					"Players have 40% less Cooldown Recovery Rate",
+					"Players have 60% less Recovery Rate of Life and Energy Shield"
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 3,
+				"y": 7,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "3e397580f95b435767d926bd04e0303d2aec59bb77c5dfd01cd4c96c39a6ee89",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Scrublands",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"31% increased Explosive Radius",
+							"Area contains 15% increased number of Remnants"
+						]
+					},
+					{
+						"name": "Cemetery",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"49% increased Explosive Placement Range",
+							"Area contains 31% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Battleground Graves",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 38% increased number of Monster Markers",
+							"Area contains 28% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 0,
+				"y": 11,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "3aa82f685c424f548b5869995cfb2f9613019725e6c883750419ce883338c775",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Forest Ruins",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"17% increased quantity of Artifacts dropped by Monsters",
+							"Remnants have 12% chance to have an additional Suffix Modifier",
+							"Area contains 28% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Utzaal Outskirts",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"13% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 28% increased number of Runic Monster Markers",
+							"Remnants have 32% chance to have an additional Suffix Modifier"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 5,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "d49906e5b42f0b88da6d6b48846495b524db05fcef1e789c16946341bc8a6f79",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Dried Riverbed",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"32% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 12 additional Chest Markers",
+							"45% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Sarn Slums",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"Area contains 11% increased number of Runic Monster Markers",
+							"32% increased Explosive Radius",
+							"Area contains 20% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"31% increased Explosive Placement Range",
+							"Area contains 33% increased number of Monster Markers",
+							"Area contains 11% increased number of Remnants"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 10,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "3d52fd7685ba2e4baa77d57deb2fcf8b766c673c3889c172f3d3c3c9ff1f6bdf",
+				"name": "Remote Edge",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Rare",
+				"ilvl": 83,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Item Quantity",
+						"values": [
+							[
+								"+84%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 2
+					},
+					{
+						"name": "Item Rarity",
+						"values": [
+							[
+								"+49%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 3
+					},
+					{
+						"name": "Monster Pack Size",
+						"values": [
+							[
+								"+32%",
+								1
+							]
+						],
+						"displayMode": 0,
+						"type": 4
+					},
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Utzaal Outskirts",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 8 additional Chest Markers",
+							"Area contains an additional Underground Area"
+						]
+					},
+					{
+						"name": "Desert Ruins",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"20% increased quantity of Artifacts dropped by Monsters",
+							"10% increased number of Explosives"
+						]
+					},
+					{
+						"name": "Forest Ruins",
+						"faction": {
+							"id": "Faction4",
+							"name": "Knights of the Sun"
+						},
+						"mods": [
+							"Remnants have 23% chance to have an additional Suffix Modifier",
+							"Area contains 27% increased number of Monster Markers"
+						]
+					}
+				],
+				"explicitMods": [
+					"Players cannot inflict Exposure",
+					"Players are Cursed with Elemental Weakness",
+					"Monsters have 383% increased Critical Strike Chance",
+					"+44% to Monster Critical Strike Multiplier",
+					"Monsters deal 104% extra Physical Damage as Fire",
+					"Monsters' skills Chain 2 additional times",
+					"Monsters gain 41% of Maximum Life as Extra Maximum Energy Shield"
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 2,
+				"x": 0,
+				"y": 10,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "8fd67105a935d0bba527ade6cb9c190d94cf526ab83aed1b867e15df4b03529a",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 84,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Dried Riverbed",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"48% increased Explosive Placement Range",
+							"Area contains 12% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Bluffs",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"35% increased Explosive Placement Range",
+							"Area contains 36% increased number of Remnants"
+						]
+					},
+					{
+						"name": "Desert Ruins",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"31% increased number of Explosives",
+							"33% increased Explosive Placement Range"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 2,
+				"y": 2,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "437cfde9189e0b98f68f87e20e02475a7f07951fb398526faaed35b2352354a0",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Scrublands",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"32% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 14% increased number of Runic Monster Markers"
+						]
+					},
+					{
+						"name": "Mountainside",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 13 additional Chest Markers",
+							"34% increased Explosive Radius"
+						]
+					},
+					{
+						"name": "Bluffs",
+						"faction": {
+							"id": "Faction4",
+							"name": "Knights of the Sun"
+						},
+						"mods": [
+							"Remnants have 34% chance to have an additional Suffix Modifier",
+							"Area contains 24% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 2,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "6a26120a5754557e439ef73da2b9db193d2df61d7a1ee33220d8a53334b5934e",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Normal",
+				"ilvl": 83,
+				"identified": true,
+				"corrupted": true,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Dried Riverbed",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"27% increased quantity of Artifacts dropped by Monsters",
+							"35% increased number of Explosives",
+							"29% increased Explosive Placement Range"
+						]
+					},
+					{
+						"name": "Shipwreck Reef",
+						"faction": {
+							"id": "Faction3",
+							"name": "Order of the Chalice"
+						},
+						"mods": [
+							"22% increased quantity of Artifacts dropped by Monsters",
+							"21% increased Explosive Placement Range",
+							"Area contains 25% increased number of Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 0,
+				"x": 3,
+				"y": 1,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvTWFwcy9FeHBlZGl0aW9uQ2hyb25pY2xlMyIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/2802fe605e/ExpeditionChronicle3.png",
+				"league": "Settlers",
+				"id": "9b5a0b25a8c97fc633e96e77e63a8899b2d378d569789e9d9f5c3643f3eb9f95",
+				"name": "",
+				"typeLine": "Expedition Logbook",
+				"baseType": "Expedition Logbook",
+				"rarity": "Magic",
+				"ilvl": 84,
+				"identified": false,
+				"properties": [
+					{
+						"name": "Area Level",
+						"values": [
+							[
+								"83",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 34
+					}
+				],
+				"logbookMods": [
+					{
+						"name": "Karui Wargraves",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Remnants have 35% chance to have an additional Suffix Modifier",
+							"Area contains 14% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Mountainside",
+						"faction": {
+							"id": "Faction1",
+							"name": "Druids of the Broken Circle"
+						},
+						"mods": [
+							"Area contains 9 additional Chest Markers",
+							"Area contains 29% increased number of Monster Markers"
+						]
+					},
+					{
+						"name": "Vaal Temple",
+						"faction": {
+							"id": "Faction2",
+							"name": "Black Scythe Mercenaries"
+						},
+						"mods": [
+							"24% increased quantity of Artifacts dropped by Monsters",
+							"Area contains 39% increased number of Runic Monster Markers"
+						]
+					}
+				],
+				"descrText": "Take this item to Dannig in your Hideout to open portals to an expedition.",
+				"frameType": 1,
+				"x": 1,
+				"y": 8,
+				"inventoryId": "Stash1"
+			}
+		]
+	}
+}

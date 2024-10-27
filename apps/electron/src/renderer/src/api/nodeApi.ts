@@ -65,6 +65,8 @@ export const nodeApi = {
 				url = 'http://localhost:5174/src/mocks/ninjaFossil.json'
 			} else if (category === 'Resonator') {
 				url = 'http://localhost:5174/src/mocks/ninjaResonator.json'
+			} else if (category === 'Artifact') {
+				url = 'http://localhost:5174/src/mocks/ninjaArtifact.json'
 			} else {
 				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
 			}

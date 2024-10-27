@@ -48,12 +48,16 @@ export type PoeItem = Pick<
 	| 'implicitMods'
 	| 'explicitMods'
 	| 'ultimatumMods'
+	| 'logbookMods'
 	| 'enchantMods'
 	| 'properties'
 	| 'w'
 	| 'h'
 	| 'x'
 	| 'y'
+	| 'corrupted'
+	| 'split'
+	| 'duplicated'
 > & {
 	id: Id<PoeItem>
 	stashTabId: Id<PoeStashTab>

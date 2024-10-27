@@ -1,4 +1,4 @@
-import { DeepRequired, MaybeComputedRef, ObjectValues } from '@shared/types/utility.types'
+import { DeepRequired, getKeys, MaybeComputedRef, ObjectValues } from '@shared/types/utility.types'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import {
 	BulkyBazaarItemBase,
@@ -120,3 +120,14 @@ export type Map8ModPerItemAttributes = DeepRequired<
 	PerItemAttributes,
 	['modifiers'] | ['properties'] | ['properties', 'itemQuantity'] | ['properties', 'itemRarity'] | ['properties', 'packSize']
 >
+
+export function isShopMap8Mod(obj: any): obj is ShopMap8Mod {
+	return (
+		obj &&
+		'type' in obj &&
+		getKeys(MAP_TYPE).includes(obj.type) &&
+		'tier' in obj &&
+		getKeys(MAP_TIER).includes(obj.tier) &&
+		'perItemAttributes' in obj
+	)
+}

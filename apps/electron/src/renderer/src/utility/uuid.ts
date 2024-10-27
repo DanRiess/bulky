@@ -48,6 +48,14 @@ import { useCurrencyFilterStore } from '@web/categories/currency/currencyFilter.
 import { BazaarHeistItem, HeistFilter, HeistFilterField, ShopHeistItem } from '@web/categories/heist/heist.types'
 import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
 import { useHeistFilterStore } from '@web/categories/heist/heistFilter.store'
+import {
+	BazaarExpeditionItem,
+	ExpeditionFilter,
+	ExpeditionFilterField,
+	ShopExpeditionItem,
+} from '@web/categories/expedition/expedition.types'
+import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
+import { useExpeditionFilterStore } from '@web/categories/expedition/expeditionFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -212,6 +220,20 @@ function isHeistFilterUuid(uuid: string): uuid is Uuid<HeistFilter> {
 	return !!store.filters.has(typedUuid)
 }
 
+/** Validate if a given string is a expedition offer uuid. */
+function isExpeditionOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopExpeditionItem>> {
+	const store = useExpeditionOfferStore()
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarExpeditionItem>>(uuid)
+	return !!store.offers.has(typedUuid)
+}
+
+/** Validate if a given string is a expedition filter uuid */
+function isExpeditionFilterUuid(uuid: string): uuid is Uuid<ExpeditionFilter> {
+	const store = useExpeditionFilterStore()
+	const typedUuid = generateTypedUuid<BulkyFilter<ExpeditionFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
+}
+
 export const BULKY_UUID = {
 	generateTypedUuid,
 	isEssenceOfferUuid,
@@ -234,4 +256,6 @@ export const BULKY_UUID = {
 	isCurrencyFilterUuid,
 	isHeistOfferUuid,
 	isHeistFilterUuid,
+	isExpeditionOfferUuid,
+	isExpeditionFilterUuid,
 }

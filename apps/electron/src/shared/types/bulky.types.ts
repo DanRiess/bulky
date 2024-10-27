@@ -70,6 +70,14 @@ import {
 	HeistOfferStore,
 	ShopHeistItem,
 } from '@web/categories/heist/heist.types'
+import {
+	BazaarExpeditionItem,
+	ExpeditionFilterField,
+	ExpeditionFilterStore,
+	ExpeditionOfferStore,
+	ShopExpeditionItem,
+} from '@web/categories/expedition/expedition.types'
+import { EXPEDITION_FACTION } from '@web/categories/expedition/expedition.const'
 
 // APP STATE TYPES
 
@@ -85,6 +93,7 @@ export const CATEGORY = {
 	CATALYST: 'CATALYST',
 	CURRENCY: 'CURRENCY',
 	HEIST: 'HEIST',
+	EXPEDITION: 'EXPEDITION',
 } as const
 
 export const CATEGORY_IDX_TO_NAME = getKeys(CATEGORY)
@@ -112,6 +121,7 @@ export type BulkyOfferStore =
 	| CatalystOfferStore
 	| CurrencyOfferStore
 	| HeistOfferStore
+	| ExpeditionOfferStore
 
 export type BulkyFilterStore =
 	| EssenceFilterStore
@@ -124,6 +134,7 @@ export type BulkyFilterStore =
 	| CatalystFilterStore
 	| CurrencyFilterStore
 	| HeistFilterStore
+	| ExpeditionFilterStore
 
 // BULKY SHOP ITEM TYPES
 
@@ -133,6 +144,9 @@ export type PerItemAttributes = {
 		itemQuantity?: number
 		itemRarity?: number
 		packSize?: number
+	}
+	logbookMods?: {
+		factions?: (keyof typeof EXPEDITION_FACTION)[]
 	}
 }
 
@@ -175,6 +189,7 @@ export type BulkyShopItem =
 	| ShopCatalyst
 	| ShopCurrency
 	| ShopHeistItem
+	| ShopExpeditionItem
 
 /** Type that bulky items will be saved as */
 export type BulkyShopItemRecord<T extends BulkyShopItem = BulkyShopItem> = Map<`${T['type']}_${T['tier']}`, T>
@@ -248,6 +263,7 @@ export type BulkyBazaarItem =
 	| BazaarCatalyst
 	| BazaarCurrency
 	| BazaarHeistItem
+	| BazaarExpeditionItem
 
 export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> = Map<`${T['type']}_${T['tier']}`, T>
 
@@ -310,6 +326,7 @@ export type BulkyFilterField =
 	| CatalystFilterField
 	| CurrencyFilterField
 	| HeistFilterField
+	| ExpeditionFilterField
 
 /**
  * A BulkyFilter contains all necessary filter metadata as well as the fields contained within the filter.
@@ -339,7 +356,7 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
  */
 export type ComputedBulkyFilterStore = {
 	filter: BulkyFilter
-	filterFieldTypeOptions: BulkyFilterField['type'][]
+	filterFieldTypeOptions: Omit<BulkyFilterField['type'], 'LOGBOOK'>[]
 	filterFieldTierOptions: BulkyFilterField['tier'][]
 	addFilterField: <T extends BulkyFilter['uuid']>(uuid: T) => void
 	removeFilterField: <T extends BulkyFilter['uuid']>(uuid: T, idx: number) => void
@@ -407,6 +424,7 @@ type PerItemAttributesDto = {
 		iRar?: number
 		pckSz?: number
 	}
+	logbookMods?: number[]
 }
 
 export type BulkyBazaarItemDto = {

@@ -30,6 +30,7 @@ const components = ref([
 	{ displayName: 'Catalysts', fileName: 'catalyst-unstable', category: CATEGORY.CATALYST },
 	{ displayName: 'Currency', fileName: 'currency-divine', category: CATEGORY.CURRENCY },
 	{ displayName: 'Heist', fileName: 'heist-blueprint', category: CATEGORY.HEIST },
+	{ displayName: 'Expedition', fileName: 'expedition-tujen', category: CATEGORY.EXPEDITION },
 ])
 
 // METHODS
