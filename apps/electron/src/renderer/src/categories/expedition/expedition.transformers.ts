@@ -7,7 +7,6 @@ import { capitalize } from 'lodash'
 import { notEmpty } from '@web/utility/notEmpty'
 import {
 	EXPEDITION_FACTION,
-	EXPEDITION_FACTION_IDX_TO_NAME,
 	EXPEDITION_FACTION_NAME_TO_IDX,
 	EXPEDITION_TIER,
 	EXPEDITION_TIER_IDX_TO_NAME,
@@ -62,14 +61,12 @@ function generateShopItemFromPoeItem(
 	const type = generateTypeFromBaseType(poeItem.baseType)
 	const tier = generateTierFromProperty(poeItem.ilvl)
 
-	console.log({ poeItem, type, tier })
-
 	if (!type || !tier) return
 
 	return {
 		type,
 		tier,
-		name: poeItem.baseType,
+		name: type.match(/logbook/i) ? `${poeItem.baseType} (${generateNameFromTier(tier)})` : poeItem.baseType,
 		icon: poeItem.icon,
 		quantity: poeItem.stackSize ?? 1,
 		price: computed(() => {
@@ -91,21 +88,6 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarExpeditionIt
 	const type = EXPEDITION_TYPE_IDX_TO_NAME[item.type]
 	const tier = EXPEDITION_TIER_IDX_TO_NAME[item.tier]
 
-	const perItemAttributes: LogbookPerItemAttributes[] | undefined = item.pia
-		?.map(attrs => {
-			if (!attrs.logbookMods) return
-
-			return {
-				logbookMods: {
-					factions: attrs.logbookMods.map(factionIdx => EXPEDITION_FACTION_IDX_TO_NAME[factionIdx]).filter(notEmpty),
-				},
-			}
-		})
-		.filter(notEmpty)
-
-	// Return if the perItemAttributes could not correctly be extracted (only for logbooks).
-	if (type === 'LOGBOOK' && (perItemAttributes === undefined || perItemAttributes.length !== item.pia?.length)) return
-
 	return {
 		category: 'EXPEDITION',
 		type,
@@ -115,17 +97,18 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarExpeditionIt
 		computedQuantity: item.qnt,
 		price: item.prc,
 		icon: '',
-		perItemAttributes,
 	}
 }
 
 function generateNameFromType(type: ExpeditionType) {
-	return (
-		type
-			.split('_')
-			.map(t => capitalize(t))
-			.join(' ') + ' Map'
-	)
+	return type
+		.split('_')
+		.map(t => capitalize(t))
+		.join(' ')
+}
+
+function generateNameFromTier(tier: ExpeditionTier) {
+	return tier.replace('_', ' ').toLowerCase()
 }
 
 function getPerItemAttributes(item: PoeItem): LogbookPerItemAttributes | undefined {

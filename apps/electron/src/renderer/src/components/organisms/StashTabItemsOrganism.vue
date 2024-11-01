@@ -8,42 +8,25 @@
 			</TransitionAtom>
 		</div>
 
-		<template v-if="category === 'MAP'">
-			<StashItemListMoleculeMap
-				:items="filteredItemRecord"
-				:override-prices="itemOverrides"
-				:sort-fn="sortItems"
-				:offer-multiplier="offerMultiplier"
-				@change-item-override="(item, options) => putItemOverride(item, options)" />
-		</template>
-		<template v-else-if="category === 'MAP_8_MOD'">
-			<StashItemListMolecule8ModMap
-				:items="filteredItemRecord as BulkyShopItemRecord<ShopMap8Mod>"
-				:override-prices="itemOverrides"
-				:sort-fn="sortItems"
-				@change-item-override="(item, options) => putItemOverride(item, options)" />
-		</template>
-		<template v-else>
-			<StashItemListMolecule
-				:items="filteredItemRecord"
-				:override-prices="itemOverrides"
-				:sort-fn="sortItems"
-				:offer-multiplier="offerMultiplier"
-				@change-item-override="(item, options) => putItemOverride(item, options)" />
-		</template>
+		<component
+			:is="currentStashListComponent"
+			:items="filteredItemRecord"
+			:override-prices="itemOverrides"
+			:sort-fn="sortItems"
+			:offer-multiplier="offerMultiplier"
+			@change-item-override="(item: ShopItemOrOverrideInstance, options: BulkyItemOverrideOptions) => putItemOverride(item, options)" />
 
 		<div class="total-value">
-			<PriceAtom :price="divValue" label="Total Value:" />
+			<PriceAtom
+				:price="divValue"
+				:label="category === 'EXPEDITION' ? 'Total Value (excluding logbooks):' : 'Total Value:'" />
 			<template v-if="operation === 'create'">
-				<ButtonAtom
-					background-color="dark"
-					@click="emit('generateOffer', filteredItemRecord, filterModel)"
-					:disabled="disableOfferGenerationButton">
+				<ButtonAtom background-color="dark" @click="generateOffer" :disabled="disableOfferGenerationButton">
 					Generate Offer
 				</ButtonAtom>
 			</template>
 			<template v-else-if="operation === 'edit'">
-				<ButtonAtom background-color="dark" @click="emit('syncChanges', filteredItemRecord)">Sync Changes</ButtonAtom>
+				<ButtonAtom background-color="dark" @click="syncChanges">Sync Changes</ButtonAtom>
 			</template>
 		</div>
 	</div>
@@ -58,7 +41,14 @@ import StashItemListMolecule from '../molecules/StashItemListMolecule.vue'
 import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useBulkyItems } from '@web/composables/useBulkyItems'
 import { useItemOverrides } from '@web/composables/useItemOverrides'
-import { BulkyShopItemRecord, Category, ShopFilter } from '@shared/types/bulky.types'
+import {
+	BulkyItemOverrideInstance,
+	BulkyItemOverrideOptions,
+	BulkyShopItem,
+	BulkyShopItemRecord,
+	Category,
+	ShopFilter,
+} from '@shared/types/bulky.types'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
 import { useAggregateItemPrice } from '@web/composables/useAggregateItemPrice'
@@ -70,7 +60,23 @@ import TransitionAtom from '../atoms/TransitionAtom.vue'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
 import StashItemListMoleculeMap from '../molecules/StashItemListMoleculeMap.vue'
 import StashItemListMolecule8ModMap from '../molecules/StashItemListMolecule8ModMap.vue'
-import { ShopMap8Mod } from '@web/categories/map/map.types'
+import { computed } from 'vue'
+import StashItemListMoleculeExpedition from '../molecules/StashItemListMoleculeExpedition.vue'
+import { replaceExpeditionLogbooks } from '@web/utility/replaceExpeditionLogbooks'
+import { ShopExpeditionItem } from '@web/categories/expedition/expedition.types'
+
+type ShopItemOrOverrideInstance = {
+	shopItem?: BulkyShopItem
+	overrideInstance?: BulkyItemOverrideInstance
+}
+
+// COMPONENTS
+const currentStashListComponent = computed(() => {
+	if (props.category === 'MAP') return StashItemListMoleculeMap
+	else if (props.category === 'MAP_8_MOD') return StashItemListMolecule8ModMap
+	else if (props.category === 'EXPEDITION') return StashItemListMoleculeExpedition
+	else return StashItemListMolecule
+})
 
 // MODEL
 const filterModel = defineModel<ShopFilter>({ required: true })
@@ -119,8 +125,41 @@ const divValue = useChaosToDiv(chaosValue, chaosPerDiv)
  * Synchronize the items in the selected folders.
  */
 async function syncSelectedFolders(items: PoeItemsByStash) {
-	console.log({ items })
 	await updateItemsByStash(items)
+}
+
+/**
+ * Apply category specific filtering to the items and emit to generate an offer.
+ */
+function generateOffer() {
+	// Replace generic with faction specific logbooks
+	if (props.category === 'EXPEDITION') {
+		const itemRecord = replaceExpeditionLogbooks(
+			filteredItemRecord.value as BulkyShopItemRecord<ShopExpeditionItem>,
+			itemOverrides
+		)
+		emit('generateOffer', itemRecord, filterModel.value)
+		return
+	}
+
+	emit('generateOffer', filteredItemRecord.value, filterModel.value)
+}
+
+/**
+ * Apply category specific filtering to the items and emit to sync changes.
+ */
+function syncChanges() {
+	// Replace generic with faction specific logbooks
+	if (props.category === 'EXPEDITION') {
+		const itemRecord = replaceExpeditionLogbooks(
+			filteredItemRecord.value as BulkyShopItemRecord<ShopExpeditionItem>,
+			itemOverrides
+		)
+		emit('syncChanges', itemRecord)
+		return
+	}
+
+	emit('syncChanges', filteredItemRecord.value)
 }
 </script>
 

@@ -1,0 +1,72 @@
+[
+	{
+		"version": 1,
+		"uuid": "451fb9f0-90c9-4d72-9546-f988c2becbb7",
+		"timestamp": 1730452823789,
+		"account": "Chavincar",
+		"ign": "myign323",
+		"category": "EXPEDITION",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"multiplier": 1,
+		"fullPrice": 1117,
+		"minimumBuyout": 0,
+		"fullBuyout": false,
+		"items": [
+			{
+				"type": 1,
+				"tier": 0,
+				"qnt": 161,
+				"prc": 3
+			},
+			{
+				"type": 0,
+				"tier": 0,
+				"qnt": 177,
+				"prc": 1
+			},
+			{
+				"type": 2,
+				"tier": 0,
+				"qnt": 107,
+				"prc": 1
+			},
+			{
+				"type": 3,
+				"tier": 0,
+				"qnt": 53,
+				"prc": 2
+			},
+			{
+				"type": 4,
+				"tier": 4,
+				"qnt": 2,
+				"prc": 12
+			},
+			{
+				"type": 6,
+				"tier": 4,
+				"qnt": 11,
+				"prc": 13
+			},
+			{
+				"type": 7,
+				"tier": 4,
+				"qnt": 3,
+				"prc": 14
+			},
+			{
+				"type": 4,
+				"tier": 2,
+				"qnt": 5,
+				"prc": 6
+			},
+			{
+				"type": 5,
+				"tier": 2,
+				"qnt": 1,
+				"prc": 5
+			}
+		]
+	}
+]

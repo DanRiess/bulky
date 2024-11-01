@@ -39,22 +39,32 @@ export function useItemOverrides(category: MaybeRefOrGetter<Category>) {
 	 * Pass the new price as explicit parameter, since on the BulkyShopItem,
 	 * the price override is computed only.
 	 */
-	function putItemOverride(item: BulkyShopItem, overrides: BulkyItemOverrideOptions) {
+	function putItemOverride(
+		item: { shopItem?: BulkyShopItem; overrideInstance?: BulkyItemOverrideInstance },
+		overrides: BulkyItemOverrideOptions = {}
+	) {
+		if (!item.shopItem && !item.overrideInstance) return
+
 		const bulkyIdb = useBulkyIdb()
 
-		// Generate the new override item.
-		const newItem = BULKY_TRANSFORM.bulkyItemToOverrideItem(item, overrides)
-
-		// Unset properties that should not be active if the item is unselected.
-		if (newItem.selected === false) {
-			newItem.allowRegexFilter !== undefined && (newItem.allowRegexFilter = false)
+		// If a shop item was passed instead of an override instance, transform it here.
+		if (!item.overrideInstance && item.shopItem) {
+			item.overrideInstance = BULKY_TRANSFORM.bulkyItemToOverrideItem(item.shopItem, overrides)
 		}
 
-		// Set the new item in the map.
-		itemOverrides.value.set(`${newItem.type}_${newItem.tier}`, newItem)
+		// At this point, overrideInstance should always be defined, but typescript doesn't know it.
+		if (item.overrideInstance) {
+			// Unset properties that should not be active if the item is unselected.
+			if (item.overrideInstance.selected === false) {
+				item.overrideInstance.allowRegexFilter !== undefined && (item.overrideInstance.allowRegexFilter = false)
+			}
 
-		// Put the new item in the database.
-		bulkyIdb.putItemOverride(newItem)
+			// Set the new item in the map.
+			itemOverrides.value.set(`${item.overrideInstance.type}_${item.overrideInstance.tier}`, item.overrideInstance)
+
+			// Put the new item in the database.
+			bulkyIdb.putItemOverride(item.overrideInstance)
+		}
 	}
 
 	return { itemOverrides, putItemOverride }

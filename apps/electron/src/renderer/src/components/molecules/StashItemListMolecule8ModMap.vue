@@ -57,7 +57,7 @@ defineProps<{
 
 // EMITS
 const emit = defineEmits<{
-	changeItemOverride: [item: BulkyShopItem, price: BulkyItemOverrideOptions]
+	changeItemOverride: [item: { shopItem: BulkyShopItem }, price: BulkyItemOverrideOptions]
 }>()
 
 // COMPOSABLES

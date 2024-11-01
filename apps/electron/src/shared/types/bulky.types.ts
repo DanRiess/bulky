@@ -77,7 +77,6 @@ import {
 	ExpeditionOfferStore,
 	ShopExpeditionItem,
 } from '@web/categories/expedition/expedition.types'
-import { EXPEDITION_FACTION } from '@web/categories/expedition/expedition.const'
 
 // APP STATE TYPES
 
@@ -145,9 +144,7 @@ export type PerItemAttributes = {
 		itemRarity?: number
 		packSize?: number
 	}
-	logbookMods?: {
-		factions?: (keyof typeof EXPEDITION_FACTION)[]
-	}
+	logbookMods?: number[]
 }
 
 /**

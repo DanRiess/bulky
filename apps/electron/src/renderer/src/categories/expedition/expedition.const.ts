@@ -1,4 +1,6 @@
 import { typedFromEntries, getKeys } from '@shared/types/utility.types'
+import { ExpeditionFaction, ExpeditionType } from './expedition.types'
+import { BulkyShopItem } from '@shared/types/bulky.types'
 
 export const EXPEDITION_TYPE = {
 	ASTRAGALI: 'ASTRAGALI',
@@ -44,3 +46,11 @@ export const EXPEDITION_FACTION_IDX_TO_NAME = getKeys(EXPEDITION_FACTION)
 export const EXPEDITION_FACTION_NAME_TO_IDX = typedFromEntries(
 	Object.entries(EXPEDITION_FACTION_IDX_TO_NAME).map(([key, value]) => [value, parseInt(key)])
 )
+
+export function getFactionFromType(type: BulkyShopItem['type']): ExpeditionFaction | undefined {
+	if (type === 'LOGBOOK_BLACK_SCYTHE_MERCENARIES') return 'BLACK_SCYTHE_MERCENARIES'
+	else if (type === 'LOGBOOK_DRUIDS_OF_THE_BROKEN_CIRCLE') return 'DRUIDS_OF_THE_BROKEN_CIRCLE'
+	else if (type === 'LOGBOOK_KNIGHTS_OF_THE_SUN') return 'KNIGHTS_OF_THE_SUN'
+	else if (type === 'LOGBOOK_ORDER_OF_THE_CHALICE') return 'ORDER_OF_THE_CHALICE'
+	return undefined
+}

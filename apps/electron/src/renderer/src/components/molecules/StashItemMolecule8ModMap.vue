@@ -1,7 +1,9 @@
 <template>
 	<li class="m-stash-item">
 		<div class="metadata">
-			<InputCheckboxAtom v-model="selected" @update:model-value="emit('changeItemOverride', item, { selected })" />
+			<InputCheckboxAtom
+				v-model="selected"
+				@update:model-value="emit('changeItemOverride', { shopItem: item }, { selected })" />
 			<div class="icon" :class="{ disabled: !selected }">
 				<img :src="item.icon" :alt="item.name" />
 			</div>
@@ -20,7 +22,7 @@
 			<div class="center-content" :class="{ disabled: !selected }">
 				<InputCheckboxAtom
 					v-model="allowRegexFilter"
-					@update:model-value="emit('changeItemOverride', item, { allowRegexFilter })"
+					@update:model-value="emit('changeItemOverride', { shopItem: item }, { allowRegexFilter })"
 					:disabled="!selected" />
 			</div>
 		</div>
@@ -84,7 +86,7 @@ const props = defineProps<{
 
 // EMITS
 const emit = defineEmits<{
-	changeItemOverride: [item: BulkyShopItem, options: BulkyItemOverrideOptions]
+	changeItemOverride: [item: { shopItem: BulkyShopItem }, options: BulkyItemOverrideOptions]
 }>()
 
 // STATE
@@ -125,7 +127,7 @@ watch(
  * Update the override value if it has changed.
  */
 function updateOverrideValue() {
-	emit('changeItemOverride', props.item, { priceMap8Mod: overridePrice.value })
+	emit('changeItemOverride', { shopItem: props.item }, { priceMap8Mod: overridePrice.value })
 }
 
 function addPriceFragment(type: 'quantityRegex' | 'packsizeRegex') {

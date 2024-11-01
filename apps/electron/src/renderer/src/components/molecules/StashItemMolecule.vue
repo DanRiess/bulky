@@ -1,6 +1,8 @@
 <template>
 	<li class="m-stash-item" :style="style">
-		<InputCheckboxAtom v-model="selected" @update:model-value="emit('changeItemOverride', item, { selected })" />
+		<InputCheckboxAtom
+			v-model="selected"
+			@update:model-value="emit('changeItemOverride', { shopItem: item }, { selected })" />
 		<div class="icon">
 			<img :src="item.icon" :alt="item.name" />
 		</div>
@@ -41,7 +43,7 @@ const props = defineProps<{
 
 // EMITS
 const emit = defineEmits<{
-	changeItemOverride: [item: BulkyShopItem, options: BulkyItemOverrideOptions]
+	changeItemOverride: [item: { shopItem: BulkyShopItem }, options: BulkyItemOverrideOptions]
 }>()
 
 // STATE
@@ -114,7 +116,7 @@ function updateOverrideUsage(bool: boolean) {
 
 	if ((bool && overridePrice.value < 0) || (!bool && overridePrice.value > 0)) {
 		overridePrice.value *= -1
-		emit('changeItemOverride', props.item, { price: overridePrice.value })
+		emit('changeItemOverride', { shopItem: props.item }, { price: overridePrice.value })
 	}
 }
 
@@ -124,7 +126,7 @@ function updateOverrideUsage(bool: boolean) {
 function updateOverrideValue() {
 	if (overridePrice.value === toValue(props.item.priceOverride)) return
 
-	emit('changeItemOverride', props.item, { price: overridePrice.value })
+	emit('changeItemOverride', { shopItem: props.item }, { price: overridePrice.value })
 }
 </script>
 

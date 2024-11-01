@@ -26,7 +26,9 @@ watch(
 	}
 )
 
+// STATE
 const overflowEl = ref<HTMLElement | null>(null)
+let timeout: NodeJS.Timeout | undefined = undefined
 
 /**
  * If overflow is hidden constantly, the absolute comboboxes would not be able to overflow either.
@@ -36,13 +38,16 @@ function computeOverflowProperty(expanded: boolean) {
 	if (!overflowEl.value) return
 
 	if (expanded) {
-		setTimeout(() => {
+		timeout = setTimeout(() => {
 			if (!overflowEl.value) return
 			overflowEl.value.classList.remove('hide-overflow')
 		}, props.transitionTime)
 	} else {
 		if (!overflowEl.value.classList.contains('hide-overflow')) {
 			overflowEl.value.classList.add('hide-overflow')
+
+			// Remove the timeout that's being added in case 'expanded' was 'true' before.
+			clearTimeout(timeout)
 		}
 	}
 }

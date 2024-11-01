@@ -2,7 +2,8 @@ import { BulkyShopItemRecord, BulkyItemSortOptions, BulkyItemOverrideRecord, Cat
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { PoeItem, PoeItemsByStash } from '@shared/types/poe.types'
 import { RefOrGetter, getKeys, isWatchable } from '@shared/types/utility.types'
-import { isShopMap8Mod } from '@web/categories/map/map.types'
+import { isLogbook, LogbookPerItemAttributes } from '@web/categories/expedition/expedition.types'
+import { isShopMap8Mod, Map8ModPerItemAttributes } from '@web/categories/map/map.types'
 import { compareStrings } from '@web/utility/compareFunctions'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { MaybeRefOrGetter, Ref, ref, toValue, watch } from 'vue'
@@ -75,13 +76,17 @@ export function useBulkyItems(
 	function putItem(poeItem: PoeItem) {
 		const type = BULKY_FACTORY.getTypeFromPoeItem(poeItem, toValue(category))
 		const tier = BULKY_FACTORY.getTierFromPoeItem(poeItem, toValue(category))
-		console.log({ type, tier })
 		if (!type || !tier) return
 
 		const perItemAttributes = BULKY_FACTORY.getPerItemAttributes(toValue(category), poeItem)
+		// console.log({ type, tier, perItemAttributes })
 
 		// Filter out items with perItemAttributes here
-		if (toValue(category) === 'MAP_8_MOD' && (!perItemAttributes || perItemAttributes.modifiers?.length < 8)) return
+		if (
+			toValue(category) === 'MAP_8_MOD' &&
+			(!perItemAttributes || perItemAttributes.modifiers?.length === undefined || perItemAttributes.modifiers?.length < 8)
+		)
+			return
 		if (toValue(category) === 'EXPEDITION' && type === 'LOGBOOK' && !perItemAttributes) return
 
 		const itemInMap = items.value.get(`${type}_${tier}`)
@@ -92,7 +97,8 @@ export function useBulkyItems(
 
 			// Get the per item attributes
 			if (perItemAttributes && itemInMap.perItemAttributes) {
-				if (isShopMap8Mod(itemInMap)) itemInMap.perItemAttributes.push(perItemAttributes)
+				if (isShopMap8Mod(itemInMap)) itemInMap.perItemAttributes.push(perItemAttributes as Map8ModPerItemAttributes)
+				if (isLogbook(itemInMap)) itemInMap.perItemAttributes.push(perItemAttributes as LogbookPerItemAttributes)
 			}
 		}
 
@@ -103,7 +109,8 @@ export function useBulkyItems(
 
 			// Get the per item attributes
 			if (perItemAttributes && bulkyItem.perItemAttributes) {
-				if (isShopMap8Mod(bulkyItem)) bulkyItem.perItemAttributes.push(perItemAttributes)
+				if (isShopMap8Mod(bulkyItem)) bulkyItem.perItemAttributes.push(perItemAttributes as Map8ModPerItemAttributes)
+				if (isLogbook(bulkyItem)) bulkyItem.perItemAttributes.push(perItemAttributes as LogbookPerItemAttributes)
 			}
 
 			items.value.set(`${bulkyItem.type}_${bulkyItem.tier}`, bulkyItem)

@@ -73,8 +73,8 @@ async function updateStateVariables(
 	chaosPerDiv: Ref<number>,
 	category: MaybeRefOrGetter<Category>
 ) {
-	prices.value = await getPricesByCategory(toValue(category))
 	chaosPerDiv.value = await getChaosPerDiv()
+	prices.value = await getPricesByCategory(toValue(category))
 }
 
 /**
@@ -150,7 +150,7 @@ async function updateNinjaCategoryPrices(categories: NinjaCategory | NinjaCatego
 			await request.exec(category)
 
 			// If the request errors, return the saved price block (or undefined if it doesn't exist)
-			if (request.error.value || !request.data.value) {
+			if (request.error.value || !request.data.value || typeof request.data.value === 'string') {
 				console.log({ ninjaError: request.error.value })
 				return priceCollection
 			}

@@ -35,10 +35,9 @@ export type ShopExpeditionItem = Omit<BulkyShopItemBase<typeof CATEGORY.EXPEDITI
 }
 
 /** BulkyBazaarItem implementation for the 8 mod expedition category */
-export type BazaarExpeditionItem = Omit<BulkyBazaarItemBase<typeof CATEGORY.EXPEDITION>, 'perItemAttributes'> & {
+export type BazaarExpeditionItem = BulkyBazaarItemBase<typeof CATEGORY.EXPEDITION> & {
 	type: ExpeditionType
 	tier: ExpeditionTier
-	perItemAttributes?: LogbookPerItemAttributes[]
 }
 
 /** BulkyBazaarOffer implementation for the expedition category */
@@ -63,9 +62,7 @@ export type ExpeditionFilter = BulkyFilter<ExpeditionFilterField>
  * represents the index of the faction as defined in EXPEDITION_FACTIONS. For example
  *
  * ```
- * logbookMods: {
- * 	factions: [0, 2]
- * }
+ * logbookMods: [0, 2]
  * ```
  * means that the logbook has druids of the broken circle and black scythe mercenaries.
  */
