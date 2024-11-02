@@ -22,15 +22,15 @@ export const useExpeditionFilterStore = defineStore('expeditionFilterStore', () 
 		const uuid = BULKY_UUID.generateTypedUuid<BulkyFilter<ExpeditionFilterField>>()
 		const category = 'EXPEDITION'
 		const name = `Default_${filters.value.size}`
+		const fullBuyout = false
 		const alwaysMaxQuantity = false
-		const regex = ''
 
 		filters.value.set(uuid, {
 			uuid,
 			category,
 			name,
+			fullBuyout,
 			alwaysMaxQuantity,
-			regex,
 			fields: [generateDefaultFilterField()],
 		})
 

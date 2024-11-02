@@ -47,7 +47,7 @@ export type BazaarExpeditionOffer = BulkyBazaarOffer<BazaarExpeditionItem>
 
 /** FilterField implementation for the expedition category */
 export type ExpeditionFilterField = BulkyFilterFieldBase<typeof CATEGORY.EXPEDITION> & {
-	type: ObjectValues<Omit<typeof EXPEDITION_TYPE, 'LOGBOOK'>>
+	type: Exclude<ExpeditionType, 'LOGBOOK'>
 	tier: ExpeditionTier
 }
 

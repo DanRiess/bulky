@@ -353,7 +353,7 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
  */
 export type ComputedBulkyFilterStore = {
 	filter: BulkyFilter
-	filterFieldTypeOptions: Omit<BulkyFilterField['type'], 'LOGBOOK'>[]
+	filterFieldTypeOptions: Exclude<BulkyFilterField['type'], 'LOGBOOK'>[]
 	filterFieldTierOptions: BulkyFilterField['tier'][]
 	addFilterField: <T extends BulkyFilter['uuid']>(uuid: T) => void
 	removeFilterField: <T extends BulkyFilter['uuid']>(uuid: T, idx: number) => void

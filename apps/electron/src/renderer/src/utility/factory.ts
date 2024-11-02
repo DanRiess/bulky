@@ -229,7 +229,7 @@ function getIdxToNameTierMap(category: Category) {
 /**
  * Get all item types from a category.
  */
-function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined {
+function getItemTypes(category: Category): Exclude<BulkyBazaarItem['type'], 'LOGBOOK'>[] | undefined {
 	if (category === 'ESSENCE') return getKeys(ESSENCE_TYPE)
 	else if (category === 'SCARAB') return getKeys(SCARAB_TYPE)
 	else if (category === 'DELIRIUM_ORB') return getKeys(DELI_ORB_TYPE)
@@ -239,7 +239,7 @@ function getItemTypes(category: Category): BulkyBazaarItem['type'][] | undefined
 	else if (category === 'CATALYST') return getKeys(CATALYST_TYPE)
 	else if (category === 'CURRENCY') return getKeys(CURRENCY_TYPE)
 	else if (category === 'HEIST') return getKeys(HEIST_TYPE)
-	else if (category === 'EXPEDITION') return getKeys(EXPEDITION_TYPE)
+	else if (category === 'EXPEDITION') return getKeys(EXPEDITION_TYPE).filter(val => val !== 'LOGBOOK')
 	else return undefined
 }
 

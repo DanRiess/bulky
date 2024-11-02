@@ -151,7 +151,7 @@ async function updateNinjaCategoryPrices(categories: NinjaCategory | NinjaCatego
 
 			// If the request errors, return the saved price block (or undefined if it doesn't exist)
 			if (request.error.value || !request.data.value || typeof request.data.value === 'string') {
-				console.log({ ninjaError: request.error.value })
+				console.log({ ninjaError: request.error.value, category })
 				return priceCollection
 			}
 

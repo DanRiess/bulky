@@ -1,15 +1,16 @@
 <template>
 	<div class="m-filter-field">
 		<div class="field-type">
-			<InputSelectAtom v-model="filterField.type" :id="itemId" :options="store.filterFieldTypeOptions"></InputSelectAtom>
+			<InputSelectAtom
+				v-model="filterField.type"
+				@update:model-value="updateTierWhenTypeChanges"
+				:id="itemId"
+				:options="store.filterFieldTypeOptions"></InputSelectAtom>
 		</div>
 
 		<!-- A filter has at least one secondary option, because it's required for consistent typing -->
-		<div class="field-tier" v-if="store.filterFieldTierOptions.length > 1">
-			<InputSelectAtom
-				v-model="filterField.tier"
-				:id="modifierId"
-				:options="store.filterFieldTierOptions"></InputSelectAtom>
+		<div class="field-tier" v-if="filterFieldTierOptions.length > 1">
+			<InputSelectAtom v-model="filterField.tier" :id="modifierId" :options="filterFieldTierOptions"></InputSelectAtom>
 		</div>
 		<div class="field-quantity" :class="{ hidden: store.filter.alwaysMaxQuantity }">
 			<InputNumberAtom v-model="filterField.quantity" :id="quantityId" :min="1" />
@@ -29,10 +30,6 @@ import { computed } from 'vue'
 import { BulkyFilterField, ComputedBulkyFilterStore } from '@shared/types/bulky.types'
 
 // MODELS
-// const mainModel = defineModel<string>('mainModel')
-// const secondaryModel = defineModel<string>('secondaryModel')
-// const quantityModel = defineModel<number>('quantityModel', { required: true })
-// // const maxBuyoutModel = defineModel<number>('maxBuyoutModel', { required: true })
 const filterField = defineModel<BulkyFilterField>({ required: true })
 
 //PROPS
@@ -52,10 +49,38 @@ const modifierId = BULKY_UUID.generateTypedUuid()
 const quantityId = BULKY_UUID.generateTypedUuid()
 
 // GETTERS
+
+/**
+ * Some categories have items that can have tiers and items that don't.
+ * For those categories, add extra rules about which tiers to display here.
+ */
+const filterFieldTierOptions = computed<BulkyFilterField['tier'][]>(() => {
+	if (filterField.value.category === 'EXPEDITION') {
+		return filterField.value.type.match(/logbook/i) ? ['ILVL_68-72', 'ILVL_73-77', 'ILVL_78-82', 'ILVL_83+'] : ['0']
+	}
+
+	return props.store.filterFieldTierOptions
+})
+
 const disableRemove = computed(() => {
 	return props.store.filter.fields.length <= 1
 })
 
+// METHODS
+
+/**
+ * For categories where not all tiers are applicable to all items,
+ * add additional rules here when the item type changes
+ */
+function updateTierWhenTypeChanges(type: typeof filterField.value.type) {
+	if (filterField.value.category === 'EXPEDITION' && type.match(/logbook/i) && filterField.value.tier === '0') {
+		filterField.value.tier = 'ILVL_83+'
+	} else if (filterField.value.category === 'EXPEDITION' && !type.match(/logbook/i)) {
+		filterField.value.tier = '0'
+	}
+}
+
+// STYLE
 const gridTemplateColumns = computed(() => {
 	const tierOptionsAvailable = props.store.filterFieldTierOptions.length > 1 ? '1fr' : '0'
 	const quant = props.store.filter.alwaysMaxQuantity ? '0' : 'min(7ch)'

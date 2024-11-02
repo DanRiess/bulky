@@ -29,11 +29,13 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
+		const multiplier = dto.multiplier
 		const minimumBuyout = dto.minimumBuyout ?? 0
+		const fullPrice = dto.fullPrice
 		const items = dto.items
 			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('EXPEDITION', item) as BazaarExpeditionItem)
 			.filter(notEmpty)
-		if (!items) return
+		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
 		offers.value.set(uuid, {
 			category,
@@ -42,13 +44,13 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 			league,
 			chaosPerDiv,
 			items,
+			fullPrice,
 			minimumBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,
 			},
-			multiplier: 1,
-			fullPrice: 0,
+			multiplier,
 		})
 	}
 
