@@ -25,6 +25,8 @@ import { BULKY_UUID } from '@web/utility/uuid'
 import { useAppStateStore } from './appStateStore'
 import { useConfigStore } from './configStore'
 import { useFilterShopItems } from '@web/composables/useFilterShopItems'
+import { replaceExpeditionLogbook } from '@web/utility/replaceExpeditionLogbooks'
+import { ShopExpeditionItem } from '@web/categories/expedition/expedition.types'
 
 /** TTL of any given offer. Default to 15 minutes. */
 const OFFER_TTL = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
@@ -296,9 +298,19 @@ export const useShopStore = defineStore('shopStore', () => {
 			if (!item.selected) return
 
 			// Push the item to the array if it fulfills the respective category's checks.
+			// 8 mod maps need a price override, since they can't be priced automatically.
 			if (offer.category === 'MAP_8_MOD') {
 				if (!item.priceOverrideMap8Mod) return
 				items.push(deepToRaw(item))
+			}
+			// Expedition logbooks in the offer are generic.
+			// They have to be split into their specific faction based on highest faction price.
+			else if (offer.category === 'EXPEDITION' && item.type.match(/logbook/i)) {
+				const logbooks = replaceExpeditionLogbook(item as ShopExpeditionItem, itemOverrides)
+				Object.values(logbooks).forEach(logbook => {
+					if (toValue(logbook.price) === 0 && toValue(logbook.priceOverride) === 0) return
+					items.push(deepToRaw(logbook))
+				})
 			} else {
 				if (toValue(item.price) === 0 && toValue(item.priceOverride) === 0) return
 				items.push(deepToRaw(item))

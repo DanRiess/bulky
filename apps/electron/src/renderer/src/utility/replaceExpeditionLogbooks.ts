@@ -1,5 +1,5 @@
 import { BulkyItemOverrideInstance, BulkyItemOverrideRecord, BulkyShopItemRecord } from '@shared/types/bulky.types'
-import { getKeys } from '@shared/types/utility.types'
+import { getKeys, PartialRecord } from '@shared/types/utility.types'
 import { EXPEDITION_FACTION, EXPEDITION_FACTION_IDX_TO_NAME } from '@web/categories/expedition/expedition.const'
 import {
 	ExpeditionFaction,
@@ -10,6 +10,10 @@ import {
 import { computed, Ref, toValue } from 'vue'
 import { BULKY_TRANSFORM } from './transformers'
 
+/**
+ * Consume a full expedition item record and transform the generic logbooks into
+ * faction specific logbooks.
+ */
 export function replaceExpeditionLogbooks(
 	itemRecord: BulkyShopItemRecord<ShopExpeditionItem>,
 	itemOverrides: Ref<BulkyItemOverrideRecord, BulkyItemOverrideRecord>
@@ -22,32 +26,79 @@ export function replaceExpeditionLogbooks(
 			return
 		}
 
-		if (!toValue(shopItem.selected)) return
+		// if (!toValue(shopItem.selected)) return
 
-		const stackSizes = calculateLogbookStackSize(shopItem, itemOverrides)
+		// const stackSizes = calculateLogbookStackSize(shopItem, itemOverrides)
 
-		for (const faction of getKeys(EXPEDITION_FACTION)) {
-			const itemOverride = itemOverrides.value.get(`LOGBOOK_${faction}_${shopItem.tier}`)
+		// for (const faction of getKeys(EXPEDITION_FACTION)) {
+		// 	const itemOverride = itemOverrides.value.get(`LOGBOOK_${faction}_${shopItem.tier}`)
 
-			if (stackSizes[faction] > 0 && itemOverride && itemOverride.priceOverride > 0) {
-				const logbookShopItem: ShopExpeditionItem = {
-					type: `LOGBOOK_${faction}`,
-					tier: shopItem.tier,
-					name: BULKY_TRANSFORM.stringToDisplayValue(`Logbook: ${faction} - ${shopItem.tier}`),
-					icon: shopItem.icon,
-					quantity: stackSizes[faction],
-					price: 0,
-					league: shopItem.league,
-					category: 'EXPEDITION',
-					priceOverride: computed(() => itemOverride.priceOverride),
-					selected: shopItem.selected,
-				}
-				replacedItemRecord.set(`LOGBOOK_${faction}_${shopItem.tier}`, logbookShopItem)
+		// 	if (stackSizes[faction] > 0 && itemOverride && itemOverride.priceOverride > 0) {
+		// 		const logbookShopItem: ShopExpeditionItem = {
+		// 			type: `LOGBOOK_${faction}`,
+		// 			tier: shopItem.tier,
+		// 			name: BULKY_TRANSFORM.stringToDisplayValue(`Logbook: ${faction} - ${shopItem.tier}`),
+		// 			icon: shopItem.icon,
+		// 			quantity: stackSizes[faction],
+		// 			price: 0,
+		// 			league: shopItem.league,
+		// 			category: 'EXPEDITION',
+		// 			priceOverride: computed(() => itemOverride.priceOverride),
+		// 			selected: shopItem.selected,
+		// 		}
+		// 		replacedItemRecord.set(`LOGBOOK_${faction}_${shopItem.tier}`, logbookShopItem)
+		// 	}
+		// }
+
+		const logbooks = replaceExpeditionLogbook(shopItem, itemOverrides)
+		getKeys(logbooks).forEach(logbookKey => {
+			const logbook = logbooks[logbookKey]
+			if (logbook) {
+				replacedItemRecord.set(logbookKey, logbook)
 			}
-		}
+		})
 	})
 
 	return replacedItemRecord
+}
+
+/**
+ * Consume an expedition shop item.
+ * If it is a generic logbook stack, transform it into the faction specific logbooks.
+ */
+export function replaceExpeditionLogbook(
+	shopItem: ShopExpeditionItem,
+	itemOverrides: Ref<BulkyItemOverrideRecord, BulkyItemOverrideRecord>
+): PartialRecord<`${ExpeditionType}_${ExpeditionTier}`, ShopExpeditionItem> {
+	if (!shopItem.type.match(/logbook/i)) return {}
+	if (!toValue(shopItem.selected)) return {}
+
+	const stackSizes = calculateLogbookStackSize(shopItem, itemOverrides)
+
+	let replacedLogbooks: PartialRecord<`${ExpeditionType}_${ExpeditionTier}`, ShopExpeditionItem> = {}
+
+	for (const faction of getKeys(EXPEDITION_FACTION)) {
+		const itemOverride = itemOverrides.value.get(`LOGBOOK_${faction}_${shopItem.tier}`)
+
+		if (stackSizes[faction] > 0 && itemOverride && itemOverride.priceOverride > 0) {
+			const logbookShopItem: ShopExpeditionItem = {
+				type: `LOGBOOK_${faction}`,
+				tier: shopItem.tier,
+				name: BULKY_TRANSFORM.stringToDisplayValue(`Logbook: ${faction} - ${shopItem.tier}`),
+				icon: shopItem.icon,
+				quantity: stackSizes[faction],
+				price: 0,
+				league: shopItem.league,
+				category: 'EXPEDITION',
+				priceOverride: computed(() => itemOverride.priceOverride),
+				selected: shopItem.selected,
+			}
+			// replacedItemRecord.set(`LOGBOOK_${faction}_${shopItem.tier}`, logbookShopItem)
+			replacedLogbooks[`LOGBOOK_${faction}_${shopItem.tier}`] = logbookShopItem
+		}
+	}
+
+	return replacedLogbooks
 }
 
 function calculateLogbookStackSize(
