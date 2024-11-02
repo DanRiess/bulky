@@ -127,6 +127,7 @@ function getPerItemAttributes(item: PoeItem): LogbookPerItemAttributes | undefin
 		.filter(notEmpty)
 
 	return {
+		itemId: item.id,
 		logbookMods: mappedMods,
 	}
 }

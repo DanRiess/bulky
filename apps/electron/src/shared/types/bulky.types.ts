@@ -138,6 +138,7 @@ export type BulkyFilterStore =
 // BULKY SHOP ITEM TYPES
 
 export type PerItemAttributes = {
+	itemId: string
 	modifiers?: number[]
 	properties?: {
 		itemQuantity?: number

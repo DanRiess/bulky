@@ -158,6 +158,7 @@ function generateBazaarMap8ModItemFromDto(item: BulkyBazaarItemDto): BazaarMap8M
 			if (!attrs.mods || !attrs.props || !attrs.props.iQnt || !attrs.props.iRar || !attrs.props.pckSz) return
 
 			return {
+				itemId: '', // Bazaar items don't need this.
 				modifiers: attrs.mods,
 				properties: {
 					itemQuantity: attrs.props.iQnt,
@@ -221,6 +222,7 @@ function getPerItemAttributes(item: PoeItem): Map8ModPerItemAttributes | undefin
 	if (!quant || !rarity || !packSize) return
 
 	return {
+		itemId: item.id,
 		properties: {
 			itemQuantity: parseInt(quant),
 			itemRarity: parseInt(rarity),

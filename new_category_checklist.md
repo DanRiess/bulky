@@ -17,10 +17,5 @@
 -   Update the getTestData function in the offer store and call it in BazaarView.vue
 
 Next steps
-create expedition offer page, separate by currencies and logbooks
-logbooks need a list entry for each tier (e.g. ilvl_73-77) with pricing options for each faction
-when listing, choose the highest priced faction and recast the logbook to that type
-
-same has still to be done for heist things. rogue markers have to be added as well
-
-fix stashlistitems with peritemattributes when deselecting/selecting a stash tab
+contracts and blueprints need item level distinction, similar to expedition. rogue markers have to be added as well
+add fragment category with set searching capabilities
