@@ -51,12 +51,18 @@ function generateTypeFromPoeItem(poeItem: PoeItem): HeistType | undefined {
 		} else {
 			return HEIST_TYPE.BLUEPRINT
 		}
+	} else if (poeItem.baseType === "Rogue's Marker") {
+		return HEIST_TYPE["ROGUE'S_MARKER"]
 	}
 
 	return undefined
 }
 
 function generateTierFromItemLevel(ilvl: number): HeistTier | undefined {
+	// Rogue Markers
+	if (!ilvl || ilvl === 0) return HEIST_TIER['0']
+
+	// Blueprints and contracts
 	if (ilvl < 68) return undefined
 	else if (ilvl < 73) return HEIST_TIER['ILVL_68-72']
 	else if (ilvl < 78) return HEIST_TIER['ILVL_73-77']
@@ -75,14 +81,14 @@ function generateShopItemFromPoeItem(poeItem: PoeItem, itemOverrides: Ref<BulkyI
 	return {
 		type: type,
 		tier: tier,
-		name: generateNameFromType(type),
+		name: type === "ROGUE'S_MARKER" ? poeItem.baseType : `${generateNameFromType(type)} (${generateNameFromTier(tier)})`,
 		icon: poeItem.icon,
-		quantity: 1,
+		quantity: poeItem.stackSize ?? 1,
 		price: 0,
 		league: configStore.config.league,
 		category: 'HEIST',
 		priceOverride: computed(() => {
-			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
+			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10000) / 10000
 		}),
 		selected: computed(() => {
 			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true
@@ -104,6 +110,10 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarHeistItem {
 		price: item.prc,
 		icon: '',
 	}
+}
+
+function generateNameFromTier(tier: HeistTier) {
+	return tier.replace('_', ' ').toLowerCase()
 }
 
 /**

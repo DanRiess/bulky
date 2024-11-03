@@ -20,7 +20,7 @@ const props = defineProps<{
 // GETTERS
 const price = computed(() => {
 	const p = toValue(props.item.priceOverride) > 0 ? props.item.priceOverride : toValue(props.item.price) * props.priceMultiplier
-	return Math.round(toValue(p) * 10) / 10
+	return Math.round(toValue(p) * 10000) / 10000
 })
 </script>
 

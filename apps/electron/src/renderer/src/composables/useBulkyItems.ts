@@ -51,8 +51,6 @@ export function useBulkyItems(
 				items.value = new Map()
 			}
 
-			console.log({ add, remove })
-
 			// loop over the items, remove the old ones, add the new ones
 			getKeys(add).forEach(stashTabId => {
 				add[stashTabId].forEach(poeItem => putItem(poeItem))
@@ -130,7 +128,6 @@ export function useBulkyItems(
 
 		// Check if this item is in the map.
 		const itemInMap = items.value.get(`${type}_${tier}`)
-		console.log({ type, tier, itemInMap })
 
 		if (itemInMap) {
 			// Subtract this PoeItem's stack size from its corresponding BulkyShopItem.

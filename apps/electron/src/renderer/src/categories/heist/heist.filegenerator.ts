@@ -29,7 +29,7 @@ async function getPoeDbItemData() {
 
 	const blueprints = ['BLUEPRINT', 'BLUEPRINT_3_WINGS', 'BLUEPRINT_4_WINGS']
 
-	return [...blueprints, ...contracts]
+	return ["ROGUE'S_MARKER", ...blueprints, ...contracts]
 }
 
 getPoeDbItemData().then(items => {

@@ -12,6 +12,43 @@
 				"verified": false,
 				"w": 1,
 				"h": 1,
+				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvSGVpc3RDb2luQ3VycmVuY3kiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/987a8953f9/HeistCoinCurrency.png",
+				"stackSize": 50000,
+				"maxStackSize": 50000,
+				"stackSizeText": "50K",
+				"league": "Settlers",
+				"id": "5402e64af63b8f8b39008b5ccd5d460d4193635f3e5a7102887a6c7859975a71",
+				"name": "",
+				"typeLine": "Rogue's Marker",
+				"baseType": "Rogue's Marker",
+				"ilvl": 0,
+				"identified": true,
+				"properties": [
+					{
+						"name": "Stack Size",
+						"values": [
+							[
+								"50000/50000",
+								0
+							]
+						],
+						"displayMode": 0,
+						"type": 32
+					}
+				],
+				"explicitMods": [
+					"Creates a portal to the Rogue Harbour from a Town or Hideout\nUsed as Currency for services in the Rogue Harbour"
+				],
+				"descrText": "Right click on this item while in a Town or Hideout to use it.",
+				"frameType": 5,
+				"x": 4,
+				"y": 0,
+				"inventoryId": "Stash1"
+			},
+			{
+				"verified": false,
+				"w": 1,
+				"h": 1,
 				"icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvSGVpc3QvQ29udHJhY3RJdGVtIiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/8262f2ca0e/ContractItem.png",
 				"league": "Settlers",
 				"id": "9153e05e43aa9264400e35ec923a84fc66d4e52f680487a659f315ef552cfb8c",

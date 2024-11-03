@@ -24,7 +24,7 @@ async function getPoeDbItemData() {
 
 	return currency.entries
 		.map(item => item.text.toUpperCase().replace(new RegExp(' ', 'g'), '_'))
-		.filter(Boolean)
+		.filter(val => val && !val.match(/rogue.*marker/i)) // rogue markers will be in heist category.
 		.sort()
 }
 

@@ -50,7 +50,7 @@ function generateShopItemFromPoeItem(
 		league: configStore.config.league,
 		category: 'CURRENCY',
 		priceOverride: computed(() => {
-			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10) / 10
+			return Math.round((itemOverrides.value.get(`${type}_${tier}`)?.priceOverride ?? 0) * 10000) / 10000
 		}),
 		selected: computed(() => {
 			return itemOverrides.value.get(`${type}_${tier}`)?.selected ?? true

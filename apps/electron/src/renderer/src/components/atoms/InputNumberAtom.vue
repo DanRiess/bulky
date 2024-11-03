@@ -149,14 +149,16 @@ function onInput(event: Event, operator?: string) {
 		}
 
 		const newValue = assertAllowedNumber(parseFloat(target.value))
-		target.value = newValue.toString()
-		emit('update:modelValue', newValue)
+		if (!newValue.allowed) {
+			target.value = newValue.number.toString()
+		}
+		emit('update:modelValue', newValue.number)
 	} else {
 		const step = parseFloat(numberInputEl.value?.attributes.getNamedItem('step')?.value ?? '1')
 
 		let newValue = props.modelValue
 		newValue = operator === 'add' ? newValue + step : newValue - step
-		newValue = assertAllowedNumber(newValue)
+		newValue = assertAllowedNumber(newValue).number
 		emit('update:modelValue', newValue)
 	}
 }
@@ -169,7 +171,10 @@ function assertAllowedNumber(n: number) {
 	if (n % 1 !== 0) {
 		n = Math.round(n * Math.pow(10, allowedNumDigits.value)) / Math.pow(10, allowedNumDigits.value)
 	}
-	return n > props.max ? props.max : n < props.min ? props.min : n
+	return {
+		allowed: n > props.max ? false : n < props.min ? false : true,
+		number: n > props.max ? props.max : n < props.min ? props.min : n,
+	}
 }
 
 /**

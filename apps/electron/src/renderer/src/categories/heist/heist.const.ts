@@ -1,6 +1,7 @@
 import { typedFromEntries, getKeys } from '@shared/types/utility.types'
 
 export const HEIST_TYPE = {
+	"ROGUE'S_MARKER": "ROGUE'S_MARKER",
 	BLUEPRINT: 'BLUEPRINT',
 	BLUEPRINT_3_WINGS: 'BLUEPRINT_3_WINGS',
 	BLUEPRINT_4_WINGS: 'BLUEPRINT_4_WINGS',
@@ -22,6 +23,7 @@ export const HEIST_TYPE_NAME_TO_IDX = typedFromEntries(
 )
 
 export const HEIST_TIER = {
+	'0': '0',
 	'ILVL_68-72': 'ILVL_68-72',
 	'ILVL_73-77': 'ILVL_73-77',
 	'ILVL_78-82': 'ILVL_78-82',

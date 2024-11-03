@@ -15,7 +15,7 @@
 				<InputNumberAtom
 					v-model="overridePrice"
 					:step="1"
-					:num-digits="1"
+					:num-digits="4"
 					@update:model-value="updateOverrideValue"
 					ref="inputEl" />
 			</template>
