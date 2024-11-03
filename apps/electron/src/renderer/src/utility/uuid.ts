@@ -56,6 +56,9 @@ import {
 } from '@web/categories/expedition/expedition.types'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
 import { useExpeditionFilterStore } from '@web/categories/expedition/expeditionFilter.store'
+import { BazaarFragment, FragmentFilter, FragmentFilterField, ShopFragment } from '@web/categories/fragment/fragment.types'
+import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
+import { useFragmentFilterStore } from '@web/categories/fragment/fragmentFilter.store'
 
 /** Generate a uuid with the provided type as a brand. */
 function getTypedUuid<T extends OptionalRecord = undefined>(uuid: string) {
@@ -234,6 +237,20 @@ function isExpeditionFilterUuid(uuid: string): uuid is Uuid<ExpeditionFilter> {
 	return !!store.filters.has(typedUuid)
 }
 
+/** Validate if a given string is a fragment offer uuid. */
+function isFragmentOfferUuid(uuid: string): uuid is Uuid<BulkyShopOffer<ShopFragment>> {
+	const store = useFragmentOfferStore()
+	const typedUuid = generateTypedUuid<BulkyBazaarOffer<BazaarFragment>>(uuid)
+	return !!store.offers.has(typedUuid)
+}
+
+/** Validate if a given string is a fragment filter uuid */
+function isFragmentFilterUuid(uuid: string): uuid is Uuid<FragmentFilter> {
+	const store = useFragmentFilterStore()
+	const typedUuid = generateTypedUuid<BulkyFilter<FragmentFilterField>>(uuid)
+	return !!store.filters.has(typedUuid)
+}
+
 export const BULKY_UUID = {
 	generateTypedUuid,
 	isEssenceOfferUuid,
@@ -258,4 +275,6 @@ export const BULKY_UUID = {
 	isHeistFilterUuid,
 	isExpeditionOfferUuid,
 	isExpeditionFilterUuid,
+	isFragmentOfferUuid,
+	isFragmentFilterUuid,
 }

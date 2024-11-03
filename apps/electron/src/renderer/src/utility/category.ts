@@ -16,6 +16,7 @@ function generateCategoryFromDto(category: string): Category | undefined {
 	else if (category.match(/currency/i)) return CATEGORY.CURRENCY
 	else if (category.match(/heist/i)) return CATEGORY.HEIST
 	else if (category.match(/expedition/i)) return CATEGORY.EXPEDITION
+	else if (category.match(/fragment/i)) return CATEGORY.FRAGMENT
 
 	return undefined
 }

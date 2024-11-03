@@ -15,6 +15,7 @@ import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.s
 import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
 import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
+import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
 
@@ -34,6 +35,7 @@ export function useComputedOffersStore() {
 	const currencyOfferStore = useCurrencyOfferStore()
 	const heistOfferStore = useHeistOfferStore()
 	const expeditionOfferStore = useExpeditionOfferStore()
+	const fragmentOfferStore = useFragmentOfferStore()
 
 	let timeout: NodeJS.Timeout | undefined
 
@@ -86,6 +88,7 @@ export function useComputedOffersStore() {
 			else if (store === currencyOfferStore && store.isCurrencyItem(item)) return store.calculateBaseItemPrice(item)
 			else if (store === heistOfferStore && store.isHeistItem(item)) return store.calculateBaseItemPrice(item)
 			else if (store === expeditionOfferStore && store.isExpeditionItem(item)) return store.calculateBaseItemPrice(item)
+			else if (store === fragmentOfferStore && store.isFragment(item)) return store.calculateBaseItemPrice(item)
 
 			throw new RendererError({
 				code: 'unknown_item',

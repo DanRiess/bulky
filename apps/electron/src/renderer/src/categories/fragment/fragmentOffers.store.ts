@@ -1,5 +1,5 @@
 /**
- * Handle all currency offers through this store.
+ * Handle all fragment offers through this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -12,20 +12,20 @@ import { getListing } from '@web/api/bulkyApi'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { notEmpty } from '@web/utility/notEmpty'
-import { BazaarCurrency, BazaarCurrencyOffer } from './currency.types'
-import { CURRENCY_TYPE } from './currency.const'
+import { BazaarFragment, BazaarFragmentOffer } from './fragment.types'
+import { FRAGMENT_TYPE } from './fragment.const'
 
-export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
-	const offers = ref<Map<BazaarCurrencyOffer['uuid'], BazaarCurrencyOffer>>(new Map())
+export const useFragmentOfferStore = defineStore('fragmentOfferStore', () => {
+	const offers = ref<Map<BazaarFragmentOffer['uuid'], BazaarFragmentOffer>>(new Map())
 
 	/**
-	 * Consume a currency listing dto, type and validate it and add it to the listings.
+	 * Consume a fragment listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
-		if (category !== 'CURRENCY') return
+		if (category !== 'FRAGMENT') return
 
-		const uuid = BULKY_UUID.generateTypedUuid<BazaarCurrencyOffer>(dto.uuid)
+		const uuid = BULKY_UUID.generateTypedUuid<BazaarFragmentOffer>(dto.uuid)
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
@@ -33,7 +33,7 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const items = dto.items
-			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('CURRENCY', item) as BazaarCurrency)
+			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('FRAGMENT', item) as BazaarFragment)
 			.filter(notEmpty)
 
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
@@ -58,7 +58,7 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
-	function deleteOffer(uuid: BazaarCurrencyOffer['uuid']) {
+	function deleteOffer(uuid: BazaarFragmentOffer['uuid']) {
 		offers.value.delete(uuid)
 	}
 
@@ -66,18 +66,18 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 	 * Prices are being calculated differently for some categories.
 	 * This implementation enables generically calling store.calculateBaseItemPrice.
 	 */
-	function calculateBaseItemPrice(item: BazaarCurrency) {
+	function calculateBaseItemPrice(item: BazaarFragment) {
 		return item.price
 	}
 
 	/**
-	 * Validate if an object is a BazaarCurrency or not.
+	 * Validate if an object is a BazaarFragment or not.
 	 */
-	function isCurrencyItem(obj: any): obj is BazaarCurrency {
+	function isFragment(obj: any): obj is BazaarFragment {
 		return (
 			obj &&
 			'type' in obj &&
-			getKeys(CURRENCY_TYPE).includes(obj.type) &&
+			getKeys(FRAGMENT_TYPE).includes(obj.type) &&
 			'tier' in obj &&
 			obj.tier === '0' &&
 			'quantity' in obj &&
@@ -88,11 +88,11 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 	}
 
 	async function getTestData() {
-		console.log('getting currency test data')
+		console.log('getting fragment test data')
 		// if (listings.value.size !== 0) return
 
-		const request = useApi('currencyPayload', getListing)
-		await request.exec('src/mocks/offersCurrency.json')
+		const request = useApi('fragmentPayload', getListing)
+		await request.exec('src/mocks/offersFragment.json')
 
 		if (request.error.value || !request.data.value) {
 			console.log('no way jose')
@@ -103,11 +103,11 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 	}
 
 	/**
-	 * Fetch all new currency offers since the last fetch action.
+	 * Fetch all new fragment offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch currency offers')
+		console.log('Refetch fragment offers')
 	}
 
 	return {
@@ -115,12 +115,12 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
-		isCurrencyItem,
+		isFragment,
 		refetchOffers,
 		getTestData,
 	}
 })
 
 if (import.meta.hot) {
-	import.meta.hot.accept(acceptHMRUpdate(useCurrencyOfferStore, import.meta.hot))
+	import.meta.hot.accept(acceptHMRUpdate(useFragmentOfferStore, import.meta.hot))
 }

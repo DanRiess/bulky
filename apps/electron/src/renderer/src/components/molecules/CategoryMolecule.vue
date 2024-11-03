@@ -31,6 +31,7 @@ const components = ref([
 	{ displayName: 'Currency', fileName: 'currency-divine', category: CATEGORY.CURRENCY },
 	{ displayName: 'Heist', fileName: 'heist-blueprint', category: CATEGORY.HEIST },
 	{ displayName: 'Expedition', fileName: 'expedition-tujen', category: CATEGORY.EXPEDITION },
+	{ displayName: 'Fragments', fileName: 'fragment-dusk', category: CATEGORY.FRAGMENT },
 ])
 
 // METHODS

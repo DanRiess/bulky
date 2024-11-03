@@ -1,0 +1,288 @@
+[
+	{
+		"version": 1,
+		"uuid": "aca844f8-0af6-47fc-ad5c-f15320a6c705",
+		"timestamp": 1730623770503,
+		"account": "Chavincar",
+		"ign": "Chavi",
+		"category": "FRAGMENT",
+		"league": "Settlers",
+		"chaosPerDiv": 163.54,
+		"multiplier": 1,
+		"fullPrice": 4316,
+		"minimumBuyout": 0,
+		"fullBuyout": false,
+		"items": [
+			{
+				"type": 24,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 150
+			},
+			{
+				"type": 74,
+				"tier": 0,
+				"qnt": 45,
+				"prc": 11
+			},
+			{
+				"type": 76,
+				"tier": 0,
+				"qnt": 42,
+				"prc": 9.6
+			},
+			{
+				"type": 78,
+				"tier": 0,
+				"qnt": 59,
+				"prc": 5
+			},
+			{
+				"type": 70,
+				"tier": 0,
+				"qnt": 81,
+				"prc": 2.5
+			},
+			{
+				"type": 0,
+				"tier": 0,
+				"qnt": 11,
+				"prc": 17
+			},
+			{
+				"type": 26,
+				"tier": 0,
+				"qnt": 8,
+				"prc": 18
+			},
+			{
+				"type": 72,
+				"tier": 0,
+				"qnt": 70,
+				"prc": 2
+			},
+			{
+				"type": 53,
+				"tier": 0,
+				"qnt": 26,
+				"prc": 5
+			},
+			{
+				"type": 6,
+				"tier": 0,
+				"qnt": 7,
+				"prc": 17
+			},
+			{
+				"type": 93,
+				"tier": 0,
+				"qnt": 7,
+				"prc": 17
+			},
+			{
+				"type": 63,
+				"tier": 0,
+				"qnt": 52,
+				"prc": 1.8
+			},
+			{
+				"type": 58,
+				"tier": 0,
+				"qnt": 90,
+				"prc": 1
+			},
+			{
+				"type": 30,
+				"tier": 0,
+				"qnt": 4,
+				"prc": 20
+			},
+			{
+				"type": 32,
+				"tier": 0,
+				"qnt": 4,
+				"prc": 20
+			},
+			{
+				"type": 33,
+				"tier": 0,
+				"qnt": 4,
+				"prc": 20
+			},
+			{
+				"type": 35,
+				"tier": 0,
+				"qnt": 4,
+				"prc": 20
+			},
+			{
+				"type": 55,
+				"tier": 0,
+				"qnt": 140,
+				"prc": 0.5
+			},
+			{
+				"type": 56,
+				"tier": 0,
+				"qnt": 218,
+				"prc": 0.3
+			},
+			{
+				"type": 46,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 11.7
+			},
+			{
+				"type": 8,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 45
+			},
+			{
+				"type": 66,
+				"tier": 0,
+				"qnt": 65,
+				"prc": 0.7
+			},
+			{
+				"type": 57,
+				"tier": 0,
+				"qnt": 43,
+				"prc": 1
+			},
+			{
+				"type": 25,
+				"tier": 0,
+				"qnt": 80,
+				"prc": 0.5
+			},
+			{
+				"type": 47,
+				"tier": 0,
+				"qnt": 8,
+				"prc": 5
+			},
+			{
+				"type": 84,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 40
+			},
+			{
+				"type": 17,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 28
+			},
+			{
+				"type": 41,
+				"tier": 0,
+				"qnt": 7,
+				"prc": 4
+			},
+			{
+				"type": 44,
+				"tier": 0,
+				"qnt": 7,
+				"prc": 4
+			},
+			{
+				"type": 67,
+				"tier": 0,
+				"qnt": 82,
+				"prc": 0.3
+			},
+			{
+				"type": 39,
+				"tier": 0,
+				"qnt": 6,
+				"prc": 4.5
+			},
+			{
+				"type": 65,
+				"tier": 0,
+				"qnt": 79,
+				"prc": 0.3
+			},
+			{
+				"type": 79,
+				"tier": 0,
+				"qnt": 77,
+				"prc": 0.3
+			},
+			{
+				"type": 40,
+				"tier": 0,
+				"qnt": 5,
+				"prc": 5
+			},
+			{
+				"type": 38,
+				"tier": 0,
+				"qnt": 6,
+				"prc": 4
+			},
+			{
+				"type": 77,
+				"tier": 0,
+				"qnt": 64,
+				"prc": 0.3
+			},
+			{
+				"type": 75,
+				"tier": 0,
+				"qnt": 62,
+				"prc": 0.3
+			},
+			{
+				"type": 71,
+				"tier": 0,
+				"qnt": 57,
+				"prc": 0.3
+			},
+			{
+				"type": 48,
+				"tier": 0,
+				"qnt": 22,
+				"prc": 0.7
+			},
+			{
+				"type": 97,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 15
+			},
+			{
+				"type": 19,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 14
+			},
+			{
+				"type": 45,
+				"tier": 0,
+				"qnt": 2,
+				"prc": 5
+			},
+			{
+				"type": 68,
+				"tier": 0,
+				"qnt": 1,
+				"prc": 9.6
+			},
+			{
+				"type": 73,
+				"tier": 0,
+				"qnt": 29,
+				"prc": 0.3
+			},
+			{
+				"type": 64,
+				"tier": 0,
+				"qnt": 18,
+				"prc": 0.3
+			}
+		]
+	}
+]

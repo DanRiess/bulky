@@ -39,6 +39,7 @@ import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
 import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
 import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
+import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
 
 // STORES
 const appStateStore = useAppStateStore()
@@ -78,6 +79,8 @@ watch(
 			useHeistOfferStore().getTestData()
 		} else if (cat === 'EXPEDITION') {
 			useExpeditionOfferStore().getTestData()
+		} else if (cat === 'FRAGMENT') {
+			useFragmentOfferStore().getTestData()
 		}
 
 		// makeBinTestData()

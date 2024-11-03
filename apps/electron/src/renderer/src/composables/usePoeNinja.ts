@@ -121,6 +121,7 @@ function bulkyToNinjaCategory(bulkyCategory: Category): NinjaCategory[] | undefi
 	else if (bulkyCategory === 'CATALYST') return ['Currency']
 	else if (bulkyCategory === 'CURRENCY') return ['Currency']
 	else if (bulkyCategory === 'EXPEDITION') return ['Artifact']
+	else if (bulkyCategory === 'FRAGMENT') return ['Fragment', 'Currency']
 	return undefined
 }
 

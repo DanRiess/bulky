@@ -128,8 +128,6 @@ export const useShopStore = defineStore('shopStore', () => {
 				items.push(deepToRaw(item))
 			}
 
-			// items.push(deepToRaw(item))
-
 			// calculate the multiplier for this item
 			if (computedMultiplier) {
 				const itemMultiplier = toValue(item.priceOverride) / toValue(item.price)

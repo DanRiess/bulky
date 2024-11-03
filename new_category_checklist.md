@@ -17,5 +17,4 @@
 -   Update the getTestData function in the offer store and call it in BazaarView.vue
 
 Next steps
-contracts and blueprints need item level distinction, similar to expedition. rogue markers have to be added as well
 add fragment category with set searching capabilities

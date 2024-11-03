@@ -70,6 +70,11 @@ import {
 import { BULKY_EXPEDITION } from '@web/categories/expedition/expedition.transformers'
 import { useExpeditionFilterStore } from '@web/categories/expedition/expeditionFilter.store'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
+import { FRAGMENT_TYPE, FRAGMENT_TYPE_IDX_TO_NAME, FRAGMENT_TYPE_NAME_TO_IDX } from '@web/categories/fragment/fragment.const'
+import { BULKY_FRAGMENT } from '@web/categories/fragment/fragment.transformers'
+import { FragmentTier } from '@web/categories/fragment/fragment.types'
+import { useFragmentFilterStore } from '@web/categories/fragment/fragmentFilter.store'
+import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
 import {
 	HEIST_TIER,
 	HEIST_TIER_IDX_TO_NAME,
@@ -133,6 +138,7 @@ function getOfferStore(category: Category): BulkyOfferStore | undefined {
 	else if (category === 'CURRENCY') return useCurrencyOfferStore()
 	else if (category === 'HEIST') return useHeistOfferStore()
 	else if (category === 'EXPEDITION') return useExpeditionOfferStore()
+	else if (category === 'FRAGMENT') return useFragmentOfferStore()
 	return undefined
 }
 
@@ -151,6 +157,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 	else if (category === 'CURRENCY') return useCurrencyFilterStore()
 	else if (category === 'HEIST') return useHeistFilterStore()
 	else if (category === 'EXPEDITION') return useExpeditionFilterStore()
+	else if (category === 'FRAGMENT') return useFragmentFilterStore()
 	return undefined
 }
 
@@ -170,6 +177,7 @@ function getNameToIdxTypeMap(category: Category) {
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_NAME_TO_IDX
 	else if (category === 'HEIST') return HEIST_TYPE_NAME_TO_IDX
 	else if (category === 'EXPEDITION') return EXPEDITION_TYPE_NAME_TO_IDX
+	else if (category === 'FRAGMENT') return FRAGMENT_TYPE_NAME_TO_IDX
 	return undefined
 }
 
@@ -187,6 +195,7 @@ function getNameToIdxTierMap(category: Category) {
 	else if (category === 'CURRENCY') return { '0': 0 }
 	else if (category === 'HEIST') return HEIST_TIER_NAME_TO_IDX
 	else if (category === 'EXPEDITION') return EXPEDITION_TIER_NAME_TO_IDX
+	else if (category === 'FRAGMENT') return { '0': 0 }
 	return undefined
 }
 
@@ -206,6 +215,7 @@ function getIdxToNameTypeMap(category: Category) {
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_IDX_TO_NAME
 	else if (category === 'HEIST') return HEIST_TYPE_IDX_TO_NAME
 	else if (category === 'EXPEDITION') return EXPEDITION_TYPE_IDX_TO_NAME
+	else if (category === 'FRAGMENT') return FRAGMENT_TYPE_IDX_TO_NAME
 	return undefined
 }
 
@@ -223,6 +233,7 @@ function getIdxToNameTierMap(category: Category) {
 	else if (category === 'CURRENCY') return ['0'] as CurrencyTier[]
 	else if (category === 'HEIST') return HEIST_TIER_IDX_TO_NAME
 	else if (category === 'EXPEDITION') return EXPEDITION_TIER_IDX_TO_NAME
+	else if (category === 'FRAGMENT') return ['0'] as FragmentTier[]
 	return undefined
 }
 
@@ -240,6 +251,7 @@ function getItemTypes(category: Category): Exclude<BulkyBazaarItem['type'], 'LOG
 	else if (category === 'CURRENCY') return getKeys(CURRENCY_TYPE)
 	else if (category === 'HEIST') return getKeys(HEIST_TYPE)
 	else if (category === 'EXPEDITION') return getKeys(EXPEDITION_TYPE).filter(val => val !== 'LOGBOOK')
+	else if (category === 'FRAGMENT') return getKeys(FRAGMENT_TYPE)
 	else return undefined
 }
 
@@ -257,6 +269,7 @@ function getItemTiers(category: Category): BulkyBazaarItem['tier'][] | undefined
 	else if (category === 'CURRENCY') return ['0']
 	else if (category === 'HEIST') return getKeys(HEIST_TIER)
 	else if (category === 'EXPEDITION') return getKeys(EXPEDITION_TIER)
+	else if (category === 'FRAGMENT') return ['0']
 	else return undefined
 }
 
@@ -274,6 +287,7 @@ function getTypeFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTypeFromBaseType(item.baseType)
 	else if (category === 'HEIST') return BULKY_HEIST.generateTypeFromPoeItem(item)
 	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateTypeFromBaseType(item.baseType)
+	else if (category === 'FRAGMENT') return BULKY_FRAGMENT.generateTypeFromBaseType(item.baseType)
 	else return undefined
 }
 
@@ -291,6 +305,7 @@ function getTierFromPoeItem(item: PoeItem, category: Category): BulkyShopItem['t
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateTier()
 	else if (category === 'HEIST') return BULKY_HEIST.generateTierFromItemLevel(item.ilvl)
 	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateTierFromProperty(item.ilvl)
+	else if (category === 'FRAGMENT') return BULKY_FRAGMENT.generateTier()
 	else return undefined
 }
 
@@ -318,6 +333,8 @@ function getNameFromTypeAndTier(
 	else if (category === 'HEIST' && useHeistOfferStore().isHeistItem(item)) return BULKY_HEIST.generateNameFromType(item.type)
 	else if (category === 'EXPEDITION' && useExpeditionOfferStore().isExpeditionItem(item))
 		return BULKY_EXPEDITION.generateNameFromType(item.type)
+	else if (category === 'FRAGMENT' && useFragmentOfferStore().isFragment(item))
+		return BULKY_FRAGMENT.generateNameFromType(item.type)
 	else return undefined
 }
 
@@ -336,6 +353,7 @@ function generateBazaarItemFromDto(category: Category, item: BulkyBazaarItemDto)
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateBazaarItemFromDto(item)
 	else if (category === 'HEIST') return BULKY_HEIST.generateBazaarItemFromDto(item)
 	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateBazaarItemFromDto(item)
+	else if (category === 'FRAGMENT') return BULKY_FRAGMENT.generateBazaarItemFromDto(item)
 	else return undefined
 }
 
@@ -359,6 +377,7 @@ function generateBulkyItemFromPoeItem(
 	else if (category === 'CURRENCY') return BULKY_CURRENCY.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else if (category === 'HEIST') return BULKY_HEIST.generateShopItemFromPoeItem(item, itemOverrides)
 	else if (category === 'EXPEDITION') return BULKY_EXPEDITION.generateShopItemFromPoeItem(item, prices, itemOverrides)
+	else if (category === 'FRAGMENT') return BULKY_FRAGMENT.generateShopItemFromPoeItem(item, prices, itemOverrides)
 	else return undefined
 }
 
