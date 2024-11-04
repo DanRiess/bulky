@@ -1,4 +1,6 @@
-import { BulkyBazaarOffer, BulkyFilter, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { BulkyBazaarOffer, BulkyFilter, BulkyFilterField, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { FRAGMENT_SET } from '@web/categories/fragment/fragment.const'
+import { FragmentType } from '@web/categories/fragment/fragment.types'
 import { applyRegexToBulkyItem } from '@web/utility/applyRegexToBulkyItem'
 import { BULKY_REGEX } from '@web/utility/regex'
 import { computed, MaybeRefOrGetter, toValue } from 'vue'
@@ -44,6 +46,16 @@ export function useApplyFilterToOffers(
 			// Filter out offers that have a higher 'minimumBuyout' than what the filter provides.
 			for (let i = 0; i < computedFilterFields.length; ++i) {
 				const field = computedFilterFields[i]
+
+				// Only for fragment sets, use this calculation.
+				if (filter.category === 'FRAGMENT' && filter.fullSets) {
+					const fragmentResult = filterFragmentSetOffer(filter, field, offer)
+					itemsMissingInOffer = fragmentResult.itemsMissingInOffer
+					price += fragmentResult.price
+					continue
+				}
+
+				// For all items, use this calculation instead.
 				const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
 				if (item) {
 					// Apply the regex to this item, if it is available
@@ -85,4 +97,42 @@ export function useApplyFilterToOffers(
 
 		return offers
 	})
+}
+
+function filterFragmentSetOffer(filter: BulkyFilter, filterField: BulkyFilterField, offer: BulkyBazaarOffer) {
+	const necessaryItems: FragmentType[] | undefined = FRAGMENT_SET[filterField.type]
+	if (!necessaryItems) {
+		return {
+			itemsMissingInOffer: false,
+			price: 0,
+		}
+	}
+
+	let setPrice = 0
+	let maxQuantityIfAlwaysMaxQuantity = Infinity
+
+	const allItemsAvailable = necessaryItems.every(necessaryItem => {
+		const itemInOffer = offer.items.find(item => item.type === necessaryItem)
+
+		if (!itemInOffer) return false
+
+		// If alwaysMaxQuantity is selected, set the maxQuantity value to the itemInOffer's quantity if it's smaller.
+		if (filter.alwaysMaxQuantity) {
+			maxQuantityIfAlwaysMaxQuantity = Math.min(maxQuantityIfAlwaysMaxQuantity, itemInOffer.quantity)
+		} else {
+			// If the available item quantity is lower than what the filter wants, reject the offer.
+			if (itemInOffer.quantity < filterField.quantity) return false
+		}
+
+		setPrice += itemInOffer.price
+
+		return true
+	})
+
+	const price = filter.alwaysMaxQuantity ? setPrice * maxQuantityIfAlwaysMaxQuantity : setPrice * filterField.quantity
+
+	return {
+		itemsMissingInOffer: !allItemsAvailable,
+		price: allItemsAvailable ? price : 0,
+	}
 }

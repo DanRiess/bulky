@@ -3,7 +3,7 @@
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BulkyFilter } from '@shared/types/bulky.types'
 import { FragmentFilter, FragmentFilterField } from './fragment.types'
@@ -25,6 +25,12 @@ export const useFragmentFilterStore = defineStore('fragmentFilterStore', () => {
 		const fullBuyout = false
 		const alwaysMaxQuantity = false
 		const multiplier = 2
+		const fullSets = false
+
+		// Specific to this category:
+		// Keep filter fields for individual items and sets in their own variables to allow seamless switching.
+		const individualItemFields = [generateDefaultFilterField()]
+		const setItemFields = [generateDefaultFilterField(true)]
 
 		filters.value.set(uuid, {
 			uuid,
@@ -33,7 +39,26 @@ export const useFragmentFilterStore = defineStore('fragmentFilterStore', () => {
 			fullBuyout,
 			multiplier,
 			alwaysMaxQuantity,
-			fields: [generateDefaultFilterField()],
+			fullSets,
+			fields: individualItemFields,
+			individualFields: individualItemFields,
+			setFields: setItemFields,
+		})
+
+		// Create a computed property for the fullSets property to watch.
+		const fullSetsValue = computed(() => filters.value.get(uuid)?.fullSets)
+
+		watch(fullSetsValue, fullSets => {
+			if (fullSets === undefined) return
+
+			const filter = filters.value.get(uuid)
+			if (!filter) return
+
+			if (filter.fullSets && filter.setFields) {
+				filter.fields = filter.setFields
+			} else if (filter.fullSets === false && filter.individualFields) {
+				filter.fields = filter.individualFields
+			}
 		})
 
 		currentFilterId.value = uuid
@@ -48,7 +73,7 @@ export const useFragmentFilterStore = defineStore('fragmentFilterStore', () => {
 		const filter = filters.value.get(uuid)
 		if (!filter) return
 
-		filter.fields.push(generateDefaultFilterField())
+		filter.fields.push(generateDefaultFilterField(filter.fullSets))
 	}
 
 	/**
@@ -66,14 +91,17 @@ export const useFragmentFilterStore = defineStore('fragmentFilterStore', () => {
 	 *
 	 * @private
 	 */
-	function generateDefaultFilterField() {
+	function generateDefaultFilterField(secondaryTypeOption = false) {
+		const type = secondaryTypeOption ? 'ADORNED' : "AL-HEZMIN'S_CREST"
+
 		const field: FragmentFilterField = {
 			uuid: BULKY_UUID.generateTypedUuid<FragmentFilterField>(),
 			category: 'FRAGMENT',
-			type: "AL-HEZMIN'S_CREST",
+			type,
 			tier: '0',
 			quantity: 1,
 		}
+
 		return field
 	}
 

@@ -33,6 +33,7 @@ import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed } from 'vue'
 import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import { decodeMinifiedTradeNotification, generateMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
+import { BULKY_FRAGMENT } from '@web/categories/fragment/fragment.transformers'
 
 // PROPS
 const props = defineProps<{
@@ -49,6 +50,15 @@ const filteredItems = computed<BulkyBazaarItem[]>(() => {
 	// If the user wants to buy the full offer, return all items
 	if (props.filter.fullBuyout) {
 		return props.offer.items
+	}
+
+	// If the user is looking for fragment sets, they have to be generated here.
+	if (props.filter.category === 'FRAGMENT' && props.filter.fullSets) {
+		const sets = BULKY_FRAGMENT.generateItemSetsFromOffer(props.offer)
+
+		return sets.filter(set => {
+			return props.filter.fields.find(field => field.type === set.type)
+		})
 	}
 
 	return props.offer.items.filter(item => {

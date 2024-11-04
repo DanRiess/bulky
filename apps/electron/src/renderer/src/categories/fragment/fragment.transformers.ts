@@ -1,11 +1,13 @@
 import { PoeItem } from '@shared/types/poe.types'
 import { Ref, computed } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
-import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyBazaarItemDto, BulkyBazaarOffer, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
 import { capitalize } from 'lodash'
-import { BazaarFragment, FragmentTier, FragmentType, ShopFragment } from './fragment.types'
-import { FRAGMENT_TYPE, FRAGMENT_TYPE_IDX_TO_NAME } from './fragment.const'
+import { BazaarFragment, FragmentSet, FragmentTier, FragmentType, ShopFragment } from './fragment.types'
+import { FRAGMENT_SET, FRAGMENT_TYPE, FRAGMENT_TYPE_IDX_TO_NAME } from './fragment.const'
+import { getKeys } from '@shared/types/utility.types'
+import { notEmpty } from '@web/utility/notEmpty'
 
 export const BULKY_FRAGMENT = {
 	generateTypeFromBaseType,
@@ -13,6 +15,7 @@ export const BULKY_FRAGMENT = {
 	generateShopItemFromPoeItem,
 	generateNameFromType,
 	generateBazaarItemFromDto,
+	generateItemSetsFromOffer,
 }
 
 function generateTypeFromBaseType(baseType: string): FragmentType | undefined {
@@ -71,13 +74,56 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarFragment {
 	}
 }
 
+function generateItemSetsFromOffer(offer: BulkyBazaarOffer): BazaarFragment[] {
+	const setKeys = getKeys(FRAGMENT_SET)
+
+	return setKeys
+		.map(setKey => {
+			const necessaryItems = FRAGMENT_SET[setKey]
+
+			let maxQuantity = Infinity
+			let setPrice = 0
+
+			const allItemsAvailable = necessaryItems.every(necessaryItem => {
+				const itemInOffer = offer.items.find(item => item.type === necessaryItem)
+				if (!itemInOffer) return false
+
+				maxQuantity = Math.min(maxQuantity, itemInOffer.quantity)
+				setPrice += itemInOffer.price
+
+				return true
+			})
+
+			if (allItemsAvailable) {
+				const bazaarFragment: BazaarFragment = {
+					category: 'FRAGMENT',
+					type: setKey,
+					tier: '0',
+					name: generateNameFromType(setKey),
+					quantity: maxQuantity,
+					computedQuantity: maxQuantity,
+					price: setPrice,
+					icon: '',
+				}
+				return bazaarFragment
+			} else {
+				return undefined
+			}
+		})
+		.filter(notEmpty)
+}
+
 /**
  * Generate the display name from the type
  * E. g. SACRIFICE_AT_DAWN -> Sacrifice At Dawn
  */
-function generateNameFromType(type: FragmentType) {
-	return type
+function generateNameFromType(type: FragmentType | FragmentSet) {
+	const isSet = !!FRAGMENT_SET[type]
+
+	const str = type
 		.split('_')
 		.map(t => capitalize(t))
 		.join(' ')
+
+	return isSet ? str + ' Set' : str
 }

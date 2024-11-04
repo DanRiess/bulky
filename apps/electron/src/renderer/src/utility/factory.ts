@@ -70,7 +70,14 @@ import {
 import { BULKY_EXPEDITION } from '@web/categories/expedition/expedition.transformers'
 import { useExpeditionFilterStore } from '@web/categories/expedition/expeditionFilter.store'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
-import { FRAGMENT_TYPE, FRAGMENT_TYPE_IDX_TO_NAME, FRAGMENT_TYPE_NAME_TO_IDX } from '@web/categories/fragment/fragment.const'
+import {
+	FRAGMENT_SET,
+	FRAGMENT_SET_IDX_TO_NAME,
+	FRAGMENT_SET_NAME_TO_IDX,
+	FRAGMENT_TYPE,
+	FRAGMENT_TYPE_IDX_TO_NAME,
+	FRAGMENT_TYPE_NAME_TO_IDX,
+} from '@web/categories/fragment/fragment.const'
 import { BULKY_FRAGMENT } from '@web/categories/fragment/fragment.transformers'
 import { FragmentTier } from '@web/categories/fragment/fragment.types'
 import { useFragmentFilterStore } from '@web/categories/fragment/fragmentFilter.store'
@@ -166,7 +173,7 @@ function getFilterStore(category: Category): BulkyFilterStore | undefined {
 /**
  * Get a type's name -> idx mapper for a category.
  */
-function getNameToIdxTypeMap(category: Category) {
+function getNameToIdxTypeMap(category: Category, secondaryOption = false) {
 	if (category === 'ESSENCE') return ESSENCE_TYPE_NAME_TO_IDX
 	else if (category === 'SCARAB') return SCARAB_TYPE_NAME_TO_IDX
 	else if (category === 'DELIRIUM_ORB') return DELI_ORB_TYPE_NAME_TO_IDX
@@ -177,7 +184,9 @@ function getNameToIdxTypeMap(category: Category) {
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_NAME_TO_IDX
 	else if (category === 'HEIST') return HEIST_TYPE_NAME_TO_IDX
 	else if (category === 'EXPEDITION') return EXPEDITION_TYPE_NAME_TO_IDX
-	else if (category === 'FRAGMENT') return FRAGMENT_TYPE_NAME_TO_IDX
+	else if (category === 'FRAGMENT') {
+		return secondaryOption ? FRAGMENT_SET_NAME_TO_IDX : FRAGMENT_TYPE_NAME_TO_IDX
+	}
 	return undefined
 }
 
@@ -204,7 +213,7 @@ function getNameToIdxTierMap(category: Category) {
 /**
  * Get a type's idx -> name mapper for a category.
  */
-function getIdxToNameTypeMap(category: Category) {
+function getIdxToNameTypeMap(category: Category, secondaryOption = false) {
 	if (category === 'ESSENCE') return ESSENCE_TYPE_IDX_TO_NAME
 	else if (category === 'SCARAB') return SCARAB_TYPE_IDX_TO_NAME
 	else if (category === 'DELIRIUM_ORB') return DELI_ORB_TYPE_IDX_TO_NAME
@@ -215,7 +224,9 @@ function getIdxToNameTypeMap(category: Category) {
 	else if (category === 'CURRENCY') return CURRENCY_TYPE_IDX_TO_NAME
 	else if (category === 'HEIST') return HEIST_TYPE_IDX_TO_NAME
 	else if (category === 'EXPEDITION') return EXPEDITION_TYPE_IDX_TO_NAME
-	else if (category === 'FRAGMENT') return FRAGMENT_TYPE_IDX_TO_NAME
+	else if (category === 'FRAGMENT') {
+		return secondaryOption ? FRAGMENT_SET_IDX_TO_NAME : FRAGMENT_TYPE_IDX_TO_NAME
+	}
 	return undefined
 }
 
@@ -240,7 +251,10 @@ function getIdxToNameTierMap(category: Category) {
 /**
  * Get all item types from a category.
  */
-function getItemTypes(category: Category): Exclude<BulkyBazaarItem['type'], 'LOGBOOK'>[] | undefined {
+function getItemTypes(
+	category: Category,
+	secondaryTypeOption = false
+): Exclude<BulkyBazaarItem['type'], 'LOGBOOK'>[] | undefined {
 	if (category === 'ESSENCE') return getKeys(ESSENCE_TYPE)
 	else if (category === 'SCARAB') return getKeys(SCARAB_TYPE)
 	else if (category === 'DELIRIUM_ORB') return getKeys(DELI_ORB_TYPE)
@@ -251,8 +265,9 @@ function getItemTypes(category: Category): Exclude<BulkyBazaarItem['type'], 'LOG
 	else if (category === 'CURRENCY') return getKeys(CURRENCY_TYPE)
 	else if (category === 'HEIST') return getKeys(HEIST_TYPE)
 	else if (category === 'EXPEDITION') return getKeys(EXPEDITION_TYPE).filter(val => val !== 'LOGBOOK')
-	else if (category === 'FRAGMENT') return getKeys(FRAGMENT_TYPE)
-	else return undefined
+	else if (category === 'FRAGMENT') {
+		return secondaryTypeOption ? getKeys(FRAGMENT_SET) : getKeys(FRAGMENT_TYPE)
+	} else return undefined
 }
 
 /**

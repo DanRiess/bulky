@@ -7,7 +7,7 @@ import {
 	BulkyShopItemBase,
 	CATEGORY,
 } from '@shared/types/bulky.types'
-import { FRAGMENT_TYPE } from './fragment.const'
+import { FRAGMENT_SET, FRAGMENT_TYPE } from './fragment.const'
 import { useFragmentOfferStore } from './fragmentOffers.store'
 import { useFragmentFilterStore } from './fragmentFilter.store'
 
@@ -17,8 +17,11 @@ export type FragmentFilterStore = ReturnType<typeof useFragmentFilterStore>
 
 // ITEM TYPES
 
-/** All possible fragment base types */
+/** All possible fragment base types. */
 export type FragmentType = ObjectValues<typeof FRAGMENT_TYPE>
+
+/** All possible fragment sets. */
+export type FragmentSet = keyof typeof FRAGMENT_SET
 
 /** Fragments don't have tiers, but the item structure expects one. */
 export type FragmentTier = '0'
@@ -31,7 +34,7 @@ export type ShopFragment = BulkyShopItemBase<typeof CATEGORY.FRAGMENT> & {
 
 /** BulkyBazaarItem implementation of the fragment category */
 export type BazaarFragment = BulkyBazaarItemBase<typeof CATEGORY.FRAGMENT> & {
-	type: FragmentType
+	type: FragmentType | FragmentSet
 	tier: FragmentTier
 	price: number
 }
@@ -43,7 +46,7 @@ export type BazaarFragmentOffer = BulkyBazaarOffer<BazaarFragment>
 
 /** FilterField implementation for the fragment category */
 export type FragmentFilterField = BulkyFilterFieldBase<typeof CATEGORY.FRAGMENT> & {
-	type: FragmentType
+	type: FragmentType | FragmentSet
 	tier: FragmentTier
 }
 

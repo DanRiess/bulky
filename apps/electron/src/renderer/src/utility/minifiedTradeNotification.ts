@@ -24,7 +24,8 @@ import { toValue } from 'vue'
  *
  * Bytes:
  * 0-1: Item type (Uint16)
- * 2-3: Item tier (Uint16)
+ * 2: Secondary type option (Uint8, either 0 or 1)
+ * 3: Item tier (Uint8)
  * 4-7: Quantity (Uint32)
  * 8-12: Price (Uint32)
  *
@@ -41,7 +42,8 @@ export function generateMinifiedTradeNotification(
 ) {
 	const mtnVersion = import.meta.env.VITE_MTN_VERSION ?? '1'
 	const categoryIdx = CATEGORY_NAME_TO_IDX[category]
-	const typeToIdxMap = BULKY_FACTORY.getNameToIdxTypeMap(category)
+	const secondaryTypeOption = category === 'FRAGMENT' && filter.fullSets
+	const typeToIdxMap = BULKY_FACTORY.getNameToIdxTypeMap(category, secondaryTypeOption)
 	const tierToIdxMap = BULKY_FACTORY.getNameToIdxTierMap(category)
 
 	if (!typeToIdxMap || !tierToIdxMap) {
@@ -51,12 +53,12 @@ export function generateMinifiedTradeNotification(
 	const b64ItemStrings = filter.fullBuyout
 		? // Handle full buyout case. Set every value except price to max.
 		  [0].map(() => {
-				console.log('here', fullPrice)
 				const ab = new ArrayBuffer(12)
 				const dv = new DataView(ab)
 
 				dv.setUint16(0, 0xff)
-				dv.setUint16(2, 0xff)
+				dv.setUint8(2, 0xf)
+				dv.setUint8(3, 0xf)
 				dv.setUint32(4, 0xffff)
 				dv.setFloat32(8, toValue(fullPrice))
 
@@ -67,6 +69,7 @@ export function generateMinifiedTradeNotification(
 				// Type and tier can just be looked up.
 				const typeIdx = typeToIdxMap[item.type]
 				const tierIdx = tierToIdxMap[item.tier]
+				const secondaryTypeOption = category === 'FRAGMENT' && filter.fullSets
 
 				// Calculate the quantity.
 				const filterField = filter.fields.find(field => field.type === item.type && field.tier === item.tier)
@@ -81,7 +84,8 @@ export function generateMinifiedTradeNotification(
 				const dv = new DataView(ab)
 
 				dv.setUint16(0, typeIdx)
-				dv.setUint16(2, tierIdx)
+				dv.setUint8(2, secondaryTypeOption ? 1 : 0)
+				dv.setUint8(3, tierIdx)
 				dv.setUint32(4, quantity)
 				dv.setFloat32(8, price)
 
@@ -131,10 +135,10 @@ export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
 	const categoryDisplayValue = BULKY_TRANSFORM.stringToDisplayValue(category + categoryAddendum)
 
 	// Get the nameToIdx maps here.
-	const idxToTypeMap = BULKY_FACTORY.getIdxToNameTypeMap(category)
+	// const idxToTypeMap = BULKY_FACTORY.getIdxToNameTypeMap(category)
 	const idxToTierMap = BULKY_FACTORY.getIdxToNameTierMap(category)
 
-	if (!idxToTypeMap || !idxToTierMap) {
+	if (!idxToTierMap) {
 		throw new Error('No idx to name maps')
 	}
 
@@ -147,7 +151,8 @@ export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
 			const dv = new DataView(buffer)
 
 			const typeIdx = dv.getUint16(0)
-			const tierIdx = dv.getUint16(2)
+			const secondaryTypeOption = !!dv.getUint8(2)
+			const tierIdx = dv.getUint8(3)
 			const quantity = dv.getUint32(4)
 			const price = dv.getFloat32(8)
 
@@ -159,6 +164,12 @@ export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
 				return 'Full Offer'
 			} else {
 				fullPrice += price * quantity
+				const idxToTypeMap = BULKY_FACTORY.getIdxToNameTypeMap(category, secondaryTypeOption)
+
+				if (!idxToTypeMap) {
+					throw new Error('No idx to name maps')
+				}
+
 				const item = {
 					type: idxToTypeMap[typeIdx],
 					tier: idxToTierMap[tierIdx],

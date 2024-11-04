@@ -4,11 +4,17 @@
 			<LabelWithCheckboxMolecule
 				v-if="filter.fullBuyout !== undefined"
 				v-model="filter.fullBuyout"
-				:disabled="filter.alwaysMaxQuantity">
+				:disabled="filter.alwaysMaxQuantity || filter.fullSets">
 				Buyout full listing
 			</LabelWithCheckboxMolecule>
 			<LabelWithCheckboxMolecule v-model="filter.alwaysMaxQuantity" :disabled="filter.fullBuyout">
 				Always Max Quantity
+			</LabelWithCheckboxMolecule>
+			<LabelWithCheckboxMolecule
+				v-if="filter.fullSets !== undefined"
+				v-model="filter.fullSets"
+				:disabled="filter.fullBuyout">
+				Full Sets
 			</LabelWithCheckboxMolecule>
 			<LabelWithRangeMolecule
 				v-if="filter.multiplier !== undefined"

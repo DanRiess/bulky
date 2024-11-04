@@ -13,7 +13,7 @@ import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { notEmpty } from '@web/utility/notEmpty'
 import { BazaarFragment, BazaarFragmentOffer } from './fragment.types'
-import { FRAGMENT_TYPE } from './fragment.const'
+import { FRAGMENT_SET, FRAGMENT_TYPE } from './fragment.const'
 
 export const useFragmentOfferStore = defineStore('fragmentOfferStore', () => {
 	const offers = ref<Map<BazaarFragmentOffer['uuid'], BazaarFragmentOffer>>(new Map())
@@ -77,7 +77,7 @@ export const useFragmentOfferStore = defineStore('fragmentOfferStore', () => {
 		return (
 			obj &&
 			'type' in obj &&
-			getKeys(FRAGMENT_TYPE).includes(obj.type) &&
+			(getKeys(FRAGMENT_TYPE).includes(obj.type) || getKeys(FRAGMENT_SET).includes(obj.type)) &&
 			'tier' in obj &&
 			obj.tier === '0' &&
 			'quantity' in obj &&

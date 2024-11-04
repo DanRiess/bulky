@@ -356,8 +356,11 @@ export type BulkyFilter<T extends BulkyFilterField = BulkyFilterField> = {
 	multiplier?: number
 	fullBuyout?: boolean
 	regex?: string
+	fullSets?: boolean
 	alwaysMaxQuantity: boolean
 	fields: T[]
+	individualFields?: T[]
+	setFields?: T[]
 }
 
 /**

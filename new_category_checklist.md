@@ -15,6 +15,3 @@
 -   Add mock APIs to nodeApi and poeApi for browser testing
 -   Generate an offer, create a new file (mocks/offersCategory.json) and copy it in there.
 -   Update the getTestData function in the offer store and call it in BazaarView.vue
-
-Next steps
-add fragment category with set searching capabilities

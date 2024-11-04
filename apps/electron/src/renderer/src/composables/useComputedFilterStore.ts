@@ -38,11 +38,7 @@ export function useComputedFilterStore() {
 
 	return computed<ComputedBulkyFilterStore | undefined>(() => {
 		const store = BULKY_FACTORY.getFilterStore(appStateStore.selectedCategory)
-		const filterFieldTypeOptions = BULKY_FACTORY.getItemTypes(appStateStore.selectedCategory)
-		const filterFieldTierOptions = BULKY_FACTORY.getItemTiers(appStateStore.selectedCategory)
-
-		// Return if something went wrong with the variable assignments.
-		if (!store || !filterFieldTypeOptions || !filterFieldTierOptions) return
+		if (!store) return
 
 		// If there is no filter yet, create one and use it.
 		let filter = store.currentFilter
@@ -65,6 +61,17 @@ export function useComputedFilterStore() {
 
 		// If something went wrong during filter creation, return.
 		if (!filter) return
+
+		// Extra for fragment category:
+		// Check if user has selected the full sets option.
+		// In this case, return the sets as type options, not the individual items.
+		const secondaryOption = filter.category === 'FRAGMENT' && filter.fullSets
+
+		const filterFieldTypeOptions = BULKY_FACTORY.getItemTypes(appStateStore.selectedCategory, secondaryOption)
+		const filterFieldTierOptions = BULKY_FACTORY.getItemTiers(appStateStore.selectedCategory)
+
+		// Return if something went wrong with the variable assignments.
+		if (!filterFieldTypeOptions || !filterFieldTierOptions) return
 
 		/** Add a new filter field to the current filter */
 		function addFilterField(uuid: Uuid<BulkyFilter>) {
