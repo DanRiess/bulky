@@ -1,0 +1,71 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: coffice
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: bulkyPoeApi
+
+# stages:
+#   default:
+#     params:
+#       tableName: "users-table-${sls:stage}"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-southeast-1
+  httpApi:
+    payload: "2.0"
+    disableDefaultEndpoint: false
+    authorizers:
+      customAuthorizer:
+        type: request
+        # identitySource: ["$request.header.Authorization"]
+        functionName: authorizer
+        enableSimpleResponses: true
+  # iam:
+  #   role:
+  #     statements:
+  #       - Effect: Allow
+  #         Action:
+  #           - dynamodb:Query
+  #           - dynamodb:Scan
+  #           - dynamodb:GetItem
+  #           - dynamodb:PutItem
+  #           - dynamodb:UpdateItem
+  #           - dynamodb:DeleteItem
+  #         Resource:
+  #           - Fn::GetAtt: [UsersTable, Arn]
+  # environment:
+  #   USERS_TABLE: ${param:tableName}
+
+package:
+  artifact: dist/package.zip
+
+functions:
+  hello:
+    handler: ${env:SOURCE_DIRECTORY}hello.hello # even though this is in /dist, we are uploading the package.zip. all paths start relative from in there.
+    events:
+      - httpApi:
+          path: /
+          method: get
+          authorizer:
+            name: customAuthorizer
+
+  authorizer:
+    handler: ${env:SOURCE_DIRECTORY}auth.authorize
+  # api:
+  #   handler: dist/handlerWithDynamo.handler
+  #   events:
+  #     - httpApi: "*"
+# resources:
+#   Resources:
+#     UsersTable:
+#       Type: AWS::DynamoDB::Table
+#       Properties:
+#         AttributeDefinitions:
+#           - AttributeName: userId
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: userId
+#             KeyType: HASH
+#         BillingMode: PAY_PER_REQUEST
+#         TableName: ${param:tableName}

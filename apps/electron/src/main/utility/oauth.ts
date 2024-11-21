@@ -28,14 +28,12 @@ const tokenExchangeUrl = import.meta.env.VITE_POE_BASE_TOKEN_URL
 
 /**
  * Flow control function. Controls the authorization code request as well as the token exchange request.
+ *
+ * @throws BulkyError, OauthError, RequestError
  */
 export async function generateTokenPair() {
-	try {
-		const authCodeResponse = await getAuthorizationCode()
-		return await exchangeCodeForTokens(authCodeResponse)
-	} catch (e) {
-		throw e
-	}
+	const authCodeResponse = await getAuthorizationCode()
+	return await exchangeCodeForTokens(authCodeResponse)
 }
 
 /**
@@ -88,9 +86,11 @@ export function computeAuthorizationCodeUrl() {
 
 /**
  * Implement the steps necessary for the authorization code request.
+ *
+ * @throws BulkyError, OauthError, RequestError
  */
 async function getAuthorizationCode() {
-	// compute the authorization url
+	// Compute the authorization url.
 	const authorizationCodeUrl = computeAuthorizationCodeUrl()
 
 	// Server running means the login flow was not completed. The external oauth window was maybe closed.
@@ -106,17 +106,13 @@ async function getAuthorizationCode() {
 		})
 	}
 
-	// try to start the server and, if successful, open an external browser window for the login flow
-	try {
-		const { app, server } = await startOauthRedirectServer()
-		serverRunning = true
-		// open the login page
-		openExternalBrowserWindow(authorizationCodeUrl)
-		const response = await registerOauthCallbackRoute(app, server)
-		return response
-	} catch (e) {
-		throw e
-	}
+	// Try to start the server and, if successful, open an external browser window for the login flow.
+	const { app, server } = await startOauthRedirectServer()
+	serverRunning = true
+	// open the login page
+	openExternalBrowserWindow(authorizationCodeUrl)
+	const response = await registerOauthCallbackRoute(app, server)
+	return response
 }
 
 /**
@@ -132,13 +128,13 @@ export function startOauthRedirectServer() {
 		let retryCount = 2
 		const duration = 1500
 
-		// resolve the promise if the server can successfully listen to the port
+		// Resolve the promise if the server can successfully listen to the port.
 		server.on('listening', () => {
 			console.log('Auth redirection server listening on port ' + port)
 			resolve({ server, app })
 		})
 
-		// retry twice in case of error, afterwards reject the promise
+		// Retry twice in case of error, afterwards reject the promise.
 		server.on('error', (error: RequestError) => {
 			if (error.code === 'EADDRINUSE') {
 				retryCount--

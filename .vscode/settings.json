@@ -1,3 +1,7 @@
 {
-	"typescript.tsdk": "apps/electron/node_modules/typescript/lib"
+	"typescript.tsdk": "apps/electron/node_modules/typescript/lib",
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml",
+		"editor.autoIndent": "advanced"
+	},
 }

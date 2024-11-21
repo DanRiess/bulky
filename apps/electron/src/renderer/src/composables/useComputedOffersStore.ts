@@ -9,7 +9,7 @@ import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOr
 import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
 import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
 import { RendererError } from '@shared/errors/rendererError'
-import { useBestiaryOfferStore } from '@web/categories/beastiary/bestiaryOffers.store'
+import { useBestiaryOfferStore } from '@web/categories/bestiary/bestiaryOffers.store'
 import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
 import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
 import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'

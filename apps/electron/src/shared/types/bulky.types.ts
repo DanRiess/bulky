@@ -41,7 +41,7 @@ import {
 	BestiaryFilterStore,
 	BestiaryOfferStore,
 	ShopBeast,
-} from '@web/categories/beastiary/bestiary.types'
+} from '@web/categories/bestiary/bestiary.types'
 import {
 	BazaarDelveItem,
 	DelveFilterField,
