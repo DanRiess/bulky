@@ -6,7 +6,8 @@ service: bulkyPoeApi
 stages:
   default:
     params:
-      tableName: "oauth-table-${sls:stage}"
+      oauthTableName: "oauth-table-${sls:stage}"
+      offerTableName: "offer-table-${sls:stage}"
 
 provider:
   name: aws
@@ -41,7 +42,8 @@ provider:
           Resource:
             - arn:aws:kms:${env:AWS_REGION}:${env:AWS_ACCOUNT_ID}:key/${env:AWS_SIGNATURE_KEY_ID}
   environment:
-    OAUTH_TABLE: ${param:tableName} # can be accessed in a ts script via process.env.OAUTH_TABLE
+    OAUTH_TABLE: ${param:oauthTableName} # can be accessed in a ts script via process.env.OAUTH_TABLE
+    OFFER_TABLE: ${param:offerTableName}
 
 package:
   artifact: dist/package.zip
@@ -88,11 +90,29 @@ resources:
     OauthTable:
       Type: AWS::DynamoDB::Table
       Properties:
+        TableName: ${param:oauthTableName}
         AttributeDefinitions:
           - AttributeName: state
             AttributeType: S
         KeySchema:
           - AttributeName: state
             KeyType: HASH
-        TableName: ${param:tableName}
         BillingMode: PAY_PER_REQUEST
+    OfferTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${param:offerTableName}
+        AttributeDefinitions:
+          - AttributeName: categoryLeague
+            AttributeType: S
+          - AttributeName: timestampUuid
+            AttributeType: S
+        KeySchema:
+          - AttributeName: categoryLeague
+            KeyType: HASH
+          - AttributeName: timestampUuid
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST # Use On-Demand billing for scalability
+        TimeToLiveSpecification:
+          Enabled: true
+          AttributeName: ttlTimestamp # DynamoDB will delete items based on this field
