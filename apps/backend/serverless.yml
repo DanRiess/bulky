@@ -3,10 +3,10 @@ org: coffice
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: bulkyPoeApi
 
-# stages:
-#   default:
-#     params:
-#       tableName: "users-table-${sls:stage}"
+stages:
+  default:
+    params:
+      tableName: "oauth-table-${sls:stage}"
 
 provider:
   name: aws
@@ -21,51 +21,78 @@ provider:
         # identitySource: ["$request.header.Authorization"]
         functionName: authorizer
         enableSimpleResponses: true
-  # iam:
-  #   role:
-  #     statements:
-  #       - Effect: Allow
-  #         Action:
-  #           - dynamodb:Query
-  #           - dynamodb:Scan
-  #           - dynamodb:GetItem
-  #           - dynamodb:PutItem
-  #           - dynamodb:UpdateItem
-  #           - dynamodb:DeleteItem
-  #         Resource:
-  #           - Fn::GetAtt: [UsersTable, Arn]
-  # environment:
-  #   USERS_TABLE: ${param:tableName}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [OauthTable, Arn]
+        - Effect: Allow
+          Action:
+            - kms:Sign
+            - kms:Verify
+          Resource:
+            - arn:aws:kms:${env:AWS_REGION}:${env:AWS_ACCOUNT_ID}:key/${env:AWS_SIGNATURE_KEY_ID}
+  environment:
+    OAUTH_TABLE: ${param:tableName} # can be accessed in a ts script via process.env.OAUTH_TABLE
 
 package:
   artifact: dist/package.zip
 
 functions:
-  hello:
-    handler: ${env:SOURCE_DIRECTORY}hello.hello # even though this is in /dist, we are uploading the package.zip. all paths start relative from in there.
+  # hello:
+  #   handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/hello.hello # even though this is in /dist, we are uploading the package.zip. all paths start relative from in there.
+  #   events:
+  #     - httpApi:
+  #         path: /
+  #         method: get
+  #         authorizer:
+  #           name: customAuthorizer
+
+  oauth_transferState:
+    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/transferState.transferState
     events:
       - httpApi:
-          path: /
+          path: /oauth/transfer-state
+          method: post
+
+  oauth_transferCodeVerifier:
+    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/transferCodeVerifier.transferCodeVerifier
+    events:
+      - httpApi:
+          path: /oauth/transfer-code-verifier
+          method: post
+
+  oauth_handleRedirect:
+    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/handleRedirect.handleRedirect
+    events:
+      - httpApi:
+          path: /oauth/handle-redirect/poe
           method: get
-          authorizer:
-            name: customAuthorizer
 
   authorizer:
-    handler: ${env:SOURCE_DIRECTORY}auth.authorize
+    handler: ${env:SOURCE_DIRECTORY, ''}utility/lambdaAuthorizer.authorize
   # api:
   #   handler: dist/handlerWithDynamo.handler
   #   events:
   #     - httpApi: "*"
-# resources:
-#   Resources:
-#     UsersTable:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         AttributeDefinitions:
-#           - AttributeName: userId
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: userId
-#             KeyType: HASH
-#         BillingMode: PAY_PER_REQUEST
-#         TableName: ${param:tableName}
+resources:
+  Resources:
+    OauthTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: state
+            AttributeType: S
+        KeySchema:
+          - AttributeName: state
+            KeyType: HASH
+        TableName: ${param:tableName}
+        BillingMode: PAY_PER_REQUEST

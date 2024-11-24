@@ -2,11 +2,12 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig(options => {
 	return {
-		entry: ['src/hello.ts'],
+		entry: ['src/endpoints/**/*.ts', 'src/utility/*.ts'],
 		format: ['esm'],
 		splitting: false,
 		minify: !options.watch,
 		clean: true,
 		target: 'node20',
+		noExternal: ['uuid'],
 	}
 })

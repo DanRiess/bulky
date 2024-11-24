@@ -7,7 +7,7 @@
 		"build": "tsup",
 		"package": "pnpm build && powershell -command \"Compress-Archive -Path dist\\* -DestinationPath dist\\package.zip\"",
 		"deploy": "pnpm package && serverless deploy --aws-profile BulkyPoe",
-		"deploy:local": "cross-env SOURCE_DIRECTORY=src/ serverless dev --aws-profile BulkyPoe",
+		"dev": "cross-env SOURCE_DIRECTORY=src/ serverless dev --aws-profile BulkyPoe",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -15,16 +15,15 @@
 	"license": "ISC",
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "^3.585.0",
+		"@aws-sdk/client-kms": "^3.699.0",
 		"@aws-sdk/lib-dynamodb": "^3.585.0",
-		"express": "^4.19.2",
-		"serverless-http": "^3.2.0"
+		"uuid": "^10.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^22.7.7",
 		"@typescript-eslint/eslint-plugin": "^8.13.0",
 		"@typescript-eslint/parser": "^8.13.0",
 		"cross-env": "^7.0.3",
-		"dotenv-cli": "^7.4.3",
 		"eslint": "^9.14.0",
 		"tsup": "^8.3.5",
 		"typescript": "^5.6.3"

@@ -1,4 +1,4 @@
-import { AuthorizerPayload, AuthorizerSimpleResponse } from './types/auth.types'
+import { AuthorizerPayload, AuthorizerSimpleResponse } from '../types/authorizer.types'
 
 /**
  * This function serves as pseudo middleware auth function for protected endpoints.

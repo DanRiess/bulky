@@ -13,10 +13,16 @@ If you are on vscode, install the AWS Toolkit extension. You'll need to create a
 Install the dependencies. I'm using the pnpm package manager. Afterwards, make your changes as usual in the src directory. You should use typescript here.
 On running the pnpm build command, tsup is being used to typecheck, minify and convert your endpoint functions into .mjs files that can be deployed on AWS.
 
-To check code locally, run pnpm deploy:local. This will redirect live aws events to your local code. This means you can point it at the source folder and run ts code without the build step. Might require ts-node to be installed on your system, I have not checked.
+To check code locally, run pnpm dev. This will redirect live aws events to your local code. This means you can point it at the source folder and run ts code without the build step. Might require ts-node to be installed on your system, I have not checked. Send requests via postman to your Api Gateway endpoint to test.
 
 ## Adding new endpoints
 
 Add your new function as a .ts file in the src directory. As this should probably not be inlined into another script, you have to specify this new file as an entry point in the tsup config file. Add the function to the serverless.yaml file. Use other functions there as reference on how to do that.
 
 _Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [`httpApi` event docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api/). Additionally, in current configuration, the DynamoDB table will be removed when running `serverless remove`. To retain the DynamoDB table even after removal of the stack, add `DeletionPolicy: Retain` to its resource definition.
+
+## Caveats
+
+There is no build step on the server. The code will be bundled before it gets uploaded. If you want to use or add a package, there is 2 things you will have to make sure of. First, try to use only modules that support tree shaking and import packages like this: import { capitalize } from 'lodash-es'. Second, add your package to the noExternal array in tsup.config.ts.
+
+This will make sure, that only functions you actually use are being imported and inlined. If you would instead import packages like this: import \* as \_ from 'lodash', tsup would inline the entire package.
