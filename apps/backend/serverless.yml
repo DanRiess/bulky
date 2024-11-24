@@ -18,7 +18,7 @@ provider:
     authorizers:
       customAuthorizer:
         type: request
-        # identitySource: ["$request.header.Authorization"]
+        identitySource: ["$request.header.Authorization"]
         functionName: authorizer
         enableSimpleResponses: true
   iam:
