@@ -35,6 +35,7 @@ provider:
             - dynamodb:DeleteItem
           Resource:
             - Fn::GetAtt: [OauthTable, Arn]
+            - Fn::GetAtt: [OfferTable, Arn]
         - Effect: Allow
           Action:
             - kms:Sign
@@ -77,6 +78,22 @@ functions:
     events:
       - httpApi:
           path: /oauth/handle-redirect/poe
+          method: get
+
+  offer_put:
+    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/offers/putOffer.putOffer
+    events:
+      - httpApi:
+          path: /offer
+          method: put
+          authorizer:
+            name: customAuthorizer
+
+  offer_getByCategoryAndLeague:
+    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/offers/getByCategoryAndLeague.getByCategoryAndLeague
+    events:
+      - httpApi:
+          path: /offer
           method: get
 
   authorizer:

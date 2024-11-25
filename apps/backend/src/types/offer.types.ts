@@ -57,6 +57,12 @@ export const CATEGORY = {
 
 export type Category = ObjectValues<typeof CATEGORY>
 
+export type BulkyOfferGetQueryParams = {
+	category: Category
+	league: string
+	timestamp: string // Has to be parsed into a number later
+}
+
 export type DynamoDBBulkyOffer = {
 	categoryLeague: { S: string } // Concatenation of category and league
 	timestampUuid: { S: string } // Concatenation of timestamp and UUID
@@ -83,42 +89,42 @@ export type DynamoDBAttribute =
 	| { M: Record<string, DynamoDBAttribute> } // Map
 
 export interface DynamoDBBulkyItem {
-	Type: { N: string } // Stringified number
-	Tier: { N: string } // Stringified number
-	Quantity: { N: string } // Stringified number
-	Price: { N: string } // Stringified number
-	PerItemAttributes?:
+	type: { N: string } // Stringified number
+	tier: { N: string } // Stringified number
+	quantity: { N: string } // Stringified number
+	price: { N: string } // Stringified number
+	perItemAttributes?:
 		| {
 				L: {
 					M: {
-						Mods?: { L: { N: string }[] } | { NULL: boolean }
-						Props?:
+						mods?: { L: { N: string }[] } | { NULL: boolean }
+						props?:
 							| {
 									M: {
-										IQnt?: { N: string } | { NULL: boolean }
-										IRar?: { N: string } | { NULL: boolean }
-										PckSz?: { N: string } | { NULL: boolean }
+										iQnt?: { N: string } | { NULL: boolean }
+										iRar?: { N: string } | { NULL: boolean }
+										pckSz?: { N: string } | { NULL: boolean }
 									}
 							  }
 							| { NULL: boolean }
-						LogbookMods?: { L: { N: string }[] } | { NULL: boolean }
+						logbookMods?: { L: { N: string }[] } | { NULL: boolean }
 					}
 				}[]
 		  }
 		| { NULL: boolean }
-	Regex?:
+	regex?:
 		| {
 				M: {
-					AVD?: { N: string } | { NULL: boolean }
-					WNT?: { N: string } | { NULL: boolean }
-					QNT?:
+					avd?: { N: string } | { NULL: boolean }
+					wnt?: { N: string } | { NULL: boolean }
+					qnt?:
 						| {
 								L: {
 									L: [{ N: string }, { N: string }]
 								}[]
 						  }
 						| { NULL: boolean }
-					PckSz?:
+					pckSz?:
 						| {
 								L: {
 									L: [{ N: string }, { N: string }]
