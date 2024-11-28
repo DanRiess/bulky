@@ -1,4 +1,4 @@
-import { ObjectValues } from './utitlity.types'
+import { ObjectValues, Uuid } from './utitlity.types'
 
 type PerItemAttributesDto = {
 	mods?: number[]
@@ -25,12 +25,12 @@ export type BulkyItemDto = {
 }
 
 export type OfferDto = {
-	uuid: string
+	uuid: Uuid
 	version: number
 	timestamp: number
 	account: string
 	ign: string
-	category: string
+	category: Category
 	league: string
 	chaosPerDiv: number
 	multiplier?: number
@@ -63,75 +63,15 @@ export type BulkyOfferGetQueryParams = {
 	timestamp: string // Has to be parsed into a number later
 }
 
-export type DynamoDBBulkyOffer = {
-	categoryLeague: { S: string } // Concatenation of category and league
-	timestampUuid: { S: string } // Concatenation of timestamp and UUID
-	uuid: { S: string } // Offer UUID
-	version: { N: string } // Version number as a stringified number
-	timestamp: { N: string } // Timestamp as a stringified number
-	ttlTimestamp: { N: string } // TTL timestamp as a stringified number
-	account: { S: string } // Account name
-	ign: { S: string } // In-game name
-	chaosPerDiv: { N: string } // Chaos per Divine ratio
-	multiplier: { N: string } | { NULL: true } // Optional multiplier
-	fullPrice: { N: string } | { NULL: true } // Optional full price
-	minimumBuyout: { N: string } // Minimum buyout price
-	fullBuyout: { BOOL: boolean } | { NULL: true } // Optional full buyout flag
-	items: { L: { M: DynamoDBBulkyItem }[] } // List of bulky items
+export type DynamoDBBulkyOffer = OfferDto & {
+	categoryLeague: `${OfferDto['category']}_${OfferDto['league']}`
+	timestampUuid: `${OfferDto['timestamp']}_${OfferDto['uuid']}`
+	ttlTimestamp: number
 }
 
-export type DynamoDBAttribute =
-	| { S: string } // String
-	| { N: string } // Number (stringified)
-	| { BOOL: boolean } // Boolean
-	| { NULL: boolean } // Null
-	| { L: DynamoDBAttribute[] } // List
-	| { M: Record<string, DynamoDBAttribute> } // Map
-
-export interface DynamoDBBulkyItem {
-	type: { N: string } // Stringified number
-	tier: { N: string } // Stringified number
-	quantity: { N: string } // Stringified number
-	price: { N: string } // Stringified number
-	perItemAttributes?:
-		| {
-				L: {
-					M: {
-						mods?: { L: { N: string }[] } | { NULL: boolean }
-						props?:
-							| {
-									M: {
-										iQnt?: { N: string } | { NULL: boolean }
-										iRar?: { N: string } | { NULL: boolean }
-										pckSz?: { N: string } | { NULL: boolean }
-									}
-							  }
-							| { NULL: boolean }
-						logbookMods?: { L: { N: string }[] } | { NULL: boolean }
-					}
-				}[]
-		  }
-		| { NULL: boolean }
-	regex?:
-		| {
-				M: {
-					avd?: { N: string } | { NULL: boolean }
-					wnt?: { N: string } | { NULL: boolean }
-					qnt?:
-						| {
-								L: {
-									L: [{ N: string }, { N: string }]
-								}[]
-						  }
-						| { NULL: boolean }
-					pckSz?:
-						| {
-								L: {
-									L: [{ N: string }, { N: string }]
-								}[]
-						  }
-						| { NULL: boolean }
-				}
-		  }
-		| { NULL: boolean }
+export type BulkyOfferDeleteQueryParams = {
+	category: Category
+	league: string
+	uuid: Uuid
+	timestamps: string // Has to be parsed into a number[] later
 }
