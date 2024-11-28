@@ -43,9 +43,23 @@ provider:
             - kms:Verify
           Resource:
             - arn:aws:kms:${env:AWS_REGION}:${env:AWS_ACCOUNT_ID}:key/${env:AWS_SIGNATURE_KEY_ID}
+  # Upload your env variables into cloud formation to access in lambdas.
+  # Read them in from your .env file, so you don't have to share them.
   environment:
+    # DynamoDB Tables
     OAUTH_TABLE: ${param:oauthTableName} # can be accessed in a ts script via process.env.OAUTH_TABLE
     OFFER_TABLE: ${param:offerTableName}
+
+    #AWS Variables
+    # AWS_REGION: ${env:AWS_REGION} # is apparently already available globally
+    AWS_ACCOUNT_ID: ${env:AWS_ACCOUNT_ID}
+    AWS_SIGNATURE_KEY_ID: ${env:AWS_SIGNATURE_KEY_ID}
+
+    #OAuth Variables
+    POE_OAUTH_TOKEN_URL: ${env:POE_OAUTH_TOKEN_URL}
+    USER_AGENT: ${env:USER_AGENT}
+    OAUTH_CLIENT_ID: ${env:OAUTH_CLIENT_ID}
+    OAUTH_REDIRECT_URI: ${env:OAUTH_REDIRECT_URI}
 
 package:
   artifact: dist/package.zip
