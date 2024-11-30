@@ -21,6 +21,8 @@ import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 import { updateApp } from './utility/appUpdater'
 import { ClientDotTxt } from './utility/clientDotTxt'
+import { Category } from '@shared/types/bulky.types'
+import { getOffers } from './ipcCallbacks/offers'
 
 // STATE
 let checkedForUpdate = false
@@ -59,8 +61,11 @@ app.whenReady().then(() => {
 	// 	if (BrowserWindow.getAllWindows().length === 0) createWindow()
 	// })
 
-	// register ipc handlers (bidirectional with return values)
-	/** start the oauth flow to generate a token pair */
+	// Register ipc handlers (bidirectional with return values).
+
+	/**
+	 * Start the oauth flow to generate a token pair .
+	 */
 	ipcMain.handle('generate-oauth-tokens', async () => {
 		try {
 			return await generateTokenPair()
@@ -69,7 +74,9 @@ app.whenReady().then(() => {
 		}
 	})
 
-	/** manually open the authorization code url in case it doesn't happen automatically */
+	/**
+	 * Manually open the authorization code url in case it doesn't happen automatically.
+	 */
 	ipcMain.handle('open-authorization-code-url', () => {
 		try {
 			return openAuthorizationCodeUrlManually()
@@ -78,15 +85,32 @@ app.whenReady().then(() => {
 		}
 	})
 
-	/** get the authorization code url to copy to clipboard */
+	/**
+	 * Get the authorization code url to copy to clipboard.
+	 */
 	ipcMain.handle('get-authorization-code-url', () => computeAuthorizationCodeUrl())
 
-	/** return the league static json file */
+	/**
+	 * Return the league static json file
+	 */
 	ipcMain.handle('get-leagues', async () => {
 		try {
 			return (await import('../../resources/leagues.json')).default
 		} catch (e) {
 			console.log(e)
+			return new SerializedError(e)
+		}
+	})
+
+	/**
+	 * Get offers of the provided category and league from the server.
+	 * Will only download if either the game or the overlay are in focus.
+	 */
+	ipcMain.handle('get-offers', (_, category: Category, league: string, timestamp: number) => {
+		console.log({ category, timestamp, league, url: process.env.VITE_MAIN_API_SERVER })
+		try {
+			return getOffers(category, league, timestamp)
+		} catch (e) {
 			return new SerializedError(e)
 		}
 	})

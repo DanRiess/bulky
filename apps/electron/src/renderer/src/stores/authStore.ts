@@ -16,15 +16,20 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 export const useAuthStore = defineStore('authStore', () => {
+	// STATE
+	const authorizationState = ref<ApiStatus>('IDLE')
+	const serializedError = ref<SerializedError>(new SerializedError())
+	const profile = ref<PoeProfile>()
+
+	// GETTERS
 	const isLoggedIn = computed(() => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') return true
 
 		const token = getTokenFromLocalStorage()
 		return profile.value && token && token.username === profile.value.name
 	})
-	const authorizationState = ref<ApiStatus>('IDLE')
-	const serializedError = ref<SerializedError>(new SerializedError())
-	const profile = ref<PoeProfile>()
+
+	// METHODS
 
 	/**
 	 * Check if token and profile can be pulled from local storage.
@@ -148,6 +153,7 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Save necessary information to localstorage and store the refresh token in the backend.
 	 */
 	async function handleSuccessfulTokenResponse(response: OauthTokenResponse) {
+		console.log({ response })
 		// subtract 5 minutes to avoid cases where client thinks a token is valid but it has expired on the server
 		const exp = Date.now() + response.expires_in * 1000 - 300000
 

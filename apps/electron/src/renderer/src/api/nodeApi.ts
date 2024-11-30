@@ -6,6 +6,7 @@ import { BulkyConfig } from '@shared/types/config.types'
 import { NinjaCategory, NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { useConfigStore } from '@web/stores/configStore'
 import api from './api.wrapper'
+import { Category } from '@shared/types/bulky.types'
 
 export const nodeApi = {
 	setIgnoreMouseEvents: async (ignore: boolean) => {
@@ -85,6 +86,10 @@ export const nodeApi = {
 
 		// Fetch in node main to avoid Cors errors.
 		return window.api.getNinjaCategory(url)
+	},
+
+	getOffers: async (category: Category, league: string, timestamp: number) => {
+		return window.api.getOffers(category, league, timestamp)
 	},
 }
 

@@ -9,6 +9,7 @@ import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 import { ProgressInfo } from 'electron-updater'
 import { AppUpdateStatus } from '@shared/types/electron.types'
+import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
 
 export const api = {
 	/**
@@ -21,7 +22,7 @@ export const api = {
 	/**
 	 * Example for one-way main -> renderer communication. Usage in Renderer:
 	 * @example
-	 * window.api.onMainToRendererExample(console.log)
+	 * window.api.onMainToRendererExample(callback)
 	 */
 	onMainToRendererExample: (callback: Function) => ipcRenderer.on('test', (_event, value) => callback(value)),
 
@@ -94,4 +95,7 @@ export const api = {
 
 	getNinjaCategory: (url: string): Promise<Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]> | SerializedError> =>
 		ipcRendererWrapper.invoke('get-ninja-category', url),
+
+	getOffers: (category: Category, league: string, timestamp: number): Promise<BulkyBazaarOfferDto[] | SerializedError> =>
+		ipcRenderer.invoke('get-offers', category, league, timestamp),
 }

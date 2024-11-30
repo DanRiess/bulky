@@ -26,7 +26,7 @@ export async function getByCategoryAndLeague(event: LambdaPayloadEvent) {
 			return { statusCode: 400, body: 'Invalid timestamp.' }
 		}
 
-		// Assert that the timestamp is at most 10 minutes in the past.
+		// Assert that the timestamp is at most 10 minutes 30 seconds in the past.
 		if (timestamp > Date.now() - 600000) {
 			timestamp = Date.now() - 600000
 		}

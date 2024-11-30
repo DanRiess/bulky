@@ -13,6 +13,7 @@ import { getListing } from '@web/api/bulkyApi'
 import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
+import { nodeApi } from '@web/api/nodeApi'
 
 export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	const offers = ref<Map<BazaarEssenceOffer['uuid'], BazaarEssenceOffer>>(new Map())
@@ -98,6 +99,9 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		}
 
 		request.data.value.forEach(listingDto => putOffer(listingDto))
+
+		const test = useApi('test', nodeApi.getOffers)
+		await test.exec('ESSENCE', 'Settlers', 123)
 	}
 
 	/**
