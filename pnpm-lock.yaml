@@ -23,6 +23,9 @@ importers:
       '@aws-sdk/lib-dynamodb':
         specifier: ^3.585.0
         version: 3.696.0(@aws-sdk/client-dynamodb@3.696.0)
+      jose:
+        specifier: ^5.9.6
+        version: 5.9.6
       uuid:
         specifier: ^10.0.0
         version: 10.0.0
@@ -3037,6 +3040,9 @@ packages:
   jest-get-type@29.6.3:
     resolution: {integrity: sha512-zrteXnqYxfQh7l5FHyL38jL39di8H8rHoecLH3JNxH3BwOrBsNeabdap5e0I23lD4HHI8W5VFBZqG4Eaq5LNcw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+
+  jose@5.9.6:
+    resolution: {integrity: sha512-AMlnetc9+CV9asI19zHmrgS/WYsWUwCn2R7RzlbJWD7F9eWYUTGyBmU9o6PxngtLGOiDGPRu+Uc4fhKzbpteZQ==}
 
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
@@ -8630,6 +8636,8 @@ snapshots:
       pretty-format: 29.7.0
 
   jest-get-type@29.6.3: {}
+
+  jose@5.9.6: {}
 
   joycon@3.1.1: {}
 

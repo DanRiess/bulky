@@ -8,6 +8,7 @@ stages:
     params:
       oauthTableName: "oauth-table-${sls:stage}"
       offerTableName: "offer-table-${sls:stage}"
+      userTableName: "user-table-${sls:stage}"
 
 provider:
   name: aws
@@ -37,6 +38,7 @@ provider:
           Resource:
             - Fn::GetAtt: [OauthTable, Arn]
             - Fn::GetAtt: [OfferTable, Arn]
+            - Fn::GetAtt: [UserTable, Arn]
         - Effect: Allow
           Action:
             - kms:Sign
@@ -49,17 +51,21 @@ provider:
     # DynamoDB Tables
     OAUTH_TABLE: ${param:oauthTableName} # can be accessed in a ts script via process.env.OAUTH_TABLE
     OFFER_TABLE: ${param:offerTableName}
+    USER_TABLE: ${param:userTableName}
 
-    #AWS Variables
+    # AWS Variables
     # AWS_REGION: ${env:AWS_REGION} # is apparently already available globally
     AWS_ACCOUNT_ID: ${env:AWS_ACCOUNT_ID}
     AWS_SIGNATURE_KEY_ID: ${env:AWS_SIGNATURE_KEY_ID}
 
-    #OAuth Variables
-    POE_OAUTH_TOKEN_URL: ${env:POE_OAUTH_TOKEN_URL}
+    # OAuth Variables
     USER_AGENT: ${env:USER_AGENT}
     OAUTH_CLIENT_ID: ${env:OAUTH_CLIENT_ID}
     OAUTH_REDIRECT_URI: ${env:OAUTH_REDIRECT_URI}
+
+    # GGG Variables
+    POE_OAUTH_TOKEN_URL: ${env:POE_OAUTH_TOKEN_URL}
+    POE_SERVER_ENDPOINT: ${env:POE_SERVER_ENDPOINT}
 
 package:
   artifact: dist/package.zip
@@ -87,6 +93,22 @@ functions:
       - httpApi:
           path: /oauth/handle-redirect/poe
           method: get
+
+  oauth_signGGGTokenResponse:
+    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/signGGGTokenResponse.signGGGTokenResponse
+    events:
+      - httpApi:
+          path: /oauth/sign-ggg-token-response
+          method: post
+
+  oauth_getRefreshToken:
+    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/getRefreshToken.getRefreshToken
+    events:
+      - httpApi:
+          path: /oauth/get-refresh-token
+          method: get
+          authorizer:
+            name: customAuthorizer
 
   offer_put:
     handler: ${env:SOURCE_DIRECTORY, ''}endpoints/offers/putOffer.putOffer
@@ -132,6 +154,7 @@ resources:
           - AttributeName: state
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+
     OfferTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -150,3 +173,19 @@ resources:
         TimeToLiveSpecification:
           Enabled: true
           AttributeName: ttlTimestamp # DynamoDB will delete items based on this field
+
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${param:userTableName}
+        AttributeDefinitions:
+          - AttributeName: userUuid
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userUuid
+            KeyType: HASH
+          - AttributeName: username
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST

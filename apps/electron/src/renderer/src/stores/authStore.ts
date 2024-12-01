@@ -177,7 +177,6 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Get the PoE profile.
 	 */
 	function getProfileRequest() {
-		console.log('profile request called')
 		const request = useApi('profileRequest', poeApi.getProfile)
 
 		async function execute() {

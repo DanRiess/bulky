@@ -6,6 +6,7 @@ import { DynamoDBDocumentClient, GetCommandInput } from '@aws-sdk/lib-dynamodb'
 import { typedGetCommand } from '../../utility/typedGetCommand'
 import { OauthDbItem } from '../../types/db.types'
 import { signWithKMS } from '../../utility/signAndVerify'
+import { Uuid } from '../../types/utitlity.types'
 
 const client = new DynamoDBClient()
 const docClient = DynamoDBDocumentClient.from(client)
@@ -76,7 +77,7 @@ export async function transferCodeVerifier(event: LambdaPayloadEvent) {
 			expires_in: 174320981723,
 			scope: scopes.join(' '),
 			username: 'Chavincar',
-			sub: '12345',
+			sub: '12345' as Uuid,
 		}
 
 		const signedTokens = await signWithKMS(tokens)

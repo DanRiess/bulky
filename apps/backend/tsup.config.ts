@@ -8,6 +8,6 @@ export default defineConfig(options => {
 		minify: !options.watch,
 		clean: true,
 		target: 'node20',
-		noExternal: ['uuid'],
+		noExternal: ['uuid', 'jose'],
 	}
 })

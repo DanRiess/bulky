@@ -87,7 +87,6 @@ export const poeApi = {
  */
 async function updateConfig(config?: AxiosRequestConfig) {
 	const token = await getAccessToken()
-	console.log(token)
 
 	const defaultConfig: AxiosRequestConfig = {
 		headers: {

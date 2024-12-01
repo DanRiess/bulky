@@ -1,4 +1,4 @@
-import { ObjectValues } from './utitlity.types'
+import { ObjectValues, Uuid } from './utitlity.types'
 
 export type OauthStateTransfer = {
 	state: string
@@ -37,5 +37,19 @@ export type OauthTokenResponse = {
 	expires_in: number
 	scope: string
 	username: string
-	sub: string
+	sub: Uuid
+}
+
+export type GGGProfileSuccessResponse = {
+	locale: string
+	name: string
+	twitch?: {
+		name: string
+	}
+	uuid: Uuid
+}
+
+export type GGGProfileErrorResponse = {
+	error: string
+	error_description: string
 }
