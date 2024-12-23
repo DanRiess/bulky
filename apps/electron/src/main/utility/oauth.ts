@@ -3,6 +3,7 @@ import {
 	OauthAuthorizationCodeResponse,
 	OauthRedirectErrorQueryParameters,
 	OauthTokenResponse,
+	SignableTokenStructure,
 } from '@shared/types/auth.types'
 import express, { Express } from 'express'
 import { Server } from 'http'
@@ -252,13 +253,9 @@ export async function exchangeCodeForTokens(authCodeResponse: OauthAuthorization
 	}
 
 	// execute the token exchange request
-	try {
-		const response = await axios.post<OauthTokenResponse>(tokenExchangeUrl, payload, config)
+	const response = await axios.post<OauthTokenResponse>(tokenExchangeUrl, payload, config)
 
-		return response.data
-	} catch (e) {
-		throw e
-	}
+	return response.data
 }
 
 /** Consume a base64 encoded string and transform it into a url-safe format. */
@@ -275,8 +272,50 @@ function generateCodeChallenge() {
 	return base64urlEncode(createHash('sha256').update(codeVerifier).digest('base64'))
 }
 
-/** Generate a random 32 byte sequence and transform it into a base 64 url-encoded string. */
+/**
+ * Generate a random 32 byte sequence and transform it into a base 64 url-encoded string.
+ */
 function generateCodeVerifier() {
 	const buffer = randomBytes(32)
 	return base64urlEncode(buffer.toString('base64'))
+}
+
+/**
+ * Send a GGG token response to our backend to sign it.
+ * This signed response jwt will be used to authorize further requests.
+ */
+export async function signTokenResponse(tokenResponse: SignableTokenStructure) {
+	const server: string | undefined = import.meta.env.VITE_MAIN_API_SERVER
+	if (!server) {
+		throw new Error('Server Url not found.')
+	}
+
+	const response = await axios.post<string>(`${server}/oauth/sign-ggg-token-response`, tokenResponse)
+
+	// This will be the signed token
+	if (response.status === 200) {
+		return response.data
+	}
+
+	throw new Error(response.data)
+}
+
+export async function getRefreshToken(bulkyJwt: string) {
+	const server: string | undefined = import.meta.env.VITE_MAIN_API_SERVER
+	if (!server) {
+		throw new Error('Server Url not found.')
+	}
+
+	const response = await axios.get<string>(`${server}/oauth/get-refresh-token`, {
+		headers: {
+			Authorization: `Bearer ${bulkyJwt}`,
+		},
+	})
+
+	// This will be the refresh token
+	if (response.status === 200) {
+		return response.data
+	}
+
+	throw new Error(response.data)
 }

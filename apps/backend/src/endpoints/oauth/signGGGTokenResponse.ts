@@ -33,7 +33,7 @@ export async function signGGGTokenResponse(event: LambdaPayloadEvent) {
 		const url = process.env.POE_SERVER_ENDPOINT + '/profile'
 		const response = await fetch(url, {
 			headers: {
-				Authorization: `Bearer ${body.access_token}`,
+				Authorization: `Bearer ${body.accessToken}`,
 			},
 		})
 		const profile = (await response.json()) as GGGProfileSuccessResponse | GGGProfileErrorResponse
@@ -50,7 +50,14 @@ export async function signGGGTokenResponse(event: LambdaPayloadEvent) {
 			// Also save the refresh token to DynamoDB.
 			if (profile.uuid === body.sub && profile.name === body.username) {
 				// Sign the ggg token response.
-				const { refresh_token, ...toSign } = body
+				const { refreshToken, ...toSign } = body
+
+				// If the exp is larger than 10 hours (+ 10 minutes for potentially different server time),
+				// the token response was probably tampered with. Reject.
+				if (body.exp > Math.floor(Date.now() / 1000) + 36000 + 600) {
+					return { statusCode: 400, body: 'Invalid token exp.' }
+				}
+
 				const signedToken = await signWithKMS(toSign)
 
 				// Save the refresh token
@@ -65,7 +72,7 @@ export async function signGGGTokenResponse(event: LambdaPayloadEvent) {
 						},
 						UpdateExpression: 'SET refreshToken = :refreshTokenValue',
 						ExpressionAttributeValues: {
-							':refreshTokenValue': refresh_token,
+							':refreshTokenValue': refreshToken,
 						},
 					}
 
@@ -96,14 +103,14 @@ export async function signGGGTokenResponse(event: LambdaPayloadEvent) {
 function assertBody(obj: any): obj is OauthTokenResponse {
 	return (
 		obj &&
-		'access_token' in obj &&
-		typeof obj.access_token === 'string' &&
-		'refresh_token' in obj &&
-		typeof obj.refresh_token === 'string' &&
-		'expires_in' in obj &&
-		typeof obj.expires_in === 'number' &&
+		'accessToken' in obj &&
+		typeof obj.accessToken === 'string' &&
+		'refreshToken' in obj &&
+		typeof obj.refreshToken === 'string' &&
+		'exp' in obj &&
+		typeof obj.exp === 'number' &&
 		'scope' in obj &&
-		typeof obj.scope === 'string' &&
+		Array.isArray(obj.scope) &&
 		'username' in obj &&
 		typeof obj.username === 'string' &&
 		'sub' in obj &&

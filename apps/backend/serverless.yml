@@ -73,27 +73,6 @@ package:
 # Even though all files are in /dist, we are uploading the package.zip. All paths start relative from there.
 # For dev mode, we want to access files in the /src directory, which is passed as command line argument.
 functions:
-  oauth_transferState:
-    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/transferState.transferState
-    events:
-      - httpApi:
-          path: /oauth/transfer-state
-          method: post
-
-  oauth_transferCodeVerifier:
-    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/transferCodeVerifier.transferCodeVerifier
-    events:
-      - httpApi:
-          path: /oauth/transfer-code-verifier
-          method: post
-
-  oauth_handleRedirect:
-    handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/handleRedirect.handleRedirect
-    events:
-      - httpApi:
-          path: /oauth/handle-redirect/poe
-          method: get
-
   oauth_signGGGTokenResponse:
     handler: ${env:SOURCE_DIRECTORY, ''}endpoints/oauth/signGGGTokenResponse.signGGGTokenResponse
     events:

@@ -32,9 +32,9 @@ export const ACCOUNT_SCOPE = {
 export type AccountScope = ObjectValues<typeof ACCOUNT_SCOPE>
 
 export type OauthTokenResponse = {
-	access_token: string
-	refresh_token: string
-	expires_in: number
+	accessToken: string
+	refreshToken: string
+	exp: number
 	scope: string
 	username: string
 	sub: Uuid

@@ -39,7 +39,7 @@ export const useAuthStore = defineStore('authStore', () => {
 		// In test mode, initialize a random user profile.
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
 			profile.value = {
-				name: 'Chavincar',
+				name: 'Chavincar#4805',
 				uuid: BULKY_UUID.generateTypedUuid<PoeProfile>(),
 			}
 		}
@@ -47,8 +47,6 @@ export const useAuthStore = defineStore('authStore', () => {
 		// Get the access token.
 		const token = await getAccessToken()
 		if (!token) return
-
-		// isLoggedIn.value = true
 
 		// Get the profile if it is not initialized yet.
 		if (!profile.value) {
@@ -68,8 +66,8 @@ export const useAuthStore = defineStore('authStore', () => {
 			return
 		}
 
-		// token has expired. attempt renewal.
-		if (Date.now() > tokenStructure.exp) {
+		// Token has expired. Attempt renewal.
+		if (Date.now() / 1000 > tokenStructure.exp) {
 			window.localStorage.removeItem('tokenStructure')
 			await refreshTokenRequest().execute()
 
@@ -153,11 +151,10 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * Save necessary information to localstorage and store the refresh token in the backend.
 	 */
 	async function handleSuccessfulTokenResponse(response: OauthTokenResponse) {
-		console.log({ response })
-		// subtract 5 minutes to avoid cases where client thinks a token is valid but it has expired on the server
-		const exp = Date.now() + response.expires_in * 1000 - 300000
+		// Subtract 5 minutes to avoid cases where client thinks a token is valid but it has expired on the server
+		const exp = Math.floor(Date.now() / 1000) + response.expires_in - 300
 
-		// transform the token response to our storage type
+		// Transform the token response to our storage type.
 		const tokenStructure: LocalOauthTokenStorageStructure = {
 			accessToken: response.access_token,
 			exp,
@@ -166,11 +163,29 @@ export const useAuthStore = defineStore('authStore', () => {
 				.split(' ')
 				.map(str => ACCOUNT_SCOPE[str])
 				.filter(Boolean),
+			sub: response.sub,
 		}
+
+		console.log({ tokenStructure })
 
 		window.localStorage.setItem('tokenStructure', JSON.stringify(tokenStructure))
 
-		// TODO: upload refresh token to server here
+		// Sign the token structure.
+		const signRequest = useApi('sign-token', nodeApi.signTokenResponse)
+		await signRequest.exec({
+			...tokenStructure,
+			refreshToken: response.refresh_token,
+		})
+
+		if (signRequest.error.value || !signRequest.data.value) {
+			// Show notification.
+			// Revoke token?
+			logout()
+			return
+		}
+
+		// Save the jwt.
+		window.localStorage.setItem('bulkyJwt', signRequest.data.value)
 	}
 
 	/**

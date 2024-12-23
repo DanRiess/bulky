@@ -40,6 +40,12 @@ export type LocalOauthTokenStorageStructure = {
 	exp: number
 	username: string
 	scope: AccountScope[]
+	sub: Uuid
+}
+
+/** The token structure that will be signed */
+export type SignableTokenStructure = LocalOauthTokenStorageStructure & {
+	refreshToken: string
 }
 
 /** Validator for an oauth token object */

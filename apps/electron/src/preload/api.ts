@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron'
 import { ShowAttachmentPanelDto } from '@shared/types/dtoOneway.types'
 import { BulkyConfig } from '@shared/types/config.types'
-import { OauthTokenResponse } from '@shared/types/auth.types'
+import { OauthTokenResponse, SignableTokenStructure } from '@shared/types/auth.types'
 import ipcRendererWrapper from './ipcRendererWrapper'
 import { SerializedError } from '@shared/errors/serializedError'
 import { PoeLeagueRecordDtoResponse } from '@shared/types/dtoResponse.types'
@@ -84,12 +84,18 @@ export const api = {
 		return ipcRendererWrapper.invoke('generate-oauth-tokens')
 	},
 
-	redeemRefreshToken: (refreshToken: string): Promise<OauthTokenResponse | SerializedError> =>
-		ipcRenderer.invoke('redeem-refresh-token', refreshToken),
-
 	openAuthorizationCodeUrl: (): Promise<void | SerializedError> => ipcRendererWrapper.invoke('open-authorization-code-url'),
 
 	getAuthorizationCodeUrl: (): Promise<string | SerializedError> => ipcRendererWrapper.invoke('get-authorization-code-url'),
+
+	signTokenResponse: (tokenResponse: SignableTokenStructure): Promise<string | SerializedError> =>
+		ipcRendererWrapper.invoke('sign-token-response', tokenResponse),
+
+	getRefreshToken: (bulkyJwt: string): Promise<string | SerializedError> =>
+		ipcRendererWrapper.invoke('get-refresh-token', bulkyJwt),
+
+	redeemRefreshToken: (refreshToken: string): Promise<OauthTokenResponse | SerializedError> =>
+		ipcRenderer.invoke('redeem-refresh-token', refreshToken),
 
 	getLeagues: (): Promise<PoeLeagueRecordDtoResponse> => ipcRendererWrapper.invoke('get-leagues'),
 

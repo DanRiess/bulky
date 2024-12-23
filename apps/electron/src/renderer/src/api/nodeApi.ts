@@ -7,6 +7,7 @@ import { NinjaCategory, NinjaCurrencyDto, NinjaItemDto } from '@shared/types/nin
 import { useConfigStore } from '@web/stores/configStore'
 import api from './api.wrapper'
 import { Category } from '@shared/types/bulky.types'
+import { SignableTokenStructure } from '@shared/types/auth.types'
 
 export const nodeApi = {
 	setIgnoreMouseEvents: async (ignore: boolean) => {
@@ -31,6 +32,14 @@ export const nodeApi = {
 
 	generateOauthTokens: async () => {
 		return window.api.generateOauthTokens()
+	},
+
+	signTokenResponse: async (tokenResponse: SignableTokenStructure) => {
+		return window.api.signTokenResponse(tokenResponse)
+	},
+
+	getRefreshToken: async (bulkyJwt: string) => {
+		return window.api.getRefreshToken(bulkyJwt)
 	},
 
 	redeemRefreshToken: async (refreshToken: string) => {

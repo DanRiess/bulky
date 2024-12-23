@@ -12,8 +12,10 @@ import { OverlayController } from 'electron-overlay-window'
 import {
 	computeAuthorizationCodeUrl,
 	generateTokenPair,
+	getRefreshToken,
 	openAuthorizationCodeUrlManually,
 	redeemRefreshToken,
+	signTokenResponse,
 } from './utility/oauth'
 import { SerializedError } from '@shared/errors/serializedError'
 import axios from 'axios'
@@ -23,6 +25,7 @@ import { updateApp } from './utility/appUpdater'
 import { ClientDotTxt } from './utility/clientDotTxt'
 import { Category } from '@shared/types/bulky.types'
 import { getOffers } from './ipcCallbacks/offers'
+import { OauthTokenResponse, SignableTokenStructure } from '@shared/types/auth.types'
 
 // STATE
 let checkedForUpdate = false
@@ -89,6 +92,28 @@ app.whenReady().then(() => {
 	 * Get the authorization code url to copy to clipboard.
 	 */
 	ipcMain.handle('get-authorization-code-url', () => computeAuthorizationCodeUrl())
+
+	/**
+	 * Sign the received ggg oauth token response.
+	 */
+	ipcMain.handle('sign-token-response', (_, tokenResponse: SignableTokenStructure) => {
+		try {
+			return signTokenResponse(tokenResponse)
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
+
+	/**
+	 * Get the saved refresh token if it is available.
+	 */
+	ipcMain.handle('get-refresh-token', (_, bulkyJwt: string) => {
+		try {
+			return getRefreshToken(bulkyJwt)
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
 
 	/**
 	 * Return the league static json file
