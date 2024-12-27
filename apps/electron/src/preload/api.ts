@@ -10,6 +10,7 @@ import { PoeStashTab } from '@shared/types/poe.types'
 import { ProgressInfo } from 'electron-updater'
 import { AppUpdateStatus } from '@shared/types/electron.types'
 import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
+import { BulkyApiResponse } from '@shared/types/api.types'
 
 export const api = {
 	/**
@@ -103,5 +104,8 @@ export const api = {
 		ipcRendererWrapper.invoke('get-ninja-category', url),
 
 	getOffers: (category: Category, league: string, timestamp: number): Promise<BulkyBazaarOfferDto[] | SerializedError> =>
-		ipcRenderer.invoke('get-offers', category, league, timestamp),
+		ipcRendererWrapper.invoke('get-offers', category, league, timestamp),
+
+	putOffer: (offerDto: BulkyBazaarOfferDto, jwt: string): Promise<BulkyApiResponse | SerializedError> =>
+		ipcRendererWrapper.invoke('put-offer', offerDto, jwt),
 }

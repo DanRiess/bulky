@@ -23,9 +23,9 @@ import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 import { updateApp } from './utility/appUpdater'
 import { ClientDotTxt } from './utility/clientDotTxt'
-import { Category } from '@shared/types/bulky.types'
-import { getOffers } from './ipcCallbacks/offers'
-import { OauthTokenResponse, SignableTokenStructure } from '@shared/types/auth.types'
+import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
+import { getOffers, putOffer } from './ipcCallbacks/offers'
+import { SignableTokenStructure } from '@shared/types/auth.types'
 
 // STATE
 let checkedForUpdate = false
@@ -131,10 +131,20 @@ app.whenReady().then(() => {
 	 * Get offers of the provided category and league from the server.
 	 * Will only download if either the game or the overlay are in focus.
 	 */
-	ipcMain.handle('get-offers', (_, category: Category, league: string, timestamp: number) => {
-		console.log({ category, timestamp, league, url: process.env.VITE_MAIN_API_SERVER })
+	ipcMain.handle('get-offers', async (_, category: Category, league: string, timestamp: number) => {
 		try {
-			return getOffers(category, league, timestamp)
+			return await getOffers(category, league, timestamp)
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
+
+	/**
+	 * Put an offer to the bulky server.
+	 */
+	ipcMain.handle('put-offer', async (_, offerDto: BulkyBazaarOfferDto, jwt: string) => {
+		try {
+			return await putOffer(offerDto, jwt)
 		} catch (e) {
 			return new SerializedError(e)
 		}

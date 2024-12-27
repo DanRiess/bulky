@@ -43,6 +43,7 @@
 		"electron-overlay-window": "^3.3.0",
 		"electron-updater": "^6.3.9",
 		"express": "^4.21.1",
+		"jose": "^5.9.6",
 		"read-last-lines": "^1.8.0",
 		"uiohook-napi": "^1.5.4",
 		"uuid": "^10.0.0"

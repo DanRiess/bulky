@@ -12,6 +12,8 @@ const REQUEST_ERROR_CODE = {
 	token_unavailable: 'token_unavailable',
 	computed_rate_limit: 'computed_rate_limit',
 	rate_limit: 'rate_limit',
+	window_inactive: 'window_inactive',
+	invalid_url: 'invalid_url',
 } as const
 
 export type RequestErrorCode = ObjectValues<typeof REQUEST_ERROR_CODE>

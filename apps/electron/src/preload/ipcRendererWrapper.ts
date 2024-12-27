@@ -8,7 +8,7 @@
  * You can throw an error in `handle` but it can only
  * be a string or existing error object. This means all
  * the error processing logic must live in main process
- * in order to figure what string or error type to throw
+ * in order to figure out what string or error type to throw
  * in `handle`.
  *
  * This abstract allows us to send messages to `handle`.
@@ -28,9 +28,9 @@
 import { SerializedError } from '@shared/errors/serializedError'
 import { ipcRenderer } from 'electron'
 
-async function invoke(channel: string, args?: any) {
+async function invoke(channel: string, ...args: any) {
 	try {
-		const response = await ipcRenderer.invoke(channel, args)
+		const response = await ipcRenderer.invoke(channel, ...args)
 
 		if (response instanceof SerializedError) {
 			throw response
@@ -38,12 +38,9 @@ async function invoke(channel: string, args?: any) {
 			return response
 		}
 	} catch (error: unknown) {
-		console.log(error)
-		console.warn('[IpcRendererService.invoke] threw an error or promise was rejected', { error })
+		// console.warn('[IpcRendererService.invoke] threw an error or promise was rejected', { error })
 		return new Promise((_, reject) => reject(error))
 	}
 }
 
-export default {
-	invoke,
-}
+export default { invoke }

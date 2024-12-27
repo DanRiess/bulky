@@ -110,7 +110,7 @@ function getSelectedLeague() {
  */
 async function getAccessToken() {
 	const authStore = useAuthStore()
-	const token = await authStore.getAccessToken()
+	const token = await authStore.getGGGAccessToken()
 
 	if (!token) {
 		authStore.logout()

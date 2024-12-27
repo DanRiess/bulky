@@ -78,6 +78,9 @@ importers:
       express:
         specifier: ^4.21.1
         version: 4.21.1
+      jose:
+        specifier: ^5.9.6
+        version: 5.9.6
       read-last-lines:
         specifier: ^1.8.0
         version: 1.8.0

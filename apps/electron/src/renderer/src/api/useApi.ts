@@ -118,7 +118,6 @@ export function useApi<TFn extends (...args: any[]) => Promise<unknown>>(apiName
 			data.value = responseData
 			status.value = 'SUCCESS'
 		} catch (e) {
-			console.log(e)
 			error.value = deserializeError(e)
 			status.value = 'ERROR'
 		}

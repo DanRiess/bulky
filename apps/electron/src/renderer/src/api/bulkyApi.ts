@@ -15,7 +15,7 @@ type PostPayload = {
 	this: string
 }
 
-const BASE_URL = import.meta.env.VITE_BASE_URL_BULKY
+const BASE_URL = 'http://localhost:5174'
 
 export const bulkyApi = {
 	getJson: <TRes extends unknown>(url: string, config: AxiosRequestConfig) => {

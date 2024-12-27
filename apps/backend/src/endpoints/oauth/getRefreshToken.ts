@@ -26,7 +26,6 @@ export async function getRefreshToken(event: LambdaPayloadEvent) {
 
 		// The token itself has already been verified in the authorizer function at this point.
 		const claims = decodeJwt<OauthTokenResponse>(jwt)
-		console.log({ claims })
 
 		// Define parameters for the search query.
 		const params: GetCommandInput = {

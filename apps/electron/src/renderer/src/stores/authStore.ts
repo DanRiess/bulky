@@ -11,13 +11,16 @@ import { ApiStatus } from '@web/api/api.types'
 import { nodeApi } from '@web/api/nodeApi'
 import { poeApi } from '@web/api/poeApi'
 import { useApi } from '@web/api/useApi'
+import { sleepTimer } from '@web/utility/sleep'
 import { BULKY_UUID } from '@web/utility/uuid'
+import { decodeJwt } from 'jose'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 export const useAuthStore = defineStore('authStore', () => {
 	// STATE
 	const authorizationState = ref<ApiStatus>('IDLE')
+	const refreshTokenState = ref<ApiStatus>('IDLE')
 	const serializedError = ref<SerializedError>(new SerializedError())
 	const profile = ref<PoeProfile>()
 
@@ -45,7 +48,7 @@ export const useAuthStore = defineStore('authStore', () => {
 		}
 
 		// Get the access token.
-		const token = await getAccessToken()
+		const token = await getGGGAccessToken()
 		if (!token) return
 
 		// Get the profile if it is not initialized yet.
@@ -55,11 +58,11 @@ export const useAuthStore = defineStore('authStore', () => {
 	}
 
 	/**
-	 * This function returns the currently saved access token from local storage.
+	 * This function returns the currently saved GGG access token from local storage.
 	 * If the token is expired, it attempts to use the refresh token.
 	 * If neither of this works, the user will be logged out.
 	 */
-	async function getAccessToken() {
+	async function getGGGAccessToken() {
 		const tokenStructure = getTokenFromLocalStorage()
 		if (!tokenStructure) {
 			logout()
@@ -68,13 +71,61 @@ export const useAuthStore = defineStore('authStore', () => {
 
 		// Token has expired. Attempt renewal.
 		if (Date.now() / 1000 > tokenStructure.exp) {
-			window.localStorage.removeItem('tokenStructure')
-			await refreshTokenRequest().execute()
+			// The refresh token workflow can be initiated by the getBulkyJwt function as well.
+			// If it is running, wait a bit and run this function again.
+			if (refreshTokenState.value === 'PENDING') {
+				await sleepTimer(500)
+				return getGGGAccessToken()
+			}
 
-			return await getAccessToken()
+			// Only remove the token structure, not the bulky jwt here.
+			// Even though it is expired, it's needed to get the RT from the server.
+			window.localStorage.removeItem('tokenStructure')
+			const refreshSuccessful = await refreshTokenRequest().execute()
+			if (!refreshSuccessful) return
+
+			return await getGGGAccessToken()
 		}
 
 		return tokenStructure.accessToken
+	}
+
+	/**
+	 * This function returns the Bulky JWT from local storage.
+	 * The Bulky JWT is a GGG token response that has been signed on the Bulky servers.
+	 * It is used to authorize against the Bulky server API.
+	 */
+	async function getBulkyJwt() {
+		const jwt = window.localStorage.getItem('bulkyJwt')
+		if (!jwt) return
+
+		const claims = decodeJwt(jwt)
+
+		// If there is no exp claim, the jwt is invalid.
+		if (!claims.exp) {
+			logout()
+			return
+		}
+
+		// Start the refresh token workflow if the jwt is expired.
+		if (Date.now() / 1000 > claims.exp) {
+			// The refresh token workflow can be initiated by the getGGGAccessToken function as well.
+			// If it is running, wait a bit and run this function again.
+			if (refreshTokenState.value === 'PENDING') {
+				await sleepTimer(500)
+				return getBulkyJwt()
+			}
+
+			// Only remove the token structure, not the bulky jwt here.
+			// Even though it is expired, it's needed to get the RT from the server.
+			window.localStorage.removeItem('tokenStructure')
+			const refreshSuccessful = await refreshTokenRequest().execute()
+			if (!refreshSuccessful) return
+
+			return await getBulkyJwt()
+		}
+
+		return jwt
 	}
 
 	/**
@@ -106,7 +157,7 @@ export const useAuthStore = defineStore('authStore', () => {
 			await request.exec()
 
 			if (request.error.value || !request.data.value) {
-				// don't set error state when user opens external browser window multiple times
+				// Don't set error state when user opens external browser window multiple times
 				if (!(request.error.value instanceof RequestError && request.error.value.code === 'duplicate_request')) {
 					authorizationState.value = 'ERROR'
 					serializedError.value = new SerializedError(request.error.value)
@@ -114,9 +165,10 @@ export const useAuthStore = defineStore('authStore', () => {
 				return false
 			}
 
-			handleSuccessfulTokenResponse(request.data.value)
-			authorizationState.value = 'SUCCESS'
-			return true
+			const success = await handleSuccessfulTokenResponse(request.data.value)
+
+			authorizationState.value = success ? 'SUCCESS' : 'ERROR'
+			return success
 		}
 
 		return { request, execute }
@@ -129,18 +181,35 @@ export const useAuthStore = defineStore('authStore', () => {
 		const request = useApi('refreshTokenRequest', nodeApi.redeemRefreshToken)
 
 		async function execute() {
-			// TODO: download refresh token from server here
-			const token: string | undefined = undefined
-			if (!token) return false
+			refreshTokenState.value = 'PENDING'
 
-			await request.exec(token)
-
-			if (request.error.value || !request.data.value) {
+			// Get the bulky jwt without any verification.
+			const jwt = window.localStorage.getItem('bulkyJwt')
+			if (!jwt) {
+				refreshTokenState.value = 'ERROR'
 				return false
 			}
 
-			handleSuccessfulTokenResponse(request.data.value)
-			return true
+			// Get the refresh token from the bulky server.
+			const getRefreshTokenRequest = useApi('getRefreshToken', nodeApi.getRefreshToken)
+			await getRefreshTokenRequest.exec(jwt)
+
+			if (getRefreshTokenRequest.error.value || !getRefreshTokenRequest.data.value) {
+				refreshTokenState.value = 'ERROR'
+				return false
+			}
+
+			// Exchange the request token with the GGG servers for a new AT/RT pair.
+			const token = getRefreshTokenRequest.data.value
+			await request.exec(token)
+
+			if (request.error.value || !request.data.value) {
+				refreshTokenState.value = 'ERROR'
+				return false
+			}
+
+			refreshTokenState.value = 'SUCCESS'
+			return await handleSuccessfulTokenResponse(request.data.value)
 		}
 
 		return { request, execute }
@@ -166,10 +235,6 @@ export const useAuthStore = defineStore('authStore', () => {
 			sub: response.sub,
 		}
 
-		console.log({ tokenStructure })
-
-		window.localStorage.setItem('tokenStructure', JSON.stringify(tokenStructure))
-
 		// Sign the token structure.
 		const signRequest = useApi('sign-token', nodeApi.signTokenResponse)
 		await signRequest.exec({
@@ -179,13 +244,15 @@ export const useAuthStore = defineStore('authStore', () => {
 
 		if (signRequest.error.value || !signRequest.data.value) {
 			// Show notification.
-			// Revoke token?
 			logout()
-			return
+			return false
 		}
 
-		// Save the jwt.
+		// Save the token structure and the jwt.
+		window.localStorage.setItem('tokenStructure', JSON.stringify(tokenStructure))
 		window.localStorage.setItem('bulkyJwt', signRequest.data.value)
+
+		return true
 	}
 
 	/**
@@ -232,7 +299,6 @@ export const useAuthStore = defineStore('authStore', () => {
 		if (!profileString) return undefined
 
 		try {
-			// assert the type of this response, JSON.parse is not foolproof and can be wrong
 			const rawProfile = JSON.parse(profileString)
 			if (!isPoeProfileResponse(rawProfile)) throw new TypeError('Unexpected type.')
 
@@ -246,6 +312,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
 	/**
 	 * Log out the user and reset state variables.
+	 * The token itself cannot be revoked, since GGG doesn't expose the necessary API.
 	 */
 	function logout() {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
@@ -255,8 +322,7 @@ export const useAuthStore = defineStore('authStore', () => {
 		profile.value = undefined
 		window.localStorage.removeItem('tokenStructure')
 		window.localStorage.removeItem('poeProfile')
-
-		// TODO: remove refresh token from server
+		window.localStorage.removeItem('bulkyJwt')
 	}
 
 	return {
@@ -266,7 +332,8 @@ export const useAuthStore = defineStore('authStore', () => {
 		serializedError,
 		logout,
 		tokenRequest,
-		getAccessToken,
+		getGGGAccessToken,
+		getBulkyJwt,
 		initialize,
 		getProfileRequest,
 	}

@@ -6,8 +6,9 @@ import { BulkyConfig } from '@shared/types/config.types'
 import { NinjaCategory, NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
 import { useConfigStore } from '@web/stores/configStore'
 import api from './api.wrapper'
-import { Category } from '@shared/types/bulky.types'
+import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
 import { SignableTokenStructure } from '@shared/types/auth.types'
+import { useAuthStore } from '@web/stores/authStore'
 
 export const nodeApi = {
 	setIgnoreMouseEvents: async (ignore: boolean) => {
@@ -99,6 +100,13 @@ export const nodeApi = {
 
 	getOffers: async (category: Category, league: string, timestamp: number) => {
 		return window.api.getOffers(category, league, timestamp)
+	},
+
+	putOffer: async (offerDto: BulkyBazaarOfferDto) => {
+		const jwt = await useAuthStore().getBulkyJwt()
+		if (!jwt) return
+
+		return window.api.putOffer(offerDto, jwt)
 	},
 }
 

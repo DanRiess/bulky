@@ -27,6 +27,8 @@ import { useConfigStore } from './configStore'
 import { useFilterShopItems } from '@web/composables/useFilterShopItems'
 import { replaceExpeditionLogbook } from '@web/utility/replaceExpeditionLogbooks'
 import { ShopExpeditionItem } from '@web/categories/expedition/expedition.types'
+import { useApi } from '@web/api/useApi'
+import { nodeApi } from '@web/api/nodeApi'
 
 /** TTL of any given offer. Default to 15 minutes. */
 const OFFER_TTL = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
@@ -220,22 +222,19 @@ export const useShopStore = defineStore('shopStore', () => {
 			offers.value.push(offer)
 		}
 
-		// Upload offer to the public db
 		const offerDto = generateDto(offer)
-		console.log({ offerDto })
 
 		if (!offerDto) {
-			// TODO: handle error
 			console.log('could not generate dto')
 			return
 		}
 
-		// Fake Upload
-		await sleepTimer(500)
+		// Upload offer to the public db
+		const putRequest = useApi('putOffer', nodeApi.putOffer)
+		await putRequest.exec(offerDto)
 
 		// If the upload succeeds, update some properties
-		// TODO: fix condition
-		if (true) {
+		if (putRequest.data.value) {
 			offer.lastUploaded = offerDto.timestamp
 			offer.active = true
 		}
@@ -359,7 +358,6 @@ export const useShopStore = defineStore('shopStore', () => {
 		const account = authStore.profile?.name
 
 		if (!account) {
-			// TODO: handle error
 			console.log('could not generate dto, no account name')
 			return
 		}
