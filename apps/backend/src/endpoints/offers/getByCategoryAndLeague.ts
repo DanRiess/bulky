@@ -75,7 +75,6 @@ export async function getByCategoryAndLeague(event: LambdaPayloadEvent) {
 
 		return { statusCode: 200, body: JSON.stringify(result) }
 	} catch (e) {
-		console.log({ e })
 		return { statusCode: 500, body: 'Error during query.' }
 	}
 }
@@ -91,6 +90,6 @@ function assertQueryParams(obj: any): obj is BulkyOfferGetQueryParams {
 		'league' in obj &&
 		typeof obj.league === 'string' &&
 		'timestamp' in obj &&
-		parseInt(obj.timestamp)
+		Number.isInteger(parseInt(obj.timestamp))
 	)
 }

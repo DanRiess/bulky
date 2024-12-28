@@ -14,15 +14,23 @@ import { ESSENCE_TIER, ESSENCE_TYPE } from './essence.const'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { nodeApi } from '@web/api/nodeApi'
+import { useConfigStore } from '@web/stores/configStore'
 
 export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
+	// STORES
+	const configStore = useConfigStore()
+
+	// STATE
 	const offers = ref<Map<BazaarEssenceOffer['uuid'], BazaarEssenceOffer>>(new Map())
+	const fetchRequest = useApi('fetchEssences', nodeApi.getOffers)
+	const lastFetched = ref(0)
+
+	// METHODS
 
 	/**
 	 * Consume an essence listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
-		console.log({ dto })
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'ESSENCE') return
 
@@ -99,9 +107,6 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 		}
 
 		request.data.value.forEach(listingDto => putOffer(listingDto))
-
-		const test = useApi('test', nodeApi.getOffers)
-		await test.exec('ESSENCE', 'Settlers', 123)
 	}
 
 	/**
@@ -109,7 +114,28 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch essence offers')
+		console.log('refetch essence offers')
+		console.log({ fetchRequest })
+		if (Date.now() - lastFetched.value < 5000) {
+			console.log(Date.now() - lastFetched.value)
+			console.log('last fetched small')
+			return
+		}
+		if (fetchRequest.statusPending.value) {
+			console.log('status pending')
+			return
+		}
+		console.log('executing req')
+
+		await fetchRequest.exec('ESSENCE', configStore.config.league, lastFetched.value)
+		console.log({ data: fetchRequest.data.value, error: fetchRequest.error.value })
+
+		if (fetchRequest.error.value || !fetchRequest.data.value) {
+			return
+		}
+
+		lastFetched.value = Date.now()
+		// fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
 	}
 
 	return {

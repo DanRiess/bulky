@@ -1,4 +1,6 @@
 import { SerializedErrorObject } from '@shared/types/error.types'
+import { AxiosError } from 'axios'
+import { BulkyError } from './bulkyError'
 
 /**
  * Serialize an error into a plain js object.
@@ -16,11 +18,30 @@ export class SerializedError {
 	handleAsRejectedPromise: boolean
 
 	constructor(e?: unknown) {
-		const error =
-			e instanceof Error ? { ...e } : typeof e === 'string' ? { ...new Error(e) } : { ...new Error('Unknown Error') }
-		delete error.stack
+		// Trying to check this via e instanceof AxiosError will result in preload script not being able to load.
+		if (e && typeof e === 'object' && 'isAxiosError' in e) {
+			const axiosError = e as AxiosError
+			const errorData = axiosError.response?.data
+			this.error = {
+				name: axiosError.name,
+				message: typeof errorData === 'string' ? errorData : axiosError.message,
+				code: axiosError.code,
+				status: axiosError.status,
+			}
+		} else if (e instanceof BulkyError) {
+			this.error = { ...e }
+		} else if (typeof e === 'string') {
+			this.error = {
+				name: 'Error',
+				message: e,
+			}
+		} else {
+			this.error = {
+				name: 'UnknownError',
+				message: 'Unknown Error',
+			}
+		}
 
-		this.error = error
 		this.handleAsRejectedPromise = true
 	}
 

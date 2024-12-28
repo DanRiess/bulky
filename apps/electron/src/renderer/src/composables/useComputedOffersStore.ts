@@ -1,5 +1,4 @@
 import { computed, onUnmounted } from 'vue'
-
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
@@ -16,8 +15,6 @@ import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.s
 import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
 import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
-
-const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? 15000)
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
@@ -45,30 +42,9 @@ export function useComputedOffersStore() {
 	})
 
 	return computed<ComputedBulkyOfferStore>(() => {
-		// Clear the timeout if it exists
-		if (timeout) {
-			clearTimeout(timeout)
-		}
-
 		// Get the correct store and its offers
 		const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
 		const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = store ? store.offers : new Map()
-
-		/**
-		 * Interval function. Call this every x seconds. Define the interval in the .env file.
-		 * Refetch offers from the currently selected store.
-		 */
-		function refetchOffers() {
-			// If the app is inactive, don't refetch.
-			if (!appStateStore.appActive) return
-
-			// Fetch new offers.
-			if (store) store.refetchOffers()
-
-			// Call this function again after x seconds.
-			timeout = setTimeout(refetchOffers, REFETCH_INTERVAL)
-		}
-		refetchOffers()
 
 		/**
 		 * Calculates the base item price depending on category and optional filter.

@@ -20,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import CategoryMolecule from '@web/components/molecules/CategoryMolecule.vue'
@@ -28,21 +27,8 @@ import BazaarOfferCollectionOrganism from '@web/components/organisms/BazaarOffer
 import FilterOrganism from '@web/components/organisms/FilterOrganism.vue'
 import { useComputedFilterStore } from '@web/composables/useComputedFilterStore'
 import { useComputedOffersStore } from '@web/composables/useComputedOffersStore'
-import { useAppStateStore } from '@web/stores/appStateStore'
+import { useRefetchOffers } from '@web/composables/useRefetchOffers'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
-import { watch } from 'vue'
-import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
-import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
-import { useBestiaryOfferStore } from '@web/categories/bestiary/bestiaryOffers.store'
-import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
-import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
-import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
-import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
-import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
-import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
-
-// STORES
-const appStateStore = useAppStateStore()
 
 // COMPOSABLES
 const computedOfferStore = useComputedOffersStore()
@@ -53,40 +39,7 @@ const hooks = useGenericTransitionHooks({
 	duration: 0.35,
 })
 
-// WATCHERS
-watch(
-	() => appStateStore.selectedCategory,
-	cat => {
-		if (cat === 'ESSENCE') {
-			useEssenceOfferStore().getTestData()
-		} else if (cat === 'SCARAB') {
-			useScarabOfferStore().getTestData()
-		} else if (cat === 'DELIRIUM_ORB') {
-			console.log('deli orb category')
-		} else if (cat === 'MAP') {
-			console.log('get map listings here')
-		} else if (cat === 'MAP_8_MOD') {
-			useMap8ModOfferStore().getTestData()
-		} else if (cat === 'BESTIARY') {
-			useBestiaryOfferStore().getTestData()
-		} else if (cat === 'DELVE') {
-			useDelveOfferStore().getTestData()
-		} else if (cat === 'CATALYST') {
-			useCatalystOfferStore().getTestData()
-		} else if (cat === 'CURRENCY') {
-			useCurrencyOfferStore().getTestData()
-		} else if (cat === 'HEIST') {
-			useHeistOfferStore().getTestData()
-		} else if (cat === 'EXPEDITION') {
-			useExpeditionOfferStore().getTestData()
-		} else if (cat === 'FRAGMENT') {
-			useFragmentOfferStore().getTestData()
-		}
-
-		// makeBinTestData()
-	},
-	{ immediate: true }
-)
+useRefetchOffers()
 </script>
 
 <style scoped>

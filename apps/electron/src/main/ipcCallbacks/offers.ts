@@ -8,6 +8,7 @@ export async function getOffers(category: Category, league: string, timestamp: n
 	// Check if Bulky is in the foreground.
 	// If not, don't fetch new data.
 	const activeWin = await activeWindow()
+	console.log({ activeWin })
 	if (!activeWin || activeWin.title !== import.meta.env.VITE_APP_TITLE)
 		throw new RequestError({ message: 'Wrong active window.', status: 400, code: 'window_inactive' })
 
@@ -28,7 +29,6 @@ export async function getOffers(category: Category, league: string, timestamp: n
 }
 
 export async function putOffer(offer: BulkyBazaarOfferDto, jwt: string) {
-	console.log('putting offer')
 	// Check if either Bulky or the game window are in the foreground.
 	// If not, don't post data.
 	const activeWin = await activeWindow()
@@ -39,15 +39,12 @@ export async function putOffer(offer: BulkyBazaarOfferDto, jwt: string) {
 	if (!server) {
 		throw new RequestError({ message: 'Api url not defined.', status: 400, code: 'invalid_url' })
 	}
-	console.log('reqqing')
-	console.log({ jwt })
 
 	const res = await axios.put<BulkyApiResponse>(`${server}/offer`, offer, {
 		headers: {
 			Authorization: `Bearer ${jwt}`,
 		},
 	})
-	console.log({ res })
 
 	return res.data
 }

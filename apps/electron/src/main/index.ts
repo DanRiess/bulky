@@ -135,7 +135,9 @@ app.whenReady().then(() => {
 		try {
 			return await getOffers(category, league, timestamp)
 		} catch (e) {
-			return new SerializedError(e)
+			const error = new SerializedError(e)
+			console.log({ error })
+			return error
 		}
 	})
 

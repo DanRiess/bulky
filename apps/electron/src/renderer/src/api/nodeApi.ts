@@ -99,6 +99,7 @@ export const nodeApi = {
 	},
 
 	getOffers: async (category: Category, league: string, timestamp: number) => {
+		console.log('get offers api')
 		return window.api.getOffers(category, league, timestamp)
 	},
 
