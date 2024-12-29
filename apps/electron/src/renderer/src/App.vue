@@ -65,7 +65,6 @@ const appDownloadProgress = ref<ProgressInfo>()
 const hooks = useRouteTransitionHooks()
 const router = useRouter()
 
-console.log({ noAttachMode: import.meta.env.VITE_NO_ATTACH_MODE })
 if (import.meta.env.VITE_NO_ATTACH_MODE === 'true') {
 	appStateStore.appActive = true
 	router.push('Bazaar')
@@ -76,7 +75,6 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 	window.api.onToggleOverlayComponent(value => {
 		if (updatePanelActive.value || attachmentPanelActive.value) return
 		appStateStore.appActive = value
-		console.log(value)
 	})
 
 	window.api.onAppUpdate((status, info) => {
@@ -116,14 +114,19 @@ const routerProps = computed(() => {
 })
 
 // METHODS
-onClickOutside(
-	mainAppWindow,
-	() => {
-		appStateStore.appActive = false
-		window.api.closeOverlay()
-	},
-	{ ignore: [notificationPanelElement] }
-)
+
+// The onclickoutside functionality is usually quite annoying during development,
+// as Bulky will close when clicking into the devtools.
+if (import.meta.env.VITE_ENABLE_CLICK_OUTSIDE === 'true') {
+	onClickOutside(
+		mainAppWindow,
+		() => {
+			appStateStore.appActive = false
+			window.api.closeOverlay()
+		},
+		{ ignore: [notificationPanelElement] }
+	)
+}
 
 // INITIALIZE NECESSARY STORES
 configStore.getUserConfig().then(() => {

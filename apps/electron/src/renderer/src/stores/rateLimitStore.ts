@@ -35,9 +35,9 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 	 */
 	const rateLimits = ref<RateLimits>({
 		poe: {
-			testPeriod: [60, 15], // test periods. 15 and 60 seconds
+			testPeriod: [300, 10], // test periods. 15 and 60 seconds
 			current: [0, 0], // currenct requests in the respective test period
-			max: [30, 10], // maximum number of allowed request per respective test period
+			max: [30, 15], // maximum number of allowed request per respective test period
 			timeout: [300, 60], // timeout per respective test period if the rate limit is breached
 			activeTimeout: [0, 0], // currently active timeout per respective test period
 		},
@@ -256,12 +256,12 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 				return
 			}
 
-			// get the values from the max limit header
+			// Get the values from the max limit header.
 			const max = parseInt(maxLimitValues[0])
 			const testPeriod = parseInt(maxLimitValues[1])
 			const timeout = parseInt(maxLimitValues[2])
 
-			// find the
+			// Find the current limit amounts.
 			const regex = new RegExp(`:${testPeriod}:`, 'ig')
 			const currentLimitString = headerCurrentLimits.find(h => h.match(regex))
 			const currentLimitValues = currentLimitString?.split(':')
@@ -274,7 +274,7 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 			const current = parseInt(currentLimitValues[0])
 			const activeTimeout = parseInt(currentLimitValues[2])
 
-			// get the index of the properties in the reactive rateLimits variable that should be updated
+			// Get the index of the properties in the reactive rateLimits variable that should be updated.
 			const reactiveLimitIndex = limits.testPeriod.findIndex(p => p === testPeriod)
 
 			if (reactiveLimitIndex === -1) {
@@ -284,7 +284,7 @@ export const useRateLimitStore = defineStore('rateLimitStore', () => {
 			}
 
 			// Check if the returned 'current' value is larger than the saved 'current' value.
-			// If yes, assume that another application has used the same rate limits and some
+			// If yes, assume that another application has used the same rate limits and add some
 			// dummy timestamps to simulate this.
 			const timestampsToAdd = Math.max(0, current - limits.current[reactiveLimitIndex])
 			savedRequestDeltas[reactiveLimitIndex] = timestampsToAdd

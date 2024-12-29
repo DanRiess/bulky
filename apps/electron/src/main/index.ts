@@ -128,20 +128,6 @@ app.whenReady().then(() => {
 	})
 
 	/**
-	 * Get offers of the provided category and league from the server.
-	 * Will only download if either the game or the overlay are in focus.
-	 */
-	ipcMain.handle('get-offers', async (_, category: Category, league: string, timestamp: number) => {
-		try {
-			return await getOffers(category, league, timestamp)
-		} catch (e) {
-			const error = new SerializedError(e)
-			console.log({ error })
-			return error
-		}
-	})
-
-	/**
 	 * Put an offer to the bulky server.
 	 */
 	ipcMain.handle('put-offer', async (_, offerDto: BulkyBazaarOfferDto, jwt: string) => {
@@ -209,6 +195,18 @@ app.whenReady().then(() => {
 			ipcMain.handle('redeem-refresh-token', (_, refreshToken: string) => redeemRefreshToken(refreshToken))
 
 			ipcMain.on('set-ignore-mouse-events', (_, ignore) => overlayWindow.ignoreMouseEvents(ignore))
+
+			/**
+			 * Get offers of the provided category and league from the server.
+			 * Will only download if either the game or the overlay are in focus.
+			 */
+			ipcMain.handle('get-offers', async (_, category: Category, league: string, timestamp: number) => {
+				try {
+					return await getOffers(category, league, timestamp, overlayWindow)
+				} catch (e) {
+					return new SerializedError(e)
+				}
+			})
 
 			// A second instance is being requested.
 			// This happens for example during the oauth flow when the browser window attempts to redirect to the app.

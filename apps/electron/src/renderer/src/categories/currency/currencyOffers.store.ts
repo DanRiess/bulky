@@ -8,15 +8,22 @@ import { getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { useApi } from '@web/api/useApi'
-import { getListing } from '@web/api/bulkyApi'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { notEmpty } from '@web/utility/notEmpty'
 import { BazaarCurrency, BazaarCurrencyOffer } from './currency.types'
 import { CURRENCY_TYPE } from './currency.const'
+import { useConfigStore } from '@web/stores/configStore'
+import { nodeApi } from '@web/api/nodeApi'
 
 export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
+	// STORES
+	const configStore = useConfigStore()
+
+	// STATE
 	const offers = ref<Map<BazaarCurrencyOffer['uuid'], BazaarCurrencyOffer>>(new Map())
+	const fetchRequest = useApi('fetchCurrency', nodeApi.getOffers)
+	const lastFetched = ref(0)
 
 	/**
 	 * Consume a currency listing dto, type and validate it and add it to the listings.
@@ -87,27 +94,23 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		)
 	}
 
-	async function getTestData() {
-		console.log('getting currency test data')
-		// if (listings.value.size !== 0) return
-
-		const request = useApi('currencyPayload', getListing)
-		await request.exec('src/mocks/offersCurrency.json')
-
-		if (request.error.value || !request.data.value) {
-			console.log('no way jose')
-			return
-		}
-
-		request.data.value.forEach(listingDto => putOffer(listingDto))
-	}
-
 	/**
 	 * Fetch all new currency offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch currency offers')
+		const refetchInterval = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
+
+		if (Date.now() - lastFetched.value < refetchInterval) return
+		if (fetchRequest.statusPending.value) return
+
+		await fetchRequest.exec('CURRENCY', configStore.config.league, lastFetched.value)
+
+		// If the request threw an error or no data was obtained, just return.
+		if (fetchRequest.error.value || !fetchRequest.data.value) return
+
+		lastFetched.value = Date.now()
+		fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
 	}
 
 	return {
@@ -117,7 +120,6 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		calculateBaseItemPrice,
 		isCurrencyItem,
 		refetchOffers,
-		getTestData,
 	}
 })
 

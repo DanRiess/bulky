@@ -9,6 +9,7 @@ import type { GameWindow } from './gameWindow'
 import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
 import { mainToRendererEvents } from '../events/mainToRenderer'
+import activeWindow from 'active-win'
 
 // const noAttachMode = import.meta.env.VITE_NO_ATTACH_MODE === 'true' && is.dev
 
@@ -38,7 +39,7 @@ export class OverlayWindow {
 			transparent: true,
 			resizable: true,
 			hasShadow: true,
-			alwaysOnTop: false,
+			alwaysOnTop: true,
 		})
 
 		this.window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
@@ -51,12 +52,17 @@ export class OverlayWindow {
 		this.window
 
 		this.poeWindow.on('attach', this.handleOverlayAttached)
-		// this.poeWindow.on('game-window-focused', (focus: boolean) => {
-		// 	// if (focus === false) {
-		// 	// 	this.focusOverlayWindow()
-		// 	// 	// this.ignoreMouseEvents(!this._showOverlay)
-		// 	// }
-		// })
+		this.poeWindow.on('game-window-focused', async (focus: boolean) => {
+			if (focus === false) {
+				const activeWin = await activeWindow()
+				console.log({ activeWin })
+				if (activeWin?.title !== import.meta.env.VITE_APP_TITLE && !activeWin?.title.startsWith('Developer Tools -')) {
+					this.hideOverlay()
+				}
+			} else if (focus === true && this.overlayVisible) {
+				this.focusOverlayWindow()
+			}
+		})
 	}
 
 	get overlayVisible() {
@@ -102,18 +108,17 @@ export class OverlayWindow {
 		this.window.focusOnWebView()
 		this.window.moveAbove(this.window.getMediaSourceId())
 		this.window.moveTop()
-		// this.window.maximize()
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true)
 		this.ignoreMouseEvents(false)
-		console.log('showoverlay', {
-			visible: this.window.isVisible(),
-			focusable: this.window.isFocusable(),
-			focused: this.window.isFocused(),
-			enabled: this.window.isEnabled(),
-			// missioncontrol: this.window.isHiddenInMissionControl(),
-			normal: this.window.isNormal(),
-			// visibleWorkspaces: this.window.isVisibleOnAllWorkspaces(),
-		})
+		// console.log('showoverlay', {
+		// 	visible: this.window.isVisible(),
+		// 	focusable: this.window.isFocusable(),
+		// 	focused: this.window.isFocused(),
+		// 	enabled: this.window.isEnabled(),
+		// 	// missioncontrol: this.window.isHiddenInMissionControl(),
+		// 	normal: this.window.isNormal(),
+		// 	// visibleWorkspaces: this.window.isVisibleOnAllWorkspaces(),
+		// })
 	}
 
 	public hideOverlay() {
@@ -121,11 +126,11 @@ export class OverlayWindow {
 		// this.window.focus()
 		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, false)
 		this.ignoreMouseEvents(true)
-		console.log('hide overlay', {
-			hidden: this.window.isVisible(),
-			focusable: this.window.isFocusable(),
-			focused: this.window.isFocused(),
-		})
+		// console.log('hide overlay', {
+		// 	hidden: this.window.isVisible(),
+		// 	focusable: this.window.isFocusable(),
+		// 	focused: this.window.isFocused(),
+		// })
 	}
 
 	public focusOverlayWindow() {
@@ -139,7 +144,6 @@ export class OverlayWindow {
 	}
 
 	public toggleActiveState() {
-		console.log('toggling active state')
 		if (this._showOverlay) {
 			this.focusGameWindow()
 			this.hideOverlay()
@@ -159,11 +163,9 @@ export class OverlayWindow {
 			// this.logger.write('error [Overlay] PoE is running with administrator rights')
 
 			dialog.showErrorBox(
-				'PoE window - No access',
-				// ----------------------
-				'Path of Exile is running with administrator rights.\n' +
-					'\n' +
-					'You need to restart Awakened PoE Trade with administrator rights.'
+				`${process.env.VITE_GAME_TITLE} window - No access`,
+				`${process.env.VITE_GAME_TITLE} is running with administrator rights.
+				Restart Bulky with administrator rights.`
 			)
 		} else {
 			if (!this.window) return

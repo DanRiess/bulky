@@ -9,14 +9,21 @@ import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { useApi } from '@web/api/useApi'
-import { getListing } from '@web/api/bulkyApi'
 import { notEmpty } from '@web/utility/notEmpty'
 import { BazaarExpeditionItem, BazaarExpeditionOffer } from './expedition.types'
 import { BULKY_FACTORY } from '@web/utility/factory'
 import { EXPEDITION_TIER, EXPEDITION_TYPE } from './expedition.const'
+import { nodeApi } from '@web/api/nodeApi'
+import { useConfigStore } from '@web/stores/configStore'
 
 export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () => {
+	// STORES
+	const configStore = useConfigStore()
+
+	// STATE
 	const offers = ref<Map<BazaarExpeditionOffer['uuid'], BazaarExpeditionOffer>>(new Map())
+	const fetchRequest = useApi('fetchExpedition', nodeApi.getOffers)
+	const lastFetched = ref(0)
 
 	/**
 	 * Consume an expedition listing dto, type and validate it and add it to the listings.
@@ -86,26 +93,23 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 		)
 	}
 
-	async function getTestData() {
-		// if (listings.value.size !== 0) return
-
-		const request = useApi('expeditionPayload', getListing)
-		await request.exec('src/mocks/offersExpedition.json')
-
-		if (request.error.value || !request.data.value) {
-			console.log('no way jose')
-			return
-		}
-
-		request.data.value.forEach(offerDto => putOffer(offerDto))
-	}
-
 	/**
 	 * Fetch all new expedition offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch expedition offers')
+		const refetchInterval = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
+
+		if (Date.now() - lastFetched.value < refetchInterval) return
+		if (fetchRequest.statusPending.value) return
+
+		await fetchRequest.exec('EXPEDITION', configStore.config.league, lastFetched.value)
+
+		// If the request threw an error or no data was obtained, just return.
+		if (fetchRequest.error.value || !fetchRequest.data.value) return
+
+		lastFetched.value = Date.now()
+		fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
 	}
 
 	return {
@@ -115,7 +119,6 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 		calculateBaseItemPrice,
 		isExpeditionItem,
 		refetchOffers,
-		getTestData,
 	}
 })
 

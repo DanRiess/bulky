@@ -8,14 +8,21 @@ import { getKeys } from '@shared/types/utility.types'
 import { BULKY_CATEGORIES } from '@web/utility/category'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { useApi } from '@web/api/useApi'
-import { getListing } from '@web/api/bulkyApi'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { BazaarScarab, BazaarScarabOffer } from './scarab.types'
 import { SCARAB_TYPE } from './scarab.const'
 import { BULKY_FACTORY } from '@web/utility/factory'
+import { nodeApi } from '@web/api/nodeApi'
+import { useConfigStore } from '@web/stores/configStore'
 
 export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
+	// STORES
+	const configStore = useConfigStore()
+
+	// STATE
 	const offers = ref<Map<BazaarScarabOffer['uuid'], BazaarScarabOffer>>(new Map())
+	const fetchRequest = useApi('fetchScarabs', nodeApi.getOffers)
+	const lastFetched = ref(0)
 
 	/**
 	 * Consume an scarab listing dto, type and validate it and add it to the listings.
@@ -86,26 +93,23 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 		)
 	}
 
-	async function getTestData() {
-		// if (listings.value.size !== 0) return
-
-		const request = useApi('scarabPayload', getListing)
-		await request.exec('src/mocks/offersScarab.json')
-
-		if (request.error.value || !request.data.value) {
-			console.log('no way jose')
-			return
-		}
-
-		request.data.value.forEach(listingDto => putOffer(listingDto))
-	}
-
 	/**
 	 * Fetch all new scarab offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch scarab offers')
+		const refetchInterval = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
+
+		if (Date.now() - lastFetched.value < refetchInterval) return
+		if (fetchRequest.statusPending.value) return
+
+		await fetchRequest.exec('SCARAB', configStore.config.league, lastFetched.value)
+
+		// If the request threw an error or no data was obtained, just return.
+		if (fetchRequest.error.value || !fetchRequest.data.value) return
+
+		lastFetched.value = Date.now()
+		fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
 	}
 
 	return {
@@ -115,7 +119,6 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 		calculateBaseItemPrice,
 		isScarab,
 		refetchOffers,
-		getTestData,
 	}
 })
 

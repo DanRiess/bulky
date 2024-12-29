@@ -45,6 +45,7 @@ export const useShopStore = defineStore('shopStore', () => {
 
 	// STATE
 	const offers = ref<BulkyShopOffer[]>([])
+	const chaosPerDiv = usePoeNinja('CURRENCY').chaosPerDiv
 
 	/**
 	 * Every 30 seconds, check all offers.
@@ -174,6 +175,7 @@ export const useShopStore = defineStore('shopStore', () => {
 	 * Update an existing offer.
 	 */
 	function updateOffer(offer: BulkyShopOffer, itemRecord: BulkyShopItemRecord) {
+		console.log('updating offer')
 		const items: UnwrapRef<BulkyShopItem>[] = []
 		let computedMultiplier = offer.multiplier
 
@@ -205,6 +207,8 @@ export const useShopStore = defineStore('shopStore', () => {
 		offer.items = items
 		offer.fullPrice = fullPrice.value
 		offer.computedMultiplier = computedMultiplier
+		offer.chaosPerDiv = chaosPerDiv.value > 0 ? chaosPerDiv.value : offer.chaosPerDiv
+		console.log({ offer, cpd: chaosPerDiv.value })
 
 		return offer
 	}
@@ -269,7 +273,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		const poeItems = filteredItemsByCategory(offer.category)
 
 		// Generate BulkyItems from the PoeItems with prices and overrides.
-		const { prices, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
+		const { prices, chaosPerDiv, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
 		const { itemOverrides } = useItemOverrides(offer.category)
 		const { items: itemRecord } = useBulkyItems(poeItems, prices, itemOverrides, offer.category)
 		const { filteredItemRecord } = useFilterShopItems(itemRecord, offer.filter)
@@ -329,6 +333,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		offer.fullPrice = fullPrice.value
 		offer.items = items
 		offer.computedMultiplier = computedMultiplier
+		offer.chaosPerDiv = chaosPerDiv.value
 
 		await putOffer(offer)
 

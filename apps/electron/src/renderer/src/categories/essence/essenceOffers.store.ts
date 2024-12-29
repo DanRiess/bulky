@@ -114,28 +114,18 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('refetch essence offers')
-		console.log({ fetchRequest })
-		if (Date.now() - lastFetched.value < 5000) {
-			console.log(Date.now() - lastFetched.value)
-			console.log('last fetched small')
-			return
-		}
-		if (fetchRequest.statusPending.value) {
-			console.log('status pending')
-			return
-		}
-		console.log('executing req')
+		const refetchInterval = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
+
+		if (Date.now() - lastFetched.value < refetchInterval) return
+		if (fetchRequest.statusPending.value) return
 
 		await fetchRequest.exec('ESSENCE', configStore.config.league, lastFetched.value)
-		console.log({ data: fetchRequest.data.value, error: fetchRequest.error.value })
 
-		if (fetchRequest.error.value || !fetchRequest.data.value) {
-			return
-		}
+		// If the request threw an error or no data was obtained, just return.
+		if (fetchRequest.error.value || !fetchRequest.data.value) return
 
 		lastFetched.value = Date.now()
-		// fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
+		fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
 	}
 
 	return {

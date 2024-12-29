@@ -1,5 +1,5 @@
 /**
- * Handle all map offers through this store.
+ * Handle all 8 mod map offers through this store.
  */
 
 import { acceptHMRUpdate, defineStore } from 'pinia'
@@ -14,11 +14,18 @@ import { BULKY_MAPS } from './map.transformers'
 import { BULKY_REGEX } from '@web/utility/regex'
 import { UserError } from '@shared/errors/userError'
 import { useApi } from '@web/api/useApi'
-import { getListing } from '@web/api/bulkyApi'
 import { notEmpty } from '@web/utility/notEmpty'
+import { nodeApi } from '@web/api/nodeApi'
+import { useConfigStore } from '@web/stores/configStore'
 
 export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
+	// STORES
+	const configStore = useConfigStore()
+
+	// STATE
 	const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
+	const fetchRequest = useApi('fetch8modMaps', nodeApi.getOffers)
+	const lastFetched = ref(0)
 
 	/**
 	 * Consume an map listing dto, type and validate it and add it to the listings.
@@ -209,26 +216,23 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		)
 	}
 
-	async function getTestData() {
-		// if (listings.value.size !== 0) return
-
-		const request = useApi('map8modpayload', getListing)
-		await request.exec('src/mocks/offersMap8Mod.json')
-
-		if (request.error.value || !request.data.value) {
-			console.log('no way jose')
-			return
-		}
-
-		request.data.value.forEach(offerDto => putOffer(offerDto))
-	}
-
 	/**
 	 * Fetch all new map offers since the last fetch action.
 	 * Use a timestamp as a limiter for the API.
 	 */
 	async function refetchOffers() {
-		console.log('Refetch map offers')
+		const refetchInterval = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
+
+		if (Date.now() - lastFetched.value < refetchInterval) return
+		if (fetchRequest.statusPending.value) return
+
+		await fetchRequest.exec('MAP_8_MOD', configStore.config.league, lastFetched.value)
+
+		// If the request threw an error or no data was obtained, just return.
+		if (fetchRequest.error.value || !fetchRequest.data.value) return
+
+		lastFetched.value = Date.now()
+		fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
 	}
 
 	return {
@@ -238,7 +242,6 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		calculateBaseItemPrice,
 		isMap8Mod,
 		refetchOffers,
-		getTestData,
 	}
 })
 

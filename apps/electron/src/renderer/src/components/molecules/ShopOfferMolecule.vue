@@ -32,6 +32,7 @@
 					}"
 					:tooltip-props="tooltipProps"
 					background-color="dark"
+					:disabled="!authStore.isLoggedIn"
 					@click="refreshOffer(offer.uuid)">
 					Refresh Offer
 				</SvgButtonWithPopupMolecule>
@@ -40,6 +41,7 @@
 					:svg-props="{ name: 'edit' }"
 					:tooltip-props="tooltipProps"
 					background-color="dark"
+					:disabled="!authStore.isLoggedIn"
 					@click="
 						router.push({
 							name: 'EditOffer',
@@ -55,6 +57,7 @@
 					:svg-props="{ name: 'trash' }"
 					:tooltip-props="tooltipProps"
 					background-color="dark"
+					:disabled="!authStore.isLoggedIn"
 					@click="shopStore.deleteOffer(offer.uuid)">
 					Delete Offer
 				</SvgButtonWithPopupMolecule>
@@ -82,9 +85,11 @@ import { useTimeAgo } from '@vueuse/core'
 import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 import { useRouter } from 'vue-router'
 import ImgCategoryAtom from '../atoms/ImgCategoryAtom.vue'
+import { useAuthStore } from '@web/stores/authStore'
 
 // STORES
 const shopStore = useShopStore()
+const authStore = useAuthStore()
 
 // MODELS
 const offer = defineModel<BulkyShopOffer>({ required: true })

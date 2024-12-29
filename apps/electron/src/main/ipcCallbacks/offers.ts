@@ -1,15 +1,26 @@
+import { OverlayWindow } from '@main/window/overlayWindow'
 import { RequestError } from '@shared/errors/requestError'
 import { BulkyApiResponse } from '@shared/types/api.types'
 import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
 import activeWindow from 'active-win'
 import axios from 'axios'
 
-export async function getOffers(category: Category, league: string, timestamp: number) {
+export async function getOffers(category: Category, league: string, timestamp: number, overlayWindow: OverlayWindow) {
 	// Check if Bulky is in the foreground.
 	// If not, don't fetch new data.
 	const activeWin = await activeWindow()
-	console.log({ activeWin })
-	if (!activeWin || activeWin.title !== import.meta.env.VITE_APP_TITLE)
+
+	if (activeWin?.title.match('- Notepad')) {
+		activeWin.title = 'Notepad'
+	}
+
+	// Currently, even if the overlay is visible, the active window could still be the game window, i.e. PoE.
+	// We only want to fetch new offers when PoE is focused and Bulky is visible.
+	if (
+		!activeWin ||
+		(activeWin.title !== import.meta.env.VITE_APP_TITLE && activeWin.title !== import.meta.env.VITE_GAME_TITLE) ||
+		!overlayWindow.overlayVisible
+	)
 		throw new RequestError({ message: 'Wrong active window.', status: 400, code: 'window_inactive' })
 
 	// Get the offers from the server
