@@ -108,6 +108,10 @@ export const nodeApi = {
 
 		return window.api.putOffer(offerDto, jwt)
 	},
+
+	getActiveWindow: async () => {
+		return window.api.getActiveWindow()
+	},
 }
 
 /**

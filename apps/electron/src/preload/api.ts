@@ -11,6 +11,7 @@ import { ProgressInfo } from 'electron-updater'
 import { AppUpdateStatus } from '@shared/types/electron.types'
 import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
 import { BulkyApiResponse } from '@shared/types/api.types'
+import activeWindow from 'active-win'
 
 export const api = {
 	/**
@@ -79,7 +80,7 @@ export const api = {
 
 	readConfig: () => ipcRenderer.invoke('read-config'),
 
-	readStashTabs: (): Promise<PoeStashTab[]> => ipcRenderer.invoke('read-stash-tabs'),
+	getActiveWindow: (): Promise<activeWindow.Result | undefined> => ipcRendererWrapper.invoke('get-active-window'),
 
 	generateOauthTokens: async (): Promise<OauthTokenResponse | SerializedError> => {
 		return ipcRendererWrapper.invoke('generate-oauth-tokens')
@@ -96,7 +97,7 @@ export const api = {
 		ipcRendererWrapper.invoke('get-refresh-token', bulkyJwt),
 
 	redeemRefreshToken: (refreshToken: string): Promise<OauthTokenResponse | SerializedError> =>
-		ipcRenderer.invoke('redeem-refresh-token', refreshToken),
+		ipcRendererWrapper.invoke('redeem-refresh-token', refreshToken),
 
 	getLeagues: (): Promise<PoeLeagueRecordDtoResponse> => ipcRendererWrapper.invoke('get-leagues'),
 

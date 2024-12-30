@@ -265,6 +265,24 @@ export const useShopStore = defineStore('shopStore', () => {
 			return
 		}
 
+		// Check if either Bulky or PoE is the current active window.
+		// Don't upload if both are inactive.
+		const activeWindowRequest = useApi('activeWindow', nodeApi.getActiveWindow)
+		await activeWindowRequest.exec()
+		const activeWindow = activeWindowRequest.data.value
+
+		// This check is for dev only.
+		if (activeWindow?.title.match('- Notepad')) {
+			activeWindow.title = 'Notepad'
+		}
+
+		if (
+			!activeWindow ||
+			(activeWindow.title !== import.meta.env.VITE_APP_TITLE && activeWindow.title !== import.meta.env.VITE_GAME_TITLE)
+		) {
+			return
+		}
+
 		// Get the stash tabs that were used by the offer.
 		const stashTabs = offer.stashTabIds.map(id => stashStore.getStashTabById(id)).filter(Boolean)
 

@@ -19,7 +19,7 @@ import { BulkyError } from '@shared/errors/bulkyError'
 
 /**
  * The server should not be constantly listening, only when an oauth request is fired.
- * However, we don't control the opened browser window and therefore cannot know if the user closed the window without authorizing
+ * However, we don't control the opened browser window and cannot know if the user closed it without authorizing.
  */
 let serverRunning: boolean = false
 let codeVerifier: string | undefined = undefined
@@ -258,28 +258,6 @@ export async function exchangeCodeForTokens(authCodeResponse: OauthAuthorization
 	return response.data
 }
 
-/** Consume a base64 encoded string and transform it into a url-safe format. */
-function base64urlEncode(str: string) {
-	return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-}
-
-/** Hash the output of the codeVerifier variable and transform it into a base 64 url-encoded string. */
-function generateCodeChallenge() {
-	if (codeVerifier === undefined) {
-		codeVerifier = generateCodeVerifier()
-	}
-
-	return base64urlEncode(createHash('sha256').update(codeVerifier).digest('base64'))
-}
-
-/**
- * Generate a random 32 byte sequence and transform it into a base 64 url-encoded string.
- */
-function generateCodeVerifier() {
-	const buffer = randomBytes(32)
-	return base64urlEncode(buffer.toString('base64'))
-}
-
 /**
  * Send a GGG token response to our backend to sign it.
  * This signed response jwt will be used to authorize further requests.
@@ -318,4 +296,26 @@ export async function getRefreshToken(bulkyJwt: string) {
 	}
 
 	throw new Error(response.data)
+}
+
+/** Consume a base64 encoded string and transform it into a url-safe format. */
+function base64urlEncode(str: string) {
+	return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+}
+
+/** Hash the output of the codeVerifier variable and transform it into a base 64 url-encoded string. */
+function generateCodeChallenge() {
+	if (codeVerifier === undefined) {
+		codeVerifier = generateCodeVerifier()
+	}
+
+	return base64urlEncode(createHash('sha256').update(codeVerifier).digest('base64'))
+}
+
+/**
+ * Generate a random 32 byte sequence and transform it into a base 64 url-encoded string.
+ */
+function generateCodeVerifier() {
+	const buffer = randomBytes(32)
+	return base64urlEncode(buffer.toString('base64'))
 }

@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { computed, nextTick, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'

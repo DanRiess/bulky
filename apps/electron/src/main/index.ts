@@ -6,7 +6,6 @@ import { registerInputs } from './inputs/registerInputs'
 import { Chatbox } from './inputs/chatbox'
 import { readConfig, writeConfig } from './ipcCallbacks/configActions'
 import { BulkyConfig } from '@shared/types/config.types'
-import { readStashTabs, writeStashTabs } from './ipcCallbacks/stashTabActions'
 import path, { resolve } from 'path'
 import { OverlayController } from 'electron-overlay-window'
 import {
@@ -20,13 +19,13 @@ import {
 import { SerializedError } from '@shared/errors/serializedError'
 import axios from 'axios'
 import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
-import { PoeStashTab } from '@shared/types/poe.types'
 import { updateApp } from './utility/appUpdater'
 import { ClientDotTxt } from './utility/clientDotTxt'
 import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
 import { getOffers, putOffer } from './ipcCallbacks/offers'
 import { SignableTokenStructure } from '@shared/types/auth.types'
 import { mainToRendererEvents } from './events/mainToRenderer'
+import activeWindow from 'active-win'
 
 // STATE
 let checkedForUpdate = false
@@ -66,6 +65,24 @@ app.whenReady().then(() => {
 	// })
 
 	// Register ipc handlers (bidirectional with return values).
+
+	/**
+	 * Return the currently active window.
+	 * Can be used to determine if a stash tab request to the GGG servers should be made.
+	 */
+	ipcMain.handle('get-active-window', async () => {
+		return await activeWindow()
+	})
+
+	/**
+	 * Write the config file.
+	 */
+	ipcMain.on('write-config', (_, config: BulkyConfig) => writeConfig(app, config))
+
+	/**
+	 * Read the config file
+	 */
+	ipcMain.handle('read-config', () => readConfig(app))
 
 	/**
 	 * Start the oauth flow to generate a token pair .
@@ -111,6 +128,17 @@ app.whenReady().then(() => {
 	ipcMain.handle('get-refresh-token', (_, bulkyJwt: string) => {
 		try {
 			return getRefreshToken(bulkyJwt)
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
+
+	/**
+	 * Redeem a refresh token to generate a new AT/RT pair.
+	 */
+	ipcMain.handle('redeem-refresh-token', async (_, refreshToken: string) => {
+		try {
+			return await redeemRefreshToken(refreshToken)
 		} catch (e) {
 			return new SerializedError(e)
 		}
@@ -186,14 +214,6 @@ app.whenReady().then(() => {
 
 			ipcMain.handle('type', (_, message: string) => chatbox.type(message))
 			ipcMain.on('paste-search', (_, message: string) => chatbox.search(message))
-
-			ipcMain.on('write-config', (_, config: BulkyConfig) => writeConfig(app, config))
-			ipcMain.handle('read-config', () => readConfig(app))
-
-			ipcMain.on('write-stash-tabs', (_, stashTabs: PoeStashTab[]) => writeStashTabs(app, stashTabs))
-			ipcMain.handle('read-stash-tabs', () => readStashTabs(app))
-
-			ipcMain.handle('redeem-refresh-token', (_, refreshToken: string) => redeemRefreshToken(refreshToken))
 
 			ipcMain.on('set-ignore-mouse-events', (_, ignore) => overlayWindow.ignoreMouseEvents(ignore))
 

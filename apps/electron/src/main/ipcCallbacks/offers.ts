@@ -10,6 +10,7 @@ export async function getOffers(category: Category, league: string, timestamp: n
 	// If not, don't fetch new data.
 	const activeWin = await activeWindow()
 
+	// This check is for dev only.
 	if (activeWin?.title.match('- Notepad')) {
 		activeWin.title = 'Notepad'
 	}
@@ -21,7 +22,7 @@ export async function getOffers(category: Category, league: string, timestamp: n
 		(activeWin.title !== import.meta.env.VITE_APP_TITLE && activeWin.title !== import.meta.env.VITE_GAME_TITLE) ||
 		!overlayWindow.overlayVisible
 	)
-		throw new RequestError({ message: 'Wrong active window.', status: 400, code: 'window_inactive' })
+		throw new RequestError({ message: `Wrong active window - ${activeWin?.title}`, status: 400, code: 'window_inactive' })
 
 	// Get the offers from the server
 	const server = import.meta.env.VITE_MAIN_API_SERVER
@@ -43,8 +44,14 @@ export async function putOffer(offer: BulkyBazaarOfferDto, jwt: string) {
 	// Check if either Bulky or the game window are in the foreground.
 	// If not, don't post data.
 	const activeWin = await activeWindow()
+
+	// This check is for dev only.
+	if (activeWin?.title.match('- Notepad')) {
+		activeWin.title = 'Notepad'
+	}
+
 	if (!activeWin || (activeWin.title !== import.meta.env.VITE_APP_TITLE && activeWin.title !== import.meta.env.VITE_GAME_TITLE))
-		throw new RequestError({ message: 'Wrong active window.', status: 400, code: 'window_inactive' })
+		throw new RequestError({ message: `Wrong active window - ${activeWin?.title}`, status: 400, code: 'window_inactive' })
 
 	const server = import.meta.env.VITE_MAIN_API_SERVER
 	if (!server) {
