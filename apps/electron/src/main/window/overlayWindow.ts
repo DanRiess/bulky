@@ -35,7 +35,7 @@ export class OverlayWindow {
 			// focusable: false,
 			skipTaskbar: true,
 			frame: false,
-			show: false,
+			show: true,
 			transparent: true,
 			resizable: true,
 			hasShadow: true,
@@ -74,7 +74,7 @@ export class OverlayWindow {
 	}
 
 	/**
-	 * Load the overlay and attach it to the POE window
+	 * Load the overlay.
 	 */
 	public loadAppPage() {
 		// HMR for renderer base on electron-vite cli.
@@ -169,9 +169,9 @@ export class OverlayWindow {
 			)
 		} else {
 			if (!this.window) return
-			// mainToRendererEvents.showAttachmentPanel(this.window.webContents, 2500)
-			this._showOverlay = true
-			mainToRendererEvents.toggleOverlayComponent(this.window.webContents, this._showOverlay)
+			mainToRendererEvents.showAttachmentPanel(this.window.webContents, 1500)
+			// this._showOverlay = true
+			// mainToRendererEvents.toggleOverlayComponent(this.window.webContents, this._showOverlay)
 		}
 	}
 }

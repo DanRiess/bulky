@@ -1,10 +1,10 @@
 <template>
-	<div class="v-app-update animated-gradient-background flow" data-b-override>
+	<div class="v-app-update animated-gradient-background flow" data-b-override v-if="updateStatus && updateStatus !== 'ERROR'">
 		<h1 class="header">Searching for Update</h1>
 		<div class="icon">
 			<SvgIconAtom name="bulky" width="72" :use-gradient="true" :active="true" />
 		</div>
-		<div class="status">Status: {{ BULKY_TRANSFORM.stringToDisplayValue(updateStatus) }}</div>
+		<div class="status">Status: {{ BULKY_TRANSFORM.stringToDisplayValue(updateStatus ?? 'Unknown') }}</div>
 		<div class="additional-info">
 			<template v-if="downloadProgress">
 				<ProgressBarAtom :percentage="downloadProgress.percent" />
@@ -26,7 +26,7 @@ import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { ProgressInfo } from 'electron-updater'
 
 defineProps<{
-	updateStatus: AppUpdateStatus
+	updateStatus?: AppUpdateStatus
 	downloadProgress?: ProgressInfo
 }>()
 </script>

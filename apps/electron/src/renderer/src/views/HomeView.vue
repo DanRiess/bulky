@@ -1,5 +1,6 @@
 <template>
 	<div class="v-home">
+		this is home
 		<!-- Maybe make this into a dashboard of some sorts -->
 	</div>
 </template>

@@ -39,13 +39,11 @@ export class GameWindow extends EventEmitter {
 
 			// Despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('focus', () => {
-				console.log('focus triggered')
 				this.emit('game-window-focused', true)
 			})
 
 			// Despite the name, this listener listens to the game window, not the overlay
 			OverlayController.events.on('blur', async () => {
-				console.log('blur triggered')
 				this.emit('game-window-focused', false)
 			})
 

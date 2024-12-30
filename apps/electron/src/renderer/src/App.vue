@@ -1,6 +1,4 @@
 <template>
-	<!-- <div class="main-app-window" ref="mainAppWindow" v-if="mainWindowActive || attachmentPanelActive"> -->
-
 	<!-- The main bulky window -->
 	<div class="main-app-window" ref="mainAppWindow" v-if="appStateStore.appActive">
 		<NavbarOrganism />
@@ -28,7 +26,7 @@
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
@@ -78,10 +76,11 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 	})
 
 	window.api.onAppUpdate((status, info) => {
-		updatePanelActive.value = true
+		console.log('updating app')
+		updatePanelActive.value = status !== 'ERROR'
 		appUpdateStatus.value = status
 		appDownloadProgress.value = info
-		router.push({ name: 'AppUpdate' })
+		if (status !== 'ERROR') router.push({ name: 'AppUpdate' })
 	})
 
 	window.api.onShowAttachmentPanel(value => {
@@ -101,7 +100,7 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 		}
 	})
 }
-router.push('Bazaar')
+// router.push('Bazaar')
 
 const routerProps = computed(() => {
 	if (router.currentRoute.value.name === 'AppUpdate') {

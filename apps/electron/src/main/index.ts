@@ -1,4 +1,4 @@
-import { BrowserWindow, app, ipcMain, session } from 'electron'
+import { app, ipcMain, session } from 'electron'
 import { electronApp } from '@electron-toolkit/utils'
 import { GameWindow } from './window/gameWindow'
 import { OverlayWindow } from './window/overlayWindow'
@@ -26,6 +26,7 @@ import { ClientDotTxt } from './utility/clientDotTxt'
 import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
 import { getOffers, putOffer } from './ipcCallbacks/offers'
 import { SignableTokenStructure } from '@shared/types/auth.types'
+import { mainToRendererEvents } from './events/mainToRenderer'
 
 // STATE
 let checkedForUpdate = false
@@ -241,9 +242,15 @@ app.whenReady().then(() => {
 			overlayWindow.getWindow().webContents.on('did-finish-load', async () => {
 				if (checkedForUpdate) return
 				checkedForUpdate = true
-				// await updateApp(overlayWindow.getWindow().webContents)
 
-				// Attach the controller now.
+				// Try to update the app
+				try {
+					await updateApp(overlayWindow.getWindow().webContents)
+				} catch (e) {
+					mainToRendererEvents.showAppUpdatePanel(overlayWindow.getWindow().webContents, 'ERROR')
+				}
+
+				// Attach the controller.
 				poeWindow.attach(overlayWindow, import.meta.env.VITE_GAME_TITLE)
 			})
 		},
