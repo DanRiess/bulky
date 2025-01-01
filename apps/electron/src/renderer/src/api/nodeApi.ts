@@ -99,6 +99,38 @@ export const nodeApi = {
 	},
 
 	getOffers: async (category: Category, league: string, timestamp: number) => {
+		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+			let url: string
+			if (category === 'BESTIARY') {
+				url = 'http://localhost:5174/src/mocks/offersBeasts.json'
+			} else if (category === 'CATALYST') {
+				url = 'http://localhost:5174/src/mocks/offersCatalyst.json'
+			} else if (category === 'CURRENCY') {
+				url = 'http://localhost:5174/src/mocks/offersCurrency.json'
+			} else if (category === 'DELIRIUM_ORB') {
+				url = 'http://localhost:5174/src/mocks/notyetimplemented.json'
+			} else if (category === 'DELVE') {
+				url = 'http://localhost:5174/src/mocks/offersDelve.json'
+			} else if (category === 'ESSENCE') {
+				url = 'http://localhost:5174/src/mocks/offersEssence.json'
+			} else if (category === 'EXPEDITION') {
+				url = 'http://localhost:5174/src/mocks/offersExpedition.json'
+			} else if (category === 'FRAGMENT') {
+				url = 'http://localhost:5174/src/mocks/offersFragment.json'
+			} else if (category === 'HEIST') {
+				url = 'http://localhost:5174/src/mocks/offersHeist.json'
+			} else if (category === 'MAP') {
+				url = 'http://localhost:5174/src/mocks/notyetimplemented.json'
+			} else if (category === 'MAP_8_MOD') {
+				url = 'http://localhost:5174/src/mocks/offersMap8Mod.json'
+			} else {
+				url = 'http://localhost:5174/src/mocks/offersScarab.json'
+			}
+			// The type cast is only here because return type of window.api functions
+			// is different than an axios response and it messes up other scripts.
+			return api.get(url) as unknown as BulkyBazaarOfferDto[]
+		}
+
 		return window.api.getOffers(category, league, timestamp)
 	},
 

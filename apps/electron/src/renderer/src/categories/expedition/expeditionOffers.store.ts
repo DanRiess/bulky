@@ -114,6 +114,7 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

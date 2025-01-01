@@ -130,6 +130,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

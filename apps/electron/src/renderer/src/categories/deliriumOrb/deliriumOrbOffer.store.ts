@@ -113,6 +113,7 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

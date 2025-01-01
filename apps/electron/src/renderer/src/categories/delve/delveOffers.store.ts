@@ -113,6 +113,7 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

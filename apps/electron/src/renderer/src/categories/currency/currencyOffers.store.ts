@@ -115,6 +115,7 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

@@ -114,6 +114,7 @@ export const useHeistOfferStore = defineStore('heistOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

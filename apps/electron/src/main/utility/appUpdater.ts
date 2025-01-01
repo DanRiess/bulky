@@ -25,14 +25,6 @@ export function updateApp(webContents: WebContents) {
 	// If an update cannot be found or an error occurs, just return to the app without ever showing the update panel.
 	// Only show the panel when the download starts.
 	return new Promise<boolean>((resolve, reject) => {
-		mainToRendererEvents.showAppUpdatePanel(webContents, 'DOWNLOADING_UPDATE', {
-			total: 10942134,
-			percent: 20,
-			delta: 123,
-			transferred: 23421,
-			bytesPerSecond: 12345,
-		})
-
 		autoUpdater.on('update-not-available', () => {
 			console.log('update not available')
 			// mainToRendererEvents.showAppUpdatePanel(webContents, 'UPDATE_NOT_FOUND')

@@ -237,6 +237,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

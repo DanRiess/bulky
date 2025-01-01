@@ -4,6 +4,7 @@ export type BulkyConfig = {
 	overlayKey: string
 	gameWindowTitle: string
 	ign: string
+	autoRefetchOffers: boolean
 	notifications: {
 		offsetBottom: string
 		offsetRight: string

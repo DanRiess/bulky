@@ -111,6 +111,7 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

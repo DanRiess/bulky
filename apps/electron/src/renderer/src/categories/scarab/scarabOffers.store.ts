@@ -114,6 +114,7 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

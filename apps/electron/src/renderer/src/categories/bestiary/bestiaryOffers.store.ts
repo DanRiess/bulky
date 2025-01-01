@@ -115,6 +115,7 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

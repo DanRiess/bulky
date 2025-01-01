@@ -115,6 +115,7 @@ export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

@@ -49,14 +49,11 @@ export class OverlayWindow {
 			return { action: 'deny' }
 		})
 
-		this.window
-
 		this.poeWindow.on('attach', this.handleOverlayAttached)
 		this.poeWindow.on('game-window-focused', async (focus: boolean) => {
 			if (focus === false) {
 				const activeWin = await activeWindow()
-				console.log({ activeWin })
-				if (activeWin?.title !== import.meta.env.VITE_APP_TITLE && !activeWin?.title.startsWith('Developer Tools -')) {
+				if (activeWin?.title !== import.meta.env.VITE_APP_TITLE) {
 					this.hideOverlay()
 				}
 			} else if (focus === true && this.overlayVisible) {

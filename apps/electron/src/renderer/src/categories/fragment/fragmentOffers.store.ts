@@ -115,6 +115,7 @@ export const useFragmentOfferStore = defineStore('fragmentOfferStore', () => {
 
 	return {
 		offers,
+		lastFetched,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,

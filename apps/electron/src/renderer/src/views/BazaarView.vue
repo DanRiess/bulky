@@ -7,6 +7,7 @@
 					v-if="computedFilterStore"
 					:store="computedOfferStore"
 					:filter="computedFilterStore.filter" />
+				<RefetchOffersMolecule :timeRemaining="timeRemaining" />
 			</div>
 		</template>
 		<template #rightColumn>
@@ -23,6 +24,7 @@
 import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import CategoryMolecule from '@web/components/molecules/CategoryMolecule.vue'
+import RefetchOffersMolecule from '@web/components/molecules/RefetchOffersMolecule.vue'
 import BazaarOfferCollectionOrganism from '@web/components/organisms/BazaarOfferCollectionOrganism.vue'
 import FilterOrganism from '@web/components/organisms/FilterOrganism.vue'
 import { useComputedFilterStore } from '@web/composables/useComputedFilterStore'
@@ -39,14 +41,14 @@ const hooks = useGenericTransitionHooks({
 	duration: 0.35,
 })
 
-useRefetchOffers()
+const { timeRemaining } = useRefetchOffers()
 </script>
 
 <style scoped>
 .offer-collection-container {
 	display: grid;
-	grid-template-rows: auto 1fr;
-	overflow-y: auto;
+	grid-template-rows: auto 1fr max-content;
+	overflow-y: hidden;
 	scrollbar-gutter: stable;
 }
 </style>
