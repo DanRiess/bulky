@@ -31,7 +31,6 @@ import { useRouter } from 'vue-router'
 import { useConfigStore } from './stores/configStore'
 import { useStashStore } from './stores/stashStore'
 import { useAuthStore } from './stores/authStore'
-import { useLeagueStore } from './stores/leagueStore'
 import { useNotificationStore } from './stores/notificationStore'
 import NavbarOrganism from './components/organisms/NavbarOrganism.vue'
 import { useRouteTransitionHooks } from './transitions/routeTransitionHooks'
@@ -47,7 +46,6 @@ const appStateStore = useAppStateStore()
 const configStore = useConfigStore()
 const stashStore = useStashStore()
 const authStore = useAuthStore()
-const leagueStore = useLeagueStore()
 const shopStore = useShopStore()
 const notificationStore = useNotificationStore()
 
@@ -76,7 +74,6 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 	})
 
 	window.api.onAppUpdate((status, info) => {
-		console.log('updating app')
 		updatePanelActive.value = status !== 'ERROR'
 		appUpdateStatus.value = status
 		appDownloadProgress.value = info
@@ -131,7 +128,6 @@ if (import.meta.env.VITE_ENABLE_CLICK_OUTSIDE === 'true') {
 configStore.getUserConfig().then(() => {
 	stashStore.initialize()
 	authStore.initialize()
-	leagueStore.initialize()
 	shopStore.initialize()
 })
 </script>

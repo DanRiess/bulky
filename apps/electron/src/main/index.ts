@@ -133,6 +133,11 @@ app.whenReady().then(() => {
 		}
 	})
 
+	ipcMain.handle('hello', () => {
+		console.log('this is fine')
+		return 'hello'
+	})
+
 	/**
 	 * Redeem a refresh token to generate a new AT/RT pair.
 	 */
@@ -149,7 +154,12 @@ app.whenReady().then(() => {
 	 */
 	ipcMain.handle('get-leagues', async () => {
 		try {
-			return (await import('../../resources/leagues.json')).default
+			const res = await axios.get('https://pathofexile.com/api/leagues', {
+				headers: {
+					'User-Agent': import.meta.env.VITE_USER_AGENT,
+				},
+			})
+			return res.data
 		} catch (e) {
 			console.log(e)
 			return new SerializedError(e)
@@ -160,6 +170,7 @@ app.whenReady().then(() => {
 	 * Put an offer to the bulky server.
 	 */
 	ipcMain.handle('put-offer', async (_, offerDto: BulkyBazaarOfferDto, jwt: string) => {
+		console.log('put offer')
 		try {
 			return await putOffer(offerDto, jwt)
 		} catch (e) {

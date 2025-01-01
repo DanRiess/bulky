@@ -57,6 +57,9 @@ export function updateApp(webContents: WebContents) {
 			reject()
 		})
 
-		autoUpdater.checkForUpdates()
+		autoUpdater.checkForUpdates().catch(() => {
+			mainToRendererEvents.showAppUpdatePanel(webContents, 'ERROR')
+			reject()
+		})
 	})
 }

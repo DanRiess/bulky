@@ -8,20 +8,31 @@ export function assertBulkyItem(item: any): item is BulkyItemDto {
 
 	// Handle per item attributes if they are present.
 	if ('pia' in item) {
-		if ('mods' in item.pia) {
-			if (!Array.isArray(item.pia.mods)) return false
-			if (!item.pia.mods.every((m: unknown) => typeof m === 'number')) return false
-		}
+		if (
+			!item.pia.every((pia: unknown) => {
+				if (typeof pia !== 'object' || pia === null) return false
 
-		if ('logbookMods' in item.pia) {
-			if (!Array.isArray(item.pia.logbookMods)) return false
-			if (!item.pia.logbookMods.every((m: unknown) => typeof m === 'number')) return false
-		}
+				if ('mods' in pia) {
+					if (!Array.isArray(pia.mods)) return false
+					if (!pia.mods.every((m: unknown) => typeof m === 'number')) return false
+				}
 
-		if ('props' in item) {
-			if ('iQnt' in item.pia.props && typeof item.pia.props.iQnt !== 'number') return false
-			if ('iRar' in item.pia.props && typeof item.pia.props.iRar !== 'number') return false
-			if ('pckSz' in item.pia.props && typeof item.pia.props.pckSz !== 'number') return false
+				if ('logbookMods' in pia) {
+					if (!Array.isArray(pia.logbookMods)) return false
+					if (!pia.logbookMods.every((m: unknown) => typeof m === 'number')) return false
+				}
+
+				if ('props' in pia) {
+					if (typeof pia.props !== 'object' || pia.props === null) return false
+					if ('iQnt' in pia.props && typeof pia.props.iQnt !== 'number') return false
+					if ('iRar' in pia.props && typeof pia.props.iRar !== 'number') return false
+					if ('pckSz' in pia.props && typeof pia.props.pckSz !== 'number') return false
+				}
+
+				return true
+			})
+		) {
+			return false
 		}
 	}
 
@@ -38,6 +49,7 @@ export function assertBulkyItem(item: any): item is BulkyItemDto {
 					// Every subarray must be an array, have length 2 and be of type [number, number]
 					if (!Array.isArray(qntItem)) return false
 					if (qntItem.length !== 2 || !qntItem.every(el => typeof el === 'number')) return false
+					return true
 				})
 			) {
 				return false
@@ -52,6 +64,7 @@ export function assertBulkyItem(item: any): item is BulkyItemDto {
 					// Every subarray must be an array, have length 2 and be of type [number, number]
 					if (!Array.isArray(packSizeItem)) return false
 					if (packSizeItem.length !== 2 || !packSizeItem.every(el => typeof el === 'number')) return false
+					return true
 				})
 			) {
 				return false

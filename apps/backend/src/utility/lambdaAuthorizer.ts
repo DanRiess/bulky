@@ -10,8 +10,6 @@ export async function authorize(payload: AuthorizerPayload): Promise<AuthorizerS
 		isAuthorized: false,
 	}
 
-	console.log({ payload })
-
 	// Get the authorization header.
 	// Beware that 'Authorization' will not work. It has to be lowercase.
 	const authHeader = payload.headers.authorization

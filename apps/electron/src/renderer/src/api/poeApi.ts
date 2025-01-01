@@ -63,15 +63,8 @@ export const poeApi = {
 		return api.get<PoeProfileResponse>(url, updatedConfig)
 	},
 
-	/**
-	 * The /league endpoint requires a service:* scope, which this app cannot obtain.
-	 * Therefore, the contents of that endpoint are hard-copied once per league to
-	 * the static folder and retrieved from there.
-	 */
 	getLeagues: async () => {
-		const req = await window.api.getLeagues()
-		console.log({ req })
-		return req
+		return await window.api.getLeagues()
 	},
 }
 

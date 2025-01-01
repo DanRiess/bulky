@@ -14,22 +14,26 @@
 <script setup lang="ts">
 import { useConfigStore } from '@web/stores/configStore'
 import LabelWithSelectMolecule from '../molecules/LabelWithSelectMolecule.vue'
-// import { getKeys } from '@shared/types/utility.types'
-// import { LEAGUE } from '@shared/types/poe.types'
 import { useLeagueStore } from '@web/stores/leagueStore'
+import { computed, onMounted } from 'vue'
 
 // STORES
 const configStore = useConfigStore()
 const leagueStore = useLeagueStore()
 
 // STATE
-// const leagues = getKeys(LEAGUE).filter(l => l !== 'UNSUPPORTED')
-const leagues = leagueStore.leagues?.map(l => l.id) ?? []
+const leagues = computed(() => {
+	return leagueStore.leagues?.map(l => l.id) ?? []
+})
 
 // replace this later and only call in a beforeunmount hook
 function updateConfig() {
 	configStore.writeUserConfig()
 }
+
+onMounted(() => {
+	leagueStore.initialize()
+})
 </script>
 
 <style scoped>

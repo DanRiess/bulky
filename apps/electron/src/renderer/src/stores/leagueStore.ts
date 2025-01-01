@@ -6,9 +6,10 @@ import { ref } from 'vue'
 
 export const useLeagueStore = defineStore('leagueStore', () => {
 	const leagues = ref<PoeLeagueRecordDto[]>()
+	let isInitialized = false
 
 	async function initialize() {
-		if (leagues.value !== undefined) return
+		if (leagues.value !== undefined || isInitialized) return
 
 		const leagueRequest = useApi('leagueRequest', poeApi.getLeagues)
 		await leagueRequest.exec()
@@ -19,7 +20,7 @@ export const useLeagueStore = defineStore('leagueStore', () => {
 		}
 
 		leagues.value = filterLeagues(leagueRequest.data.value)
-		console.log(leagues.value)
+		isInitialized = true
 	}
 
 	/**

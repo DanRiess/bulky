@@ -208,7 +208,6 @@ export const useShopStore = defineStore('shopStore', () => {
 		offer.fullPrice = fullPrice.value
 		offer.computedMultiplier = computedMultiplier
 		offer.chaosPerDiv = chaosPerDiv.value > 0 ? chaosPerDiv.value : offer.chaosPerDiv
-		console.log({ offer, cpd: chaosPerDiv.value })
 
 		return offer
 	}
@@ -227,6 +226,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		}
 
 		const offerDto = generateDto(offer)
+		console.log({ offerDto })
 
 		if (!offerDto) {
 			console.log('could not generate dto')

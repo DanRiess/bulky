@@ -11,6 +11,7 @@ import {
 } from '@shared/types/bulky.types'
 import { UnwrapRef, toValue } from 'vue'
 import { BULKY_FACTORY } from './factory'
+import { deepToRaw } from './deepToRaw'
 
 export const BULKY_TRANSFORM = {
 	bulkyItemToOverrideItem,
@@ -147,7 +148,7 @@ function bulkyItemToBazaarItemDto(
 	if (item.perItemAttributes) {
 		const perItemAttributes: typeof itemDto.pia = item.perItemAttributes.map((attrs: PerItemAttributes) => {
 			return {
-				...(attrs.modifiers && { mods: attrs.modifiers }),
+				...(attrs.modifiers && { mods: deepToRaw(attrs.modifiers) }),
 				...(attrs.properties && {
 					props: {
 						...(attrs.properties.itemQuantity && { iQnt: attrs.properties.itemQuantity }),
@@ -173,8 +174,8 @@ function bulkyItemToBazaarItemDto(
 		const regexes: typeof itemDto.rgx = {
 			...(override.avoidRegex.available && { avd: override.avoidRegex.addedPrice }),
 			...(override.wantedRegex.available && { wnt: override.wantedRegex.addedPrice }),
-			...(quantityRegex.length > 0 && { qnt: quantityRegex }),
-			...(packsizeRegex.length > 0 && { pckSz: packsizeRegex }),
+			...(quantityRegex.length > 0 && { qnt: deepToRaw(quantityRegex) }),
+			...(packsizeRegex.length > 0 && { pckSz: deepToRaw(packsizeRegex) }),
 		}
 
 		itemDto.rgx = regexes
