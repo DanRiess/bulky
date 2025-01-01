@@ -73,7 +73,6 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	 * @throws { RendererError } Will throw if the regex and the offer don't match for any reason.
 	 */
 	function calculateBaseItemPrice(item: BazaarMap8Mod, filter: BulkyFilter) {
-		const t0 = performance.now()
 		// Compute the provided regexes.
 		const regexes = filter.regex ? BULKY_REGEX.computeRegexesFromString(filter.regex) : []
 
@@ -193,8 +192,6 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 
 			price += item.regex.wantedRegex
 		}
-
-		console.log(`Price computed in ${performance.now() - t0} ms`)
 
 		return price
 	}

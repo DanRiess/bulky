@@ -26,8 +26,8 @@ export const BULKY_TRANSFORM = {
  * Remove underscores, capitalize words, etc.
  */
 function stringToDisplayValue(string: string) {
-	if (string === 'MAP_8_MOD') {
-		return '8 Mod Maps'
+	if (string.includes('MAP_8_MOD')) {
+		string = string.replace('MAP_8_MOD', '8 Mod Maps')
 	}
 
 	const arr = string.split(/_|\s/g)

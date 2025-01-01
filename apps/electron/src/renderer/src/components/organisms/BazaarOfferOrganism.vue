@@ -105,7 +105,7 @@ const filteredPrice = computed<TotalPrice>(() => {
  * Create a whisper message and instruct Node to send it ingame.
  */
 async function sendMessage() {
-	const message = generateWhisperMessage(props.offer.category, props.filter, filteredItems, filteredPrice)
+	const message = generateWhisperMessage(props.offer.category, props.filter, filteredItems, filteredPrice, props.priceComputeFn)
 
 	const fullPriceInChaos = filteredPrice.value.divine * props.offer.chaosPerDiv + filteredPrice.value.chaos
 	const mtn = generateMinifiedTradeNotification(

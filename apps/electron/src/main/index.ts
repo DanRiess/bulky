@@ -170,7 +170,6 @@ app.whenReady().then(() => {
 	 * Put an offer to the bulky server.
 	 */
 	ipcMain.handle('put-offer', async (_, offerDto: BulkyBazaarOfferDto, jwt: string) => {
-		console.log('put offer')
 		try {
 			return await putOffer(offerDto, jwt)
 		} catch (e) {

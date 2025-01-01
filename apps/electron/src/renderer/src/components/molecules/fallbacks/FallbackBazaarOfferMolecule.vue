@@ -14,7 +14,7 @@ function addnote() {
 	const n = notificationStore.createTradeNotification({
 		ign: 'Chavvv',
 		// tradeData: '040560160128989%RX%12345',
-		tradeData: '1%11%AAAAAAAAAAFBQAAA',
+		tradeData: `1%4%AEAADwAAABJBmAAA%"!gen|f el|s rec" "m q.*1[1-9].%"`,
 	})
 
 	notificationStore.addTrade(n)

@@ -6,7 +6,7 @@
 			</p>
 			<p>Category: {{ mtn.category }}</p>
 			<p v-for="trade in mtn.trades" :key="trade">{{ trade }}</p>
-			<PriceAtom :price="totalPrice" v-if="mtn.trades.length > 1 || mtn.trades[0] === 'Full Offer'" />
+			<PriceAtom :price="totalPrice" v-if="mtn.trades.length > 0 || mtn.trades[0] === 'Full Offer'" />
 		</div>
 		<div class="buttons">
 			<div class="button-group">
@@ -72,8 +72,9 @@ const mtn = decodeMinifiedTradeNotification(props.notification.tradeData)
 console.log(mtn)
 
 // COMPOSABLES
-const { chaosPerDiv } = usePoeNinja('ESSENCE')
+const { chaosPerDiv } = usePoeNinja('CURRENCY')
 const totalPrice = useChaosToDiv(mtn.fullPrice, chaosPerDiv)
+console.log({ totalPrice })
 
 // METHODS
 async function chatBoxAction(command: 'invite' | 'tradewith' | 'kick') {
