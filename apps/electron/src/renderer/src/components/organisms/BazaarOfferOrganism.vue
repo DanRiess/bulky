@@ -102,7 +102,7 @@ const filteredPrice = computed<TotalPrice>(() => {
 // METHODS
 
 /**
- * Create a whisper message and instruct Node to send it ingame.
+ * Create a whisper message and send it ingame.
  */
 async function sendMessage() {
 	const message = generateWhisperMessage(props.offer.category, props.filter, filteredItems, filteredPrice, props.priceComputeFn)

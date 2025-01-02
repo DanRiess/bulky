@@ -46,6 +46,8 @@ export function useCountdownTimer(initialTimer: number, cb: Function, timeoutInt
 
 		if (options?.timeRemaining || options?.cb || options?.timeoutInterval) {
 			countdown()
+		} else {
+			timeRemaining.value = 0
 		}
 	}
 

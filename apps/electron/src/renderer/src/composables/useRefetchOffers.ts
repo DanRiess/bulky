@@ -1,7 +1,7 @@
 import { Category } from '@shared/types/bulky.types'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { BULKY_FACTORY } from '@web/utility/factory'
-import { computed, ComputedRef, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useCountdownTimer } from './useCountdownTimer'
 import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
 import { useBestiaryOfferStore } from '@web/categories/bestiary/bestiaryOffers.store'

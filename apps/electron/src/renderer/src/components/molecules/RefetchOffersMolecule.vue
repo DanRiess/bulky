@@ -3,7 +3,7 @@
 		<LabelWithCheckboxMolecule v-model="configStore.config.autoRefetchOffers" label-position="right">
 			<div class="special-label">
 				{{ labelText }}
-				<template v-if="timeRemaining === 0">
+				<template v-if="timeRemaining === 0 && configStore.config.autoRefetchOffers">
 					<SvgIconAtom name="refresh" :rotate="true" :use-gradient="true" />
 				</template>
 			</div>

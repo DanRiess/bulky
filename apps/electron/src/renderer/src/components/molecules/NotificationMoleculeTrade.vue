@@ -69,12 +69,10 @@ const props = defineProps<{
 
 // STATE
 const mtn = decodeMinifiedTradeNotification(props.notification.tradeData)
-console.log(mtn)
 
 // COMPOSABLES
 const { chaosPerDiv } = usePoeNinja('CURRENCY')
 const totalPrice = useChaosToDiv(mtn.fullPrice, chaosPerDiv)
-console.log({ totalPrice })
 
 // METHODS
 async function chatBoxAction(command: 'invite' | 'tradewith' | 'kick') {
