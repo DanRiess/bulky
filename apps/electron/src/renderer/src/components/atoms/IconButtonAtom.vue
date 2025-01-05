@@ -1,5 +1,5 @@
 <template>
-	<button class="a-icon-button gradient-border" :class="active && 'active'" data-b-override>
+	<button class="a-icon-button gradient-border" :class="{ active }" data-b-override>
 		<img :src="imgSource" decoding="async" loading="lazy" :alt="alt" />
 		<div ref="nameEl" class="name">{{ displayName }}</div>
 	</button>

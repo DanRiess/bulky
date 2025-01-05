@@ -5,7 +5,7 @@
 
 import { BULKY_STASH_TABS } from '@web/utility/stastTab'
 import { BULKY_ID } from '@web/utility/typedId'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { isEqual } from 'lodash'
 import { useApi } from '@web/api/useApi'
@@ -46,7 +46,7 @@ export const useStashStore = defineStore('stashStore', () => {
 	 */
 	async function initialize() {
 		try {
-			// get lst saved stashes from idb
+			// Get saved stash tabs from idb.
 			const league = configStore.config.league
 			const tabs = await bulkyIdb.getStashTabsByLeague(league)
 			const sortedTabs = tabs.toSorted((a, b) => a.index - b.index)
@@ -211,6 +211,19 @@ export const useStashStore = defineStore('stashStore', () => {
 		stashTabs.value.length = 0
 		lastListFetch.value = 0
 	}
+
+	/**
+	 * Whenever the user changes the active league in the config, reload the stash tabs.
+	 */
+	watch(
+		() => configStore.config.league,
+		() => {
+			// This technically can be used to circumvent the timeout to fetch stash tabs (once per hour).
+			// If that becomes an issue, lastListFetch would have to track each league fetch separately.
+			reset()
+			initialize()
+		}
+	)
 
 	return {
 		stashTabs,

@@ -1,50 +1,30 @@
 <template>
-	<div class="o-config flow">
-		<header class="header">
-			<h2>Configuration Options</h2>
-		</header>
-		<main class="main">
-			<LabelWithSelectMolecule v-model="configStore.config.league" :options="leagues" @update:model-value="updateConfig">
-				League:
-			</LabelWithSelectMolecule>
-		</main>
+	<div class="o-settings flow">
+		<Component :is="component" v-if="component" />
 	</div>
 </template>
 
 <script setup lang="ts">
-import { useConfigStore } from '@web/stores/configStore'
-import LabelWithSelectMolecule from '../molecules/LabelWithSelectMolecule.vue'
-import { useLeagueStore } from '@web/stores/leagueStore'
-import { computed, onMounted } from 'vue'
+import { SettingsCategory } from '@shared/types/settings.types'
+import { computed } from 'vue'
+import SettingsGeneralImplementation from '../implementations/SettingsGeneralImplementation.vue'
+import SettingsHotkeysImplementation from '../implementations/SettingsHotkeysImplementation.vue'
 
-// STORES
-const configStore = useConfigStore()
-const leagueStore = useLeagueStore()
+// PROPS
+const props = defineProps<{
+	activeCategory: SettingsCategory
+}>()
 
-// STATE
-const leagues = computed(() => {
-	return leagueStore.leagues?.map(l => l.id) ?? []
-})
-
-// replace this later and only call in a beforeunmount hook
-function updateConfig() {
-	configStore.writeUserConfig()
-}
-
-onMounted(() => {
-	leagueStore.initialize()
+// GETTERS
+const component = computed(() => {
+	if (props.activeCategory === 'GENERAL') return SettingsGeneralImplementation
+	else if (props.activeCategory === 'HOTKEYS') return SettingsHotkeysImplementation
+	else return undefined
 })
 </script>
 
 <style scoped>
 .o-config {
 	padding: 0.5rem;
-}
-
-.main {
-	display: grid;
-	grid-template-columns: max-content max-content;
-	gap: 2rem;
-	margin-left: 1rem;
 }
 </style>

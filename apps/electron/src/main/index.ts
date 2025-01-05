@@ -274,11 +274,12 @@ app.whenReady().then(() => {
 				checkedForUpdate = true
 
 				// Try to update the app
-				try {
-					await updateApp(overlayWindow.getWindow().webContents)
-				} catch (e) {
-					mainToRendererEvents.showAppUpdatePanel(overlayWindow.getWindow().webContents, 'ERROR')
-				}
+				// When this needs to be reenabled, also change overlayWindow.show to true
+				// try {
+				// 	await updateApp(overlayWindow.getWindow().webContents)
+				// } catch (e) {
+				// 	mainToRendererEvents.showAppUpdatePanel(overlayWindow.getWindow().webContents, 'ERROR')
+				// }
 
 				// Attach the controller.
 				poeWindow.attach(overlayWindow, import.meta.env.VITE_GAME_TITLE)

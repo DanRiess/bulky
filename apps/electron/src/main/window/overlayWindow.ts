@@ -35,7 +35,7 @@ export class OverlayWindow {
 			// focusable: false,
 			skipTaskbar: true,
 			frame: false,
-			show: true,
+			show: false,
 			transparent: true,
 			resizable: true,
 			hasShadow: true,

@@ -7,7 +7,7 @@ import {
 } from '@shared/types/auth.types'
 import express, { Express } from 'express'
 import { Server } from 'http'
-import { openExternalBrowserWindow } from './openExternalBrwoserWindow'
+import { openExternalBrowserWindow } from './openExternalBrowserWindow'
 import { randomBytes, createHash } from 'crypto'
 import { v4 } from 'uuid'
 import axios from 'axios'

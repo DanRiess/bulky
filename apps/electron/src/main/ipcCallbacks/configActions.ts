@@ -1,15 +1,15 @@
 import { App } from 'electron'
 import { readFile, writeFile } from 'fs'
 import { BulkyConfig } from '@shared/types/config.types'
+import { AppStateStore } from '@main/stores/appStateStore'
 
 export function writeConfig(app: App, config: BulkyConfig) {
-	console.log(app.getPath('userData'))
-	console.log(config)
-
 	const path = app.getPath('userData')
 	writeFile(`${path}/config.json`, JSON.stringify(config), err => {
 		if (!err) {
-			console.log('Wrote Config Successfully')
+			// Update the global app state.
+			const appStateStore = AppStateStore.instance
+			appStateStore.appToggleHotkey = config.hotkeySettings.keys.appToggle.keyCode
 		} else {
 			console.log(err)
 			console.log('Error Writing Config')
