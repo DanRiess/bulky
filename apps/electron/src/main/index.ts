@@ -26,6 +26,7 @@ import { getOffers, putOffer } from './ipcCallbacks/offers'
 import { SignableTokenStructure } from '@shared/types/auth.types'
 import { mainToRendererEvents } from './events/mainToRenderer'
 import activeWindow from 'active-win'
+import { openExternalBrowserWindow } from './utility/openExternalBrowserWindow'
 
 // STATE
 let checkedForUpdate = false
@@ -65,6 +66,8 @@ app.whenReady().then(() => {
 	// })
 
 	// Register ipc handlers (bidirectional with return values).
+
+	ipcMain.on('open-external-browser-window', (_, url: string) => openExternalBrowserWindow(url))
 
 	/**
 	 * Return the currently active window.

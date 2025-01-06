@@ -144,6 +144,10 @@ export const nodeApi = {
 	getActiveWindow: async () => {
 		return window.api.getActiveWindow()
 	},
+
+	openExternalBrowserWindow: (url: string) => {
+		window.api.openExternalBrowserWindow(url)
+	},
 }
 
 /**

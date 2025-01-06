@@ -74,6 +74,8 @@ export const api = {
 
 	pasteSearch: (message: string) => ipcRenderer.send('paste-search', message),
 
+	openExternalBrowserWindow: (url: string) => ipcRenderer.send('open-external-browser-window', url),
+
 	// ------------------------------------------------
 	// RENDERER -> MAIN BIDIRECTIONAL
 	typeInChat: (message: string) => ipcRenderer.invoke('type', message),

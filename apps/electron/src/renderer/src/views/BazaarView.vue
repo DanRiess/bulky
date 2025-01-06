@@ -11,10 +11,13 @@
 			</div>
 		</template>
 		<template #rightColumn>
-			<div class="main-container">
+			<div class="filter-container">
 				<TransitionAtom v-on="hooks">
 					<FilterOrganism v-if="computedFilterStore" :store="computedFilterStore" />
 				</TransitionAtom>
+				<div class="support-section">
+					<SupportMeMolecule />
+				</div>
 			</div>
 		</template>
 	</DefaultLayout>
@@ -25,6 +28,7 @@ import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import CategoryMolecule from '@web/components/molecules/CategoryMolecule.vue'
 import RefetchOffersMolecule from '@web/components/molecules/RefetchOffersMolecule.vue'
+import SupportMeMolecule from '@web/components/molecules/SupportMeMolecule.vue'
 import BazaarOfferCollectionOrganism from '@web/components/organisms/BazaarOfferCollectionOrganism.vue'
 import FilterOrganism from '@web/components/organisms/FilterOrganism.vue'
 import { useComputedFilterStore } from '@web/composables/useComputedFilterStore'
@@ -50,5 +54,16 @@ const { timeRemaining } = useRefetchOffers()
 	grid-template-rows: auto 1fr max-content;
 	overflow-y: hidden;
 	scrollbar-gutter: stable;
+}
+
+.filter-container {
+	display: grid;
+	grid-template-rows: max-content max-content;
+	align-content: space-between;
+}
+
+.support-section {
+	display: flex;
+	justify-content: flex-end;
 }
 </style>
