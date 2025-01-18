@@ -56,8 +56,9 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarScarab {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarScarab | undefined {
 	const type = SCARAB_TYPE_IDX_TO_NAME[item.type]
+	if (!type) return
 
 	return {
 		category: 'SCARAB',

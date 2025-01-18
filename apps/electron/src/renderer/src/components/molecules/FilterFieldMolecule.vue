@@ -13,7 +13,7 @@
 			<InputSelectAtom v-model="filterField.tier" :id="modifierId" :options="filterFieldTierOptions"></InputSelectAtom>
 		</div>
 		<div class="field-quantity" :class="{ hidden: store.filter.alwaysMaxQuantity }">
-			<InputNumberAtom v-model="filterField.quantity" :id="quantityId" :min="1" />
+			<InputNumberAtom v-model="filterField.quantity" :id="quantityId" :min="1" :max="999999" />
 		</div>
 		<div class="field-remove" @click="emit('removeFilterField')" v-if="!disableRemove">
 			<SvgIconAtom name="close" cursor="pointer" :use-gradient="true" />
@@ -57,6 +57,10 @@ const quantityId = BULKY_UUID.generateTypedUuid()
 const filterFieldTierOptions = computed<BulkyFilterField['tier'][]>(() => {
 	if (filterField.value.category === 'EXPEDITION') {
 		return filterField.value.type.match(/logbook/i) ? ['ILVL_68-72', 'ILVL_73-77', 'ILVL_78-82', 'ILVL_83+'] : ['0']
+	} else if (filterField.value.category === 'HEIST') {
+		return filterField.value.type === "ROGUE'S_MARKER" ? ['0'] : ['ILVL_68-72', 'ILVL_73-77', 'ILVL_78-82', 'ILVL_83+']
+	} else if (filterField.value.category === 'ESSENCE') {
+		return filterField.value.type.match(/hyste|deli|horr|insan/i) ? ['TIER_8'] : ['SCREAMING', 'SHRIEKING', 'DEAFENING']
 	}
 
 	return props.store.filterFieldTierOptions
@@ -73,10 +77,29 @@ const disableRemove = computed(() => {
  * add additional rules here when the item type changes
  */
 function updateTierWhenTypeChanges(type: typeof filterField.value.type) {
-	if (filterField.value.category === 'EXPEDITION' && type.match(/logbook/i) && filterField.value.tier === '0') {
-		filterField.value.tier = 'ILVL_83+'
-	} else if (filterField.value.category === 'EXPEDITION' && !type.match(/logbook/i)) {
-		filterField.value.tier = '0'
+	// Expedition
+	if (filterField.value.category === 'EXPEDITION') {
+		if (type.match(/logbook/i) && filterField.value.tier === '0') {
+			filterField.value.tier = 'ILVL_83+'
+		} else if (!type.match(/logbook/i)) {
+			filterField.value.tier = '0'
+		}
+	}
+	// Heist
+	else if (filterField.value.category === 'HEIST') {
+		if (type === "ROGUE'S_MARKER") {
+			filterField.value.tier = '0'
+		} else if (filterField.value.tier === '0') {
+			filterField.value.tier = 'ILVL_83+'
+		}
+	}
+	// Essence
+	else if (filterField.value.category === 'ESSENCE') {
+		if (type.match(/hyste|deli|horr|insan/i)) {
+			filterField.value.tier = 'TIER_8'
+		} else if (filterField.value.tier === 'TIER_8') {
+			filterField.value.tier = 'DEAFENING'
+		}
 	}
 }
 

@@ -59,8 +59,9 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarFragment {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarFragment | undefined {
 	const type = FRAGMENT_TYPE_IDX_TO_NAME[item.type]
+	if (!type) return
 
 	return {
 		category: 'FRAGMENT',

@@ -56,8 +56,9 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDelveItem {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDelveItem | undefined {
 	const type = DELVE_TYPE_IDX_TO_NAME[item.type]
+	if (!type) return
 
 	return {
 		category: 'DELVE',

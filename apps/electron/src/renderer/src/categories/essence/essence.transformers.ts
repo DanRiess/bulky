@@ -95,9 +95,10 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarEssence {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarEssence | undefined {
 	const type = ESSENCE_TYPE_IDX_TO_NAME[item.type]
 	const tier = ESSENCE_TIER_IDX_TO_NAME[item.tier]
+	if (!type || !tier) return
 
 	return {
 		category: 'ESSENCE',

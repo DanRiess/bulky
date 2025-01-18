@@ -35,7 +35,7 @@ export class OverlayWindow {
 			// focusable: false,
 			skipTaskbar: true,
 			frame: false,
-			show: true,
+			show: import.meta.env.VITE_NO_ATTACH_MODE !== 'true',
 			transparent: true,
 			resizable: true,
 			hasShadow: true,

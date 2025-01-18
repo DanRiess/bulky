@@ -56,8 +56,9 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDeliriumOrb {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarDeliriumOrb | undefined {
 	const type = DELI_ORB_TYPE_IDX_TO_NAME[item.type]
+	if (!type) return
 
 	return {
 		category: 'DELIRIUM_ORB',

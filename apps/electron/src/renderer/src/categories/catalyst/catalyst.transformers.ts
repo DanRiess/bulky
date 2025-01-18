@@ -56,8 +56,9 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCatalyst {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCatalyst | undefined {
 	const type = CATALYST_TYPE_IDX_TO_NAME[item.type]
+	if (!type) return
 
 	return {
 		category: 'CATALYST',

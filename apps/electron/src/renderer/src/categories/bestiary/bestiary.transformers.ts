@@ -74,8 +74,9 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarBeast {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarBeast | undefined {
 	const type = BEAST_TYPE_IDX_TO_NAME[item.type]
+	if (!type) return
 
 	return {
 		category: 'BESTIARY',

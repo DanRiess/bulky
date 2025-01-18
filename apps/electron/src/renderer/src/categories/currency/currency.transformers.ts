@@ -58,8 +58,9 @@ function generateShopItemFromPoeItem(
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCurrency {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCurrency | undefined {
 	const type = CURRENCY_TYPE_IDX_TO_NAME[item.type]
+	if (!type) return
 
 	return {
 		category: 'CURRENCY',
@@ -78,6 +79,9 @@ function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarCurrency {
  * E. g. DIVINE_ORB -> Divine Orb
  */
 function generateNameFromType(type: CurrencyType) {
+	if (!type) {
+		debugger
+	}
 	return type
 		.split('_')
 		.map(t => capitalize(t))

@@ -87,6 +87,7 @@ function generateShopItemFromPoeItem(
 function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarExpeditionItem | undefined {
 	const type = EXPEDITION_TYPE_IDX_TO_NAME[item.type]
 	const tier = EXPEDITION_TIER_IDX_TO_NAME[item.tier]
+	if (!type || !tier) return
 
 	return {
 		category: 'EXPEDITION',

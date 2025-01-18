@@ -2,9 +2,15 @@
 	<li class="a-bazaar-offer-item">
 		<div class="generic-item-data">
 			<div class="name">{{ item.name }}</div>
-			<div class="stock" v-if="!filter.fullBuyout">x{{ item.computedQuantity }}</div>
+			<div class="stock" v-if="!filter.fullBuyout">x{{ formatNumber(item.computedQuantity) }}</div>
 			<div class="quantity">
-				{{ filter.alwaysMaxQuantity || filter.fullBuyout ? item.computedQuantity : filterField?.quantity }}
+				{{
+					filter.alwaysMaxQuantity || filter.fullBuyout
+						? formatNumber(item.computedQuantity)
+						: filterField
+						? formatNumber(filterField?.quantity)
+						: ''
+				}}
 			</div>
 			<div>*</div>
 			<div class="price">{{ computedPrice }}</div>
@@ -33,6 +39,7 @@ import { computed, ref } from 'vue'
 import SvgIconAtom from './SvgIconAtom.vue'
 import RegexTooltipTemplate from '../implementations/RegexTooltipTemplate.vue'
 import TooltipAtom from './TooltipAtom.vue'
+import { formatNumber } from '@web/utility/formatNumber'
 
 // PROPS
 const props = withDefaults(

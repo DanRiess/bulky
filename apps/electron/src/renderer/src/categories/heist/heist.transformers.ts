@@ -96,9 +96,10 @@ function generateShopItemFromPoeItem(poeItem: PoeItem, itemOverrides: Ref<BulkyI
 	}
 }
 
-function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarHeistItem {
+function generateBazaarItemFromDto(item: BulkyBazaarItemDto): BazaarHeistItem | undefined {
 	const type = HEIST_TYPE_IDX_TO_NAME[item.type]
 	const tier = HEIST_TIER_IDX_TO_NAME[item.tier]
+	if (!type || !tier) return
 
 	return {
 		category: 'HEIST',
@@ -123,6 +124,7 @@ function generateNameFromType(type: HeistType) {
 	if (type === 'BLUEPRINT') return 'Blueprint'
 	else if (type === 'BLUEPRINT_3_WINGS') return 'Blueprint (3/3 Wings)'
 	else if (type === 'BLUEPRINT_4_WINGS') return 'Blueprint (4/4 Wings)'
+	else if (type === "ROGUE'S_MARKER") return "Rogue's Marker"
 	else
 		return `Contract: ${type
 			.split('_')

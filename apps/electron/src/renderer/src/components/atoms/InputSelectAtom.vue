@@ -32,6 +32,7 @@ import InputTextAtom from './InputTextAtom.vue'
 import { BULKY_UUID } from '@web/utility/uuid'
 import { ButtonBackgroundColorScheme, Uuid } from '@shared/types/utility.types'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
+import { REGEX_SPECIAL_CHARACTERS } from '@web/constants/general'
 
 // MODEL
 
@@ -88,7 +89,8 @@ const backgroundColorButton = computed(() => {
  */
 const queryRegex = computed(() => {
 	if (!query.value) return new RegExp('', 'gi')
-	const regexString = [...query.value].map(c => `${c}.*`).join('')
+
+	const regexString = [...query.value].map(character => character.replace(REGEX_SPECIAL_CHARACTERS, `\\$&`)).join('.*')
 	return new RegExp(regexString, 'gi')
 })
 

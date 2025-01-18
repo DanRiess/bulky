@@ -12,9 +12,9 @@
 		<div class="transition-wrapper gradient-border" :class="{ 'is-open': inputActive }" data-b-override ref="wrapperEl">
 			<ul class="combobox expandable-content">
 				<ListItemComboboxAtom
-					v-for="(listItem, idx) in filteredOptions"
+					v-for="(listItem, idx) in computedOptions"
 					:key="listItem.optionValue"
-					v-model="filteredOptions[idx]"
+					v-model="computedOptions[idx]"
 					:hovered="false"
 					:active="model.has(listItem.optionValue)"
 					@mouseenter="activeOptionIdx = idx"
@@ -67,7 +67,7 @@ const wrapperEl = ref<HTMLElement | null>(null)
 // STATE
 const query = ref('')
 const inputActive = ref(false)
-const comboboxActive = computed(() => inputActive.value && filteredOptions.value.length > 0)
+const comboboxActive = computed(() => inputActive.value && computedOptions.value.length > 0)
 const activeOptionIdx = ref(0)
 
 // GETTERS
@@ -94,21 +94,6 @@ const computedOptions = computed<SelectOption<T>[]>(() => {
 	})
 })
 
-/** Filters the available options by matching them against the current regex query. */
-const filteredOptions = computed(() => {
-	console.log(computedOptions.value)
-	return computedOptions.value
-		.map(option => {
-			// if (option.displayValue === query.value) return undefined
-			// if (option.displayValue.match(queryRegex.value)) {
-			// 	return option
-			// }
-			// return undefined
-			return option
-		})
-		.filter(Boolean)
-})
-
 // EVENTS
 
 /** Clicking outside the combobox triggers the same action as pressing Enter. */
@@ -132,9 +117,9 @@ onKeyStroke(
 	e => {
 		e.preventDefault()
 		activeOptionIdx.value =
-			activeOptionIdx.value < filteredOptions.value.length - 1
+			activeOptionIdx.value < computedOptions.value.length - 1
 				? activeOptionIdx.value + 1
-				: filteredOptions.value.length - 1
+				: computedOptions.value.length - 1
 	},
 	{ target: selectEl }
 )
@@ -143,7 +128,6 @@ onKeyStroke(
 
 /** Activate the input and reset the current query. Do not change the model value here. */
 function onInputFocus() {
-	console.log('input foc')
 	// find the index of the current query value
 	activeOptionIdx.value = computedOptions.value.findIndex(computedName => computedName.displayValue === query.value)
 
