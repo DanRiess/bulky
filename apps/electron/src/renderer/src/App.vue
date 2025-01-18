@@ -97,7 +97,6 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 		}
 	})
 }
-// router.push('Bazaar')
 
 const routerProps = computed(() => {
 	if (router.currentRoute.value.name === 'AppUpdate') {
@@ -111,18 +110,17 @@ const routerProps = computed(() => {
 
 // METHODS
 
-// The onclickoutside functionality is usually quite annoying during development,
-// as Bulky will close when clicking into the devtools.
-if (import.meta.env.VITE_ENABLE_CLICK_OUTSIDE === 'true') {
-	onClickOutside(
-		mainAppWindow,
-		() => {
-			appStateStore.appActive = false
-			window.api.closeOverlay()
-		},
-		{ ignore: [notificationPanelElement] }
-	)
-}
+/**
+ * Close the app when the user clicks anywhere that isn't the main window or the notification panel.
+ */
+onClickOutside(
+	mainAppWindow,
+	() => {
+		appStateStore.appActive = false
+		window.api.closeOverlay()
+	},
+	{ ignore: [notificationPanelElement] }
+)
 
 // INITIALIZE NECESSARY STORES
 configStore.getUserConfig().then(() => {

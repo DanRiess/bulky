@@ -2,7 +2,6 @@ import { AttachEvent, OverlayController } from 'electron-overlay-window'
 import { EventEmitter } from 'events'
 import { dialog } from 'electron'
 import { OverlayWindow } from './overlayWindow'
-import { focusedWindowInsideGameBounds } from '../utility/focusedWindowCalculations'
 
 export class GameWindow extends EventEmitter {
 	private _isTracking = false
@@ -26,7 +25,7 @@ export class GameWindow extends EventEmitter {
 	 */
 	public attach(overlayWindow: OverlayWindow, title: string) {
 		console.log('attach to ' + title)
-		const window = overlayWindow.getWindow()
+		const window = overlayWindow.window
 		if (!window) {
 			dialog.showErrorBox('Developer Error', 'No window to attach to.')
 			return

@@ -1,18 +1,26 @@
 import { UiohookKey, UiohookKeyboardEvent, uIOhook } from 'uiohook-napi'
 import { OverlayWindow } from '../window/overlayWindow'
 import { AppStateStore } from '@main/stores/appStateStore'
+import activeWindow from 'active-win'
 
-/** map a key code number to its human-readable name */
+/**
+ * Map a key code number to its human-readable name.
+ */
 const keyCodeToName = Object.fromEntries(Object.entries(UiohookKey).map(([k, v]) => [v, k]))
 
-/** register global inputs. called when the electron app is ready */
+/**
+ * Register global inputs.
+ * Called when the electron app is ready.
+ */
 export function registerInputs(overlayWindow: OverlayWindow) {
 	uIOhook.on('keydown', e => handleKeydownEvents(e, overlayWindow))
 
 	uIOhook.start()
 }
 
-/** handle and delegate all keyboard events */
+/**
+ * Handle and delegate all keyboard events.
+ */
 function handleKeydownEvents(e: UiohookKeyboardEvent, overlayWindow: OverlayWindow) {
 	const appStateStore = AppStateStore.instance
 
@@ -30,6 +38,20 @@ function handleKeydownEvents(e: UiohookKeyboardEvent, overlayWindow: OverlayWind
 		e.altKey === appToggleKeys.alt &&
 		keyCodeToName[e.keycode].toLowerCase() === appToggleKeys.key?.toLowerCase()
 	) {
-		overlayWindow.toggleActiveState()
+		activeWindow().then(window => {
+			if (!window) return
+
+			// In dev, the app title (Notepad) also has the documents title appended.
+			const isGameTitle = import.meta.env.DEV
+				? window.title.includes(import.meta.env.VITE_GAME_TITLE)
+				: window.title === import.meta.env.VITE_GAME_TITLE
+
+			// Toggle the active state only if either game or app windows are active.
+			// If other keybinds will be handled through this function,
+			// consider handling this check at function start instead.
+			if (window.title === import.meta.env.VITE_APP_TITLE || isGameTitle) {
+				overlayWindow.toggleActiveState()
+			}
+		})
 	}
 }

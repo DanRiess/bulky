@@ -29,7 +29,7 @@ export class Chatbox {
 		const modifierKey = process.platform === 'darwin' ? [Key.Meta] : [Key.Ctrl]
 
 		this.clipboard.write(message)
-		this.overlayWindow.getWindow().setFocusable(false)
+		this.overlayWindow.window.setFocusable(false)
 		this.overlayWindow.focusGameWindow()
 
 		// Without awaiting, the overlay window will still be active while trying to paste the clipboard.
@@ -60,7 +60,7 @@ export class Chatbox {
 
 		// Restore the clipboard after being done with the pasting.
 		this.clipboard.restore()
-		this.overlayWindow.getWindow().setFocusable(true)
+		this.overlayWindow.window.setFocusable(true)
 		this.overlayWindow.focusOverlayWindow()
 		// this.overlayWindow.enforceOverlay = false
 	}
@@ -74,7 +74,7 @@ export class Chatbox {
 		if (performance.now() < this.debounce) return
 		this.debounce = performance.now() + debounceDuration
 
-		this.overlayWindow.getWindow().setFocusable(false)
+		this.overlayWindow.window.setFocusable(false)
 		this.overlayWindow.focusGameWindow()
 
 		// Prevent visual switching to the game window while typing the message.
@@ -100,7 +100,7 @@ export class Chatbox {
 		// Restore the clipboard after being done with the pasting.
 		this.clipboard.restore()
 
-		this.overlayWindow.getWindow().setFocusable(true)
+		this.overlayWindow.window.setFocusable(true)
 		await sleepTimer(50)
 		this.overlayWindow.focusOverlayWindow()
 	}

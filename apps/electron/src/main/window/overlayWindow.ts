@@ -14,13 +14,13 @@ import activeWindow from 'active-win'
 // const noAttachMode = import.meta.env.VITE_NO_ATTACH_MODE === 'true' && is.dev
 
 export class OverlayWindow {
-	private window: BrowserWindow
+	private _window: BrowserWindow
 
 	// private _focusedWindow: 'game' | 'overlay' | undefined = undefined
 	private _showOverlay = false
 
 	constructor(private poeWindow: GameWindow) {
-		this.window = new BrowserWindow({
+		this._window = new BrowserWindow({
 			...(process.platform === 'linux' && { icon }),
 			title: import.meta.env.VITE_APP_TITLE,
 			width: 350,
@@ -35,16 +35,16 @@ export class OverlayWindow {
 			// focusable: false,
 			skipTaskbar: true,
 			frame: false,
-			show: false,
+			show: true,
 			transparent: true,
 			resizable: true,
 			hasShadow: true,
 			alwaysOnTop: true,
 		})
 
-		this.window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
+		this._window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
 
-		this.window.webContents.setWindowOpenHandler(details => {
+		this._window.webContents.setWindowOpenHandler(details => {
 			shell.openExternal(details.url)
 			return { action: 'deny' }
 		})
@@ -66,8 +66,8 @@ export class OverlayWindow {
 		return this._showOverlay
 	}
 
-	public getWindow() {
-		return this.window
+	get window() {
+		return this._window
 	}
 
 	/**
@@ -82,51 +82,51 @@ export class OverlayWindow {
 				: join(__dirname, '../renderer/index.html')
 
 		if (is.dev) {
-			this.window.loadURL(url)
-			this.window.webContents.openDevTools({ mode: 'detach', activate: true })
+			this._window.loadURL(url)
+			this._window.webContents.openDevTools({ mode: 'detach', activate: true })
 		} else {
-			this.window.loadFile(url)
-			// this.window.webContents.openDevTools({ mode: 'detach', activate: true })
+			this._window.loadFile(url)
+			// this._window.webContents.openDevTools({ mode: 'detach', activate: true })
 		}
 	}
 
 	public ignoreMouseEvents(ignore: boolean) {
 		// Never ignore mouse events if the overlay window is shown.
 		if (this._showOverlay) {
-			this.window.setIgnoreMouseEvents(false)
+			this._window.setIgnoreMouseEvents(false)
 			return
 		}
-		this.window.setIgnoreMouseEvents(ignore, { forward: true })
+		this._window.setIgnoreMouseEvents(ignore, { forward: true })
 	}
 
 	public showOverlay() {
 		this._showOverlay = true
-		this.window.focus()
-		this.window.focusOnWebView()
-		this.window.moveAbove(this.window.getMediaSourceId())
-		this.window.moveTop()
-		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, true)
+		this._window.focus()
+		this._window.focusOnWebView()
+		this._window.moveAbove(this._window.getMediaSourceId())
+		this._window.moveTop()
+		mainToRendererEvents.toggleOverlayComponent(this._window.webContents, true)
 		this.ignoreMouseEvents(false)
 		// console.log('showoverlay', {
-		// 	visible: this.window.isVisible(),
-		// 	focusable: this.window.isFocusable(),
-		// 	focused: this.window.isFocused(),
-		// 	enabled: this.window.isEnabled(),
-		// 	// missioncontrol: this.window.isHiddenInMissionControl(),
-		// 	normal: this.window.isNormal(),
-		// 	// visibleWorkspaces: this.window.isVisibleOnAllWorkspaces(),
+		// 	visible: this._window.isVisible(),
+		// 	focusable: this._window.isFocusable(),
+		// 	focused: this._window.isFocused(),
+		// 	enabled: this._window.isEnabled(),
+		// 	// missioncontrol: this._window.isHiddenInMissionControl(),
+		// 	normal: this._window.isNormal(),
+		// 	// visibleWorkspaces: this._window.isVisibleOnAllWorkspaces(),
 		// })
 	}
 
 	public hideOverlay() {
 		this._showOverlay = false
-		// this.window.focus()
-		mainToRendererEvents.toggleOverlayComponent(this.window.webContents, false)
+		// this._window.focus()
+		mainToRendererEvents.toggleOverlayComponent(this._window.webContents, false)
 		this.ignoreMouseEvents(true)
 		// console.log('hide overlay', {
-		// 	hidden: this.window.isVisible(),
-		// 	focusable: this.window.isFocusable(),
-		// 	focused: this.window.isFocused(),
+		// 	hidden: this._window.isVisible(),
+		// 	focusable: this._window.isFocusable(),
+		// 	focused: this._window.isFocused(),
 		// })
 	}
 
@@ -165,10 +165,10 @@ export class OverlayWindow {
 				Restart Bulky with administrator rights.`
 			)
 		} else {
-			if (!this.window) return
-			mainToRendererEvents.showAttachmentPanel(this.window.webContents, 1500)
+			if (!this._window) return
+			mainToRendererEvents.showAttachmentPanel(this._window.webContents, 1500)
 			// this._showOverlay = true
-			// mainToRendererEvents.toggleOverlayComponent(this.window.webContents, this._showOverlay)
+			// mainToRendererEvents.toggleOverlayComponent(this._window.webContents, this._showOverlay)
 		}
 	}
 }

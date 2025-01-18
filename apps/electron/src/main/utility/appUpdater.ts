@@ -51,14 +51,8 @@ export function updateApp(webContents: WebContents) {
 			}, 1000)
 		})
 
-		autoUpdater.on('error', error => {
-			console.log('error during update')
+		autoUpdater.checkForUpdates().catch(error => {
 			mainToRendererEvents.showAppUpdatePanel(webContents, 'ERROR', undefined, error)
-			reject()
-		})
-
-		autoUpdater.checkForUpdates().catch(() => {
-			mainToRendererEvents.showAppUpdatePanel(webContents, 'ERROR')
 			reject()
 		})
 	})

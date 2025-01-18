@@ -217,7 +217,7 @@ app.whenReady().then(() => {
 			// Start the client.txt watcher
 			new ClientDotTxt(
 				path.join(path.normalize('/Program Files (x86)/Grinding Gear Games/Path of Exile'), 'logs', 'Client.txt'),
-				overlayWindow.getWindow().webContents
+				overlayWindow.window.webContents
 			)
 
 			// Register listeners
@@ -272,17 +272,17 @@ app.whenReady().then(() => {
 			})
 
 			// Handle the update process
-			overlayWindow.getWindow().webContents.on('did-finish-load', async () => {
+			overlayWindow.window.webContents.on('did-finish-load', async () => {
 				if (checkedForUpdate) return
 				checkedForUpdate = true
 
 				// Try to update the app
 				// When this needs to be reenabled, also change overlayWindow.show to true
-				// try {
-				// 	await updateApp(overlayWindow.getWindow().webContents)
-				// } catch (e) {
-				// 	mainToRendererEvents.showAppUpdatePanel(overlayWindow.getWindow().webContents, 'ERROR')
-				// }
+				try {
+					await updateApp(overlayWindow.window.webContents)
+				} catch (e) {
+					mainToRendererEvents.showAppUpdatePanel(overlayWindow.window.webContents, 'ERROR')
+				}
 
 				// Attach the controller.
 				poeWindow.attach(overlayWindow, import.meta.env.VITE_GAME_TITLE)

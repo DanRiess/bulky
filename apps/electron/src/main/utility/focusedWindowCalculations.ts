@@ -41,7 +41,7 @@ export async function focusedWindowInsideGameBounds(poeWindow: GameWindow, overl
 		if (!insideBounds && overlayWindow.overlayVisible) {
 			timeout = setTimeout(async () => {
 				if (await focusedWindowInsideGameBounds(poeWindow, overlayWindow)) {
-					overlayWindow.getWindow().hide()
+					overlayWindow.window.hide()
 					overlayWindow.hideOverlay()
 				}
 			}, 250)
