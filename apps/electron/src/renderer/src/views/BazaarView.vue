@@ -16,6 +16,8 @@
 					<FilterOrganism v-if="computedFilterStore" :store="computedFilterStore" />
 				</TransitionAtom>
 				<div class="support-section">
+					<!-- Add a test MTN -->
+					<button @click="addnote" v-if="isDev">Add Notification</button>
 					<SupportMeMolecule />
 				</div>
 			</div>
@@ -46,6 +48,22 @@ const hooks = useGenericTransitionHooks({
 })
 
 const { timeRemaining } = useRefetchOffers()
+
+// Notification test stuff
+import { useNotificationStore } from '@web/stores/notificationStore'
+
+const notificationStore = useNotificationStore()
+const isDev = import.meta.env.DEV
+
+function addnote() {
+	const n = notificationStore.createTradeNotification({
+		ign: 'CountSudoku',
+		// tradeData: '040560160128989%RX%12345',
+		tradeData: `1%4%AEAADwAAABJBmAAA%"!gen|f el|s rec" "m q.*1[1-9].%"`,
+	})
+
+	notificationStore.addTrade(n)
+}
 </script>
 
 <style scoped>

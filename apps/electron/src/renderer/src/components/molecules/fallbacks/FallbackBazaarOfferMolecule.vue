@@ -1,25 +1,8 @@
 <template>
 	<div class="m-fb-bazaar-offer animated-gradient-background" data-b-override>
 		<p>Sorry, there are no offers matching your current filter.</p>
-		<button @click="addnote">Add notification</button>
 	</div>
 </template>
-
-<script setup lang="ts">
-import { useNotificationStore } from '@web/stores/notificationStore'
-
-const notificationStore = useNotificationStore()
-
-function addnote() {
-	const n = notificationStore.createTradeNotification({
-		ign: 'Chavvv',
-		// tradeData: '040560160128989%RX%12345',
-		tradeData: `1%4%AEAADwAAABJBmAAA%"!gen|f el|s rec" "m q.*1[1-9].%"`,
-	})
-
-	notificationStore.addTrade(n)
-}
-</script>
 
 <style scoped>
 .m-fb-bazaar-offer {

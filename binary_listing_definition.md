@@ -1,3 +1,5 @@
+NOTE: Binary listings did not make it out of R&D. They are currently not being used.
+
 # Bulky binary listing definition
 
 A listing has the same structure regardless of category. For example a compass listing:

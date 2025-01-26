@@ -8,7 +8,7 @@ import {
 } from '@shared/types/bulky.types'
 import { useBulkyIdb } from '@web/composables/useBulkyIdb'
 import { defineStore } from 'pinia'
-import { Ref, UnwrapRef, ref, toValue } from 'vue'
+import { Ref, UnwrapRef, computed, ref, toValue } from 'vue'
 import { useStashStore } from './stashStore'
 import { usePoeItems } from '@web/composables/usePoeItems'
 import { usePoeNinja } from '@web/composables/usePoeNinja'
@@ -46,6 +46,11 @@ export const useShopStore = defineStore('shopStore', () => {
 	// STATE
 	const offers = ref<BulkyShopOffer[]>([])
 	const chaosPerDiv = usePoeNinja('CURRENCY').chaosPerDiv
+
+	// GETTERS
+	const maximumOffersReached = computed(() => offers.value.length >= parseInt(import.meta.env.VITE_MAXIMUM_OFFER_AMOUNT))
+
+	// METHODS
 
 	/**
 	 * Every 30 seconds, check all offers.
@@ -175,7 +180,6 @@ export const useShopStore = defineStore('shopStore', () => {
 	 * Update an existing offer.
 	 */
 	function updateOffer(offer: BulkyShopOffer, itemRecord: BulkyShopItemRecord) {
-		console.log('updating offer')
 		const items: UnwrapRef<BulkyShopItem>[] = []
 		let computedMultiplier = offer.multiplier
 
@@ -216,9 +220,12 @@ export const useShopStore = defineStore('shopStore', () => {
 	 * Put an offer into the state variable and idb.
 	 */
 	async function putOffer(offer: BulkyShopOffer) {
+		// Don't put the offer if the user has already created too many.
+		if (maximumOffersReached.value) return
+
 		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === offer.uuid)
 
-		// Offer already exists, edit it
+		// Offer already exists, edit it.
 		if (offerIdx > -1) {
 			offers.value[offerIdx] = offer
 		} else {
@@ -233,17 +240,17 @@ export const useShopStore = defineStore('shopStore', () => {
 			return
 		}
 
-		// Upload offer to the public db
+		// Upload offer to the public db.
 		const putRequest = useApi('putOffer', nodeApi.putOffer)
 		await putRequest.exec(offerDto)
 
-		// If the upload succeeds, update some properties
+		// If the upload succeeds, update some properties.
 		if (putRequest.data.value) {
 			offer.lastUploaded = offerDto.timestamp
 			offer.active = true
 		}
 
-		// Put the offer to idb
+		// Put the offer to idb.
 		await bulkyIdb.putShopOffer(offer)
 	}
 
@@ -406,6 +413,7 @@ export const useShopStore = defineStore('shopStore', () => {
 
 	return {
 		offers,
+		maximumOffersReached,
 		initialize,
 		getOfferByUuid,
 		generateOffer,

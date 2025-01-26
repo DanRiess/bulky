@@ -19,8 +19,8 @@
 				<h3>Optional key bindings</h3>
 				<p class="disclaimer">
 					If you are using other third party tools with key bind settings (for example Awakened PoE Trade), it is
-					strongly recommended to disable this section to avoid binding multiple actions to one key by accident. This
-					would be against GGGs ToS and could get you banned.
+					strongly recommended to disable this section's key bindings. Binding multiple actions to a single key
+					combination, even when done in different applications, is against GGG's ToS and may result in a ban.
 				</p>
 				<ul class="hotkey-list">
 					<HotkeyInputMolecule

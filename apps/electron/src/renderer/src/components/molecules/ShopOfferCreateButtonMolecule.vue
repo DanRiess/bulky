@@ -1,7 +1,10 @@
 <template>
 	<div class="m-shop-offer-create-button">
 		<template v-if="authStore.isLoggedIn && categories.length > 0">
-			<ButtonAtom @click="router.push({ name: 'CreateOffer' })"> Create New Offer </ButtonAtom>
+			<ButtonAtom @click="router.push({ name: 'CreateOffer' })" :disabled="shopStore.maximumOffersReached">
+				<template v-if="shopStore.maximumOffersReached">Maximum {{ maximumAllowedOffers }} Offers Allowed</template>
+				<template v-else>Create New Offer</template>
+			</ButtonAtom>
 		</template>
 		<template v-else-if="!authStore.isLoggedIn">
 			<ButtonAtom @click="router.push({ name: 'Auth' })"> Sign in with your PoE account to create a new offer </ButtonAtom>
@@ -24,6 +27,7 @@ const shopStore = useShopStore()
 
 // STATE
 const router = useRouter()
+const maximumAllowedOffers = parseInt(import.meta.env.VITE_MAXIMUM_OFFER_AMOUNT)
 
 // GETTERS
 

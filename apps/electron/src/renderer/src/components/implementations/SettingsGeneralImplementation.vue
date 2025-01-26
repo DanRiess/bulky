@@ -4,8 +4,15 @@
 			<h2>General Settings</h2>
 		</header>
 		<main class="main">
-			<LabelWithSelectMolecule v-model="configStore.config.league" :options="leagues"> League: </LabelWithSelectMolecule>
-			<LabelWithTextMolecule v-model="configStore.config.gameWindowTitle"> PoE Window Title: </LabelWithTextMolecule>
+			<template v-if="leagueStore.isInitialized">
+				<LabelWithSelectMolecule v-model="configStore.config.league" :options="leagues">
+					League:
+				</LabelWithSelectMolecule>
+				<LabelWithTextMolecule v-model="configStore.config.gameWindowTitle"> PoE Window Title: </LabelWithTextMolecule>
+			</template>
+			<template v-else>
+				<LoadingSpinnerAtom />
+			</template>
 		</main>
 	</div>
 </template>
@@ -16,6 +23,7 @@ import LabelWithSelectMolecule from '../molecules/LabelWithSelectMolecule.vue'
 import { useLeagueStore } from '@web/stores/leagueStore'
 import { computed, onMounted } from 'vue'
 import LabelWithTextMolecule from '../molecules/LabelWithTextMolecule.vue'
+import LoadingSpinnerAtom from '../atoms/LoadingSpinnerAtom.vue'
 
 // STORES
 const configStore = useConfigStore()

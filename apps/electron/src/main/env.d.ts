@@ -25,6 +25,7 @@ interface ImportMetaEnv {
 	readonly VITE_POE_SERVER_ENDPOINT: string
 
 	readonly VITE_OFFER_VERSION: string
+	readonly VITE_MAXIMUM_OFFER_AMOUNT: string
 	readonly VITE_OFFER_TTL: string
 	readonly VITE_OFFER_AUTOSYNC_INTERVAL: string
 	readonly VITE_REFETCH_INTERVAL_OFFERS: string

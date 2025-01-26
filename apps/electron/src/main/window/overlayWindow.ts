@@ -56,8 +56,10 @@ export class OverlayWindow {
 				if (activeWin?.title !== import.meta.env.VITE_APP_TITLE) {
 					this.hideOverlay()
 				}
-			} else if (focus === true && this.overlayVisible) {
-				this.focusOverlayWindow()
+			} else if (focus === true) {
+				// If the overlay should be visible, focus it.
+				// If not, setting the mouse ignore events ensures that the notifications button is responsive.
+				this.overlayVisible ? this.focusOverlayWindow() : this.ignoreMouseEvents(true)
 			}
 		})
 	}
@@ -136,6 +138,7 @@ export class OverlayWindow {
 	}
 
 	public focusGameWindow() {
+		console.log('focus game')
 		OverlayController.focusTarget()
 		this.ignoreMouseEvents(true)
 	}
