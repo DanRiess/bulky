@@ -175,32 +175,32 @@
 		]
 	},
 	{
-		"id": "Affliction",
+		"id": "Settlers",
 		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
+		"url": "https://www.pathofexile.com/ladders/league/Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "Build the town of Kingsmarch alongside Kalguuran Settlers to establish their place in Wraeclast.",
 		"category": {
-			"id": "Affliction",
+			"id": "Settlers",
 			"current": true
 		},
-		"registerAt": "2023-12-08T16:00:00Z",
+		"registerAt": "2024-07-26T17:10:00Z",
 		"delveEvent": true,
 		"rules": []
 	},
 	{
-		"id": "Hardcore Affliction",
+		"id": "Hardcore Settlers",
 		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/Hardcore+Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
+		"url": "https://www.pathofexile.com/ladders/league/Hardcore+Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "Build the town of Kingsmarch alongside Kalguuran Settlers to establish their place in Wraeclast.",
 		"category": {
-			"id": "Affliction",
+			"id": "Settlers",
 			"current": true
 		},
-		"registerAt": "2023-12-08T16:00:00Z",
+		"registerAt": "2024-07-26T17:10:00Z",
 		"delveEvent": true,
 		"rules": [
 			{
@@ -211,17 +211,17 @@
 		]
 	},
 	{
-		"id": "SSF Affliction",
+		"id": "SSF Settlers",
 		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/SSF+Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
+		"url": "https://www.pathofexile.com/ladders/league/SSF+Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "SSF Settlers",
 		"category": {
-			"id": "Affliction",
+			"id": "Settlers",
 			"current": true
 		},
-		"registerAt": "2023-12-08T16:00:00Z",
+		"registerAt": "2024-07-26T17:10:00Z",
 		"delveEvent": true,
 		"rules": [
 			{
@@ -232,116 +232,17 @@
 		]
 	},
 	{
-		"id": "HC SSF Affliction",
+		"id": "HC SSF Settlers",
 		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/HC+SSF+Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
+		"url": "https://www.pathofexile.com/ladders/league/HC+SSF+Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "SSF HC Settlers",
 		"category": {
-			"id": "Affliction",
+			"id": "Settlers",
 			"current": true
 		},
-		"registerAt": "2023-12-08T16:00:00Z",
-		"delveEvent": true,
-		"rules": [
-			{
-				"id": "Hardcore",
-				"name": "Hardcore",
-				"description": "A character killed in Hardcore is moved to its parent league."
-			},
-			{
-				"id": "NoParties",
-				"name": "Solo",
-				"description": "You may not party in this league."
-			}
-		]
-	},
-	{
-		"id": "Ruthless Affliction",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/Ruthless+Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
-		"category": {
-			"id": "Affliction",
-			"current": true
-		},
-		"registerAt": "2023-12-08T16:00:00Z",
-		"delveEvent": true,
-		"rules": [
-			{
-				"id": "HardMode",
-				"name": "Ruthless",
-				"description": "A significantly different game experience with extreme item scarcity, among other changes."
-			}
-		]
-	},
-	{
-		"id": "HC Ruthless Affliction",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/HC+Ruthless+Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
-		"category": {
-			"id": "Affliction",
-			"current": true
-		},
-		"registerAt": "2023-12-08T16:00:00Z",
-		"delveEvent": true,
-		"rules": [
-			{
-				"id": "Hardcore",
-				"name": "Hardcore",
-				"description": "A character killed in Hardcore is moved to its parent league."
-			},
-			{
-				"id": "HardMode",
-				"name": "Ruthless",
-				"description": "A significantly different game experience with extreme item scarcity, among other changes."
-			}
-		]
-	},
-	{
-		"id": "SSF R Affliction",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/SSF+R+Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
-		"category": {
-			"id": "Affliction",
-			"current": true
-		},
-		"registerAt": "2023-12-08T16:00:00Z",
-		"delveEvent": true,
-		"rules": [
-			{
-				"id": "NoParties",
-				"name": "Solo",
-				"description": "You may not party in this league."
-			},
-			{
-				"id": "HardMode",
-				"name": "Ruthless",
-				"description": "A significantly different game experience with extreme item scarcity, among other changes."
-			}
-		]
-	},
-	{
-		"id": "HC SSF R Affliction",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/league/HC+SSF+R+Affliction",
-		"startAt": "2023-12-08T19:00:00Z",
-		"endAt": "2025-08-07T22:00:00Z",
-		"description": "Venture into the Viridian Wildwood and cleanse it of its Affliction.",
-		"category": {
-			"id": "Affliction",
-			"current": true
-		},
-		"registerAt": "2023-12-08T16:00:00Z",
+		"registerAt": "2024-07-26T17:10:00Z",
 		"delveEvent": true,
 		"rules": [
 			{
@@ -353,11 +254,193 @@
 				"id": "NoParties",
 				"name": "Solo",
 				"description": "You may not party in this league."
+			}
+		]
+	},
+	{
+		"id": "Ruthless Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/league/Ruthless+Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "Build the town of Kingsmarch alongside Kalguuran Settlers to establish their place in Wraeclast.",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-07-26T17:10:00Z",
+		"delveEvent": true,
+		"rules": [
+			{
+				"id": "HardMode",
+				"name": "Ruthless",
+				"description": "A significantly different game experience with extreme item scarcity, among other changes."
+			}
+		]
+	},
+	{
+		"id": "HC Ruthless Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/league/HC+Ruthless+Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "Build the town of Kingsmarch alongside Kalguuran Settlers to establish their place in Wraeclast.",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-07-26T17:10:00Z",
+		"delveEvent": true,
+		"rules": [
+			{
+				"id": "Hardcore",
+				"name": "Hardcore",
+				"description": "A character killed in Hardcore is moved to its parent league."
 			},
 			{
 				"id": "HardMode",
 				"name": "Ruthless",
 				"description": "A significantly different game experience with extreme item scarcity, among other changes."
+			}
+		]
+	},
+	{
+		"id": "SSF R Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/league/SSF+R+Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "SSF Settlers",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-07-26T17:10:00Z",
+		"delveEvent": true,
+		"rules": [
+			{
+				"id": "NoParties",
+				"name": "Solo",
+				"description": "You may not party in this league."
+			},
+			{
+				"id": "HardMode",
+				"name": "Ruthless",
+				"description": "A significantly different game experience with extreme item scarcity, among other changes."
+			}
+		]
+	},
+	{
+		"id": "HC SSF R Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/league/HC+SSF+R+Settlers",
+		"startAt": "2024-07-26T20:00:00Z",
+		"endAt": null,
+		"description": "SSF HC Settlers",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-07-26T17:10:00Z",
+		"delveEvent": true,
+		"rules": [
+			{
+				"id": "Hardcore",
+				"name": "Hardcore",
+				"description": "A character killed in Hardcore is moved to its parent league."
+			},
+			{
+				"id": "NoParties",
+				"name": "Solo",
+				"description": "You may not party in this league."
+			},
+			{
+				"id": "HardMode",
+				"name": "Ruthless",
+				"description": "A significantly different game experience with extreme item scarcity, among other changes."
+			}
+		]
+	},
+	{
+		"id": "Necro Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/event/Necro+Settlers",
+		"startAt": "2024-11-07T21:00:00Z",
+		"endAt": null,
+		"description": "Please check the Event Forums for more details.",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-11-07T20:30:00Z",
+		"event": true,
+		"rules": []
+	},
+	{
+		"id": "HC Necro Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/event/HC+Necro+Settlers",
+		"startAt": "2024-11-07T21:00:00Z",
+		"endAt": null,
+		"description": "Please check the Event Forums for more details.",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-11-07T20:30:00Z",
+		"event": true,
+		"rules": [
+			{
+				"id": "Hardcore",
+				"name": "Hardcore",
+				"description": "A character killed in Hardcore is moved to its parent league."
+			}
+		]
+	},
+	{
+		"id": "SSF Necro Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/event/SSF+Necro+Settlers",
+		"startAt": "2024-11-07T21:00:00Z",
+		"endAt": null,
+		"description": "Please check the Event Forums for more details.",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-11-07T20:30:00Z",
+		"event": true,
+		"rules": [
+			{
+				"id": "NoParties",
+				"name": "Solo",
+				"description": "You may not party in this league."
+			}
+		]
+	},
+	{
+		"id": "HC SSF Necro Settlers",
+		"realm": "pc",
+		"url": "https://www.pathofexile.com/ladders/event/HC+SSF+Necro+Settlers",
+		"startAt": "2024-11-07T21:00:00Z",
+		"endAt": null,
+		"description": "Please check the Event Forums for more details.",
+		"category": {
+			"id": "Settlers",
+			"current": true
+		},
+		"registerAt": "2024-11-07T20:30:00Z",
+		"event": true,
+		"rules": [
+			{
+				"id": "Hardcore",
+				"name": "Hardcore",
+				"description": "A character killed in Hardcore is moved to its parent league."
+			},
+			{
+				"id": "NoParties",
+				"name": "Solo",
+				"description": "You may not party in this league."
 			}
 		]
 	}

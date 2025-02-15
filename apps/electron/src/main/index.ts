@@ -27,6 +27,7 @@ import { SignableTokenStructure } from '@shared/types/auth.types'
 import { mainToRendererEvents } from './events/mainToRenderer'
 import activeWindow from 'active-win'
 import { openExternalBrowserWindow } from './utility/openExternalBrowserWindow'
+import { AppStateStore } from './stores/appStateStore'
 
 // STATE
 let checkedForUpdate = false
@@ -201,6 +202,9 @@ app.whenReady().then(() => {
 		app.commandLine.appendSwitch('use-gl', 'desktop')
 	}
 
+	// Instatiate the app state store.
+	const appStateStore = AppStateStore.instance
+
 	setTimeout(
 		() => {
 			// Initialize instances.
@@ -285,7 +289,7 @@ app.whenReady().then(() => {
 				}
 
 				// Attach the controller.
-				poeWindow.attach(overlayWindow, import.meta.env.VITE_GAME_TITLE)
+				poeWindow.attach(overlayWindow, appStateStore.gameWindowTitle)
 			})
 		},
 		process.platform === 'linux' ? 1000 : 0

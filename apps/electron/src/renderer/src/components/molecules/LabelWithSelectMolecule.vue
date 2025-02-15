@@ -3,7 +3,12 @@
 		<LabelAtom :id="uuid">
 			<slot />
 		</LabelAtom>
-		<InputSelectAtom v-model="model" :options="options" :id="uuid" :background-color="backgroundColor" />
+		<InputSelectAtom
+			v-model="model"
+			:options="options"
+			:id="uuid"
+			:background-color="backgroundColor"
+			:allow-freestyle-input="allowFreestyleInput" />
 	</div>
 </template>
 
@@ -21,10 +26,12 @@ withDefaults(
 		options: T[]
 		labelPosition?: 'left' | 'right'
 		backgroundColor?: ButtonBackgroundColorScheme
+		allowFreestyleInput?: boolean
 	}>(),
 	{
 		labelPosition: 'left',
 		backgroundColor: 'dark',
+		allowFreestyleInput: false,
 	}
 )
 </script>

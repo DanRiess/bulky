@@ -51,11 +51,13 @@ const props = withDefaults(
 		options: T[]
 		maxWidth?: number
 		backgroundColor?: ButtonBackgroundColorScheme
+		allowFreestyleInput?: boolean
 	}>(),
 	{
 		id: BULKY_UUID.generateTypedUuid(),
 		maxWidth: 130,
 		backgroundColor: 'dark',
+		allowFreestyleInput: false,
 	}
 )
 
@@ -182,6 +184,14 @@ function onInputKeydownEnter() {
 	if (inputActive.value === false) return
 
 	inputActive.value = false
+
+	// If free style inputs are allowed, just set the model value.
+	if (props.allowFreestyleInput) {
+		setModelValue()
+		return
+	}
+
+	// Else, set the query value to the selected option
 	if (filteredOptions.value[activeOptionIdx.value]) {
 		query.value = filteredOptions.value[activeOptionIdx.value].displayValue
 	} else {
@@ -211,14 +221,20 @@ function onListItemClick(val: T) {
  * computedOptions is the sanitized value that is visible in the input (mostly no capslock).
  * The model should refer to the actual type though.
  */
-function setModelValue(idx: number) {
-	model.value = props.options[idx]
+function setModelValue(idx?: number) {
+	console.log('setting model')
+	if (idx === undefined && props.allowFreestyleInput) {
+		model.value = query.value as T
+		console.log(query.value, model.value)
+	} else if (idx !== undefined) {
+		model.value = props.options[idx]
+	}
 }
 
 // HOOKS
 onMounted(() => {
-	// on mounted, the query value is set to the passed model value.
-	// if this value doesn't match any options entries, reset both of them.
+	// On mounted, the query value is set to the passed model value.
+	// If this value doesn't match any options entries, reset both of them.
 	if (!model.value || !props.options.includes(model.value)) {
 		query.value = computedOptions.value[0]?.displayValue ?? ''
 		setModelValue(0)

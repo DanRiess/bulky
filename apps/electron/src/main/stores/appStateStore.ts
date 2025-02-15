@@ -8,9 +8,11 @@ export class AppStateStore {
 	static #instance: AppStateStore
 
 	public appToggleHotkey: string
+	public gameWindowTitle: string
 
 	private constructor() {
 		this.appToggleHotkey = 'CTRL+SPACE'
+		this.gameWindowTitle = 'Path of Exile'
 		this.initialize()
 	}
 
@@ -29,5 +31,6 @@ export class AppStateStore {
 		const config = await readConfig(app)
 
 		this.appToggleHotkey = config.hotkeySettings.keys.appToggle.keyCode
+		this.gameWindowTitle = config.gameWindowTitle
 	}
 }

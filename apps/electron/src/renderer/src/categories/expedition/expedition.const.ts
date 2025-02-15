@@ -1,5 +1,5 @@
 import { typedFromEntries, getKeys } from '@shared/types/utility.types'
-import { ExpeditionFaction, ExpeditionType } from './expedition.types'
+import { ExpeditionFaction } from './expedition.types'
 import { BulkyShopItem } from '@shared/types/bulky.types'
 
 export const EXPEDITION_TYPE = {

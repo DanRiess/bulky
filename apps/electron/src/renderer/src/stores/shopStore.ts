@@ -285,7 +285,7 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		if (
 			!activeWindow ||
-			(activeWindow.title !== import.meta.env.VITE_APP_TITLE && activeWindow.title !== import.meta.env.VITE_GAME_TITLE)
+			(activeWindow.title !== import.meta.env.VITE_APP_TITLE && activeWindow.title !== configStore.config.gameWindowTitle)
 		) {
 			return
 		}

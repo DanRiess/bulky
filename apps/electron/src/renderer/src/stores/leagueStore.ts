@@ -19,6 +19,8 @@ export const useLeagueStore = defineStore('leagueStore', () => {
 			return
 		}
 
+		console.log(leagueRequest.data.value)
+
 		leagues.value = filterLeagues(leagueRequest.data.value)
 		isInitialized.value = true
 	}

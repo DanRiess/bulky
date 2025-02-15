@@ -43,8 +43,8 @@ function handleKeydownEvents(e: UiohookKeyboardEvent, overlayWindow: OverlayWind
 
 			// In dev, the app title (Notepad) also has the documents title appended.
 			const isGameTitle = import.meta.env.DEV
-				? window.title.includes(import.meta.env.VITE_GAME_TITLE)
-				: window.title === import.meta.env.VITE_GAME_TITLE
+				? window.title.includes(appStateStore.gameWindowTitle)
+				: window.title === appStateStore.gameWindowTitle
 
 			// Toggle the active state only if either game or app windows are active.
 			// If other keybinds will be handled through this function,

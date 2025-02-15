@@ -1,5 +1,6 @@
 import { BulkyRegexes } from '@shared/types/bulky.types'
 import { findIndicesInString } from './stringManipulation'
+import { notEmpty } from './notEmpty'
 
 export const BULKY_REGEX = {
 	computeRegexesFromString,
@@ -50,7 +51,7 @@ function categorizeRegexes(regexes: RegExp[]): BulkyRegexes {
 			}
 			return undefined
 		})
-		.filter(Boolean)
+		.filter(notEmpty)
 	const wantedRegexes = regexes.filter(
 		regex =>
 			!(

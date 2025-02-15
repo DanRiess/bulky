@@ -12,7 +12,6 @@ interface ImportMetaEnv {
 	readonly VITE_USE_MOCK_DATA: 'true' | 'false'
 	readonly VITE_ENABLE_CLICK_OUTSIDE: 'true' | 'false'
 
-	readonly VITE_GAME_TITLE: string
 	readonly VITE_APP_TITLE: string
 	readonly VITE_USER_AGENT: string
 	readonly VITE_MAIN_API_SERVER: string

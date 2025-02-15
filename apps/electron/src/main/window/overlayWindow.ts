@@ -10,6 +10,7 @@ import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
 import { mainToRendererEvents } from '../events/mainToRenderer'
 import activeWindow from 'active-win'
+import { AppStateStore } from '@main/stores/appStateStore'
 
 // const noAttachMode = import.meta.env.VITE_NO_ATTACH_MODE === 'true' && is.dev
 
@@ -160,11 +161,12 @@ export class OverlayWindow {
 	 */
 	private handleOverlayAttached = (event: AttachEvent) => {
 		if (event.hasAccess === false) {
+			const appStateStore = AppStateStore.instance
 			// this.logger.write('error [Overlay] PoE is running with administrator rights')
 
 			dialog.showErrorBox(
-				`${process.env.VITE_GAME_TITLE} window - No access`,
-				`${process.env.VITE_GAME_TITLE} is running with administrator rights.
+				`${appStateStore.gameWindowTitle} window - No access`,
+				`${appStateStore.gameWindowTitle} is running with administrator rights.
 				Restart Bulky with administrator rights.`
 			)
 		} else {

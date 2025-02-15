@@ -9,7 +9,7 @@ import { useAuthStore } from '@web/stores/authStore'
 import { RequestError } from '@shared/errors/requestError'
 import { PoeProfileResponse } from '@shared/types/auth.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { PoeStashTabCollectionResponse, PoeStashTabResponse } from '@shared/types/dtoResponse.types'
+import { PoeLeagueRecordDtoResponse, PoeStashTabCollectionResponse, PoeStashTabResponse } from '@shared/types/dtoResponse.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 
 /**
@@ -64,6 +64,10 @@ export const poeApi = {
 	},
 
 	getLeagues: async () => {
+		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
+			const res = await api.get<PoeLeagueRecordDtoResponse>('http://localhost:5174/src/mocks/leagues.json')
+			return res.data
+		}
 		return await window.api.getLeagues()
 	},
 }

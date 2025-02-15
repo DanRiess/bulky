@@ -3,17 +3,16 @@
 		<header class="header">
 			<h2>General Settings</h2>
 		</header>
-		<main class="main">
-			<template v-if="leagueStore.isInitialized">
-				<LabelWithSelectMolecule v-model="configStore.config.league" :options="leagues">
-					League:
-				</LabelWithSelectMolecule>
-				<LabelWithTextMolecule v-model="configStore.config.gameWindowTitle"> PoE Window Title: </LabelWithTextMolecule>
-			</template>
-			<template v-else>
-				<LoadingSpinnerAtom />
-			</template>
+		<main class="main" v-if="leagueStore.isInitialized">
+			<LabelWithSelectMolecule v-model="configStore.config.league" :options="leagues" :allow-freestyle-input="true">
+				League:
+			</LabelWithSelectMolecule>
+			<LabelWithTextMolecule v-model="configStore.config.gameWindowTitle"> PoE Window Title: </LabelWithTextMolecule>
 		</main>
+		<div class="loading" v-else>
+			<LoadingSpinnerAtom />
+			Loading Config Settings
+		</div>
 	</div>
 </template>
 
@@ -31,7 +30,12 @@ const leagueStore = useLeagueStore()
 
 // STATE
 const leagues = computed(() => {
-	return leagueStore.leagues?.map(l => l.id) ?? ['Standard']
+	const leagues = leagueStore.leagues?.map(l => l.id)
+	if (leagues) {
+		return leagues.includes(configStore.config.league) ? leagues : [...leagues, configStore.config.league]
+	} else {
+		return [configStore.config.league]
+	}
 })
 
 onMounted(() => {
@@ -50,5 +54,13 @@ onMounted(() => {
 	column-gap: 2rem;
 	row-gap: 0.5rem;
 	margin-left: 1rem;
+}
+
+.loading {
+	display: grid;
+	grid-column: span 2;
+	justify-items: center;
+	margin-top: 12rem;
+	gap: 1.5rem;
 }
 </style>
