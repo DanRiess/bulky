@@ -25,7 +25,6 @@ const UPDATE_INTERVAL = 30 * 60 * 1000
 export function usePoeNinja(category: MaybeRefOrGetter<Category>) {
 	const prices = ref<NinjaPriceRecord>(new Map())
 	const loadingStatus = ref<ApiStatus>('IDLE')
-	const chaosPerDiv = ref(0)
 
 	// Load the current category's prices whenever the category changes.
 	if (isWatchable(category)) {
@@ -34,7 +33,7 @@ export function usePoeNinja(category: MaybeRefOrGetter<Category>) {
 			category => {
 				loadingStatus.value = 'PENDING'
 
-				updateStateVariables(prices, chaosPerDiv, category)
+				updateStateVariables(prices, category)
 					.then(() => (loadingStatus.value = 'SUCCESS'))
 					.catch(() => (loadingStatus.value = 'ERROR'))
 			},
@@ -46,50 +45,22 @@ export function usePoeNinja(category: MaybeRefOrGetter<Category>) {
 	else {
 		loadingStatus.value = 'PENDING'
 
-		updateStateVariables(prices, chaosPerDiv, category)
+		updateStateVariables(prices, category)
 			.then(() => (loadingStatus.value = 'SUCCESS'))
 			.catch(() => (loadingStatus.value = 'ERROR'))
 	}
 
-	// Reload prices every 30 minutes.
-	setInterval(() => {
-		loadingStatus.value = 'PENDING'
-
-		updateStateVariables(prices, chaosPerDiv, category)
-			.then(() => (loadingStatus.value = 'SUCCESS'))
-			.catch(() => (loadingStatus.value = 'ERROR'))
-	}, UPDATE_INTERVAL + 60 * 1000)
-
-	return { prices, chaosPerDiv, loadingStatus }
+	return { prices, loadingStatus }
 }
 
 // LOCAL API
 
 /**
  * Ease of use function to update the state variables.
+ * Artifact of an older code base where chaos per div was calculated here as well.
  */
-async function updateStateVariables(
-	prices: Ref<NinjaPriceRecord>,
-	chaosPerDiv: Ref<number>,
-	category: MaybeRefOrGetter<Category>
-) {
-	chaosPerDiv.value = await getChaosPerDiv()
+async function updateStateVariables(prices: Ref<NinjaPriceRecord>, category: MaybeRefOrGetter<Category>) {
 	prices.value = await getPricesByCategory(toValue(category))
-}
-
-/**
- * This function will get the current chaos per div ratio.
- * If the idb value is older than 30 minutes, it will automatically update it.
- */
-async function getChaosPerDiv() {
-	const collection = await updateNinjaCategoryPrices('Currency')
-	const currencyCollection = collection.find(c => c.category === 'Currency')
-	if (!currencyCollection) return 0
-
-	const divine = currencyCollection.items.find(i => i.id === 'divine-orb')
-	if (!divine) return 0
-
-	return divine.chaos
 }
 
 /**

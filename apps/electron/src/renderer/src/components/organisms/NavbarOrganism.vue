@@ -9,7 +9,7 @@
 
 		<div class="icon-buttons">
 			<div class="current-price">
-				<ChaosPerDivAtom :chaos-per-div="chaosPerDiv" />
+				<ChaosPerDivAtom :chaos-per-div="ninjaStore.chaosPerDiv" />
 			</div>
 			<SettingsIconMolecule />
 			<UserIconMolecule />
@@ -22,12 +22,14 @@ import ButtonAtom from '../atoms/ButtonAtom.vue'
 import SettingsIconMolecule from '../molecules/SettingsIconMolecule.vue'
 import UserIconMolecule from '../molecules/UserIconMolecule.vue'
 import { useRouter } from 'vue-router'
-import { usePoeNinja } from '@web/composables/usePoeNinja'
 import ChaosPerDivAtom from '../atoms/ChaosPerDivAtom.vue'
+import { useNinjaStore } from '@web/stores/ninjaStore'
+
+// STORES
+const ninjaStore = useNinjaStore()
 
 // COMPOSABLES
 const router = useRouter()
-const { chaosPerDiv } = usePoeNinja('ESSENCE')
 </script>
 
 <style scoped>

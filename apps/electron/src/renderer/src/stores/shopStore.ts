@@ -29,6 +29,7 @@ import { replaceExpeditionLogbook } from '@web/utility/replaceExpeditionLogbooks
 import { ShopExpeditionItem } from '@web/categories/expedition/expedition.types'
 import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
+import { useNinjaStore } from './ninjaStore'
 
 /** TTL of any given offer. Default to 15 minutes. */
 const OFFER_TTL = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
@@ -42,10 +43,10 @@ export const useShopStore = defineStore('shopStore', () => {
 	const authStore = useAuthStore()
 	const appStateStore = useAppStateStore()
 	const configStore = useConfigStore()
+	const ninjaStore = useNinjaStore()
 
 	// STATE
 	const offers = ref<BulkyShopOffer[]>([])
-	const chaosPerDiv = usePoeNinja('CURRENCY').chaosPerDiv
 
 	// GETTERS
 	const maximumOffersReached = computed(() => offers.value.length >= parseInt(import.meta.env.VITE_MAXIMUM_OFFER_AMOUNT))
@@ -211,7 +212,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		offer.items = items
 		offer.fullPrice = fullPrice.value
 		offer.computedMultiplier = computedMultiplier
-		offer.chaosPerDiv = chaosPerDiv.value > 0 ? chaosPerDiv.value : offer.chaosPerDiv
+		offer.chaosPerDiv = ninjaStore.chaosPerDiv > 0 ? ninjaStore.chaosPerDiv : offer.chaosPerDiv
 
 		return offer
 	}
@@ -298,7 +299,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		const poeItems = filteredItemsByCategory(offer.category)
 
 		// Generate BulkyItems from the PoeItems with prices and overrides.
-		const { prices, chaosPerDiv, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
+		const { prices, loadingStatus: ninjaLoadingStatus } = usePoeNinja(offer.category)
 		const { itemOverrides } = useItemOverrides(offer.category)
 		const { items: itemRecord } = useBulkyItems(poeItems, prices, itemOverrides, offer.category)
 		const { filteredItemRecord } = useFilterShopItems(itemRecord, offer.filter)
@@ -358,7 +359,7 @@ export const useShopStore = defineStore('shopStore', () => {
 		offer.fullPrice = fullPrice.value
 		offer.items = items
 		offer.computedMultiplier = computedMultiplier
-		offer.chaosPerDiv = chaosPerDiv.value
+		offer.chaosPerDiv = ninjaStore.chaosPerDiv
 
 		await putOffer(offer)
 

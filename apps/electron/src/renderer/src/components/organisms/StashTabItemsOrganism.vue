@@ -64,6 +64,7 @@ import { computed } from 'vue'
 import StashItemListMoleculeExpedition from '../molecules/StashItemListMoleculeExpedition.vue'
 import { replaceExpeditionLogbooks } from '@web/utility/replaceExpeditionLogbooks'
 import { ShopExpeditionItem } from '@web/categories/expedition/expedition.types'
+import { useNinjaStore } from '@web/stores/ninjaStore'
 
 type ShopItemOrOverrideInstance = {
 	shopItem?: BulkyShopItem
@@ -97,6 +98,7 @@ const emit = defineEmits<{
 
 // STORES
 const stashStore = useStashStore()
+const ninjaStore = useNinjaStore()
 
 // STATE
 const { selectedStashTabs } = storeToRefs(stashStore)
@@ -110,14 +112,14 @@ const transitionHooks = useGenericTransitionHooks({
 })
 const { filteredItemsByCategory, updateItemsByStash } = usePoeItems(selectedStashTabs)
 const categoryFilteredItemsByStash = filteredItemsByCategory(() => props.category)
-const { prices, chaosPerDiv } = usePoeNinja(() => props.category)
+const { prices } = usePoeNinja(() => props.category)
 const { itemOverrides, putItemOverride } = useItemOverrides(() => props.category)
 const { items, sortItems } = useBulkyItems(categoryFilteredItemsByStash, prices, itemOverrides, () => props.category)
 const { filteredItemRecord } = useFilterShopItems(items, filterModel)
 
 // GETTERS
 const chaosValue = useAggregateItemPrice(filteredItemRecord, () => props.offerMultiplier ?? 1)
-const divValue = useChaosToDiv(chaosValue, chaosPerDiv)
+const divValue = useChaosToDiv(chaosValue, ninjaStore.chaosPerDiv)
 
 // METHODS
 
