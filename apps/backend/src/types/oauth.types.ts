@@ -1,4 +1,4 @@
-import { ObjectValues, Uuid } from './utitlity.types'
+import { ObjectValues, Uuid } from './utility'
 
 export type OauthStateTransfer = {
 	state: string

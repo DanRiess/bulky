@@ -6,9 +6,22 @@ service: bulkyPoeApi
 stages:
   default:
     params:
-      oauthTableName: "oauth-table-${sls:stage}"
-      offerTableName: "offer-table-${sls:stage}"
-      userTableName: "user-table-${sls:stage}"
+      oauthTableName: "oauth-table-default"
+      offerTableName: "offer-table-default"
+      userTableName: "user-table-default"
+      ninjaProxyBucketName: "ninja-proxy-bucket-default"
+  dev:
+    params:
+      oauthTableName: "oauth-table-dev"
+      offerTableName: "offer-table-dev"
+      userTableName: "user-table-dev"
+      ninjaProxyBucketName: "ninja-proxy-bucket-dev"
+  prod:
+    params:
+      oauthTableName: "oauth-table-prod"
+      offerTableName: "offer-table-prod"
+      userTableName: "user-table-prod"
+      ninjaProxyBucketName: "ninja-proxy-bucket-prod"
 
 provider:
   name: aws
@@ -39,12 +52,29 @@ provider:
             - Fn::GetAtt: [OauthTable, Arn]
             - Fn::GetAtt: [OfferTable, Arn]
             - Fn::GetAtt: [UserTable, Arn]
+
         - Effect: Allow
           Action:
             - kms:Sign
             - kms:Verify
           Resource:
             - arn:aws:kms:${env:AWS_REGION}:${env:AWS_ACCOUNT_ID}:key/${env:AWS_SIGNATURE_KEY_ID}
+
+        - Effect: Allow
+          Action:
+            - s3:PutObject
+            - s3:GetObject
+          # Resource: "arn:aws:s3:::${param:ninjaProxyBucketName}/*"
+          Resource:
+            - Fn::GetAtt: [NinjaProxyBucket, Arn]
+            - Fn::Sub: "${NinjaProxyBucket.Arn}/*"
+
+        - Effect: Allow
+          Action:
+            - cloudformation:DescribeStacks
+            - cloudformation:ListStackResources
+          Resource: "*"
+
   # Upload your env variables into cloud formation to access in lambdas.
   # Read them in from your .env file, so you don't have to share them.
   environment:
@@ -52,6 +82,7 @@ provider:
     OAUTH_TABLE: ${param:oauthTableName} # can be accessed in a ts script via process.env.OAUTH_TABLE
     OFFER_TABLE: ${param:offerTableName}
     USER_TABLE: ${param:userTableName}
+    NINJA_PROXY_BUCKET: ${param:ninjaProxyBucketName}
 
     # AWS Variables
     # AWS_REGION: ${env:AWS_REGION} # is apparently already available globally
@@ -114,12 +145,17 @@ functions:
           authorizer:
             name: customAuthorizer
 
+  cron_updateNinjaData:
+    handler: ${env:SOURCE_DIRECTORY, ''}cron/updateNinjaData.updateNinjaData
+    timeout: 10
+    events:
+      - schedule:
+          rate: rate(1 hour) # Runs once per hour
+          enabled: true
+
   authorizer:
     handler: ${env:SOURCE_DIRECTORY, ''}utility/lambdaAuthorizer.authorize
-  # api:
-  #   handler: dist/handlerWithDynamo.handler
-  #   events:
-  #     - httpApi: "*"
+
 resources:
   Resources:
     OauthTable:
@@ -168,3 +204,127 @@ resources:
           - AttributeName: username
             KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
+
+    # Bucket for storing processed ninja data.
+    NinjaProxyBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${param:ninjaProxyBucketName} # ignore error, but make sure that this name only contains lowercase characters!
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: BucketOwnerEnforced
+
+    S3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: { Ref: NinjaProxyBucket }
+        PolicyDocument:
+          Statement:
+            - Effect: Allow
+              Principal:
+                AWS:
+                  Fn::Join:
+                    - ""
+                    - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity "
+                      - { Ref: CloudFrontOriginAccessIdentity }
+              Action:
+                - s3:GetObject
+                - s3:PutObject
+              Resource:
+                Fn::Sub: "arn:aws:s3:::${param:ninjaProxyBucketName}/*"
+
+    CloudFrontCachePolicy:
+      Type: AWS::CloudFront::CachePolicy
+      Properties:
+        CachePolicyConfig:
+          Name: ninja-proxy-cache-policy
+          DefaultTTL: 3600 # 60 minutes
+          MaxTTL: 86400 # 1 day
+          MinTTL: 1800 # 30 minutes
+          ParametersInCacheKeyAndForwardedToOrigin:
+            EnableAcceptEncodingBrotli: true
+            EnableAcceptEncodingGzip: true
+            HeadersConfig:
+              HeaderBehavior: none
+            CookiesConfig:
+              CookieBehavior: none
+            QueryStringsConfig:
+              QueryStringBehavior: all # Allows caching based on query params
+
+    CloudFrontResponseHeadersPolicy:
+      Type: AWS::CloudFront::ResponseHeadersPolicy
+      Properties:
+        ResponseHeadersPolicyConfig:
+          Name: ninja-proxy-response-policy
+          Comment: "Response headers policy for stale-while-revalidate"
+          CorsConfig:
+            AccessControlAllowOrigins:
+              Items: ["asdfwefsdf.com"] # Block web access. Empty list is not allowed.
+            AccessControlAllowHeaders:
+              Items:
+                - "*"
+            AccessControlAllowMethods:
+              Items:
+                - GET
+                - HEAD
+            AccessControlAllowCredentials: false
+            OriginOverride: true
+          CustomHeadersConfig:
+            Items:
+              - Header: Cache-Control
+                Value: "max-age=3600, stale-while-revalidate=86400"
+                Override: true
+
+    CloudFrontOriginAccessIdentity:
+      Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+      Properties:
+        CloudFrontOriginAccessIdentityConfig:
+          Comment: "OAI for CloudFront accessing S3"
+
+    CloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Enabled: true
+          Comment: "CloudFront for serving proxied and processed poe.ninja data."
+          # DefaultRootObject: index.html
+          Origins:
+            - DomainName: "${param:ninjaProxyBucketName}.s3.${env:AWS_REGION}.amazonaws.com"
+              Id: S3Origin
+              S3OriginConfig:
+                OriginAccessIdentity:
+                  Fn::Join:
+                    - ""
+                    - - "origin-access-identity/cloudfront/"
+                      - { Ref: CloudFrontOriginAccessIdentity }
+          DefaultCacheBehavior:
+            TargetOriginId: S3Origin
+            ViewerProtocolPolicy: redirect-to-https
+            AllowedMethods:
+              - GET
+              - HEAD
+            CachePolicyId:
+              Ref: CloudFrontCachePolicy
+            ResponseHeadersPolicyId:
+              Ref: CloudFrontResponseHeadersPolicy
+            Compress: true
+          PriceClass: PriceClass_100
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: true
+
+  Outputs:
+    CloudFrontURL:
+      Description: "CloudFront URL to access processed poe.ninja data."
+      Value:
+        Fn::GetAtt:
+          - CloudFrontDistribution
+          - DomainName
+
+    CloudFrontOAI:
+      Value:
+        Ref: CloudFrontOriginAccessIdentity

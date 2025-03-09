@@ -1,4 +1,6 @@
-# Description
+# REST API
+
+## Description
 
 This package serves the purpose of providing the backend for the BulkyPoe app. It is to be deployed on AWS and runs as serverless lambda functions behind API Gateway.
 
@@ -26,3 +28,11 @@ _Note_: In current form, after deployment, your API is public and can be invoked
 There is no build step on the server. The code will be bundled before it gets uploaded. If you want to use or add a package, there is 2 things you will have to make sure of. First, try to use only modules that support tree shaking and import packages like this: import { capitalize } from 'lodash-es'. Second, add your package to the noExternal array in tsup.config.ts.
 
 This will make sure, that only functions you actually use are being imported and inlined. If you would instead import packages like this: import \* as \_ from 'lodash', tsup would inline the entire package.
+
+# PoE Ninja Proxy
+
+## Description
+
+To avoid a gazillion requests raining down on Rasmus' servers, set up a proxy that periodically fetches ninja data and then serves it to clients.
+
+The current implementation uses a lambda function that gets triggered once per hour, fetches ninja data, processes it and saves it to s3. The endpoint is set up with cloudfront and a 60 minute TTL with (important!) stale-while-revalidate set.

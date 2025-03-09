@@ -1,4 +1,4 @@
-import { Uuid } from './utitlity.types'
+import { Uuid } from './utility'
 
 export type OauthDbItem = {
 	state: string

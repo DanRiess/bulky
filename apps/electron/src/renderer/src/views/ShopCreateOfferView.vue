@@ -46,8 +46,8 @@ import LabelWithSelectMolecule from '@web/components/molecules/LabelWithSelectMo
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
-import { usePoeNinja } from '@web/composables/usePoeNinja'
 import { useAppStateStore } from '@web/stores/appStateStore'
+import { useNinjaStore } from '@web/stores/ninjaStore'
 import { useShopStore } from '@web/stores/shopStore'
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
@@ -55,12 +55,12 @@ import { useRouter } from 'vue-router'
 // STORES
 const appStateStore = useAppStateStore()
 const shopStore = useShopStore()
+const ninjaStore = useNinjaStore()
 
 // STATE
 const disableOfferGenerationButton = ref(false)
 
 // COMPOSABLES
-const { chaosPerDiv } = usePoeNinja(appStateStore.selectedCategory)
 const router = useRouter()
 
 // MODEL VALUES
@@ -139,7 +139,7 @@ async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) 
 	const offer = shopStore.generateOffer({
 		itemRecord,
 		ign: ign.value,
-		chaosPerDiv: chaosPerDiv.value,
+		chaosPerDiv: ninjaStore.chaosPerDiv,
 		multiplier: multiplier.value,
 		minBuyout: minBuyout.value,
 		fullBuyout: fullBuyout.value,

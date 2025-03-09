@@ -137,11 +137,6 @@ app.whenReady().then(() => {
 		}
 	})
 
-	ipcMain.handle('hello', () => {
-		console.log('this is fine')
-		return 'hello'
-	})
-
 	/**
 	 * Redeem a refresh token to generate a new AT/RT pair.
 	 */

@@ -128,6 +128,7 @@ async function updateNinjaCategoryPrices(categories: NinjaCategory | NinjaCatego
 			}
 
 			const newpriceCollection = transformNinjaResponseToPriceCollection(request.data.value, category)
+			console.log({ newpriceCollection })
 
 			// Save the new data to idb.
 			await bulkyIdb.putPriceCollection(newpriceCollection)

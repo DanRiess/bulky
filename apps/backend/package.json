@@ -8,6 +8,7 @@
 		"package": "pnpm build && powershell -command \"Compress-Archive -Path dist\\* -DestinationPath dist\\package.zip\"",
 		"deploy": "pnpm package && serverless deploy --aws-profile BulkyPoe",
 		"dev": "cross-env SOURCE_DIRECTORY=src/ serverless dev --aws-profile BulkyPoe",
+		"dev:debug": "cross-env SOURCE_DIRECTORY=src/ SLS_DEBUG=* serverless dev --aws-profile BulkyPoe --debug >serverless-debug.log 2>&1",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -16,6 +17,7 @@
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "^3.585.0",
 		"@aws-sdk/client-kms": "^3.699.0",
+		"@aws-sdk/client-s3": "^3.758.0",
 		"@aws-sdk/lib-dynamodb": "^3.585.0",
 		"jose": "^5.9.6",
 		"uuid": "^10.0.0"
