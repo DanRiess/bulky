@@ -12,9 +12,9 @@ export type NinjaPriceCollection = {
 export type NinjaItem = {
 	id: Id<NinjaItem>
 	name: string
-	mapTier?: number
+	mapTier: number | null
 	chaos: number
-	tendency: number // receiveSparkLine.totalChange (number in percent)
+	// tendency: number // receiveSparkLine.totalChange (number in percent)
 }
 
 export type NinjaCurrencyDto = {
@@ -102,3 +102,13 @@ type NinjaSparkLine = {
 	data: number[]
 	totalChange: number
 }
+
+/**
+ * Preprocessed Ninja Item. Array: [itemName, itemPrice, mapTier | null]
+ */
+export type PreprocessedNinjaItem = [string, number, number | null]
+
+export type PreprocessedNinjaFile = {
+	category: NinjaCategory
+	items: PreprocessedNinjaItem[]
+}[]

@@ -82,6 +82,13 @@ export const useConfigStore = defineStore('configStore', () => {
 		{ deep: true }
 	)
 
+	watch(
+		() => config.value.league,
+		league => {
+			console.log(league)
+		}
+	)
+
 	return {
 		config,
 		getUserConfig,

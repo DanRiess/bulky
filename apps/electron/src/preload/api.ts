@@ -5,7 +5,7 @@ import { OauthTokenResponse, SignableTokenStructure } from '@shared/types/auth.t
 import ipcRendererWrapper from './ipcRendererWrapper'
 import { SerializedError } from '@shared/errors/serializedError'
 import { PoeLeagueRecordDtoResponse } from '@shared/types/dtoResponse.types'
-import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
+import { PreprocessedNinjaFile } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 import { ProgressInfo } from 'electron-updater'
 import { AppUpdateStatus } from '@shared/types/electron.types'
@@ -103,8 +103,8 @@ export const api = {
 
 	getLeagues: (): Promise<PoeLeagueRecordDtoResponse> => ipcRendererWrapper.invoke('get-leagues'),
 
-	getNinjaCategory: (url: string): Promise<Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]> | SerializedError> =>
-		ipcRendererWrapper.invoke('get-ninja-category', url),
+	getNinjaData: (url: string): Promise<PreprocessedNinjaFile | SerializedError> =>
+		ipcRendererWrapper.invoke('get-ninja-data', url),
 
 	getOffers: (category: Category, league: string, timestamp: number): Promise<BulkyBazaarOfferDto[] | SerializedError> =>
 		ipcRendererWrapper.invoke('get-offers', category, league, timestamp),

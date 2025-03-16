@@ -15,6 +15,7 @@ interface ImportMetaEnv {
 	readonly VITE_APP_TITLE: string
 	readonly VITE_USER_AGENT: string
 	readonly VITE_MAIN_API_SERVER: string
+	readonly VITE_CLOUDFRONT_SERVER: string
 
 	readonly VITE_CLIENT_ID: string
 	readonly VITE_BASE_REDIRECT_URL: string

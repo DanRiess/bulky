@@ -18,7 +18,7 @@ import {
 } from './utility/oauth'
 import { SerializedError } from '@shared/errors/serializedError'
 import axios from 'axios'
-import { NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
+import { NinjaCurrencyDto, NinjaItemDto, PreprocessedNinjaFile } from '@shared/types/ninja.types'
 import { updateApp } from './utility/appUpdater'
 import { ClientDotTxt } from './utility/clientDotTxt'
 import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
@@ -179,9 +179,9 @@ app.whenReady().then(() => {
 	/**
 	 * Get a poe.ninja category.
 	 */
-	ipcMain.handle('get-ninja-category', async (_, url) => {
+	ipcMain.handle('get-ninja-data', async (_, url) => {
 		try {
-			const res = await axios.get<Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]>>(url)
+			const res = await axios.get<PreprocessedNinjaFile>(url)
 			return res.data
 		} catch (e) {
 			return new SerializedError(e)

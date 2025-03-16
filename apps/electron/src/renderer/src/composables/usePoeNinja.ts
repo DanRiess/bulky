@@ -1,20 +1,11 @@
-import {
-	NinjaPriceCollection,
-	NinjaItem,
-	NinjaPriceRecord,
-	NinjaCategory,
-	NinjaCurrencyDto,
-	NinjaItemDto,
-} from '@shared/types/ninja.types'
+import { NinjaPriceCollection, NinjaPriceRecord, NinjaCategory } from '@shared/types/ninja.types'
 import { MaybeRefOrGetter, Ref, ref, toValue, watch } from 'vue'
 import { useBulkyIdb } from './useBulkyIdb'
 import { Category } from '@shared/types/bulky.types'
-import { useApi } from '@web/api/useApi'
-import { BULKY_ID } from '@web/utility/typedId'
-import { nodeApi } from '@web/api/nodeApi'
 import { useConfigStore } from '@web/stores/configStore'
 import { isWatchable } from '@shared/types/utility.types'
 import { ApiStatus } from '@web/api/api.types'
+import { useNinjaStore } from '@web/stores/ninjaStore'
 
 const UPDATE_INTERVAL = 30 * 60 * 1000
 
@@ -23,6 +14,10 @@ const UPDATE_INTERVAL = 30 * 60 * 1000
  * Categories will be updated every 30 minutes if they are in use.
  */
 export function usePoeNinja(category: MaybeRefOrGetter<Category>) {
+	// STORES
+	const configStore = useConfigStore()
+
+	// STATE
 	const prices = ref<NinjaPriceRecord>(new Map())
 	const loadingStatus = ref<ApiStatus>('IDLE')
 
@@ -49,6 +44,28 @@ export function usePoeNinja(category: MaybeRefOrGetter<Category>) {
 			.then(() => (loadingStatus.value = 'SUCCESS'))
 			.catch(() => (loadingStatus.value = 'ERROR'))
 	}
+
+	// Update the state when the league changes.
+	watch(
+		() => configStore.config.league,
+		() => {
+			loadingStatus.value = 'PENDING'
+
+			updateStateVariables(prices, category)
+				.then(() => (loadingStatus.value = 'SUCCESS'))
+				.catch(() => (loadingStatus.value = 'ERROR'))
+		},
+		{ deep: true }
+	)
+
+	// Listen to the price update event and refresh the category.
+	window.addEventListener('ninja-idb-updated', () => {
+		loadingStatus.value = 'PENDING'
+
+		updateStateVariables(prices, category)
+			.then(() => (loadingStatus.value = 'SUCCESS'))
+			.catch(() => (loadingStatus.value = 'ERROR'))
+	})
 
 	return { prices, loadingStatus }
 }
@@ -114,61 +131,17 @@ async function updateNinjaCategoryPrices(categories: NinjaCategory | NinjaCatego
 			// Fetch the category from idb.
 			const priceCollection = await bulkyIdb.getPriceCollectionByCategory(category)
 
-			// Return the saved price block if the last snapshot is not older than 30 minutes
-			if (priceCollection && Date.now() - priceCollection.lastSnapshot < UPDATE_INTERVAL) return priceCollection
-
-			// Fetch the category from the poe.ninja API instead.
-			const request = useApi('ninjaRequest', nodeApi.getNinjaCategory)
-			await request.exec(category)
-
-			// If the request errors, return the saved price block (or undefined if it doesn't exist)
-			if (request.error.value || !request.data.value || typeof request.data.value === 'string') {
-				console.log({ ninjaError: request.error.value, category })
-				return priceCollection
+			// If the fetched price is older than UPDATE_INTERVAL, trigger a refetch.
+			// Avoiding duplicate refetches and fetches in case of nonexistent categories are handled in the store.
+			if (!priceCollection || Date.now() - priceCollection.lastSnapshot > UPDATE_INTERVAL) {
+				useNinjaStore().maybeTriggerDataUpdate(priceCollection?.lastSnapshot ?? 0)
 			}
 
-			const newpriceCollection = transformNinjaResponseToPriceCollection(request.data.value, category)
-			console.log({ newpriceCollection })
-
-			// Save the new data to idb.
-			await bulkyIdb.putPriceCollection(newpriceCollection)
-
-			return newpriceCollection
+			return priceCollection
 		})
 	)
 
 	return priceCollections.filter(Boolean)
-}
-
-/**
- * Consume a poe.ninja API response and transform it into a price collection.
- * This function can handle both the 'currency line' and 'item line' format.
- */
-function transformNinjaResponseToPriceCollection(
-	ninjaResponse: Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]>,
-	category: NinjaCategory
-) {
-	const configStore = useConfigStore()
-
-	const items = ninjaResponse.lines.map((line: NinjaCurrencyDto | NinjaItemDto) => {
-		// Narrow line type by checking for an exclusive property.
-		return {
-			id: BULKY_ID.generateTypedId<NinjaItem>(line.detailsId),
-			name: 'chaosEquivalent' in line ? line.currencyTypeName : line.name,
-			mapTier: !('chaosEquivalent' in line) && (category === 'Map' || category === 'UniqueMap') ? line.mapTier : undefined,
-			chaos: 'chaosEquivalent' in line ? line.chaosEquivalent : line.chaosValue,
-			tendency: 'chaosEquivalent' in line ? line.receiveSparkLine.totalChange : line.sparkline.totalChange,
-		}
-	})
-
-	const priceCollection: NinjaPriceCollection = {
-		category,
-		league: configStore.config.league,
-		lastSnapshot: Date.now(),
-		items,
-	}
-
-	return priceCollection
 }
 
 /**

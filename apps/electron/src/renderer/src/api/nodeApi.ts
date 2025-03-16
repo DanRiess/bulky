@@ -3,8 +3,7 @@
  */
 
 import { BulkyConfig } from '@shared/types/config.types'
-import { NinjaCategory, NinjaCurrencyDto, NinjaItemDto } from '@shared/types/ninja.types'
-import { useConfigStore } from '@web/stores/configStore'
+import { PreprocessedNinjaFile } from '@shared/types/ninja.types'
 import api from './api.wrapper'
 import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
 import { SignableTokenStructure } from '@shared/types/auth.types'
@@ -55,47 +54,22 @@ export const nodeApi = {
 		return window.api.writeConfig(config)
 	},
 
-	getNinjaCategory: async (category: NinjaCategory) => {
+	/**
+	 * Download pre-processed ninja data from the proxy.
+	 */
+	getNinjaData: async (league: string) => {
 		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-			let url: string
-			if (category === 'Essence') {
-				url = 'http://localhost:5174/src/mocks/ninjaEssence.json'
-			} else if (category === 'Scarab') {
-				url = 'http://localhost:5174/src/mocks/ninjaScarab.json'
-			} else if (category === 'Currency') {
-				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
-			} else if (category === 'DeliriumOrb') {
-				url = 'http://localhost:5174/src/mocks/ninjaDelirium.json'
-			} else if (category === 'Map') {
-				url = 'http://localhost:5174/src/mocks/ninjaMaps.json'
-			} else if (category === 'UniqueMap') {
-				url = 'http://localhost:5174/src/mocks/ninjaUniqueMaps.json'
-			} else if (category === 'Beast') {
-				url = 'http://localhost:5174/src/mocks/ninjaBeasts.json'
-			} else if (category === 'Fossil') {
-				url = 'http://localhost:5174/src/mocks/ninjaFossil.json'
-			} else if (category === 'Resonator') {
-				url = 'http://localhost:5174/src/mocks/ninjaResonator.json'
-			} else if (category === 'Artifact') {
-				url = 'http://localhost:5174/src/mocks/ninjaArtifact.json'
-			} else if (category === 'Fragment') {
-				url = 'http://localhost:5174/src/mocks/ninjaFragment.json'
-			} else {
-				url = 'http://localhost:5174/src/mocks/ninjaCurrency.json'
-			}
+			const url = 'http://localhost:5174/src/mocks/ninjaPreprocessed.json'
 			// The type cast is only here because return type of window.api functions
 			// is different than an axios response and it messes up other scripts.
-			return api.get(url) as unknown as Record<'lines', NinjaCurrencyDto[] | NinjaItemDto[]>
+			return api.get(url) as unknown as PreprocessedNinjaFile
 		}
 
-		const configStore = useConfigStore()
-
-		// Compute the url
-		const overview = category === 'Currency' || category === 'Fragment' ? 'currency' : 'item'
-		const url = `https://poe.ninja/api/data/${overview}overview?league=${configStore.config.league}&type=${category}`
+		// Compute the url. The + sign has to be escaped to %2B.
+		const url = `${import.meta.env.VITE_CLOUDFRONT_SERVER}/${league.replace(/\s/g, '%2B')}.json`
 
 		// Fetch in node main to avoid Cors errors.
-		return window.api.getNinjaCategory(url)
+		return window.api.getNinjaData(url)
 	},
 
 	getOffers: async (category: Category, league: string, timestamp: number) => {

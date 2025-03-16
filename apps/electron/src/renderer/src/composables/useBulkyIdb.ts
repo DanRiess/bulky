@@ -234,6 +234,29 @@ export function useBulkyIdb() {
 	}
 
 	/**
+	 * Add a new price item to the price store
+	 */
+	async function putPriceCollections(priceCollections: NinjaPriceCollection[]) {
+		let db: IDBPDatabase<BulkyDB> | undefined
+
+		try {
+			db = await initDB()
+			const tx = db.transaction('ninja_price', 'readwrite')
+			const store = tx.objectStore('ninja_price')
+
+			for (const collection of priceCollections) {
+				await store.put(deepToRaw(collection))
+			}
+
+			await tx.done
+		} catch (e) {
+			console.log(e)
+		} finally {
+			db?.close()
+		}
+	}
+
+	/**
 	 * Get prices for a category
 	 */
 	async function getPriceCollectionByCategory(category: NinjaCategory) {
@@ -347,6 +370,7 @@ export function useBulkyIdb() {
 		getItemsByStashTab,
 		deleteItems,
 		putPriceCollection,
+		putPriceCollections,
 		getPriceCollectionByCategory,
 		putItemOverride,
 		getItemOverrideByCategory,

@@ -15,7 +15,6 @@ import { brotliCompressSync } from 'zlib'
  * Private function - MUST NOT be exposed through an API.
  */
 export async function updateNinjaData() {
-	console.log('update invoked')
 	let leagues: string[] = []
 
 	// Get current leagues and filter them.
