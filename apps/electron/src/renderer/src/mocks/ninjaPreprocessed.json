@@ -1,0 +1,5435 @@
+[
+	{
+		"category": "Currency",
+		"items": [
+			[
+				"Mirror of Kalandra",
+				158287.33306,
+				null
+			],
+			[
+				"Hinekora's Lock",
+				36676.33327,
+				null
+			],
+			[
+				"Mirror Shard",
+				7721.33332,
+				null
+			],
+			[
+				"Reflecting Mist",
+				1930.33333,
+				null
+			],
+			[
+				"Veiled Orb",
+				1737.299997,
+				null
+			],
+			[
+				"Tainted Divine Teardrop",
+				1536.54533068,
+				null
+			],
+			[
+				"Fracturing Orb",
+				1447.7499975,
+				null
+			],
+			[
+				"Awakener's Orb",
+				1177.5033313,
+				null
+			],
+			[
+				"Blessing of Chayula",
+				965.166665,
+				null
+			],
+			[
+				"Orb of Dominance",
+				675.6166655,
+				null
+			],
+			[
+				"Hunter's Exalted Orb",
+				426.60366593,
+				null
+			],
+			[
+				"Crusader's Exalted Orb",
+				405.3699993,
+				null
+			],
+			[
+				"Tailoring Orb",
+				386.066666,
+				null
+			],
+			[
+				"Warlord's Exalted Orb",
+				366.7633327,
+				null
+			],
+			[
+				"Redeemer's Exalted Orb",
+				312.71399946,
+				null
+			],
+			[
+				"Orb of Conflict",
+				193.033333,
+				null
+			],
+			[
+				"Divine Orb",
+				193.033333,
+				null
+			],
+			[
+				"Tempering Orb",
+				156.35699973,
+				null
+			],
+			[
+				"Exceptional Eldritch Ember",
+				156.3,
+				null
+			],
+			[
+				"Blessing of Xoph",
+				140,
+				null
+			],
+			[
+				"Sacred Crystallised Lifeforce",
+				139.02466662,
+				null
+			],
+			[
+				"Blessing of Tul",
+				100,
+				null
+			],
+			[
+				"Exceptional Eldritch Ichor",
+				94.63266116992,
+				null
+			],
+			[
+				"Blessing of Esh",
+				92.1,
+				null
+			],
+			[
+				"Eldritch Chaos Orb",
+				50,
+				null
+			],
+			[
+				"Eldritch Orb of Annulment",
+				46.2,
+				null
+			],
+			[
+				"Fracturing Shard",
+				40,
+				null
+			],
+			[
+				"Sacred Orb",
+				38.96066666,
+				null
+			],
+			[
+				"Maven's Chisel of Proliferation",
+				32.17286561111,
+				null
+			],
+			[
+				"Maven's Chisel of Scarabs",
+				30,
+				null
+			],
+			[
+				"Tainted Chaos Orb",
+				20.136318259524,
+				null
+			],
+			[
+				"Prismatic Catalyst",
+				19.86066666,
+				null
+			],
+			[
+				"Exalted Orb",
+				17.882994035786,
+				null
+			],
+			[
+				"Maven's Chisel of Avarice",
+				17.54866030303,
+				null
+			],
+			[
+				"Tainted Orb of Fusing",
+				14.84812397436,
+				null
+			],
+			[
+				"Fertile Catalyst",
+				10,
+				null
+			],
+			[
+				"Eldritch Exalted Orb",
+				10,
+				null
+			],
+			[
+				"Tainted Catalyst",
+				9.676898926984,
+				null
+			],
+			[
+				"Tainted Mythic Orb",
+				9.3,
+				null
+			],
+			[
+				"Grand Eldritch Ember",
+				8.77336498485,
+				null
+			],
+			[
+				"Ancient Orb",
+				7.42406198718,
+				null
+			],
+			[
+				"Comprehensive Scouting Report",
+				6.9,
+				null
+			],
+			[
+				"Orb of Annulment",
+				5.75778999495,
+				null
+			],
+			[
+				"Ritual Vessel",
+				5.1,
+				null
+			],
+			[
+				"Maven's Chisel of Divination",
+				5,
+				null
+			],
+			[
+				"Grand Eldritch Ichor",
+				3.86066666,
+				null
+			],
+			[
+				"Influenced Scouting Report",
+				3.86,
+				null
+			],
+			[
+				"Operative's Scouting Report",
+				3.6,
+				null
+			],
+			[
+				"Tainted Chromatic Orb",
+				3.250719396666,
+				null
+			],
+			[
+				"Otherworldly Scouting Report",
+				3.2,
+				null
+			],
+			[
+				"Singular Scouting Report",
+				3,
+				null
+			],
+			[
+				"Blighted Scouting Report",
+				2.5,
+				null
+			],
+			[
+				"Delirious Scouting Report",
+				2.2,
+				null
+			],
+			[
+				"Stacked Deck",
+				2.14460032963,
+				null
+			],
+			[
+				"Tempering Catalyst",
+				2,
+				null
+			],
+			[
+				"Unstable Catalyst",
+				2,
+				null
+			],
+			[
+				"Maven's Chisel of Procurement",
+				2,
+				null
+			],
+			[
+				"Tainted Armourer's Scrap",
+				1.919137396686,
+				null
+			],
+			[
+				"Harbinger's Orb",
+				1.482689030773,
+				null
+			],
+			[
+				"Gemcutter's Prism",
+				1.305291397746,
+				null
+			],
+			[
+				"Cartographer's Chisel",
+				1.053382898181,
+				null
+			],
+			[
+				"Turbulent Catalyst",
+				1,
+				null
+			],
+			[
+				"Abrasive Catalyst",
+				1,
+				null
+			],
+			[
+				"Intrinsic Catalyst",
+				1,
+				null
+			],
+			[
+				"Noxious Catalyst",
+				1,
+				null
+			],
+			[
+				"Accelerating Catalyst",
+				1,
+				null
+			],
+			[
+				"Tainted Blacksmith's Whetstone",
+				1,
+				null
+			],
+			[
+				"Greater Eldritch Ember",
+				1,
+				null
+			],
+			[
+				"Vaal Scouting Report",
+				1,
+				null
+			],
+			[
+				"Explorer's Scouting Report",
+				1,
+				null
+			],
+			[
+				"Imbued Catalyst",
+				0.966666,
+				null
+			],
+			[
+				"Tainted Jeweller's Orb",
+				0.818264,
+				null
+			],
+			[
+				"Vaal Orb",
+				0.684496198818,
+				null
+			],
+			[
+				"Engineer's Orb",
+				0.64280099889,
+				null
+			],
+			[
+				"Regal Orb",
+				0.55556,
+				null
+			],
+			[
+				"Glassblower's Bauble",
+				0.538176932404,
+				null
+			],
+			[
+				"Enkindling Orb",
+				0.5,
+				null
+			],
+			[
+				"Greater Eldritch Ichor",
+				0.33333,
+				null
+			],
+			[
+				"Orb of Scouring",
+				0.26831633287,
+				null
+			],
+			[
+				"Orb of Regret",
+				0.22777933294,
+				null
+			],
+			[
+				"Orb of Alteration",
+				0.22222,
+				null
+			],
+			[
+				"Orb of Unmaking",
+				0.224783733256,
+				null
+			],
+			[
+				"Blessed Orb",
+				0.143556,
+				null
+			],
+			[
+				"Orb of Horizons",
+				0.141855,
+				null
+			],
+			[
+				"Lesser Eldritch Ember",
+				0.14286,
+				null
+			],
+			[
+				"Lesser Eldritch Ichor",
+				0.113055766529,
+				null
+			],
+			[
+				"Orb of Fusing",
+				0.101149466492,
+				null
+			],
+			[
+				"Armourer's Scrap",
+				0.099472,
+				null
+			],
+			[
+				"Instilling Orb",
+				0.1,
+				null
+			],
+			[
+				"Chromatic Orb",
+				0.08545099991,
+				null
+			],
+			[
+				"Blacksmith's Whetstone",
+				0.06667,
+				null
+			],
+			[
+				"Jeweller's Orb",
+				0.05597966657,
+				null
+			],
+			[
+				"Orb of Chance",
+				0.03623,
+				null
+			],
+			[
+				"Orb of Augmentation",
+				0.035218,
+				null
+			],
+			[
+				"Vivid Crystallised Lifeforce",
+				0.0386066666,
+				null
+			],
+			[
+				"Orb of Alchemy",
+				0.03333,
+				null
+			],
+			[
+				"Portal Scroll",
+				0.03333,
+				null
+			],
+			[
+				"Orb of Binding",
+				0.03095,
+				null
+			],
+			[
+				"Wild Crystallised Lifeforce",
+				0.0193033333,
+				null
+			],
+			[
+				"Primal Crystallised Lifeforce",
+				0.02123366663,
+				null
+			],
+			[
+				"Orb of Transmutation",
+				0.009666,
+				null
+			],
+			[
+				"Scroll of Wisdom",
+				0.008101,
+				null
+			]
+		]
+	},
+	{
+		"category": "Fragment",
+		"items": [
+			[
+				"Voidborn Reliquary Key",
+				839.69499855,
+				null
+			],
+			[
+				"Valdo's Puzzle Box",
+				200,
+				null
+			],
+			[
+				"An Audience With The King",
+				165.4,
+				null
+			],
+			[
+				"Devouring Fragment",
+				145.7,
+				null
+			],
+			[
+				"The Maven's Writ",
+				123.5,
+				null
+			],
+			[
+				"Chayula's Breachstone",
+				100.8,
+				null
+			],
+			[
+				"Sacred Blossom",
+				100,
+				null
+			],
+			[
+				"Reality Fragment",
+				100,
+				null
+			],
+			[
+				"Decaying Fragment",
+				60.868760177778,
+				null
+			],
+			[
+				"Dedication to the Goddess",
+				55,
+				null
+			],
+			[
+				"Fragment of Knowledge",
+				54.4,
+				null
+			],
+			[
+				"Fragment of Emptiness",
+				50,
+				null
+			],
+			[
+				"Einhar's Memory",
+				50,
+				null
+			],
+			[
+				"Tribute to the Goddess",
+				49,
+				null
+			],
+			[
+				"Blazing Fragment",
+				45,
+				null
+			],
+			[
+				"Fragment of Shape",
+				42.999998,
+				null
+			],
+			[
+				"Uul-Netol's Breachstone",
+				26.030696780952,
+				null
+			],
+			[
+				"Simulacrum",
+				21.013553540741,
+				null
+			],
+			[
+				"Fragment of Enslavement",
+				20,
+				null
+			],
+			[
+				"Fragment of Constriction",
+				20,
+				null
+			],
+			[
+				"Crescent Splinter",
+				20,
+				null
+			],
+			[
+				"Baran's Crest",
+				19.2,
+				null
+			],
+			[
+				"Fragment of Eradication",
+				18.8,
+				null
+			],
+			[
+				"Cosmic Fragment",
+				17.372613903334,
+				null
+			],
+			[
+				"Esh's Breachstone",
+				16.963383237374,
+				null
+			],
+			[
+				"Timeless Maraketh Emblem",
+				16.08546763889,
+				null
+			],
+			[
+				"Drox's Crest",
+				15.108546763889,
+				null
+			],
+			[
+				"Al-Hezmin's Crest",
+				15,
+				null
+			],
+			[
+				"Awakening Fragment",
+				15,
+				null
+			],
+			[
+				"Tul's Breachstone",
+				14.939249589744,
+				null
+			],
+			[
+				"Xoph's Breachstone",
+				14.4,
+				null
+			],
+			[
+				"Fragment of Purification",
+				14,
+				null
+			],
+			[
+				"Timeless Templar Emblem",
+				12.86953231111,
+				null
+			],
+			[
+				"Synthesising Fragment",
+				11.35422064706,
+				null
+			],
+			[
+				"Mortal Ignorance",
+				10,
+				null
+			],
+			[
+				"Veritania's Crest",
+				7.1,
+				null
+			],
+			[
+				"Mortal Rage",
+				6,
+				null
+			],
+			[
+				"Mortal Hope",
+				6,
+				null
+			],
+			[
+				"Mortal Grief",
+				5,
+				null
+			],
+			[
+				"Alva's Memory",
+				5,
+				null
+			],
+			[
+				"Kirac's Memory",
+				4,
+				null
+			],
+			[
+				"Niko's Memory",
+				3,
+				null
+			],
+			[
+				"Timeless Vaal Emblem",
+				2.6,
+				null
+			],
+			[
+				"Fragment of the Phoenix",
+				2.185713,
+				null
+			],
+			[
+				"Sacrifice at Midnight",
+				2,
+				null
+			],
+			[
+				"Timeless Karui Emblem",
+				2,
+				null
+			],
+			[
+				"Timeless Eternal Emblem",
+				2,
+				null
+			],
+			[
+				"Timeless Karui Splinter",
+				2,
+				null
+			],
+			[
+				"Fragment of the Hydra",
+				1.771426,
+				null
+			],
+			[
+				"Fragment of the Chimera",
+				1.64,
+				null
+			],
+			[
+				"Sacrifice at Dawn",
+				1,
+				null
+			],
+			[
+				"Sacrifice at Noon",
+				1,
+				null
+			],
+			[
+				"Offering to the Goddess",
+				1,
+				null
+			],
+			[
+				"Splinter of Xoph",
+				1,
+				null
+			],
+			[
+				"Splinter of Tul",
+				1,
+				null
+			],
+			[
+				"Splinter of Esh",
+				1,
+				null
+			],
+			[
+				"Splinter of Uul-Netol",
+				1,
+				null
+			],
+			[
+				"Splinter of Chayula",
+				1,
+				null
+			],
+			[
+				"Divine Vessel",
+				1,
+				null
+			],
+			[
+				"Timeless Maraketh Splinter",
+				1,
+				null
+			],
+			[
+				"Timeless Templar Splinter",
+				1,
+				null
+			],
+			[
+				"Timeless Vaal Splinter",
+				1,
+				null
+			],
+			[
+				"Timeless Eternal Empire Splinter",
+				0.583335,
+				null
+			],
+			[
+				"Sacrifice at Dusk",
+				0.494,
+				null
+			],
+			[
+				"Simulacrum Splinter",
+				0.48024,
+				null
+			],
+			[
+				"Fragment of the Minotaur",
+				0.268568,
+				null
+			]
+		]
+	},
+	{
+		"category": "Currency",
+		"items": []
+	},
+	{
+		"category": "Essence",
+		"items": [
+			[
+				"Essence of Horror",
+				31.78,
+				null
+			],
+			[
+				"Essence of Delirium",
+				24.5,
+				null
+			],
+			[
+				"Essence of Hysteria",
+				20,
+				null
+			],
+			[
+				"Essence of Insanity",
+				20,
+				null
+			],
+			[
+				"Deafening Essence of Scorn",
+				5.78,
+				null
+			],
+			[
+				"Deafening Essence of Spite",
+				5,
+				null
+			],
+			[
+				"Deafening Essence of Envy",
+				4.89,
+				null
+			],
+			[
+				"Deafening Essence of Zeal",
+				4.54,
+				null
+			],
+			[
+				"Deafening Essence of Rage",
+				4.02,
+				null
+			],
+			[
+				"Deafening Essence of Loathing",
+				3.97,
+				null
+			],
+			[
+				"Deafening Essence of Woe",
+				3.97,
+				null
+			],
+			[
+				"Deafening Essence of Contempt",
+				3.47,
+				null
+			],
+			[
+				"Deafening Essence of Misery",
+				3,
+				null
+			],
+			[
+				"Deafening Essence of Wrath",
+				3,
+				null
+			],
+			[
+				"Remnant of Corruption",
+				3,
+				null
+			],
+			[
+				"Shrieking Essence of Spite",
+				2.9,
+				null
+			],
+			[
+				"Deafening Essence of Hatred",
+				2.66,
+				null
+			],
+			[
+				"Deafening Essence of Torment",
+				2.47,
+				null
+			],
+			[
+				"Shrieking Essence of Scorn",
+				2.3,
+				null
+			],
+			[
+				"Deafening Essence of Anger",
+				2.1,
+				null
+			],
+			[
+				"Deafening Essence of Anguish",
+				2,
+				null
+			],
+			[
+				"Deafening Essence of Doubt",
+				2,
+				null
+			],
+			[
+				"Deafening Essence of Dread",
+				2,
+				null
+			],
+			[
+				"Deafening Essence of Fear",
+				2,
+				null
+			],
+			[
+				"Deafening Essence of Greed",
+				2,
+				null
+			],
+			[
+				"Deafening Essence of Sorrow",
+				2,
+				null
+			],
+			[
+				"Deafening Essence of Suffering",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Anger",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Contempt",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Dread",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Envy",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Loathing",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Misery",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Rage",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Woe",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Zeal",
+				2,
+				null
+			],
+			[
+				"Wailing Essence of Zeal",
+				2,
+				null
+			],
+			[
+				"Shrieking Essence of Wrath",
+				1.9,
+				null
+			],
+			[
+				"Shrieking Essence of Greed",
+				1.76,
+				null
+			],
+			[
+				"Screaming Essence of Envy",
+				1.7,
+				null
+			],
+			[
+				"Wailing Essence of Fear",
+				1.6,
+				null
+			],
+			[
+				"Muttering Essence of Greed",
+				1.4,
+				null
+			],
+			[
+				"Weeping Essence of Wrath",
+				1.2,
+				null
+			],
+			[
+				"Muttering Essence of Anger",
+				1,
+				null
+			],
+			[
+				"Muttering Essence of Contempt",
+				1,
+				null
+			],
+			[
+				"Muttering Essence of Fear",
+				1,
+				null
+			],
+			[
+				"Muttering Essence of Hatred",
+				1,
+				null
+			],
+			[
+				"Muttering Essence of Sorrow",
+				1,
+				null
+			],
+			[
+				"Muttering Essence of Torment",
+				1,
+				null
+			],
+			[
+				"Muttering Essence of Woe",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Anger",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Anguish",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Contempt",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Doubt",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Dread",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Fear",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Greed",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Hatred",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Loathing",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Misery",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Rage",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Scorn",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Sorrow",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Spite",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Suffering",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Torment",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Woe",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Wrath",
+				1,
+				null
+			],
+			[
+				"Screaming Essence of Zeal",
+				1,
+				null
+			],
+			[
+				"Shrieking Essence of Anguish",
+				1,
+				null
+			],
+			[
+				"Shrieking Essence of Doubt",
+				1,
+				null
+			],
+			[
+				"Shrieking Essence of Fear",
+				1,
+				null
+			],
+			[
+				"Shrieking Essence of Hatred",
+				1,
+				null
+			],
+			[
+				"Shrieking Essence of Sorrow",
+				1,
+				null
+			],
+			[
+				"Shrieking Essence of Suffering",
+				1,
+				null
+			],
+			[
+				"Shrieking Essence of Torment",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Anger",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Anguish",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Contempt",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Doubt",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Greed",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Hatred",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Loathing",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Rage",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Sorrow",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Spite",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Suffering",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Torment",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Woe",
+				1,
+				null
+			],
+			[
+				"Wailing Essence of Wrath",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Anger",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Contempt",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Doubt",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Fear",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Greed",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Hatred",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Rage",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Sorrow",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Suffering",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Torment",
+				1,
+				null
+			],
+			[
+				"Weeping Essence of Woe",
+				1,
+				null
+			],
+			[
+				"Whispering Essence of Contempt",
+				1,
+				null
+			],
+			[
+				"Whispering Essence of Greed",
+				1,
+				null
+			],
+			[
+				"Whispering Essence of Hatred",
+				1,
+				null
+			],
+			[
+				"Whispering Essence of Woe",
+				1,
+				null
+			]
+		]
+	},
+	{
+		"category": "UniqueMap",
+		"items": [
+			[
+				"Doryani's Machinarium",
+				3050.56,
+				14
+			],
+			[
+				"Doryani's Machinarium",
+				2955.23,
+				16
+			],
+			[
+				"Infused Beachhead",
+				381.32,
+				16
+			],
+			[
+				"The Beachhead",
+				362.25,
+				10
+			],
+			[
+				"Vaults of Atziri",
+				80,
+				7
+			],
+			[
+				"Replica Cortex",
+				76.5,
+				11
+			],
+			[
+				"The Coward's Trial",
+				75,
+				10
+			],
+			[
+				"The Vinktar Square",
+				56,
+				8
+			],
+			[
+				"The Twilight Temple",
+				51,
+				15
+			],
+			[
+				"The Twilight Temple",
+				45.1,
+				7
+			],
+			[
+				"Cortex",
+				39.5,
+				11
+			],
+			[
+				"The Coward's Trial",
+				37.5,
+				16
+			],
+			[
+				"The Vinktar Square",
+				36.5,
+				5
+			],
+			[
+				"The Vinktar Square",
+				34.6,
+				16
+			],
+			[
+				"Replica Poorjoy's Asylum",
+				32.4,
+				14
+			],
+			[
+				"The Coward's Trial",
+				30,
+				7
+			],
+			[
+				"Vaults of Atziri",
+				30,
+				15
+			],
+			[
+				"The Vinktar Square",
+				30,
+				12
+			],
+			[
+				"The Coward's Trial",
+				27.5,
+				14
+			],
+			[
+				"Vaults of Atziri",
+				21,
+				4
+			],
+			[
+				"The Putrid Cloister",
+				20,
+				12
+			],
+			[
+				"Twisted Distant Memory",
+				20,
+				11
+			],
+			[
+				"The Twilight Temple",
+				19.2,
+				16
+			],
+			[
+				"The Twilight Temple",
+				18,
+				11
+			],
+			[
+				"Vaults of Atziri",
+				16,
+				11
+			],
+			[
+				"The Twilight Temple",
+				15.8,
+				4
+			],
+			[
+				"Rewritten Distant Memory",
+				15.4,
+				11
+			],
+			[
+				"Altered Distant Memory",
+				15,
+				11
+			],
+			[
+				"Augmented Distant Memory",
+				15,
+				11
+			],
+			[
+				"Vaults of Atziri",
+				15,
+				16
+			],
+			[
+				"The Putrid Cloister",
+				15,
+				16
+			],
+			[
+				"Death and Taxes",
+				13.1,
+				15
+			],
+			[
+				"The Beachhead",
+				10,
+				15
+			],
+			[
+				"Poorjoy's Asylum",
+				10,
+				14
+			],
+			[
+				"Replica Pillars of Arun",
+				10,
+				2
+			],
+			[
+				"The Beachhead",
+				9.8,
+				5
+			],
+			[
+				"Poorjoy's Asylum",
+				9.77,
+				16
+			],
+			[
+				"Pillars of Arun",
+				8.4,
+				13
+			],
+			[
+				"Caer Blaidd, Wolfpack's Den",
+				5.2,
+				15
+			],
+			[
+				"Death and Taxes",
+				5,
+				12
+			],
+			[
+				"Hallowed Ground",
+				5,
+				7
+			],
+			[
+				"Mao Kun",
+				5,
+				13
+			],
+			[
+				"Mao Kun",
+				5,
+				6
+			],
+			[
+				"Mao Kun",
+				5,
+				16
+			],
+			[
+				"Mao Kun",
+				4.3,
+				9
+			],
+			[
+				"Pillars of Arun",
+				4.2,
+				5
+			],
+			[
+				"Caer Blaidd, Wolfpack's Den",
+				4,
+				16
+			],
+			[
+				"Death and Taxes",
+				4,
+				16
+			],
+			[
+				"Acton's Nightmare",
+				3.6,
+				6
+			],
+			[
+				"Hallowed Ground",
+				3.5,
+				11
+			],
+			[
+				"Whakawairua Tuahu",
+				3.4,
+				6
+			],
+			[
+				"Hallowed Ground",
+				3.4,
+				4
+			],
+			[
+				"Hallowed Ground",
+				3.4,
+				15
+			],
+			[
+				"Hall of Grandmasters",
+				3.1,
+				16
+			],
+			[
+				"Oba's Cursed Trove",
+				3.1,
+				13
+			],
+			[
+				"Whakawairua Tuahu",
+				3,
+				3
+			],
+			[
+				"Olmec's Sanctum",
+				3,
+				12
+			],
+			[
+				"Acton's Nightmare",
+				3,
+				16
+			],
+			[
+				"Whakawairua Tuahu",
+				3,
+				14
+			],
+			[
+				"Maelström of Chaos",
+				3,
+				16
+			],
+			[
+				"Maelström of Chaos",
+				3,
+				12
+			],
+			[
+				"Whakawairua Tuahu",
+				3,
+				10
+			],
+			[
+				"Oba's Cursed Trove",
+				3,
+				16
+			],
+			[
+				"Pillars of Arun",
+				3,
+				2
+			],
+			[
+				"Pillars of Arun",
+				3,
+				9
+			],
+			[
+				"Whakawairua Tuahu",
+				3,
+				16
+			],
+			[
+				"Pillars of Arun",
+				3,
+				16
+			],
+			[
+				"Hallowed Ground",
+				3,
+				16
+			],
+			[
+				"Olmec's Sanctum",
+				3,
+				1
+			],
+			[
+				"Acton's Nightmare",
+				3,
+				3
+			],
+			[
+				"Oba's Cursed Trove",
+				3,
+				10
+			],
+			[
+				"Maelström of Chaos",
+				2.94,
+				5
+			],
+			[
+				"Acton's Nightmare",
+				2.9,
+				10
+			],
+			[
+				"Olmec's Sanctum",
+				2.6,
+				4
+			],
+			[
+				"Acton's Nightmare",
+				2.5,
+				14
+			],
+			[
+				"Olmec's Sanctum",
+				2,
+				8
+			],
+			[
+				"Olmec's Sanctum",
+				2,
+				16
+			],
+			[
+				"Maelström of Chaos",
+				1.4,
+				8
+			],
+			[
+				"Hall of Grandmasters",
+				1,
+				6
+			],
+			[
+				"Hall of Grandmasters",
+				1,
+				13
+			]
+		]
+	},
+	{
+		"category": "Map",
+		"items": [
+			[
+				"Colonnade Map",
+				190.66,
+				8
+			],
+			[
+				"Fortress Map",
+				95.88,
+				17
+			],
+			[
+				"Cemetery Map",
+				82.07,
+				7
+			],
+			[
+				"Ziggurat Map",
+				77.5,
+				17
+			],
+			[
+				"Sanctuary Map",
+				77,
+				17
+			],
+			[
+				"Abomination Map",
+				70,
+				17
+			],
+			[
+				"Courtyard Map",
+				70,
+				8
+			],
+			[
+				"Citadel Map",
+				60,
+				17
+			],
+			[
+				"Estuary Map",
+				37.07,
+				9
+			],
+			[
+				"Desert Map",
+				26.94,
+				11
+			],
+			[
+				"Cursed Crypt Map",
+				23.1,
+				10
+			],
+			[
+				"Racecourse Map",
+				22,
+				10
+			],
+			[
+				"Cold River Map",
+				17.88,
+				11
+			],
+			[
+				"Vaal Temple Map",
+				17.19,
+				16
+			],
+			[
+				"Port Map",
+				16.4,
+				14
+			],
+			[
+				"Crimson Township Map",
+				16,
+				14
+			],
+			[
+				"Courthouse Map",
+				15.6,
+				15
+			],
+			[
+				"Silo Map",
+				14.9,
+				11
+			],
+			[
+				"Vault Map",
+				14.8,
+				7
+			],
+			[
+				"Infested Valley Map",
+				13,
+				15
+			],
+			[
+				"Promenade Map",
+				11,
+				9
+			],
+			[
+				"Pit of the Chimera Map",
+				10,
+				16
+			],
+			[
+				"Lair of the Hydra Map",
+				10,
+				16
+			],
+			[
+				"Maze of the Minotaur Map",
+				9.3,
+				16
+			],
+			[
+				"City Square Map",
+				9.25,
+				11
+			],
+			[
+				"Spider Lair Map",
+				9.2,
+				12
+			],
+			[
+				"Jungle Valley Map",
+				9.2,
+				11
+			],
+			[
+				"Atoll Map",
+				9.12,
+				8
+			],
+			[
+				"Forge of the Phoenix Map",
+				9,
+				16
+			],
+			[
+				"Coral Ruins Map",
+				9,
+				12
+			],
+			[
+				"Moon Temple Map",
+				8,
+				7
+			],
+			[
+				"Pier Map",
+				7,
+				14
+			],
+			[
+				"Ramparts Map",
+				6.88,
+				11
+			],
+			[
+				"Necropolis Map",
+				6.85,
+				15
+			],
+			[
+				"Crater Map",
+				6.8,
+				14
+			],
+			[
+				"Mausoleum Map",
+				6.8,
+				7
+			],
+			[
+				"Colosseum Map",
+				6.2,
+				9
+			],
+			[
+				"Chateau Map",
+				6.2,
+				10
+			],
+			[
+				"Basilica Map",
+				6.12,
+				12
+			],
+			[
+				"Summit Map",
+				6,
+				8
+			],
+			[
+				"Bone Crypt Map",
+				5.8,
+				4
+			],
+			[
+				"Castle Ruins Map",
+				5.6,
+				9
+			],
+			[
+				"Graveyard Map",
+				5.6,
+				8
+			],
+			[
+				"Shore Map",
+				5.4,
+				9
+			],
+			[
+				"Strand Map",
+				5.4,
+				6
+			],
+			[
+				"Foundry Map",
+				5.3,
+				14
+			],
+			[
+				"Museum Map",
+				5.1,
+				15
+			],
+			[
+				"Terrace Map",
+				5,
+				15
+			],
+			[
+				"Beach Map",
+				5,
+				14
+			],
+			[
+				"Terrace Map",
+				5,
+				16
+			],
+			[
+				"City Square Map",
+				5,
+				15
+			],
+			[
+				"Dig Map",
+				5,
+				16
+			],
+			[
+				"Infested Valley Map",
+				5,
+				16
+			],
+			[
+				"Burial Chambers Map",
+				5,
+				16
+			],
+			[
+				"Courtyard Map",
+				5,
+				16
+			],
+			[
+				"Atoll Map",
+				5,
+				16
+			],
+			[
+				"Siege Map",
+				5,
+				16
+			],
+			[
+				"Moon Temple Map",
+				5,
+				16
+			],
+			[
+				"Ancient City Map",
+				4.72,
+				8
+			],
+			[
+				"Toxic Sewer Map",
+				4.72,
+				12
+			],
+			[
+				"Cold River Map",
+				4.7,
+				16
+			],
+			[
+				"Gardens Map",
+				4.7,
+				4
+			],
+			[
+				"Plateau Map",
+				4.6,
+				8
+			],
+			[
+				"Arcade Map",
+				4.6,
+				16
+			],
+			[
+				"Carcass Map",
+				4.6,
+				5
+			],
+			[
+				"Graveyard Map",
+				4.5,
+				16
+			],
+			[
+				"Bramble Valley Map",
+				4.5,
+				10
+			],
+			[
+				"Arachnid Tomb Map",
+				4.48,
+				11
+			],
+			[
+				"Residence Map",
+				4.46,
+				14
+			],
+			[
+				"Arachnid Tomb Map",
+				4.4,
+				16
+			],
+			[
+				"Underground River Map",
+				4.39,
+				15
+			],
+			[
+				"City Square Map",
+				4.31,
+				16
+			],
+			[
+				"Flooded Mine Map",
+				4.3,
+				16
+			],
+			[
+				"Crimson Township Map",
+				4.23,
+				16
+			],
+			[
+				"Haunted Mansion Map",
+				4.15,
+				12
+			],
+			[
+				"Dry Sea Map",
+				4.05,
+				16
+			],
+			[
+				"Malformation Map",
+				4.02,
+				13
+			],
+			[
+				"Crystal Ore Map",
+				4,
+				16
+			],
+			[
+				"Maze Map",
+				4,
+				14
+			],
+			[
+				"Courthouse Map",
+				4,
+				12
+			],
+			[
+				"Coves Map",
+				4,
+				14
+			],
+			[
+				"Pier Map",
+				4,
+				16
+			],
+			[
+				"Alleyways Map",
+				4,
+				16
+			],
+			[
+				"Malformation Map",
+				4,
+				16
+			],
+			[
+				"Haunted Mansion Map",
+				4,
+				16
+			],
+			[
+				"Cemetery Map",
+				4,
+				16
+			],
+			[
+				"Mausoleum Map",
+				4,
+				16
+			],
+			[
+				"Fields Map",
+				4,
+				16
+			],
+			[
+				"Dungeon Map",
+				4,
+				16
+			],
+			[
+				"Grotto Map",
+				4,
+				16
+			],
+			[
+				"Coves Map",
+				4,
+				16
+			],
+			[
+				"Strand Map",
+				4,
+				16
+			],
+			[
+				"Cursed Crypt Map",
+				4,
+				14
+			],
+			[
+				"Bramble Valley Map",
+				4,
+				14
+			],
+			[
+				"Necropolis Map",
+				4,
+				16
+			],
+			[
+				"Residence Map",
+				4,
+				16
+			],
+			[
+				"Jungle Valley Map",
+				4,
+				15
+			],
+			[
+				"Grotto Map",
+				4,
+				14
+			],
+			[
+				"Spider Forest Map",
+				4,
+				14
+			],
+			[
+				"Cold River Map",
+				4,
+				15
+			],
+			[
+				"Foundry Map",
+				4,
+				16
+			],
+			[
+				"Port Map",
+				4,
+				16
+			],
+			[
+				"Sulphur Vents Map",
+				4,
+				16
+			],
+			[
+				"Promenade Map",
+				4,
+				16
+			],
+			[
+				"Desert Spring Map",
+				4,
+				16
+			],
+			[
+				"Crater Map",
+				4,
+				16
+			],
+			[
+				"Fungal Hollow Map",
+				4,
+				14
+			],
+			[
+				"Museum Map",
+				4,
+				16
+			],
+			[
+				"Basilica Map",
+				4,
+				16
+			],
+			[
+				"Armoury Map",
+				4,
+				6
+			],
+			[
+				"Estuary Map",
+				4,
+				16
+			],
+			[
+				"Relic Chambers Map",
+				4,
+				16
+			],
+			[
+				"Shore Map",
+				4,
+				16
+			],
+			[
+				"Chateau Map",
+				4,
+				16
+			],
+			[
+				"Desert Map",
+				4,
+				16
+			],
+			[
+				"Mesa Map",
+				4,
+				15
+			],
+			[
+				"Cursed Crypt Map",
+				4,
+				16
+			],
+			[
+				"Bone Crypt Map",
+				4,
+				16
+			],
+			[
+				"Belfry Map",
+				4,
+				16
+			],
+			[
+				"Carcass Map",
+				4,
+				16
+			],
+			[
+				"Fungal Hollow Map",
+				4,
+				16
+			],
+			[
+				"Lava Lake Map",
+				4,
+				16
+			],
+			[
+				"Tropical Island Map",
+				4,
+				16
+			],
+			[
+				"Lair Map",
+				4,
+				16
+			],
+			[
+				"Vaal Pyramid Map",
+				4,
+				16
+			],
+			[
+				"Gardens Map",
+				4,
+				16
+			],
+			[
+				"Mesa Map",
+				3.98,
+				16
+			],
+			[
+				"Ashen Wood Map",
+				3.97,
+				16
+			],
+			[
+				"Ancient City Map",
+				3.95,
+				16
+			],
+			[
+				"Beach Map",
+				3.95,
+				16
+			],
+			[
+				"Castle Ruins Map",
+				3.95,
+				16
+			],
+			[
+				"Courthouse Map",
+				3.94,
+				16
+			],
+			[
+				"Silo Map",
+				3.94,
+				16
+			],
+			[
+				"Plateau Map",
+				3.93,
+				16
+			],
+			[
+				"Sepulchre Map",
+				3.91,
+				16
+			],
+			[
+				"Cage Map",
+				3.91,
+				16
+			],
+			[
+				"Forbidden Woods Map",
+				3.9,
+				16
+			],
+			[
+				"Defiled Cathedral Map",
+				3.8,
+				16
+			],
+			[
+				"Fungal Hollow Map",
+				3.8,
+				6
+			],
+			[
+				"Palace Map",
+				3.8,
+				12
+			],
+			[
+				"Mesa Map",
+				3.8,
+				7
+			],
+			[
+				"Tropical Island Map",
+				3.7,
+				9
+			],
+			[
+				"Mausoleum Map",
+				3.7,
+				15
+			],
+			[
+				"Scriptorium Map",
+				3.7,
+				4
+			],
+			[
+				"Dark Forest Map",
+				3.7,
+				5
+			],
+			[
+				"Lair Map",
+				3.7,
+				13
+			],
+			[
+				"Channel Map",
+				3.6,
+				10
+			],
+			[
+				"Relic Chambers Map",
+				3.6,
+				7
+			],
+			[
+				"Belfry Map",
+				3.6,
+				9
+			],
+			[
+				"Tropical Island Map",
+				3.6,
+				5
+			],
+			[
+				"Overgrown Shrine Map",
+				3.6,
+				16
+			],
+			[
+				"Glacier Map",
+				3.52,
+				16
+			],
+			[
+				"Pier Map",
+				3.5,
+				11
+			],
+			[
+				"Moon Temple Map",
+				3.5,
+				11
+			],
+			[
+				"Moon Temple Map",
+				3.5,
+				15
+			],
+			[
+				"Summit Map",
+				3.45,
+				16
+			],
+			[
+				"Armoury Map",
+				3.45,
+				16
+			],
+			[
+				"Temple Map",
+				3.4,
+				14
+			],
+			[
+				"Cells Map",
+				3.4,
+				7
+			],
+			[
+				"Forbidden Woods Map",
+				3.4,
+				10
+			],
+			[
+				"Carcass Map",
+				3.4,
+				13
+			],
+			[
+				"Dry Sea Map",
+				3.4,
+				6
+			],
+			[
+				"Maze Map",
+				3.36,
+				16
+			],
+			[
+				"Channel Map",
+				3.36,
+				16
+			],
+			[
+				"Underground Sea Map",
+				3.35,
+				13
+			],
+			[
+				"Cells Map",
+				3.33,
+				16
+			],
+			[
+				"Racecourse Map",
+				3.3,
+				14
+			],
+			[
+				"Ramparts Map",
+				3.27,
+				16
+			],
+			[
+				"Vault Map",
+				3.25,
+				15
+			],
+			[
+				"Infested Valley Map",
+				3.2,
+				12
+			],
+			[
+				"Spider Forest Map",
+				3.2,
+				10
+			],
+			[
+				"Lair Map",
+				3.2,
+				9
+			],
+			[
+				"Relic Chambers Map",
+				3.2,
+				15
+			],
+			[
+				"Dunes Map",
+				3.2,
+				5
+			],
+			[
+				"Bog Map",
+				3.2,
+				6
+			],
+			[
+				"Marshes Map",
+				3.2,
+				6
+			],
+			[
+				"Flooded Mine Map",
+				3.2,
+				5
+			],
+			[
+				"Bog Map",
+				3.14,
+				16
+			],
+			[
+				"Leyline Map",
+				3.1,
+				16
+			],
+			[
+				"Dark Forest Map",
+				3.07,
+				16
+			],
+			[
+				"Bramble Valley Map",
+				3.04,
+				16
+			],
+			[
+				"Lighthouse Map",
+				3,
+				16
+			],
+			[
+				"Orchard Map",
+				3,
+				16
+			],
+			[
+				"Coral Ruins Map",
+				3,
+				9
+			],
+			[
+				"Ashen Wood Map",
+				3,
+				13
+			],
+			[
+				"Caldera Map",
+				3,
+				13
+			],
+			[
+				"Alleyways Map",
+				3,
+				15
+			],
+			[
+				"Foundry Map",
+				3,
+				11
+			],
+			[
+				"Crater Map",
+				3,
+				11
+			],
+			[
+				"Geode Map",
+				3,
+				12
+			],
+			[
+				"Arcade Map",
+				3,
+				13
+			],
+			[
+				"Glacier Map",
+				3,
+				13
+			],
+			[
+				"Museum Map",
+				3,
+				12
+			],
+			[
+				"Desert Spring Map",
+				3,
+				13
+			],
+			[
+				"Cold River Map",
+				3,
+				8
+			],
+			[
+				"Racecourse Map",
+				3,
+				7
+			],
+			[
+				"Crimson Township Map",
+				3,
+				11
+			],
+			[
+				"Desert Map",
+				3,
+				8
+			],
+			[
+				"Grotto Map",
+				3,
+				11
+			],
+			[
+				"Port Map",
+				3,
+				11
+			],
+			[
+				"Lookout Map",
+				3,
+				12
+			],
+			[
+				"Pit Map",
+				3,
+				15
+			],
+			[
+				"Academy Map",
+				3,
+				15
+			],
+			[
+				"Academy Map",
+				3,
+				16
+			],
+			[
+				"Underground River Map",
+				3,
+				16
+			],
+			[
+				"Coral Ruins Map",
+				3,
+				16
+			],
+			[
+				"Pit Map",
+				3,
+				16
+			],
+			[
+				"Lava Lake Map",
+				3,
+				9
+			],
+			[
+				"Estuary Map",
+				3,
+				13
+			],
+			[
+				"Fungal Hollow Map",
+				3,
+				10
+			],
+			[
+				"Mesa Map",
+				3,
+				11
+			],
+			[
+				"Atoll Map",
+				3,
+				12
+			],
+			[
+				"Caldera Map",
+				3,
+				16
+			],
+			[
+				"Cage Map",
+				3,
+				6
+			],
+			[
+				"Spider Lair Map",
+				3,
+				16
+			],
+			[
+				"Palace Map",
+				3,
+				16
+			],
+			[
+				"Cemetery Map",
+				3,
+				11
+			],
+			[
+				"Geode Map",
+				3,
+				16
+			],
+			[
+				"Toxic Sewer Map",
+				3,
+				16
+			],
+			[
+				"Vaal Pyramid Map",
+				3,
+				15
+			],
+			[
+				"Bog Map",
+				3,
+				14
+			],
+			[
+				"Overgrown Shrine Map",
+				3,
+				10
+			],
+			[
+				"Flooded Mine Map",
+				3,
+				13
+			],
+			[
+				"Racecourse Map",
+				3,
+				16
+			],
+			[
+				"Underground Sea Map",
+				3,
+				16
+			],
+			[
+				"Dark Forest Map",
+				3,
+				13
+			],
+			[
+				"Spider Forest Map",
+				3,
+				16
+			],
+			[
+				"Dry Sea Map",
+				3,
+				14
+			],
+			[
+				"Strand Map",
+				3,
+				14
+			],
+			[
+				"Lava Lake Map",
+				3,
+				5
+			],
+			[
+				"Tropical Island Map",
+				3,
+				13
+			],
+			[
+				"Overgrown Shrine Map",
+				3,
+				6
+			],
+			[
+				"Dungeon Map",
+				3,
+				13
+			],
+			[
+				"Lava Lake Map",
+				3,
+				13
+			],
+			[
+				"Vault Map",
+				3,
+				16
+			],
+			[
+				"Colonnade Map",
+				3,
+				16
+			],
+			[
+				"Marshes Map",
+				3,
+				16
+			],
+			[
+				"Shore Map",
+				2.99,
+				6
+			],
+			[
+				"City Square Map",
+				2.99,
+				8
+			],
+			[
+				"Tropical Island Map",
+				2.99,
+				2
+			],
+			[
+				"Moon Temple Map",
+				2.99,
+				4
+			],
+			[
+				"Necropolis Map",
+				2.98,
+				12
+			],
+			[
+				"Silo Map",
+				2.98,
+				8
+			],
+			[
+				"Dunes Map",
+				2.98,
+				16
+			],
+			[
+				"Dunes Map",
+				2.97,
+				2
+			],
+			[
+				"Temple Map",
+				2.97,
+				16
+			],
+			[
+				"Sulphur Vents Map",
+				2.95,
+				10
+			],
+			[
+				"Jungle Valley Map",
+				2.94,
+				8
+			],
+			[
+				"Castle Ruins Map",
+				2.94,
+				6
+			],
+			[
+				"Jungle Valley Map",
+				2.94,
+				16
+			],
+			[
+				"Burial Chambers Map",
+				2.9,
+				13
+			],
+			[
+				"Dunes Map",
+				2.9,
+				9
+			],
+			[
+				"Carcass Map",
+				2.8,
+				9
+			],
+			[
+				"Flooded Mine Map",
+				2.8,
+				9
+			],
+			[
+				"Vaal Pyramid Map",
+				2.8,
+				11
+			],
+			[
+				"Marshes Map",
+				2.8,
+				14
+			],
+			[
+				"Dunes Map",
+				2.8,
+				13
+			],
+			[
+				"Armoury Map",
+				2.7,
+				14
+			],
+			[
+				"Lookout Map",
+				2.66,
+				16
+			],
+			[
+				"Ramparts Map",
+				2.6,
+				8
+			],
+			[
+				"Cells Map",
+				2.6,
+				11
+			],
+			[
+				"Marshes Map",
+				2.6,
+				10
+			],
+			[
+				"Plateau Map",
+				2.6,
+				12
+			],
+			[
+				"Silo Map",
+				2.6,
+				15
+			],
+			[
+				"Forbidden Woods Map",
+				2.56,
+				7
+			],
+			[
+				"Colosseum Map",
+				2.56,
+				16
+			],
+			[
+				"Gardens Map",
+				2.5,
+				8
+			],
+			[
+				"Dark Forest Map",
+				2.5,
+				9
+			],
+			[
+				"Defiled Cathedral Map",
+				2.5,
+				13
+			],
+			[
+				"Cells Map",
+				2.5,
+				15
+			],
+			[
+				"Lookout Map",
+				2.5,
+				15
+			],
+			[
+				"Geode Map",
+				2.4,
+				15
+			],
+			[
+				"Siege Map",
+				2.4,
+				12
+			],
+			[
+				"Strand Map",
+				2.4,
+				10
+			],
+			[
+				"Scriptorium Map",
+				2.4,
+				12
+			],
+			[
+				"Cage Map",
+				2.4,
+				14
+			],
+			[
+				"Gardens Map",
+				2.4,
+				12
+			],
+			[
+				"Cursed Crypt Map",
+				2.38,
+				7
+			],
+			[
+				"Arachnid Tomb Map",
+				2.38,
+				8
+			],
+			[
+				"Mausoleum Map",
+				2.3,
+				11
+			],
+			[
+				"Dig Map",
+				2.3,
+				13
+			],
+			[
+				"Bone Crypt Map",
+				2.3,
+				12
+			],
+			[
+				"Lair Map",
+				2.3,
+				5
+			],
+			[
+				"Siege Map",
+				2.2,
+				4
+			],
+			[
+				"Ramparts Map",
+				2.2,
+				15
+			],
+			[
+				"Forbidden Woods Map",
+				2.2,
+				14
+			],
+			[
+				"Cemetery Map",
+				2.2,
+				15
+			],
+			[
+				"Overgrown Shrine Map",
+				2.2,
+				14
+			],
+			[
+				"Haunted Mansion Map",
+				2.19,
+				9
+			],
+			[
+				"Promenade Map",
+				2.19,
+				6
+			],
+			[
+				"Spider Forest Map",
+				2.19,
+				7
+			],
+			[
+				"Vault Map",
+				2.1,
+				11
+			],
+			[
+				"Colosseum Map",
+				2.09,
+				6
+			],
+			[
+				"Summit Map",
+				2.09,
+				5
+			],
+			[
+				"Spider Lair Map",
+				2,
+				9
+			],
+			[
+				"Underground Sea Map",
+				2,
+				10
+			],
+			[
+				"Fields Map",
+				2,
+				5
+			],
+			[
+				"Estuary Map",
+				2,
+				6
+			],
+			[
+				"Palace Map",
+				2,
+				9
+			],
+			[
+				"Dig Map",
+				2,
+				10
+			],
+			[
+				"Mesa Map",
+				2,
+				4
+			],
+			[
+				"Belfry Map",
+				2,
+				6
+			],
+			[
+				"Defiled Cathedral Map",
+				2,
+				6
+			],
+			[
+				"Burial Chambers Map",
+				2,
+				10
+			],
+			[
+				"Channel Map",
+				2,
+				7
+			],
+			[
+				"Plateau Map",
+				2,
+				5
+			],
+			[
+				"Chateau Map",
+				2,
+				7
+			],
+			[
+				"Carcass Map",
+				2,
+				2
+			],
+			[
+				"Atoll Map",
+				2,
+				5
+			],
+			[
+				"Cemetery Map",
+				2,
+				4
+			],
+			[
+				"Basilica Map",
+				2,
+				9
+			],
+			[
+				"Toxic Sewer Map",
+				2,
+				9
+			],
+			[
+				"Malformation Map",
+				2,
+				10
+			],
+			[
+				"Courtyard Map",
+				2,
+				5
+			],
+			[
+				"Vault Map",
+				2,
+				4
+			],
+			[
+				"Armoury Map",
+				2,
+				3
+			],
+			[
+				"Bramble Valley Map",
+				2,
+				7
+			],
+			[
+				"Bog Map",
+				2,
+				3
+			],
+			[
+				"Fungal Hollow Map",
+				2,
+				3
+			],
+			[
+				"Dungeon Map",
+				2,
+				2
+			],
+			[
+				"Relic Chambers Map",
+				2,
+				4
+			],
+			[
+				"Leyline Map",
+				2,
+				10
+			],
+			[
+				"Siege Map",
+				2,
+				8
+			],
+			[
+				"Scriptorium Map",
+				2,
+				8
+			],
+			[
+				"Shore Map",
+				2,
+				13
+			],
+			[
+				"Bone Crypt Map",
+				2,
+				8
+			],
+			[
+				"Cage Map",
+				2,
+				10
+			],
+			[
+				"Relic Chambers Map",
+				2,
+				11
+			],
+			[
+				"Promenade Map",
+				2,
+				13
+			],
+			[
+				"Summit Map",
+				2,
+				12
+			],
+			[
+				"Colosseum Map",
+				2,
+				13
+			],
+			[
+				"Ancient City Map",
+				2,
+				12
+			],
+			[
+				"Colonnade Map",
+				2,
+				12
+			],
+			[
+				"Belfry Map",
+				2,
+				13
+			],
+			[
+				"Graveyard Map",
+				2,
+				12
+			],
+			[
+				"Leyline Map",
+				2,
+				13
+			],
+			[
+				"Armoury Map",
+				2,
+				10
+			],
+			[
+				"Dry Sea Map",
+				2,
+				10
+			],
+			[
+				"Arachnid Tomb Map",
+				2,
+				15
+			],
+			[
+				"Desert Map",
+				2,
+				15
+			],
+			[
+				"Dungeon Map",
+				2,
+				5
+			],
+			[
+				"Courtyard Map",
+				2,
+				12
+			],
+			[
+				"Channel Map",
+				2,
+				14
+			],
+			[
+				"Castle Ruins Map",
+				2,
+				13
+			],
+			[
+				"Fields Map",
+				2,
+				12
+			],
+			[
+				"Sulphur Vents Map",
+				2,
+				13
+			],
+			[
+				"Chateau Map",
+				2,
+				14
+			],
+			[
+				"Bog Map",
+				2,
+				10
+			],
+			[
+				"Dungeon Map",
+				2,
+				9
+			],
+			[
+				"Scriptorium Map",
+				2,
+				16
+			],
+			[
+				"Dark Forest Map",
+				1.9,
+				2
+			],
+			[
+				"Ancient City Map",
+				1.5,
+				5
+			],
+			[
+				"Dry Sea Map",
+				1.4,
+				3
+			],
+			[
+				"Mausoleum Map",
+				1.1,
+				4
+			],
+			[
+				"Graveyard Map",
+				1.04,
+				5
+			],
+			[
+				"Overgrown Shrine Map",
+				1,
+				3
+			],
+			[
+				"Bone Crypt Map",
+				1,
+				1
+			],
+			[
+				"Lava Lake Map",
+				1,
+				2
+			],
+			[
+				"Lair Map",
+				1,
+				2
+			],
+			[
+				"Colonnade Map",
+				1,
+				5
+			],
+			[
+				"Gardens Map",
+				1,
+				1
+			],
+			[
+				"Vaal Pyramid Map",
+				1,
+				4
+			],
+			[
+				"Strand Map",
+				1,
+				3
+			],
+			[
+				"Cage Map",
+				1,
+				3
+			],
+			[
+				"Scriptorium Map",
+				1,
+				1
+			],
+			[
+				"Siege Map",
+				1,
+				1
+			],
+			[
+				"Flooded Mine Map",
+				1,
+				2
+			],
+			[
+				"Marshes Map",
+				1,
+				3
+			],
+			[
+				"Cells Map",
+				1,
+				4
+			]
+		]
+	},
+	{
+		"category": "Fossil",
+		"items": [
+			[
+				"Faceted Fossil",
+				67.5,
+				null
+			],
+			[
+				"Hollow Fossil",
+				60,
+				null
+			],
+			[
+				"Glyphic Fossil",
+				40,
+				null
+			],
+			[
+				"Fractured Fossil",
+				19,
+				null
+			],
+			[
+				"Sanctified Fossil",
+				11.2,
+				null
+			],
+			[
+				"Shuddering Fossil",
+				8.09,
+				null
+			],
+			[
+				"Deft Fossil",
+				4.19,
+				null
+			],
+			[
+				"Corroded Fossil",
+				3.51,
+				null
+			],
+			[
+				"Dense Fossil",
+				3,
+				null
+			],
+			[
+				"Bloodstained Fossil",
+				3,
+				null
+			],
+			[
+				"Gilded Fossil",
+				2.22,
+				null
+			],
+			[
+				"Fundamental Fossil",
+				2.13,
+				null
+			],
+			[
+				"Bound Fossil",
+				2,
+				null
+			],
+			[
+				"Prismatic Fossil",
+				2,
+				null
+			],
+			[
+				"Serrated Fossil",
+				2,
+				null
+			],
+			[
+				"Tangled Fossil",
+				2,
+				null
+			],
+			[
+				"Aetheric Fossil",
+				1,
+				null
+			],
+			[
+				"Jagged Fossil",
+				1,
+				null
+			],
+			[
+				"Aberrant Fossil",
+				1,
+				null
+			],
+			[
+				"Scorched Fossil",
+				1,
+				null
+			],
+			[
+				"Frigid Fossil",
+				1,
+				null
+			],
+			[
+				"Metallic Fossil",
+				1,
+				null
+			],
+			[
+				"Pristine Fossil",
+				1,
+				null
+			],
+			[
+				"Lucent Fossil",
+				1,
+				null
+			],
+			[
+				"Opulent Fossil",
+				1,
+				null
+			]
+		]
+	},
+	{
+		"category": "Resonator",
+		"items": [
+			[
+				"Prime Chaotic Resonator",
+				40,
+				null
+			],
+			[
+				"Powerful Chaotic Resonator",
+				4,
+				null
+			],
+			[
+				"Potent Chaotic Resonator",
+				2,
+				null
+			],
+			[
+				"Primitive Chaotic Resonator",
+				1,
+				null
+			]
+		]
+	},
+	{
+		"category": "Scarab",
+		"items": [
+			[
+				"Horned Scarab of Preservation",
+				381.32,
+				null
+			],
+			[
+				"Ambush Scarab of Containment",
+				266.92,
+				null
+			],
+			[
+				"Horned Scarab of Glittering",
+				228.79,
+				null
+			],
+			[
+				"Horned Scarab of Awakening",
+				190.66,
+				null
+			],
+			[
+				"Ultimatum Scarab of Catalysing",
+				80,
+				null
+			],
+			[
+				"Horned Scarab of Bloodlines",
+				74,
+				null
+			],
+			[
+				"Harvest Scarab of Cornucopia",
+				60,
+				null
+			],
+			[
+				"Horned Scarab of Pandemonium",
+				56.1,
+				null
+			],
+			[
+				"Domination Scarab of Terrors",
+				46.91,
+				null
+			],
+			[
+				"Essence Scarab of Calcification",
+				35,
+				null
+			],
+			[
+				"Incursion Scarab of Timelines",
+				27.85,
+				null
+			],
+			[
+				"Harvest Scarab of Doubling",
+				21.18,
+				null
+			],
+			[
+				"Ambush Scarab of Discernment",
+				15.9,
+				null
+			],
+			[
+				"Cartography Scarab of Corruption",
+				12.71,
+				null
+			],
+			[
+				"Scarab of Wisps",
+				12.71,
+				null
+			],
+			[
+				"Blight Scarab of Blooming",
+				12.57,
+				null
+			],
+			[
+				"Harbinger Scarab of Regency",
+				11,
+				null
+			],
+			[
+				"Ultimatum Scarab of Dueling",
+				11,
+				null
+			],
+			[
+				"Harbinger Scarab of Warhoards",
+				9,
+				null
+			],
+			[
+				"Breach Scarab of Resonant Cascade",
+				9,
+				null
+			],
+			[
+				"Divination Scarab of Pilfering",
+				9,
+				null
+			],
+			[
+				"Legion Scarab of Eternal Conflict",
+				8.9,
+				null
+			],
+			[
+				"Cartography Scarab of the Multitude",
+				8.67,
+				null
+			],
+			[
+				"Ritual Scarab of Abundance",
+				7.03,
+				null
+			],
+			[
+				"Horned Scarab of Nemeses",
+				7,
+				null
+			],
+			[
+				"Breach Scarab of Snares",
+				6.55,
+				null
+			],
+			[
+				"Ambush Scarab",
+				6.26,
+				null
+			],
+			[
+				"Essence Scarab of Adaptation",
+				6,
+				null
+			],
+			[
+				"Titanic Scarab of Legend",
+				6,
+				null
+			],
+			[
+				"Delirium Scarab of Paranoia",
+				5,
+				null
+			],
+			[
+				"Cartography Scarab of Risk",
+				5,
+				null
+			],
+			[
+				"Divination Scarab of The Cloister",
+				5,
+				null
+			],
+			[
+				"Harbinger Scarab",
+				4,
+				null
+			],
+			[
+				"Anarchy Scarab of Gigantification",
+				3.48,
+				null
+			],
+			[
+				"Bestiary Scarab of the Herd",
+				3.04,
+				null
+			],
+			[
+				"Bestiary Scarab of Duplicating",
+				3,
+				null
+			],
+			[
+				"Horned Scarab of Tradition",
+				3,
+				null
+			],
+			[
+				"Scarab of Radiant Storms",
+				3,
+				null
+			],
+			[
+				"Blight Scarab of Invigoration",
+				3,
+				null
+			],
+			[
+				"Abyss Scarab of Profound Depth",
+				3,
+				null
+			],
+			[
+				"Titanic Scarab of Treasures",
+				3,
+				null
+			],
+			[
+				"Scarab of Monstrous Lineage",
+				2.22,
+				null
+			],
+			[
+				"Essence Scarab of Ascent",
+				2.09,
+				null
+			],
+			[
+				"Influencing Scarab of Conversion",
+				2,
+				null
+			],
+			[
+				"Scarab of Adversaries",
+				2,
+				null
+			],
+			[
+				"Ultimatum Scarab of Bribing",
+				2,
+				null
+			],
+			[
+				"Influencing Scarab of Hordes",
+				2,
+				null
+			],
+			[
+				"Blight Scarab of the Blightheart",
+				2,
+				null
+			],
+			[
+				"Domination Scarab of Evolution",
+				2,
+				null
+			],
+			[
+				"Divination Scarab of Plenty",
+				1.99,
+				null
+			],
+			[
+				"Cartography Scarab of Escalation",
+				1.87,
+				null
+			],
+			[
+				"Ultimatum Scarab of Inscription",
+				1.82,
+				null
+			],
+			[
+				"Breach Scarab",
+				1.62,
+				null
+			],
+			[
+				"Ritual Scarab of Selectiveness",
+				1.59,
+				null
+			],
+			[
+				"Legion Scarab of Officers",
+				1.56,
+				null
+			],
+			[
+				"Essence Scarab",
+				1.51,
+				null
+			],
+			[
+				"Delirium Scarab of Mania",
+				1.39,
+				null
+			],
+			[
+				"Breach Scarab of Lordship",
+				1.22,
+				null
+			],
+			[
+				"Domination Scarab",
+				1.22,
+				null
+			],
+			[
+				"Anarchy Scarab",
+				1,
+				null
+			],
+			[
+				"Betrayal Scarab of Intelligence",
+				1,
+				null
+			],
+			[
+				"Sulphite Scarab",
+				1,
+				null
+			],
+			[
+				"Essence Scarab of Stability",
+				1,
+				null
+			],
+			[
+				"Delirium Scarab of Neuroses",
+				1,
+				null
+			],
+			[
+				"Torment Scarab of Peculiarity",
+				1,
+				null
+			],
+			[
+				"Harvest Scarab",
+				1,
+				null
+			],
+			[
+				"Legion Scarab",
+				1,
+				null
+			],
+			[
+				"Expedition Scarab of Verisium Powder",
+				1,
+				null
+			],
+			[
+				"Beyond Scarab",
+				1,
+				null
+			],
+			[
+				"Incursion Scarab",
+				1,
+				null
+			],
+			[
+				"Legion Scarab of Command",
+				1,
+				null
+			],
+			[
+				"Blight Scarab",
+				1,
+				null
+			],
+			[
+				"Incursion Scarab of Invasion",
+				1,
+				null
+			],
+			[
+				"Ultimatum Scarab",
+				1,
+				null
+			],
+			[
+				"Breach Scarab of Splintering",
+				1,
+				null
+			],
+			[
+				"Ambush Scarab of Potency",
+				1,
+				null
+			],
+			[
+				"Sulphite Scarab of Fumes",
+				1,
+				null
+			],
+			[
+				"Abyss Scarab",
+				1,
+				null
+			],
+			[
+				"Delirium Scarab",
+				1,
+				null
+			],
+			[
+				"Torment Scarab",
+				1,
+				null
+			],
+			[
+				"Influencing Scarab of the Shaper",
+				1,
+				null
+			],
+			[
+				"Abyss Scarab of Multitudes",
+				1,
+				null
+			],
+			[
+				"Bestiary Scarab",
+				1,
+				null
+			],
+			[
+				"Expedition Scarab",
+				1,
+				null
+			],
+			[
+				"Beyond Scarab of the Invasion",
+				1,
+				null
+			],
+			[
+				"Ambush Scarab of Hidden Compartments",
+				1,
+				null
+			],
+			[
+				"Betrayal Scarab",
+				1,
+				null
+			],
+			[
+				"Influencing Scarab of the Elder",
+				1,
+				null
+			],
+			[
+				"Scarab of Hunted Traitors",
+				1,
+				null
+			],
+			[
+				"Abyss Scarab of Edifice",
+				1,
+				null
+			],
+			[
+				"Expedition Scarab of Runefinding",
+				1,
+				null
+			],
+			[
+				"Beyond Scarab of Haemophilia",
+				1,
+				null
+			],
+			[
+				"Anarchy Scarab of Partnership",
+				1,
+				null
+			],
+			[
+				"Delirium Scarab of Delusions",
+				1,
+				null
+			],
+			[
+				"Betrayal Scarab of Reinforcements",
+				1,
+				null
+			],
+			[
+				"Incursion Scarab of Champions",
+				1,
+				null
+			],
+			[
+				"Expedition Scarab of Archaeology",
+				1,
+				null
+			],
+			[
+				"Beyond Scarab of Resurgence",
+				1,
+				null
+			],
+			[
+				"Scarab of Stability",
+				1,
+				null
+			],
+			[
+				"Torment Scarab of Possession",
+				1,
+				null
+			],
+			[
+				"Scarab of Divinity",
+				1,
+				null
+			],
+			[
+				"Ritual Scarab of Wisps",
+				1,
+				null
+			],
+			[
+				"Harbinger Scarab of Obelisks",
+				1,
+				null
+			],
+			[
+				"Domination Scarab of Apparitions",
+				1,
+				null
+			],
+			[
+				"Titanic Scarab",
+				1,
+				null
+			],
+			[
+				"Scarab of Bisection",
+				1,
+				null
+			]
+		]
+	},
+	{
+		"category": "Beast",
+		"items": [
+			[
+				"War Hound",
+				3813.2,
+				null
+			],
+			[
+				"Vivid Vulture",
+				885.75,
+				null
+			],
+			[
+				"Craicic Chimeral",
+				305.06,
+				null
+			],
+			[
+				"Host Cobra",
+				288.09,
+				null
+			],
+			[
+				"Black Mórrigan",
+				285.99,
+				null
+			],
+			[
+				"Vivid Watcher",
+				190.66,
+				null
+			],
+			[
+				"Hairy Bonecruncher",
+				98.93,
+				null
+			],
+			[
+				"Wild Hellion Alpha",
+				80,
+				null
+			],
+			[
+				"Wild Bristle Matron",
+				75,
+				null
+			],
+			[
+				"Fenumus, First of the Night",
+				50,
+				null
+			],
+			[
+				"Craiceann, First of the Deep",
+				49,
+				null
+			],
+			[
+				"Farrul, First of the Plains",
+				42,
+				null
+			],
+			[
+				"Saqawal, First of the Sky",
+				35,
+				null
+			],
+			[
+				"Wild Brambleback",
+				21.5,
+				null
+			],
+			[
+				"Primal Cystcaller",
+				20,
+				null
+			],
+			[
+				"Fenumal Plagued Arachnid",
+				16,
+				null
+			],
+			[
+				"Feral Fowl",
+				15,
+				null
+			],
+			[
+				"Tunnelfiend",
+				15,
+				null
+			],
+			[
+				"Brooding Tarantula",
+				15,
+				null
+			],
+			[
+				"Vivid Abberarach",
+				8.5,
+				null
+			],
+			[
+				"Host Adder",
+				8.36,
+				null
+			],
+			[
+				"Shaggy Monstrosity",
+				7.31,
+				null
+			],
+			[
+				"Plumed Chimeral",
+				6.35,
+				null
+			],
+			[
+				"Infested Ape",
+				6.35,
+				null
+			],
+			[
+				"Elder-Blessed Goatman",
+				6.35,
+				null
+			],
+			[
+				"Glade Mamba",
+				6.12,
+				null
+			],
+			[
+				"Fenumal Hybrid Arachnid",
+				5.8,
+				null
+			],
+			[
+				"Virulent Spider",
+				5.63,
+				null
+			],
+			[
+				"Vicious Parasite",
+				5.63,
+				null
+			],
+			[
+				"Elder-Blessed Hellion",
+				5.63,
+				null
+			],
+			[
+				"Elder-Blessed Cobra",
+				5.54,
+				null
+			],
+			[
+				"Elder-Blessed Retch",
+				5.54,
+				null
+			],
+			[
+				"Elder-Blessed Rhoa",
+				5.45,
+				null
+			],
+			[
+				"Plated Parasite",
+				5.24,
+				null
+			],
+			[
+				"Fury Hound",
+				5.22,
+				null
+			],
+			[
+				"Mountain Hellion",
+				5.22,
+				null
+			],
+			[
+				"Dust Scrabbler",
+				5.2,
+				null
+			],
+			[
+				"Murk Runner",
+				5.17,
+				null
+			],
+			[
+				"Grazing Taurus",
+				5.13,
+				null
+			],
+			[
+				"Rooster Fiend",
+				5.04,
+				null
+			],
+			[
+				"Infested Rhoa",
+				5.04,
+				null
+			],
+			[
+				"Farric Tiger Alpha",
+				5,
+				null
+			],
+			[
+				"Farric Wolf Alpha",
+				5,
+				null
+			],
+			[
+				"Craicic Maw",
+				5,
+				null
+			],
+			[
+				"Talon Archer",
+				4.97,
+				null
+			],
+			[
+				"Gluttonous Gull",
+				4.9,
+				null
+			],
+			[
+				"Escaped Rhex",
+				4.77,
+				null
+			],
+			[
+				"Rotting Vulture",
+				4.77,
+				null
+			],
+			[
+				"Mindless Scavenger",
+				4.77,
+				null
+			],
+			[
+				"Sand Scorpion",
+				4.77,
+				null
+			],
+			[
+				"Infested Vulture",
+				4.77,
+				null
+			],
+			[
+				"Ruins Hellion",
+				4.77,
+				null
+			],
+			[
+				"Infested Serpent",
+				4.77,
+				null
+			],
+			[
+				"Carnage Chieftain",
+				4.71,
+				null
+			],
+			[
+				"Arakaali's Daughter",
+				4.71,
+				null
+			],
+			[
+				"Mountain Lynx",
+				4.69,
+				null
+			],
+			[
+				"Wild Rhex",
+				4.66,
+				null
+			],
+			[
+				"Ink Spinner",
+				4.62,
+				null
+			],
+			[
+				"Infested Tunnelfiend",
+				4.61,
+				null
+			],
+			[
+				"Alpine Shaman",
+				4.61,
+				null
+			],
+			[
+				"Bramble Cobra",
+				4.6,
+				null
+			],
+			[
+				"Corrupted Arach",
+				4.55,
+				null
+			],
+			[
+				"Soulless Watcher",
+				4.54,
+				null
+			],
+			[
+				"Skeletal Beast",
+				4.54,
+				null
+			],
+			[
+				"Hybrid Arachnid",
+				4.5,
+				null
+			],
+			[
+				"Merveil's Attendant",
+				4.5,
+				null
+			],
+			[
+				"Chrome-infused Chimeral",
+				4.5,
+				null
+			],
+			[
+				"Cursed Spawn",
+				4.5,
+				null
+			],
+			[
+				"Merveil's Chosen",
+				4.5,
+				null
+			],
+			[
+				"Leaping Spider",
+				4.47,
+				null
+			],
+			[
+				"Carrion Swarmer",
+				4.41,
+				null
+			],
+			[
+				"Scalding Arachnid",
+				4.4,
+				null
+			],
+			[
+				"Brine Vassal",
+				4.4,
+				null
+			],
+			[
+				"Dune Hellion",
+				4.4,
+				null
+			],
+			[
+				"Primal Crushclaw",
+				4.4,
+				null
+			],
+			[
+				"Sewage Crawler",
+				4.34,
+				null
+			],
+			[
+				"Chrome-touched Chimeral",
+				4.29,
+				null
+			],
+			[
+				"Bone Rhoa",
+				4.29,
+				null
+			],
+			[
+				"Chrome-infused Croaker",
+				4.24,
+				null
+			],
+			[
+				"Flame Hellion",
+				4.24,
+				null
+			],
+			[
+				"Host Chieftain",
+				4.24,
+				null
+			],
+			[
+				"Spitting Parasite",
+				4.24,
+				null
+			],
+			[
+				"Bone Cruncher",
+				4.22,
+				null
+			],
+			[
+				"Merveil's Favoured",
+				4.2,
+				null
+			],
+			[
+				"Infested Maw",
+				4.17,
+				null
+			],
+			[
+				"Bearded Devil",
+				4.14,
+				null
+			],
+			[
+				"Chrome-touched Croaker",
+				4.11,
+				null
+			],
+			[
+				"Plagued Arachnid",
+				4.11,
+				null
+			],
+			[
+				"Rhoa Mare",
+				4.11,
+				null
+			],
+			[
+				"Fenumal Devourer",
+				4.1,
+				null
+			],
+			[
+				"Waste Lurcher",
+				4.06,
+				null
+			],
+			[
+				"Blood Chieftain",
+				4.06,
+				null
+			],
+			[
+				"Night Adder",
+				4.06,
+				null
+			],
+			[
+				"Corrupted Rhoa",
+				4.06,
+				null
+			],
+			[
+				"Bearded Shaman",
+				4.05,
+				null
+			],
+			[
+				"Cave Skitterer",
+				4.05,
+				null
+			],
+			[
+				"Carnage Ape",
+				4.02,
+				null
+			],
+			[
+				"Alpine Devil",
+				4.02,
+				null
+			],
+			[
+				"Goatman",
+				4.02,
+				null
+			],
+			[
+				"Devourer",
+				4.02,
+				null
+			],
+			[
+				"Bearded Skycaller",
+				4.02,
+				null
+			],
+			[
+				"Craicic Vassal",
+				4,
+				null
+			],
+			[
+				"Farric Lynx Alpha",
+				4,
+				null
+			],
+			[
+				"Saqawine Vulture",
+				4,
+				null
+			],
+			[
+				"Craicic Sand Spitter",
+				4,
+				null
+			],
+			[
+				"Dread Primate",
+				4,
+				null
+			],
+			[
+				"Stygian Ape",
+				4,
+				null
+			],
+			[
+				"Hill Devil",
+				4,
+				null
+			],
+			[
+				"Chrome-infused Goliath",
+				4,
+				null
+			],
+			[
+				"Goatman Shaman",
+				4,
+				null
+			],
+			[
+				"Shackled Hellion",
+				4,
+				null
+			],
+			[
+				"Spindle Spider",
+				4,
+				null
+			],
+			[
+				"Enslaved Hellion",
+				4,
+				null
+			],
+			[
+				"Plummeting Ursa",
+				4,
+				null
+			],
+			[
+				"Chrome-touched Goliath",
+				4,
+				null
+			],
+			[
+				"Spine Serpent",
+				3.99,
+				null
+			],
+			[
+				"Carrion Burrower",
+				3.99,
+				null
+			],
+			[
+				"Carrion Queen",
+				3.98,
+				null
+			],
+			[
+				"Fighting Bull",
+				3.9,
+				null
+			],
+			[
+				"Infested Skitterer",
+				3.88,
+				null
+			],
+			[
+				"Infested Crab",
+				3.87,
+				null
+			],
+			[
+				"Granite Eater",
+				3.87,
+				null
+			],
+			[
+				"Noxious Tarantula",
+				3.87,
+				null
+			],
+			[
+				"Savage Crab",
+				3.87,
+				null
+			],
+			[
+				"Vaulting Croaker",
+				3.8,
+				null
+			],
+			[
+				"Pitbull Demon",
+				3.8,
+				null
+			],
+			[
+				"Mountain Hellion Alpha",
+				3.8,
+				null
+			],
+			[
+				"Avalanche Rider",
+				3.8,
+				null
+			],
+			[
+				"Merveil's Retainer",
+				3.8,
+				null
+			],
+			[
+				"Thicket Hulk",
+				3.8,
+				null
+			],
+			[
+				"Sulphurspawn",
+				3.74,
+				null
+			],
+			[
+				"Adolescent Rhex",
+				3.74,
+				null
+			],
+			[
+				"Fetid Maw",
+				3.74,
+				null
+			],
+			[
+				"Sand Leaper",
+				3.74,
+				null
+			],
+			[
+				"Infested Crawler",
+				3.74,
+				null
+			],
+			[
+				"Snow Wolf",
+				3.73,
+				null
+			],
+			[
+				"Freezing Wolf",
+				3.73,
+				null
+			],
+			[
+				"Purge Hound",
+				3.73,
+				null
+			],
+			[
+				"Blood Ape",
+				3.7,
+				null
+			],
+			[
+				"Singing Siren",
+				3.7,
+				null
+			],
+			[
+				"Merveil's Blessed",
+				3.7,
+				null
+			],
+			[
+				"Filth Maw",
+				3.7,
+				null
+			],
+			[
+				"Armour Cruncher",
+				3.7,
+				null
+			],
+			[
+				"Enraptured Crab",
+				3.7,
+				null
+			],
+			[
+				"Swarthy Mollusc",
+				3.62,
+				null
+			],
+			[
+				"Black Scorpion",
+				3.62,
+				null
+			],
+			[
+				"Dirt Scrabbler",
+				3.62,
+				null
+			],
+			[
+				"Bleached Crawler",
+				3.62,
+				null
+			],
+			[
+				"Tercel Rhoa",
+				3.62,
+				null
+			],
+			[
+				"Chimeric Croaker",
+				3.6,
+				null
+			],
+			[
+				"Enraptured Arachnid",
+				3.6,
+				null
+			],
+			[
+				"Predatory Scorpion",
+				3.6,
+				null
+			],
+			[
+				"Obsidian Eater",
+				3.6,
+				null
+			],
+			[
+				"Corrupted Beast",
+				3.6,
+				null
+			],
+			[
+				"Scum Crawler",
+				3.53,
+				null
+			],
+			[
+				"Fenumal Scorpion",
+				3.5,
+				null
+			],
+			[
+				"Webbed Spider",
+				3.5,
+				null
+			],
+			[
+				"Crustacean Sniper",
+				3.5,
+				null
+			],
+			[
+				"Colossus Crusher",
+				3.5,
+				null
+			],
+			[
+				"Enraptured Beast",
+				3.5,
+				null
+			],
+			[
+				"Maternal Rhex",
+				3.49,
+				null
+			],
+			[
+				"Venomous Spawn",
+				3.49,
+				null
+			],
+			[
+				"Feral Chimeral",
+				3.49,
+				null
+			],
+			[
+				"Forest Beast",
+				3.49,
+				null
+			],
+			[
+				"Sulphuric Scorpion",
+				3.49,
+				null
+			],
+			[
+				"Acid Slitherer",
+				3.49,
+				null
+			],
+			[
+				"Craicic Savage Crab",
+				3.4,
+				null
+			],
+			[
+				"Cave Beast",
+				3.37,
+				null
+			],
+			[
+				"Avian Retch",
+				3.34,
+				null
+			],
+			[
+				"Saqawine Rhex",
+				3.1,
+				null
+			],
+			[
+				"Primal Rhex Matriarch",
+				3,
+				null
+			],
+			[
+				"Slimy Nemesis",
+				2.4,
+				null
+			],
+			[
+				"Farric Frost Hellion Alpha",
+				2.2,
+				null
+			],
+			[
+				"Porcupine Goliath",
+				2.2,
+				null
+			],
+			[
+				"Farric Ursa",
+				2,
+				null
+			],
+			[
+				"Fenumal Queen",
+				2,
+				null
+			],
+			[
+				"Farric Goliath",
+				2,
+				null
+			],
+			[
+				"Farric Gargantuan",
+				2,
+				null
+			],
+			[
+				"Craicic Watcher",
+				2,
+				null
+			],
+			[
+				"Saqawine Chimeral",
+				2,
+				null
+			],
+			[
+				"Farric Magma Hound",
+				2,
+				null
+			],
+			[
+				"Farric Taurus",
+				2,
+				null
+			],
+			[
+				"Craicic Squid",
+				2,
+				null
+			],
+			[
+				"Craicic Shield Crab",
+				2,
+				null
+			],
+			[
+				"Fenumal Widow",
+				2,
+				null
+			],
+			[
+				"Saqawine Rhoa",
+				2,
+				null
+			],
+			[
+				"Saqawine Cobra",
+				2,
+				null
+			],
+			[
+				"Farric Pit Hound",
+				2,
+				null
+			],
+			[
+				"Farric Flame Hellion Alpha",
+				2,
+				null
+			],
+			[
+				"Farric Chieftain",
+				2,
+				null
+			],
+			[
+				"Saqawine Retch",
+				2,
+				null
+			],
+			[
+				"Craicic Spider Crab",
+				2,
+				null
+			],
+			[
+				"Farric Goatman",
+				2,
+				null
+			],
+			[
+				"Saqawine Blood Viper",
+				2,
+				null
+			],
+			[
+				"Fenumal Scrabbler",
+				2,
+				null
+			],
+			[
+				"Farric Ape",
+				0.83,
+				null
+			]
+		]
+	},
+	{
+		"category": "DeliriumOrb",
+		"items": [
+			[
+				"Skittering Delirium Orb",
+				25.07,
+				null
+			],
+			[
+				"Abyssal Delirium Orb",
+				20,
+				null
+			],
+			[
+				"Blighted Delirium Orb",
+				19.63,
+				null
+			],
+			[
+				"Singular Delirium Orb",
+				18,
+				null
+			],
+			[
+				"Diviner's Delirium Orb",
+				15.6,
+				null
+			],
+			[
+				"Fragmented Delirium Orb",
+				11,
+				null
+			],
+			[
+				"Thaumaturge's Delirium Orb",
+				9,
+				null
+			],
+			[
+				"Fine Delirium Orb",
+				9,
+				null
+			],
+			[
+				"Obscured Delirium Orb",
+				8.16,
+				null
+			],
+			[
+				"Fossilised Delirium Orb",
+				8,
+				null
+			],
+			[
+				"Foreboding Delirium Orb",
+				7.8,
+				null
+			],
+			[
+				"Whispering Delirium Orb",
+				6.6,
+				null
+			],
+			[
+				"Cartographer's Delirium Orb",
+				5,
+				null
+			],
+			[
+				"Jeweller's Delirium Orb",
+				5,
+				null
+			],
+			[
+				"Armoursmith's Delirium Orb",
+				5,
+				null
+			],
+			[
+				"Blacksmith's Delirium Orb",
+				5,
+				null
+			],
+			[
+				"Timeless Delirium Orb",
+				4.2,
+				null
+			]
+		]
+	},
+	{
+		"category": "Artifact",
+		"items": [
+			[
+				"Exotic Coinage",
+				4,
+				null
+			],
+			[
+				"Burial Medallion",
+				2,
+				null
+			],
+			[
+				"Scrap Metal",
+				1,
+				null
+			],
+			[
+				"Astragali",
+				0.33,
+				null
+			]
+		]
+	},
+	{
+		"category": "Fragment",
+		"items": []
+	}
+]
