@@ -2,30 +2,26 @@
  * Handle all 8 mod map offers through this store.
  */
 
-import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
-import { getKeys } from '@shared/types/utility.types'
-import { BULKY_CATEGORIES } from '@web/utility/category'
-import { BULKY_UUID } from '@web/utility/uuid'
-import { BulkyBazaarOfferDto, BulkyFilter } from '@shared/types/bulky.types'
-import { BazaarMap8Mod, BazaarMap8ModOffer } from './map.types'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { MAP_TIER, MAP_TYPE } from './map.const'
 import { BULKY_MAPS } from './map.transformers'
-import { BULKY_REGEX } from '@web/utility/regex'
 import { UserError } from '@shared/errors/userError'
-import { useApi } from '@web/api/useApi'
+
+import { BULKY_CATEGORIES } from '@web/utility/category'
+import { BULKY_REGEX } from '@web/utility/regex'
+import { BULKY_UUID } from '@web/utility/uuid'
 import { notEmpty } from '@web/utility/notEmpty'
-import { nodeApi } from '@web/api/nodeApi'
-import { useConfigStore } from '@web/stores/configStore'
+
+import { BazaarMap8Mod, BazaarMap8ModOffer } from './map.types'
+import { BulkyBazaarOfferDto, BulkyFilter } from '@shared/types/bulky.types'
+import { OfferRequestTimestamps } from '@shared/types/api.types'
+import { getKeys } from '@shared/types/utility.types'
 
 export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
-	// STORES
-	const configStore = useConfigStore()
-
 	// STATE
 	const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
-	const fetchRequest = useApi('fetch8modMaps', nodeApi.getOffers)
-	const lastFetched = ref(0)
+	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
 	 * Consume an map listing dto, type and validate it and add it to the listings.
@@ -213,33 +209,13 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		)
 	}
 
-	/**
-	 * Fetch all new map offers since the last fetch action.
-	 * Use a timestamp as a limiter for the API.
-	 */
-	async function refetchOffers() {
-		const refetchInterval = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
-
-		if (Date.now() - lastFetched.value < refetchInterval) return
-		if (fetchRequest.statusPending.value) return
-
-		await fetchRequest.exec('MAP_8_MOD', configStore.config.league, lastFetched.value)
-
-		// If the request threw an error or no data was obtained, just return.
-		if (fetchRequest.error.value || !fetchRequest.data.value) return
-
-		lastFetched.value = Date.now()
-		fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
-	}
-
 	return {
 		offers,
-		lastFetched,
+		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isMap8Mod,
-		refetchOffers,
 	}
 })
 

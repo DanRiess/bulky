@@ -3,7 +3,7 @@
 		1
 		<img src="/src/assets/png-icons/currency-divine.png" height="24" width="24" decoding="async" loading="lazy" />
 		=
-		{{ chaosPerDiv }}
+		{{ Math.round(chaosPerDiv) }}
 		<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 	</div>
 </template>

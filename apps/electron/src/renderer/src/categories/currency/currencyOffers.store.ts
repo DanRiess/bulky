@@ -2,28 +2,24 @@
  * Handle all currency offers through this store.
  */
 
-import { acceptHMRUpdate, defineStore } from 'pinia'
 import { ref } from 'vue'
-import { getKeys } from '@shared/types/utility.types'
-import { BULKY_CATEGORIES } from '@web/utility/category'
-import { BULKY_UUID } from '@web/utility/uuid'
-import { useApi } from '@web/api/useApi'
-import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
-import { BULKY_FACTORY } from '@web/utility/factory'
-import { notEmpty } from '@web/utility/notEmpty'
-import { BazaarCurrency, BazaarCurrencyOffer } from './currency.types'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { CURRENCY_TYPE } from './currency.const'
-import { useConfigStore } from '@web/stores/configStore'
-import { nodeApi } from '@web/api/nodeApi'
+
+import { BULKY_CATEGORIES } from '@web/utility/category'
+import { BULKY_FACTORY } from '@web/utility/factory'
+import { BULKY_UUID } from '@web/utility/uuid'
+import { notEmpty } from '@web/utility/notEmpty'
+
+import { BazaarCurrency, BazaarCurrencyOffer } from './currency.types'
+import { OfferRequestTimestamps } from '@shared/types/api.types'
+import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
+import { getKeys } from '@shared/types/utility.types'
 
 export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
-	// STORES
-	const configStore = useConfigStore()
-
 	// STATE
 	const offers = ref<Map<BazaarCurrencyOffer['uuid'], BazaarCurrencyOffer>>(new Map())
-	const fetchRequest = useApi('fetchCurrency', nodeApi.getOffers)
-	const lastFetched = ref(0)
+	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
 	 * Consume a currency listing dto, type and validate it and add it to the listings.
@@ -94,33 +90,13 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		)
 	}
 
-	/**
-	 * Fetch all new currency offers since the last fetch action.
-	 * Use a timestamp as a limiter for the API.
-	 */
-	async function refetchOffers() {
-		const refetchInterval = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
-
-		if (Date.now() - lastFetched.value < refetchInterval) return
-		if (fetchRequest.statusPending.value) return
-
-		await fetchRequest.exec('CURRENCY', configStore.config.league, lastFetched.value)
-
-		// If the request threw an error or no data was obtained, just return.
-		if (fetchRequest.error.value || !fetchRequest.data.value) return
-
-		lastFetched.value = Date.now()
-		fetchRequest.data.value.forEach(offerDto => putOffer(offerDto))
-	}
-
 	return {
 		offers,
-		lastFetched,
+		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isCurrencyItem,
-		refetchOffers,
 	}
 })
 

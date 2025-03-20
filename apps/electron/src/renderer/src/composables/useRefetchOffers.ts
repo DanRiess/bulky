@@ -1,21 +1,11 @@
 import { Category } from '@shared/types/bulky.types'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { BULKY_FACTORY } from '@web/utility/factory'
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, watch } from 'vue'
 import { useCountdownTimer } from './useCountdownTimer'
-import { useEssenceOfferStore } from '@web/categories/essence/essenceOffers.store'
-import { useBestiaryOfferStore } from '@web/categories/bestiary/bestiaryOffers.store'
-import { useCatalystOfferStore } from '@web/categories/catalyst/catalystOffers.store'
-import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.store'
-import { useDelveOfferStore } from '@web/categories/delve/delveOffers.store'
-import { useDeliriumOrbOfferStore } from '@web/categories/deliriumOrb/deliriumOrbOffer.store'
-import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
-import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
-import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
-import { useNormalMapOfferStore } from '@web/categories/map/normalMapOffers.store'
-import { useMap8ModOfferStore } from '@web/categories/map/map8ModOffers.store'
-import { useScarabOfferStore } from '@web/categories/scarab/scarabOffers.store'
 import { useConfigStore } from '@web/stores/configStore'
+import { useApi } from '@web/api/useApi'
+import { nodeApi } from '@web/api/nodeApi'
 
 const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000')
 
@@ -29,78 +19,124 @@ export function useRefetchOffers() {
 	const appStateStore = useAppStateStore()
 	const configStore = useConfigStore()
 
-	// INTERNAL STATE
-	const lastFetched = ref<Record<Category, number>>({
-		BESTIARY: computed(() => useBestiaryOfferStore().lastFetched) as unknown as number,
-		CATALYST: computed(() => useCatalystOfferStore().lastFetched) as unknown as number,
-		CURRENCY: computed(() => useCurrencyOfferStore().lastFetched) as unknown as number,
-		DELIRIUM_ORB: computed(() => useDeliriumOrbOfferStore().lastFetched) as unknown as number,
-		DELVE: computed(() => useDelveOfferStore().lastFetched) as unknown as number,
-		ESSENCE: computed(() => useEssenceOfferStore().lastFetched) as unknown as number,
-		EXPEDITION: computed(() => useExpeditionOfferStore().lastFetched) as unknown as number,
-		FRAGMENT: computed(() => useFragmentOfferStore().lastFetched) as unknown as number,
-		HEIST: computed(() => useHeistOfferStore().lastFetched) as unknown as number,
-		MAP: computed(() => useNormalMapOfferStore().lastFetched) as unknown as number,
-		MAP_8_MOD: computed(() => useMap8ModOfferStore().lastFetched) as unknown as number,
-		SCARAB: computed(() => useScarabOfferStore().lastFetched) as unknown as number,
-	})
+	// METHODS
 
 	/**
 	 * Interval function. Call this every x seconds. Define the interval in the .env file.
 	 * Refetch offers from the currently selected store.
 	 */
-	async function refetchOffers(category: Category) {
-		// If the app is inactive, don't refetch.
-		if (!appStateStore.appActive) return
-
+	async function refetchOffers(category: Category, league: string) {
 		// Fetch new offers.
 		const store = BULKY_FACTORY.getOfferStore(category)
-		if (store) await store.refetchOffers()
+		if (!store || !appStateStore.appActive) {
+			resetCountdown({
+				timeRemaining: REFETCH_INTERVAL / 1000,
+				cb: refetchOffers.bind(null, category, league),
+			})
+			return
+		}
+
+		// If timestamps for the current league don't exist, create them.
+		if (!store.requestTimestamps[league]) {
+			store.requestTimestamps[league] = { lastFetchAttempt: 0, lastSuccessfulFetch: 0 }
+		}
+
+		// Snapshot the timestamp so that no offers will be lost due to processing.
+		const now = Date.now()
+		const requestTimestamps = store.requestTimestamps[league]
+
+		const lastSuccessfulFetch = requestTimestamps?.lastSuccessfulFetch ?? 0
+		requestTimestamps.lastFetchAttempt = now
+
+		// For now, instantiate a new request each time this function is called.
+		// If there are problems with too many parallel requests, start working with abort controllers.
+		const request = useApi('refetchOffer', nodeApi.getOffers)
+		await request.exec(category, league, lastSuccessfulFetch)
+
+		// If the request threw an error or no data was obtained, reset the countdown.
+		if (request.error.value || !request.data.value) {
+			resetCountdown({
+				timeRemaining: REFETCH_INTERVAL / 1000,
+				cb: refetchOffers.bind(null, category, league),
+			})
+			return
+		}
+
+		requestTimestamps.lastSuccessfulFetch = now
+		request.data.value.forEach(offerDto => store.putOffer(offerDto))
 
 		// Call this function again after x seconds.
-		resetCountdown({ timeRemaining: REFETCH_INTERVAL / 1000, cb: refetchOffers.bind(null, category) })
+		resetCountdown({
+			timeRemaining: REFETCH_INTERVAL / 1000,
+			cb: refetchOffers.bind(null, category, league),
+		})
 	}
 
+	// COUNTDOWN
 	const { timeRemaining, resetCountdown } = useCountdownTimer(
 		REFETCH_INTERVAL / 1000,
-		refetchOffers.bind(null, appStateStore.selectedCategory)
+		refetchOffers.bind(null, appStateStore.selectedCategory, configStore.config.league)
 	)
 
+	// HOOKS
 	onMounted(() => {
+		/**
+		 * When the category changes, reset the countdown.
+		 * This watcher does not need to track leagues at the moment.
+		 * Leagues can only be changed in the settings where this composable cannot be instantiated.
+		 */
 		watch(
 			() => appStateStore.selectedCategory,
 			category => {
+				const store = BULKY_FACTORY.getOfferStore(category)
+				if (!store) return
+
+				const league = configStore.config.league
+				const lastFetchAttempt = store.requestTimestamps[league]?.lastFetchAttempt ?? 0
+
 				// Calculate time remaining
-				const timeRemaining = Date.now() - lastFetched.value[category]
+				const timeRemaining = Date.now() - lastFetchAttempt
 
 				// If time remaining is larger than the refetch interval, refetch immediately.
 				// Else, update the countdown with the calculated time remaining and the new category.
 				if (timeRemaining > REFETCH_INTERVAL) {
-					refetchOffers(category)
+					refetchOffers(category, league)
 				} else {
-					resetCountdown({ timeRemaining: Math.round(timeRemaining / 1000), cb: refetchOffers.bind(null, category) })
+					resetCountdown({
+						timeRemaining: Math.round((REFETCH_INTERVAL - timeRemaining) / 1000),
+						cb: refetchOffers.bind(null, category, league),
+					})
 				}
 			},
 			{ immediate: true }
 		)
 
+		/**
+		 * Whenever the autoRefetchOffers toggle changes, reset or reinitialize the countdown.
+		 */
 		watch(
 			() => configStore.config.autoRefetchOffers,
 			refetch => {
 				if (refetch === false) {
 					resetCountdown()
 				} else {
+					const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
+					if (!store) return
+
+					const league = configStore.config.league
+					const lastFetchAttempt = store.requestTimestamps[league]?.lastFetchAttempt ?? 0
+
 					// Calculate time remaining
-					const timeRemaining = Date.now() - lastFetched.value[appStateStore.selectedCategory]
+					const timeRemaining = Date.now() - lastFetchAttempt
 
 					// If time remaining is larger than the refetch interval, refetch immediately.
 					// Else, update the countdown with the calculated time remaining and the new category.
 					if (timeRemaining > REFETCH_INTERVAL) {
-						refetchOffers(appStateStore.selectedCategory)
+						refetchOffers(appStateStore.selectedCategory, league)
 					} else {
 						resetCountdown({
-							timeRemaining: Math.round(timeRemaining / 1000),
-							cb: refetchOffers.bind(null, appStateStore.selectedCategory),
+							timeRemaining: Math.round((REFETCH_INTERVAL - timeRemaining) / 1000),
+							cb: refetchOffers.bind(null, appStateStore.selectedCategory, league),
 						})
 					}
 				}
