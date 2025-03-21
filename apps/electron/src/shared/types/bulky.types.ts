@@ -280,6 +280,7 @@ export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> =
 export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
 	uuid: Uuid<BulkyBazaarOffer<T>>
 	category: T['category']
+	account: string
 	ign: string
 	league: string
 	chaosPerDiv: number

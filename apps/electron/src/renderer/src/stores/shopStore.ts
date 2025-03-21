@@ -71,7 +71,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			offer.active = timeSinceLastUpdate < OFFER_TTL
 
 			// Check if the project needs to be refreshed.
-			if (offer.autoSync && timeSinceLastUpdate > AUTO_SYNC_INTERVAL) {
+			if (offer.autoSync && timeSinceLastUpdate > AUTO_SYNC_INTERVAL && offer.league === configStore.config.league) {
 				console.log(`auto sync triggered for offer ${offer.category}`)
 				await recomputeOffer(offer.uuid)
 			}
@@ -169,9 +169,9 @@ export const useShopStore = defineStore('shopStore', () => {
 			items,
 			filter: options.filter,
 			lastUploaded: 0,
-			fullPrice: fullPrice?.value,
+			fullPrice: fullPrice.value,
 			active: false,
-			autoSync: true,
+			autoSync: fullPrice.value > 100,
 		}
 
 		return offer

@@ -5,7 +5,10 @@
 				<ImgCategoryAtom :category="offer.category" /> |
 				<PriceAtom label="" :price="divPrice" />
 			</div>
-			<span>Posted: {{ timeAgo }}</span>
+			<div class="offer-meta-info">
+				<div>Posted: {{ timeAgo }}</div>
+				<div :style="{ color: disabled ? 'var(--color-error)' : 'inherit' }">League: {{ offer.league }}</div>
+			</div>
 		</section>
 		<ShopOfferItemCollectionMolecule
 			:items="offer.items"
@@ -16,7 +19,7 @@
 			<div class="info-toggles">
 				<ActiveOrInactiveAtom :active="offer.active" />
 				<div>|</div>
-				<SvgIconAtom v-bind="autoSyncProps" @click="toggleAutoSync" />
+				<SvgIconAtom v-bind="autoSyncProps" @click="toggleAutoSync" :disabled="disabled" />
 				<TransitionAtom v-on="transitionHooks">
 					<div class="auto-sync-tooltip" v-if="showAutoSyncTooltip">
 						{{ offer.autoSync ? 'Auto Sync Enabled' : 'Auto Sync Disabled' }}
@@ -32,7 +35,7 @@
 					}"
 					:tooltip-props="tooltipProps"
 					background-color="dark"
-					:disabled="!authStore.isLoggedIn"
+					:disabled="!authStore.isLoggedIn || disabled"
 					@click="refreshOffer(offer.uuid)">
 					Refresh Offer
 				</SvgButtonWithPopupMolecule>
@@ -41,7 +44,7 @@
 					:svg-props="{ name: 'edit' }"
 					:tooltip-props="tooltipProps"
 					background-color="dark"
-					:disabled="!authStore.isLoggedIn"
+					:disabled="!authStore.isLoggedIn || disabled"
 					@click="
 						router.push({
 							name: 'EditOffer',
@@ -68,7 +71,7 @@
 
 <script setup lang="ts">
 import { BulkyShopOffer } from '@shared/types/bulky.types'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ShopOfferItemCollectionMolecule from './ShopOfferItemCollectionMolecule.vue'
 import ShopOfferConfigMolecule from './ShopOfferConfigMolecule.vue'
@@ -86,10 +89,12 @@ import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 import { useRouter } from 'vue-router'
 import ImgCategoryAtom from '../atoms/ImgCategoryAtom.vue'
 import { useAuthStore } from '@web/stores/authStore'
+import { useConfigStore } from '@web/stores/configStore'
 
 // STORES
 const shopStore = useShopStore()
 const authStore = useAuthStore()
+const configStore = useConfigStore()
 
 // MODELS
 const offer = defineModel<BulkyShopOffer>({ required: true })
@@ -130,6 +135,13 @@ const autoSyncProps = computed(() => {
 	} as const
 })
 
+/**
+ * Disables the offer if its league doesn't match the currently selected one.
+ */
+const disabled = computed(() => {
+	return offer.value.league !== configStore.config.league
+})
+
 // METHODS
 
 /**
@@ -137,6 +149,10 @@ const autoSyncProps = computed(() => {
  * The function also handles toggling a timed tooltip as an indicator.
  */
 async function toggleAutoSync() {
+	// Return if the offer value is less than 100c
+	if (offer.value.league !== configStore.config.league) return
+	if (offer.value.fullPrice < 100) return
+
 	// Clear the previous timeout
 	clearTimeout(autoSyncTimeout.value)
 
@@ -155,6 +171,14 @@ async function toggleAutoSync() {
 function refreshOffer(uuid: BulkyShopOffer['uuid']) {
 	shopStore.recomputeOffer(uuid, refreshState)
 }
+
+// HOOKS
+onMounted(() => {
+	// Turn off auto sync if the league doesn't match or the offer is worth less than 100c.
+	if (offer.value.league !== configStore.config.league || offer.value.fullPrice < 100) {
+		offer.value.autoSync = false
+	}
+})
 </script>
 
 <style scoped>
@@ -175,6 +199,12 @@ function refreshOffer(uuid: BulkyShopOffer['uuid']) {
 	display: flex;
 	height: 1.5rem;
 	gap: 0.5rem;
+}
+
+.offer-meta-info {
+	max-width: 13rem;
+	overflow-x: auto;
+	white-space: nowrap;
 }
 
 .footer-section {

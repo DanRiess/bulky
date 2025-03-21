@@ -29,6 +29,7 @@ export const useHeistOfferStore = defineStore('heistOfferStore', () => {
 		if (category !== 'HEIST') return
 
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarHeistOffer>(dto.uuid)
+		const account = dto.account
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
@@ -40,9 +41,17 @@ export const useHeistOfferStore = defineStore('heistOfferStore', () => {
 			.filter(notEmpty)
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
+		// Delete previous offers if they are from the same account.
+		for (const offer of offers.value.values()) {
+			if (offer.account === account && offer.league === league) {
+				offers.value.delete(offer.uuid)
+			}
+		}
+
 		offers.value.set(uuid, {
 			category,
 			uuid,
+			account,
 			ign,
 			league,
 			chaosPerDiv,

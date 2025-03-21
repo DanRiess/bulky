@@ -29,6 +29,7 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 		if (category !== 'SCARAB') return
 
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarScarabOffer>(dto.uuid)
+		const account = dto.account
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
@@ -40,8 +41,16 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 			.filter(notEmpty)
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
+		// Delete previous offers if they are from the same account.
+		for (const offer of offers.value.values()) {
+			if (offer.account === account && offer.league === league) {
+				offers.value.delete(offer.uuid)
+			}
+		}
+
 		offers.value.set(uuid, {
 			category,
+			account,
 			uuid,
 			ign,
 			league,

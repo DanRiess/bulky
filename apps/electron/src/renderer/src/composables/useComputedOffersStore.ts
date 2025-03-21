@@ -15,12 +15,14 @@ import { useCurrencyOfferStore } from '@web/categories/currency/currencyOffers.s
 import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
 import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
+import { useConfigStore } from '@web/stores/configStore'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
  */
 export function useComputedOffersStore() {
 	const appStateStore = useAppStateStore()
+	const configStore = useConfigStore()
 	const essenceOfferStore = useEssenceOfferStore()
 	const scarabOfferStore = useScarabOfferStore()
 	const deliriumOrbOfferStore = useDeliriumOrbOfferStore()
@@ -44,7 +46,15 @@ export function useComputedOffersStore() {
 	return computed<ComputedBulkyOfferStore>(() => {
 		// Get the correct store and its offers
 		const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
-		const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = store ? store.offers : new Map()
+		const originalOffers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = store ? store.offers : new Map()
+
+		// Filter offers by league.
+		// Don't delete in place, as that would screw up fetch logic.
+		const offers = new Map(
+			[...originalOffers].filter(([_, value]) => {
+				return value.league === configStore.config.league
+			})
+		)
 
 		/**
 		 * Calculates the base item price depending on category and optional filter.

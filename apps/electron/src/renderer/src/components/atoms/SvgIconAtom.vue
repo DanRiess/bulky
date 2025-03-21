@@ -5,7 +5,7 @@
 			v-show="timeout === 0"
 			:is="iconComponent"
 			class="a-svg-icon"
-			:class="{ active, rotate, timeout }"
+			:class="{ active, rotate, timeout, disabled }"
 			:width="width"
 			:height="height ?? width"
 			role="img">
@@ -43,6 +43,7 @@ const props = withDefaults(
 		width?: number | string
 		rotate?: boolean
 		timeout?: number
+		disabled?: boolean
 	}>(),
 	{
 		active: false,
@@ -53,6 +54,7 @@ const props = withDefaults(
 		height: '100%',
 		width: 24,
 		timeout: 0,
+		disabled: false,
 	}
 )
 

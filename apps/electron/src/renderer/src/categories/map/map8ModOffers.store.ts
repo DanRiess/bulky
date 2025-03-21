@@ -31,6 +31,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		if (category !== 'MAP_8_MOD') return
 
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarMap8ModOffer>(dto.uuid)
+		const account = dto.account
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
@@ -38,8 +39,16 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		const items = dto.items.map(item => BULKY_MAPS.generateBazaarMap8ModItemFromDto(item)).filter(notEmpty)
 		if (!items) return
 
+		// Delete previous offers if they are from the same account.
+		for (const offer of offers.value.values()) {
+			if (offer.account === account && offer.league === league) {
+				offers.value.delete(offer.uuid)
+			}
+		}
+
 		offers.value.set(uuid, {
 			category,
+			account,
 			uuid,
 			ign,
 			league,
