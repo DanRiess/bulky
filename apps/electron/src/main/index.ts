@@ -21,8 +21,8 @@ import axios from 'axios'
 import { NinjaCurrencyDto, NinjaItemDto, PreprocessedNinjaFile } from '@shared/types/ninja.types'
 import { updateApp } from './utility/appUpdater'
 import { ClientDotTxt } from './utility/clientDotTxt'
-import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
-import { getOffers, putOffer } from './ipcCallbacks/offers'
+import { BulkyBazaarOfferDto, BulkyDeleteOfferDto, BulkyShopOffer, Category } from '@shared/types/bulky.types'
+import { deleteOffer, getOffers, putOffer } from './ipcCallbacks/offers'
 import { SignableTokenStructure } from '@shared/types/auth.types'
 import { mainToRendererEvents } from './events/mainToRenderer'
 import activeWindow from 'active-win'
@@ -169,8 +169,22 @@ app.whenReady().then(() => {
 	 * Put an offer to the bulky server.
 	 */
 	ipcMain.handle('put-offer', async (_, offerDto: BulkyBazaarOfferDto, jwt: string) => {
+		console.log({ putoffer: offerDto })
 		try {
 			return await putOffer(offerDto, jwt)
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
+
+	/**
+	 * Delete an offer from the bulky server.
+	 */
+	ipcMain.handle('delete-offer', async (_, offerDto: BulkyDeleteOfferDto, jwt: string) => {
+		console.log({ deleteoffer: offerDto })
+		console.log('deleteOffer')
+		try {
+			return await deleteOffer(offerDto, jwt)
 		} catch (e) {
 			return new SerializedError(e)
 		}

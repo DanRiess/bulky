@@ -1,13 +1,6 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 import { LambdaPayloadEvent } from '../../types/lambda.types'
-import {
-	BatchWriteCommand,
-	BatchWriteCommandInput,
-	DeleteCommand,
-	DeleteCommandInput,
-	DynamoDBDocumentClient,
-	GetCommand,
-} from '@aws-sdk/lib-dynamodb'
+import { BatchWriteCommand, BatchWriteCommandInput, DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb'
 import { BulkyOfferDeleteQueryParams } from '../../types/offer.types'
 import { assertBulkyCategory } from '../../utility/assertBulkyCategory'
 import { validate } from 'uuid'
@@ -48,7 +41,6 @@ export async function deleteOffer(event: LambdaPayloadEvent) {
 
 		// Define primary and sort keys for the query.
 		const categoryLeague = `${queryParams.category}_${queryParams.league}`
-		const timestampUuid = `${tenMinutesAgo}_${queryParams.uuid}`
 
 		// Prepare the batch request
 		const deleteRequests = timestamps.map(timestamp => {

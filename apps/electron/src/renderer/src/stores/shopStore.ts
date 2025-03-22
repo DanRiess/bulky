@@ -1,5 +1,6 @@
 import {
 	BulkyBazaarOfferDto,
+	BulkyDeleteOfferDto,
 	BulkyShopItem,
 	BulkyShopItemRecord,
 	BulkyShopOffer,
@@ -65,7 +66,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			// Define flags for deciding whether the offer has changed and needs to be put into IDB.
 			const active = offer.active
 
-			const timeSinceLastUpdate = Date.now() - offer.lastUploaded
+			const timeSinceLastUpdate = Date.now() - (offer.timestamps[offer.timestamps.length - 1] ?? 0)
 
 			// Check the active property.
 			offer.active = timeSinceLastUpdate < OFFER_TTL
@@ -84,8 +85,6 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		setTimeout(regularUpdate, 30000)
 	}
-
-	// METHODS
 
 	/**
 	 * Set all initial state variables.
@@ -168,7 +167,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			league: configStore.config.league,
 			items,
 			filter: options.filter,
-			lastUploaded: 0,
+			timestamps: [],
 			fullPrice: fullPrice.value,
 			active: false,
 			autoSync: fullPrice.value > 100,
@@ -233,8 +232,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			offers.value.push(offer)
 		}
 
-		const offerDto = generateDto(offer)
-		console.log({ offerDto })
+		const offerDto = generatePutDto(offer)
 
 		if (!offerDto) {
 			console.log('could not generate dto')
@@ -247,7 +245,9 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		// If the upload succeeds, update some properties.
 		if (putRequest.data.value) {
-			offer.lastUploaded = offerDto.timestamp
+			// Push the timestamp that was used to create the access key on the server.
+			// May or may not be the same that was sent in the dto.
+			offer.timestamps.push(putRequest.data.value.timestamp)
 			offer.active = true
 		}
 
@@ -366,8 +366,8 @@ export const useShopStore = defineStore('shopStore', () => {
 		status && (status.value = 'SUCCESS')
 	}
 
-	async function deleteOffer(uuid: BulkyShopOffer['uuid']) {
-		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === uuid)
+	async function deleteOffer(offer: BulkyShopOffer) {
+		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === offer.uuid)
 
 		// TODO: handle error
 		if (offerIdx < 0) {
@@ -376,16 +376,33 @@ export const useShopStore = defineStore('shopStore', () => {
 		}
 
 		// Remove the offer from the public db.
+		// Don't await this, the response doesn't affect the rest of the logic.
+		const request = useApi('deleteOffer', nodeApi.deleteOffer)
+		request.exec(generateDeleteDto(offer))
 
 		// If the deletion succeeds, remove the offer from idb and the array
-		// TODO: fix condition
-		if (true) {
-			await bulkyIdb.deleteShopOffer(uuid, offers.value[offerIdx].league)
-			offers.value.splice(offerIdx, 1)
-		}
+		await bulkyIdb.deleteShopOffer(offer.uuid, offer.league)
+		offers.value.splice(offerIdx, 1)
 	}
 
-	function generateDto(offer: BulkyShopOffer): BulkyBazaarOfferDto | undefined {
+	/**
+	 * Extract the necessary properties for a delete request from an offer.
+	 * Necessary, because proxy objects cannot be transferred between electron contexts.
+	 */
+	function generateDeleteDto(offer: BulkyShopOffer): BulkyDeleteOfferDto {
+		return deepToRaw({
+			uuid: offer.uuid,
+			category: offer.category,
+			league: offer.league,
+			timestamps: offer.timestamps,
+		})
+	}
+
+	/**
+	 * Generate a new dto that will be saved to the database.
+	 * This must not be a proxy object, as those cannot be transferred between electron contexts.
+	 */
+	function generatePutDto(offer: BulkyShopOffer): BulkyBazaarOfferDto | undefined {
 		const account = authStore.profile?.name
 
 		if (!account) {

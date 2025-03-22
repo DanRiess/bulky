@@ -5,7 +5,7 @@
 import { BulkyConfig } from '@shared/types/config.types'
 import { PreprocessedNinjaFile } from '@shared/types/ninja.types'
 import api from './api.wrapper'
-import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
+import { BulkyBazaarOfferDto, BulkyDeleteOfferDto, Category } from '@shared/types/bulky.types'
 import { SignableTokenStructure } from '@shared/types/auth.types'
 import { useAuthStore } from '@web/stores/authStore'
 
@@ -109,10 +109,19 @@ export const nodeApi = {
 	},
 
 	putOffer: async (offerDto: BulkyBazaarOfferDto) => {
+		console.log({ putoffer: offerDto })
 		const jwt = await useAuthStore().getBulkyJwt()
 		if (!jwt) return
 
 		return window.api.putOffer(offerDto, jwt)
+	},
+
+	deleteOffer: async (offer: BulkyDeleteOfferDto) => {
+		console.log({ deleteoffer: offer })
+		const jwt = await useAuthStore().getBulkyJwt()
+		if (!jwt) return
+
+		return window.api.deleteOffer(offer, jwt)
 	},
 
 	getActiveWindow: async () => {

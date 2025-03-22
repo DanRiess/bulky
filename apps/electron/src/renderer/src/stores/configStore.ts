@@ -59,10 +59,6 @@ export const useConfigStore = defineStore('configStore', () => {
 		const configClone = cloneDeep(config.value)
 		const request = useApi('writeConfigRequest', nodeApi.writeConfig)
 		await request.exec(configClone)
-
-		if (request.error.value) {
-			console.log(request.error.value)
-		}
 		writeStatus = 'IDLE'
 	}
 
@@ -80,13 +76,6 @@ export const useConfigStore = defineStore('configStore', () => {
 			debounceWriteConfig()
 		},
 		{ deep: true }
-	)
-
-	watch(
-		() => config.value.league,
-		league => {
-			console.log(league)
-		}
 	)
 
 	return {

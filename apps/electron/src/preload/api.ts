@@ -9,7 +9,7 @@ import { PreprocessedNinjaFile } from '@shared/types/ninja.types'
 import { PoeStashTab } from '@shared/types/poe.types'
 import { ProgressInfo } from 'electron-updater'
 import { AppUpdateStatus } from '@shared/types/electron.types'
-import { BulkyBazaarOfferDto, Category } from '@shared/types/bulky.types'
+import { BulkyBazaarOfferDto, BulkyBazaarOfferDtoResponse, BulkyDeleteOfferDto, Category } from '@shared/types/bulky.types'
 import { BulkyApiResponse } from '@shared/types/api.types'
 import activeWindow from 'active-win'
 
@@ -109,6 +109,9 @@ export const api = {
 	getOffers: (category: Category, league: string, timestamp: number): Promise<BulkyBazaarOfferDto[] | SerializedError> =>
 		ipcRendererWrapper.invoke('get-offers', category, league, timestamp),
 
-	putOffer: (offerDto: BulkyBazaarOfferDto, jwt: string): Promise<BulkyApiResponse | SerializedError> =>
+	putOffer: (offerDto: BulkyBazaarOfferDto, jwt: string): Promise<BulkyBazaarOfferDtoResponse | SerializedError> =>
 		ipcRendererWrapper.invoke('put-offer', offerDto, jwt),
+
+	deleteOffer: (offer: BulkyDeleteOfferDto, jwt: string): Promise<BulkyApiResponse | SerializedError> =>
+		ipcRendererWrapper.invoke('delete-offer', offer, jwt),
 }

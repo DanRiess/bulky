@@ -61,7 +61,7 @@
 					:tooltip-props="tooltipProps"
 					background-color="dark"
 					:disabled="!authStore.isLoggedIn"
-					@click="shopStore.deleteOffer(offer.uuid)">
+					@click="shopStore.deleteOffer(offer)">
 					Delete Offer
 				</SvgButtonWithPopupMolecule>
 			</div>
@@ -114,7 +114,7 @@ const tooltipProps: TooltipPropsWithoutActive = {
 
 // COMPOSABLES
 const router = useRouter()
-const timeAgo = useTimeAgo(() => offer.value.lastUploaded)
+const timeAgo = useTimeAgo(() => offer.value.timestamps[offer.value.timestamps.length - 1] ?? 0)
 const divPrice = useChaosToDiv(() => offer.value.fullPrice, offer.value.chaosPerDiv)
 const transitionHooks = useGenericTransitionHooks({
 	duration: 0.15,

@@ -234,7 +234,7 @@ export type BulkyShopOffer<T extends BulkyShopItem = BulkyShopItem> = {
 	items: UnwrapRef<T>[]
 	filter?: ShopFilter<T>
 	fullPrice: number
-	lastUploaded: number
+	timestamps: number[]
 	active: boolean
 	autoSync: boolean
 }
@@ -470,6 +470,19 @@ export type BulkyBazaarOfferDto = {
 	minimumBuyout: number
 	fullBuyout?: boolean
 	items: BulkyBazaarItemDto[]
+}
+
+export type BulkyBazaarOfferDtoResponse = BulkyBazaarOfferDto & {
+	categoryLeague: string
+	timestampUuid: string
+	ttlTimestamp: number
+}
+
+export type BulkyDeleteOfferDto = {
+	uuid: string
+	category: string
+	league: string
+	timestamps: number[]
 }
 
 // UTILITY TYPES
