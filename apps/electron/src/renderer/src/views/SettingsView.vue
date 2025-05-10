@@ -27,5 +27,6 @@ const activeCategory = ref<SettingsCategory>('GENERAL')
 <style scoped>
 .settings-container {
 	border-radius: var(--border-radius-small);
+	position: relative;
 }
 </style>

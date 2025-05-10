@@ -12,6 +12,7 @@
 
 <style scoped>
 .l-single-column {
+	position: relative;
 	margin-top: 1rem;
 }
 </style>

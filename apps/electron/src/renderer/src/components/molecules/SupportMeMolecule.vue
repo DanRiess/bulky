@@ -32,6 +32,10 @@ function openKofi() {
 	--show-border: 1;
 }
 
+.top {
+	white-space: nowrap;
+}
+
 .bottom {
 	margin-top: 0.25rem;
 	padding-bottom: 0.2rem;

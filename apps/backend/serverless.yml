@@ -135,6 +135,8 @@ functions:
       - httpApi:
           path: /offer
           method: get
+          authorizer:
+            name: customAuthorizer
 
   offer_delete:
     handler: ${env:SOURCE_DIRECTORY, ''}endpoints/offers/deleteOffer.deleteOffer

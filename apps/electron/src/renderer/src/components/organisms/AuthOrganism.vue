@@ -1,12 +1,18 @@
 <template>
 	<div class="o-auth animated-gradient-background" data-b-override>
+		<AuthIdleMolecule
+			v-if="authStore.authorizationState === 'IDLE'"
+			@copy-sign-in-url="copySignInUrl"
+			@start-oauth-flow="startOauthFlow" />
 		<AuthPendingMolecule
-			v-if="authStore.authorizationState === 'PENDING' || authStore.authorizationState === 'IDLE'"
+			v-else-if="authStore.authorizationState === 'PENDING'"
 			@copy-sign-in-url="copySignInUrl"
 			@open-sign-in-page="openSignInPage" />
-		<AuthErrorMolecule
-			v-else-if="authStore.authorizationState === 'ERROR'"
-			@restart-token-request="emit('restartTokenRequest')">
+		<AuthSuccessMolecule
+			v-else-if="authStore.authorizationState === 'SUCCESS'"
+			:status="profileRequest.request.status.value"
+			@get-profile="getProfile" />
+		<AuthErrorMolecule v-else-if="authStore.authorizationState === 'ERROR'" @restart-token-request="restartTokenRequest">
 			<template #header>{{ authStore.serializedError.error.name }}</template>
 			<template #error-message>{{ authStore.serializedError.error.message }}</template>
 		</AuthErrorMolecule>
@@ -20,21 +26,44 @@ import { useAuthStore } from '@web/stores/authStore'
 import AuthErrorMolecule from '../molecules/AuthErrorMolecule.vue'
 import { SerializedError } from '@shared/errors/serializedError'
 import { onMounted, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { nodeApi } from '@web/api/nodeApi'
-
-// EMITS
-const emit = defineEmits<{
-	restartTokenRequest: []
-}>()
+import AuthIdleMolecule from '../molecules/AuthIdleMolecule.vue'
+import AuthSuccessMolecule from '../molecules/AuthSuccessMolecule.vue'
 
 // STORES
 const authStore = useAuthStore()
 
 // STATE
 const router = useRouter()
+const route = useRoute()
+const tokenRequest = authStore.tokenRequest()
+const profileRequest = authStore.getProfileRequest()
 
 // METHODS
+async function startOauthFlow() {
+	if (authStore.authorizationState === 'IDLE') {
+		const success = await tokenRequest.execute()
+
+		if (success) {
+			await profileRequest.execute()
+		}
+	}
+}
+
+async function restartTokenRequest() {
+	authStore.authorizationState = 'IDLE'
+	const success = await tokenRequest.execute()
+
+	if (success) {
+		await profileRequest.execute()
+	}
+}
+
+async function getProfile() {
+	profileRequest.execute()
+}
+
 async function openSignInPage() {
 	const request = useApi('openAuthCodeUrl', nodeApi.openAuthorizationCodeUrl)
 	await request.exec()
@@ -60,18 +89,20 @@ async function copySignInUrl() {
 
 // WATCHERS
 watch(
-	() => authStore.authorizationState,
-	state => {
-		if (state === 'SUCCESS') {
-			router.back()
+	() => authStore.isLoggedIn,
+	loggedIn => {
+		if (loggedIn) {
+			const redirectRoute = 'redirect' in route.query ? (route.query.redirect as string) : '/bazaar'
+			router.push(redirectRoute)
 		}
 	}
 )
 
 // HOOKS
 onMounted(() => {
-	if (authStore.authorizationState === 'SUCCESS') {
-		router.back()
+	if (authStore.isLoggedIn) {
+		const redirectRoute = 'redirect' in route.query ? (route.query.redirect as string) : '/bazaar'
+		router.push(redirectRoute)
 	}
 })
 </script>

@@ -1,4 +1,5 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
+import { authGuard } from './guards/authGuard'
 
 const routes: RouteRecordRaw[] = [
 	{
@@ -25,6 +26,7 @@ const routes: RouteRecordRaw[] = [
 		path: '/shop',
 		name: 'Shop',
 		component: () => import(/* webpackChunkName: "shop" */ '../views/ShopView.vue'),
+		beforeEnter: authGuard(),
 	},
 	{
 		path: '/shop/create',
@@ -41,6 +43,7 @@ const routes: RouteRecordRaw[] = [
 		path: '/bazaar',
 		name: 'Bazaar',
 		component: () => import(/* webpackChunkName: "bazaar" */ '../views/BazaarView.vue'),
+		beforeEnter: authGuard(),
 	},
 	{
 		path: '/settings',

@@ -23,6 +23,7 @@ export const useAuthStore = defineStore('authStore', () => {
 	const refreshTokenState = ref<ApiStatus>('IDLE')
 	const serializedError = ref<SerializedError>(new SerializedError())
 	const profile = ref<PoeProfile>()
+	const authInitialized = ref(false)
 
 	// GETTERS
 	const isLoggedIn = computed(() => {
@@ -49,12 +50,17 @@ export const useAuthStore = defineStore('authStore', () => {
 
 		// Get the access token.
 		const token = await getGGGAccessToken()
-		if (!token) return
+		if (!token) {
+			authInitialized.value = true
+			return
+		}
 
 		// Get the profile if it is not initialized yet.
 		if (!profile.value) {
 			profile.value = await getProfile()
 		}
+
+		authInitialized.value = true
 	}
 
 	/**
@@ -330,6 +336,7 @@ export const useAuthStore = defineStore('authStore', () => {
 		profile,
 		authorizationState,
 		serializedError,
+		authInitialized,
 		logout,
 		tokenRequest,
 		getGGGAccessToken,

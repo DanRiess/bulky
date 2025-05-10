@@ -1,6 +1,7 @@
 <template>
 	<div class="o-settings flow">
 		<Component :is="component" v-if="component" />
+		<div class="affiliation-notice">This product isn't affiliated with or endorsed by Grinding Gear Games in any way.</div>
 	</div>
 </template>
 
@@ -24,7 +25,13 @@ const component = computed(() => {
 </script>
 
 <style scoped>
-.o-config {
+.o-settings {
 	padding: 0.5rem;
+}
+
+.affiliation-notice {
+	position: absolute;
+	bottom: 0.5rem;
+	left: 1rem;
 }
 </style>

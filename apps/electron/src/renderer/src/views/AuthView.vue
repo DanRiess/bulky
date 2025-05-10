@@ -1,43 +1,21 @@
 <template>
 	<SingleColumnLayout>
-		<AuthOrganism @restart-token-request="restartTokenRequest" />
+		<AuthOrganism />
+		<div class="affiliation-notice">This product isn't affiliated with or endorsed by Grinding Gear Games in any way.</div>
 	</SingleColumnLayout>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import SingleColumnLayout from '@web/components/layouts/SingleColumnLayout.vue'
 import AuthOrganism from '@web/components/organisms/AuthOrganism.vue'
-import { useAuthStore } from '@web/stores/authStore'
-
-// STORES
-const authStore = useAuthStore()
-
-// STATE
-const tokenRequest = authStore.tokenRequest()
-const profileRequest = authStore.getProfileRequest()
-
-// METHODS
-async function restartTokenRequest() {
-	authStore.authorizationState = 'IDLE'
-	const success = await tokenRequest.execute()
-
-	if (success) {
-		await profileRequest.execute()
-	}
-}
-
-// HOOKS
-onMounted(async () => {
-	// start oauth flow on mounted
-	if (authStore.authorizationState === 'IDLE') {
-		const success = await tokenRequest.execute()
-
-		if (success) {
-			await profileRequest.execute()
-		}
-	}
-})
 </script>
 
-<style scoped></style>
+<style scoped>
+.affiliation-notice {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+</style>

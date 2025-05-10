@@ -6,9 +6,6 @@
 				<template v-else>Create New Offer</template>
 			</ButtonAtom>
 		</template>
-		<template v-else-if="!authStore.isLoggedIn">
-			<ButtonAtom @click="router.push({ name: 'Auth' })"> Sign in with your PoE account to create a new offer </ButtonAtom>
-		</template>
 	</div>
 </template>
 
