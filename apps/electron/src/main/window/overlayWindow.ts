@@ -56,6 +56,8 @@ export class OverlayWindow {
 				const activeWin = await activeWindow()
 				if (activeWin?.title !== import.meta.env.VITE_APP_TITLE) {
 					this.hideOverlay()
+					// This should hide the notification panel.
+					this._window.minimize()
 				}
 			} else if (focus === true) {
 				// If the overlay should be visible, focus it.

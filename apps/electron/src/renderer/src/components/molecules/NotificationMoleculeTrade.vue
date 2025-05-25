@@ -5,8 +5,17 @@
 				Trade request from <span class="highlight">{{ notification.ign }}</span>
 			</p>
 			<p>Category: {{ mtn.category }}</p>
+			<p>
+				League:
+				<span :class="{ error: notification.league !== configStore.config.league }">{{ notification.league }}</span>
+			</p>
 			<p v-for="trade in mtn.trades" :key="trade">{{ trade }}</p>
-			<PriceAtom :price="totalPrice" v-if="mtn.trades.length > 0 || mtn.trades[0] === 'Full Offer'" />
+			<PriceAtom
+				:price="totalPrice"
+				v-if="typeof totalPrice !== 'number' && (mtn.trades.length > 0 || mtn.trades[0] === 'Full Offer')" />
+			<p v-else-if="typeof totalPrice === 'number'">
+				Full Price: {{ totalPrice }} c. <span class="error">(League mismatch: incorrect chaos/div ratio!)</span>
+			</p>
 		</div>
 		<div class="buttons">
 			<div class="button-group">
@@ -54,12 +63,14 @@ import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
 import { sleepTimer } from '@web/utility/sleep'
 import { useChaosToDiv } from '@web/composables/useChaosToDiv'
-import { usePoeNinja } from '@web/composables/usePoeNinja'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import { decodeMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
+import { useNinjaStore } from '@web/stores/ninjaStore'
+import { useConfigStore } from '@web/stores/configStore'
 
 // STORES
 const notificationStore = useNotificationStore()
+const configStore = useConfigStore()
 
 // PROPS
 const props = defineProps<{
@@ -68,11 +79,13 @@ const props = defineProps<{
 }>()
 
 // STATE
+console.log(props.notification)
 const mtn = decodeMinifiedTradeNotification(props.notification.tradeData)
 
 // COMPOSABLES
-const { chaosPerDiv } = usePoeNinja('CURRENCY')
-const totalPrice = useChaosToDiv(mtn.fullPrice, chaosPerDiv)
+const { chaosPerDiv } = useNinjaStore()
+const totalPrice =
+	props.notification.league === configStore.config.league ? useChaosToDiv(mtn.fullPrice, chaosPerDiv) : mtn.fullPrice
 
 // METHODS
 async function chatBoxAction(command: 'invite' | 'tradewith' | 'kick') {
@@ -109,6 +122,10 @@ async function copyAndUseRegex() {
 
 .highlight {
 	color: var(--color-success);
+}
+
+.error {
+	color: var(--color-error);
 }
 
 .buttons {

@@ -60,6 +60,7 @@ function addnote() {
 		ign: 'CountSudoku',
 		// tradeData: '040560160128989%RX%12345',
 		tradeData: `1%4%AEAADwAAABJBmAAA%"!gen|f el|s rec" "m q.*1[1-9].%"`,
+		league: 'Standard',
 	})
 
 	notificationStore.addTrade(n)

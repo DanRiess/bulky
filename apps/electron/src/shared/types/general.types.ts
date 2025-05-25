@@ -1,6 +1,7 @@
 export type TradeNotification = {
 	notificationType: 'trade'
 	ign: string
+	league: string
 	tradeData: string
 	timestamp: number
 	inviteSent: boolean

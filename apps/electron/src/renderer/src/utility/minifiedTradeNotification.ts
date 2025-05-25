@@ -155,11 +155,13 @@ export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
 			const tierIdx = dv.getUint8(3)
 			const quantity = dv.getUint32(4)
 			const price = dv.getFloat32(8)
+			console.log({ typeIdx, secondaryTypeOption, tierIdx, quantity, price })
 
 			// Also calculate the full price for later.
 
 			// In case the full offer is requested, every value except price will be max.
-			if (typeIdx === 0xff && tierIdx === 0xff && quantity === 0xffff) {
+			if (typeIdx === 0xff && tierIdx === 0xf && quantity === 0xffff) {
+				console.log('full')
 				fullPrice += price
 				return 'Full Offer'
 			} else {

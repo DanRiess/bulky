@@ -12,15 +12,16 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 	/**
 	 * Create a trade notification.
 	 */
-	function createTradeNotification(options: { ign: string; tradeData: string }) {
+	function createTradeNotification(options: { ign: string; tradeData: string; league: string }) {
 		return ref<TradeNotification>({
 			notificationType: 'trade',
+			league: options.league,
 			ign: options.ign,
 			tradeData: options.tradeData,
 			timestamp: Date.now(),
 			timeout: undefined,
 			inviteSent: false,
-			show: forceHideTradeNotifications.value === true ? false : true,
+			show: !forceHideTradeNotifications.value,
 		})
 	}
 

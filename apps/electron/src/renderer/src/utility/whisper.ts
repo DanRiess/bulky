@@ -5,6 +5,7 @@ import { toValue } from 'vue'
 
 export function generateWhisperMessage(
 	category: Category,
+	league: string,
 	filter: BulkyFilter,
 	items: MaybeComputedRef<BulkyBazaarItem[]>,
 	price: MaybeComputedRef<TotalPrice>,
@@ -29,5 +30,5 @@ export function generateWhisperMessage(
 
 	return `Hi, I'd like to buy your ${itemText} for ${
 		toValue(price).divine > 0 ? Math.round(toValue(price).divine) + ' div ' : ''
-	}${Math.round(toValue(price).chaos)} chaos.`
+	}${Math.round(toValue(price).chaos)} chaos in ${league}.`
 }

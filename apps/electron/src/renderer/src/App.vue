@@ -90,9 +90,12 @@ if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
 	})
 
 	window.api.onSendNotification(dto => {
-		console.log({ notificationDto: dto })
 		if (dto.type === 'trade') {
-			const notification = notificationStore.createTradeNotification({ ign: dto.ign, tradeData: dto.message })
+			const notification = notificationStore.createTradeNotification({
+				ign: dto.ign,
+				tradeData: dto.message,
+				league: dto.league,
+			})
 			notificationStore.addTrade(notification)
 		}
 	})

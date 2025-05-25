@@ -24,16 +24,18 @@
 </template>
 
 <script setup lang="ts">
-import { generateWhisperMessage } from '@web/utility/whisper'
-import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
-import BazaarOfferMetadataMolecule from '../molecules/BazaarOfferMetadataMolecule.vue'
-import ButtonAtom from '../atoms/ButtonAtom.vue'
-import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
-import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 import { computed } from 'vue'
-import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
-import { decodeMinifiedTradeNotification, generateMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
+import { nodeApi } from '@web/api/nodeApi'
+import { useApi } from '@web/api/useApi'
+import { generateWhisperMessage } from '@web/utility/whisper'
 import { BULKY_FRAGMENT } from '@web/categories/fragment/fragment.transformers'
+import { decodeMinifiedTradeNotification, generateMinifiedTradeNotification } from '@web/utility/minifiedTradeNotification'
+import SvgIconAtom from '../atoms/SvgIconAtom.vue'
+import ButtonAtom from '../atoms/ButtonAtom.vue'
+import BazaarOfferMetadataMolecule from '../molecules/BazaarOfferMetadataMolecule.vue'
+import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
+import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
 
 // PROPS
 const props = defineProps<{
@@ -105,7 +107,14 @@ const filteredPrice = computed<TotalPrice>(() => {
  * Create a whisper message and send it ingame.
  */
 async function sendMessage() {
-	const message = generateWhisperMessage(props.offer.category, props.filter, filteredItems, filteredPrice, props.priceComputeFn)
+	const message = generateWhisperMessage(
+		props.offer.category,
+		props.offer.league,
+		props.filter,
+		filteredItems,
+		filteredPrice,
+		props.priceComputeFn
+	)
 
 	const fullPriceInChaos = filteredPrice.value.divine * props.offer.chaosPerDiv + filteredPrice.value.chaos
 	const mtn = generateMinifiedTradeNotification(
@@ -121,17 +130,20 @@ async function sendMessage() {
 		return
 	}
 
-	// const request = useApi('typeInChat', nodeApi.typeInChat)
-	// await request.exec(`${message} B-MTN ${mtn}`)
+	if (import.meta.env.VITE_NO_ATTACH_MODE === 'false') {
+		const request = useApi('typeInChat', nodeApi.typeInChat)
+		await request.exec(`${message} B-MTN ${mtn}`)
 
-	// if (request.data.value) {
-	// 	props.offer.contact.messageSent = true
-	// 	setTimeout(() => {
-	// 		props.offer.contact.messageSent = false
-	// 	}, 60000)
-	// }
-	console.log(`${message} B-MTN ${mtn}`)
-	console.log(decodeMinifiedTradeNotification(mtn))
+		if (request.data.value) {
+			props.offer.contact.messageSent = true
+			setTimeout(() => {
+				props.offer.contact.messageSent = false
+			}, 60000)
+		}
+	} else {
+		console.log(`${message} B-MTN ${mtn}`)
+		console.log(decodeMinifiedTradeNotification(mtn))
+	}
 }
 </script>
 

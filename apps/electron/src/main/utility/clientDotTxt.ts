@@ -63,10 +63,15 @@ export class ClientDotTxt {
 			const shouldSend = this.shouldSendLineToRenderer(splitLine)
 
 			if (shouldSend) {
+				// Get the league from the message.
+				const league = extractString(splitLine.message, 'chaos in ', '. B-MTN')
+				if (!league) return
+
 				mainToRendererEvents.sendNotification(webContents, {
 					type: 'trade',
 					ign: splitLine.sender,
 					message: splitLine.message.split('B-MTN ')[1],
+					league,
 				})
 			}
 		}

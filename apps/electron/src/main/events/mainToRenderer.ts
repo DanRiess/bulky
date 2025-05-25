@@ -34,7 +34,10 @@ function sendOauthAuthorizationCode(webContents: WebContents, code: string) {
 /**
  * Send a trade message to add to the notifications panel.
  */
-function sendNotification(webContents: WebContents, notification: { type: 'trade'; ign: string; message: string }) {
+function sendNotification(
+	webContents: WebContents,
+	notification: { type: 'trade'; ign: string; message: string; league: string }
+) {
 	webContents.send('send-notification', notification)
 }
 
