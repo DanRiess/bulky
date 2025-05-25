@@ -9,7 +9,14 @@
 
 		<div class="icon-buttons">
 			<div class="current-price">
-				<ChaosPerDivAtom :chaos-per-div="ninjaStore.chaosPerDiv" />
+				<ChaosPerDivAtom
+					:chaos-per-div="ninjaStore.chaosPerDiv"
+					ref="cpdComponent"
+					@mouseenter="showCPDTooltip = true"
+					@mouseleave="showCPDTooltip = false" />
+				<TooltipAtom :show="showCPDTooltip" :parent="cpdAtom" :max-width="200">
+					<ChaosPerDivTooltipTemplate />
+				</TooltipAtom>
 			</div>
 			<SettingsIconMolecule />
 			<UserIconMolecule />
@@ -18,18 +25,33 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useNinjaStore } from '@web/stores/ninjaStore'
 import ButtonAtom from '../atoms/ButtonAtom.vue'
+import TooltipAtom from '../atoms/TooltipAtom.vue'
+import ChaosPerDivAtom from '../atoms/ChaosPerDivAtom.vue'
 import SettingsIconMolecule from '../molecules/SettingsIconMolecule.vue'
 import UserIconMolecule from '../molecules/UserIconMolecule.vue'
-import { useRouter } from 'vue-router'
-import ChaosPerDivAtom from '../atoms/ChaosPerDivAtom.vue'
-import { useNinjaStore } from '@web/stores/ninjaStore'
+import ChaosPerDivTooltipTemplate from '../implementations/ChaosPerDivTooltipTemplate.vue'
 
 // STORES
 const ninjaStore = useNinjaStore()
 
 // COMPOSABLES
 const router = useRouter()
+
+// STATE
+const cpdComponent = ref<InstanceType<typeof ChaosPerDivAtom>>()
+const cpdAtom = ref<HTMLElement>()
+const showCPDTooltip = ref(false)
+
+// HOOKS
+onMounted(() => {
+	if (cpdComponent.value) {
+		cpdAtom.value = cpdComponent.value.$el
+	}
+})
 </script>
 
 <style scoped>

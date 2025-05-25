@@ -134,6 +134,7 @@ configStore.getUserConfig().then(() => {
 </script>
 
 <style>
+@import './assets/css/fonts.css';
 @import './assets/css/reset.css';
 @import './assets/css/variables.css';
 @import './assets/css/common.css';

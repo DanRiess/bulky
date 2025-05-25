@@ -1,5 +1,5 @@
 <template>
-	<div class="chaos-per-div no-select">
+	<div class="chaos-per-div no-select" @mouseenter="emit('mouseenter')" @mouseleave="emit('mouseleave')">
 		1
 		<img src="/src/assets/png-icons/currency-divine.png" height="24" width="24" decoding="async" loading="lazy" />
 		=
@@ -9,8 +9,15 @@
 </template>
 
 <script setup lang="ts">
+// PROPS
 defineProps<{
 	chaosPerDiv: number
+}>()
+
+// EMITS
+const emit = defineEmits<{
+	mouseenter: []
+	mouseleave: []
 }>()
 </script>
 

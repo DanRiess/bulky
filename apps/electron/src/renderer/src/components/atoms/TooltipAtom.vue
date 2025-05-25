@@ -59,7 +59,9 @@ onMounted(async () => {
 		await sleepTimer(250)
 	}
 
+	console.log(props.parent)
 	resizeObserver.observe(props.parent)
+	console.log({ absolutePositions })
 })
 </script>
 
