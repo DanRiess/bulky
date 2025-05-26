@@ -141,7 +141,6 @@ export class OverlayWindow {
 	}
 
 	public focusGameWindow() {
-		console.log('focus game')
 		OverlayController.focusTarget()
 		this.ignoreMouseEvents(true)
 	}

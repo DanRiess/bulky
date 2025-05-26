@@ -285,9 +285,12 @@ export const useShopStore = defineStore('shopStore', () => {
 		}
 
 		if (
-			!activeWindow ||
-			(activeWindow.title !== import.meta.env.VITE_APP_TITLE && activeWindow.title !== configStore.config.gameWindowTitle)
+			import.meta.env.VITE_NO_ATTACH_MODE !== 'true' &&
+			(!activeWindow ||
+				(activeWindow.title !== import.meta.env.VITE_APP_TITLE &&
+					activeWindow.title !== configStore.config.gameWindowTitle))
 		) {
+			status && (status.value = 'ERROR')
 			return
 		}
 

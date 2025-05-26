@@ -21,4 +21,11 @@ export type BulkyConfig = {
 		}
 		enableOptionalKeys: boolean
 	}
+	shop: {
+		autoUploadPriceFloor: number
+		defaultMinBuyout: number
+	}
+	bazaar: {
+		showMyOffers: boolean
+	}
 }

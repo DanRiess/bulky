@@ -75,6 +75,7 @@ onClickOutside(userIconEl, () => {
 	right: 0;
 	transform-origin: top;
 	border-radius: var(--border-radius-small);
+	z-index: 1;
 }
 
 .popup-menu li {

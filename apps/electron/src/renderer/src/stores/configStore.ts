@@ -34,6 +34,16 @@ export const useConfigStore = defineStore('configStore', () => {
 			},
 			enableOptionalKeys: false,
 		},
+		shop: {
+			/** Offers worth less than that won't be auto uploaded. Manual upload still possible. */
+			autoUploadPriceFloor: 50,
+			/** Default value for minimum buyout for new offers. */
+			defaultMinBuyout: 0,
+		},
+		bazaar: {
+			/** Option to display the current user's posted offers in their bazaar. */
+			showMyOffers: false,
+		},
 	})
 	let writeStatus: ApiStatus = 'IDLE'
 

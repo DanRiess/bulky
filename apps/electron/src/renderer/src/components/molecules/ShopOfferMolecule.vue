@@ -6,8 +6,12 @@
 				<PriceAtom label="" :price="divPrice" />
 			</div>
 			<div class="offer-meta-info">
-				<div>Posted: {{ timeAgo }}</div>
-				<div :style="{ color: disabled ? 'var(--color-error)' : 'inherit' }">League: {{ offer.league }}</div>
+				<div>
+					Posted: <span :class="{ 'error-color': !offer.timestamps.length }">{{ timeAgoDisplay }}</span>
+				</div>
+				<div>
+					League: <span :class="{ 'error-color': disabled }">{{ offer.league }}</span>
+				</div>
 			</div>
 		</section>
 		<ShopOfferItemCollectionMolecule
@@ -115,6 +119,12 @@ const tooltipProps: TooltipPropsWithoutActive = {
 // COMPOSABLES
 const router = useRouter()
 const timeAgo = useTimeAgo(() => offer.value.timestamps[offer.value.timestamps.length - 1] ?? 0)
+const timeAgoDisplay = computed(() => {
+	if (offer.value.timestamps.length === 0) {
+		return 'Failed to upload!'
+	}
+	return timeAgo.value
+})
 const divPrice = useChaosToDiv(() => offer.value.fullPrice, offer.value.chaosPerDiv)
 const transitionHooks = useGenericTransitionHooks({
 	duration: 0.15,

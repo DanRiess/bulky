@@ -1,6 +1,7 @@
 [
 	{
 		"id": "Standard",
+		"name": "Standard",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Standard",
 		"startAt": "2013-01-23T21:00:00Z",
@@ -15,6 +16,7 @@
 	},
 	{
 		"id": "Hardcore",
+		"name": "Hardcore",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Hardcore",
 		"startAt": "2013-01-23T21:00:00Z",
@@ -35,6 +37,7 @@
 	},
 	{
 		"id": "Solo Self-Found",
+		"name": "Solo Self-Found",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Solo+Self-Found",
 		"startAt": "2013-01-23T21:00:00Z",
@@ -55,6 +58,7 @@
 	},
 	{
 		"id": "Hardcore SSF",
+		"name": "Hardcore SSF",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Hardcore+SSF",
 		"startAt": "2013-01-23T21:00:00Z",
@@ -80,6 +84,7 @@
 	},
 	{
 		"id": "Ruthless",
+		"name": "Ruthless",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Ruthless",
 		"startAt": null,
@@ -99,6 +104,7 @@
 	},
 	{
 		"id": "Hardcore Ruthless",
+		"name": "Hardcore Ruthless",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Hardcore+Ruthless",
 		"startAt": null,
@@ -123,6 +129,7 @@
 	},
 	{
 		"id": "SSF Ruthless",
+		"name": "SSF Ruthless",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/SSF+Ruthless",
 		"startAt": null,
@@ -147,6 +154,7 @@
 	},
 	{
 		"id": "Hardcore SSF Ruthless",
+		"name": "Hardcore SSF Ruthless",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Hardcore+SSF+Ruthless",
 		"startAt": null,
@@ -176,6 +184,7 @@
 	},
 	{
 		"id": "Settlers",
+		"name": "Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -191,6 +200,7 @@
 	},
 	{
 		"id": "Hardcore Settlers",
+		"name": "Hardcore Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Hardcore+Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -212,6 +222,7 @@
 	},
 	{
 		"id": "SSF Settlers",
+		"name": "SSF Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/SSF+Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -233,6 +244,7 @@
 	},
 	{
 		"id": "HC SSF Settlers",
+		"name": "HC SSF Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/HC+SSF+Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -259,6 +271,7 @@
 	},
 	{
 		"id": "Ruthless Settlers",
+		"name": "Ruthless Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/Ruthless+Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -280,6 +293,7 @@
 	},
 	{
 		"id": "HC Ruthless Settlers",
+		"name": "HC Ruthless Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/HC+Ruthless+Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -306,6 +320,7 @@
 	},
 	{
 		"id": "SSF R Settlers",
+		"name": "SSF R Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/SSF+R+Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -332,6 +347,7 @@
 	},
 	{
 		"id": "HC SSF R Settlers",
+		"name": "HC SSF R Settlers",
 		"realm": "pc",
 		"url": "https://www.pathofexile.com/ladders/league/HC+SSF+R+Settlers",
 		"startAt": "2024-07-26T20:00:00Z",
@@ -358,89 +374,6 @@
 				"id": "HardMode",
 				"name": "Ruthless",
 				"description": "A significantly different game experience with extreme item scarcity, among other changes."
-			}
-		]
-	},
-	{
-		"id": "Necro Settlers",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/event/Necro+Settlers",
-		"startAt": "2024-11-07T21:00:00Z",
-		"endAt": null,
-		"description": "Please check the Event Forums for more details.",
-		"category": {
-			"id": "Settlers",
-			"current": true
-		},
-		"registerAt": "2024-11-07T20:30:00Z",
-		"event": true,
-		"rules": []
-	},
-	{
-		"id": "HC Necro Settlers",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/event/HC+Necro+Settlers",
-		"startAt": "2024-11-07T21:00:00Z",
-		"endAt": null,
-		"description": "Please check the Event Forums for more details.",
-		"category": {
-			"id": "Settlers",
-			"current": true
-		},
-		"registerAt": "2024-11-07T20:30:00Z",
-		"event": true,
-		"rules": [
-			{
-				"id": "Hardcore",
-				"name": "Hardcore",
-				"description": "A character killed in Hardcore is moved to its parent league."
-			}
-		]
-	},
-	{
-		"id": "SSF Necro Settlers",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/event/SSF+Necro+Settlers",
-		"startAt": "2024-11-07T21:00:00Z",
-		"endAt": null,
-		"description": "Please check the Event Forums for more details.",
-		"category": {
-			"id": "Settlers",
-			"current": true
-		},
-		"registerAt": "2024-11-07T20:30:00Z",
-		"event": true,
-		"rules": [
-			{
-				"id": "NoParties",
-				"name": "Solo",
-				"description": "You may not party in this league."
-			}
-		]
-	},
-	{
-		"id": "HC SSF Necro Settlers",
-		"realm": "pc",
-		"url": "https://www.pathofexile.com/ladders/event/HC+SSF+Necro+Settlers",
-		"startAt": "2024-11-07T21:00:00Z",
-		"endAt": null,
-		"description": "Please check the Event Forums for more details.",
-		"category": {
-			"id": "Settlers",
-			"current": true
-		},
-		"registerAt": "2024-11-07T20:30:00Z",
-		"event": true,
-		"rules": [
-			{
-				"id": "Hardcore",
-				"name": "Hardcore",
-				"description": "A character killed in Hardcore is moved to its parent league."
-			},
-			{
-				"id": "NoParties",
-				"name": "Solo",
-				"description": "You may not party in this league."
 			}
 		]
 	}

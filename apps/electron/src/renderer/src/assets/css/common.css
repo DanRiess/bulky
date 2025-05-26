@@ -67,3 +67,7 @@ h3 {
 	pointer-events: none;
 	cursor: default;
 }
+
+.error-color {
+	color: var(--color-error);
+}
