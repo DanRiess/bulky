@@ -1,4 +1,5 @@
 import { BulkyBazaarOffer, BulkyFilter, BulkyFilterField, ComputedBulkyOfferStore } from '@shared/types/bulky.types'
+import { refDebounced } from '@vueuse/core'
 import { FRAGMENT_SET } from '@web/categories/fragment/fragment.const'
 import { FragmentType } from '@web/categories/fragment/fragment.types'
 import { applyRegexToBulkyItem } from '@web/utility/applyRegexToBulkyItem'
@@ -9,10 +10,29 @@ export function useApplyFilterToOffers(
 	maybeRefStore: MaybeRefOrGetter<ComputedBulkyOfferStore>,
 	maybeRefFilter: MaybeRefOrGetter<BulkyFilter>
 ) {
+	// Establish a debounced regex, so that not every change immediately recomputes.
+	const computedRegex = computed(() => {
+		return toValue(maybeRefFilter).regex
+	})
+	const debouncedRegex = refDebounced(computedRegex, 500)
 	return computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>(() => {
 		const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
 		const store = toValue(maybeRefStore)
-		const filter = toValue(maybeRefFilter)
+
+		// Check if there is a better way than initializing a filter with the debounced regex.
+		// This looks clunky.
+		// const filter = toValue(maybeRefFilter)
+		const filter = {
+			regex: debouncedRegex.value,
+			multiplier: toValue(maybeRefFilter).multiplier,
+			fullBuyout: toValue(maybeRefFilter).fullBuyout,
+			fields: toValue(maybeRefFilter).fields,
+			category: toValue(maybeRefFilter).category,
+			fullSets: toValue(maybeRefFilter).fullSets,
+			alwaysMaxQuantity: toValue(maybeRefFilter).alwaysMaxQuantity,
+			uuid: toValue(maybeRefFilter).uuid,
+			name: toValue(maybeRefFilter).name,
+		}
 
 		// Compute and categorize the regexes.
 		const regexArray = filter.regex ? BULKY_REGEX.computeRegexesFromString(filter.regex) : []
@@ -54,6 +74,9 @@ export function useApplyFilterToOffers(
 					price += fragmentResult.price
 					continue
 				}
+
+				// This loop can potentially trigger a change on each item in each offer.
+				// When that happens, everything basically freezes.
 
 				// For all items, use this calculation instead.
 				const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)

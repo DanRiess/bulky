@@ -62,8 +62,6 @@ export function useRefetchOffers() {
 			return
 		}
 
-		console.log(request.data.value)
-
 		requestTimestamps.lastSuccessfulFetch = now
 		request.data.value.forEach(offerDto => store.putOffer(offerDto))
 

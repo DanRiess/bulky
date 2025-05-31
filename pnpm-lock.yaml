@@ -84,6 +84,9 @@ importers:
       jose:
         specifier: ^5.10.0
         version: 5.10.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
       uiohook-napi:
         specifier: ^1.5.4
         version: 1.5.4
@@ -103,9 +106,9 @@ importers:
       '@types/express':
         specifier: ^5.0.2
         version: 5.0.2
-      '@types/lodash':
-        specifier: ^4.17.17
-        version: 4.17.17
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/node':
         specifier: ^22.15.21
         version: 22.15.21
@@ -133,9 +136,6 @@ importers:
       idb:
         specifier: ^8.0.3
         version: 8.0.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       pinia:
         specifier: ^2.3.1
         version: 2.3.1(typescript@5.8.3)(vue@3.5.15(typescript@5.8.3))
@@ -1502,6 +1502,9 @@ packages:
 
   '@types/keyv@3.1.4':
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
+
+  '@types/lodash-es@4.17.12':
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
   '@types/lodash@4.17.17':
     resolution: {integrity: sha512-RRVJ+J3J+WmyOTqnz3PiBLA501eKwXl2noseKOrNo/6+XEHjTAxO4xHvxQB6QuNm+s4WRbn6rSiap8+EA+ykFQ==}
@@ -3303,6 +3306,9 @@ packages:
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
+
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
 
   lodash.defaults@4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
@@ -6863,6 +6869,10 @@ snapshots:
     dependencies:
       '@types/node': 22.15.21
 
+  '@types/lodash-es@4.17.12':
+    dependencies:
+      '@types/lodash': 4.17.17
+
   '@types/lodash@4.17.17': {}
 
   '@types/mime@1.3.5': {}
@@ -7336,14 +7346,6 @@ snapshots:
   axios@1.9.0:
     dependencies:
       follow-redirects: 1.15.9
-      form-data: 4.0.2
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-
-  axios@1.9.0(debug@4.4.1):
-    dependencies:
-      follow-redirects: 1.15.9(debug@4.4.1)
       form-data: 4.0.2
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -8357,10 +8359,6 @@ snapshots:
 
   follow-redirects@1.15.9: {}
 
-  follow-redirects@1.15.9(debug@4.4.1):
-    optionalDependencies:
-      debug: 4.4.1
-
   foreground-child@3.3.1:
     dependencies:
       cross-spawn: 7.0.6
@@ -9107,6 +9105,8 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lodash-es@4.17.21: {}
+
   lodash.defaults@4.2.0: {}
 
   lodash.difference@4.5.0: {}
@@ -9568,7 +9568,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.9.0(debug@4.4.1)
+      axios: 1.9.0
       chalk: 4.1.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
