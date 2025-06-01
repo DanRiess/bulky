@@ -1,0 +1,99 @@
+[
+	{
+		"version": 1,
+		"uuid": "965be6ca-461d-4014-be80-30cec5bd2df5",
+		"timestamp": 1721917430328,
+		"account": "Chavincar",
+		"ign": "Chav",
+		"category": "MAP_8_MOD",
+		"league": "Standard",
+		"chaosPerDiv": 123.48,
+		"fullPrice": 35,
+		"minimumBuyout": 0,
+		"items": [
+			{
+				"type": 17,
+				"tier": 15,
+				"qnt": 3,
+				"prc": 10,
+				"pia": [
+					{
+						"mods": [
+							28,
+							38,
+							0,
+							16,
+							35,
+							67,
+							44,
+							4
+						],
+						"props": {
+							"iQnt": 114,
+							"iRar": 60,
+							"pckSz": 50
+						}
+					},
+					{
+						"mods": [
+							24,
+							43,
+							48,
+							66,
+							25,
+							23,
+							21,
+							1
+						],
+						"props": {
+							"iQnt": 130,
+							"iRar": 60,
+							"pckSz": 32
+						}
+					},
+					{
+						"mods": [
+							76,
+							15,
+							3,
+							65,
+							1,
+							20,
+							72,
+							59
+						],
+						"props": {
+							"iQnt": 130,
+							"iRar": 60,
+							"pckSz": 40
+						}
+					}
+				],
+				"rgx": {
+					"avd": 3,
+					"wnt": 4,
+					"qnt": [
+						[
+							110,
+							5
+						],
+						[
+							120,
+							11
+						]
+					],
+					"pckSz": [
+						[
+							35,
+							4
+						],
+						[
+							40,
+							10
+						]
+					]
+				}
+			}
+		]
+	}
+]

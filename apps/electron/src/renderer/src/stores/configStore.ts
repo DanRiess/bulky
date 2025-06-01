@@ -14,7 +14,7 @@ export const useConfigStore = defineStore('configStore', () => {
 		league: 'Standard',
 		gameWindowTitle: 'Path of Exile',
 		ign: '',
-		autoRefetchOffers: true,
+		autoRefetchOffers: false,
 		notifications: {
 			offsetBottom: '90px',
 			offsetRight: '1rem',

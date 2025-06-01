@@ -46,14 +46,18 @@ export function useComputedOffersStore() {
 	return computed<ComputedBulkyOfferStore>(() => {
 		// Get the correct store and its offers
 		const store = BULKY_FACTORY.getOfferStore(appStateStore.selectedCategory)
-		const originalOffers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = store ? store.offers : new Map()
+		const originalOffers: ReadonlyMap<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = store
+			? store.offers
+			: new Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>()
 
 		// Filter offers by league.
 		// Don't delete in place, as that would screw up fetch logic.
 		const offers = new Map(
-			[...originalOffers].filter(([_, value]) => {
-				return value.league === configStore.config.league
-			})
+			[...originalOffers]
+				.filter(([_, value]) => {
+					return value.league === configStore.config.league
+				})
+				.sort(([_a, a], [_b, b]) => b.timestamp - a.timestamp)
 		)
 
 		/**

@@ -7,7 +7,15 @@
 					v-if="computedFilterStore"
 					:store="computedOfferStore"
 					:filter="computedFilterStore.filter" />
-				<RefetchOffersMolecule :timeRemaining="timeRemaining" />
+				<!-- <RefetchOffersMolecule :timeRemaining="timeRemaining" /> -->
+				<SvgButtonWithPopupMolecule
+					background-color="light"
+					:disabled="timeRemaining > 0"
+					:svg-props="{ name: 'sync', rotate: fetching, useGradient: fetching }"
+					:tooltip-props="{ position: 'right', transitionDirection: 'toRight' }"
+					@click="refetch">
+					Refresh Offers
+				</SvgButtonWithPopupMolecule>
 			</div>
 		</template>
 		<template #rightColumn>
@@ -29,7 +37,7 @@
 import TransitionAtom from '@web/components/atoms/TransitionAtom.vue'
 import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import CategoryMolecule from '@web/components/molecules/CategoryMolecule.vue'
-import RefetchOffersMolecule from '@web/components/molecules/RefetchOffersMolecule.vue'
+// import RefetchOffersMolecule from '@web/components/molecules/RefetchOffersMolecule.vue'
 import SupportMeMolecule from '@web/components/molecules/SupportMeMolecule.vue'
 import BazaarOfferCollectionOrganism from '@web/components/organisms/BazaarOfferCollectionOrganism.vue'
 import FilterOrganism from '@web/components/organisms/FilterOrganism.vue'
@@ -37,6 +45,10 @@ import { useComputedFilterStore } from '@web/composables/useComputedFilterStore'
 import { useComputedOffersStore } from '@web/composables/useComputedOffersStore'
 import { useRefetchOffers } from '@web/composables/useRefetchOffers'
 import { useGenericTransitionHooks } from '@web/transitions/genericTransitionHooks'
+
+// STORES
+const appStateStore = useAppStateStore()
+const configStore = useConfigStore()
 
 // COMPOSABLES
 const computedOfferStore = useComputedOffersStore()
@@ -47,13 +59,30 @@ const hooks = useGenericTransitionHooks({
 	duration: 0.35,
 })
 
-const { timeRemaining } = useRefetchOffers()
+// STATE
+const { refetchOffers } = useRefetchOffers()
+const fetching = ref(false)
+const REFETCH_INTERVAL = parseInt(import.meta.env.VITE_REFETCH_INTERVAL_OFFERS ?? '15000') / 1000
+const { timeRemaining, resetCountdown } = useCountdownTimer(REFETCH_INTERVAL, () => {})
+resetCountdown({ timeRemaining: REFETCH_INTERVAL })
 
 // Notification test stuff
 import { useNotificationStore } from '@web/stores/notificationStore'
+import SvgButtonWithPopupMolecule from '@web/components/molecules/SvgButtonWithPopupMolecule.vue'
+import { ref } from 'vue'
+import { useAppStateStore } from '@web/stores/appStateStore'
+import { useConfigStore } from '@web/stores/configStore'
+import { useCountdownTimer } from '@web/composables/useCountdownTimer'
 
 const notificationStore = useNotificationStore()
 const isDev = import.meta.env.DEV
+
+async function refetch() {
+	fetching.value = true
+	await refetchOffers(appStateStore.selectedCategory, configStore.config.league)
+	resetCountdown({ timeRemaining: REFETCH_INTERVAL })
+	fetching.value = false
+}
 
 function addnote() {
 	const n = notificationStore.createTradeNotification({

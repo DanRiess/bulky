@@ -29,10 +29,12 @@ export function useRefetchOffers() {
 		// Fetch new offers.
 		const store = BULKY_FACTORY.getOfferStore(category)
 		if (!store || !appStateStore.appActive) {
-			resetCountdown({
-				timeRemaining: REFETCH_INTERVAL / 1000,
-				cb: refetchOffers.bind(null, category, league),
-			})
+			if (configStore.config.autoRefetchOffers) {
+				resetCountdown({
+					timeRemaining: REFETCH_INTERVAL / 1000,
+					cb: refetchOffers.bind(null, category, league),
+				})
+			}
 			return
 		}
 
@@ -55,10 +57,12 @@ export function useRefetchOffers() {
 
 		// If the request threw an error or no data was obtained, reset the countdown.
 		if (request.error.value || !request.data.value) {
-			resetCountdown({
-				timeRemaining: REFETCH_INTERVAL / 1000,
-				cb: refetchOffers.bind(null, category, league),
-			})
+			if (configStore.config.autoRefetchOffers) {
+				resetCountdown({
+					timeRemaining: REFETCH_INTERVAL / 1000,
+					cb: refetchOffers.bind(null, category, league),
+				})
+			}
 			return
 		}
 
@@ -66,10 +70,12 @@ export function useRefetchOffers() {
 		request.data.value.forEach(offerDto => store.putOffer(offerDto))
 
 		// Call this function again after x seconds.
-		resetCountdown({
-			timeRemaining: REFETCH_INTERVAL / 1000,
-			cb: refetchOffers.bind(null, category, league),
-		})
+		if (configStore.config.autoRefetchOffers) {
+			resetCountdown({
+				timeRemaining: REFETCH_INTERVAL / 1000,
+				cb: refetchOffers.bind(null, category, league),
+			})
+		}
 	}
 
 	// COUNTDOWN
@@ -102,10 +108,11 @@ export function useRefetchOffers() {
 				if (timeRemaining > REFETCH_INTERVAL) {
 					refetchOffers(category, league)
 				} else {
-					resetCountdown({
-						timeRemaining: Math.round((REFETCH_INTERVAL - timeRemaining) / 1000),
-						cb: refetchOffers.bind(null, category, league),
-					})
+					// Don't auto fetch at this time
+					// resetCountdown({
+					// 	timeRemaining: Math.round((REFETCH_INTERVAL - timeRemaining) / 1000),
+					// 	cb: refetchOffers.bind(null, category, league),
+					// })
 				}
 			},
 			{ immediate: true }
@@ -151,5 +158,6 @@ export function useRefetchOffers() {
 
 	return {
 		timeRemaining,
+		refetchOffers,
 	}
 }

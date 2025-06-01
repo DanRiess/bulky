@@ -15,10 +15,12 @@ import { BazaarBeast, BazaarBestiaryOffer } from './bestiary.types'
 import { OfferRequestTimestamps } from '@shared/types/api.types'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
+import { useDebouncedReactiveMap } from '@web/composables/useDebouncedOfferStore'
 
 export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 	// STATE
-	const offers = ref<Map<BazaarBestiaryOffer['uuid'], BazaarBestiaryOffer>>(new Map())
+	// const offers = ref<Map<BazaarBestiaryOffer['uuid'], BazaarBestiaryOffer>>(new Map())
+	const { _offers, offers, queueSet, queueDelete } = useDebouncedReactiveMap<BazaarBestiaryOffer['uuid'], BazaarBestiaryOffer>()
 	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
@@ -28,6 +30,9 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'BESTIARY') return
 
+		// Don't process the offer if it's older than 10 minutes.
+		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarBestiaryOffer>(dto.uuid)
 		const account = dto.account
 		const ign = dto.ign
@@ -36,6 +41,7 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
+		const timestamp = dto.timestamp
 		const items = dto.items
 			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('BESTIARY', item) as BazaarBeast)
 			.filter(notEmpty)
@@ -45,33 +51,38 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 		// Delete previous offers if they are from the same account.
 		for (const offer of offers.value.values()) {
 			if (offer.account === account && offer.league === league) {
-				offers.value.delete(offer.uuid)
+				// offers.value.delete(offer.uuid)
+				queueDelete(offer.uuid)
 			}
 		}
 
-		offers.value.set(uuid, {
+		const newOffer = {
 			category,
 			account,
 			uuid,
 			ign,
 			league,
+			timestamp,
 			chaosPerDiv,
-			multiplier,
-			fullPrice,
 			items,
 			minimumBuyout,
+			multiplier,
+			fullPrice,
 			contact: {
 				messageSent: false,
 				timestamp: 0,
 			},
-		})
+		}
+
+		queueSet(uuid, newOffer)
 	}
 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
 	function deleteOffer(uuid: BazaarBestiaryOffer['uuid']) {
-		offers.value.delete(uuid)
+		// offers.value.delete(uuid)
+		queueDelete(uuid)
 	}
 
 	/**
@@ -100,12 +111,15 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 	}
 
 	return {
+		_offers,
 		offers,
 		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isBeast,
+		queueSet,
+		queueDelete,
 	}
 })
 

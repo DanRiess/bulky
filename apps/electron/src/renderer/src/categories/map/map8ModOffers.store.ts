@@ -17,10 +17,14 @@ import { BazaarMap8Mod, BazaarMap8ModOffer } from './map.types'
 import { BulkyBazaarOfferDto, BulkyFilter } from '@shared/types/bulky.types'
 import { OfferRequestTimestamps } from '@shared/types/api.types'
 import { getKeys } from '@shared/types/utility.types'
+import { useDebouncedReactiveMap } from '@web/composables/useDebouncedOfferStore'
 
 export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	// STATE
-	const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
+	// const offers = ref<Map<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>>(new Map())
+	const { _offers, offers, queueSet, queueDelete } = useDebouncedReactiveMap<BazaarMap8ModOffer['uuid'], BazaarMap8ModOffer>({
+		id: 'map8modoffers',
+	})
 	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
@@ -30,28 +34,34 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'MAP_8_MOD') return
 
+		// Don't process the offer if it's older than 10 minutes.
+		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarMap8ModOffer>(dto.uuid)
 		const account = dto.account
 		const ign = dto.ign
 		const league = dto.league
 		const chaosPerDiv = dto.chaosPerDiv
 		const minimumBuyout = dto.minimumBuyout ?? 0
+		const timestamp = dto.timestamp
 		const items = dto.items.map(item => BULKY_MAPS.generateBazaarMap8ModItemFromDto(item)).filter(notEmpty)
 		if (!items) return
 
 		// Delete previous offers if they are from the same account.
 		for (const offer of offers.value.values()) {
 			if (offer.account === account && offer.league === league) {
-				offers.value.delete(offer.uuid)
+				// offers.value.delete(offer.uuid)
+				queueDelete(offer.uuid)
 			}
 		}
 
-		offers.value.set(uuid, {
+		const newOffer = {
 			category,
 			account,
 			uuid,
 			ign,
 			league,
+			timestamp,
 			chaosPerDiv,
 			items,
 			minimumBuyout,
@@ -61,14 +71,17 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 			},
 			multiplier: 1,
 			fullPrice: 0,
-		})
+		}
+
+		queueSet(uuid, newOffer)
 	}
 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
 	function deleteOffer(uuid: BazaarMap8ModOffer['uuid']) {
-		offers.value.delete(uuid)
+		// offers.value.delete(uuid)
+		queueDelete(uuid)
 	}
 
 	/**
@@ -219,12 +232,15 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 	}
 
 	return {
+		_offers,
 		offers,
 		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isMap8Mod,
+		queueSet,
+		queueDelete,
 	}
 })
 

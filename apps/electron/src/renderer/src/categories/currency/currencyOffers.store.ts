@@ -15,10 +15,12 @@ import { BazaarCurrency, BazaarCurrencyOffer } from './currency.types'
 import { OfferRequestTimestamps } from '@shared/types/api.types'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
+import { useDebouncedReactiveMap } from '@web/composables/useDebouncedOfferStore'
 
 export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 	// STATE
-	const offers = ref<Map<BazaarCurrencyOffer['uuid'], BazaarCurrencyOffer>>(new Map())
+	// const offers = ref<Map<BazaarCurrencyOffer['uuid'], BazaarCurrencyOffer>>(new Map())
+	const { _offers, offers, queueSet, queueDelete } = useDebouncedReactiveMap<BazaarCurrencyOffer['uuid'], BazaarCurrencyOffer>()
 	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
@@ -28,6 +30,9 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'CURRENCY') return
 
+		// Don't process the offer if it's older than 10 minutes.
+		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarCurrencyOffer>(dto.uuid)
 		const account = dto.account
 		const ign = dto.ign
@@ -36,6 +41,7 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
+		const timestamp = dto.timestamp
 		const items = dto.items
 			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('CURRENCY', item) as BazaarCurrency)
 			.filter(notEmpty)
@@ -45,16 +51,18 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 		// Delete previous offers if they are from the same account.
 		for (const offer of offers.value.values()) {
 			if (offer.account === account && offer.league === league) {
-				offers.value.delete(offer.uuid)
+				// offers.value.delete(offer.uuid)
+				queueDelete(offer.uuid)
 			}
 		}
 
-		offers.value.set(uuid, {
+		const newOffer = {
 			category,
 			account,
 			uuid,
 			ign,
 			league,
+			timestamp,
 			chaosPerDiv,
 			multiplier,
 			fullPrice,
@@ -64,14 +72,17 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 				messageSent: false,
 				timestamp: 0,
 			},
-		})
+		}
+
+		queueSet(uuid, newOffer)
 	}
 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
 	function deleteOffer(uuid: BazaarCurrencyOffer['uuid']) {
-		offers.value.delete(uuid)
+		// offers.value.delete(uuid)
+		queueDelete(uuid)
 	}
 
 	/**
@@ -100,12 +111,15 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 	}
 
 	return {
+		_offers,
 		offers,
 		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isCurrencyItem,
+		queueSet,
+		queueDelete,
 	}
 })
 

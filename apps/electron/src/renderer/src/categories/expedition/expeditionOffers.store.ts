@@ -15,10 +15,15 @@ import { EXPEDITION_TIER, EXPEDITION_TYPE } from './expedition.const'
 import { OfferRequestTimestamps } from '@shared/types/api.types'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
+import { useDebouncedReactiveMap } from '@web/composables/useDebouncedOfferStore'
 
 export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () => {
 	// STATE
-	const offers = ref<Map<BazaarExpeditionOffer['uuid'], BazaarExpeditionOffer>>(new Map())
+	// const offers = ref<Map<BazaarExpeditionOffer['uuid'], BazaarExpeditionOffer>>(new Map())
+	const { _offers, offers, queueSet, queueDelete } = useDebouncedReactiveMap<
+		BazaarExpeditionOffer['uuid'],
+		BazaarExpeditionOffer
+	>()
 	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
@@ -28,6 +33,9 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'EXPEDITION') return
 
+		// Don't process the offer if it's older than 10 minutes.
+		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarExpeditionOffer>(dto.uuid)
 		const account = dto.account
 		const ign = dto.ign
@@ -36,6 +44,7 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 		const multiplier = dto.multiplier
 		const minimumBuyout = dto.minimumBuyout ?? 0
 		const fullPrice = dto.fullPrice
+		const timestamp = dto.timestamp
 		const items = dto.items
 			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('EXPEDITION', item) as BazaarExpeditionItem)
 			.filter(notEmpty)
@@ -44,33 +53,38 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 		// Delete previous offers if they are from the same account.
 		for (const offer of offers.value.values()) {
 			if (offer.account === account && offer.league === league) {
-				offers.value.delete(offer.uuid)
+				// offers.value.delete(offer.uuid)
+				queueDelete(offer.uuid)
 			}
 		}
 
-		offers.value.set(uuid, {
+		const newOffer = {
 			category,
 			account,
 			uuid,
 			ign,
 			league,
+			timestamp,
 			chaosPerDiv,
-			items,
+			multiplier,
 			fullPrice,
+			items,
 			minimumBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,
 			},
-			multiplier,
-		})
+		}
+
+		queueSet(uuid, newOffer)
 	}
 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
 	function deleteOffer(uuid: BazaarExpeditionOffer['uuid']) {
-		offers.value.delete(uuid)
+		// offers.value.delete(uuid)
+		queueDelete(uuid)
 	}
 
 	/**
@@ -99,12 +113,15 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 	}
 
 	return {
+		_offers,
 		offers,
 		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isExpeditionItem,
+		queueSet,
+		queueDelete,
 	}
 })
 

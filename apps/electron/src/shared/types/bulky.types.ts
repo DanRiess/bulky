@@ -4,7 +4,7 @@ import {
 	EssenceFilterField,
 	EssenceFilterStore,
 	EssenceOfferStore,
-} from 'src/renderer/src/categories/essence/essence.types'
+} from '@web/categories/essence/essence.types'
 import { MaybeComputedRef, ObjectValues, Uuid, getKeys } from './utility.types'
 import { ComputedRef, UnwrapRef } from 'vue'
 import {
@@ -279,6 +279,7 @@ export type BulkyBazaarItemRecord<T extends BulkyBazaarItem = BulkyBazaarItem> =
 
 export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
 	uuid: Uuid<BulkyBazaarOffer<T>>
+	timestamp: number
 	category: T['category']
 	account: string
 	ign: string

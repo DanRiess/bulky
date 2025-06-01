@@ -15,10 +15,12 @@ import { BazaarCatalyst, BazaarCatalystOffer } from './catalyst.types'
 import { OfferRequestTimestamps } from '@shared/types/api.types'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
+import { useDebouncedReactiveMap } from '@web/composables/useDebouncedOfferStore'
 
 export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
 	// STATE
-	const offers = ref<Map<BazaarCatalystOffer['uuid'], BazaarCatalystOffer>>(new Map())
+	// const offers = ref<Map<BazaarCatalystOffer['uuid'], BazaarCatalystOffer>>(new Map())
+	const { _offers, offers, queueSet, queueDelete } = useDebouncedReactiveMap<BazaarCatalystOffer['uuid'], BazaarCatalystOffer>()
 	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
@@ -28,6 +30,9 @@ export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'CATALYST') return
 
+		// Don't process the offer if it's older than 10 minutes.
+		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarCatalystOffer>(dto.uuid)
 		const account = dto.account
 		const ign = dto.ign
@@ -36,6 +41,7 @@ export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
+		const timestamp = dto.timestamp
 		const items = dto.items
 			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('CATALYST', item) as BazaarCatalyst)
 			.filter(notEmpty)
@@ -45,33 +51,38 @@ export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
 		// Delete previous offers if they are from the same account.
 		for (const offer of offers.value.values()) {
 			if (offer.account === account && offer.league === league) {
-				offers.value.delete(offer.uuid)
+				// offers.value.delete(offer.uuid)
+				queueDelete(offer.uuid)
 			}
 		}
 
-		offers.value.set(uuid, {
+		const newOffer = {
 			category,
 			account,
 			uuid,
 			ign,
 			league,
+			timestamp,
 			chaosPerDiv,
-			multiplier,
-			fullPrice,
 			items,
 			minimumBuyout,
+			multiplier,
+			fullPrice,
 			contact: {
 				messageSent: false,
 				timestamp: 0,
 			},
-		})
+		}
+
+		queueSet(uuid, newOffer)
 	}
 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
 	function deleteOffer(uuid: BazaarCatalystOffer['uuid']) {
-		offers.value.delete(uuid)
+		// offers.value.delete(uuid)
+		queueDelete(uuid)
 	}
 
 	/**
@@ -100,12 +111,15 @@ export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
 	}
 
 	return {
+		_offers,
 		offers,
 		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isCatalyst,
+		queueSet,
+		queueDelete,
 	}
 })
 

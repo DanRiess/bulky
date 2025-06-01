@@ -3,9 +3,13 @@ import { refDebounced } from '@vueuse/core'
 import { FRAGMENT_SET } from '@web/categories/fragment/fragment.const'
 import { FragmentType } from '@web/categories/fragment/fragment.types'
 import { applyRegexToBulkyItem } from '@web/utility/applyRegexToBulkyItem'
+import { deepToRaw } from '@web/utility/deepToRaw'
 import { BULKY_REGEX } from '@web/utility/regex'
 import { computed, MaybeRefOrGetter, toValue } from 'vue'
 
+/**
+ * DEPRECATED: this utility is now in useFilterOffers and uses watchers for more fine grained calculations.
+ */
 export function useApplyFilterToOffers(
 	maybeRefStore: MaybeRefOrGetter<ComputedBulkyOfferStore>,
 	maybeRefFilter: MaybeRefOrGetter<BulkyFilter>
@@ -17,6 +21,7 @@ export function useApplyFilterToOffers(
 	const debouncedRegex = refDebounced(computedRegex, 500)
 	return computed<Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>>(() => {
 		const offers: Map<BulkyBazaarOffer['uuid'], BulkyBazaarOffer> = new Map()
+		// const { _offers: offers, queueSet } = useDebouncedReactiveMap<BulkyBazaarOffer['uuid'], BulkyBazaarOffer>()
 		const store = toValue(maybeRefStore)
 
 		// Check if there is a better way than initializing a filter with the debounced regex.
@@ -50,6 +55,9 @@ export function useApplyFilterToOffers(
 				return
 			}
 
+			// Clone the offer, so that not every change triggers an update.
+			const offerClone = deepToRaw(offer)
+
 			// Since we have to loop over the filter fields anyway, calculate their price.
 			let price = 0
 
@@ -79,7 +87,7 @@ export function useApplyFilterToOffers(
 				// When that happens, everything basically freezes.
 
 				// For all items, use this calculation instead.
-				const item = offer.items.find(item => item.type === field.type && item.tier === field.tier)
+				const item = offerClone.items.find(item => item.type === field.type && item.tier === field.tier)
 				if (item) {
 					// Apply the regex to this item, if it is available
 					// This will change the item's computedQuantity property and potentially filter it out in the next step.
@@ -115,7 +123,8 @@ export function useApplyFilterToOffers(
 			if (price < offer.minimumBuyout) return
 
 			// If all checks have passed, add the offer to the map.
-			offers.set(offer.uuid, offer)
+			offers.set(offer.uuid, offerClone)
+			// queueSet(offer.uuid, offer)
 		})
 
 		return offers

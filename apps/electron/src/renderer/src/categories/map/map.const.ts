@@ -230,7 +230,7 @@ export const MAP_TIER_NAME_TO_IDX = typedFromEntries(
 // MAP MODS
 
 export const MAP_MODIFIERS = [
-	'#% more Magic Monsters',
+	'#% increased Magic Monsters',
 	'#% increased number of Rare Monsters',
 	'Area contains two Unique Bosses',
 	'Area contains many Totems',
@@ -311,11 +311,9 @@ export const MAP_MODIFIERS = [
 	'Monsters have a #% chance to Ignite, Freeze and Shock on Hit',
 ]
 
-// USE regex values instead of the full ones
-
 export const MAP_MODIFIER_REGEX = [
-	// '#% more Magic Monsters',
-	/e mag/im,
+	// '#% increased Magic Monsters',
+	/d mag/im,
 	// '#% increased number of Rare Monsters',
 	/nu/im,
 	// 'Area contains two Unique Bosses',

@@ -5,6 +5,7 @@ import { notEmpty } from './notEmpty'
 export const BULKY_REGEX = {
 	computeRegexesFromString,
 	categorizeRegexes,
+	regexAmount,
 }
 
 /**
@@ -69,4 +70,10 @@ function categorizeRegexes(regexes: RegExp[]): BulkyRegexes {
 		avoid: avoidRegexes,
 		wanted: wantedRegexes,
 	}
+}
+
+function regexAmount(bulkyRegexes: BulkyRegexes) {
+	return Object.values(bulkyRegexes).reduce((prev, curr) => {
+		return (prev += curr.length)
+	}, 0)
 }

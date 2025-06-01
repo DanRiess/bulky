@@ -15,10 +15,12 @@ import { BazaarMap, BazaarMapOffer } from './map.types'
 import { OfferRequestTimestamps } from '@shared/types/api.types'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
+import { useDebouncedReactiveMap } from '@web/composables/useDebouncedOfferStore'
 
 export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 	// STATE
-	const offers = ref<Map<BazaarMapOffer['uuid'], BazaarMapOffer>>(new Map())
+	// const offers = ref<Map<BazaarMapOffer['uuid'], BazaarMapOffer>>(new Map())
+	const { _offers, offers, queueSet, queueDelete } = useDebouncedReactiveMap<BazaarMapOffer['uuid'], BazaarMapOffer>()
 	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
@@ -28,6 +30,9 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'MAP') return
 
+		// Don't process the offer if it's older than 10 minutes.
+		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarMapOffer>(dto.uuid)
 		const account = dto.account
 		const ign = dto.ign
@@ -36,22 +41,25 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
+		const timestamp = dto.timestamp
 		const items = dto.items.map(item => BULKY_FACTORY.generateBazaarItemFromDto('MAP', item) as BazaarMap).filter(notEmpty)
 		if (!items || !multiplier || !fullPrice || !ign || !league || !chaosPerDiv) return
 
 		// Delete previous offers if they are from the same account.
 		for (const offer of offers.value.values()) {
 			if (offer.account === account && offer.league === league) {
-				offers.value.delete(offer.uuid)
+				// offers.value.delete(offer.uuid)
+				queueDelete(offer.uuid)
 			}
 		}
 
-		offers.value.set(uuid, {
+		const newOffer = {
 			category,
 			account,
 			uuid,
 			ign,
 			league,
+			timestamp,
 			chaosPerDiv,
 			multiplier,
 			fullPrice,
@@ -61,14 +69,17 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 				messageSent: false,
 				timestamp: 0,
 			},
-		})
+		}
+
+		queueSet(uuid, newOffer)
 	}
 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
 	function deleteOffer(uuid: BazaarMapOffer['uuid']) {
-		offers.value.delete(uuid)
+		// offers.value.delete(uuid)
+		queueDelete(uuid)
 	}
 
 	/**
@@ -97,12 +108,15 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 	}
 
 	return {
+		_offers,
 		offers,
 		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isNormalMap,
+		queueSet,
+		queueDelete,
 	}
 })
 

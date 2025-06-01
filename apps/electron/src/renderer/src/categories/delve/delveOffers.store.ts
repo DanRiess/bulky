@@ -15,10 +15,12 @@ import { BazaarDelveItem, BazaarDelveOffer } from './delve.types'
 import { OfferRequestTimestamps } from '@shared/types/api.types'
 import { BulkyBazaarOfferDto } from '@shared/types/bulky.types'
 import { getKeys } from '@shared/types/utility.types'
+import { useDebouncedReactiveMap } from '@web/composables/useDebouncedOfferStore'
 
 export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 	// STATE
-	const offers = ref<Map<BazaarDelveOffer['uuid'], BazaarDelveOffer>>(new Map())
+	// const offers = ref<Map<BazaarDelveOffer['uuid'], BazaarDelveOffer>>(new Map())
+	const { _offers, offers, queueSet, queueDelete } = useDebouncedReactiveMap<BazaarDelveOffer['uuid'], BazaarDelveOffer>()
 	const requestTimestamps = ref<OfferRequestTimestamps>({})
 
 	/**
@@ -28,6 +30,9 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'DELVE') return
 
+		// Don't process the offer if it's older than 10 minutes.
+		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarDelveOffer>(dto.uuid)
 		const account = dto.account
 		const ign = dto.ign
@@ -36,6 +41,7 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 		const multiplier = dto.multiplier
 		const fullPrice = dto.fullPrice
 		const minimumBuyout = dto.minimumBuyout ?? 0
+		const timestamp = dto.timestamp
 		const items = dto.items
 			.map(item => BULKY_FACTORY.generateBazaarItemFromDto('DELVE', item) as BazaarDelveItem)
 			.filter(notEmpty)
@@ -44,16 +50,18 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 		// Delete previous offers if they are from the same account.
 		for (const offer of offers.value.values()) {
 			if (offer.account === account && offer.league === league) {
-				offers.value.delete(offer.uuid)
+				// offers.value.delete(offer.uuid)
+				queueDelete(offer.uuid)
 			}
 		}
 
-		offers.value.set(uuid, {
+		const newOffer = {
 			category,
 			account,
 			uuid,
 			ign,
 			league,
+			timestamp,
 			chaosPerDiv,
 			multiplier,
 			fullPrice,
@@ -63,14 +71,17 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 				messageSent: false,
 				timestamp: 0,
 			},
-		})
+		}
+
+		queueSet(uuid, newOffer)
 	}
 
 	/**
 	 * Delete an offer. Will be called if it's expired.
 	 */
 	function deleteOffer(uuid: BazaarDelveOffer['uuid']) {
-		offers.value.delete(uuid)
+		// offers.value.delete(uuid)
+		queueDelete(uuid)
 	}
 
 	/**
@@ -99,12 +110,15 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 	}
 
 	return {
+		_offers,
 		offers,
 		requestTimestamps,
 		putOffer,
 		deleteOffer,
 		calculateBaseItemPrice,
 		isDelveItem,
+		queueSet,
+		queueDelete,
 	}
 })
 

@@ -23,7 +23,7 @@ import BazaarOfferOrganism from './BazaarOfferOrganism.vue'
 import { computed, ref, watch } from 'vue'
 import { useEventListener } from '@web/composables/useEventListener'
 import { debounce } from 'lodash'
-import { useApplyFilterToOffers } from '@web/composables/useApplyFilterToOffers'
+import { useFilterOffers } from '@web/composables/useFilterOffers'
 
 //PROPS
 const props = defineProps<{
@@ -43,10 +43,11 @@ useEventListener(listElement, 'scroll', debounce(onScroll, 50))
 /**
  * Apply the filter to offers to filter out non-applicable ones.
  */
-const filteredOffers = useApplyFilterToOffers(
-	() => props.store,
-	() => props.filter
-)
+// const filteredOffers = useApplyFilterToOffers(
+// 	() => props.store,
+// 	() => props.filter
+// )
+const { filteredOffers } = useFilterOffers()
 
 /**
  * Creates a sub-map of filtered offers that only contains elements that should be rendered.

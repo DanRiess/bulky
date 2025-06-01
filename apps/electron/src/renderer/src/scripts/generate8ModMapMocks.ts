@@ -1,19 +1,22 @@
+import { randomUUID } from 'crypto'
 import { writeFileSync } from 'fs'
-import { v4 } from 'uuid'
+
+const listedOffers = 100
+const mapsPerOffer = 500
 
 function generate8ModMapMocks() {
 	const offers: any[] = []
-	for (let i = 0; i < 100; ++i) {
+	for (let i = 0; i < listedOffers; ++i) {
 		const offer = generateOffer()
 		offers.push(offer)
 	}
 
-	writeFileSync('./apps/electron/src/renderer/src/mocks/offersMap8Mod.json', JSON.stringify(offers))
+	writeFileSync('../mocks/offersMap8Mod.json', JSON.stringify(offers))
 }
 
 function generateOffer() {
-	const uuid = v4()
-	const amount = Math.round(Math.random() * 100)
+	const uuid = randomUUID()
+	const amount = Math.round(Math.random() * mapsPerOffer)
 	const pia: any[] = []
 
 	for (let i = 0; i < amount; ++i) {
