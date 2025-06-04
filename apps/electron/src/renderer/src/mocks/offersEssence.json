@@ -10,7 +10,7 @@
 		"chaosPerDiv": 167.53,
 		"multiplier": 1,
 		"fullPrice": 398,
-		"minimumBuyout": 0,
+		"minimumBuyout": 100,
 		"fullBuyout": false,
 		"items": [
 			{

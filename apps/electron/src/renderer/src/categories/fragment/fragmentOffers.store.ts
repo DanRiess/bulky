@@ -32,7 +32,11 @@ export const useFragmentOfferStore = defineStore('fragmentOfferStore', () => {
 		if (category !== 'FRAGMENT') return
 
 		// Don't process the offer if it's older than 10 minutes.
-		if (Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)) return
+		if (
+			import.meta.env.VITE_IGNORE_OFFER_TTL === 'false' &&
+			Date.now() > dto.timestamp + Number(import.meta.env.VITE_OFFER_TTL)
+		)
+			return
 
 		const uuid = BULKY_UUID.generateTypedUuid<BazaarFragmentOffer>(dto.uuid)
 		const account = dto.account

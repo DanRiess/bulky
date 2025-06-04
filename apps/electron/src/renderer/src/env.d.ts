@@ -11,6 +11,7 @@ interface ImportMetaEnv {
 	readonly VITE_NO_ATTACH_MODE: 'true' | 'false'
 	readonly VITE_USE_MOCK_DATA: 'true' | 'false'
 	readonly VITE_ENABLE_CLICK_OUTSIDE: 'true' | 'false'
+	readonly VITE_IGNORE_OFFER_TTL: 'true' | 'false'
 
 	readonly VITE_APP_TITLE: string
 	readonly VITE_USER_AGENT: string

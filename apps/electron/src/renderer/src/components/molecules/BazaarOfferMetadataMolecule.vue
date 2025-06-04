@@ -6,7 +6,7 @@
 			<ChaosPerDivAtom :chaos-per-div="offer.chaosPerDiv" />
 		</div>
 		<div class="multiplier no-select" v-if="offer.multiplier">Multiplier: {{ offer.multiplier * 100 }} %</div>
-		<PriceAtom v-if="offer.minimumBuyout > 0" label="Min Price:" :price="price" />
+		<PriceAtom :class="{ 'error-color': minBuyoutNotMet }" v-if="offer.minimumBuyout > 0" label="Min Price:" :price="price" />
 	</div>
 </template>
 
@@ -19,6 +19,7 @@ import { useChaosToDiv } from '@web/composables/useChaosToDiv'
 // PROPS
 const props = defineProps<{
 	offer: BulkyBazaarOffer
+	minBuyoutNotMet: boolean
 }>()
 
 // GETTERS

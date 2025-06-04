@@ -1,8 +1,12 @@
 <template>
-	<div class="o-bazaar-offer animated-gradient-background" :style="{ zIndex: 10000 - idx }" data-b-override>
+	<div
+		class="o-bazaar-offer animated-gradient-background"
+		:class="{ disabled }"
+		:style="{ zIndex: 10000 - idx }"
+		data-b-override>
 		<div class="metadata-and-whisper flow">
-			<BazaarOfferMetadataMolecule :offer="offer" />
-			<ButtonAtom background-color="dark" @click="sendMessage">
+			<BazaarOfferMetadataMolecule :offer="offer" :min-buyout-not-met="disabled" />
+			<ButtonAtom background-color="dark" :disabled="disabled" @click="sendMessage">
 				<template v-if="offer.contact.messageSent">
 					<div class="message-sent">
 						Message Sent!
@@ -46,6 +50,10 @@ const props = defineProps<{
 }>()
 
 // GETTERS
+
+const disabled = computed(() => {
+	return filteredPrice.value.divine * props.offer.chaosPerDiv + filteredPrice.value.chaos < props.offer.minimumBuyout
+})
 
 /** Filter the offer's items based on the filter */
 const filteredItems = computed<BulkyBazaarItem[]>(() => {
@@ -178,5 +186,9 @@ async function sendMessage() {
 		border-box;
 	background-clip: text; */
 	color: var(--color-blue-bright);
+}
+
+.disabled {
+	opacity: 0.6 !important;
 }
 </style>
