@@ -8,6 +8,12 @@
 				League:
 			</LabelWithSelectMolecule>
 			<LabelWithTextMolecule v-model="configStore.config.gameWindowTitle"> PoE Window Title: </LabelWithTextMolecule>
+			<LabelWithButtonMolecule :button-text="moveNotificationButtonText" @click="moveNotifications">
+				Move Notifications:
+			</LabelWithButtonMolecule>
+			<LabelWithCheckboxMolecule v-model="configStore.config.notifications.autoHideNotifications">
+				Hide Notifications:
+			</LabelWithCheckboxMolecule>
 		</main>
 		<div class="loading" v-else>
 			<LoadingSpinnerAtom />
@@ -23,10 +29,14 @@ import { useLeagueStore } from '@web/stores/leagueStore'
 import { computed, onMounted } from 'vue'
 import LabelWithTextMolecule from '../molecules/LabelWithTextMolecule.vue'
 import LoadingSpinnerAtom from '../atoms/LoadingSpinnerAtom.vue'
+import LabelWithButtonMolecule from '../molecules/LabelWithButtonMolecule.vue'
+import { useNotificationStore } from '@web/stores/notificationStore'
+import LabelWithCheckboxMolecule from '../molecules/LabelWithCheckboxMolecule.vue'
 
 // STORES
 const configStore = useConfigStore()
 const leagueStore = useLeagueStore()
+const notificationStore = useNotificationStore()
 
 // STATE
 const leagues = computed(() => {
@@ -38,6 +48,17 @@ const leagues = computed(() => {
 	}
 })
 
+// GETTERS
+const moveNotificationButtonText = computed(() => {
+	return notificationStore.editNotificationElement ? 'Lock' : 'Move'
+})
+
+// METHODS
+function moveNotifications() {
+	notificationStore.moveNotificationElement(moveNotificationButtonText.value)
+}
+
+// HOOKS
 onMounted(() => {
 	leagueStore.initialize()
 })

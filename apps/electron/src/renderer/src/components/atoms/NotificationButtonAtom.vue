@@ -48,6 +48,7 @@ const offsetRight = computed(() => configStore.config.notifications.offsetRight)
 	font-weight: 600;
 	font-size: 0.8rem;
 	color: var(--color-purple-dark);
+	user-select: none;
 }
 
 .a-notification-button:hover {

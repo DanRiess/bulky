@@ -172,12 +172,12 @@ body {
 	justify-content: center;
 }
 
+/* This element doesn't need a height, it's sole purpose is the onclickoutside functionality for its children. */
 .notifications-panel {
 	position: fixed;
 	right: 0;
 	bottom: 0;
 	width: 350px;
-	height: 100%;
 	pointer-events: none;
 }
 </style>

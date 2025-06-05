@@ -16,8 +16,9 @@ export const useConfigStore = defineStore('configStore', () => {
 		ign: '',
 		autoRefetchOffers: false,
 		notifications: {
-			offsetBottom: '90px',
-			offsetRight: '1rem',
+			autoHideNotifications: false,
+			offsetBottom: 90,
+			offsetRight: 16,
 		},
 		hotkeySettings: {
 			keys: {

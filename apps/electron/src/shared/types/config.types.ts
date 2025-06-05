@@ -11,8 +11,9 @@ export type BulkyConfig = {
 	ign: string
 	autoRefetchOffers: boolean
 	notifications: {
-		offsetBottom: string
-		offsetRight: string
+		autoHideNotifications: boolean
+		offsetBottom: number
+		offsetRight: number
 	}
 	hotkeySettings: {
 		keys: {

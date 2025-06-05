@@ -79,7 +79,6 @@ const props = defineProps<{
 }>()
 
 // STATE
-console.log(props.notification)
 const mtn = decodeMinifiedTradeNotification(props.notification.tradeData)
 
 // COMPOSABLES

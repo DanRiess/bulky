@@ -1,10 +1,17 @@
 import { TradeNotification } from '@shared/types/general.types'
 import { defineStore } from 'pinia'
-import { MaybeRef, Ref, ref, toValue } from 'vue'
+import { computed, MaybeRef, Ref, ref, toValue } from 'vue'
+import { useConfigStore } from './configStore'
 
 export const useNotificationStore = defineStore('notificationStore', () => {
+	// STORES
+	const configStore = useConfigStore()
+
+	// STATE
 	const forceShowTradeNotifications = ref(false)
-	const forceHideTradeNotifications = ref(false)
+	const forceHideTradeNotifications = computed(() => configStore.config.notifications.autoHideNotifications)
+	const editNotificationElement = ref(false)
+	const dummyNotification = ref<TradeNotification>()
 	const notifications = ref<{ trades: TradeNotification[] }>({
 		trades: [],
 	})
@@ -12,7 +19,7 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 	/**
 	 * Create a trade notification.
 	 */
-	function createTradeNotification(options: { ign: string; tradeData: string; league: string }) {
+	function createTradeNotification(options: { ign: string; tradeData: string; league: string }): Ref<TradeNotification> {
 		return ref<TradeNotification>({
 			notificationType: 'trade',
 			league: options.league,
@@ -62,35 +69,6 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 		}
 	}
 
-	// function add (notification: Ref<TradeNotification>) {
-	// 	notifications.value[notification.value.notificationType].push(notification.value)
-
-	// 	if (notification.value.status === 'PENDING' || notification.value.status === 'IDLE') {
-	// 		const unwatch = watch(
-	// 			() => notification.value.status,
-	// 			status => {
-	// 				if (status === 'SUCCESS' || status === 'ERROR') {
-	// 					notification.value.timeout = setTimeout(() => {
-	// 						removeNotification(notification.value)
-	// 					}, notification.value.ttl ?? GENERIC_TTL)
-	// 					unwatch()
-	// 				}
-	// 			}
-	// 		)
-	// 	} else {
-	// 		notification.value.timeout = setTimeout(() => {
-	// 			remove(notification.value)
-	// 		}, notification.value.ttl ?? GENERIC_TTL)
-	// 	}
-	// }
-
-	// function resetTimeout(notification: Notification) {
-	// 	clearTimeout(notification.timeout)
-	// 	notification.timeout = setTimeout(() => {
-	// 		remove(notification)
-	// 	}, notification.ttl ?? GENERIC_TTL)
-	// }
-
 	function remove(notification: TradeNotification) {
 		notifications.value.trades = notifications.value.trades.filter(item => item.timestamp !== notification.timestamp)
 
@@ -105,13 +83,43 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 		)
 	}
 
+	function createDummyNotification() {
+		const dummyData = {
+			ign: 'Dummy',
+			tradeData: `1%4%AEAADwAAABJBmAAA%"!gen|f el|s rec" "m q.*1[1-9].%"`,
+			league: 'Standard',
+		}
+		const notification = createTradeNotification(dummyData)
+		addTrade(notification)
+
+		return notification
+	}
+
+	function moveNotificationElement(action: 'Move' | 'Lock') {
+		if (action === 'Move') {
+			editNotificationElement.value = true
+
+			if (notifications.value.trades.length === 0) {
+				dummyNotification.value = createDummyNotification().value
+			}
+		} else {
+			editNotificationElement.value = false
+
+			if (dummyNotification.value) {
+				remove(dummyNotification.value)
+			}
+		}
+	}
+
 	return {
 		notifications,
 		forceShowTradeNotifications,
 		forceHideTradeNotifications,
+		editNotificationElement,
 		createTradeNotification,
 		addTrade,
 		toggleTradeNotifications,
+		moveNotificationElement,
 		remove,
 	}
 })

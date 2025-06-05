@@ -10,6 +10,8 @@ import { SettingsCategory } from '@shared/types/settings.types'
 import { computed } from 'vue'
 import SettingsGeneralImplementation from '../implementations/SettingsGeneralImplementation.vue'
 import SettingsHotkeysImplementation from '../implementations/SettingsHotkeysImplementation.vue'
+import SettingsBazaarImplementation from '../implementations/SettingsBazaarImplementation.vue'
+import SettingsShopImplementation from '../implementations/SettingsShopImplementation.vue'
 
 // PROPS
 const props = defineProps<{
@@ -20,6 +22,8 @@ const props = defineProps<{
 const component = computed(() => {
 	if (props.activeCategory === 'GENERAL') return SettingsGeneralImplementation
 	else if (props.activeCategory === 'HOTKEYS') return SettingsHotkeysImplementation
+	else if (props.activeCategory === 'BAZAAR') return SettingsBazaarImplementation
+	else if (props.activeCategory === 'SHOP') return SettingsShopImplementation
 	else return undefined
 })
 </script>

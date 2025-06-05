@@ -130,7 +130,11 @@ export const useShopStore = defineStore('shopStore', () => {
 			// Push the item to the array if it fulfills the respective category's checks.
 			if (appStateStore.selectedCategory === 'MAP_8_MOD') {
 				if (!item.priceOverrideMap8Mod) return
-				items.push(deepToRaw(item))
+
+				// Cap 8 mod maps at 576 items.
+				if (items.length < 576) {
+					items.push(deepToRaw(item))
+				}
 			} else {
 				if (toValue(item.price) === 0 && toValue(item.priceOverride) === 0) return
 				items.push(deepToRaw(item))
@@ -189,7 +193,11 @@ export const useShopStore = defineStore('shopStore', () => {
 			// Push the item to the array if it fulfills the respective category's checks.
 			if (offer.category === 'MAP_8_MOD') {
 				if (!item.priceOverrideMap8Mod) return
-				items.push(deepToRaw(item))
+
+				// Cap 8 mod maps to 576 items.
+				if (items.length < 576) {
+					items.push(deepToRaw(item))
+				}
 			} else {
 				if (toValue(item.price) === 0 && toValue(item.priceOverride) === 0) return
 				items.push(deepToRaw(item))
@@ -331,7 +339,11 @@ export const useShopStore = defineStore('shopStore', () => {
 			// 8 mod maps need a price override, since they can't be priced automatically.
 			if (offer.category === 'MAP_8_MOD') {
 				if (!item.priceOverrideMap8Mod) return
-				items.push(deepToRaw(item))
+
+				// Cap 8 mod maps at 576 items.
+				if (items.length < 576) {
+					items.push(deepToRaw(item))
+				}
 			}
 			// Expedition logbooks in the offer are generic.
 			// They have to be split into their specific faction based on highest faction price.

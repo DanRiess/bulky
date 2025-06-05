@@ -16,7 +16,8 @@ function generate8ModMapMocks() {
 
 function generateOffer() {
 	const uuid = randomUUID()
-	const amount = Math.round(Math.random() * mapsPerOffer)
+	// const amount = Math.round(Math.random() * mapsPerOffer)
+	const amount = mapsPerOffer
 	const pia: any[] = []
 
 	for (let i = 0; i < amount; ++i) {
