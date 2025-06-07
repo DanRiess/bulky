@@ -47,6 +47,7 @@ import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateO
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
 import { useAppStateStore } from '@web/stores/appStateStore'
+import { useConfigStore } from '@web/stores/configStore'
 import { useNinjaStore } from '@web/stores/ninjaStore'
 import { useShopStore } from '@web/stores/shopStore'
 import { computed, onBeforeMount, ref, watch } from 'vue'
@@ -56,6 +57,7 @@ import { useRouter } from 'vue-router'
 const appStateStore = useAppStateStore()
 const shopStore = useShopStore()
 const ninjaStore = useNinjaStore()
+const configStore = useConfigStore()
 
 // STATE
 const disableOfferGenerationButton = ref(false)
@@ -64,18 +66,18 @@ const disableOfferGenerationButton = ref(false)
 const router = useRouter()
 
 // MODEL VALUES
-
 /** Offer multiplier model value. */
 const multiplier = ref<number | undefined>(1)
+
 /** Offer ign model value. Fetch from localstorage if available. */
 const ign = ref(window.localStorage.getItem('ign') ?? '')
+
 /** Offer minimum buyout model value. */
-const minBuyout = ref({
-	chaos: 0,
-	divine: 0,
-})
+const minBuyout = ref({ ...configStore.config.shop.defaultMinBuyout })
+
 /** Offer full buyout model value. */
 const fullBuyout = ref<boolean | undefined>(false)
+
 /** Offer filter. */
 const filter = ref<ShopFilter>({})
 

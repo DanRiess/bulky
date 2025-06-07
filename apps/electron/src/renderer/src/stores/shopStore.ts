@@ -31,6 +31,7 @@ import { ShopExpeditionItem } from '@web/categories/expedition/expedition.types'
 import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
 import { useNinjaStore } from './ninjaStore'
+import { useRouter } from 'vue-router'
 
 /** TTL of any given offer. Default to 15 minutes. */
 const OFFER_TTL = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
@@ -71,7 +72,7 @@ export const useShopStore = defineStore('shopStore', () => {
 			// Check the active property.
 			offer.active = timeSinceLastUpdate < OFFER_TTL
 
-			// Check if the project needs to be refreshed.
+			// Check if the offer needs to be refreshed.
 			if (offer.autoSync && timeSinceLastUpdate > AUTO_SYNC_INTERVAL && offer.league === configStore.config.league) {
 				console.log(`auto sync triggered for offer ${offer.category}`)
 				await recomputeOffer(offer.uuid)
@@ -115,9 +116,10 @@ export const useShopStore = defineStore('shopStore', () => {
 		fullBuyout?: boolean
 		filter?: ShopFilter
 	}) {
-		// TODO: Handle errors
 		if (!authStore.profile?.name) {
-			console.log('You have to sign in before creating a new offer')
+			if (import.meta.env.VITE_NO_ATTACH_MODE !== 'true') {
+				useRouter().push({ name: 'Auth' })
+			}
 			return
 		}
 
@@ -270,14 +272,17 @@ export const useShopStore = defineStore('shopStore', () => {
 	 * Reapply the used filters if any are present.
 	 * Reupload the offer and save it to IDB.
 	 */
-	async function recomputeOffer(uuid: BulkyShopOffer['uuid'], status?: Ref<ApiStatus>) {
-		status && (status.value = 'PENDING')
+	async function recomputeOffer(
+		uuid: BulkyShopOffer['uuid'],
+		options: { status?: Ref<ApiStatus>; blockIfLowValue?: boolean } = {}
+	) {
+		options.status && (options.status.value = 'PENDING')
 
 		const offer = getOfferByUuid(uuid)
 
 		if (!offer) {
 			console.log('Offer not found')
-			status && (status.value = 'ERROR')
+			options.status && (options.status.value = 'ERROR')
 			return
 		}
 
@@ -298,7 +303,7 @@ export const useShopStore = defineStore('shopStore', () => {
 				(activeWindow.title !== import.meta.env.VITE_APP_TITLE &&
 					activeWindow.title !== configStore.config.gameWindowTitle))
 		) {
-			status && (status.value = 'ERROR')
+			options.status && (options.status.value = 'ERROR')
 			return
 		}
 
@@ -376,9 +381,16 @@ export const useShopStore = defineStore('shopStore', () => {
 		offer.computedMultiplier = computedMultiplier
 		offer.chaosPerDiv = ninjaStore.chaosPerDiv
 
-		await putOffer(offer)
+		// If this is an auto update and the price of the offer is too low, only update the idb entry and don't upload.
+		if (options.blockIfLowValue && fullPrice.value < configStore.config.shop.autoUploadPriceFloor) {
+			// Remove the auto sync flag, so that the offer doesn't recompute every 30 s.
+			offer.autoSync = false
+			await bulkyIdb.putShopOffer(offer)
+		} else {
+			await putOffer(offer)
+		}
 
-		status && (status.value = 'SUCCESS')
+		options.status && (options.status.value = 'SUCCESS')
 	}
 
 	async function deleteOffer(offer: BulkyShopOffer) {
@@ -421,7 +433,9 @@ export const useShopStore = defineStore('shopStore', () => {
 		const account = authStore.profile?.name
 
 		if (!account) {
-			console.log('could not generate dto, no account name')
+			if (import.meta.env.VITE_NO_ATTACH_MODE !== 'true') {
+				useRouter().push({ name: 'Auth' })
+			}
 			return
 		}
 

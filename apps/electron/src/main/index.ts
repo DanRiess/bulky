@@ -86,7 +86,13 @@ app.whenReady().then(() => {
 	/**
 	 * Read the config file
 	 */
-	ipcMain.handle('read-config', () => readConfig(app))
+	ipcMain.handle('read-config', () => {
+		try {
+			return readConfig(app)
+		} catch (e) {
+			return new SerializedError(e)
+		}
+	})
 
 	/**
 	 * Start the oauth flow to generate a token pair .
@@ -160,7 +166,6 @@ app.whenReady().then(() => {
 			})
 			return res.data
 		} catch (e) {
-			console.log(e)
 			return new SerializedError(e)
 		}
 	})
@@ -169,7 +174,6 @@ app.whenReady().then(() => {
 	 * Put an offer to the bulky server.
 	 */
 	ipcMain.handle('put-offer', async (_, offerDto: BulkyBazaarOfferDto, jwt: string) => {
-		console.log({ putoffer: offerDto })
 		try {
 			return await putOffer(offerDto, jwt)
 		} catch (e) {
@@ -181,8 +185,6 @@ app.whenReady().then(() => {
 	 * Delete an offer from the bulky server.
 	 */
 	ipcMain.handle('delete-offer', async (_, offerDto: BulkyDeleteOfferDto, jwt: string) => {
-		console.log({ deleteoffer: offerDto })
-		console.log('deleteOffer')
 		try {
 			return await deleteOffer(offerDto, jwt)
 		} catch (e) {

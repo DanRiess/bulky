@@ -36,6 +36,5 @@ export function deserializeError(e: unknown) {
 	} else if (e instanceof Error) {
 		return e
 	}
-	console.log(e)
 	return new Error('Unknown Error')
 }

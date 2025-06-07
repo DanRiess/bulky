@@ -10,7 +10,7 @@ import { Server } from 'http'
 import { openExternalBrowserWindow } from './openExternalBrowserWindow'
 import { randomBytes, createHash } from 'crypto'
 import { v4 } from 'uuid'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import redirectErrorUrl from '../../../resources/redirectError.html?asset'
 import redirectSuccessUrl from '../../../resources/redirectSuccess.html?asset'
 import { OauthError } from '@shared/errors/oauthError'
@@ -61,6 +61,13 @@ export async function redeemRefreshToken(refreshToken: string) {
 		const response = await axios.post<OauthTokenResponse>(tokenExchangeUrl, payload, config)
 		return response.data
 	} catch (e) {
+		if (e instanceof AxiosError && e.response && 'error' in e.response.data && 'error_description' in e.response.data) {
+			throw new OauthError({
+				code: e.response.data.error,
+				state: 'state' in e.response.data ? e.response.data.state : '1',
+				message: e.response.data.error_description,
+			})
+		}
 		throw e
 	}
 }

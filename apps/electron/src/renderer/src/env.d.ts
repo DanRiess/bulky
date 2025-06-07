@@ -30,6 +30,7 @@ interface ImportMetaEnv {
 	readonly VITE_OFFER_TTL: string
 	readonly VITE_OFFER_AUTOSYNC_INTERVAL: string
 	readonly VITE_REFETCH_INTERVAL_OFFERS: string
+	readonly VITE_AUTO_UPLOAD_PRICE_FLOOR: string
 	readonly VITE_MTN_VERSION: string
 }
 

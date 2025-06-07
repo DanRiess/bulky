@@ -22,10 +22,27 @@ export class SerializedError {
 		if (e && typeof e === 'object' && 'isAxiosError' in e) {
 			const axiosError = e as AxiosError
 			const errorData = axiosError.response?.data
+
+			let message: string
+			if (errorData && typeof errorData === 'object' && 'error_description' in errorData) {
+				message = errorData.error_description as string
+			} else if (typeof errorData === 'string') {
+				message = errorData
+			} else {
+				message = axiosError.message
+			}
+
+			let code: string | undefined
+			if (errorData && typeof errorData === 'object' && 'error' in errorData) {
+				code = errorData.error as string
+			} else {
+				code = axiosError.code
+			}
+
 			this.error = {
 				name: axiosError.name,
-				message: typeof errorData === 'string' ? errorData : axiosError.message,
-				code: axiosError.code,
+				message,
+				code,
 				status: axiosError.status,
 			}
 		} else if (e instanceof BulkyError) {

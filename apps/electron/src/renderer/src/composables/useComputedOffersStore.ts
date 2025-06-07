@@ -16,12 +16,14 @@ import { useHeistOfferStore } from '@web/categories/heist/heistOffers.store'
 import { useExpeditionOfferStore } from '@web/categories/expedition/expeditionOffers.store'
 import { useFragmentOfferStore } from '@web/categories/fragment/fragmentOffers.store'
 import { useConfigStore } from '@web/stores/configStore'
+import { useAuthStore } from '@web/stores/authStore'
 
 /**
  * Returns a computed list of display values depending on what category is chosen and its current filter.
  */
 export function useComputedOffersStore() {
 	const appStateStore = useAppStateStore()
+	const authStore = useAuthStore()
 	const configStore = useConfigStore()
 	const essenceOfferStore = useEssenceOfferStore()
 	const scarabOfferStore = useScarabOfferStore()
@@ -55,7 +57,13 @@ export function useComputedOffersStore() {
 		const offers = new Map(
 			[...originalOffers]
 				.filter(([_, value]) => {
-					return value.league === configStore.config.league
+					const sameLeague = value.league === configStore.config.league
+					if (configStore.config.bazaar.showMyOffers) {
+						return sameLeague
+					} else {
+						const sameAccount = value.account === authStore.profile?.name
+						return sameLeague && !sameAccount
+					}
 				})
 				.sort(([_a, a], [_b, b]) => b.timestamp - a.timestamp)
 		)

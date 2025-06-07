@@ -72,6 +72,7 @@ onMounted(() => {
 .main {
 	display: grid;
 	grid-template-columns: max-content max-content;
+	grid-auto-rows: minmax(2rem, max-content);
 	column-gap: 2rem;
 	row-gap: 0.5rem;
 	margin-left: 1rem;

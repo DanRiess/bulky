@@ -1,3 +1,5 @@
+import { TotalPrice } from './bulky.types'
+
 export type BulkyHotkeyStruct = {
 	keyCode: string
 	displayName: string
@@ -24,7 +26,7 @@ export type BulkyConfig = {
 	}
 	shop: {
 		autoUploadPriceFloor: number
-		defaultMinBuyout: number
+		defaultMinBuyout: TotalPrice
 	}
 	bazaar: {
 		showMyOffers: boolean

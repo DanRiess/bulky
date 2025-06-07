@@ -80,7 +80,7 @@ export const api = {
 	// RENDERER -> MAIN BIDIRECTIONAL
 	typeInChat: (message: string) => ipcRenderer.invoke('type', message),
 
-	readConfig: () => ipcRenderer.invoke('read-config'),
+	readConfig: (): Promise<BulkyConfig | SerializedError> => ipcRenderer.invoke('read-config'),
 
 	getActiveWindow: (): Promise<activeWindow.Result | undefined> => ipcRendererWrapper.invoke('get-active-window'),
 

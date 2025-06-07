@@ -8,6 +8,13 @@ export type Uuid<T extends OptionalRecord = undefined> = string & { __uuidBrand:
 export type Id<T extends OptionalRecord = undefined> = string & { __idBrand: T }
 
 /**
+ * Makes all properties in T and its nested objects optional.
+ */
+export type DeepPartial<T> = {
+	[P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}
+
+/**
  * Get type information for one element from an array
  * https://stackoverflow.com/questions/41253310/typescript-retrieve-element-type-information-from-array-type
  */

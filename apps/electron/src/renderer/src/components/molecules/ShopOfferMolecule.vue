@@ -159,9 +159,9 @@ const disabled = computed(() => {
  * The function also handles toggling a timed tooltip as an indicator.
  */
 async function toggleAutoSync() {
-	// Return if the offer value is less than 100c
+	// Return if the offer value is less than what is configured.
 	if (offer.value.league !== configStore.config.league) return
-	if (offer.value.fullPrice < 100) return
+	if (offer.value.fullPrice < configStore.config.shop.autoUploadPriceFloor) return
 
 	// Clear the previous timeout
 	clearTimeout(autoSyncTimeout.value)
@@ -179,7 +179,7 @@ async function toggleAutoSync() {
  * Refresh an offer manually.
  */
 function refreshOffer(uuid: BulkyShopOffer['uuid']) {
-	shopStore.recomputeOffer(uuid, refreshState)
+	shopStore.recomputeOffer(uuid, { status: refreshState })
 }
 
 // HOOKS

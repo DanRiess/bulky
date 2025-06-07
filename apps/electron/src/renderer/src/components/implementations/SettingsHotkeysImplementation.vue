@@ -44,7 +44,6 @@ import { getKeys } from '@shared/types/utility.types'
 
 // STORES
 const configStore = useConfigStore()
-console.log(configStore.config)
 
 // GETTERS
 const hotkeysByCategory = computed(() => {

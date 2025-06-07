@@ -4,17 +4,39 @@
 			<h2>Shop Settings</h2>
 		</header>
 		<main class="main">
-			<div class="icon-grid">
-				<LabelWithNumberInput v-model="configStore.config.shop.autoUploadPriceFloor" :input-props="{ min: 50, step: 1 }">
-					Auto Upload Price Floor:
-				</LabelWithNumberInput>
-				<img src="/src/assets/png-icons/currency-chaos.png" height="32" width="32" decoding="async" loading="lazy" />
+			<LabelAtom id="auto-upload-price-floor">Auto Upload Price Floor:</LabelAtom>
+			<div class="input-with-icon">
+				<InputNumberAtom v-model="autoUploadPriceFloor" :input-props="{ step: 1 }" />
+				<img
+					class="no-select"
+					src="/src/assets/png-icons/currency-chaos.png"
+					height="32"
+					width="32"
+					decoding="async"
+					loading="lazy" />
 			</div>
-			<div class="icon-grid">
-				<LabelWithNumberInput v-model="configStore.config.shop.defaultMinBuyout" :input-props="{ min: 0, step: 1 }">
-					Default Min Buyout:
-				</LabelWithNumberInput>
-				<img src="/src/assets/png-icons/currency-chaos.png" height="32" width="32" decoding="async" loading="lazy" />
+			<LabelAtom id="min-buyout">Default Min Buyout:</LabelAtom>
+			<div class="inputs-with-icons">
+				<div class="input-with-icon">
+					<InputNumberAtom v-model="divine" :input-props="{ step: 1 }" />
+					<img
+						class="no-select"
+						src="/src/assets/png-icons/currency-divine.png"
+						height="32"
+						width="32"
+						decoding="async"
+						loading="lazy" />
+				</div>
+				<div class="input-with-icon">
+					<InputNumberAtom v-model="chaos" :min="0" :step="1" />
+					<img
+						class="no-select"
+						src="/src/assets/png-icons/currency-chaos.png"
+						height="32"
+						width="32"
+						decoding="async"
+						loading="lazy" />
+				</div>
 			</div>
 		</main>
 	</div>
@@ -22,10 +44,40 @@
 
 <script setup lang="ts">
 import { useConfigStore } from '@web/stores/configStore'
-import LabelWithNumberInput from '../molecules/LabelWithNumberInput.vue'
+import InputNumberAtom from '../atoms/InputNumberAtom.vue'
+import { computed } from 'vue'
+import LabelAtom from '../atoms/LabelAtom.vue'
 
 // STORES
 const configStore = useConfigStore()
+
+// GETTERS
+const divine = computed({
+	get() {
+		return configStore.config.shop.defaultMinBuyout.divine
+	},
+	set(value) {
+		configStore.updateAndValidateConfig({ shop: { defaultMinBuyout: { divine: value } } })
+	},
+})
+
+const chaos = computed({
+	get() {
+		return configStore.config.shop.defaultMinBuyout.chaos
+	},
+	set(value) {
+		configStore.updateAndValidateConfig({ shop: { defaultMinBuyout: { chaos: value } } })
+	},
+})
+
+const autoUploadPriceFloor = computed({
+	get() {
+		return configStore.config.shop.autoUploadPriceFloor
+	},
+	set(value) {
+		configStore.updateAndValidateConfig({ shop: { autoUploadPriceFloor: value } })
+	},
+})
 </script>
 
 <style scoped>
@@ -36,7 +88,8 @@ const configStore = useConfigStore()
 .main {
 	display: grid;
 	grid-template-columns: max-content max-content;
-	column-gap: 2rem;
+	grid-auto-rows: minmax(2rem, max-content);
+	column-gap: 1rem;
 	row-gap: 0.5rem;
 	margin-left: 1rem;
 }
@@ -49,10 +102,13 @@ const configStore = useConfigStore()
 	gap: 1.5rem;
 }
 
-.icon-grid {
-	display: grid;
-	grid-template-columns: subgrid;
-	grid-column: span 3;
-	column-gap: 1rem;
+.inputs-with-icons {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.input-with-icon {
+	display: flex;
+	gap: 0.5rem;
 }
 </style>

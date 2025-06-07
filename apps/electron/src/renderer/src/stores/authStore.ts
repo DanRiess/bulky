@@ -1,3 +1,4 @@
+import { OauthError } from '@shared/errors/oauthError'
 import { RequestError } from '@shared/errors/requestError'
 import { SerializedError } from '@shared/errors/serializedError'
 import {
@@ -16,6 +17,7 @@ import { BULKY_UUID } from '@web/utility/uuid'
 import { decodeJwt } from 'jose'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 export const useAuthStore = defineStore('authStore', () => {
 	// STATE
@@ -211,6 +213,12 @@ export const useAuthStore = defineStore('authStore', () => {
 
 			if (request.error.value || !request.data.value) {
 				refreshTokenState.value = 'ERROR'
+				if (request.error.value instanceof OauthError && request.error.value.code === 'invalid_grant') {
+					logout()
+					if (import.meta.env.VITE_NO_ATTACH_MODE !== 'true') {
+						useRouter().push({ name: 'Auth' })
+					}
+				}
 				return false
 			}
 
@@ -321,10 +329,6 @@ export const useAuthStore = defineStore('authStore', () => {
 	 * The token itself cannot be revoked, since GGG doesn't expose the necessary API.
 	 */
 	function logout() {
-		if (import.meta.env.VITE_USE_MOCK_DATA === 'true') {
-			return
-		}
-		// isLoggedIn.value = false
 		profile.value = undefined
 		window.localStorage.removeItem('tokenStructure')
 		window.localStorage.removeItem('poeProfile')
