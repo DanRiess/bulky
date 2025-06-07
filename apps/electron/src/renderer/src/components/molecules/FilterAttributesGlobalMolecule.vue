@@ -26,9 +26,9 @@
 			</LabelWithRangeMolecule>
 		</div>
 		<div class="regex-filter">
-			<LabelWithTextMolecule v-if="filter.regex !== undefined" v-model="filter.regex" max-length="50"
-				>Regex</LabelWithTextMolecule
-			>
+			<LabelWithTextMolecule v-if="filter.regex !== undefined" v-model="filter.regex" max-length="250">
+				Regex
+			</LabelWithTextMolecule>
 		</div>
 	</div>
 </template>
