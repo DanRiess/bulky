@@ -69,6 +69,7 @@ export const useMap8ModOfferStore = defineStore('Map8ModOfferStore', () => {
 			chaosPerDiv,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

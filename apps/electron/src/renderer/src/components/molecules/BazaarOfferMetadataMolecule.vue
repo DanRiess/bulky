@@ -5,7 +5,7 @@
 			Ratio:
 			<ChaosPerDivAtom :chaos-per-div="offer.chaosPerDiv" />
 		</div>
-		<div class="multiplier no-select" v-if="offer.multiplier">Multiplier: {{ offer.multiplier * 100 }} %</div>
+		<div class="multiplier no-select" v-if="offer.multiplier">Multiplier: {{ Math.round(offer.multiplier * 100) }} %</div>
 		<PriceAtom :class="{ 'error-color': minBuyoutNotMet }" v-if="offer.minimumBuyout > 0" label="Min Price:" :price="price" />
 	</div>
 </template>

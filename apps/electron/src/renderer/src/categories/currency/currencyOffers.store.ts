@@ -72,6 +72,7 @@ export const useCurrencyOfferStore = defineStore('currencyOfferStore', () => {
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

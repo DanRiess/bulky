@@ -71,6 +71,7 @@ export const useDelveOfferStore = defineStore('delveOfferStore', () => {
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

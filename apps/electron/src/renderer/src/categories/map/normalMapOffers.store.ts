@@ -69,6 +69,7 @@ export const useNormalMapOfferStore = defineStore('normalMapOfferStore', () => {
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

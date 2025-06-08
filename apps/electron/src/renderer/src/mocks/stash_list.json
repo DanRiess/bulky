@@ -1,122 +1,147 @@
 {
 	"stashes": [
 		{
-			"id": "98da3648b2",
-			"name": "Dump",
+			"id": "138e8f22c7",
+			"name": "5",
 			"type": "QuadStash",
 			"index": 0,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "18306df3cf",
+			"name": "Watchstones (Remove-only)",
+			"type": "NormalStash",
+			"index": 1,
+			"metadata": {
+				"colour": "7c5436"
+			}
+		},
+		{
+			"id": "1ebedc785e",
+			"name": "Dump (Remove-only)",
+			"type": "QuadStash",
+			"index": 2,
 			"metadata": {
 				"colour": "323232"
 			}
 		},
 		{
-			"id": "47a26b2bc3",
-			"name": "Morgue",
+			"id": "50c77d2f57",
+			"name": "Dump",
 			"type": "QuadStash",
-			"index": 1,
+			"index": 3,
 			"metadata": {
-				"colour": "730055"
+				"colour": "323232"
 			}
 		},
 		{
-			"id": "656b5c647a",
+			"id": "9938fa87cb",
+			"name": "Dump (Remove-only)",
+			"type": "QuadStash",
+			"index": 4,
+			"metadata": {
+				"colour": "323232"
+			}
+		},
+		{
+			"id": "6c2ce1a028",
+			"name": "Idols (Remove-only)",
+			"type": "NormalStash",
+			"index": 5,
+			"metadata": {
+				"colour": "7c5436"
+			}
+		},
+		{
+			"id": "1afa0864b9",
+			"name": "Heist (Remove-only)",
+			"type": "NormalStash",
+			"index": 6,
+			"metadata": {
+				"colour": "7c5436"
+			}
+		},
+		{
+			"id": "48c25e00a4",
 			"name": "Affinities",
 			"type": "Folder",
-			"index": 2,
+			"index": 7,
 			"metadata": {
 				"folder": true,
 				"colour": "7c5436"
 			},
 			"children": [
 				{
-					"id": "75c342b2ef",
-					"folder": "656b5c647a",
-					"name": "C",
+					"id": "9dd39ec449",
+					"folder": "48c25e00a4",
+					"name": "C (Remove-only)",
 					"type": "CurrencyStash",
-					"index": 3,
+					"index": 8,
 					"metadata": {
 						"colour": "590000"
 					}
 				},
 				{
-					"id": "707ff7938e",
-					"folder": "656b5c647a",
-					"name": "M",
+					"id": "71bc6e317e",
+					"folder": "48c25e00a4",
+					"name": "M (Remove-only)",
 					"type": "MapStash",
-					"index": 4,
+					"index": 9,
 					"metadata": {
 						"colour": "638000",
 						"map": {
-							"series": 23
+							"series": 24
 						}
 					}
 				},
 				{
-					"id": "e80b4f256d",
-					"folder": "656b5c647a",
-					"name": "F",
+					"id": "4dea3fedf3",
+					"folder": "48c25e00a4",
+					"name": "F (Remove-only)",
 					"type": "FragmentStash",
-					"index": 5,
+					"index": 10,
 					"metadata": {
 						"colour": "bff500"
 					}
 				},
 				{
-					"id": "e124b705c1",
-					"folder": "656b5c647a",
-					"name": "D",
+					"id": "343f847ac4",
+					"folder": "48c25e00a4",
+					"name": "D (Remove-only)",
 					"type": "DivinationCardStash",
-					"index": 6,
+					"index": 11,
 					"metadata": {
 						"colour": "ff"
 					}
 				},
 				{
-					"id": "547c48b9b8",
-					"folder": "656b5c647a",
-					"name": "E",
+					"id": "9378189431",
+					"folder": "48c25e00a4",
+					"name": "E (Remove-only)",
 					"type": "EssenceStash",
-					"index": 7,
+					"index": 12,
 					"metadata": {
 						"colour": "638000"
 					}
 				},
 				{
-					"id": "3fb14d602a",
-					"folder": "656b5c647a",
-					"name": "Del",
-					"type": "DelveStash",
-					"index": 8,
-					"metadata": {
-						"colour": "638000"
-					}
-				},
-				{
-					"id": "8eff03649c",
-					"folder": "656b5c647a",
-					"name": "Deli",
+					"id": "70fafacccb",
+					"folder": "48c25e00a4",
+					"name": "Deli (Remove-only)",
 					"type": "DeliriumStash",
-					"index": 9,
+					"index": 13,
 					"metadata": {
 						"colour": "638000"
 					}
 				},
 				{
-					"id": "5151b9e5e5",
-					"folder": "656b5c647a",
-					"name": "Bli",
-					"type": "BlightStash",
-					"index": 10,
-					"metadata": {
-						"colour": "638000"
-					}
-				},
-				{
-					"id": "60ce643d6b",
-					"folder": "656b5c647a",
-					"name": "Mta",
+					"id": "e6729afa21",
+					"folder": "48c25e00a4",
+					"name": "Mta (Remove-only)",
 					"type": "UltimatumStash",
-					"index": 11,
+					"index": 14,
 					"metadata": {
 						"colour": "638000"
 					}
@@ -124,150 +149,708 @@
 			]
 		},
 		{
-			"id": "faee7c74c8",
-			"name": "$$",
-			"type": "PremiumStash",
-			"index": 12,
-			"metadata": {
-				"public": true,
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "fdf0006a54",
-			"name": "~b/o 2 chaos",
-			"type": "PremiumStash",
-			"index": 13,
-			"metadata": {
-				"public": true,
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "27d7a95468",
-			"name": "~b/o 3 chaos",
-			"type": "PremiumStash",
-			"index": 14,
-			"metadata": {
-				"public": true,
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "69d4034cec",
-			"name": "~b/o 5 chaos",
-			"type": "PremiumStash",
+			"id": "aa69b7e6fa",
+			"name": "RogueStarter (Remove-only)",
+			"type": "QuadStash",
 			"index": 15,
 			"metadata": {
-				"public": true,
-				"colour": "638000"
+				"colour": "323232"
 			}
 		},
 		{
-			"id": "83f618e5a3",
-			"name": "~b/o 15 chaos",
-			"type": "PremiumStash",
+			"id": "8182b75430",
+			"name": "Dump",
+			"type": "QuadStash",
 			"index": 16,
 			"metadata": {
+				"colour": "323232"
+			}
+		},
+		{
+			"id": "48ff25a283",
+			"name": "~b/o 50 chaos (Remove-only)",
+			"type": "QuadStash",
+			"index": 17,
+			"metadata": {
+				"colour": "80"
+			}
+		},
+		{
+			"id": "46cf1abae7",
+			"name": "Affinities",
+			"type": "Folder",
+			"index": 18,
+			"metadata": {
+				"folder": true,
+				"colour": "7c5436"
+			},
+			"children": [
+				{
+					"id": "3bbb2810a7",
+					"folder": "46cf1abae7",
+					"name": "C (Remove-only)",
+					"type": "CurrencyStash",
+					"index": 19,
+					"metadata": {
+						"colour": "590000"
+					}
+				},
+				{
+					"id": "e3321cd8dd",
+					"folder": "46cf1abae7",
+					"name": "M (Remove-only)",
+					"type": "MapStash",
+					"index": 20,
+					"metadata": {
+						"colour": "638000",
+						"map": {
+							"series": 24
+						}
+					}
+				},
+				{
+					"id": "25f97ae4f8",
+					"folder": "46cf1abae7",
+					"name": "F (Remove-only)",
+					"type": "FragmentStash",
+					"index": 21,
+					"metadata": {
+						"colour": "bff500"
+					}
+				},
+				{
+					"id": "b5e8c7c201",
+					"folder": "46cf1abae7",
+					"name": "D (Remove-only)",
+					"type": "DivinationCardStash",
+					"index": 22,
+					"metadata": {
+						"colour": "ff"
+					}
+				},
+				{
+					"id": "0549892e67",
+					"folder": "46cf1abae7",
+					"name": "E (Remove-only)",
+					"type": "EssenceStash",
+					"index": 23,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "d5b53e813b",
+					"folder": "46cf1abae7",
+					"name": "G (Remove-only)",
+					"type": "GemStash",
+					"index": 24,
+					"metadata": {
+						"colour": "730055"
+					}
+				},
+				{
+					"id": "06a28e1440",
+					"folder": "46cf1abae7",
+					"name": "Del (Remove-only)",
+					"type": "DelveStash",
+					"index": 25,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "a9c634c74b",
+					"folder": "46cf1abae7",
+					"name": "Deli (Remove-only)",
+					"type": "DeliriumStash",
+					"index": 26,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "bd6846a3d9",
+					"folder": "46cf1abae7",
+					"name": "Bli (Remove-only)",
+					"type": "BlightStash",
+					"index": 27,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "2dca6b3c4b",
+					"folder": "46cf1abae7",
+					"name": "Mta (Remove-only)",
+					"type": "UltimatumStash",
+					"index": 28,
+					"metadata": {
+						"colour": "638000"
+					}
+				}
+			]
+		},
+		{
+			"id": "4c133d8551",
+			"name": "$$ (Remove-only)",
+			"type": "PremiumStash",
+			"index": 29,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "752630f771",
+			"name": "~b/o 5 chaos (Remove-only)",
+			"type": "PremiumStash",
+			"index": 30,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "455a24aebf",
+			"name": "Affinities",
+			"type": "Folder",
+			"index": 31,
+			"metadata": {
+				"folder": true,
+				"colour": "7c5436"
+			},
+			"children": [
+				{
+					"id": "2903b3c2ba",
+					"folder": "455a24aebf",
+					"name": "C (Remove-only)",
+					"type": "CurrencyStash",
+					"index": 32,
+					"metadata": {
+						"colour": "590000"
+					}
+				},
+				{
+					"id": "f849f7da9d",
+					"folder": "455a24aebf",
+					"name": "M (Remove-only)",
+					"type": "MapStash",
+					"index": 33,
+					"metadata": {
+						"colour": "638000",
+						"map": {
+							"series": 24
+						}
+					}
+				},
+				{
+					"id": "eb2faa584b",
+					"folder": "455a24aebf",
+					"name": "F (Remove-only)",
+					"type": "FragmentStash",
+					"index": 34,
+					"metadata": {
+						"colour": "bff500"
+					}
+				},
+				{
+					"id": "f3c7a939c0",
+					"folder": "455a24aebf",
+					"name": "D (Remove-only)",
+					"type": "DivinationCardStash",
+					"index": 35,
+					"metadata": {
+						"colour": "ff"
+					}
+				},
+				{
+					"id": "1b82680404",
+					"folder": "455a24aebf",
+					"name": "E (Remove-only)",
+					"type": "EssenceStash",
+					"index": 36,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "cf240cc4e9",
+					"folder": "455a24aebf",
+					"name": "Del (Remove-only)",
+					"type": "DelveStash",
+					"index": 37,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "94948499e7",
+					"folder": "455a24aebf",
+					"name": "Deli (Remove-only)",
+					"type": "DeliriumStash",
+					"index": 38,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "c9b7e890e7",
+					"folder": "455a24aebf",
+					"name": "Bli (Remove-only)",
+					"type": "BlightStash",
+					"index": 39,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "23744030fe",
+					"folder": "455a24aebf",
+					"name": "Mta (Remove-only)",
+					"type": "UltimatumStash",
+					"index": 40,
+					"metadata": {
+						"colour": "638000"
+					}
+				}
+			]
+		},
+		{
+			"id": "f44a2a28b8",
+			"name": "~b/o 1 divine (Remove-only)",
+			"type": "PremiumStash",
+			"index": 41,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "79327b79e0",
+			"name": "$$ (Remove-only)",
+			"type": "PremiumStash",
+			"index": 42,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "d28b734032",
+			"name": "~b/o 100 chaos (Remove-only)",
+			"type": "PremiumStash",
+			"index": 43,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "37c7a7af31",
+			"name": "~b/o 1 divine (Remove-only)",
+			"type": "PremiumStash",
+			"index": 44,
+			"metadata": {
+				"colour": "ffaa00"
+			}
+		},
+		{
+			"id": "3c18e74785",
+			"name": "MAPS (Remove-only)",
+			"type": "PremiumStash",
+			"index": 45,
+			"metadata": {
+				"colour": "ff"
+			}
+		},
+		{
+			"id": "a6d9b1cbe3",
+			"name": "Deft (Remove-only)",
+			"type": "QuadStash",
+			"index": 46,
+			"metadata": {
+				"colour": "730055"
+			}
+		},
+		{
+			"id": "d166593e5b",
+			"name": "RecombIdols (Remove-only)",
+			"type": "PremiumStash",
+			"index": 47,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "32200d658f",
+			"name": "~b/o 20 chaos (Remove-only)",
+			"type": "PremiumStash",
+			"index": 48,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "2fb9e8ab7a",
+			"name": "KBoC (Remove-only)",
+			"type": "PremiumStash",
+			"index": 49,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "d854a10ed9",
+			"name": "Affinities",
+			"type": "Folder",
+			"index": 50,
+			"metadata": {
+				"folder": true,
+				"colour": "7c5436"
+			},
+			"children": [
+				{
+					"id": "19d8947c24",
+					"folder": "d854a10ed9",
+					"name": "C",
+					"type": "CurrencyStash",
+					"index": 51,
+					"metadata": {
+						"colour": "590000"
+					}
+				},
+				{
+					"id": "68200380a7",
+					"folder": "d854a10ed9",
+					"name": "M",
+					"type": "MapStash",
+					"index": 52,
+					"metadata": {
+						"colour": "638000",
+						"map": {
+							"series": 24
+						}
+					}
+				},
+				{
+					"id": "eddb66d9a9",
+					"folder": "d854a10ed9",
+					"name": "F",
+					"type": "FragmentStash",
+					"index": 53,
+					"metadata": {
+						"colour": "bff500"
+					}
+				},
+				{
+					"id": "8e4decc4a8",
+					"folder": "d854a10ed9",
+					"name": "D",
+					"type": "DivinationCardStash",
+					"index": 54,
+					"metadata": {
+						"colour": "ff"
+					}
+				},
+				{
+					"id": "aa361211f5",
+					"folder": "d854a10ed9",
+					"name": "E",
+					"type": "EssenceStash",
+					"index": 55,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "e3fd5844f3",
+					"folder": "d854a10ed9",
+					"name": "Del",
+					"type": "DelveStash",
+					"index": 56,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "66b72ae60b",
+					"folder": "d854a10ed9",
+					"name": "Deli",
+					"type": "DeliriumStash",
+					"index": 57,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "f1357e9381",
+					"folder": "d854a10ed9",
+					"name": "Bli",
+					"type": "BlightStash",
+					"index": 58,
+					"metadata": {
+						"colour": "638000"
+					}
+				},
+				{
+					"id": "bd037ae196",
+					"folder": "d854a10ed9",
+					"name": "Mta",
+					"type": "UltimatumStash",
+					"index": 59,
+					"metadata": {
+						"colour": "638000"
+					}
+				}
+			]
+		},
+		{
+			"id": "84e138ac14",
+			"name": "Exped",
+			"type": "PremiumStash",
+			"index": 60,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "6615172d22",
+			"name": "Flasks (Remove-only)",
+			"type": "PremiumStash",
+			"index": 61,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "e6448118c5",
+			"name": "$$ (Remove-only)",
+			"type": "PremiumStash",
+			"index": 62,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "33b8bca3b9",
+			"name": "Cluster (Remove-only)",
+			"type": "PremiumStash",
+			"index": 63,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "a2da40b1e2",
+			"name": "Heist",
+			"type": "PremiumStash",
+			"index": 64,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "79454304fa",
+			"name": "Leveling (Remove-only)",
+			"type": "PremiumStash",
+			"index": 65,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "127573f64d",
+			"name": "$$",
+			"type": "PremiumStash",
+			"index": 66,
+			"metadata": {
 				"public": true,
 				"colour": "638000"
 			}
 		},
 		{
-			"id": "44e92994e0",
-			"name": "IvoryTower",
+			"id": "713daabaa6",
+			"name": "~b/o 1 divine",
 			"type": "PremiumStash",
-			"index": 17,
+			"index": 67,
+			"metadata": {
+				"public": true,
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "19fb5c7335",
+			"name": "pilfering (Remove-only)",
+			"type": "PremiumStash",
+			"index": 68,
 			"metadata": {
 				"colour": "638000"
 			}
 		},
 		{
-			"id": "80e6adc293",
-			"name": "DDoCR",
+			"id": "ba5a95e6c7",
+			"name": "~b/o 2 divine",
 			"type": "PremiumStash",
-			"index": 18,
+			"index": 69,
+			"metadata": {
+				"public": true,
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "48c0a94854",
+			"name": "Maprunners (Remove-only)",
+			"type": "PremiumStash",
+			"index": 70,
 			"metadata": {
 				"colour": "638000"
 			}
 		},
 		{
-			"id": "8c361e820e",
-			"name": "BamaLevel",
+			"id": "0c73812313",
+			"name": "Maprunners (Remove-only)",
 			"type": "PremiumStash",
-			"index": 19,
+			"index": 71,
 			"metadata": {
 				"colour": "638000"
 			}
 		},
 		{
-			"id": "dcb61bf106",
-			"name": "2",
+			"id": "ab87223cd0",
+			"name": "MapDump",
+			"type": "QuadStash",
+			"index": 72,
+			"metadata": {
+				"colour": "323232"
+			}
+		},
+		{
+			"id": "c3a03279be",
+			"name": "~b/o 2 divine",
 			"type": "PremiumStash",
-			"index": 20,
+			"index": 73,
+			"metadata": {
+				"public": true,
+				"colour": "ffaa00"
+			}
+		},
+		{
+			"id": "715e12c15c",
+			"name": "Maprunner Quad (Remove-only)",
+			"type": "QuadStash",
+			"index": 74,
 			"metadata": {
 				"colour": "638000"
 			}
 		},
 		{
-			"id": "13bc2f3789",
+			"id": "37df9bd2f2",
+			"name": "Expedition",
+			"type": "PremiumStash",
+			"index": 75,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "fd0f642ffd",
+			"name": "ToxicSewer (Remove-only)",
+			"type": "PremiumStash",
+			"index": 76,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "4d8a6d060f",
+			"name": "Beasts",
+			"type": "PremiumStash",
+			"index": 77,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "962aca8ee8",
+			"name": "3",
+			"type": "PremiumStash",
+			"index": 78,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "2e1d6b866e",
+			"name": "4",
+			"type": "PremiumStash",
+			"index": 79,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "b611261232",
+			"name": "BrandExplode",
+			"type": "PremiumStash",
+			"index": 80,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "bf42bfe495",
+			"name": "LS",
+			"type": "PremiumStash",
+			"index": 81,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "5ac7ee5d20",
+			"name": "Dunes corr",
+			"type": "PremiumStash",
+			"index": 82,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "849865fb06",
+			"name": "Tats",
+			"type": "PremiumStash",
+			"index": 83,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "0af1aa5408",
+			"name": "Flasks",
+			"type": "PremiumStash",
+			"index": 84,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "3c9980fc38",
+			"name": "Leveling",
+			"type": "PremiumStash",
+			"index": 85,
+			"metadata": {
+				"colour": "638000"
+			}
+		},
+		{
+			"id": "fa1fd92b04",
 			"name": "1",
-			"type": "PremiumStash",
-			"index": 21,
+			"type": "QuadStash",
+			"index": 86,
 			"metadata": {
 				"colour": "638000"
 			}
 		},
 		{
-			"id": "3c5646b0b0",
-			"name": "5",
-			"type": "PremiumStash",
-			"index": 22,
-			"metadata": {
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "46437904ed",
-			"name": "~b/o 3 chaos",
-			"type": "PremiumStash",
-			"index": 23,
-			"metadata": {
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "bf4578d76e",
+			"id": "b0a90765b5",
 			"name": "6",
-			"type": "PremiumStash",
-			"index": 24,
-			"metadata": {
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "d023b3a573",
-			"name": "7",
-			"type": "PremiumStash",
-			"index": 25,
-			"metadata": {
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "983e18985b",
-			"name": "Lvl86+",
-			"type": "PremiumStash",
-			"index": 26,
-			"metadata": {
-				"colour": "638000"
-			}
-		},
-		{
-			"id": "0d76827221",
-			"name": "9",
-			"type": "PremiumStash",
-			"index": 27,
+			"type": "GemStash",
+			"index": 87,
 			"metadata": {
 				"colour": "638000"
 			}

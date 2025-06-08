@@ -35,7 +35,7 @@ export function useFetchStashItems(stashTabs: MaybeRefOrGetter<PoeStashTab[]>) {
 				await request.exec(tab)
 
 				if (request.error.value || !request.data.value) {
-					console.log('error')
+					console.log({ request })
 					status.value = 'ERROR'
 					error.value = request.error.value
 					return

@@ -69,9 +69,10 @@ export const useBestiaryOfferStore = defineStore('bestiaryOfferStore', () => {
 			timestamp,
 			chaosPerDiv,
 			items,
-			minimumBuyout,
 			multiplier,
 			fullPrice,
+			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

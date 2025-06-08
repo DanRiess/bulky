@@ -74,6 +74,7 @@ export const useExpeditionOfferStore = defineStore('expeditionOfferStore', () =>
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

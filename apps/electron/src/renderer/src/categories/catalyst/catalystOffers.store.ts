@@ -69,9 +69,10 @@ export const useCatalystOfferStore = defineStore('catalystOfferStore', () => {
 			timestamp,
 			chaosPerDiv,
 			items,
-			minimumBuyout,
 			multiplier,
 			fullPrice,
+			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

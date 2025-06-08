@@ -73,6 +73,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

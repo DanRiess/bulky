@@ -13,7 +13,7 @@
 				}}
 			</div>
 			<div>*</div>
-			<div class="price">{{ computedPrice }}</div>
+			<div class="price">{{ Math.round(computedPrice * 10) / 10 }}</div>
 			<img src="/src/assets/png-icons/currency-chaos.png" height="24" width="24" decoding="async" loading="lazy" />
 		</div>
 		<div

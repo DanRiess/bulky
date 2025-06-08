@@ -71,6 +71,7 @@ export const useScarabOfferStore = defineStore('scarabOfferStore', () => {
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

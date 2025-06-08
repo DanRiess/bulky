@@ -73,6 +73,7 @@ export const useFragmentOfferStore = defineStore('fragmentOfferStore', () => {
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

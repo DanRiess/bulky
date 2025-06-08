@@ -71,6 +71,7 @@ export const useHeistOfferStore = defineStore('heistOfferStore', () => {
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

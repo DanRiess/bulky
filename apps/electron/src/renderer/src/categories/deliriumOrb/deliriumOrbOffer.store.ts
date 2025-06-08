@@ -74,6 +74,7 @@ export const useDeliriumOrbOfferStore = defineStore('deliriumOrbOfferStore', () 
 			fullPrice,
 			items,
 			minimumBuyout,
+			fullBuyout: dto.fullBuyout,
 			contact: {
 				messageSent: false,
 				timestamp: 0,

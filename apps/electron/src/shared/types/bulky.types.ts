@@ -288,6 +288,7 @@ export type BulkyBazaarOffer<T extends BulkyBazaarItem = BulkyBazaarItem> = {
 	multiplier: number
 	fullPrice: number
 	minimumBuyout: number
+	fullBuyout?: boolean
 	items: T[]
 	contact: {
 		messageSent: boolean

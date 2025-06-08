@@ -1,7 +1,17 @@
 <template>
 	<div class="o-stash-tab-collection animated-gradient-background flow" data-b-override>
 		<header class="header">
-			<h2 class="no-select">Stash Tabs</h2>
+			<div style="display: flex; gap: 1rem; align-items: center">
+				<h2 class="no-select">Stash Tabs</h2>
+				<div class="remove-only-icon">
+					<SvgIconAtom v-bind="removeOnlyIconProps" @click="toggleRemoveOnlyTabs" />
+					<TransitionAtom v-on="transitionHooks">
+						<div class="remove-only-tooltip" v-if="showRemoveOnlyTabsTooltip">
+							{{ removeOnlyTooltipText }}
+						</div>
+					</TransitionAtom>
+				</div>
+			</div>
 			<TransitionAtom v-on="hooks">
 				<SvgButtonWithPopupMolecule
 					:svg-props="svgIconProps"
@@ -28,7 +38,10 @@
 					@update:model-value="selected => updateStashPropSelected(stash, selected)">
 					{{ stash.name }}
 				</LabelWithCheckboxMolecule>
-				<ul v-else class="stash-folder-list" :style="{ borderColor: '#' + stash.color }">
+				<ul
+					v-else-if="stash.children && stashTabHierarchy[stash.id]"
+					class="stash-folder-list"
+					:style="{ borderColor: '#' + stash.color }">
 					<li>{{ stash.name }} Folder</li>
 					<LabelWithCheckboxMolecule
 						v-for="child in stashTabHierarchy[stash.id]"
@@ -60,6 +73,7 @@ import { useBulkyIdb } from '@web/composables/useBulkyIdb'
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { getKeys } from '@shared/types/utility.types'
 import InfoPanelStashTabTemplateAtom from '../atoms/InfoPanelStashTabTemplateAtom.vue'
+import SvgIconAtom from '../atoms/SvgIconAtom.vue'
 
 // LOCAL TYPES
 type StashTabHierarchy = {
@@ -75,14 +89,23 @@ const appStateStore = useAppStateStore()
 // STATE
 const stashListRequest = stashStore.getStashTabListRequest()
 const timeout = ref(stashStore.lastListFetch + stashStore.fetchTimeout - Date.now())
+const showRemoveOnlyTabs = ref(false)
+const showRemoveOnlyTabsTooltip = ref(false)
+const showRemoveOnlyTabsTimeout = ref<NodeJS.Timeout>()
 
 // COMPOSABLES
 const bulkyIdb = useBulkyIdb()
+const transitionHooks = useGenericTransitionHooks({
+	duration: 0.15,
+	opacity: 0,
+	scaleX: 0.01,
+})
 
 // GETTERS
 const stashTabHierarchy = computed(() => {
 	return stashStore.stashTabs.reduce(
 		(prev, curr) => {
+			if (showRemoveOnlyTabs.value === false && curr.name.endsWith('(Remove-only)')) return prev
 			if (curr.parentId) {
 				prev[curr.parentId] ? prev[curr.parentId].push(curr) : (prev[curr.parentId] = [curr])
 			} else {
@@ -101,6 +124,17 @@ const svgIconProps = computed(() => {
 		useGradient: stashListRequest.request.statusPending.value,
 		width: '100%',
 	}
+})
+
+const removeOnlyIconProps = computed(() => {
+	return {
+		name: 'openChest',
+		color: showRemoveOnlyTabs.value ? 'var(--color-success)' : 'var(--color-error)',
+	}
+})
+
+const removeOnlyTooltipText = computed(() => {
+	return showRemoveOnlyTabs.value ? 'Show Remove Only Tabs' : 'Hide Remove Only Tabs'
 })
 
 /**
@@ -136,6 +170,21 @@ async function fetchStash() {
 	if (stashListRequest.request.statusSuccess) {
 		updateTimeout()
 	}
+}
+
+/**
+ * Toggle remove only stash tabs on or off.
+ */
+function toggleRemoveOnlyTabs() {
+	// Clear the previous timeout
+	clearTimeout(showRemoveOnlyTabsTimeout.value)
+
+	showRemoveOnlyTabs.value = !showRemoveOnlyTabs.value
+
+	showRemoveOnlyTabsTooltip.value = true
+	showRemoveOnlyTabsTimeout.value = setTimeout(() => {
+		showRemoveOnlyTabsTooltip.value = false
+	}, 2000)
 }
 
 /**
@@ -213,5 +262,24 @@ const hooks = useGenericTransitionHooks({
 
 .stash-folder-list > div:last-child {
 	padding-bottom: 0.25rem;
+}
+
+.remove-only-icon {
+	position: relative;
+	display: flex;
+}
+
+.remove-only-tooltip {
+	position: absolute;
+	font-size: 0.8rem;
+	transform-origin: left;
+	background-color: black;
+	padding: 0.25rem;
+	border-radius: var(--border-radius-small);
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	left: 28px;
+	z-index: 1;
 }
 </style>

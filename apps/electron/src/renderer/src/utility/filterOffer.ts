@@ -16,6 +16,9 @@ export function filterOffer(
 	// An offer can have a higher multiplier than 2 if some of its items were overridden with higher prices.
 	if (filter.multiplier && filter.multiplier < 2 && filter.multiplier < offer.multiplier) return null
 
+	// Filter the offer out if it is a fullBuyoutOnly offer and the filter didn't set the flag.
+	if (offer.fullBuyout && !filter.fullBuyout) return null
+
 	// If the user wants to buyout the full offer, don't filter.
 	if (filter.fullBuyout) {
 		return offer

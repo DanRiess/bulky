@@ -49,6 +49,7 @@ export const useShopStore = defineStore('shopStore', () => {
 
 	// STATE
 	const offers = ref<BulkyShopOffer[]>([])
+	const router = useRouter()
 
 	// GETTERS
 	const maximumOffersReached = computed(() => offers.value.length >= parseInt(import.meta.env.VITE_MAXIMUM_OFFER_AMOUNT))
@@ -118,7 +119,7 @@ export const useShopStore = defineStore('shopStore', () => {
 	}) {
 		if (!authStore.profile?.name) {
 			if (import.meta.env.VITE_NO_ATTACH_MODE !== 'true') {
-				useRouter().push({ name: 'Auth' })
+				router.push({ name: 'Auth' })
 			}
 			return
 		}
@@ -231,7 +232,10 @@ export const useShopStore = defineStore('shopStore', () => {
 	 */
 	async function putOffer(offer: BulkyShopOffer) {
 		// Don't put the offer if the user has already created too many.
-		if (maximumOffersReached.value) return
+		if (maximumOffersReached.value && !offers.value.find(o => o.category === offer.category)) {
+			console.log('Maximum offers reached')
+			return
+		}
 
 		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === offer.uuid)
 
@@ -434,7 +438,8 @@ export const useShopStore = defineStore('shopStore', () => {
 
 		if (!account) {
 			if (import.meta.env.VITE_NO_ATTACH_MODE !== 'true') {
-				useRouter().push({ name: 'Auth' })
+				console.log({ router })
+				router.push({ name: 'Auth' })
 			}
 			return
 		}
