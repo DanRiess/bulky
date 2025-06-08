@@ -42,6 +42,7 @@
 					:disabled="!authStore.isLoggedIn || disabled"
 					@click="refreshOffer(offer.uuid)">
 					Refresh Offer
+					<template v-if="offerCooldown">(3 minute CD)</template>
 				</SvgButtonWithPopupMolecule>
 
 				<SvgButtonWithPopupMolecule
@@ -49,15 +50,9 @@
 					:tooltip-props="tooltipProps"
 					background-color="dark"
 					:disabled="!authStore.isLoggedIn || disabled"
-					@click="
-						router.push({
-							name: 'EditOffer',
-							params: {
-								uuid: offer.uuid,
-							},
-						})
-					">
+					@click="editOffer(offer.uuid)">
 					Edit Offer
+					<template v-if="offerCooldown">(3 minute CD)</template>
 				</SvgButtonWithPopupMolecule>
 
 				<SvgButtonWithPopupMolecule
@@ -105,6 +100,7 @@ const offer = defineModel<BulkyShopOffer>({ required: true })
 
 // STATE
 const bulkyIdb = useBulkyIdb()
+const offerCooldown = ref(false)
 const showAutoSyncTooltip = ref(false)
 /** Used to show a visual indicator while refresh is in progress. */
 const refreshState = ref<ApiStatus>('IDLE')
@@ -179,7 +175,18 @@ async function toggleAutoSync() {
  * Refresh an offer manually.
  */
 function refreshOffer(uuid: BulkyShopOffer['uuid']) {
+	if (offerCooldown.value) return
 	shopStore.recomputeOffer(uuid, { status: refreshState })
+}
+
+function editOffer(uuid: BulkyShopOffer['uuid']) {
+	if (offerCooldown.value) return
+	router.push({
+		name: 'EditOffer',
+		params: {
+			uuid: uuid,
+		},
+	})
 }
 
 // HOOKS
@@ -188,6 +195,11 @@ onMounted(() => {
 	if (offer.value.league !== configStore.config.league || offer.value.fullPrice < 100) {
 		offer.value.autoSync = false
 	}
+
+	setInterval(() => {
+		const timeSinceLastUpload = Date.now() - (offer.value.timestamps[offer.value.timestamps.length - 1] ?? 0)
+		offerCooldown.value = timeSinceLastUpload < 180000
+	}, 1000)
 })
 </script>
 
