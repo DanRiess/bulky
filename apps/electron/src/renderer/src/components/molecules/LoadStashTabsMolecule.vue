@@ -75,7 +75,6 @@ const syncButtonDisabled = computed(() => {
 async function syncSelectedFolders() {
 	// Download the selected folder's items.
 	await stashTabRequest.execute()
-	console.log({ stashTabRequest })
 
 	// Handle error. Don't return, as there might still be results.
 	if (stashTabRequest.error.value) {

@@ -10,21 +10,55 @@
 
 import { writeFileSync } from 'node:fs'
 
-async function getPoeDbItemData() {
-	const response = await fetch(
-		`https://poedb.tw/json/autocomplete_us.json?${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`
-	)
-	const data = (await response.json()) as { label: string; value: string; desc: string; class: string }[]
+async function getData() {
+	const response = await fetch('https://pathofexile.com/api/trade/data/static')
+	const data = (await response.json()) as {
+		result: { id: string; label: string; entries: { id: string; text: string; image?: string }[] }[]
+	}
 
-	const maps = data.filter(item => item.desc === 'Maps')
+	const mapCategory = data.result.find(res => res.id === 'Maps')
+	const maps = mapCategory
+		? mapCategory.entries
+				.filter(entry => {
+					return entry.id.includes('tier-16') || entry.id.includes('tier-17')
+				})
+				.map(entry =>
+					entry.text
+						.replace(/\sMap \(.*/, '')
+						.replace(/\s/g, '_')
+						.toUpperCase()
+				)
+		: []
 
-	return maps
-		.map(item => item.value.replace(/_map/i, '').toUpperCase())
-		.filter(Boolean)
-		.sort()
+	const specialMaps = [
+		'AL-HEZMIN,_THE_HUNTER',
+		'BARAN,_THE_CRUSADER',
+		'DROX,_THE_WARLORD',
+		'VERITANIA,_THE_REDEEMER',
+		'THE_CONSTRICTOR',
+		'THE_ENSLAVER',
+		'THE_ERADICATOR',
+		'THE_PURIFIER',
+	]
+
+	const uniqueMapCategory = data.result.find(res => res.id === 'MapsUnique')
+	const uniqueMaps = uniqueMapCategory
+		? uniqueMapCategory.entries
+				.filter(entry => {
+					return entry.id.includes('tier-16') || entry.id.includes('tier-17')
+				})
+				.map(entry =>
+					entry.text
+						.replace(/\s\(Tier.*/, '')
+						.replace(/\s/g, '_')
+						.toUpperCase()
+				)
+		: []
+
+	return [...maps, ...specialMaps, ...uniqueMaps].sort()
 }
 
-getPoeDbItemData().then(items => {
+getData().then(items => {
 	console.log({ items })
 	console.log('Generate the map.const.ts content')
 

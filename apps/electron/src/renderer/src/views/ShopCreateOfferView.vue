@@ -50,6 +50,7 @@ import { useAppStateStore } from '@web/stores/appStateStore'
 import { useConfigStore } from '@web/stores/configStore'
 import { useNinjaStore } from '@web/stores/ninjaStore'
 import { useShopStore } from '@web/stores/shopStore'
+import { convertToChaos } from '@web/utility/convertToChaos'
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -155,6 +156,17 @@ async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) 
 		console.log('did not generate offer')
 		disableOfferGenerationButton.value = false
 		return
+	}
+
+	// If the offer's value is smaller than the minimum buyout, return.
+	// Exceptions are expedition, heist and 8mod maps.
+	if (offer.fullPrice < convertToChaos(minBuyout.value, ninjaStore.chaosPerDiv)) {
+		if (!(offer.category === 'EXPEDITION' || offer.category === 'HEIST' || offer.category === 'MAP_8_MOD')) {
+			// TODO: handle error
+			console.log('did not generate offer (min buyout too high)')
+			disableOfferGenerationButton.value = false
+			return
+		}
 	}
 
 	// Upload the offer to the public db and save it to idb.

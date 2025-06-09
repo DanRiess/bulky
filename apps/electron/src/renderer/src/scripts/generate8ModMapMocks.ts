@@ -23,7 +23,7 @@ function generateOffer() {
 	for (let i = 0; i < amount; ++i) {
 		const mods = new Set<number>()
 		while (mods.size < 8) {
-			const mod = Math.floor(Math.random() * 78)
+			const mod = Math.floor(Math.random() * 128)
 			mods.add(mod)
 		}
 		const attributes = {
