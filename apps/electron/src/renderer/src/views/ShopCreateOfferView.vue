@@ -49,6 +49,7 @@ import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrgani
 import { useAppStateStore } from '@web/stores/appStateStore'
 import { useConfigStore } from '@web/stores/configStore'
 import { useNinjaStore } from '@web/stores/ninjaStore'
+import { useNotificationStore } from '@web/stores/notificationStore'
 import { useShopStore } from '@web/stores/shopStore'
 import { convertToChaos } from '@web/utility/convertToChaos'
 import { computed, onBeforeMount, ref, watch } from 'vue'
@@ -59,6 +60,7 @@ const appStateStore = useAppStateStore()
 const shopStore = useShopStore()
 const ninjaStore = useNinjaStore()
 const configStore = useConfigStore()
+const notificationStore = useNotificationStore()
 
 // STATE
 const disableOfferGenerationButton = ref(false)
@@ -151,8 +153,8 @@ async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) 
 
 	console.log({ offer })
 
+	// Error messages are generated in the previous function. Don't use one here.
 	if (!offer) {
-		// TODO: handle error
 		console.log('did not generate offer')
 		disableOfferGenerationButton.value = false
 		return
@@ -162,7 +164,10 @@ async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) 
 	// Exceptions are expedition, heist and 8mod maps.
 	if (offer.fullPrice < convertToChaos(minBuyout.value, ninjaStore.chaosPerDiv)) {
 		if (!(offer.category === 'EXPEDITION' || offer.category === 'HEIST' || offer.category === 'MAP_8_MOD')) {
-			// TODO: handle error
+			const notification = notificationStore.createErrorNotification({
+				message: 'Could not generate offer. Your minimum buyout is too high.',
+			})
+			notificationStore.addErrorNotification(notification)
 			console.log('did not generate offer (min buyout too high)')
 			disableOfferGenerationButton.value = false
 			return

@@ -1,3 +1,5 @@
+import { ApiStatus } from '@web/api/api.types'
+
 export type TradeNotification = {
 	notificationType: 'trade'
 	ign: string
@@ -27,4 +29,13 @@ export type SplitClientTxtLine = {
 	code: string
 	sender: string
 	message: string
+}
+
+export type ErrorNotification = {
+	notificationType: 'error'
+	message: string
+	status: ApiStatus
+	timestamp: number
+	ttl: number
+	timeout?: NodeJS.Timeout
 }

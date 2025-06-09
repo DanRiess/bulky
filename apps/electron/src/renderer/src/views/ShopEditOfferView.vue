@@ -39,6 +39,7 @@ import DefaultLayout from '@web/components/layouts/DefaultLayout.vue'
 import ShopCreateOfferConfigMolecule from '@web/components/molecules/ShopCreateOfferConfigMolecule.vue'
 import StashTabCollectionOrganism from '@web/components/organisms/StashTabCollectionOrganism.vue'
 import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrganism.vue'
+import { useNotificationStore } from '@web/stores/notificationStore'
 import { useShopStore } from '@web/stores/shopStore'
 import { useStashStore } from '@web/stores/stashStore'
 import { capitalize } from 'lodash'
@@ -48,6 +49,7 @@ import { useRouter } from 'vue-router'
 // STORES
 const stashStore = useStashStore()
 const shopStore = useShopStore()
+const notificationStore = useNotificationStore()
 
 // PROPS
 const props = defineProps<{
@@ -83,8 +85,11 @@ async function syncChanges(itemRecord: BulkyShopItemRecord) {
 // LIFECYCLE
 
 onBeforeMount(() => {
-	// TODO: handle error
 	if (!offer.value) {
+		const notification = notificationStore.createErrorNotification({
+			message: 'Something went wrong. Could not find this offer.',
+		})
+		notificationStore.addErrorNotification(notification)
 		console.log('Offer not found')
 		return
 	}

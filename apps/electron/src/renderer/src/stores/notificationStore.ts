@@ -1,7 +1,10 @@
-import { TradeNotification } from '@shared/types/general.types'
+import { ErrorNotification, TradeNotification } from '@shared/types/general.types'
 import { defineStore } from 'pinia'
-import { computed, MaybeRef, Ref, ref, toValue } from 'vue'
+import { computed, MaybeRef, Ref, ref, toValue, watch } from 'vue'
 import { useConfigStore } from './configStore'
+import { ApiStatus } from '@web/api/api.types'
+
+const DEFAULT_ERROR_TTL = 5000
 
 export const useNotificationStore = defineStore('notificationStore', () => {
 	// STORES
@@ -12,8 +15,9 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 	const forceHideTradeNotifications = computed(() => configStore.config.notifications.autoHideNotifications)
 	const editNotificationElement = ref(false)
 	const dummyNotification = ref<TradeNotification>()
-	const notifications = ref<{ trades: TradeNotification[] }>({
+	const notifications = ref<{ trades: TradeNotification[]; errors: ErrorNotification[] }>({
 		trades: [],
+		errors: [],
 	})
 
 	/**
@@ -33,6 +37,23 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 	}
 
 	/**
+	 * Create an error notification
+	 */
+	function createErrorNotification(
+		options: { message: string; ttl?: number },
+		status: ApiStatus = 'ERROR'
+	): Ref<ErrorNotification> {
+		return ref<ErrorNotification>({
+			notificationType: 'error',
+			message: options.message,
+			status,
+			timestamp: Date.now(),
+			ttl: options.ttl ?? DEFAULT_ERROR_TTL,
+			timeout: undefined,
+		})
+	}
+
+	/**
 	 * Add a trade notification to the array.
 	 */
 	function addTrade(notification: Ref<TradeNotification>) {
@@ -46,6 +67,30 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 			notification.value.timeout = setTimeout(() => {
 				notification.value.show = false
 			}, 5000)
+		}
+	}
+
+	function addErrorNotification(notification: Ref<ErrorNotification>) {
+		if (notificationExists(notification)) return
+
+		notifications.value.errors.push(notification.value)
+
+		if (notification.value.status === 'PENDING' || notification.value.status === 'IDLE') {
+			const unwatch = watch(
+				() => notification.value.status,
+				status => {
+					if (status === 'SUCCESS' || status === 'ERROR') {
+						notification.value.timeout = setTimeout(() => {
+							remove(notification.value)
+						}, notification.value.ttl ?? DEFAULT_ERROR_TTL)
+						unwatch()
+					}
+				}
+			)
+		} else {
+			notification.value.timeout = setTimeout(() => {
+				remove(notification.value)
+			}, notification.value.ttl ?? DEFAULT_ERROR_TTL)
 		}
 	}
 
@@ -69,18 +114,28 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 		}
 	}
 
-	function remove(notification: TradeNotification) {
-		notifications.value.trades = notifications.value.trades.filter(item => item.timestamp !== notification.timestamp)
-
-		if (notifications.value.trades.length === 0) {
-			forceShowTradeNotifications.value = false
+	function remove(notification: TradeNotification | ErrorNotification) {
+		if (notification.notificationType === 'trade') {
+			notifications.value.trades = notifications.value.trades.filter(item => item.timestamp !== notification.timestamp)
+			if (notifications.value.trades.length === 0) {
+				forceShowTradeNotifications.value = false
+			}
+		} else if (notification.notificationType === 'error') {
+			notifications.value.errors = notifications.value.errors.filter(item => item.timestamp !== notification.timestamp)
 		}
 	}
 
-	function notificationExists(notification: MaybeRef<TradeNotification>) {
-		return !!notifications.value.trades.find(
-			n => n.ign === toValue(notification).ign && n.tradeData === toValue(notification).tradeData
-		)
+	function notificationExists(notification: MaybeRef<TradeNotification | ErrorNotification>) {
+		const plainNotification = toValue(notification)
+		if (plainNotification.notificationType === 'trade') {
+			return !!notifications.value.trades.find(
+				n => n.ign === plainNotification.ign && n.tradeData === plainNotification.tradeData
+			)
+		} else if (plainNotification.notificationType === 'error') {
+			return !!notifications.value.errors.find(n => n.timestamp === plainNotification.timestamp)
+		} else {
+			return false
+		}
 	}
 
 	function createDummyNotification() {
@@ -119,6 +174,8 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 		createTradeNotification,
 		addTrade,
 		toggleTradeNotifications,
+		createErrorNotification,
+		addErrorNotification,
 		moveNotificationElement,
 		remove,
 	}

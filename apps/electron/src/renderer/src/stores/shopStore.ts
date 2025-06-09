@@ -32,6 +32,7 @@ import { useApi } from '@web/api/useApi'
 import { nodeApi } from '@web/api/nodeApi'
 import { useNinjaStore } from './ninjaStore'
 import { useRouter } from 'vue-router'
+import { useNotificationStore } from './notificationStore'
 
 /** TTL of any given offer. Default to 15 minutes. */
 const OFFER_TTL = parseInt(import.meta.env.VITE_OFFER_TTL ?? 900000)
@@ -46,6 +47,7 @@ export const useShopStore = defineStore('shopStore', () => {
 	const appStateStore = useAppStateStore()
 	const configStore = useConfigStore()
 	const ninjaStore = useNinjaStore()
+	const notificationStore = useNotificationStore()
 
 	// STATE
 	const offers = ref<BulkyShopOffer[]>([])
@@ -153,6 +155,10 @@ export const useShopStore = defineStore('shopStore', () => {
 		})
 
 		if (items.length === 0) {
+			const notification = notificationStore.createErrorNotification({
+				message: 'There are no valid items in your offer',
+			})
+			notificationStore.addErrorNotification(notification)
 			console.log('There are no valid items in your offer')
 			return
 		}
@@ -400,8 +406,11 @@ export const useShopStore = defineStore('shopStore', () => {
 	async function deleteOffer(offer: BulkyShopOffer) {
 		const offerIdx = offers.value.findIndex(oldOffer => oldOffer.uuid === offer.uuid)
 
-		// TODO: handle error
 		if (offerIdx < 0) {
+			const notification = notificationStore.createErrorNotification({
+				message: 'Something went wrong. Could not find this offer.',
+			})
+			notificationStore.addErrorNotification(notification)
 			console.log('Offer not found')
 			return
 		}
