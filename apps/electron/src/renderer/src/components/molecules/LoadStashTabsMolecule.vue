@@ -78,7 +78,7 @@ async function syncSelectedFolders() {
 
 	// Handle error. Don't return, as there might still be results.
 	if (stashTabRequest.error.value) {
-		// TODO: handle error
+		// TODO: log error
 		console.log(stashTabRequest.error.value)
 	}
 

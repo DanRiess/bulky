@@ -1,9 +1,15 @@
 <template>
 	<ul class="m-notification-collection" @mouseenter="setIgnoreMouseEvents(false)" @mouseleave="setIgnoreMouseEvents(true)">
 		<TransitionAtom :group="true" v-on="listTransitionHooks">
+			<NotificationMoleculeError
+				v-for="errorNotification in notificationStore.notifications.errors"
+				:notification="errorNotification"
+				:idx="0" />
+		</TransitionAtom>
+		<TransitionAtom :group="true" v-on="listTransitionHooks">
 			<NotificationMoleculeTrade
-				v-for="(_, idx) in activeNotifications"
-				:notification="activeNotifications[idx]"
+				v-for="(_, idx) in activeTradeNotifications"
+				:notification="activeTradeNotifications[idx]"
 				:idx="idx" />
 		</TransitionAtom>
 	</ul>
@@ -16,6 +22,7 @@ import { useNotificationStore } from '@web/stores/notificationStore'
 import { computed, watch } from 'vue'
 import { useListTransition } from '@web/transitions/listTransition'
 import { setIgnoreMouseEvents } from '@web/utility/setIgnoreMouseEvents'
+import NotificationMoleculeError from './NotificationMoleculeError.vue'
 
 // STORES
 const notificationStore = useNotificationStore()
@@ -27,13 +34,13 @@ const listTransitionHooks = useListTransition({
 })
 
 // GETTERS
-const activeNotifications = computed(() => {
+const activeTradeNotifications = computed(() => {
 	return notificationStore.notifications.trades.filter(n => n.show)
 })
 
 // WATCHERS
 watch(
-	() => activeNotifications.value.length,
+	() => activeTradeNotifications.value.length,
 	n => {
 		// If active notifications reach 0, the mouseleave event won't be triggered anymore.
 		// The game window then becomes unresponsive, because mouse events won't click through anymore.

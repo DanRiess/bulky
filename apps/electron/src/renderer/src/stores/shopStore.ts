@@ -122,6 +122,11 @@ export const useShopStore = defineStore('shopStore', () => {
 		if (!authStore.profile?.name) {
 			if (import.meta.env.VITE_NO_ATTACH_MODE !== 'true') {
 				router.push({ name: 'Auth' })
+			} else {
+				const notification = notificationStore.createErrorNotification({
+					message: 'No profile found. Please reauthenticate.',
+				})
+				notificationStore.addErrorNotification(notification)
 			}
 			return
 		}

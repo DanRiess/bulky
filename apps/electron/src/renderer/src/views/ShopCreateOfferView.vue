@@ -135,6 +135,8 @@ async function createOffer(itemRecord: BulkyShopItemRecord, filter: ShopFilter) 
 	disableOfferGenerationButton.value = true
 
 	if (!ign.value) {
+		const notification = notificationStore.createErrorNotification({ message: 'IGN is required.' })
+		notificationStore.addErrorNotification(notification)
 		console.log('Ign is required')
 		disableOfferGenerationButton.value = false
 		return

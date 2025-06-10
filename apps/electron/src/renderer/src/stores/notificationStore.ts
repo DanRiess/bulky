@@ -125,6 +125,13 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 		}
 	}
 
+	function resetTimeout(notification: ErrorNotification) {
+		clearTimeout(notification.timeout)
+		notification.timeout = setTimeout(() => {
+			remove(notification)
+		}, notification.ttl ?? DEFAULT_ERROR_TTL)
+	}
+
 	function notificationExists(notification: MaybeRef<TradeNotification | ErrorNotification>) {
 		const plainNotification = toValue(notification)
 		if (plainNotification.notificationType === 'trade') {
@@ -178,5 +185,6 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 		addErrorNotification,
 		moveNotificationElement,
 		remove,
+		resetTimeout,
 	}
 })
