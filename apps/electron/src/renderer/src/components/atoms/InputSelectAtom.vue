@@ -210,7 +210,10 @@ function onInputKeydownEnter() {
 function onListItemClick(val: T) {
 	query.value = BULKY_TRANSFORM.stringToDisplayValue(val.toString())
 	if (query.value !== '') {
-		setModelValue(activeOptionIdx.value)
+		const idx = computedOptions.value.findIndex(o => o.displayValue === query.value)
+		if (idx > -1) {
+			setModelValue(idx)
+		}
 	}
 	inputActive.value = false
 }
@@ -222,10 +225,8 @@ function onListItemClick(val: T) {
  * The model should refer to the actual type though.
  */
 function setModelValue(idx?: number) {
-	console.log('setting model')
 	if (idx === undefined && props.allowFreestyleInput) {
 		model.value = query.value as T
-		console.log(query.value, model.value)
 	} else if (idx !== undefined) {
 		model.value = props.options[idx]
 	}

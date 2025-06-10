@@ -40,6 +40,10 @@ import BazaarOfferMetadataMolecule from '../molecules/BazaarOfferMetadataMolecul
 import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
 import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
+import { useNotificationStore } from '@web/stores/notificationStore'
+
+// STORES
+const notificationStore = useNotificationStore()
 
 // PROPS
 const props = defineProps<{
@@ -134,7 +138,10 @@ async function sendMessage() {
 	)
 
 	if (!message || !mtn) {
-		// TODO - IMPORTANT: Handle error here
+		const notification = notificationStore.createErrorNotification({
+			message: 'Something went wrong. Could not generate whisper message.',
+		})
+		notificationStore.addErrorNotification(notification)
 		return
 	}
 

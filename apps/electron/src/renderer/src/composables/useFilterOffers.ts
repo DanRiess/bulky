@@ -57,6 +57,8 @@ export function useFilterOffers() {
 	watch(
 		() => filterStore.value?.filter,
 		(filter, oldFilter) => {
+			console.log('filter changed')
+			console.log({ filter, oldFilter })
 			if (!filter) return
 			// Don't trigger this watcher on regex changes.
 			if (filter.regex !== debouncedRegex.value) return
@@ -89,8 +91,9 @@ export function useFilterOffers() {
 			// Skip incremental update if full recalculation is in progress during this tick.
 			if (isRecalculating) return
 
-			// Guard for initial run if immediate: true is used. Check this.
-			if (!oldOffers) return
+			// Guard for initial run if immediate: true is used.
+			// This lead to offers not being loaded when the component first mounted. Probably counterproductive.
+			// if (!oldOffers) return
 
 			// If there is no filter, no offer store or no base price function, something is wrong. Return for now.
 			const filter = filterStore.value?.filter
@@ -100,7 +103,7 @@ export function useFilterOffers() {
 			const regexes = BULKY_REGEX.categorizeRegexes(regexArray)
 
 			for (const [key, newOffer] of newOffers!.entries()) {
-				const oldOffer = oldOffers.get(key)
+				const oldOffer = oldOffers?.get(key)
 
 				// Case 1: Addition
 				if (!oldOffer) {
@@ -121,9 +124,11 @@ export function useFilterOffers() {
 			}
 
 			// Case 3: Deletion
-			for (const oldKey of oldOffers.keys()) {
-				if (!newOffers.has(oldKey)) {
-					queueDelete(oldKey)
+			if (oldOffers) {
+				for (const oldKey of oldOffers.keys()) {
+					if (!newOffers.has(oldKey)) {
+						queueDelete(oldKey)
+					}
 				}
 			}
 		},
