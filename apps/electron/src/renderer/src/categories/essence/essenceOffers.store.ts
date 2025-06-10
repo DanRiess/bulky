@@ -29,6 +29,7 @@ export const useEssenceOfferStore = defineStore('essenceOfferStore', () => {
 	 * Consume an essence listing dto, type and validate it and add it to the listings.
 	 */
 	function putOffer(dto: BulkyBazaarOfferDto) {
+		console.log({ dto })
 		const category = BULKY_CATEGORIES.generateCategoryFromDto(dto.category)
 		if (category !== 'ESSENCE') return
 

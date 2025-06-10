@@ -39,6 +39,12 @@ async function getData() {
 		'THE_ENSLAVER',
 		'THE_ERADICATOR',
 		'THE_PURIFIER',
+		'ALTERED_DISTANT_MEMORY',
+		'AUGMENTED_DISTANT_MEMORY',
+		'REWRITTEN_DISTANT_MEMORY',
+		'TWISTED_DISTANT_MEMORY',
+		'CORTEX',
+		'REPLICA_CORTEX',
 	]
 
 	const uniqueMapCategory = data.result.find(res => res.id === 'MapsUnique')

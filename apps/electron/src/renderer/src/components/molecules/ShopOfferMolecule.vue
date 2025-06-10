@@ -60,8 +60,9 @@
 					:tooltip-props="tooltipProps"
 					background-color="dark"
 					:disabled="!authStore.isLoggedIn"
-					@click="shopStore.deleteOffer(offer)">
+					@click="deleteOffer(offer)">
 					Delete Offer
+					<template v-if="offerCooldown">(3 minute CD)</template>
 				</SvgButtonWithPopupMolecule>
 			</div>
 		</section>
@@ -70,7 +71,7 @@
 
 <script setup lang="ts">
 import { BulkyShopOffer } from '@shared/types/bulky.types'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import PriceAtom from '../atoms/PriceAtom.vue'
 import ShopOfferItemCollectionMolecule from './ShopOfferItemCollectionMolecule.vue'
 import ShopOfferConfigMolecule from './ShopOfferConfigMolecule.vue'
@@ -89,11 +90,13 @@ import { useRouter } from 'vue-router'
 import ImgCategoryAtom from '../atoms/ImgCategoryAtom.vue'
 import { useAuthStore } from '@web/stores/authStore'
 import { useConfigStore } from '@web/stores/configStore'
+import { useNotificationStore } from '@web/stores/notificationStore'
 
 // STORES
 const shopStore = useShopStore()
 const authStore = useAuthStore()
 const configStore = useConfigStore()
+const notificationStore = useNotificationStore()
 
 // MODELS
 const offer = defineModel<BulkyShopOffer>({ required: true })
@@ -111,6 +114,8 @@ const tooltipProps: TooltipPropsWithoutActive = {
 	transitionDirection: 'toTop',
 	popupAlignment: 'left',
 }
+/** Timeout has to be manually cleared on unmounting */
+let timeout: NodeJS.Timeout | undefined = undefined
 
 // COMPOSABLES
 const router = useRouter()
@@ -172,21 +177,52 @@ async function toggleAutoSync() {
 }
 
 /**
- * Refresh an offer manually.
+ * Refresh an offer manually if the cooldown is up.
  */
 function refreshOffer(uuid: BulkyShopOffer['uuid']) {
-	if (offerCooldown.value) return
+	if (offerCooldown.value) {
+		const notification = notificationStore.createErrorNotification({
+			message: 'Offers can be refreshed at most once every 3 minutes.',
+		})
+		notificationStore.addErrorNotification(notification)
+		return
+	}
 	shopStore.recomputeOffer(uuid, { status: refreshState })
 }
 
+/**
+ * Open the edit offer dialogue if the cooldown is up.
+ */
 function editOffer(uuid: BulkyShopOffer['uuid']) {
-	if (offerCooldown.value) return
+	if (offerCooldown.value) {
+		const notification = notificationStore.createErrorNotification({
+			message: 'Offers can be edited at most once every 3 minutes.',
+		})
+		notificationStore.addErrorNotification(notification)
+		return
+	}
 	router.push({
 		name: 'EditOffer',
 		params: {
 			uuid: uuid,
 		},
 	})
+}
+
+/**
+ * Delete an offer.
+ * Also use the cooldown here to avoid the possibility to delete and then recreate an offer.
+ */
+function deleteOffer(offer: BulkyShopOffer) {
+	if (offerCooldown.value) {
+		const notification = notificationStore.createErrorNotification({
+			message: 'Offers can be deleted at most once every 3 minutes.',
+		})
+		notificationStore.addErrorNotification(notification)
+		return
+	}
+
+	shopStore.deleteOffer(offer)
 }
 
 // HOOKS
@@ -196,10 +232,19 @@ onMounted(() => {
 		offer.value.autoSync = false
 	}
 
-	setInterval(() => {
+	// Check once on component load if the offer cooldown is up.
+	const timeSinceLastUpload = Date.now() - (offer.value.timestamps[offer.value.timestamps.length - 1] ?? 0)
+	offerCooldown.value = timeSinceLastUpload < 180000
+
+	// Afterwards, check if the offer cooldown is up once every 5 seconds.
+	timeout = setInterval(() => {
 		const timeSinceLastUpload = Date.now() - (offer.value.timestamps[offer.value.timestamps.length - 1] ?? 0)
 		offerCooldown.value = timeSinceLastUpload < 180000
-	}, 1000)
+	}, 5000)
+})
+
+onBeforeUnmount(() => {
+	clearInterval(timeout)
 })
 </script>
 
