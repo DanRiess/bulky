@@ -1,7 +1,8 @@
-import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
+import { BulkyBazaarItemDto, BulkyBazaarOffer, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import {
 	BazaarMap,
 	BazaarMap8Mod,
+	BazaarMap8ModOffer,
 	Map8ModPerItemAttributes,
 	Map8ModPrices,
 	MapTier,
@@ -27,6 +28,7 @@ export const BULKY_MAPS = {
 	generateBazaarItemFromDto,
 	generateBazaarMap8ModItemFromDto,
 	getPerItemAttributes,
+	divide8ModMapsIntoSubtypes,
 }
 
 function generateTypeFromBaseType(baseType: string): MapType | undefined {
@@ -237,4 +239,25 @@ function getPerItemAttributes(item: PoeItem): Map8ModPerItemAttributes | undefin
 		},
 		modifiers,
 	}
+}
+
+function divide8ModMapsIntoSubtypes(offer: BulkyBazaarOffer) {
+	if (offer.category !== 'MAP_8_MOD') return
+	const castOffer = offer as BazaarMap8ModOffer
+
+	return castOffer.items.map(map => {
+		console.log(map)
+		const map8Mod = map.perItemAttributes.filter(attr => !attr.properties.delirious && !attr.properties.originator)
+		const deli8Mod = map.perItemAttributes.filter(attr => attr.properties.delirious && !attr.properties.originator)
+		const originator8Mod = map.perItemAttributes.filter(attr => !attr.properties.delirious && attr.properties.originator)
+		const originatorDeli8Mod = map.perItemAttributes.filter(attr => attr.properties.delirious && attr.properties.originator)
+
+		// return [map8Mod, deli8Mod, originator8Mod, originatorDeli8Mod].filter(subArray => subArray.length > 0)
+		return {
+			...(map8Mod.length > 0 && { map8Mod }),
+			...(deli8Mod.length > 0 && { deli8Mod }),
+			...(originator8Mod.length > 0 && { originator8Mod }),
+			...(originatorDeli8Mod.length > 0 && { originatorDeli8Mod }),
+		}
+	})
 }

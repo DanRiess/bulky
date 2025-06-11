@@ -10,22 +10,55 @@
 			<div class="name" :class="{ disabled: !selected }">
 				{{ item.name }} | {{ BULKY_TRANSFORM.stringToDisplayValue(item.tier) }}
 			</div>
-			<div class="stack-size" :class="{ disabled: !selected }">{{ item.quantity }}</div>
-			<div class="center-content" :class="{ disabled: !selected }">
+
+			<div class="stack-size" :class="{ disabled: !selected }">x{{ item.quantity }}</div>
+			<!-- <div class="stack-size" :class="{ disabled: !selected }">{{ normalMaps }}</div>
+			<div class="stack-size" :class="{ disabled: !selected }">{{ deliriousMaps }}</div>
+			<div class="stack-size" :class="{ disabled: !selected }">{{ originatorMaps }}</div>
+			<div class="stack-size" :class="{ disabled: !selected }">{{ deliriousOriginatorMaps }}</div> -->
+
+			<!-- <div class="center-content" :class="{ disabled: !selected }">
 				<InputNumberAtom
 					v-model="overridePrice.base"
 					:step="1"
 					:num-digits="1"
 					@update:model-value="updateOverrideValue"
 					ref="inputEl" />
-			</div>
+			</div> -->
 			<div class="center-content" :class="{ disabled: !selected }">
 				<InputCheckboxAtom
 					v-model="allowRegexFilter"
 					@update:model-value="emit('changeItemOverride', { shopItem: item }, { allowRegexFilter })"
 					:disabled="!selected" />
 			</div>
+			<ul class="map-price-options">
+				<PriceOption8ModMapAtom
+					v-if="selected && map8ModAmount > 0"
+					v-model="overridePrice.base"
+					@update:model-value="updateOverrideValue"
+					type="8 Mod Maps"
+					:amount="map8ModAmount" />
+				<PriceOption8ModMapAtom
+					v-if="selected && delirious8modAmount > 0"
+					v-model="overridePrice.baseDeli"
+					@update:model-value="updateOverrideValue"
+					type="8 Mod Delirious"
+					:amount="delirious8modAmount" />
+				<PriceOption8ModMapAtom
+					v-if="selected && originator8modAmount > 0"
+					v-model="overridePrice.originator"
+					@update:model-value="updateOverrideValue"
+					type="8 Mod Originator"
+					:amount="originator8modAmount" />
+				<PriceOption8ModMapAtom
+					v-if="selected && deliriousOriginator8modAmount > 0"
+					v-model="overridePrice.originatorDeli"
+					@update:model-value="updateOverrideValue"
+					type="8 Mod Deli + Originator"
+					:amount="deliriousOriginator8modAmount" />
+			</ul>
 		</div>
+
 		<AccordionTransitionWrapperAtom class="grid-column-3-8" :expanded="toValue(item.allowRegexFilter)">
 			<ul class="regex-options">
 				<!-- MODIFIERS TO AVOID REGEX -->
@@ -68,14 +101,14 @@
 
 <script setup lang="ts">
 import { BulkyShopItem, BulkyItemOverrideOptions, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
-import { ref, toValue, watch } from 'vue'
+import { computed, ref, toValue, watch } from 'vue'
 import InputCheckboxAtom from '../atoms/InputCheckboxAtom.vue'
-import InputNumberAtom from '../atoms/InputNumberAtom.vue'
 import { BULKY_TRANSFORM } from '@web/utility/transformers'
 import { ShopMap8Mod } from '@web/categories/map/map.types'
 import AccordionTransitionWrapperAtom from '../atoms/AccordionTransitionWrapperAtom.vue'
 import RegexSimpleOptionAtom from '../atoms/RegexSimpleOptionAtom.vue'
 import RegexComplexOptionAtom from '../atoms/RegexComplexOptionAtom.vue'
+import PriceOption8ModMapAtom from '../atoms/PriceOption8ModMapAtom.vue'
 
 // PROPS
 const props = defineProps<{
@@ -90,12 +123,26 @@ const emit = defineEmits<{
 }>()
 
 // STATE
-const inputEl = ref<InstanceType<typeof InputNumberAtom>>()
+// const inputEl = ref<InstanceType<typeof InputNumberAtom>>()
 const selected = ref(props.item.selected)
 const allowRegexFilter = ref(props.item.allowRegexFilter)
 const overridePrice = ref(
 	props.overridePrices.get(`${props.item.type}_${props.item.tier}`)?.priceOverrideMap8Mod ??
 		toValue(props.item.priceOverrideMap8Mod)
+)
+
+// GETTERS
+const map8ModAmount = computed(
+	() => props.item.perItemAttributes.filter(attr => !attr.properties.delirious && !attr.properties.originator).length
+)
+const delirious8modAmount = computed(
+	() => props.item.perItemAttributes.filter(attr => attr.properties.delirious && !attr.properties.originator).length
+)
+const originator8modAmount = computed(
+	() => props.item.perItemAttributes.filter(attr => !attr.properties.delirious && attr.properties.originator).length
+)
+const deliriousOriginator8modAmount = computed(
+	() => props.item.perItemAttributes.filter(attr => attr.properties.delirious && attr.properties.originator).length
 )
 
 // WATCHERS
@@ -127,6 +174,7 @@ watch(
  * Update the override value if it has changed.
  */
 function updateOverrideValue() {
+	console.log('updateoverride')
 	emit('changeItemOverride', { shopItem: props.item }, { priceMap8Mod: overridePrice.value })
 }
 
@@ -150,16 +198,31 @@ function removePriceFragment(type: 'quantityRegex' | 'packsizeRegex', idx: numbe
 .metadata {
 	display: grid;
 	grid-template-columns: subgrid;
-	grid-column: span 7;
+	grid-column: span 5;
 	align-items: center;
 }
 
 .metadata {
-	height: 2rem;
+	min-height: 2rem;
+}
+
+.prices {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-column: 3/10;
 }
 
 .grid-column-3-8 {
 	grid-column: 3/8;
+}
+
+.map-price-options {
+	display: grid;
+	grid-template-columns: max-content 2ch max-content 1ch max-content max-content 1.5rem;
+	grid-template-rows: 1fr;
+	gap: 1rem;
+	margin-bottom: 1rem;
+	margin-top: 0.25rem;
 }
 
 .regex-options {

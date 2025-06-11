@@ -41,6 +41,8 @@ import BazaarOfferItemsMolecule from '../molecules/BazaarOfferItemsMolecule.vue'
 import { ComputedBulkyOfferStore } from '@shared/types/bulky.types'
 import { BulkyBazaarItem, BulkyBazaarOffer, BulkyFilter, TotalPrice } from '@shared/types/bulky.types'
 import { useNotificationStore } from '@web/stores/notificationStore'
+import { BULKY_MAPS } from '@web/categories/map/map.transformers'
+import { BazaarMap8ModOffer } from '@web/categories/map/map.types'
 
 // STORES
 const notificationStore = useNotificationStore()
@@ -73,6 +75,26 @@ const filteredItems = computed<BulkyBazaarItem[]>(() => {
 		return sets.filter(set => {
 			return props.filter.fields.find(field => field.type === set.type)
 		})
+	}
+
+	// If the user is looking for 8 mod maps, they have to be divided into standard, deli and originator items.
+	if (props.filter.category === 'MAP_8_MOD') {
+		console.log(props.offer)
+		const items = BULKY_MAPS.divide8ModMapsIntoSubtypes(props.offer)
+		console.log({ items })
+		if (!items) return []
+
+		// return items.filter(item => {
+		// 	if (props.filter.deli && props.filter.originator) {
+		// 		return item.originatorDeli8Mod ?? []
+		// 	} else if (props.filter.deli) {
+		// 		return item.deli8Mod ?? []
+		// 	} else if (props.filter.originator) {
+		// 		return item.originator8Mod ?? []
+		// 	} else {
+		// 		return item.map8Mod ?? []
+		// 	}
+		// })
 	}
 
 	return props.offer.items.filter(item => {
