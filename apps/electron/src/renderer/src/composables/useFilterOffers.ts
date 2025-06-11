@@ -57,8 +57,6 @@ export function useFilterOffers() {
 	watch(
 		() => filterStore.value?.filter,
 		(filter, oldFilter) => {
-			console.log('filter changed')
-			console.log({ filter, oldFilter })
 			if (!filter) return
 			// Don't trigger this watcher on regex changes.
 			if (filter.regex !== debouncedRegex.value) return
