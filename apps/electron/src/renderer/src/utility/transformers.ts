@@ -1,4 +1,4 @@
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 import { BULKY_ID } from './typedId'
 import { PoeItemDto, PoeItemProperty, PoeStashTabDto } from '@shared/types/dtoResponse.types'
 import { PoeItem, PoeStashTab } from '@shared/types/poe.types'
@@ -152,8 +152,10 @@ function bulkyItemToBazaarItemDto(
 				...(attrs.properties && {
 					props: {
 						...(attrs.properties.itemQuantity && { iQnt: attrs.properties.itemQuantity }),
-						...(attrs.properties.itemRarity && { iRar: attrs.properties.itemRarity }),
+						// ...(attrs.properties.itemRarity && { iRar: attrs.properties.itemRarity }),
 						...(attrs.properties.packSize && { pckSz: attrs.properties.packSize }),
+						...(attrs.properties.delirious && { deli: attrs.properties.delirious }),
+						...(attrs.properties.originator && { orig: attrs.properties.originator }),
 					},
 				}),
 			}

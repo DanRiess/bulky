@@ -22,7 +22,7 @@ import { BulkyBazaarOffer, BulkyFilter, ComputedBulkyOfferStore } from '@shared/
 import BazaarOfferOrganism from './BazaarOfferOrganism.vue'
 import { computed, ref, watch } from 'vue'
 import { useEventListener } from '@web/composables/useEventListener'
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 import { useFilterOffers } from '@web/composables/useFilterOffers'
 
 //PROPS

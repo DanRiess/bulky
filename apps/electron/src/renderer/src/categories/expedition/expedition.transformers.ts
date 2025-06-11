@@ -3,7 +3,7 @@ import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { Ref, computed } from 'vue'
 import { PoeItem } from '@shared/types/poe.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 import { notEmpty } from '@web/utility/notEmpty'
 import {
 	EXPEDITION_FACTION,

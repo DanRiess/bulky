@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { v4 } from 'uuid'
 import { computed, defineAsyncComponent, ref } from 'vue'
-import { upperFirst, camelCase } from 'lodash'
+import { upperFirst, camelCase } from 'lodash-es'
 
 // PROPS
 const props = withDefaults(

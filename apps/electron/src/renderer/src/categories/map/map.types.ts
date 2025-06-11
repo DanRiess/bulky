@@ -102,6 +102,9 @@ export type RegexComplexPriceFragment = {
 
 export type Map8ModPrices = {
 	base: number
+	baseDeli: number
+	originator: number
+	originatorDeli: number
 	quantityRegex: RegexComplexPriceFragment[]
 	packsizeRegex: RegexComplexPriceFragment[]
 	avoidRegex: RegexSimplePriceFragment
@@ -118,7 +121,12 @@ export type Map8ModPrices = {
 // }
 export type Map8ModPerItemAttributes = DeepRequired<
 	PerItemAttributes,
-	['modifiers'] | ['properties'] | ['properties', 'itemQuantity'] | ['properties', 'itemRarity'] | ['properties', 'packSize']
+	| ['modifiers']
+	| ['properties']
+	| ['properties', 'itemQuantity']
+	| ['properties', 'packSize']
+	| ['properties', 'delirious']
+	| ['properties', 'originator']
 >
 
 export function isShopMap8Mod(obj: any): obj is ShopMap8Mod {

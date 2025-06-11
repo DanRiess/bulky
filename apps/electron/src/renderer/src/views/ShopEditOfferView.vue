@@ -42,7 +42,7 @@ import StashTabItemsOrganism from '@web/components/organisms/StashTabItemsOrgani
 import { useNotificationStore } from '@web/stores/notificationStore'
 import { useShopStore } from '@web/stores/shopStore'
 import { useStashStore } from '@web/stores/stashStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 import { onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 

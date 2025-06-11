@@ -9,7 +9,7 @@ import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { Ref, computed } from 'vue'
 import { useConfigStore } from '@web/stores/configStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 
 export const BULKY_ESSENCES = {
 	generateTypeFromBaseType,

@@ -2,7 +2,7 @@ import { PoeItem } from '@shared/types/poe.types'
 import { Ref, computed } from 'vue'
 import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 import { BazaarHeistItem, HeistTier, HeistType, ShopHeistItem } from './heist.types'
 import { HEIST_TIER, HEIST_TIER_IDX_TO_NAME, HEIST_TYPE, HEIST_TYPE_IDX_TO_NAME } from './heist.const'
 

@@ -3,7 +3,7 @@ import { Ref, computed } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 import { BazaarCatalyst, CatalystTier, CatalystType, ShopCatalyst } from './catalyst.types'
 import { CATALYST_TYPE, CATALYST_TYPE_IDX_TO_NAME } from './catalyst.const'
 

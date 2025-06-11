@@ -152,8 +152,9 @@ export type PerItemAttributes = {
 	modifiers?: number[]
 	properties?: {
 		itemQuantity?: number
-		itemRarity?: number
 		packSize?: number
+		delirious?: boolean
+		originator?: boolean
 	}
 	logbookMods?: number[]
 }
@@ -438,8 +439,9 @@ type PerItemAttributesDto = {
 	mods?: number[]
 	props?: {
 		iQnt?: number
-		iRar?: number
 		pckSz?: number
+		deli?: boolean
+		orig?: boolean
 	}
 	logbookMods?: number[]
 }

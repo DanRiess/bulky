@@ -5,7 +5,7 @@ import { Ref, computed } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 
 export const BULKY_DELIRIUM_ORBS = {
 	generateTypeFromBaseType,

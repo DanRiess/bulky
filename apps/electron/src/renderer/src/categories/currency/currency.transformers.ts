@@ -3,7 +3,7 @@ import { Ref, computed } from 'vue'
 import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { BulkyBazaarItemDto, BulkyItemOverrideRecord } from '@shared/types/bulky.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 import { BazaarCurrency, CurrencyTier, CurrencyType, ShopCurrency } from './currency.types'
 import { CURRENCY_TYPE, CURRENCY_TYPE_IDX_TO_NAME } from './currency.const'
 

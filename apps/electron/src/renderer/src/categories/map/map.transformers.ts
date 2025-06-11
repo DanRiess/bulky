@@ -13,7 +13,7 @@ import { NinjaPriceRecord } from '@shared/types/ninja.types'
 import { Ref, computed } from 'vue'
 import { PoeItem } from '@shared/types/poe.types'
 import { useConfigStore } from '@web/stores/configStore'
-import { capitalize } from 'lodash'
+import { capitalize } from 'lodash-es'
 import { MAP_MODIFIER_REGEX, MAP_TIER, MAP_TIER_IDX_TO_NAME, MAP_TYPE, MAP_TYPE_IDX_TO_NAME } from './map.const'
 import { PoeItemProperty } from '@shared/types/dtoResponse.types'
 import { notEmpty } from '@web/utility/notEmpty'
@@ -100,6 +100,9 @@ function generateShopMap8ModItemFromPoeItem(
 			return (
 				itemOverrides.value.get(`${type}_${tier}`)?.priceOverrideMap8Mod ?? {
 					base: 0,
+					baseDeli: 0,
+					originator: 0,
+					originatorDeli: 0,
 					avoidRegex: {
 						available: false,
 						addedPrice: 0,
@@ -153,17 +156,18 @@ function generateBazaarMap8ModItemFromDto(item: BulkyBazaarItemDto): BazaarMap8M
 	const type = MAP_TYPE_IDX_TO_NAME[item.type]
 	const tier = MAP_TIER_IDX_TO_NAME[item.tier]
 
-	const perItemAttributes = item.pia
-		?.map(attrs => {
-			if (!attrs.mods || !attrs.props || !attrs.props.iQnt || !attrs.props.iRar || !attrs.props.pckSz) return
+	const perItemAttributes: Map8ModPerItemAttributes[] | undefined = item.pia
+		?.map((attrs): Map8ModPerItemAttributes | undefined => {
+			if (!attrs.mods || !attrs.props || !attrs.props.iQnt || !attrs.props.pckSz) return
 
 			return {
 				itemId: '', // Bazaar items don't need this.
 				modifiers: attrs.mods,
 				properties: {
 					itemQuantity: attrs.props.iQnt,
-					itemRarity: attrs.props.iRar,
 					packSize: attrs.props.pckSz,
+					delirious: !!attrs.props.deli,
+					originator: !!attrs.props.orig,
 				},
 			}
 		})
@@ -215,18 +219,21 @@ function getModifiersFromItem(item: PoeItem) {
 
 function getPerItemAttributes(item: PoeItem): Map8ModPerItemAttributes | undefined {
 	const quant = item.properties?.find(p => p.name === 'Item Quantity')?.values[0][0].replace(/[\+%]/g, '')
-	const rarity = item.properties?.find(p => p.name === 'Item Rarity')?.values[0][0].replace(/[\+%]/g, '')
+	// const rarity = item.properties?.find(p => p.name === 'Item Rarity')?.values[0][0].replace(/[\+%]/g, '')
 	const packSize = item.properties?.find(p => p.name === 'Monster Pack Size')?.values[0][0].replace(/[\+%]/g, '')
+	const delirious = !!item.enchantMods?.find(enchant => enchant.match(/players in area are \d*% delirious/gi))
+	const originator = !!item.implicitMods?.find(implicit => implicit.match(/Area is influenced by The Originator's Memories/gi))
 	const modifiers = getModifiersFromItem(item)
 
-	if (!quant || !rarity || !packSize) return
+	if (!quant || !packSize) return
 
 	return {
 		itemId: item.id,
 		properties: {
 			itemQuantity: parseInt(quant),
-			itemRarity: parseInt(rarity),
 			packSize: parseInt(packSize),
+			delirious,
+			originator,
 		},
 		modifiers,
 	}
