@@ -3,6 +3,8 @@ import {
   BulkyBazaarItemDto,
   BulkyFilter,
   BulkyItemOverrideRecord,
+  BulkyShopItem,
+  PerItemAttributes,
 } from "@shared/types/bulky.types";
 import {
   BazaarMap,
@@ -15,7 +17,7 @@ import {
   ShopMap8Mod,
 } from "./map.types";
 import { NinjaPriceRecord } from "@shared/types/ninja.types";
-import { Ref, computed } from "vue";
+import { Ref, computed, toValue } from "vue";
 import { PoeItem } from "@shared/types/poe.types";
 import { useConfigStore } from "@web/stores/configStore";
 import { capitalize } from "lodash-es";
@@ -39,6 +41,8 @@ export const BULKY_MAPS = {
   generateBazaarMap8ModItemFromDto,
   getPerItemAttributes,
   filterIndividual8ModItemsBySubtype,
+  getShop8ModBasePrice,
+  getIndividualPriceForDto,
 };
 
 function generateTypeFromBaseType(baseType: string): MapType | undefined {
@@ -188,6 +192,7 @@ function generateBazaarMap8ModItemFromDto(
   const perItemAttributes: Map8ModPerItemAttributes[] | undefined = item.pia
     ?.map((attrs): Map8ModPerItemAttributes | undefined => {
       if (
+        !attrs.prc ||
         !attrs.mods ||
         !attrs.props ||
         !attrs.props.iQnt ||
@@ -204,6 +209,7 @@ function generateBazaarMap8ModItemFromDto(
           delirious: !!attrs.props.deli,
           originator: !!attrs.props.orig,
         },
+        price: attrs.prc,
       };
     })
     .filter(notEmpty);
@@ -285,6 +291,7 @@ function getPerItemAttributes(
       originator,
     },
     modifiers,
+    price: 0,
   };
 }
 
@@ -324,5 +331,42 @@ function filterIndividual8ModItemsBySubtype(
     return originator8Mod;
   } else {
     return map8Mod;
+  }
+}
+
+function getShop8ModBasePrice(item: ShopMap8Mod) {
+  const priceOverride = toValue(item.priceOverrideMap8Mod);
+  return item.perItemAttributes.reduce((prev, individualItem) => {
+    if (
+      individualItem.properties.delirious &&
+      individualItem.properties.originator
+    ) {
+      return prev + priceOverride.originatorDeli;
+    } else if (individualItem.properties.delirious) {
+      return prev + priceOverride.baseDeli;
+    } else if (individualItem.properties.originator) {
+      return prev + priceOverride.originator;
+    } else {
+      return prev + priceOverride.base;
+    }
+  }, 0);
+}
+
+function getIndividualPriceForDto(
+  attributes: PerItemAttributes,
+  item: BulkyShopItem
+) {
+  if (item.category !== "MAP_8_MOD" || !attributes.properties) return;
+
+  const priceOverride = toValue(item.priceOverrideMap8Mod);
+
+  if (attributes.properties.delirious && attributes.properties.originator) {
+    return priceOverride.originatorDeli;
+  } else if (attributes.properties.delirious) {
+    return priceOverride.baseDeli;
+  } else if (attributes.properties.originator) {
+    return priceOverride.originator;
+  } else {
+    return priceOverride.base;
   }
 }

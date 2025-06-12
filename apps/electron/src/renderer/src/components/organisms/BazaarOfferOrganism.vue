@@ -62,6 +62,7 @@ import {
   TotalPrice,
 } from "@shared/types/bulky.types";
 import { useNotificationStore } from "@web/stores/notificationStore";
+import { BULKY_MAPS } from "@web/categories/map/map.transformers";
 
 // STORES
 const notificationStore = useNotificationStore();
@@ -115,7 +116,18 @@ const filteredPrice = computed<TotalPrice>(() => {
     ? props.offer.fullPrice
     : filteredItems.value.reduce((prev, curr) => {
         try {
-          const basePrice = props.priceComputeFn(curr, props.filter);
+          let adjustedItem = curr;
+          if (curr.category === "MAP_8_MOD") {
+            const perItemAttributes =
+              BULKY_MAPS.filterIndividual8ModItemsBySubtype(curr, props.filter);
+            if (perItemAttributes) {
+              adjustedItem = {
+                ...curr,
+                perItemAttributes,
+              };
+            }
+          }
+          const basePrice = props.priceComputeFn(adjustedItem, props.filter);
 
           // If 'alwaysMaxQuantity' is picked, just return the items price * quantity.
           if (props.filter.alwaysMaxQuantity) {

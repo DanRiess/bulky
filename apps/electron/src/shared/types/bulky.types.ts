@@ -152,6 +152,7 @@ export type BulkyFilterStore =
 
 export type PerItemAttributes = {
   itemId: string;
+  price?: number;
   modifiers?: number[];
   properties?: {
     itemQuantity?: number;
@@ -450,6 +451,7 @@ export type TotalPrice = { chaos: number; divine: number };
 // DTO TYPES
 
 type PerItemAttributesDto = {
+  prc?: number;
   mods?: number[];
   props?: {
     iQnt?: number;

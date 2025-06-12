@@ -73,6 +73,9 @@ export function filterOffer(
       (item) => item.type === field.type && item.tier === field.tier
     );
     if (item) {
+      // Make a potential copy of the item with filtered perItemAttributes
+      let adjustedItem: BulkyBazaarItem = item;
+
       // Apply the regex to this item, if it is available.
       // This will change the item's computedQuantity property and potentially filter it out in the next step.
       if (requireFilteringIndividualItems(item, filter)) {
@@ -87,11 +90,13 @@ export function filterOffer(
         // This way, the computed quantity can be adjusted, but the original item stays the same.
         // It also enables us to only apply the regex to relevant individual items.
         if (perItemAttributes) {
+          // Assign the adjusted item so it can be used for base price calculation as well.
+          adjustedItem = {
+            ...item,
+            perItemAttributes,
+          };
+
           if (BULKY_REGEX.regexAmount(regexes) > 0) {
-            const adjustedItem: BulkyBazaarItem = {
-              ...item,
-              perItemAttributes,
-            };
             item.computedQuantity = applyRegexToBulkyItem(
               adjustedItem,
               regexes
@@ -114,7 +119,7 @@ export function filterOffer(
 
       // Try to calculate the price. If it fails (should only happen with regex offers), filter out the offer.
       try {
-        const basePrice = calculateBaseItemPrice(item, filter);
+        const basePrice = calculateBaseItemPrice(adjustedItem, filter);
         price += filter.alwaysMaxQuantity
           ? basePrice * item.quantity
           : basePrice * field.quantity;
@@ -129,10 +134,6 @@ export function filterOffer(
 
   // If at least one item does not exist in the offer, return.
   if (itemsMissingInOffer) return null;
-
-  // If the calculated price is smaller than the minimum buyout, return.
-  // TODO: Check this, it might be better to display it buy grey it out.
-  // if (price < offer.minimumBuyout) return
 
   // If all checks have passed, add the offer to the map.
   return offerClone;

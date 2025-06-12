@@ -129,16 +129,17 @@ export const useShopStore = defineStore("shopStore", () => {
     fullBuyout?: boolean;
     filter?: ShopFilter;
   }) {
-    if (!authStore.profile?.name) {
-      if (import.meta.env.VITE_NO_ATTACH_MODE !== "true") {
-        router.push({ name: "Auth" });
-      } else {
-        const notification = notificationStore.createErrorNotification({
-          message: "No profile found. Please reauthenticate.",
-        });
-        notificationStore.addErrorNotification(notification);
-      }
+    if (
+      !authStore.profile?.name &&
+      import.meta.env.VITE_NO_ATTACH_MODE !== "true"
+    ) {
+      router.push({ name: "Auth" });
       return;
+      // const notification = notificationStore.createErrorNotification({
+      //   message: "No profile found. Please reauthenticate.",
+      // });
+      // notificationStore.addErrorNotification(notification);
+      // return;
     }
 
     const items: UnwrapRef<BulkyShopItem>[] = [];
@@ -148,12 +149,47 @@ export const useShopStore = defineStore("shopStore", () => {
       if (!item.selected) return;
 
       // Push the item to the array if it fulfills the respective category's checks.
-      if (appStateStore.selectedCategory === "MAP_8_MOD") {
-        if (!item.priceOverrideMap8Mod) return;
+      if (
+        appStateStore.selectedCategory === "MAP_8_MOD" &&
+        item.category === "MAP_8_MOD"
+      ) {
+        if (!item.priceOverrideMap8Mod || !item.perItemAttributes) return;
+
+        // Filter out invalid PIAs
+        const priceOverride = toValue(item.priceOverrideMap8Mod);
+        const perItemAttributes = item.perItemAttributes.filter((pia) => {
+          if (!pia.properties) return false;
+
+          if (
+            pia.properties.delirious &&
+            pia.properties.originator &&
+            priceOverride.originatorDeli === 0
+          )
+            return false;
+          else if (pia.properties.delirious && priceOverride.baseDeli === 0)
+            return false;
+          else if (pia.properties.originator && priceOverride.originator === 0)
+            return false;
+          else if (
+            !pia.properties.delirious &&
+            !pia.properties.originator &&
+            priceOverride.base === 0
+          )
+            return false;
+          return true;
+        });
+
+        if (perItemAttributes.length === 0) return;
 
         // Cap 8 mod maps at 576 items.
         if (items.length < 576) {
-          items.push(deepToRaw(item));
+          items.push(
+            deepToRaw({
+              ...item,
+              perItemAttributes,
+              quantity: perItemAttributes.length,
+            })
+          );
         }
       } else {
         if (toValue(item.price) === 0 && toValue(item.priceOverride) === 0)
@@ -170,7 +206,6 @@ export const useShopStore = defineStore("shopStore", () => {
         }
       }
     });
-    console.log({ items });
 
     if (items.length === 0) {
       const notification = notificationStore.createErrorNotification({
@@ -189,7 +224,7 @@ export const useShopStore = defineStore("shopStore", () => {
 
     const offer: BulkyShopOffer = {
       uuid: BULKY_UUID.generateTypedUuid<BulkyShopOffer>(),
-      user: authStore.profile.name,
+      user: authStore.profile?.name ?? "Demo",
       ign: options.ign,
       stashTabIds,
       multiplier: options.multiplier,
@@ -221,12 +256,47 @@ export const useShopStore = defineStore("shopStore", () => {
       if (!item.selected) return;
 
       // Push the item to the array if it fulfills the respective category's checks.
-      if (offer.category === "MAP_8_MOD") {
-        if (!item.priceOverrideMap8Mod) return;
+      if (
+        appStateStore.selectedCategory === "MAP_8_MOD" &&
+        item.category === "MAP_8_MOD"
+      ) {
+        if (!item.priceOverrideMap8Mod || !item.perItemAttributes) return;
 
-        // Cap 8 mod maps to 576 items.
+        // Filter out invalid PIAs
+        const priceOverride = toValue(item.priceOverrideMap8Mod);
+        const perItemAttributes = item.perItemAttributes.filter((pia) => {
+          if (!pia.properties) return false;
+
+          if (
+            pia.properties.delirious &&
+            pia.properties.originator &&
+            priceOverride.originatorDeli === 0
+          )
+            return false;
+          else if (pia.properties.delirious && priceOverride.baseDeli === 0)
+            return false;
+          else if (pia.properties.originator && priceOverride.originator === 0)
+            return false;
+          else if (
+            !pia.properties.delirious &&
+            !pia.properties.originator &&
+            priceOverride.base === 0
+          )
+            return false;
+          return true;
+        });
+
+        if (perItemAttributes.length === 0) return;
+
+        // Cap 8 mod maps at 576 items.
         if (items.length < 576) {
-          items.push(deepToRaw(item));
+          items.push(
+            deepToRaw({
+              ...item,
+              perItemAttributes,
+              quantity: perItemAttributes.length,
+            })
+          );
         }
       } else {
         if (toValue(item.price) === 0 && toValue(item.priceOverride) === 0)
@@ -262,6 +332,8 @@ export const useShopStore = defineStore("shopStore", () => {
    */
   async function putOffer(offer: BulkyShopOffer) {
     // Don't put the offer if the user has already created too many.
+    // Since this can happen in the background, don't add a notification yet.
+    // Review if that feels bad in real use.
     if (
       maximumOffersReached.value &&
       !offers.value.find((o) => o.category === offer.category)
@@ -394,12 +466,47 @@ export const useShopStore = defineStore("shopStore", () => {
 
       // Push the item to the array if it fulfills the respective category's checks.
       // 8 mod maps need a price override, since they can't be priced automatically.
-      if (offer.category === "MAP_8_MOD") {
-        if (!item.priceOverrideMap8Mod) return;
+      if (
+        appStateStore.selectedCategory === "MAP_8_MOD" &&
+        item.category === "MAP_8_MOD"
+      ) {
+        if (!item.priceOverrideMap8Mod || !item.perItemAttributes) return;
+
+        // Filter out invalid PIAs
+        const priceOverride = toValue(item.priceOverrideMap8Mod);
+        const perItemAttributes = item.perItemAttributes.filter((pia) => {
+          if (!pia.properties) return false;
+
+          if (
+            pia.properties.delirious &&
+            pia.properties.originator &&
+            priceOverride.originatorDeli === 0
+          )
+            return false;
+          else if (pia.properties.delirious && priceOverride.baseDeli === 0)
+            return false;
+          else if (pia.properties.originator && priceOverride.originator === 0)
+            return false;
+          else if (
+            !pia.properties.delirious &&
+            !pia.properties.originator &&
+            priceOverride.base === 0
+          )
+            return false;
+          return true;
+        });
+
+        if (perItemAttributes.length === 0) return;
 
         // Cap 8 mod maps at 576 items.
         if (items.length < 576) {
-          items.push(deepToRaw(item));
+          items.push(
+            deepToRaw({
+              ...item,
+              perItemAttributes,
+              quantity: perItemAttributes.length,
+            })
+          );
         }
       }
       // Expedition logbooks in the offer are generic.
@@ -506,11 +613,8 @@ export const useShopStore = defineStore("shopStore", () => {
   ): BulkyBazaarOfferDto | undefined {
     const account = authStore.profile?.name;
 
-    if (!account) {
-      if (import.meta.env.VITE_NO_ATTACH_MODE !== "true") {
-        console.log({ router });
-        router.push({ name: "Auth" });
-      }
+    if (!account && import.meta.env.VITE_NO_ATTACH_MODE !== "true") {
+      router.push({ name: "Auth" });
       return;
     }
 
@@ -522,7 +626,7 @@ export const useShopStore = defineStore("shopStore", () => {
       version: parseInt(import.meta.env.VITE_OFFER_VERSION ?? "1"),
       uuid: offer.uuid,
       timestamp: Date.now(),
-      account,
+      account: account ?? "Demo",
       ign: offer.ign,
       category: offer.category,
       league: offer.league,

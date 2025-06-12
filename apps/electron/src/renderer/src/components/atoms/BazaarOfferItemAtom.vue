@@ -34,7 +34,9 @@
       <SvgIconAtom
         name="listRemove"
         :color="
-          item.regex.avoidRegex ? 'var(--color-success)' : 'var(--color-error)'
+          item.regex.avoidRegex !== undefined
+            ? 'var(--color-success)'
+            : 'var(--color-error)'
         "
       />
       <SvgIconAtom
@@ -81,6 +83,7 @@ import SvgIconAtom from "./SvgIconAtom.vue";
 import RegexTooltipTemplate from "../implementations/RegexTooltipTemplate.vue";
 import TooltipAtom from "./TooltipAtom.vue";
 import { formatNumber } from "@web/utility/formatNumber";
+import { BULKY_MAPS } from "@web/categories/map/map.transformers";
 
 // PROPS
 const props = withDefaults(
@@ -105,7 +108,25 @@ const gridColumn = computed(() =>
 );
 
 const computedPrice = computed(() => {
-  return props.priceComputeFunction(props.item, props.filter);
+  let adjustedItem = props.item;
+  if (props.item.category === "MAP_8_MOD") {
+    const perItemAttributes = BULKY_MAPS.filterIndividual8ModItemsBySubtype(
+      props.item,
+      props.filter
+    );
+    if (perItemAttributes) {
+      adjustedItem = {
+        ...props.item,
+        perItemAttributes,
+      };
+    }
+  }
+  try {
+    return props.priceComputeFunction(adjustedItem, props.filter);
+  } catch (e) {
+    console.log("something went wrong");
+    return Infinity;
+  }
 });
 </script>
 

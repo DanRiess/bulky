@@ -108,8 +108,10 @@ export const useMap8ModOfferStore = defineStore("Map8ModOfferStore", () => {
       : [];
 
     // If no regex was provided, just return the base price.
+    // The function receives filtered PIAs, so it can only have one of types
+    // basic, deli, originator or originator-deli. The price on all items will be identical.
     if (regexes.length === 0) {
-      return item.price;
+      return item.perItemAttributes[0].price;
     }
 
     // Assign the computed regexes to predefined categories.
@@ -135,7 +137,7 @@ export const useMap8ModOfferStore = defineStore("Map8ModOfferStore", () => {
         )
     );
 
-    let price = item.price;
+    let price = item.perItemAttributes[0].price;
 
     // Use the first found quantity regex and check if it matches any of the items provided quantity values.
     if (quantityRegexes.length > 0) {
@@ -204,7 +206,6 @@ export const useMap8ModOfferStore = defineStore("Map8ModOfferStore", () => {
 
       // If the user provided regex didn't match any of the offered quantities, throw an error.
       if (!packsizeRegexMatches) {
-        console.log("here?");
         throw new UserError({
           code: "regex_unsupported",
           message: "This item does not support your provided pack size regex.",
@@ -214,7 +215,7 @@ export const useMap8ModOfferStore = defineStore("Map8ModOfferStore", () => {
 
     // Check if the regex has modifiers to avoid
     if (avoidRegexes.length > 0) {
-      if (!item.regex.avoidRegex) {
+      if (item.regex.avoidRegex === undefined) {
         throw new UserError({
           code: "regex_unsupported",
           message:
@@ -227,7 +228,7 @@ export const useMap8ModOfferStore = defineStore("Map8ModOfferStore", () => {
 
     // Check if the regex has modifiers the user wants
     if (addRegexes.length > 0) {
-      if (!item.regex.wantedRegex) {
+      if (item.regex.wantedRegex === undefined) {
         throw new UserError({
           code: "regex_unsupported",
           message: "This item does not support regexes with wanted modifiers.",
@@ -252,8 +253,8 @@ export const useMap8ModOfferStore = defineStore("Map8ModOfferStore", () => {
       getKeys(MAP_TIER).includes(obj.tier) &&
       "quantity" in obj &&
       typeof obj.quantity === "number" &&
-      "price" in obj &&
-      typeof obj.price === "number"
+      "perItemAttributes" in obj &&
+      Array.isArray(obj.perItemAttributes)
     );
   }
 
