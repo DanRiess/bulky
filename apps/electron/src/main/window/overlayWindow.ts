@@ -33,6 +33,7 @@ export class OverlayWindow {
 				spellcheck: false,
 			},
 			titleBarStyle: 'hidden',
+			autoHideMenuBar: true,
 			fullscreenable: true,
 			// focusable: false,
 			skipTaskbar: true,
@@ -45,7 +46,8 @@ export class OverlayWindow {
 			alwaysOnTop: true,
 		})
 
-		this._window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
+		// this._window.setMenu(Menu.buildFromTemplate([{ role: 'editMenu' }, { role: 'reload' }, { role: 'toggleDevTools' }]))
+		this._window.setMenu(null)
 
 		this._window.webContents.setWindowOpenHandler(details => {
 			shell.openExternal(details.url)

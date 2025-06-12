@@ -212,15 +212,16 @@ function editOffer(uuid: BulkyShopOffer['uuid']) {
 /**
  * Delete an offer.
  * Also use the cooldown here to avoid the possibility to delete and then recreate an offer.
+ * Currently commented because auto sync can cause bugs where no items are being uploaded.
  */
 function deleteOffer(offer: BulkyShopOffer) {
-	if (offerCooldown.value) {
-		const notification = notificationStore.createErrorNotification({
-			message: 'Offers can be deleted at most once every 3 minutes.',
-		})
-		notificationStore.addErrorNotification(notification)
-		return
-	}
+	// if (offerCooldown.value) {
+	// 	const notification = notificationStore.createErrorNotification({
+	// 		message: 'Offers can be deleted at most once every 3 minutes.',
+	// 	})
+	// 	notificationStore.addErrorNotification(notification)
+	// 	return
+	// }
 
 	shopStore.deleteOffer(offer)
 }
