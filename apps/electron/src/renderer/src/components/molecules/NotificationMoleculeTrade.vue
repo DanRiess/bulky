@@ -103,8 +103,9 @@ async function copyAndUseRegex() {
 
 	navigator.clipboard.writeText(mtn.regex)
 
-	const request = useApi('pasteSearch', nodeApi.pasteSearch)
-	await request.exec(mtn.regex)
+	// Disable this for now. Leads to very janky behavior in the game.
+	// const request = useApi('pasteSearch', nodeApi.pasteSearch)
+	// await request.exec(mtn.regex)
 }
 </script>
 

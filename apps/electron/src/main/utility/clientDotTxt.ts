@@ -4,6 +4,7 @@ import * as chokidar from 'chokidar'
 import { WebContents } from 'electron'
 import { SplitClientTxtLine } from '@shared/types/general.types'
 import { mainToRendererEvents } from '@main/events/mainToRenderer'
+import { extractString } from './extractString'
 
 export class ClientDotTxt {
 	private watcher: chokidar.FSWatcher

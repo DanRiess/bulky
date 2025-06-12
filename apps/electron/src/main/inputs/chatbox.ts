@@ -2,7 +2,6 @@ import { Clipboard } from './clipboard'
 import { uIOhook, UiohookKey as Key } from 'uiohook-napi'
 import { OverlayWindow } from '../window/overlayWindow'
 import { sleepTimer } from '../utility/sleepTimer'
-import { GameWindow } from '@main/window/gameWindow'
 
 const debounceDuration = 200
 
@@ -10,7 +9,7 @@ export class Chatbox {
 	private clipboard: Clipboard
 	private debounce: number
 
-	constructor(private overlayWindow: OverlayWindow, private gameWindow: GameWindow) {
+	constructor(private overlayWindow: OverlayWindow) {
 		this.clipboard = new Clipboard()
 		this.debounce = 0
 	}
@@ -19,7 +18,6 @@ export class Chatbox {
 	 * Type the provided message into the chatbox.
 	 */
 	async type(message: string) {
-		console.log(message)
 		// Prevent multiple fast invocations of this function.
 		if (performance.now() < this.debounce) return
 		this.debounce = performance.now() + debounceDuration
@@ -37,7 +35,6 @@ export class Chatbox {
 		// I tried it with 0 to execute the next step at the end of the next cycle, but that was not enough.
 		// TODO: find better solution without a magic number.
 		await sleepTimer(50)
-		console.log(this.gameWindow.hasFocus)
 
 		// The timeouts after enter seem to be absolutely mandatory.
 		// Without them, commands after Enter won't be executed anymore.
