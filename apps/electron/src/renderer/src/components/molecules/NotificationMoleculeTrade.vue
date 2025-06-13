@@ -101,7 +101,7 @@ import { sleepTimer } from "@web/utility/sleep";
 import { useChaosToDiv } from "@web/composables/useChaosToDiv";
 import PriceAtom from "../atoms/PriceAtom.vue";
 import { decodeMinifiedTradeNotification } from "@web/utility/minifiedTradeNotification";
-import { useNinjaStore } from "@web/stores/ninjaStore";
+// import { useNinjaStore } from "@web/stores/ninjaStore";
 import { useConfigStore } from "@web/stores/configStore";
 
 // STORES
@@ -116,13 +116,12 @@ const props = defineProps<{
 
 // STATE
 const mtn = decodeMinifiedTradeNotification(props.notification.tradeData);
-console.log({ mtn });
 
 // COMPOSABLES
-const { chaosPerDiv } = useNinjaStore();
+// const { chaosPerDiv } = useNinjaStore();
 const totalPrice =
   props.notification.league === configStore.config.league
-    ? useChaosToDiv(mtn.fullPrice, chaosPerDiv)
+    ? useChaosToDiv(mtn.fullPrice, mtn.chaosPerDiv)
     : mtn.fullPrice;
 
 // METHODS

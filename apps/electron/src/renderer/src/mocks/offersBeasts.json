@@ -1,42 +1,42 @@
 [
-	{
-		"version": 1,
-		"uuid": "3bb51669-b43a-4e0e-ae76-57d85d198295",
-		"timestamp": 1729650664708,
-		"account": "Chavincar",
-		"ign": "Chavi",
-		"category": "BESTIARY",
-		"league": "Settlers",
-		"chaosPerDiv": 155.48,
-		"multiplier": 1.65,
-		"fullPrice": 2016,
-		"minimumBuyout": 0,
-		"fullBuyout": false,
-		"items": [
-			{
-				"type": 0,
-				"tier": 0,
-				"qnt": 3,
-				"prc": 359.5
-			},
-			{
-				"type": 2,
-				"tier": 0,
-				"qnt": 3,
-				"prc": 308.2
-			},
-			{
-				"type": 51,
-				"tier": 0,
-				"qnt": 3,
-				"prc": 2.5
-			},
-			{
-				"type": 18,
-				"tier": 0,
-				"qnt": 1,
-				"prc": 4.9
-			}
-		]
-	}
+  {
+    "version": 1,
+    "uuid": "3bb51669-b43a-4e0e-ae76-57d85d198295",
+    "timestamp": 1729650664708,
+    "account": "Chavincar",
+    "ign": "Chavi",
+    "category": "BESTIARY",
+    "league": "Standard",
+    "chaosPerDiv": 155.48,
+    "multiplier": 1.65,
+    "fullPrice": 2016,
+    "minimumBuyout": 0,
+    "fullBuyout": false,
+    "items": [
+      {
+        "type": 0,
+        "tier": 0,
+        "qnt": 3,
+        "prc": 359.5
+      },
+      {
+        "type": 2,
+        "tier": 0,
+        "qnt": 3,
+        "prc": 308.2
+      },
+      {
+        "type": 51,
+        "tier": 0,
+        "qnt": 3,
+        "prc": 2.5
+      },
+      {
+        "type": 18,
+        "tier": 0,
+        "qnt": 1,
+        "prc": 4.9
+      }
+    ]
+  }
 ]

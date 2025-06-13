@@ -102,7 +102,7 @@ function addnote() {
   const n = notificationStore.createTradeNotification({
     ign: "CountSudoku",
     // tradeData: '040560160128989%RX%12345',
-    tradeData: `1%11%AAEBAAAAAAFAIAAA`,
+    tradeData: `1%5%155.48%AAAAAAAAAANDs8AA`,
     league: "Standard",
   });
 

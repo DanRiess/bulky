@@ -173,12 +173,12 @@ async function sendMessage() {
     filteredPrice.value.chaos;
   const mtn = generateMinifiedTradeNotification(
     props.offer.category,
+    props.offer.chaosPerDiv,
     filteredItems,
     fullPriceInChaos,
     props.filter,
     props.priceComputeFn
   );
-  console.log({ mtn, message });
 
   if (!message || !mtn) {
     const notification = notificationStore.createErrorNotification({

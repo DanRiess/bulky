@@ -37,6 +37,7 @@ import { BULKY_MAPS } from "@web/categories/map/map.transformers";
 export function generateMinifiedTradeNotification(
   // offer: BulkyBazaarOffer,
   category: Category,
+  cpd: number,
   items: MaybeComputedRef<BulkyBazaarItem[]>,
   fullPrice: number,
   filter: BulkyFilter,
@@ -138,7 +139,7 @@ export function generateMinifiedTradeNotification(
         })
         .filter(notEmpty);
 
-  let minifiedTradeNotification = `${mtnVersion}%${categoryIdx}%${b64ItemStrings.join(
+  let minifiedTradeNotification = `${mtnVersion}%${categoryIdx}%${cpd}%${b64ItemStrings.join(
     ":"
   )}`;
 
@@ -167,7 +168,7 @@ export function generateMinifiedTradeNotification(
  * If the offer has a regex to be transmitted, it will come after the blocks. The separator is %.
  */
 export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
-  const [version, categoryIdxString, blockString, regex] = mtn.split("%");
+  const [version, categoryIdxString, cpd, blockString, regex] = mtn.split("%");
 
   if (version !== import.meta.env.VITE_MTN_VERSION) {
     throw new Error("MTN Version not supported.");
@@ -211,12 +212,10 @@ export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
       const tierIdx = dv.getUint8(3);
       const quantity = dv.getUint32(4);
       const price = dv.getFloat32(8);
-      console.log({ typeIdx, tierIdx, secondaryTypeOption, quantity, price });
 
       // Also calculate the full price for later.
       // In case the full offer is requested, every value except price will be max.
       if (typeIdx === 0xff && tierIdx === 0xf && quantity === 0xffff) {
-        console.log("full");
         fullPrice += price;
         return "Full Offer";
       } else {
@@ -249,6 +248,7 @@ export function decodeMinifiedTradeNotification(mtn: string): DecodedMTN {
 
   return {
     category: categoryDisplayValue,
+    chaosPerDiv: Number(cpd),
     trades,
     fullPrice,
     regex,
