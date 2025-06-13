@@ -10,18 +10,24 @@ stages:
       offerTableName: "offer-table-default"
       userTableName: "user-table-default"
       ninjaProxyBucketName: "ninja-proxy-bucket-default"
+      ninjaCloudFrontCachePolicyName: "ninja-proxy-cache-policy-default"
+      ninjaCloudFrontResponseHeadersPolicyName: "ninja-proxy-response-policy-default"
   dev:
     params:
       oauthTableName: "oauth-table-dev"
       offerTableName: "offer-table-dev"
       userTableName: "user-table-dev"
       ninjaProxyBucketName: "ninja-proxy-bucket-dev"
+      ninjaCloudFrontCachePolicyName: "ninja-proxy-cache-policy-dev"
+      ninjaCloudFrontResponseHeadersPolicyName: "ninja-proxy-response-policy-dev"
   prod:
     params:
       oauthTableName: "oauth-table-prod"
       offerTableName: "offer-table-prod"
       userTableName: "user-table-prod"
       ninjaProxyBucketName: "ninja-proxy-bucket-prod"
+      ninjaCloudFrontCachePolicyName: "ninja-proxy-cache-policy-prod"
+      ninjaCloudFrontResponseHeadersPolicyName: "ninja-proxy-response-policy-prod"
 
 provider:
   name: aws
@@ -244,7 +250,7 @@ resources:
       Type: AWS::CloudFront::CachePolicy
       Properties:
         CachePolicyConfig:
-          Name: ninja-proxy-cache-policy
+          Name: ${param:ninjaCloudFrontCachePolicyName}
           DefaultTTL: 3600 # 60 minutes
           MaxTTL: 86400 # 1 day
           MinTTL: 1800 # 30 minutes
@@ -262,7 +268,7 @@ resources:
       Type: AWS::CloudFront::ResponseHeadersPolicy
       Properties:
         ResponseHeadersPolicyConfig:
-          Name: ninja-proxy-response-policy
+          Name: ${param:ninjaCloudFrontResponseHeadersPolicyName}
           Comment: "Response headers policy for stale-while-revalidate"
           CorsConfig:
             AccessControlAllowOrigins:

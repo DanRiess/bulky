@@ -221,7 +221,7 @@ app.whenReady().then(() => {
 			// Initialize instances.
 			const poeWindow = new GameWindow()
 			const overlayWindow = new OverlayWindow(poeWindow)
-			const chatbox = new Chatbox(overlayWindow, poeWindow)
+			const chatbox = new Chatbox(overlayWindow)
 
 			// Load the app page.
 			overlayWindow.loadAppPage()

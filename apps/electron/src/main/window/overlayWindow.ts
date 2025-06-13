@@ -3,7 +3,7 @@
  */
 
 import { join } from 'path'
-import { BrowserWindow, dialog, shell, Menu } from 'electron'
+import { BrowserWindow, dialog, shell } from 'electron'
 import { AttachEvent, OverlayController } from 'electron-overlay-window'
 import type { GameWindow } from './gameWindow'
 import { is } from '@electron-toolkit/utils'
@@ -38,7 +38,7 @@ export class OverlayWindow {
 			// focusable: false,
 			skipTaskbar: true,
 			frame: false,
-			show: import.meta.env.VITE_NO_ATTACH_MODE !== 'true',
+			show: import.meta.env.VITE_NO_ATTACH_MODE !== 'true', // true for auto update
 			// show: false,
 			transparent: true,
 			resizable: true,

@@ -1,4 +1,6 @@
-<svg xml:space="preserve" viewBox="0 0 1080 1080">
-  <path d="M480-151.54 103.85-603.08 212.31-820h535.38l108.46 216.92L480-151.54ZM352.69-620h254.62l-80-160h-94.62l-80 160ZM460-237.62V-580H175.69L460-237.62Zm40 0L784.31-580H500v342.38ZM651.69-620h150.62l-80-160H571.69l80 160Zm-494 0h150.62l80-160H237.69l-80 160Z" style="stroke:none;stroke-width:1;stroke-dasharray:none;stroke-linecap:butt;stroke-dashoffset:0;stroke-linejoin:miter;stroke-miterlimit:4;fill:#e8eaed;fill-rule:nonzero;opacity:1" transform="matrix(1.13 0 0 1.13 -2.4 1088.92)"/>
-  <path d="M40.747 13.955h18.507c1.099 0 1.988.89 1.988 1.986v22.846h22.844c1.098 0 1.984.888 1.984 1.986v18.453a1.983 1.983 0 0 1-1.984 1.986H61.242v22.846c0 1.099-.89 1.986-1.988 1.986H40.747a1.986 1.986 0 0 1-1.985-1.986V61.213H15.915a1.986 1.986 0 0 1-1.985-1.986V40.773c0-1.099.89-1.986 1.985-1.986h22.847V15.941c0-1.096.889-1.986 1.985-1.986z" style="stroke:#000;stroke-width:0;stroke-dasharray:none;stroke-linecap:butt;stroke-dashoffset:0;stroke-linejoin:miter;stroke-miterlimit:4;fill:#e8eaed;fill-rule:nonzero;opacity:1" transform="matrix(4.11 0 0 4.11 683.23 623.94)" vector-effect="non-scaling-stroke"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+	<path
+		d="m191.22,391.1L25.22,191.83l47.86-95.73h236.27l47.86,95.73-166,199.27Zm-56.18-206.74h112.37l-35.3-70.61h-41.76l-35.3,70.61Zm47.36,168.75v-151.1H56.93l125.47,151.1Zm17.65,0l125.47-151.1h-125.47v151.1Zm66.94-168.75h66.47l-35.3-70.61h-66.47l35.3,70.61Zm-218.01,0h66.47l35.3-70.61h-66.47l-35.3,70.61Z" />
+	<polygon
+		points="367.27 473.27 367.27 372.77 266.77 372.77 266.77 347.65 367.27 347.65 367.27 247.15 392.4 247.15 392.4 347.65 492.89 347.65 492.89 372.77 392.4 372.77 392.4 473.27 367.27 473.27" />
 </svg>

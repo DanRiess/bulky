@@ -7,6 +7,7 @@
 		"build": "tsup",
 		"package": "pnpm build && powershell -command \"Compress-Archive -Path dist\\* -DestinationPath dist\\package.zip\"",
 		"deploy": "pnpm package && serverless deploy --aws-profile BulkyPoe",
+		"deploy:prod": "pnpm package && serverless deploy --aws-profile BulkyPoe --stage prod",
 		"dev": "cross-env SOURCE_DIRECTORY=src/ serverless dev --aws-profile BulkyPoe",
 		"dev:debug": "cross-env SOURCE_DIRECTORY=src/ SLS_DEBUG=* serverless dev --aws-profile BulkyPoe --debug >serverless-debug.log 2>&1",
 		"test": "echo \"Error: no test specified\" && exit 1"
