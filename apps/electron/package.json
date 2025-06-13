@@ -29,9 +29,11 @@
 	"build": {
 		"appId": "bulky-poe",
 		"productName": "Bulky",
-		"publish": [
-			"github"
-		],
+		"publish": {
+			"provider": "github",
+			"owner": "DanRiess",
+			"repo": "bulky"
+		},
 		"win": {
 			"target": "nsis"
 		},
