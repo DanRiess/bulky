@@ -280,7 +280,7 @@ app.whenReady().then(() => {
 					responseHeaders: {
 						...details.responseHeaders,
 						'Content-Security-Policy': [
-							"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src https://www.pathofexile.com https://api.pathofexile.com ws://localhost:5173 http://localhost:5173 ws://localhost:5174 http://localhost:5174 https://poe.ninja; img-src 'self' http://localhost:5174 https://web.poecdn.com",
+							"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src https://www.pathofexile.com https://api.pathofexile.com ws://localhost:5173 http://localhost:5173 ws://localhost:5174 http://localhost:5174 https://poe.ninja; img-src 'self' http://localhost:5174 https://web.poecdn.com data:",
 						],
 					},
 				})
