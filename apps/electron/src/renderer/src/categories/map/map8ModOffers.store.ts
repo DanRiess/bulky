@@ -253,8 +253,8 @@ export const useMap8ModOfferStore = defineStore("Map8ModOfferStore", () => {
       getKeys(MAP_TIER).includes(obj.tier) &&
       "quantity" in obj &&
       typeof obj.quantity === "number" &&
-      "perItemAttributes" in obj &&
-      Array.isArray(obj.perItemAttributes)
+      (("perItemAttributes" in obj && Array.isArray(obj.perItemAttributes)) ||
+        ("price" in obj && typeof obj.price === "number"))
     );
   }
 
