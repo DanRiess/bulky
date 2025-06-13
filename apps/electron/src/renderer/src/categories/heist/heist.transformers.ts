@@ -106,7 +106,6 @@ function generateShopItemFromPoeItem(
   const tier = generateTierFromItemLevel(poeItem.ilvl);
 
   if (!type || !tier) return;
-
   return {
     type: type,
     tier: tier,
@@ -172,5 +171,8 @@ function generateNameFromType(type: HeistType) {
 }
 
 function getNameFromTypeAndTier(type: HeistType, tier: HeistTier) {
+  if (tier === "0") {
+    return generateNameFromType(type);
+  }
   return `${generateNameFromType(type)} (${generateNameFromTier(tier)})`;
 }

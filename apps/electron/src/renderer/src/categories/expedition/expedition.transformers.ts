@@ -82,9 +82,7 @@ function generateShopItemFromPoeItem(
     quantity: poeItem.stackSize ?? 1,
     price: computed(() => {
       return (
-        Math.round(
-          (prices.value.get(`${poeItem.baseType}_${tier}`)?.chaos ?? 0) * 10
-        ) / 10
+        Math.round((prices.value.get(poeItem.baseType)?.chaos ?? 0) * 10) / 10
       );
     }),
     league: configStore.config.league,
@@ -137,6 +135,9 @@ function generateNameFromTier(tier: ExpeditionTier) {
 }
 
 function getNameFromTypeAndTier(type: ExpeditionType, tier: ExpeditionTier) {
+  if (tier === "0") {
+    return generateNameFromType(type);
+  }
   return `${generateNameFromType(type)} (${generateNameFromTier(tier)})`;
 }
 
