@@ -147,7 +147,7 @@ export const useNotificationStore = defineStore('notificationStore', () => {
 
 	function createDummyNotification() {
 		const dummyData = {
-			ign: 'Dummy',
+			ign: 'BulkyTestDummy',
 			tradeData: `1%4%AEAADwAAABJBmAAA%"!gen|f el|s rec" "m q.*1[1-9].%"`,
 			league: 'Standard',
 		}

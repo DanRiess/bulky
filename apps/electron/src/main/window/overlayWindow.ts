@@ -38,8 +38,7 @@ export class OverlayWindow {
 			// focusable: false,
 			skipTaskbar: true,
 			frame: false,
-			show: import.meta.env.VITE_NO_ATTACH_MODE !== 'true', // true for auto update
-			// show: false,
+			show: true, // Always show for the auto updater. Will hide on error.
 			transparent: true,
 			resizable: true,
 			hasShadow: true,

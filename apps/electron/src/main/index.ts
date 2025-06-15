@@ -296,6 +296,7 @@ app.whenReady().then(() => {
 				try {
 					await updateApp(overlayWindow.window.webContents)
 				} catch (e) {
+					overlayWindow.window.hide()
 					mainToRendererEvents.showAppUpdatePanel(overlayWindow.window.webContents, 'ERROR')
 				}
 

@@ -1,6 +1,6 @@
 {
 	"name": "bulky",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Bulk trading in-game overlay for Path of Exile. Made with Electron, VueJs and Typescript.",
 	"main": "./out/main/index.js",
 	"author": "Daniel Riess",
