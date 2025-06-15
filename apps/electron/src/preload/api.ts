@@ -106,8 +106,13 @@ export const api = {
 	getNinjaData: (url: string): Promise<PreprocessedNinjaFile | SerializedError> =>
 		ipcRendererWrapper.invoke('get-ninja-data', url),
 
-	getOffers: (category: Category, league: string, timestamp: number): Promise<BulkyBazaarOfferDto[] | SerializedError> =>
-		ipcRendererWrapper.invoke('get-offers', category, league, timestamp),
+	getOffers: (
+		category: Category,
+		league: string,
+		jwt: string,
+		timestamp: number
+	): Promise<BulkyBazaarOfferDto[] | SerializedError> =>
+		ipcRendererWrapper.invoke('get-offers', category, league, jwt, timestamp),
 
 	putOffer: (offerDto: BulkyBazaarOfferDto, jwt: string): Promise<BulkyBazaarOfferDtoResponse | SerializedError> =>
 		ipcRendererWrapper.invoke('put-offer', offerDto, jwt),

@@ -6,7 +6,10 @@ import { BulkyBazaarOfferDto, BulkyBazaarOfferDtoResponse, BulkyDeleteOfferDto, 
 import activeWindow from 'active-win'
 import axios from 'axios'
 
-export async function getOffers(category: Category, league: string, timestamp: number, overlayWindow: OverlayWindow) {
+export async function getOffers(
+	data: { category: Category; league: string; timestamp: number; jwt: string },
+	overlayWindow: OverlayWindow
+) {
 	// Check if Bulky is in the foreground.
 	// If not, don't fetch new data.
 	const appStateStore = AppStateStore.instance
@@ -34,9 +37,12 @@ export async function getOffers(category: Category, league: string, timestamp: n
 
 	const res = await axios.get<BulkyBazaarOfferDto[]>(`${server}/offer`, {
 		params: {
-			category,
-			league,
-			timestamp,
+			category: data.category,
+			league: data.league,
+			timestamp: data.timestamp,
+		},
+		headers: {
+			Authorization: `Bearer ${data.jwt}`,
 		},
 	})
 	return res.data

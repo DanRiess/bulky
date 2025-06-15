@@ -249,9 +249,15 @@ app.whenReady().then(() => {
 			 * Get offers of the provided category and league from the server.
 			 * Will only download if either the game or the overlay are in focus.
 			 */
-			ipcMain.handle('get-offers', async (_, category: Category, league: string, timestamp: number) => {
+			ipcMain.handle('get-offers', async (_, category: Category, league: string, jwt: string, timestamp: number) => {
 				try {
-					return await getOffers(category, league, timestamp, overlayWindow)
+					const data = {
+						category,
+						league,
+						timestamp,
+						jwt,
+					}
+					return await getOffers(data, overlayWindow)
 				} catch (e) {
 					return new SerializedError(e)
 				}
